@@ -1,0 +1,2091 @@
+[
+    {
+        "name": "exists_max_pow_two_dividing",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_pow_two_dividing (A : \u2115) (hpos : 0 < A) :\n  \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  use Nat.find (show \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) by\n    -- We need to find the maximum power of 2 that divides A.\n    -- This is equivalent to finding the highest power of 2 such that A mod 2^u = 0.\n    -- We can use the fact that A is a finite number and 2^u will eventually exceed A.\n    have h : \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n      -- We will use a binary search approach to find the maximum u.\n      -- Start with u = 0 and double u until 2^u > A.\n      use 0\n      have h\u2081 : (2 : \u2115) ^ 0 \u2223 A := by\n        -- 2^0 = 1 divides every integer A.\n        simp\n        <;> exact Nat.dvd_of_mod_eq_zero (by simp)\n      have h\u2082 : \u00ac ((2 : \u2115) ^ (0 + 1) \u2223 A) := by\n        -- 2^1 = 2 does not necessarily divide A.\n        simp\n        <;> exact fun h => by\n          -- If 2 divides A, then A is even.\n          have h\u2083 := Nat.mod_eq_zero_of_dvd h\n          have h\u2084 := hpos\n          omega\n      exact \u27e8h\u2081, h\u2082\u27e9\n    exact h)\n  have h\u2081 := Nat.find_spec this\n  exact h\u2081",
+        "custom_id": "exists_max_pow_two_dividing_0",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 27,
+                        "column": 15
+                    },
+                    "data": "type mismatch\n  fun h => ?m.5323 h\nhas type\n  (h : ?m.5329 \u2223 ?m.5330) \u2192 ?m.5322 h : Sort ?u.5319\nbut is expected to have type\n  A % 2 = 1 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 27,
+                        "column": 15
+                    },
+                    "data": "unsolved goals\nA : \u2115\nhpos : 0 < A\nh\u2081 : 2 ^ 0 \u2223 A\n\u22a2 A % 2 = 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 30,
+                        "column": 27
+                    },
+                    "endPos": {
+                        "line": 30,
+                        "column": 31
+                    },
+                    "data": "unknown identifier 'this'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 56
+                    },
+                    "endPos": {
+                        "line": 31,
+                        "column": 10
+                    },
+                    "data": "unsolved goals\ncase h\nA : \u2115\nhpos : 0 < A\n\u22a2 2 ^ Nat.find \u22ef \u2223 A \u2227 \u00ac2 ^ (Nat.find \u22ef + 1) \u2223 A"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.11663103103637695,
+            "custom_id": "exists_max_pow_two_dividing_0"
+        }
+    },
+    {
+        "name": "exists_max_pow_two_dividing",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_pow_two_dividing (A : \u2115) (hpos : 0 < A) :\n  \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  have h : \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n    use Nat.find (show \u2203 k : \u2115, (2 ^ k \u2223 A) \u2227 \u00ac (2 ^ (k + 1) \u2223 A) from\n      \u27e80, by\n        simp_all [Nat.pow_succ]\n        <;>\n        omega\n      \u27e9)\n    exact \u27e8Nat.find_spec (show \u2203 k : \u2115, (2 ^ k \u2223 A) \u2227 \u00ac (2 ^ (k + 1) \u2223 A) from\n      \u27e80, by\n        simp_all [Nat.pow_succ]\n        <;>\n        omega\n      \u27e9) |>.1, Nat.find_spec (show \u2203 k : \u2115, (2 ^ k \u2223 A) \u2227 \u00ac (2 ^ (k + 1) \u2223 A) from\n      \u27e80, by\n        simp_all [Nat.pow_succ]\n        <;>\n        omega\n      \u27e9) |>.2\u27e9\n  exact h",
+        "custom_id": "exists_max_pow_two_dividing_1",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 24,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 21,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.22347187995910645,
+            "custom_id": "exists_max_pow_two_dividing_1"
+        }
+    },
+    {
+        "name": "exists_max_pow_two_dividing",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_pow_two_dividing (A : \u2115) (hpos : 0 < A) :\n  \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  use Nat.log 2 A\n  have h\u2080 : 2 ^ Nat.log 2 A \u2223 A := by\n    apply Nat.pow_log_dvd_of_pos hpos\n  have h\u2081 : \u00ac(2 ^ (Nat.log 2 A + 1) \u2223 A) := by\n    intro h\n    have h\u2082 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\n    have h\u2083 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2082\n    have h\u2084 : 2 ^ (Nat.log 2 A + 1) \u2264 A := Nat.le_of_dvd (by positivity) h\u2083\n    have h\u2085 : 2 ^ (Nat.log 2 A + 1) > A := by\n      have h\u2086 : Nat.log 2 A + 1 > Nat.log 2 A := by linarith\n      have h\u2087 : 2 ^ (Nat.log 2 A + 1) > 2 ^ (Nat.log 2 A) := Nat.pow_lt_pow_of_lt_right (by norm_num) h\u2086\n      have h\u2088 : 2 ^ (Nat.log 2 A) = A := by\n        apply Nat.pow_log_eq_self\n        linarith\n      linarith\n    linarith\n  exact \u27e8h\u2080, h\u2081\u27e9",
+        "custom_id": "exists_max_pow_two_dividing_2",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 37
+                    },
+                    "data": "unknown constant 'Nat.pow_log_dvd_of_pos'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 33
+                    },
+                    "data": "unknown constant 'Nat.pow_log_eq_self'"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 61
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 87
+                    },
+                    "data": "`Nat.pow_lt_pow_of_lt_right` has been deprecated, use `pow_lt_pow_right` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.4352843761444092,
+            "custom_id": "exists_max_pow_two_dividing_2"
+        }
+    },
+    {
+        "name": "exists_max_pow_two_dividing",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_pow_two_dividing (A : \u2115) (hpos : 0 < A) :\n  \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  have : \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n    use Nat.find (show \u2203 k : \u2115, 2 ^ k \u2223 A by exact \u27e80, by simp [hpos]\u27e9)\n    have h\u2081 : 2 ^ (Nat.find (show \u2203 k : \u2115, 2 ^ k \u2223 A by exact \u27e80, by simp [hpos]\u27e9)) \u2223 A :=\n      Nat.find_spec (show \u2203 k : \u2115, 2 ^ k \u2223 A by exact \u27e80, by simp [hpos]\u27e9)\n    have h\u2082 : \u00ac 2 ^ (Nat.find (show \u2203 k : \u2115, 2 ^ k \u2223 A by exact \u27e80, by simp [hpos]\u27e9) + 1) \u2223 A := by\n      intro h\n      have h' : 2 ^ (Nat.find (show \u2203 k : \u2115, 2 ^ k \u2223 A by exact \u27e80, by simp [hpos]\u27e9) + 1) \u2223 A := h\n      have h'' : 2 ^ (Nat.find (show \u2203 k : \u2115, 2 ^ k \u2223 A by exact \u27e80, by simp [hpos]\u27e9) + 1) \u2223 A := h'\n      have h''' : 2 ^ (Nat.find (show \u2203 k : \u2115, 2 ^ k \u2223 A by exact \u27e80, by simp [hpos]\u27e9) + 1) \u2223 A := h''\n      have h'''' : 2 ^ (Nat.find (show \u2203 k : \u2115, 2 ^ k \u2223 A by exact \u27e80, by simp [hpos]\u27e9) + 1) \u2223 A := h'''\n      have h\u2081 := Nat.find_min' (show \u2203 k : \u2115, 2 ^ k \u2223 A by exact \u27e80, by simp [hpos]\u27e9) (by\n        omega)\n      simp_all [Nat.pow_succ]\n      <;> omega\n    exact \u27e8h\u2081, h\u2082\u27e9\n  exact this",
+        "custom_id": "exists_max_pow_two_dividing_3",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c - d \u2264 -1\n  b \u2265 1\n  c \u2265 1\n  b \u2265 1\n  a \u2265 1\nwhere\n a := \u2191A\n b := \u21912 ^ Nat.find \u22ef\n c := \u2191A % \u2191(2 ^ ?m.8424)\n d := \u21912 ^ ?m.8424"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 97
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 15
+                    },
+                    "data": "unsolved goals\nA : \u2115\nhpos : 0 < A\nh\u2081\u271d : 2 ^ Nat.find \u22ef \u2223 A\nh : 2 ^ Nat.find \u22ef * 2 \u2223 A\nh\u2081 : \u2203 m \u2264 sorryAx \u2115 true, 2 ^ m \u2223 A\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.7833847999572754,
+            "custom_id": "exists_max_pow_two_dividing_3"
+        }
+    },
+    {
+        "name": "exists_max_pow_two_dividing",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_pow_two_dividing (A : \u2115) (hpos : 0 < A) :\n  \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  use Nat.find (show \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) by\n    -- We need to find a u such that 2^u divides A but 2^(u+1) does not divide A.\n    -- We can use the fact that A has a finite number of divisors 2.\n    -- We will show that there exists a u such that 2^u divides A and 2^(u+1) does not divide A.\n    use 0\n    have h\u2081 : (2 : \u2115) ^ 0 \u2223 A := by\n      -- 2^0 = 1 divides any integer A.\n      simp [Nat.dvd_one]\n    have h\u2082 : \u00ac ((2 : \u2115) ^ (0 + 1) \u2223 A) := by\n      -- 2^(0+1) = 2. We need to show that 2 does not divide A.\n      intro h\n      have h\u2083 : (2 : \u2115) \u2223 A := by simpa using h\n      have h\u2084 : (2 : \u2115) \u2223 A := by simpa using h\u2083\n      -- If 2 divides A, then A is even. We will show that A is odd, leading to a contradiction.\n      cases' hpos with hpos\n      all_goals\n        cases' A with A\n        all_goals simp_all [Nat.dvd_iff_mod_eq_zero, Nat.pow_succ]\n      all_goals omega\n    exact \u27e8h\u2081, h\u2082\u27e9)\n  have h\u2081 : (2 : \u2115) ^ (Nat.find (show \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) by\n    use 0\n    have h\u2081 : (2 : \u2115) ^ 0 \u2223 A := by\n      simp [Nat.dvd_one]\n    have h\u2082 : \u00ac ((2 : \u2115) ^ (0 + 1) \u2223 A) := by\n      intro h\n      have h\u2083 : (2 : \u2115) \u2223 A := by simpa using h\n      have h\u2084 : (2 : \u2115) \u2223 A := by simpa using h\u2083\n      cases' hpos with hpos\n      all_goals\n        cases' A with A\n        all_goals simp_all [Nat.dvd_iff_mod_eq_zero, Nat.pow_succ]\n      all_goals omega\n    exact \u27e8h\u2081, h\u2082\u27e9)) \u2223 A := by\n    exact Nat.pow_find (show \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) by\n      use 0\n      have h\u2081 : (2 : \u2115) ^ 0 \u2223 A := by\n        simp [Nat.dvd_one]\n      have h\u2082 : \u00ac ((2 : \u2115) ^ (0 + 1) \u2223 A) := by\n        intro h\n        have h\u2083 : (2 : \u2115) \u2223 A := by simpa using h\n        have h\u2084 : (2 : \u2115) \u2223 A := by simpa using h\u2083\n        cases' hpos with hpos\n        all_goals\n          cases' A with A\n          all_goals simp_all [Nat.dvd_iff_mod_eq_zero, Nat.pow_succ]\n        all_goals omega\n      exact \u27e8h\u2081, h\u2082\u27e9)\n  have h\u2082 : \u00ac ((2 : \u2115) ^ (Nat.find (show \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) by\n    use 0\n    have h\u2081 : (2 : \u2115) ^ 0 \u2223 A := by\n      simp [Nat.dvd_one]\n    have h\u2082 : \u00ac ((2 : \u2115) ^ (0 + 1) \u2223 A) := by\n      intro h\n      have h\u2083 : (2 : \u2115) \u2223 A := by simpa using h\n      have h\u2084 : (2 : \u2115) \u2223 A := by simpa using h\u2083\n      cases' hpos with hpos\n      all_goals\n        cases' A with A\n        all_goals simp_all [Nat.dvd_iff_mod_eq_zero, Nat.pow_succ]\n      all_goals omega\n    exact \u27e8h\u2081, h\u2082\u27e9) + 1) \u2223 A) := by\n    exact Nat.find_spec (show \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) by\n      use 0\n      have h\u2081 : (2 : \u2115) ^ 0 \u2223 A := by\n        simp [Nat.dvd_one]\n      have h\u2082 : \u00ac ((2 : \u2115) ^ (0 + 1) \u2223 A) := by\n        intro h\n        have h\u2083 : (2 : \u2115) \u2223 A := by simpa using h\n        have h\u2084 : (2 : \u2115) \u2223 A := by simpa using h\u2083\n        cases' hpos with hpos\n        all_goals\n          cases' A with A\n          all_goals simp_all [Nat.dvd_iff_mod_eq_zero, Nat.pow_succ]\n        all_goals omega\n      exact \u27e8h\u2081, h\u2082\u27e9) |>.right\n  exact \u27e8Nat.find (show \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) by\n    use 0\n    have h\u2081 : (2 : \u2115) ^ 0 \u2223 A := by\n      simp [Nat.dvd_one]\n    have h\u2082 : \u00ac ((2 : \u2115) ^ (0 + 1) \u2223 A) := by\n      intro h\n      have h\u2083 : (2 : \u2115) \u2223 A := by simpa using h\n      have h\u2084 : (2 : \u2115) \u2223 A := by simpa using h\u2083\n      cases' hpos with hpos\n      all_goals\n        cases' A with A\n        all_goals simp_all [Nat.dvd_iff_mod_eq_zero, Nat.pow_succ]\n      all_goals omega\n    exact \u27e8h\u2081, h\u2082\u27e9), h\u2081, h\u2082\u27e9",
+        "custom_id": "exists_max_pow_two_dividing_4",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 24,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 23
+                    },
+                    "data": "tactic 'induction' failed, major premise type is not an inductive type \n  ?m.6661\ncase refl\nh\u2081 : 2 ^ 0 \u2223 succ 0\nh : 2 ^ (0 + 1) \u2223 succ 0\nh\u2083 h\u2084 : 2 \u2223 succ 0\nx\u271d : ?m.6661\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 24,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 23
+                    },
+                    "data": "tactic 'induction' failed, major premise type is not an inductive type \n  ?m.6668\ncase step\nhpos : \u2115\na\u271d : (succ 0).le hpos\nh\u2081 : 2 ^ 0 \u2223 hpos.succ\nh : 2 ^ (0 + 1) \u2223 hpos.succ\nh\u2083 h\u2084 : 2 \u2223 hpos.succ\nx\u271d : ?m.6668\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 26,
+                        "column": 16
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 21
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191hpos.succ / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 43
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 21
+                    },
+                    "data": "unsolved goals\ncase step\nhpos : \u2115\na\u271d : (succ 0).le hpos\nh\u2081 : 2 ^ 0 \u2223 hpos.succ\nh : 2 ^ (0 + 1) \u2223 hpos.succ\nh\u2083 h\u2084 : 2 \u2223 hpos.succ\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 38,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 38,
+                        "column": 23
+                    },
+                    "data": "tactic 'induction' failed, major premise type is not an inductive type \n  ?m.13253\ncase refl\nh\u2081 : 2 ^ 0 \u2223 succ 0\nh : 2 ^ (0 + 1) \u2223 succ 0\nh\u2083 h\u2084 : 2 \u2223 succ 0\nx\u271d : ?m.13253\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 38,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 38,
+                        "column": 23
+                    },
+                    "data": "tactic 'induction' failed, major premise type is not an inductive type \n  ?m.13260\ncase step\nhpos : \u2115\na\u271d : (succ 0).le hpos\nh\u2081 : 2 ^ 0 \u2223 hpos.succ\nh : 2 ^ (0 + 1) \u2223 hpos.succ\nh\u2083 h\u2084 : 2 \u2223 hpos.succ\nx\u271d : ?m.13260\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 40,
+                        "column": 16
+                    },
+                    "endPos": {
+                        "line": 40,
+                        "column": 21
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191hpos.succ / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 32,
+                        "column": 43
+                    },
+                    "endPos": {
+                        "line": 40,
+                        "column": 21
+                    },
+                    "data": "unsolved goals\ncase step\nhpos : \u2115\na\u271d : (succ 0).le hpos\nh\u2081 : 2 ^ 0 \u2223 hpos.succ\nh : 2 ^ (0 + 1) \u2223 hpos.succ\nh\u2083 h\u2084 : 2 \u2223 hpos.succ\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 42,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 55,
+                        "column": 21
+                    },
+                    "data": "unknown constant 'Nat.pow_find'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 66,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 66,
+                        "column": 23
+                    },
+                    "data": "tactic 'induction' failed, major premise type is not an inductive type \n  ?m.18700\ncase refl\nh\u2081\u271d : 2 ^ Nat.find \u22ef \u2223 succ 0\nh\u2081 : 2 ^ 0 \u2223 succ 0\nh : 2 ^ (0 + 1) \u2223 succ 0\nh\u2083 h\u2084 : 2 \u2223 succ 0\nx\u271d : ?m.18700\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 66,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 66,
+                        "column": 23
+                    },
+                    "data": "tactic 'induction' failed, major premise type is not an inductive type \n  ?m.18707\ncase step\nhpos : \u2115\na\u271d : (succ 0).le hpos\nh\u2081\u271d : 2 ^ Nat.find \u22ef \u2223 hpos.succ\nh\u2081 : 2 ^ 0 \u2223 hpos.succ\nh : 2 ^ (0 + 1) \u2223 hpos.succ\nh\u2083 h\u2084 : 2 \u2223 hpos.succ\nx\u271d : ?m.18707\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 60,
+                        "column": 43
+                    },
+                    "endPos": {
+                        "line": 68,
+                        "column": 21
+                    },
+                    "data": "unsolved goals\ncase step\nhpos : \u2115\na\u271d : (succ 0).le hpos\nh\u2081\u271d : 2 ^ Nat.find \u22ef \u2223 hpos.succ\nh\u2081 : 2 ^ 0 \u2223 hpos.succ\nh : 2 ^ (0 + 1) \u2223 hpos.succ\nh\u2083 h\u2084 : 2 \u2223 hpos.succ\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 80,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 80,
+                        "column": 25
+                    },
+                    "data": "tactic 'induction' failed, major premise type is not an inductive type \n  ?m.24924\ncase refl\nh\u2081\u271d : 2 ^ Nat.find \u22ef \u2223 succ 0\nh\u2081 : 2 ^ 0 \u2223 succ 0\nh : 2 ^ (0 + 1) \u2223 succ 0\nh\u2083 h\u2084 : 2 \u2223 succ 0\nx\u271d : ?m.24924\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 80,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 80,
+                        "column": 25
+                    },
+                    "data": "tactic 'induction' failed, major premise type is not an inductive type \n  ?m.24931\ncase step\nhpos : \u2115\na\u271d : (succ 0).le hpos\nh\u2081\u271d : 2 ^ Nat.find \u22ef \u2223 hpos.succ\nh\u2081 : 2 ^ 0 \u2223 hpos.succ\nh : 2 ^ (0 + 1) \u2223 hpos.succ\nh\u2083 h\u2084 : 2 \u2223 hpos.succ\nx\u271d : ?m.24931\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 74,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 82,
+                        "column": 23
+                    },
+                    "data": "unsolved goals\ncase step\nhpos : \u2115\na\u271d : (succ 0).le hpos\nh\u2081\u271d : 2 ^ Nat.find \u22ef \u2223 hpos.succ\nh\u2081 : 2 ^ 0 \u2223 hpos.succ\nh : 2 ^ (0 + 1) \u2223 hpos.succ\nh\u2083 h\u2084 : 2 \u2223 hpos.succ\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 94,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 94,
+                        "column": 23
+                    },
+                    "data": "tactic 'induction' failed, major premise type is not an inductive type \n  ?m.31164\ncase refl\nh\u2081\u271d : 2 ^ Nat.find \u22ef \u2223 succ 0\nh\u2082 : \u00ac2 ^ (Nat.find \u22ef + 1) \u2223 succ 0\nh\u2081 : 2 ^ 0 \u2223 succ 0\nh : 2 ^ (0 + 1) \u2223 succ 0\nh\u2083 h\u2084 : 2 \u2223 succ 0\nx\u271d : ?m.31164\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 94,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 94,
+                        "column": 23
+                    },
+                    "data": "tactic 'induction' failed, major premise type is not an inductive type \n  ?m.31171\ncase step\nhpos : \u2115\na\u271d : (succ 0).le hpos\nh\u2081\u271d : 2 ^ Nat.find \u22ef \u2223 hpos.succ\nh\u2082 : \u00ac2 ^ (Nat.find \u22ef + 1) \u2223 hpos.succ\nh\u2081 : 2 ^ 0 \u2223 hpos.succ\nh : 2 ^ (0 + 1) \u2223 hpos.succ\nh\u2083 h\u2084 : 2 \u2223 hpos.succ\nx\u271d : ?m.31171\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 88,
+                        "column": 43
+                    },
+                    "endPos": {
+                        "line": 96,
+                        "column": 21
+                    },
+                    "data": "unsolved goals\ncase step\nhpos : \u2115\na\u271d : (succ 0).le hpos\nh\u2081\u271d : 2 ^ Nat.find \u22ef \u2223 hpos.succ\nh\u2082 : \u00ac2 ^ (Nat.find \u22ef + 1) \u2223 hpos.succ\nh\u2081 : 2 ^ 0 \u2223 hpos.succ\nh : 2 ^ (0 + 1) \u2223 hpos.succ\nh\u2083 h\u2084 : 2 \u2223 hpos.succ\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6844427585601807,
+            "custom_id": "exists_max_pow_two_dividing_4"
+        }
+    },
+    {
+        "name": "exists_max_pow_two_dividing",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_pow_two_dividing (A : \u2115) (hpos : 0 < A) :\n  \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  have h : \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n    use Nat.log 2 A\n    have h\u2081 : (2 : \u2115) ^ Nat.log 2 A \u2223 A := by\n      apply Nat.pow_log_dvd_of_pos hpos\n    have h\u2082 : \u00ac ((2 : \u2115) ^ (Nat.log 2 A + 1) \u2223 A) := by\n      intro h\u2083\n      have h\u2084 : (2 : \u2115) ^ (Nat.log 2 A + 1) \u2223 A := h\u2083\n      have h\u2085 : (2 : \u2115) ^ (Nat.log 2 A + 1) \u2223 A := h\u2084\n      have h\u2086 : (2 : \u2115) ^ (Nat.log 2 A + 1) \u2264 A := Nat.le_of_dvd hpos h\u2085\n      have h\u2087 : (2 : \u2115) ^ (Nat.log 2 A + 1) > A := by\n        calc\n          (2 : \u2115) ^ (Nat.log 2 A + 1) = 2 * (2 ^ Nat.log 2 A) := by\n            simp [pow_succ, mul_comm]\n          _ > A := by\n            have h\u2088 : 2 ^ Nat.log 2 A \u2265 A := by\n              apply Nat.le_of_lt_succ\n              have h\u2089 : 2 ^ Nat.log 2 A \u2265 A := by\n                apply Nat.le_of_lt_succ\n                have h\u2081\u2080 : 2 ^ Nat.log 2 A \u2265 A := by\n                  apply Nat.le_of_lt_succ\n                  have h\u2081\u2081 : 2 ^ Nat.log 2 A \u2265 A := by\n                    apply Nat.le_of_lt_succ\n                    have h\u2081\u2082 : A < 2 ^ (Nat.log 2 A + 1) := by\n                      apply Nat.lt_pow_of_log_lt\n                      <;> simp [Nat.log_eq_iff]\n                      <;> omega\n                    omega\n                  omega\n                omega\n              omega\n            nlinarith\n      nlinarith\n    exact \u27e8h\u2081, h\u2082\u27e9\n  exact h",
+        "custom_id": "exists_max_pow_two_dividing_5",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 39
+                    },
+                    "data": "unknown constant 'Nat.pow_log_dvd_of_pos'"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6160950660705566,
+            "custom_id": "exists_max_pow_two_dividing_5"
+        }
+    },
+    {
+        "name": "exists_max_pow_two_dividing",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_pow_two_dividing (A : \u2115) (hpos : 0 < A) :\n  \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  use Nat.find (show \u2203 k : \u2115, (2 ^ k \u2223 A) \u2227 \u00ac(2 ^ (k + 1) \u2223 A) from by\n    -- We need to find a k such that 2^k divides A but 2^(k+1) does not divide A.\n    -- We use the fact that A is a positive integer and the properties of powers of 2.\n    have h : \u2203 k : \u2115, (2 ^ k \u2223 A) \u2227 \u00ac(2 ^ (k + 1) \u2223 A) := by\n      -- We will show that there exists a k that satisfies the condition.\n      -- We use the fact that A has a finite number of prime factors and the properties of powers of 2.\n      have h : \u2203 k : \u2115, (2 ^ k \u2223 A) \u2227 \u00ac(2 ^ (k + 1) \u2223 A) := by\n        -- We will show that there exists a k that satisfies the condition.\n        -- We use the fact that A has a finite number of prime factors and the properties of powers of 2.\n        use 0\n        simp\n        have h\u2081 : 2 ^ 0 \u2223 A := by\n          -- We need to show that 2^0 divides A, which is trivially true since 2^0 = 1 and 1 divides any integer.\n          simp\n          <;> exact Nat.one_dvd A\n        have h\u2082 : \u00ac(2 ^ (0 + 1) \u2223 A) := by\n          -- We need to show that 2^(0+1) = 2^1 = 2 does not divide A.\n          simp\n          <;> exact fun h => by\n            -- If 2 divides A, then A would be even, which may not be the case.\n            have h' := Nat.le_of_dvd (by linarith) h\n            omega\n        exact \u27e8h\u2081, h\u2082\u27e9\n      exact h\n    exact h)\n  -- We have found a u such that 2^u divides A but 2^(u+1) does not divide A.\n  -- We need to show that this u is the maximum possible such that 2^u divides A.\n  have h\u2081 : (2 ^ Nat.find (show \u2203 k : \u2115, (2 ^ k \u2223 A) \u2227 \u00ac(2 ^ (k + 1) \u2223 A) from by\n    have h : \u2203 k : \u2115, (2 ^ k \u2223 A) \u2227 \u00ac(2 ^ (k + 1) \u2223 A) := by\n      have h : \u2203 k : \u2115, (2 ^ k \u2223 A) \u2227 \u00ac(2 ^ (k + 1) \u2223 A) := by\n        use 0\n        simp\n        have h\u2081 : 2 ^ 0 \u2223 A := by\n          simp\n          <;> exact Nat.one_dvd A\n        have h\u2082 : \u00ac(2 ^ (0 + 1) \u2223 A) := by\n          simp\n          <;> exact fun h => by\n            have h' := Nat.le_of_dvd (by linarith) h\n            omega\n        exact \u27e8h\u2081, h\u2082\u27e9\n      exact h) \u2227 \u00ac(2 ^ (Nat.find (show \u2203 k : \u2115, (2 ^ k \u2223 A) \u2227 \u00ac(2 ^ (k + 1) \u2223 A) from by\n    have h : \u2203 k : \u2115, (2 ^ k \u2223 A) \u2227 \u00ac(2 ^ (k + 1) \u2223 A) := by\n      have h : \u2203 k : \u2115, (2 ^ k \u2223 A) \u2227 \u00ac(2 ^ (k + 1) \u2223 A) := by\n        use 0\n        simp\n        have h\u2081 : 2 ^ 0 \u2223 A := by\n          simp\n          <;> exact Nat.one_dvd A\n        have h\u2082 : \u00ac(2 ^ (0 + 1) \u2223 A) := by\n          simp\n          <;> exact fun h => by\n            have h' := Nat.le_of_dvd (by linarith) h\n            omega\n        exact \u27e8h\u2081, h\u2082\u27e9\n      exact h) + 1) \u2223 A) := by\n    have h : \u2203 k : \u2115, (2 ^ k \u2223 A) \u2227 \u00ac(2 ^ (k + 1) \u2223 A) := by\n      have h : \u2203 k : \u2115, (2 ^ k \u2223 A) \u2227 \u00ac(2 ^ (k + 1) \u2223 A) := by\n        use 0\n        simp\n        have h\u2081 : 2 ^ 0 \u2223 A := by\n          simp\n          <;> exact Nat.one_dvd A\n        have h\u2082 : \u00ac(2 ^ (0 + 1) \u2223 A) := by\n          simp\n          <;> exact fun h => by\n            have h' := Nat.le_of_dvd (by linarith) h\n            omega\n        exact \u27e8h\u2081, h\u2082\u27e9\n      exact h\n    exact h)\n  exact h\u2081",
+        "custom_id": "exists_max_pow_two_dividing_6",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 63,
+                        "column": 24
+                    },
+                    "endPos": {
+                        "line": 63,
+                        "column": 27
+                    },
+                    "data": "unexpected token ':='; expected ')', ',' or ':'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 40
+                    },
+                    "endPos": {
+                        "line": 29,
+                        "column": 17
+                    },
+                    "data": "unsolved goals\nA : \u2115\nhpos : 0 < A\nh\u2081 : 2 ^ 0 \u2223 A\n\u22a2 A % 2 = 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 43,
+                        "column": 40
+                    },
+                    "endPos": {
+                        "line": 47,
+                        "column": 17
+                    },
+                    "data": "unsolved goals\nA : \u2115\nhpos : 0 < A\nh\u2081 : 2 ^ 0 \u2223 A\n\u22a2 A % 2 = 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 35,
+                        "column": 79
+                    },
+                    "endPos": {
+                        "line": 49,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\nA : \u2115\nhpos : 0 < A\nh : \u2203 k, 2 ^ k \u2223 A \u2227 \u00ac2 ^ (k + 1) \u2223 A\n\u22a2 \u2203 k, 2 ^ k \u2223 A \u2227 \u00ac2 ^ (k + 1) \u2223 A"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 57,
+                        "column": 40
+                    },
+                    "endPos": {
+                        "line": 61,
+                        "column": 17
+                    },
+                    "data": "unsolved goals\nA : \u2115\nhpos : 0 < A\nh\u2081 : 2 ^ 0 \u2223 A\n\u22a2 A % 2 = 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 49,
+                        "column": 86
+                    },
+                    "endPos": {
+                        "line": 63,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\nA : \u2115\nhpos : 0 < A\nh : \u2203 k, 2 ^ k \u2223 A \u2227 \u00ac2 ^ (k + 1) \u2223 A\n\u22a2 \u2203 k, 2 ^ k \u2223 A \u2227 \u00ac2 ^ (k + 1) \u2223 A"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 56
+                    },
+                    "endPos": {
+                        "line": 63,
+                        "column": 24
+                    },
+                    "data": "unsolved goals\ncase h\u2081\nA : \u2115\nhpos : 0 < A\n\u22a2 sorryAx Prop true \u2227 \u00ac2 ^ (Nat.find \u22ef + 1) \u2223 A\n\ncase h\nA : \u2115\nhpos : 0 < A\nh\u2081 : sorryAx Prop true \u2227 \u00ac2 ^ (Nat.find \u22ef + 1) \u2223 A\n\u22a2 2 ^ Nat.find \u22ef \u2223 A \u2227 \u00ac2 ^ (Nat.find \u22ef + 1) \u2223 A"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6762964725494385,
+            "custom_id": "exists_max_pow_two_dividing_6"
+        }
+    },
+    {
+        "name": "exists_max_pow_two_dividing",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_pow_two_dividing (A : \u2115) (hpos : 0 < A) :\n  \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  have h : \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n    use Nat.log 2 A\n    have h1 : (2 : \u2115) ^ Nat.log 2 A \u2223 A := by\n      apply Nat.pow_log_dvd_self\n      linarith\n    have h2 : \u00ac ((2 : \u2115) ^ (Nat.log 2 A + 1) \u2223 A) := by\n      intro h\n      have h3 : (2 : \u2115) ^ (Nat.log 2 A + 1) \u2223 A := h\n      have h4 : (2 : \u2115) ^ (Nat.log 2 A + 1) \u2223 A := h3\n      have h5 : (2 : \u2115) ^ (Nat.log 2 A + 1) \u2223 A := h4\n      have h6 : (2 : \u2115) ^ (Nat.log 2 A + 1) \u2223 A := h5\n      have h7 : (2 : \u2115) ^ (Nat.log 2 A + 1) \u2264 A := Nat.le_of_dvd (by linarith) h6\n      have h8 : (2 : \u2115) ^ (Nat.log 2 A + 1) > A := by\n        have h9 : (2 : \u2115) ^ (Nat.log 2 A + 1) > A := by\n          calc\n            (2 : \u2115) ^ (Nat.log 2 A + 1) = 2 ^ (Nat.log 2 A) * 2 := by ring\n            _ > A := by\n              have h10 : 2 ^ (Nat.log 2 A) \u2265 A := by\n                apply Nat.le_of_lt_succ\n                have h11 : 2 ^ Nat.log 2 A \u2223 A := h1\n                have h12 : 2 ^ Nat.log 2 A \u2264 A := Nat.le_of_dvd (by linarith) h11\n                omega\n              nlinarith\n        exact h9\n      linarith\n    exact \u27e8h1, h2\u27e9\n  exact h",
+        "custom_id": "exists_max_pow_two_dividing_7",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 32
+                    },
+                    "data": "unknown constant 'Nat.pow_log_dvd_self'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 29,
+                        "column": 16
+                    },
+                    "endPos": {
+                        "line": 29,
+                        "column": 21
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  a - 2*b \u2265 0\n  b \u2265 1\n  a \u2265 1\n  a - b \u2265 1\nwhere\n a := \u2191A\n b := \u21912 ^ Nat.log 2 A"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.5972237586975098,
+            "custom_id": "exists_max_pow_two_dividing_7"
+        }
+    },
+    {
+        "name": "exists_max_pow_two_dividing",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_pow_two_dividing (A : \u2115) (hpos : 0 < A) :\n  \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  use Nat.find (show \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) by\n    -- We need to show that there exists a u such that 2^u divides A but 2^(u+1) does not divide A.\n    -- This can be found by checking the power of 2 dividing A.\n    use 0\n    have h : ((2 : \u2115) ^ 0 \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (0 + 1) \u2223 A) := by\n      constructor\n      \u00b7 -- Show that 2^0 = 1 divides A.\n        simp\n        <;> exact Nat.one_dvd A\n      \u00b7 -- Show that 2^(0+1) = 2 does not divide A.\n        simp\n        <;> exact fun h => by\n          -- If 2 divides A, then A is even.\n          have h\u2081 := Nat.dvd_of_mod_eq_zero (Nat.mod_eq_zero_of_dvd h)\n          have h\u2082 : A % 2 = 0 := by omega\n          have h\u2083 : A % 2 = 1 := by\n            -- Since A is odd, A % 2 = 1.\n            cases' Nat.mod_two_eq_zero_or_one A with h\u2084 h\u2084 <;> simp_all [Nat.even_iff, Nat.odd_iff]\n            <;> omega\n          omega\n    exact h)\n  -- Let u be the smallest power of 2 dividing A.\n  let u := Nat.find (show \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) by\n    use 0\n    have h : ((2 : \u2115) ^ 0 \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (0 + 1) \u2223 A) := by\n      constructor\n      \u00b7 -- Show that 2^0 = 1 divides A.\n        simp\n        <;> exact Nat.one_dvd A\n      \u00b7 -- Show that 2^(0+1) = 2 does not divide A.\n        simp\n        <;> exact fun h => by\n          -- If 2 divides A, then A is even.\n          have h\u2081 := Nat.dvd_of_mod_eq_zero (Nat.mod_eq_zero_of_dvd h)\n          have h\u2082 : A % 2 = 0 := by omega\n          have h\u2083 : A % 2 = 1 := by\n            -- Since A is odd, A % 2 = 1.\n            cases' Nat.mod_two_eq_zero_or_one A with h\u2084 h\u2084 <;> simp_all [Nat.even_iff, Nat.odd_iff]\n            <;> omega\n          omega\n    exact h)\n  -- We have found the smallest power of 2 dividing A.\n  exact \u27e8u, by\n    exact Nat.find_spec (show \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) by\n      use 0\n      have h : ((2 : \u2115) ^ 0 \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (0 + 1) \u2223 A) := by\n        constructor\n        \u00b7 -- Show that 2^0 = 1 divides A.\n          simp\n          <;> exact Nat.one_dvd A\n        \u00b7 -- Show that 2^(0+1) = 2 does not divide A.\n          simp\n          <;> exact fun h => by\n            -- If 2 divides A, then A is even.\n            have h\u2081 := Nat.dvd_of_mod_eq_zero (Nat.mod_eq_zero_of_dvd h)\n            have h\u2082 : A % 2 = 0 := by omega\n            have h\u2083 : A % 2 = 1 := by\n              -- Since A is odd, A % 2 = 1.\n              cases' Nat.mod_two_eq_zero_or_one A with h\u2084 h\u2084 <;> simp_all [Nat.even_iff, Nat.odd_iff]\n              <;> omega\n            omega\n      exact h) |>.1, by\n    exact Nat.find_spec (show \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) by\n      use 0\n      have h : ((2 : \u2115) ^ 0 \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (0 + 1) \u2223 A) := by\n        constructor\n        \u00b7 -- Show that 2^0 = 1 divides A.\n          simp\n          <;> exact Nat.one_dvd A\n        \u00b7 -- Show that 2^(0+1) = 2 does not divide A.\n          simp\n          <;> exact fun h => by\n            -- If 2 divides A, then A is even.\n            have h\u2081 := Nat.dvd_of_mod_eq_zero (Nat.mod_eq_zero_of_dvd h)\n            have h\u2082 : A % 2 = 0 := by omega\n            have h\u2083 : A % 2 = 1 := by\n              -- Since A is odd, A % 2 = 1.\n              cases' Nat.mod_two_eq_zero_or_one A with h\u2084 h\u2084 <;> simp_all [Nat.even_iff, Nat.odd_iff]\n              <;> omega\n            omega\n      exact h) |>.2\u27e9",
+        "custom_id": "exists_max_pow_two_dividing_8",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 27,
+                        "column": 15
+                    },
+                    "data": "type mismatch\n  fun h => ?m.5063 h\nhas type\n  (h : ?m.5077 \u2223 ?m.5078) \u2192 ?m.5062 h : Sort ?u.5059\nbut is expected to have type\n  A % 2 = 1 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 7
+                    },
+                    "data": "unsolved goals\ncase right\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 39,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 47,
+                        "column": 15
+                    },
+                    "data": "type mismatch\n  fun h => ?m.9126 h\nhas type\n  (h : ?m.9134 \u2223 ?m.9135) \u2192 ?m.9125 h : Sort ?u.9122\nbut is expected to have type\n  A % 2 = 1 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 37,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 37,
+                        "column": 7
+                    },
+                    "data": "unsolved goals\ncase right\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.22327423095703125,
+            "custom_id": "exists_max_pow_two_dividing_8"
+        }
+    },
+    {
+        "name": "exists_max_pow_two_dividing",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_pow_two_dividing (A : \u2115) (hpos : 0 < A) :\n  \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  use Nat.find (show \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) from\n    \u27e80, by\n      simp [hpos], by\n      simp [Nat.pow_one, Nat.not_dvd_of_pos_of_lt hpos (by norm_num : 1 < 2)]\u27e9)\n  have h := Nat.find_spec (show \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) from\n    \u27e80, by\n      simp [hpos], by\n      simp [Nat.pow_one, Nat.not_dvd_of_pos_of_lt hpos (by norm_num : 1 < 2)]\u27e9)\n  simp_all",
+        "custom_id": "exists_max_pow_two_dividing_9",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 55
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 76
+                    },
+                    "data": "application type mismatch\n  not_dvd_of_pos_of_lt hpos ?m.2466\nargument\n  ?m.2466\nhas type\n  1 < 2 : Prop\nbut is expected to have type\n  A < ?m.2240 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 19
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 77
+                    },
+                    "data": "unsolved goals\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 55
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 76
+                    },
+                    "data": "application type mismatch\n  not_dvd_of_pos_of_lt hpos ?m.5978\nargument\n  ?m.5978\nhas type\n  1 < 2 : Prop\nbut is expected to have type\n  A < ?m.5752 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 19
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 77
+                    },
+                    "data": "unsolved goals\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.4081079959869385,
+            "custom_id": "exists_max_pow_two_dividing_9"
+        }
+    },
+    {
+        "name": "exists_max_pow_two_dividing",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_pow_two_dividing (A : \u2115) (hpos : 0 < A) :\n  \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  have h : \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n    use Nat.find (show \u2203 k : \u2115, (2 ^ k \u2223 A) \u2227 \u00ac (2 ^ (k + 1) \u2223 A) by\n      -- We need to show that there exists a k such that 2^k divides A but 2^(k+1) does not divide A.\n      -- We use the fact that A is a positive integer and the properties of powers of 2.\n      have h\u2081 : \u2203 k : \u2115, (2 ^ k \u2223 A) \u2227 \u00ac (2 ^ (k + 1) \u2223 A) := by\n        -- We will show that there exists a k that satisfies the conditions.\n        -- We use the fact that A is a positive integer and the properties of powers of 2.\n        have h\u2082 : \u2203 k : \u2115, 2 ^ k \u2223 A := by\n          -- Since A is a positive integer, there exists a k such that 2^k divides A.\n          exact \u27e80, by simp [hpos]\u27e9\n        cases' h\u2082 with k hk\n        use k\n        have h\u2083 : \u00ac (2 ^ (k + 1) \u2223 A) := by\n          -- We need to show that 2^(k+1) does not divide A.\n          intro h\u2084\n          have h\u2085 : 2 ^ (k + 1) \u2223 A := h\u2084\n          have h\u2086 : 2 ^ k \u2223 A := hk\n          have h\u2087 : 2 ^ (k + 1) \u2223 A := h\u2085\n          have h\u2088 : 2 ^ (k + 1) \u2223 A := h\u2085\n          have h\u2089 : 2 ^ k \u2223 A := h\u2086\n          have h\u2081\u2080 : 2 ^ (k + 1) \u2223 A := h\u2087\n          -- Using the properties of divisibility, we derive a contradiction.\n          have h\u2081\u2081 : 2 ^ (k + 1) \u2223 A := h\u2088\n          have h\u2081\u2082 : 2 ^ k \u2223 A := h\u2089\n          have h\u2081\u2083 : 2 ^ (k + 1) \u2223 A := h\u2081\u2080\n          -- Using the properties of divisibility, we derive a contradiction.\n          simp_all [Nat.dvd_iff_mod_eq_zero, Nat.pow_succ]\n          <;> omega\n        exact \u27e8hk, h\u2083\u27e9\n      exact h\u2081)\n    -- We have shown that there exists a k such that 2^k divides A but 2^(k+1) does not divide A.\n    exact Nat.find_spec this\n  \n  exact h",
+        "custom_id": "exists_max_pow_two_dividing_10",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 35,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 35,
+                        "column": 19
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  a \u2265 1\nwhere\n a := \u2191A\n b := \u21912 ^ k"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 41
+                    },
+                    "endPos": {
+                        "line": 35,
+                        "column": 19
+                    },
+                    "data": "unsolved goals\nA : \u2115\nhpos : 0 < A\nk : \u2115\nh\u2084 : A % (2 ^ k * 2) = 0\nh\u2081\u2082 : A % 2 ^ k = 0\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 39,
+                        "column": 24
+                    },
+                    "endPos": {
+                        "line": 39,
+                        "column": 28
+                    },
+                    "data": "unknown identifier 'this'"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6160140037536621,
+            "custom_id": "exists_max_pow_two_dividing_10"
+        }
+    },
+    {
+        "name": "exists_max_pow_two_dividing",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_pow_two_dividing (A : \u2115) (hpos : 0 < A) :\n  \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  use Nat.log 2 A\n  have h\u2081 : 2 ^ Nat.log 2 A \u2223 A := by\n    apply Nat.pow_log_dvd_of_pos\n    exact hpos\n  have h\u2082 : \u00ac(2 ^ (Nat.log 2 A + 1) \u2223 A) := by\n    intro h\n    have h\u2083 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\n    have h\u2084 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2083\n    have h\u2085 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2084\n    have h\u2086 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2085\n    have h\u2087 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2086\n    have h\u2088 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2087\n    have h\u2089 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2088\n    -- Use the property that if a^m \u2223 a^n, then m \u2264 n.\n    have h\u2081\u2080 : Nat.log 2 A + 1 \u2264 Nat.log 2 A := by\n      apply Nat.le_of_not_gt\n      intro h\n      have h\u2081\u2081 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2089\n      have h\u2081\u2082 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2081\u2081\n      have h\u2081\u2083 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2081\u2082\n      have h\u2081\u2084 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2081\u2083\n      have h\u2081\u2085 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2081\u2084\n      have h\u2081\u2086 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2081\u2085\n      have h\u2081\u2087 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2081\u2086\n      have h\u2081\u2088 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2081\u2087\n      have h\u2081\u2089 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2081\u2088\n      -- Use the fact that log_2 A is the largest power of 2 that divides A.\n      have h\u2082\u2080 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2081\u2089\n      have h\u2082\u2081 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2082\u2080\n      have h\u2082\u2082 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2082\u2081\n      -- This leads to a contradiction since log_2 A is the largest power of 2 that divides A.\n      have h\u2082\u2083 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2082\u2082\n      have h\u2082\u2084 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2082\u2083\n      have h\u2082\u2085 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2082\u2084\n      have h\u2082\u2086 : 2 ^ (Nat.log 2 A + 1) \u2223 A := h\u2082\u2085\n      simp_all [Nat.log_eq_iff]\n    linarith\n  exact \u27e8h\u2081, h\u2082\u27e9",
+        "custom_id": "exists_max_pow_two_dividing_11",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 32
+                    },
+                    "data": "unknown constant 'Nat.pow_log_dvd_of_pos'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 22,
+                        "column": 48
+                    },
+                    "endPos": {
+                        "line": 43,
+                        "column": 31
+                    },
+                    "data": "unsolved goals\ncase a\nA : \u2115\nhpos : 0 < A\nh\u2081 : 2 ^ Nat.log 2 A \u2223 A\nh\u2082\u2086 : 2 ^ (Nat.log 2 A + 1) \u2223 A\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.3583898544311523,
+            "custom_id": "exists_max_pow_two_dividing_11"
+        }
+    },
+    {
+        "name": "exists_max_pow_two_dividing",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_pow_two_dividing (A : \u2115) (hpos : 0 < A) :\n  \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  use Nat.log 2 A\n  have h\u2081 : (2 : \u2115) ^ Nat.log 2 A \u2223 A := by\n    apply Nat.pow_log_dvd_self\n    omega\n  have h\u2082 : \u00ac ((2 : \u2115) ^ (Nat.log 2 A + 1) \u2223 A) := by\n    intro h\n    have h\u2083 : (2 : \u2115) ^ (Nat.log 2 A + 1) \u2223 A := h\n    have h\u2084 : (2 : \u2115) ^ (Nat.log 2 A + 1) \u2223 A := h\u2083\n    have h\u2085 : (2 : \u2115) ^ (Nat.log 2 A + 1) \u2264 A := Nat.le_of_dvd (by positivity) h\u2084\n    have h\u2086 : (2 : \u2115) ^ (Nat.log 2 A + 1) > A := by\n      calc\n        (2 : \u2115) ^ (Nat.log 2 A + 1) = 2 * 2 ^ Nat.log 2 A := by ring\n        _ > A := by\n          have : 2 ^ Nat.log 2 A \u2265 A := by\n            apply Nat.le_of_lt_succ\n            have : 2 ^ Nat.log 2 A \u2265 A := by\n              apply Nat.le_of_lt_succ\n              have : 2 ^ Nat.log 2 A > A - 1 := by\n                apply Nat.lt_pow_of_log_lt\n                <;> omega\n              omega\n            omega\n          omega\n    omega\n  exact \u27e8h\u2081, h\u2082\u27e9",
+        "custom_id": "exists_max_pow_two_dividing_12",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 30
+                    },
+                    "data": "unknown constant 'Nat.pow_log_dvd_self'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 27,
+                        "column": 20
+                    },
+                    "endPos": {
+                        "line": 27,
+                        "column": 25
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c - d \u2265 0\n  b \u2265 1\n  d \u2265 0\n  a - 2*b \u2265 0\n  c \u2265 0\n  b \u2265 1\n  a \u2265 1\nwhere\n a := \u2191A\n b := \u21912 ^ Nat.log 2 A\n c := \u2191(Nat.log 2 (A - 1))\n d := \u2191(Nat.log 2 A)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 25,
+                        "column": 48
+                    },
+                    "endPos": {
+                        "line": 27,
+                        "column": 25
+                    },
+                    "data": "unsolved goals\ncase a\nA : \u2115\nhpos : 0 < A\nh\u2081 : 2 ^ Nat.log 2 A \u2223 A\nh h\u2083 h\u2084 : 2 ^ (Nat.log 2 A + 1) \u2223 A\nh\u2085 : 2 ^ (Nat.log 2 A + 1) \u2264 A\n\u22a2 Nat.log 2 (A - 1) < Nat.log 2 A"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.21058344841003418,
+            "custom_id": "exists_max_pow_two_dividing_12"
+        }
+    },
+    {
+        "name": "exists_max_pow_two_dividing",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_pow_two_dividing (A : \u2115) (hpos : 0 < A) :\n  \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  have h : \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n    use Nat.log 2 A\n    have h\u2081 : (2 : \u2115) ^ Nat.log 2 A \u2223 A := by\n      apply Nat.pow_log_le_self\n      linarith\n    have h\u2082 : \u00ac ((2 : \u2115) ^ (Nat.log 2 A + 1) \u2223 A) := by\n      intro h\n      have h\u2083 : (2 : \u2115) ^ (Nat.log 2 A + 1) \u2223 A := h\n      have h\u2084 : (2 : \u2115) ^ (Nat.log 2 A + 1) \u2223 A := h\u2083\n      have h\u2085 : (2 : \u2115) ^ (Nat.log 2 A + 1) \u2264 A := Nat.le_of_dvd (by positivity) h\u2084\n      have h\u2086 : (2 : \u2115) ^ (Nat.log 2 A + 1) > A := by\n        have : (2 : \u2115) ^ (Nat.log 2 A + 1) > A := by\n          calc\n            (2 : \u2115) ^ (Nat.log 2 A + 1) = 2 ^ (Nat.log 2 A) * 2 := by ring\n            _ > A := by\n              have : 2 ^ (Nat.log 2 A) \u2265 A := by\n                apply Nat.le_of_lt_succ\n                have : 2 ^ (Nat.log 2 A) > 0 := by positivity\n                have : 2 ^ (Nat.log 2 A) \u2265 A := by\n                  apply Nat.le_of_lt_succ\n                  have : 2 ^ (Nat.log 2 A) > A := by\n                    apply Nat.lt_pow_of_log_lt\n                    <;> simp_all [Nat.log_eq_iff]\n                    <;> omega\n                  omega\n                omega\n              nlinarith\n        exact this\n      omega\n    exact \u27e8h\u2081, h\u2082\u27e9\n  exact h",
+        "custom_id": "exists_max_pow_two_dividing_13",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 31
+                    },
+                    "data": "tactic 'apply' failed, failed to unify\n  ?b ^ ?b.log ?x \u2264 ?x\nwith\n  2 ^ Nat.log 2 A \u2223 A\nA : \u2115\nhpos : 0 < A\n\u22a2 2 ^ Nat.log 2 A \u2223 A"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 31,
+                        "column": 24
+                    },
+                    "endPos": {
+                        "line": 31,
+                        "column": 29
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  a - 2*b \u2265 0\n  b \u2265 1\n  a \u2265 1\nwhere\n a := \u2191A\n b := \u21912 ^ Nat.log 2 A"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 28,
+                        "column": 50
+                    },
+                    "endPos": {
+                        "line": 31,
+                        "column": 29
+                    },
+                    "data": "unsolved goals\ncase a\nA : \u2115\nhpos : 0 < A\nh\u2081 : 2 ^ Nat.log 2 A \u2223 A\nh\u2084 : 2 ^ (Nat.log 2 A + 1) \u2223 A\nh\u2085 : 2 ^ (Nat.log 2 A + 1) \u2264 A\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.8847789764404297,
+            "custom_id": "exists_max_pow_two_dividing_13"
+        }
+    },
+    {
+        "name": "exists_max_pow_two_dividing",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_pow_two_dividing (A : \u2115) (hpos : 0 < A) :\n  \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  have : \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n    use Nat.factorization A 2\n    have h\u2081 : (2 : \u2115) ^ (Nat.factorization A 2) \u2223 A := by\n      rw [Nat.pow_factorization_dvd] <;> norm_num\n      <;> aesop\n    have h\u2082 : \u00ac (2 : \u2115) ^ (Nat.factorization A 2 + 1) \u2223 A := by\n      rw [Nat.pow_succ]\n      intro h\n      have h\u2083 := Nat.dvd_trans (Nat.pow_dvd_pow 2 (by norm_num)) h\n      rw [Nat.pow_factorization_dvd] at h\u2083 <;> norm_num at h\u2083 <;>\n        simp_all [Nat.factorization_eq_zero_iff]\n      <;> omega\n    exact \u27e8h\u2081, h\u2082\u27e9\n  exact this",
+        "custom_id": "exists_max_pow_two_dividing_14",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 35
+                    },
+                    "data": "unknown constant 'Nat.pow_factorization_dvd'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 35
+                    },
+                    "data": "tactic 'rewrite' failed, equality or iff proof expected\n  ?m.1119\nA : \u2115\nhpos : 0 < A\n\u22a2 2 ^ A.factorization 2 \u2223 A"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 51
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 62
+                    },
+                    "data": "unsolved goals\nA : \u2115\nhpos : 0 < A\nh\u2081 : 2 ^ A.factorization 2 \u2223 A\nh : 2 ^ A.factorization 2 * 2 \u2223 A\n\u22a2 ?m.1294 \u2264 ?m.1295"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.35022926330566406,
+            "custom_id": "exists_max_pow_two_dividing_14"
+        }
+    },
+    {
+        "name": "exists_max_pow_two_dividing",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_pow_two_dividing (A : \u2115) (hpos : 0 < A) :\n  \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  have h : \u2203 u, ((2 : \u2115) ^ u \u2223 A) \u2227 \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n    use Nat.log 2 A\n    have h1 : (2 : \u2115) ^ Nat.log 2 A \u2223 A := by\n      apply Nat.pow_log_le_self\n      omega\n    have h2 : \u00ac ((2 : \u2115) ^ (Nat.log 2 A + 1) \u2223 A) := by\n      intro h\n      have h3 : (2 : \u2115) ^ (Nat.log 2 A + 1) \u2223 A := h\n      have h4 : (2 : \u2115) ^ (Nat.log 2 A + 1) \u2223 A := h3\n      have h5 : (2 : \u2115) ^ (Nat.log 2 A + 1) \u2264 A := Nat.le_of_dvd (by omega) h4\n      have h6 : (2 : \u2115) ^ (Nat.log 2 A + 1) > A := by\n        calc\n          (2 : \u2115) ^ (Nat.log 2 A + 1) = 2 * 2 ^ Nat.log 2 A := by ring\n          _ > A := by\n            have h7 : 2 ^ Nat.log 2 A \u2265 A := by\n              apply Nat.le_of_lt_succ\n              have h8 : 2 ^ Nat.log 2 A \u2264 A := by\n                apply Nat.pow_log_le_self\n                omega\n              omega\n            nlinarith\n      linarith\n    exact \u27e8h1, h2\u27e9\n  exact h",
+        "custom_id": "exists_max_pow_two_dividing_15",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 31
+                    },
+                    "data": "tactic 'apply' failed, failed to unify\n  ?b ^ ?b.log ?x \u2264 ?x\nwith\n  2 ^ Nat.log 2 A \u2223 A\nA : \u2115\nhpos : 0 < A\n\u22a2 2 ^ Nat.log 2 A \u2223 A"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 27,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 27,
+                        "column": 19
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  a - 2*b \u2265 0\n  b \u2265 1\n  a \u2265 1\n  a - b \u2265 1\nwhere\n a := \u2191A\n b := \u21912 ^ Nat.log 2 A"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.41520261764526367,
+            "custom_id": "exists_max_pow_two_dividing_15"
+        }
+    },
+    {
+        "name": "define_odd_part_by_division",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem define_odd_part_by_division (A u : \u2115) (hdiv : ((2 : \u2115) ^ u \u2223 A)) (hpos : 0 < A) :\n  \u2203 r, A = (2 : \u2115) ^ u * r \u2227 0 < r := by\n  use A / (2 ^ u)\n  have h\u2081 : 0 < 2 ^ u := pow_pos (by norm_num) u\n  have h\u2082 : 2 ^ u \u2223 A := hdiv\n  have h\u2083 : A = 2 ^ u * (A / (2 ^ u)) := by\n    rw [Nat.mul_div_cancel' h\u2082]\n  exact \u27e8h\u2083, Nat.div_pos (Nat.le_of_dvd hpos h\u2082) (Nat.pos_of_ne_zero (by aesop))\u27e9",
+        "custom_id": "define_odd_part_by_division_16",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 73
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 78
+                    },
+                    "data": "aesop: error in norm simp: tactic 'simp' failed, nested error:\nmaximum recursion depth has been reached\nuse `set_option maxRecDepth <num>` to increase limit\nuse `set_option diagnostics true` to get diagnostic information"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.10521984100341797,
+            "custom_id": "define_odd_part_by_division_16"
+        }
+    },
+    {
+        "name": "define_odd_part_by_division",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem define_odd_part_by_division (A u : \u2115) (hdiv : ((2 : \u2115) ^ u \u2223 A)) (hpos : 0 < A) :\n  \u2203 r, A = (2 : \u2115) ^ u * r \u2227 0 < r := by\n  use A / (2 ^ u)\n  have h\u2081 : 2 ^ u \u2223 A := hdiv\n  have h\u2082 : 0 < A := hpos\n  have h\u2083 : A = 2 ^ u * (A / (2 ^ u)) := by\n    rw [Nat.mul_div_cancel' h\u2081]\n  exact \u27e8h\u2083, by\n    -- We need to show that A / (2 ^ u) > 0.\n    -- Since A > 0 and 2 ^ u > 0, A / (2 ^ u) > 0.\n    apply Nat.div_pos\n    \u00b7 exact Nat.le_of_dvd h\u2082 h\u2081\n    \u00b7 exact Nat.pos_pow_of_pos u (by norm_num)\u27e9",
+        "custom_id": "define_odd_part_by_division_17",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.043079376220703125,
+            "custom_id": "define_odd_part_by_division_17"
+        }
+    },
+    {
+        "name": "define_odd_part_by_division",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem define_odd_part_by_division (A u : \u2115) (hdiv : ((2 : \u2115) ^ u \u2223 A)) (hpos : 0 < A) :\n  \u2203 r, A = (2 : \u2115) ^ u * r \u2227 0 < r := by\n  use A / (2 ^ u)\n  have h1 : A = (2 ^ u) * (A / (2 ^ u)) := by\n    rw [Nat.mul_div_cancel' hdiv]\n  have h2 : 0 < A / (2 ^ u) := by\n    apply Nat.div_pos (Nat.le_of_dvd (by positivity) hdiv) (by\n      exact Nat.pos_pow_of_pos u (by norm_num))\n  exact \u27e8by linarith, by linarith\u27e9",
+        "custom_id": "define_odd_part_by_division_18",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.48568224906921387,
+            "custom_id": "define_odd_part_by_division_18"
+        }
+    },
+    {
+        "name": "define_odd_part_by_division",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem define_odd_part_by_division (A u : \u2115) (hdiv : ((2 : \u2115) ^ u \u2223 A)) (hpos : 0 < A) :\n  \u2203 r, A = (2 : \u2115) ^ u * r \u2227 0 < r := by\n  use A / (2 ^ u)\n  have h : A = 2 ^ u * (A / (2 ^ u)) := by\n    have h\u2081 : (2 ^ u) \u2223 A := hdiv\n    rw [Nat.mul_div_cancel' h\u2081]\n  constructor\n  exact h\n  apply Nat.pos_of_ne_zero\n  intro hh\n  rw [hh] at h\n  simp at h\n  <;> omega",
+        "custom_id": "define_odd_part_by_division_19",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.053212642669677734,
+            "custom_id": "define_odd_part_by_division_19"
+        }
+    },
+    {
+        "name": "define_odd_part_by_division",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem define_odd_part_by_division (A u : \u2115) (hdiv : ((2 : \u2115) ^ u \u2223 A)) (hpos : 0 < A) :\n  \u2203 r, A = (2 : \u2115) ^ u * r \u2227 0 < r := by\n  use A / (2 ^ u)\n  have h\u2081 : A = (2 : \u2115) ^ u * (A / (2 ^ u)) := by\n    rw [Nat.mul_div_cancel' hdiv]\n  have h\u2082 : 0 < A / (2 ^ u) := by\n    apply Nat.div_pos (Nat.le_of_dvd (by positivity) hdiv) (Nat.pos_pow_of_pos u (by norm_num))\n  exact \u27e8h\u2081, h\u2082\u27e9",
+        "custom_id": "define_odd_part_by_division_20",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.05554485321044922,
+            "custom_id": "define_odd_part_by_division_20"
+        }
+    },
+    {
+        "name": "define_odd_part_by_division",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem define_odd_part_by_division (A u : \u2115) (hdiv : ((2 : \u2115) ^ u \u2223 A)) (hpos : 0 < A) :\n  \u2203 r, A = (2 : \u2115) ^ u * r \u2227 0 < r := by\n  obtain \u27e8k, hk\u27e9 := hdiv\n  use k\n  constructor\n  linarith\n  cases k with\n  | zero =>\n    simp_all\n  | succ k =>\n    simp_all [Nat.mul_succ]\n    <;> omega",
+        "custom_id": "define_odd_part_by_division_21",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 17,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 13
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.4025900363922119,
+            "custom_id": "define_odd_part_by_division_21"
+        }
+    },
+    {
+        "name": "define_odd_part_by_division",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem define_odd_part_by_division (A u : \u2115) (hdiv : ((2 : \u2115) ^ u \u2223 A)) (hpos : 0 < A) :\n  \u2203 r, A = (2 : \u2115) ^ u * r \u2227 0 < r := by\n  use A / (2 ^ u)\n  have h1 : (2 : \u2115) ^ u \u2223 A := hdiv\n  have h2 : A / (2 ^ u) * (2 ^ u) = A := Nat.div_mul_cancel h1\n  have h3 : 0 < A / (2 ^ u) := by\n    apply Nat.div_pos\n    \u00b7 exact Nat.le_of_dvd (by positivity) h1\n    \u00b7 exact Nat.pos_pow_of_pos u (by norm_num)\n  constructor\n  \u00b7 nlinarith\n  \u00b7 nlinarith",
+        "custom_id": "define_odd_part_by_division_22",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.7028954029083252,
+            "custom_id": "define_odd_part_by_division_22"
+        }
+    },
+    {
+        "name": "define_odd_part_by_division",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem define_odd_part_by_division (A u : \u2115) (hdiv : ((2 : \u2115) ^ u \u2223 A)) (hpos : 0 < A) :\n  \u2203 r, A = (2 : \u2115) ^ u * r \u2227 0 < r := by\n  use A / (2 ^ u)\n  have h : A = 2 ^ u * (A / (2 ^ u)) := by\n    have h\u2081 : 2 ^ u \u2223 A := hdiv\n    rw [Nat.mul_div_cancel' h\u2081]\n  constructor\n  exact h.symm\n  have h\u2081 : 0 < A := hpos\n  have h\u2082 : 0 < 2 ^ u := pow_pos (by norm_num) u\n  have h\u2083 : 0 < A / (2 ^ u) := by\n    apply Nat.div_pos\n    \u00b7 exact Nat.le_of_dvd h\u2081 hdiv\n    \u00b7 exact h\u2082\n  exact h\u2083",
+        "custom_id": "define_odd_part_by_division_23",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 14
+                    },
+                    "data": "type mismatch\n  Eq.symm h\nhas type\n  2 ^ u * (A / 2 ^ u) = A : Prop\nbut is expected to have type\n  A = 2 ^ u * (A / 2 ^ u) : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.03383588790893555,
+            "custom_id": "define_odd_part_by_division_23"
+        }
+    },
+    {
+        "name": "define_odd_part_by_division",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem define_odd_part_by_division (A u : \u2115) (hdiv : ((2 : \u2115) ^ u \u2223 A)) (hpos : 0 < A) :\n  \u2203 r, A = (2 : \u2115) ^ u * r \u2227 0 < r := by\n  use A / (2 ^ u)\n  have h : A = 2 ^ u * (A / (2 ^ u)) := by\n    rw [Nat.mul_div_cancel' hdiv]\n  exact \u27e8by linarith, by\n    apply Nat.pos_of_ne_zero\n    intro h\n    rw [h] at hdiv\n    simp at hdiv\n  \u27e9",
+        "custom_id": "define_odd_part_by_division_24",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 9
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  A / 2 ^ u\ncase a\nA u : \u2115\nhdiv : 2 ^ u \u2223 A\nhpos : 0 < A\nh\u271d : A = 2 ^ u * (A / 2 ^ u)\nh : A / 2 ^ u = 0\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.2819859981536865,
+            "custom_id": "define_odd_part_by_division_24"
+        }
+    },
+    {
+        "name": "define_odd_part_by_division",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem define_odd_part_by_division (A u : \u2115) (hdiv : ((2 : \u2115) ^ u \u2223 A)) (hpos : 0 < A) :\n  \u2203 r, A = (2 : \u2115) ^ u * r \u2227 0 < r := by\n  use A / (2 ^ u)\n  have h\u2081 : 0 < 2 ^ u := pow_pos (by norm_num) u\n  have h\u2082 : 2 ^ u \u2223 A := hdiv\n  have h\u2083 : A = 2 ^ u * (A / (2 ^ u)) := by\n    rw [Nat.mul_div_cancel' h\u2082]\n  exact \u27e8h\u2083, Nat.div_pos (Nat.le_of_dvd (by positivity) h\u2082) (Nat.pos_of_ne_zero (by intro h; simp_all))\u27e9",
+        "custom_id": "define_odd_part_by_division_25",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 93
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 101
+                    },
+                    "data": "tactic 'simp' failed, nested error:\nmaximum recursion depth has been reached\nuse `set_option maxRecDepth <num>` to increase limit\nuse `set_option diagnostics true` to get diagnostic information"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.07435989379882812,
+            "custom_id": "define_odd_part_by_division_25"
+        }
+    },
+    {
+        "name": "define_odd_part_by_division",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem define_odd_part_by_division (A u : \u2115) (hdiv : ((2 : \u2115) ^ u \u2223 A)) (hpos : 0 < A) :\n  \u2203 r, A = (2 : \u2115) ^ u * r \u2227 0 < r := by\n  have h\u2081 : \u2203 r, A = 2 ^ u * r := by\n    use A / 2 ^ u\n    have h\u2082 : 2 ^ u \u2223 A := hdiv\n    rw [Nat.mul_div_cancel' h\u2082]\n  obtain \u27e8r, hr\u27e9 := h\u2081\n  use r\n  constructor\n  exact hr\n  have h\u2083 : 0 < A := hpos\n  have h\u2084 : 0 < 2 ^ u := by\n    apply pow_pos\n    norm_num\n  have h\u2085 : 0 < r := by\n    by_contra h\n    have h\u2086 : r = 0 := by\n      linarith\n    rw [h\u2086] at hr\n    simp at hr\n    linarith\n  exact h\u2085",
+        "custom_id": "define_odd_part_by_division_26",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.389096736907959,
+            "custom_id": "define_odd_part_by_division_26"
+        }
+    },
+    {
+        "name": "define_odd_part_by_division",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem define_odd_part_by_division (A u : \u2115) (hdiv : ((2 : \u2115) ^ u \u2223 A)) (hpos : 0 < A) :\n  \u2203 r, A = (2 : \u2115) ^ u * r \u2227 0 < r := by\n  use A / (2 ^ u)\n  have h : A = (2 : \u2115) ^ u * (A / (2 ^ u)) := by\n    have h\u2081 : (2 : \u2115) ^ u \u2223 A := hdiv\n    rw [Nat.mul_div_cancel' h\u2081]\n  constructor\n  exact h\n  apply Nat.div_pos (show (2 ^ u : \u2115) \u2223 A by exact hdiv) (show 0 < (2 ^ u : \u2115) by exact pow_pos (by norm_num) u)\n  <;> simp_all [hpos]\n  <;> omega",
+        "custom_id": "define_odd_part_by_division_27",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 21
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 55
+                    },
+                    "data": "type mismatch\n  this\nhas type\n  2 ^ u \u2223 A : Prop\nbut is expected to have type\n  ?m.631 \u2264 ?m.630 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.040680885314941406,
+            "custom_id": "define_odd_part_by_division_27"
+        }
+    },
+    {
+        "name": "define_odd_part_by_division",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem define_odd_part_by_division (A u : \u2115) (hdiv : ((2 : \u2115) ^ u \u2223 A)) (hpos : 0 < A) :\n  \u2203 r, A = (2 : \u2115) ^ u * r \u2227 0 < r := by\n  use A / (2 ^ u)\n  have h\u2081 : A = 2 ^ u * (A / (2 ^ u)) := by\n    have h\u2082 : 2 ^ u \u2223 A := hdiv\n    rw [Nat.mul_div_cancel' h\u2082]\n  have h\u2082 : 0 < A / (2 ^ u) := by\n    apply Nat.div_pos\n    \u00b7 exact Nat.le_of_dvd (by positivity) hdiv\n    \u00b7 exact Nat.pos_pow_of_pos u (by norm_num)\n  exact \u27e8h\u2081, h\u2082\u27e9",
+        "custom_id": "define_odd_part_by_division_28",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.051074981689453125,
+            "custom_id": "define_odd_part_by_division_28"
+        }
+    },
+    {
+        "name": "define_odd_part_by_division",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem define_odd_part_by_division (A u : \u2115) (hdiv : ((2 : \u2115) ^ u \u2223 A)) (hpos : 0 < A) :\n  \u2203 r, A = (2 : \u2115) ^ u * r \u2227 0 < r := by\n  use A / (2 ^ u)\n  have h\u2081 : 2 ^ u \u2223 A := hdiv\n  have h\u2082 : 0 < A := hpos\n  have h\u2083 : A = 2 ^ u * (A / (2 ^ u)) := by\n    rw [Nat.mul_div_cancel' h\u2081]\n  exact \u27e8h\u2083, by\n    apply Nat.pos_of_ne_zero\n    intro h\n    rw [h] at h\u2083\n    simp at h\u2083\n    <;> omega\u27e9",
+        "custom_id": "define_odd_part_by_division_29",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2082`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 7
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.0668478012084961,
+            "custom_id": "define_odd_part_by_division_29"
+        }
+    },
+    {
+        "name": "define_odd_part_by_division",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem define_odd_part_by_division (A u : \u2115) (hdiv : ((2 : \u2115) ^ u \u2223 A)) (hpos : 0 < A) :\n  \u2203 r, A = (2 : \u2115) ^ u * r \u2227 0 < r := by\n  use A / (2 ^ u)\n  have h\u2081 : A = 2 ^ u * (A / (2 ^ u)) := by\n    have h\u2081 : 2 ^ u \u2223 A := hdiv\n    rw [Nat.mul_div_cancel' h\u2081]\n  have h\u2082 : 0 < A / (2 ^ u) := by\n    have h\u2081 : 2 ^ u \u2223 A := hdiv\n    have h\u2082 : 0 < A := hpos\n    have h\u2083 : 0 < 2 ^ u := pow_pos (by norm_num) u\n    exact Nat.div_pos (Nat.le_of_dvd h\u2082 h\u2081) (by omega)\n  exact \u27e8by omega, h\u2082\u27e9",
+        "custom_id": "define_odd_part_by_division_30",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2083`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.08081459999084473,
+            "custom_id": "define_odd_part_by_division_30"
+        }
+    },
+    {
+        "name": "define_odd_part_by_division",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem define_odd_part_by_division (A u : \u2115) (hdiv : ((2 : \u2115) ^ u \u2223 A)) (hpos : 0 < A) :\n  \u2203 r, A = (2 : \u2115) ^ u * r \u2227 0 < r := by\n  have h\u2081 : \u2203 r, A = 2 ^ u * r \u2227 0 < r := by\n    use A / 2 ^ u\n    have h\u2082 : 2 ^ u \u2223 A := hdiv\n    have h\u2083 : 0 < A := hpos\n    have h\u2084 : A = 2 ^ u * (A / 2 ^ u) := by\n      rw [Nat.mul_div_cancel' h\u2082]\n    have h\u2085 : 0 < A / 2 ^ u := by\n      apply Nat.div_pos (Nat.le_of_dvd h\u2083 h\u2082) (Nat.pos_pow_of_pos u (by norm_num))\n    exact \u27e8h\u2084, h\u2085\u27e9\n  exact h\u2081",
+        "custom_id": "define_odd_part_by_division_31",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.053273677825927734,
+            "custom_id": "define_odd_part_by_division_31"
+        }
+    },
+    {
+        "name": "oddness_of_quotient",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem oddness_of_quotient (A u r : \u2115)\n  (hA : A = (2 : \u2115) ^ u * r)\n  (hmax : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A)) :\n  r % 2 = 1 := by\n  have h\u2081 : r % 2 = 1 := by\n    by_contra h\n    have h\u2082 : r % 2 = 0 := by omega\n    have h\u2083 : 2 \u2223 r := by\n      rw [Nat.dvd_iff_mod_eq_zero]\n      exact h\u2082\n    have h\u2084 : (2 : \u2115) ^ (u + 1) \u2223 A := by\n      rw [hA]\n      exact calc\n        (2 : \u2115) ^ (u + 1) \u2223 2 ^ u * r := by\n          exact dvd_mul_of_dvd_left (by\n            exact pow_dvd_pow _ (by linarith)\n          ) _\n        _ = 2 ^ u * r := by rfl\n    exact hmax h\u2084\n  exact h\u2081",
+        "custom_id": "oddness_of_quotient_32",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 21,
+                        "column": 36
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 44
+                    },
+                    "data": "linarith failed to find a contradiction\ncase a\nA u r : \u2115\nhA : A = 2 ^ u * r\nhmax : \u00ac2 ^ (u + 1) \u2223 A\nh : \u00acr % 2 = 1\nh\u2082 : r % 2 = 0\nh\u2083 : 2 \u2223 r\na\u271d : u + 1 > u\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.21960878372192383,
+            "custom_id": "oddness_of_quotient_32"
+        }
+    },
+    {
+        "name": "oddness_of_quotient",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem oddness_of_quotient (A u r : \u2115)\n  (hA : A = (2 : \u2115) ^ u * r)\n  (hmax : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A)) :\n  r % 2 = 1 := by\n  rw [hA] at hmax\n  contrapose! hmax\n  rw [Nat.dvd_iff_mod_eq_zero]\n  have : (2 : \u2115) ^ (u + 1) \u2223 2 ^ u * r := by\n    apply Nat.dvd_of_mod_eq_zero\n    simp [Nat.pow_mod, Nat.mul_mod, hmax]\n  simp_all",
+        "custom_id": "oddness_of_quotient_33",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 42
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 41
+                    },
+                    "data": "unsolved goals\ncase H\nA u r : \u2115\nhA : A = 2 ^ u * r\nhmax : r % 2 \u2260 1\n\u22a2 (2 % 2 ^ (u + 1) % 2 ^ (u + 1)) ^ u % 2 ^ (u + 1) % 2 ^ (u + 1) * (r % 2 ^ (u + 1) % 2 ^ (u + 1)) % 2 ^ (u + 1) = 0"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 15
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 10
+                    },
+                    "data": "unsolved goals\nA u r : \u2115\nhA : A = 2 ^ u * r\nhmax : r % 2 = 0\nthis : 2 ^ (u + 1) \u2223 2 ^ u * r\n\u22a2 2 ^ u * r % 2 ^ (u + 1) = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.24025774002075195,
+            "custom_id": "oddness_of_quotient_33"
+        }
+    },
+    {
+        "name": "oddness_of_quotient",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem oddness_of_quotient (A u r : \u2115)\n  (hA : A = (2 : \u2115) ^ u * r)\n  (hmax : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A)) :\n  r % 2 = 1 := by\n  rw [hA] at hmax\n  by_contra! h\n  have h1 : (2 : \u2115) ^ (u + 1) \u2223 (2 : \u2115) ^ u * r := by\n    cases' r with r\n    \u00b7 simp_all [Nat.pow_succ]\n    \u00b7 exact \u27e8(2 * r), by ring_nf\u27e9\n  exact hmax h1",
+        "custom_id": "oddness_of_quotient_34",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 22
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 32
+                    },
+                    "data": "unsolved goals\nA u r : \u2115\nhA : A = 2 ^ u * (r + 1)\nhmax : \u00ac2 ^ (u + 1) \u2223 2 ^ u * (r + 1)\nh : (r + 1) % 2 \u2260 1\n\u22a2 r * 2 ^ u + 2 ^ u = r * 2 ^ u * 4"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.15895605087280273,
+            "custom_id": "oddness_of_quotient_34"
+        }
+    },
+    {
+        "name": "oddness_of_quotient",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem oddness_of_quotient (A u r : \u2115)\n  (hA : A = (2 : \u2115) ^ u * r)\n  (hmax : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A)) :\n  r % 2 = 1 := by\n  have h1 : r % 2 = 1 := by\n    by_contra h\n    have h2 : r % 2 = 0 := by omega\n    have h3 : 2 \u2223 r := by\n      rw [\u2190 Nat.mod_add_div r 2]\n      simp [h2]\n    have h4 : 2 ^ (u + 1) \u2223 A := by\n      rw [hA]\n      exact calc\n        2 ^ (u + 1) \u2223 2 ^ u * r := by\n          exact Nat.pow_dvd_pow _ (by omega) |>.mul_right _\n        _ = 2 ^ u * r := by rfl\n    exact hmax h4\n  exact h1",
+        "custom_id": "oddness_of_quotient_35",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 38
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 43
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  b - 2*c \u2264 -1\n  d \u2265 0\n  e \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(2 ^ u) * \u2191r\n b := \u2191A % \u2191(2 ^ (u + 1))\n c := \u21912 ^ u\n d := \u2191r / 2\n e := \u2191u"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.1669604778289795,
+            "custom_id": "oddness_of_quotient_35"
+        }
+    },
+    {
+        "name": "oddness_of_quotient",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem oddness_of_quotient (A u r : \u2115)\n  (hA : A = (2 : \u2115) ^ u * r)\n  (hmax : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A)) :\n  r % 2 = 1 := by\n  have h1 : A = (2 : \u2115) ^ u * r := hA\n  have h2 : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := hmax\n  rw [h1] at h2\n  rw [Nat.dvd_iff_mod_eq_zero] at h2\n  have h3 : (2 ^ u * r) % (2 ^ (u + 1)) \u2260 0 := by simpa [Nat.pow_succ, Nat.mul_mod, Nat.pow_mod] using h2\n  have h4 : r % 2 = 1 := by\n    cases' Nat.mod_two_eq_zero_or_one r with h h <;> simp [h, Nat.mul_mod, Nat.pow_mod, Nat.add_mod] at h3\n    <;> induction u <;> simp_all [Nat.pow_succ, Nat.mul_mod, Nat.pow_mod, Nat.add_mod]\n    <;> omega\n  exact h4",
+        "custom_id": "oddness_of_quotient_36",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  d \u2265 1\n  c \u2265 0\n  a \u2265 0\nwhere\n a := \u2191r / 2\n b := \u2191(2 ^ n\u271d * 2 * r) % \u2191(2 ^ n\u271d * 2 * 2)\n c := \u2191(2 ^ n\u271d * 2) * \u2191r\n d := \u2191((2 % (2 ^ n\u271d * 2 * 2) % (2 ^ n\u271d * 2 * 2)) ^ n\u271d % (2 ^ n\u271d * 2 * 2) % (2 ^ n\u271d * 2 * 2) *\n            (2 % (2 ^ n\u271d * 2 * 2) % (2 ^ n\u271d * 2 * 2)) %\n          (2 ^ n\u271d * 2 * 2) %\n        (2 ^ n\u271d * 2 * 2) *\n      (r % (2 ^ n\u271d * 2 * 2) % (2 ^ n\u271d * 2 * 2))) %\n  \u2191(2 ^ n\u271d * 2 * 2)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 25
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\ncase inl.succ\nA r : \u2115\nh : r % 2 = 0\nn\u271d : \u2115\nhmax : \u00ac2 ^ n\u271d * 2 * 2 \u2223 2 ^ n\u271d * 2 * r\nh1 : A = 2 ^ n\u271d * 2 * r\nh2 :\n  \u00ac(2 % (2 ^ n\u271d * 2 * 2) % (2 ^ n\u271d * 2 * 2)) ^ n\u271d % (2 ^ n\u271d * 2 * 2) % (2 ^ n\u271d * 2 * 2) *\n                (2 % (2 ^ n\u271d * 2 * 2) % (2 ^ n\u271d * 2 * 2)) %\n              (2 ^ n\u271d * 2 * 2) %\n            (2 ^ n\u271d * 2 * 2) *\n          (r % (2 ^ n\u271d * 2 * 2) % (2 ^ n\u271d * 2 * 2)) %\n        (2 ^ n\u271d * 2 * 2) =\n      0\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.8109042644500732,
+            "custom_id": "oddness_of_quotient_36"
+        }
+    },
+    {
+        "name": "oddness_of_quotient",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem oddness_of_quotient (A u r : \u2115)\n  (hA : A = (2 : \u2115) ^ u * r)\n  (hmax : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A)) :\n  r % 2 = 1 := by\n  rw [hA] at hmax\n  by_contra h\n  have h1 : (2 : \u2115) ^ (u + 1) \u2223 (2 : \u2115) ^ u * r := by\n    rw [show (2 : \u2115) ^ u * r = (2 : \u2115) ^ u * r by rfl]\n    apply Nat.dvd_of_mod_eq_zero\n    rw [Nat.mul_mod]\n    simp [h, Nat.pow_mod, Nat.mod_eq_of_lt]\n  contradiction",
+        "custom_id": "oddness_of_quotient_37",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 51
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 43
+                    },
+                    "data": "unsolved goals\ncase H\nA u r : \u2115\nhA : A = 2 ^ u * r\nhmax : \u00ac2 ^ (u + 1) \u2223 2 ^ u * r\nh : \u00acr % 2 = 1\n\u22a2 (2 % 2 ^ (u + 1)) ^ u * r % 2 ^ (u + 1) = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.1413741111755371,
+            "custom_id": "oddness_of_quotient_37"
+        }
+    },
+    {
+        "name": "oddness_of_quotient",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem oddness_of_quotient (A u r : \u2115)\n  (hA : A = (2 : \u2115) ^ u * r)\n  (hmax : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A)) :\n  r % 2 = 1 := by\n  rw [hA] at hmax\n  rw [Nat.dvd_iff_mod_eq_zero] at hmax\n  have h\u2081 : (2 : \u2115) ^ (u + 1) \u2223 2 ^ u * r \u2194 2 ^ u * r % 2 ^ (u + 1) = 0 := by\n    simp [Nat.dvd_iff_mod_eq_zero]\n  rw [h\u2081] at hmax\n  have h\u2082 : 2 ^ u * r % 2 ^ (u + 1) = 0 := by simpa using hmax\n  have h\u2083 : 2 ^ u * r % 2 ^ (u + 1) = 0 := by simpa using hmax\n  rw [Nat.mul_mod] at h\u2083\n  simp [Nat.pow_succ, Nat.mul_mod, Nat.pow_mod] at h\u2083\n  have h\u2084 : r % 2 = 1 := by\n    cases u with\n    | zero =>\n      simp_all [Nat.pow_succ, Nat.mul_mod, Nat.pow_mod]\n    | succ u =>\n      omega\n  exact h\u2084",
+        "custom_id": "oddness_of_quotient_38",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 8
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  2 ^ (u + 1) \u2223 2 ^ u * r\nA u r : \u2115\nhA : A = 2 ^ u * r\nhmax : \u00ac2 ^ u * r % 2 ^ (u + 1) = 0\nh\u2081 : 2 ^ (u + 1) \u2223 2 ^ u * r \u2194 2 ^ u * r % 2 ^ (u + 1) = 0\n\u22a2 r % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.1330108642578125,
+            "custom_id": "oddness_of_quotient_38"
+        }
+    },
+    {
+        "name": "oddness_of_quotient",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem oddness_of_quotient (A u r : \u2115)\n  (hA : A = (2 : \u2115) ^ u * r)\n  (hmax : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A)) :\n  r % 2 = 1 := by\n  have h1 : A = (2 : \u2115) ^ u * r := hA\n  have h2 : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := hmax\n  rw [h1] at h2\n  rw [Nat.dvd_iff_mod_eq_zero] at h2\n  have h3 : r % 2 = 1 := by\n    by_contra h\n    have h4 : r % 2 = 0 := by omega\n    have h5 : (2 : \u2115) ^ u * r % (2 ^ (u + 1)) = 0 := by\n      rw [Nat.mul_mod]\n      simp [h4, Nat.pow_mod, Nat.mul_mod]\n      <;> induction u <;> simp_all [Nat.pow_succ, Nat.mul_mod, Nat.pow_succ]\n      <;> omega\n    simp_all [Nat.pow_succ, Nat.mul_mod, Nat.pow_succ]\n    <;> omega\n  exact h3",
+        "custom_id": "oddness_of_quotient_39",
+        "compilation_result": {
+            "pass": false,
+            "complete": false,
+            "system_errors": "Traceback (most recent call last):\n  File \"/juice5b/scr5b/slimbark/projects/evolutionary-lean/lean_evolve/utils.py\", line 127, in get_verification_results\n    \"sorries\": old_result.get(\"sorries\", []),\n               ^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'get'\n",
+            "system_messages": "Lean process timed out",
+            "tactics": [],
+            "custom_id": "oddness_of_quotient_39"
+        }
+    },
+    {
+        "name": "oddness_of_quotient",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem oddness_of_quotient (A u r : \u2115)\n  (hA : A = (2 : \u2115) ^ u * r)\n  (hmax : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A)) :\n  r % 2 = 1 := by\n  have h1 : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 (2 ^ u * r)) := by simpa [hA] using hmax\n  have h2 : 2 ^ (u + 1) \u2223 2 ^ u * r \u2192 False := by simpa [h1] using h1\n  have h3 : \u00ac (2 ^ (u + 1) \u2223 2 ^ u * r) := by simpa [h2] using h2\n  have h4 : r % 2 = 1 := by\n    by_contra h\n    have h5 : r % 2 = 0 := by omega\n    have h6 : 2 \u2223 r := by\n      rw [Nat.dvd_iff_mod_eq_zero]\n      exact h5\n    have h7 : 2 ^ (u + 1) \u2223 2 ^ u * r := by\n      exact Nat.dvd_trans (by\n        -- We need to show that 2^(u+1) divides 2^u * r\n        -- This follows from the fact that 2^(u+1) = 2 * 2^u and 2 divides 2^u * r if 2 divides r\n        simp [Nat.pow_succ, Nat.mul_assoc, Nat.mul_comm, Nat.mul_left_comm]\n        <;> simp_all [Nat.pow_succ, Nat.mul_assoc, Nat.mul_comm, Nat.mul_left_comm]\n        <;> omega) (Nat.dvd_mul_right _ _)\n    exact h3 h7\n  exact h4",
+        "custom_id": "oddness_of_quotient_40",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 25,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 17
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  d \u2265 1\n  c \u2265 0\n  a \u2265 0\nwhere\n a := \u2191r * \u2191(2 ^ u)\n b := \u2191(r * 2 ^ u) % \u2191(2 * 2 ^ u)\n c := \u2191r / 2\n d := \u2191(2 ^ u) % \u2191(2 * 2 ^ u)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 27
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 17
+                    },
+                    "data": "unsolved goals\nA u r : \u2115\nhA : A = r * 2 ^ u\nhmax : \u00ac2 * 2 ^ u \u2223 r * 2 ^ u\nh5 : r % 2 = 0\nh6 : 2 \u2223 r\n\u22a2 2 * 2 ^ u \u2223 2 ^ u"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 50
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 69
+                    },
+                    "data": "try 'simp' instead of 'simpa'\nnote: this linter can be disabled with `set_option linter.unnecessarySimpa false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.069282054901123,
+            "custom_id": "oddness_of_quotient_40"
+        }
+    },
+    {
+        "name": "oddness_of_quotient",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem oddness_of_quotient (A u r : \u2115)\n  (hA : A = (2 : \u2115) ^ u * r)\n  (hmax : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A)) :\n  r % 2 = 1 := by\n  have h1 : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := hmax\n  have h2 : A = (2 : \u2115) ^ u * r := hA\n  rw [h2] at h1\n  rw [Nat.dvd_iff_mod_eq_zero] at h1\n  induction u with\n  | zero =>\n    -- For u = 0, A = r, and we need to show r % 2 = 1\n    simp_all [Nat.pow_zero, Nat.mul_mod, Nat.mod_eq_of_lt]\n    <;> omega\n  | succ u ih =>\n    -- For u = k + 1, A = 2^(k+1) * r, and we need to show r % 2 = 1\n    simp_all [Nat.pow_succ, Nat.mul_assoc, Nat.mul_mod, Nat.mod_eq_of_lt]\n    <;> omega",
+        "custom_id": "oddness_of_quotient_41",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 22,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 0\n  d \u2265 1\n  c \u2265 1\n  a \u2265 1\nwhere\n a := \u2191(2 ^ u * (2 * r)) % \u2191(2 ^ u * 4)\n b := \u2191(2 ^ u) * \u2191(2 * r)\n c := \u2191r / 2\n d := \u2191(2 ^ u % (2 ^ u * 4) % (2 ^ u * 4) *\n      (2 % (2 ^ u * 4) % (2 ^ u * 4) * (r % (2 ^ u * 4) % (2 ^ u * 4)) % (2 ^ u * 4) % (2 ^ u * 4))) %\n  \u2191(2 ^ u * 4)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\ncase succ\nA r u : \u2115\nih :\n  2 * r = r \u2192\n    \u00ac2 ^ u * 2 \u2223 2 ^ u * r \u2192\n      \u00ac2 ^ u % (2 ^ u * 2) % (2 ^ u * 2) * (r % (2 ^ u * 2) % (2 ^ u * 2)) % (2 ^ u * 2) = 0 \u2192 r % 2 = 1\nhmax : \u00ac2 ^ u * 4 \u2223 2 ^ u * (2 * r)\nh1 :\n  \u00ac2 ^ u % (2 ^ u * 4) % (2 ^ u * 4) *\n          (2 % (2 ^ u * 4) % (2 ^ u * 4) * (r % (2 ^ u * 4) % (2 ^ u * 4)) % (2 ^ u * 4) % (2 ^ u * 4)) %\n        (2 ^ u * 4) =\n      0\nh2 : A = 2 ^ u * (2 * r)\n\u22a2 r % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 3.4396328926086426,
+            "custom_id": "oddness_of_quotient_41"
+        }
+    },
+    {
+        "name": "oddness_of_quotient",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem oddness_of_quotient (A u r : \u2115)\n  (hA : A = (2 : \u2115) ^ u * r)\n  (hmax : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A)) :\n  r % 2 = 1 := by\n  have h\u2081 : r % 2 = 1 := by\n    by_contra h\n    have h\u2082 : r % 2 = 0 := by omega\n    have h\u2083 : 2 \u2223 r := by\n      rw [\u2190 Nat.mod_add_div r 2]\n      simp [h\u2082]\n    have h\u2084 : 2 \u2223 A := by\n      rw [hA]\n      exact dvd_mul_of_dvd_right h\u2083 _\n    have h\u2085 : 2 ^ (u + 1) \u2223 A := by\n      rw [hA]\n      exact calc\n        2 ^ (u + 1) \u2223 2 ^ u * r := by\n          exact \u27e8r, by ring\u27e9\n        _ = 2 ^ u * r := by rfl\n    exact hmax h\u2085\n  exact h\u2081",
+        "custom_id": "oddness_of_quotient_42",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 20
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 27
+                    },
+                    "data": "unsolved goals\nA u r : \u2115\nhA : A = 2 ^ u * r\nhmax : \u00ac2 ^ (u + 1) \u2223 A\nh : \u00acr % 2 = 1\nh\u2082 : r % 2 = 0\nh\u2083 : 2 \u2223 r\nh\u2084 : 2 \u2223 A\n\u22a2 r * 2 ^ u = r * 2 ^ u * 2"
+                }
+            ],
+            "warnings": [],
+            "infos": [
+                {
+                    "severity": "info",
+                    "pos": {
+                        "line": 23,
+                        "column": 23
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 27
+                    },
+                    "data": "Try this: ring_nf"
+                }
+            ],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.22684955596923828,
+            "custom_id": "oddness_of_quotient_42"
+        }
+    },
+    {
+        "name": "oddness_of_quotient",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem oddness_of_quotient (A u r : \u2115)\n  (hA : A = (2 : \u2115) ^ u * r)\n  (hmax : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A)) :\n  r % 2 = 1 := by\n  have h1 : r % 2 = 1 := by\n    by_contra h\n    have h2 : r % 2 = 0 := by omega\n    have h3 : 2 ^ (u + 1) \u2223 A := by\n      rw [hA]\n      rw [Nat.dvd_iff_mod_eq_zero]\n      rw [mul_mod]\n      simp [h2, Nat.pow_mod, Nat.mul_mod, Nat.pow_mod, Nat.mod_eq_of_lt]\n    exact hmax h3\n  exact h1",
+        "custom_id": "oddness_of_quotient_43",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 33
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 72
+                    },
+                    "data": "unsolved goals\nA u r : \u2115\nhA : A = 2 ^ u * r\nhmax : \u00ac2 ^ (u + 1) \u2223 A\nh : \u00acr % 2 = 1\nh2 : r % 2 = 0\n\u22a2 (2 % 2 ^ (u + 1) % 2 ^ (u + 1)) ^ u % 2 ^ (u + 1) % 2 ^ (u + 1) * (r % 2 ^ (u + 1) % 2 ^ (u + 1)) % 2 ^ (u + 1) = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.24161982536315918,
+            "custom_id": "oddness_of_quotient_43"
+        }
+    },
+    {
+        "name": "oddness_of_quotient",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem oddness_of_quotient (A u r : \u2115)\n  (hA : A = (2 : \u2115) ^ u * r)\n  (hmax : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A)) :\n  r % 2 = 1 := by\n  have h1 : A = (2 : \u2115) ^ u * r := hA\n  have h2 : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := hmax\n  rw [h1] at h2\n  have h3 : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 (2 : \u2115) ^ u * r) := h2\n  have h4 : (2 : \u2115) ^ (u + 1) \u2223 (2 : \u2115) ^ u * r \u2194 (2 : \u2115) ^ (u + 1) \u2223 (2 : \u2115) ^ u * r := by rfl\n  rw [h4] at h3\n  have h5 : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 (2 : \u2115) ^ u * r) := h3\n  have h6 : (2 : \u2115) ^ (u + 1) \u2223 (2 : \u2115) ^ u * r \u2194 (2 : \u2115) ^ u * 2 \u2223 (2 : \u2115) ^ u * r := by\n    simp [pow_succ]\n    <;> ring_nf\n    <;> norm_num\n    <;> omega\n  rw [h6] at h5\n  have h7 : \u00ac ((2 : \u2115) ^ u * 2 \u2223 (2 : \u2115) ^ u * r) := h5\n  have h8 : (2 : \u2115) ^ u * 2 \u2223 (2 : \u2115) ^ u * r \u2194 2 \u2223 r := by\n    apply Nat.dvd_of_mod_eq_zero\n    simp [Nat.mul_mod, Nat.pow_mod]\n    <;> omega\n  rw [h8] at h7\n  have h9 : \u00ac (2 \u2223 r) := h7\n  have h10 : r % 2 = 1 := by\n    have h11 : r % 2 = 0 \u2228 r % 2 = 1 := Nat.mod_two_eq_zero_or_one r\n    cases h11 with\n    | inl h11 =>\n      exfalso\n      apply h9\n      omega\n    | inr h11 =>\n      omega\n  exact h10",
+        "custom_id": "oddness_of_quotient_44",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 25,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 32
+                    },
+                    "data": "tactic 'apply' failed, failed to unify\n  ?m \u2223 ?n\nwith\n  2 ^ u * 2 \u2223 2 ^ u * r \u2194 2 \u2223 r\nA u r : \u2115\nhA : A = 2 ^ u * r\nhmax : \u00ac2 ^ (u + 1) \u2223 A\nh1 : A = 2 ^ u * r\nh2 h3 : \u00ac2 ^ (u + 1) \u2223 2 ^ u * r\nh4 : 2 ^ (u + 1) \u2223 2 ^ u * r \u2194 2 ^ (u + 1) \u2223 2 ^ u * r\nh5 : \u00ac2 ^ u * 2 \u2223 2 ^ u * r\nh6 : 2 ^ (u + 1) \u2223 2 ^ u * r \u2194 2 ^ u * 2 \u2223 2 ^ u * r\nh7 : \u00ac2 ^ u * 2 \u2223 2 ^ u * r\n\u22a2 2 ^ u * 2 \u2223 2 ^ u * r \u2194 2 \u2223 r"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.36177706718444824,
+            "custom_id": "oddness_of_quotient_44"
+        }
+    },
+    {
+        "name": "oddness_of_quotient",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem oddness_of_quotient (A u r : \u2115)\n  (hA : A = (2 : \u2115) ^ u * r)\n  (hmax : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A)) :\n  r % 2 = 1 := by\n  rw [hA] at hmax\n  by_contra! h\n  have h\u2081 : 2 \u2223 r := by\n    have h\u2082 : r % 2 = 0 := by omega\n    exact Nat.dvd_of_mod_eq_zero h\u2082\n  cases' h\u2081 with k hk\n  have h\u2082 : (2 : \u2115) ^ (u + 1) \u2223 (2 : \u2115) ^ u * r := by\n    rw [hk]\n    exact \u27e8k, by ring\u27e9\n  exact hmax h\u2082",
+        "custom_id": "oddness_of_quotient_45",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.12273216247558594,
+            "custom_id": "oddness_of_quotient_45"
+        }
+    },
+    {
+        "name": "oddness_of_quotient",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem oddness_of_quotient (A u r : \u2115)\n  (hA : A = (2 : \u2115) ^ u * r)\n  (hmax : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A)) :\n  r % 2 = 1 := by\n  rw [hA] at hmax\n  by_contra h\n  have h\u2081 : 2 ^ (u + 1) \u2223 (2 ^ u * r) := by\n    rw [show 2 ^ u * r = 2 ^ u * r by rfl]\n    exact \u27e8r / 2, by\n      rw [mul_comm]\n      simp [Nat.mul_div_cancel' (Nat.dvd_of_mod_eq_zero (by omega : r % 2 = 0))]\n      <;> induction u <;> simp_all [pow_succ, mul_assoc]\n      <;> ring_nf at * <;> omega\n    \u27e9\n  exact hmax h\u2081",
+        "custom_id": "oddness_of_quotient_46",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 80
+                    },
+                    "data": "simp made no progress"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.20277976989746094,
+            "custom_id": "oddness_of_quotient_46"
+        }
+    },
+    {
+        "name": "oddness_of_quotient",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem oddness_of_quotient (A u r : \u2115)\n  (hA : A = (2 : \u2115) ^ u * r)\n  (hmax : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A)) :\n  r % 2 = 1 := by\n  have h1 : A = (2 : \u2115) ^ u * r := hA\n  have h2 : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := hmax\n  rw [h1] at h2\n  have h3 : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 (2 ^ u * r)) := h2\n  have h4 : (2 : \u2115) ^ (u + 1) \u2223 2 ^ u * r \u2192 False := by\n    intro h\n    have h5 : (2 : \u2115) ^ (u + 1) \u2223 2 ^ u * r := h\n    have h6 : (2 : \u2115) ^ (u + 1) \u2223 2 ^ u * r := h5\n    have h7 : (2 : \u2115) ^ (u + 1) \u2223 2 ^ u * r := h6\n    have h8 : (2 : \u2115) ^ (u + 1) \u2223 2 ^ u * r := h7\n    have h9 : (2 : \u2115) ^ (u + 1) \u2223 2 ^ u * r := h8\n    have h10 : (2 : \u2115) ^ (u + 1) \u2223 2 ^ u * r := h9\n    rw [Nat.dvd_iff_mod_eq_zero] at h10\n    have h11 : (2 ^ u * r) % (2 ^ (u + 1)) = 0 := h10\n    have h12 : (2 ^ u * r) % (2 ^ (u + 1)) = 2 ^ u * (r % 2) := by\n      rw [Nat.mul_mod, Nat.pow_mod]\n      <;> simp [Nat.mod_eq_of_lt]\n    rw [h12] at h11\n    have h13 : 2 ^ u \u2260 0 := by positivity\n    have h14 : r % 2 = 0 \u2228 r % 2 = 1 := by omega\n    cases h14 with\n    | inl h14 =>\n      rw [h14] at h11\n      simp at h11\n      <;> induction u <;> simp_all [Nat.pow_succ, Nat.mul_assoc]\n      <;> omega\n    | inr h14 =>\n      rw [h14] at h11\n      simp at h11\n      <;> induction u <;> simp_all [Nat.pow_succ, Nat.mul_assoc]\n      <;> omega\n  exact by\n    simp_all\n  <;> omega",
+        "custom_id": "oddness_of_quotient_47",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 24,
+                        "column": 64
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 33
+                    },
+                    "data": "unsolved goals\nA u r : \u2115\nhA : A = 2 ^ u * r\nhmax : \u00ac2 ^ (u + 1) \u2223 A\nh1 : A = 2 ^ u * r\nh2 h3 : \u00ac2 ^ (u + 1) \u2223 2 ^ u * r\nh h5 h6 h7 h8 h9 : 2 ^ (u + 1) \u2223 2 ^ u * r\nh10 h11 : 2 ^ u * r % 2 ^ (u + 1) = 0\n\u22a2 (2 % 2 ^ (u + 1)) ^ u * r % 2 ^ (u + 1) = 2 ^ u * (r % 2)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 43,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 43,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  d \u2265 0\n  b - 2*c \u2264 -1\n  a \u2265 0\nwhere\n a := \u2191(2 ^ u) * \u2191r\n b := \u2191(2 ^ u * r) % \u2191(2 ^ (u + 1))\n c := \u21912 ^ u\n d := \u2191r / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 41,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 43,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nA u r : \u2115\nh1 : A = 2 ^ u * r\nh3 : \u00ac2 ^ (u + 1) \u2223 2 ^ u * r\n\u22a2 r % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.3973824977874756,
+            "custom_id": "oddness_of_quotient_47"
+        }
+    }
+]

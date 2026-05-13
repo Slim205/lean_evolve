@@ -1,0 +1,2 @@
+
+Hint: When you need auxiliary names in a statement, either write the let-binding with "in" (let d := … in …) or introduce the helper definition inside the proof; avoid bare "let …" in the type to prevent parser errors.

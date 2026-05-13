@@ -1,0 +1,31 @@
+lemma diff_evolution_natAbs
+  (m n : ℕ → ℕ) (k : ℕ) (d : ℕ)
+  (hm_succ_eq : m (k + 1) = (2 * m k + 1) / d)
+  (hn_succ_eq : n (k + 1) = (2 * n k + 1) / d)
+  (h_dvd : (d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    Int.natAbs (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+Failure mode: INCORRECT
+Recommendation: The statement treats the Nat quotients `(2*m k+1)/d` and `(2*n k+1)/d` as if they were *exact* divisions, but Nat division is truncated. From `m(k+1) = (2*m k+1)/d` alone you cannot infer `d ∣ (2*m k+1)` (and similarly for `n`), so the ℤ-identity “difference of quotients = quotient of difference” need not hold. Revise the lemma to assume exact divisibility, e.g.
+1) add hypotheses `d ∣ (2*m k + 1)` and `d ∣ (2*n k + 1)`, and
+2) replace the Nat quotients by the corresponding exact quotients (or explicitly use a witness form `∃ a', 2*m k+1 = d*a'` etc.),
+then prove the ℤ equality via those witnesses. Alternatively, derive these divisibilities from the fact that `d = gcd(2*m k+1, 2*n k+1)` (but then you must include that fact as a hypothesis, not just a bare `d`).
+---------
+lemma next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+Failure mode: INCORRECT
+Recommendation: From an equality of ℚ-quotients alone you cannot recover the “reduced numerator/denominator” as Nat divisions by `gcd` without extra hypotheses ensuring you are actually comparing reduced fractions with nonzero denominators.
+
+Concrete issues:
+- In ℚ, division by `0` is defined (`x / 0 = 0` in Lean’s field structure), so `h_recurrence` does not force `n (k+1) ≠ 0`; without nonzero denominators you cannot soundly cross-multiply to relate numerators/denominators.
+- Even with nonzero denominators, to conclude “equals dividing by gcd” you need that `(m (k+1), n (k+1))` is a reduced pair representing the same rational as `(2*m k+1, 2*n k+1)`. You only have coprimality for indices `> 0`, and you still need `n (k+1) ≠ 0` (or positivity) to use the reduced-fraction uniqueness principle.
+
+Revision strategy:
+- Add hypotheses like `0 < n (k+1)` (or at least `(n (k+1) : ℚ) ≠ 0`) and similarly ensure the RHS denominator is nonzero (automatic for `2*n k + 1` as a Nat-cast).
+- Replace the conclusion by an existence/association statement that is true from cross-multiplication, e.g. there exists `c` with `(2*m k+1) = c * m(k+1)` and `(2*n k+1) = c * n(k+1)`, then separately show `c = gcd(...)` using coprimality of `(m(k+1), n(k+1))`. Only after that can you specialize to the explicit `/ gcd` formulas.

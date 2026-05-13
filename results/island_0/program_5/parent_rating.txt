@@ -1,0 +1,97 @@
+---------
+<lemma diff_ne_zero
+  (m n : ℕ → ℕ)
+  (h_distinct : m 0 ≠ n 0)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0 := by>
+Failure mode: HARD
+Recommendation: Reduce it to “no equality ever occurs” and isolate the rational-division corner cases.
+1) Lemma: For all k, \((2 * (n k : ℚ) + 1) ≠ 0\) and \((2 * (m k : ℚ) + 1) ≠ 0\), hence the RHS of the recurrence is nonzero.
+2) Lemma: For all k, \((n (k+1) : ℚ) ≠ 0\). (Otherwise the LHS would be 0, contradicting Lemma 1.)
+3) Lemma: For all k, \(m (k+1) = n (k+1) \to (m (k+1) : ℚ) / (n (k+1) : ℚ) = 1\). (Uses Lemma 2.)
+4) Lemma: For all k, \((2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1) = 1 \to m k = n k\). (Cross-multiply; denominator ≠ 0 from Lemma 1.)
+5) Lemma (induction step): If \(m k ≠ n k\) then \(m (k+1) ≠ n (k+1)\) by contradiction using Lemmas 3–4 and the recurrence.
+6) Conclude \(m k ≠ n k\) for all k by induction from \(m 0 ≠ n 0\), then translate to \((m k : ℤ) - (n k : ℤ) ≠ 0\) via injectivity of coercions.
+---------
+
+---------
+<lemma finite_of_strict_decrease_on_bad
+  (t : ℕ → ℕ)
+  (htpos : ∀ k : ℕ, 0 < t k)
+  (bad : ℕ → Prop)
+  (hnoninc : ∀ k : ℕ, t (k + 1) ≤ t k)
+  (hdec : ∀ k : ℕ, bad k → t (k + 1) < t k) :
+  {k : ℕ | bad k}.Finite := by>
+Failure mode: HARD
+Recommendation: Prove finiteness by bounding how many strict drops a positive ℕ-valued function can have.
+1) Lemma: For all k, \(t k ≤ t 0\). (Iterate the nonincreasing inequality.)
+2) Lemma: If \(bad k\) then \(t (k+1) ≤ t k - 1\). (Convert strict inequality on ℕ to a “drop by at least 1” statement.)
+3) Lemma: For any \(N\), among indices \(0,1,\dots,N-1\), the number of \(k\) with \(bad k\) is ≤ \(t 0 - 1\). (Sum the “drop by ≥ 1” along the subsequence of bad indices, using Lemma 1 to prevent going below 1 via htpos.)
+4) Lemma: A set \(S : Set ℕ\) is finite if there exists a uniform bound \(B\) such that for all \(N\), \(\#(S ∩ {0,1,\dots,N-1}) ≤ B\).
+5) Apply Lemma 4 to \(S = {k | bad k}\) with \(B = t 0 - 1\), using Lemma 3.
+---------
+
+---------
+<lemma decomposition_of_diff
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0) :
+  ∀ k : ℕ, ∃ (u r : ℕ),
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by>
+Failure mode: HARD
+Recommendation: Factor out the 2-adic valuation of a positive natural number; reduce from ℤ to ℕ via natAbs.
+1) Lemma: If \(z : ℤ\) and \(z ≠ 0\), then \(0 < Int.natAbs z\).
+2) Lemma: For any \(a : ℕ\) with \(0 < a\), there exist \(u r : ℕ\) such that \(a = 2^u * r\) and \(r\) is odd. (This is the standard “extract maximal power of 2”; prove via the 2-adic valuation/existence of maximal u.)
+3) Lemma: For \(r : ℕ\), “\(r\) odd” implies \(r % 2 = 1\), and also \(0 < r\).
+4) Apply Lemma 2 to \(a = Int.natAbs((m k : ℤ) - (n k : ℤ))\) using Lemma 1 to get positivity, then translate oddness to the desired `% 2 = 1` and positivity conclusion via Lemma 3.
+---------
+
+---------
+<lemma odd_part_noninc_step
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∀ k u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 ≤ r1 := by>
+Failure mode: HARD
+Recommendation: Make the hidden “normalization by gcd” explicit, then relate differences across steps and use uniqueness of the odd-part.
+1) Lemma: Let \(d = gcd(2*m k + 1, 2*n k + 1)\). Using the recurrence and coprimality of \((m(k+1),n(k+1))\), prove
+   \(m(k+1) = (2*m k + 1)/d\) and \(n(k+1) = (2*n k + 1)/d\).
+2) Lemma: The same \(d\) divides \((m k : ℤ) - (n k : ℤ)\). (Because \(d\) divides the difference of the odd numbers \(2*m k+1\) and \(2*n k+1\), hence divides \(2(mk-nk)\), and \(d\) is odd so it divides \(mk-nk\).)
+3) Lemma: Derive the exact relation
+   \[
+   Int.natAbs((m(k+1):ℤ)-(n(k+1):ℤ)) = \frac{2 * Int.natAbs((m k:ℤ)-(n k:ℤ))}{d}.
+   \]
+4) Lemma: If \(Int.natAbs(Δ_k) = 2^{u1} * r1\) with \(r1\) odd and \(d\) odd divides \(Int.natAbs(Δ_k)\), then \(d\) divides \(r1\).
+5) Lemma: With \(r1 = d * r'\), rewrite Lemma 3 as
+   \(Int.natAbs(Δ_{k+1}) = 2^{u1+1} * r'\) with \(r'\) odd.
+6) Lemma (uniqueness): If a positive natural \(A\) admits decompositions \(A = 2^{u}*r\) and \(A = 2^{u'}*r'\) with both \(r,r'\) odd, then \(r=r'\).
+7) Apply Lemma 6 to identify the given \(r2\) with the constructed \(r'\), and conclude \(r2 = r1/d ≤ r1\).
+---------
+
+---------
+<lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by>
+Failure mode: HARD
+Recommendation: Reuse the nonincreasing-step structure but show the gcd factor is > 1, hence the odd part shrinks strictly.
+1) Lemma: With \(d = gcd(2*m k + 1, 2*n k + 1)\), \(hbad\) implies \(1 < d\).
+2) Lemma: As in the nonincreasing case, derive \(m(k+1) = (2*m k + 1)/d\), \(n(k+1) = (2*n k + 1)/d\).
+3) Lemma: Derive \(Int.natAbs(Δ_{k+1}) = (2 * Int.natAbs(Δ_k))/d\) and that \(d\) divides the odd part \(r1\).
+4) Lemma: Write \(r1 = d * r'\) with \(0 < r'\) and \(r'\) odd, and identify \(r2 = r'\) by uniqueness of odd-part decomposition.
+5) Lemma: If \(1 < d\) and \(0 < r'\), then \(r' < d * r' = r1\); hence \(r2 < r1\).
+---------

@@ -1,0 +1,38 @@
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by
+Failure mode: HARD
+Recommendation: Decompose the “strict decrease” into lemmas that isolate (i) the relevant gcd `d`, (ii) how `d` acts on the odd part `r1`, and (iii) how the next odd part equals the quotient by `d`. A workable proof plan is:
+
+1) **Non-coprime ⇒ gcd > 1**  
+   Lemma: `¬Nat.Coprime a b → 1 < Nat.gcd a b`.
+
+2) **For odd inputs, the gcd is odd** (already essentially in `gcd_odd_and_dvd_diff`)  
+   Lemma: With `a = 2*m k + 1`, `b = 2*n k + 1`, and `d = gcd a b`, prove `d % 2 = 1`.
+
+3) **This gcd divides the integer difference** (already in `gcd_odd_and_dvd_diff`)  
+   Lemma: `(d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))`, hence `d ∣ Int.natAbs ((m k : ℤ) - (n k : ℤ))`.
+
+4) **Odd divisor of a 2-adic decomposition divides the odd part**  
+   Lemma: If `A = 2^u * r` with `r` odd and `d` odd and `d ∣ A`, then `d ∣ r`.  
+   (This is the key refinement beyond the nonincreasing lemma: you need the conclusion “`d` divides `r1`”, not just “`r2 ≤ r1`”.)
+
+5) **Identify the next odd part as the quotient**  
+   Lemma: Under the successor normalization, show  
+   `Int.natAbs ((m (k+1):ℤ) - (n (k+1):ℤ)) = 2 * (Int.natAbs ((m k:ℤ)-(n k:ℤ)) / d)`  
+   and then use uniqueness of odd-part decomposition to conclude `r2 = r1 / d`.
+
+6) **Strictness from division by a nontrivial divisor**  
+   Lemma: If `1 < d`, `d ∣ r1`, and `0 < r1`, then `r1 / d < r1`. Conclude `r2 < r1` using Step 5.
+
+This isolates the genuinely hard content (Steps 4–6). Once those are in place, the current statement (quantified over arbitrary decompositions) follows by applying uniqueness of the odd-part decomposition to replace arbitrary `(u1,r1)` and `(u2,r2)` by the canonical ones arising from the division by `d`.

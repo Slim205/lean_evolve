@@ -1,0 +1,18 @@
+>>>>SEARCH
+  have hb_nonzero : n (k + 1) ≠ 0 := by
+    -- `n_succ_nonzero` provides `(n (k+1) : ℚ) ≠ 0`; this easily implies `n (k+1) ≠ 0` as a nat
+    have hb_nonzero_q : (n (k + 1) : ℚ) ≠ 0 := by
+      by_contra h; simpa [h] using (h_recurrence k); contradiction
+    simpa using hb_nonzero_q
+>>>>REPLACE
+  have hb_nonzero : n (k + 1) ≠ 0 := by
+    have hb_nonzero_q : (n (k + 1) : ℚ) ≠ 0 := by
+      exact n_succ_nonzero m n h_recurrence k
+    by_contra h
+    simpa [h] using hb_nonzero_q
+>>>>SEARCH
+      _ = Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) := by
+        simpa [hdiff] using hdiff
+>>>>REPLACE
+      _ = Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) := by
+        simp [hdiff]

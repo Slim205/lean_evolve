@@ -1,0 +1,16 @@
+>>>>SEARCH
+let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+  sorry
+>>>>REPLACE
+let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1) in
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+  sorry
+>>>>SEARCH
+let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  d % 2 = 1 ∧ ((d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) := by
+  sorry
+>>>>REPLACE
+let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1) in
+  d % 2 = 1 ∧ ((d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) := by
+  sorry

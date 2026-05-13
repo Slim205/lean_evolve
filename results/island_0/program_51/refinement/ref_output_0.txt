@@ -1,0 +1,18 @@
+>>>>SEARCH
+  have hd_dvd_r1 : d ∣ r1 := by
+    have : d ∣ ( (2 : ℕ) ^ u1 * r1 ) := by
+      rw [hA]
+      exact hdvd
+    exact coprime_dvd_of_dvd_mul_right hcop this
+>>>>REPLACE
+  have hd_dvd_r1 : d ∣ r1 := by
+    have : d ∣ ( (2 : ℕ) ^ u1 * r1 ) := by
+      rw [← hA]
+      exact hddvd
+    exact coprime_dvd_of_dvd_mul_right hcop this
+>>>>SEARCH
+  have heq_r2_r1' : r2 = r1' := by
+    exact heq_oddpart
+>>>>REPLACE
+  have heq_r2_r1' : r2 = r1' := by
+    exact Eq.symm heq_oddpart

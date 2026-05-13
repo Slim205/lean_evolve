@@ -1,0 +1,14 @@
+>>>>SEARCH
+exact clear_denoms_Q (h_n_succ_nonzero_k) (h_two_nk_nonzero) (h_recurrence k)
+>>>>REPLACE
+exact clear_denoms_Q (hb := h_n_succ_nonzero_k) (hd := h_two_nk_nonzero) (h := h_recurrence k)
+>>>>SEARCH
+rwa [hcast_n, hcast_m] at hrat_prod
+>>>>REPLACE
+rwa [Eq.symm hcast_n, Eq.symm hcast_m] at hrat_prod
+>>>>SEARCH
+rwa [nat_cast_mul_q (m (k + 1)) (2 * n k + 1),
+         nat_cast_mul_q (n (k + 1)) (2 * m k + 1)] at hrat_prod'
+>>>>REPLACE
+rwa [Eq.symm (nat_cast_mul_q (m (k + 1)) (2 * n k + 1)),
+         Eq.symm (nat_cast_mul_q (n (k + 1)) (2 * m k + 1))] at hrat_prod'

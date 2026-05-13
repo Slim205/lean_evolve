@@ -1,0 +1,4 @@
+<lemma finite_strict_drops_of_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N) :
+  {k : ℕ | t (k + 1) < t k}.Finite := by>
+Failure mode: INCORRECT
+Recommendation: As stated this is false: bounding only `t 0` does not restrict later values, so there can be infinitely many strict drops (e.g. `t k = if Even k then 1 else 0` has `t 0 = 1` but drops occur for all even `k`). Revise the statement by adding a global monotonicity (or “no-increase”) hypothesis such as `∀ k, t (k+1) ≤ t k`. With that, strict drops can occur at most `t 0` times (or at most `N` times if you also assume `t 0 ≤ N`), yielding finiteness.

@@ -1,0 +1,1509 @@
+[
+    {
+        "name": "pow_two_divides_bounded_by_A",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_two_divides_bounded_by_A (A u : \u2115) (hpos : 0 < A) :\n  ((2 : \u2115) ^ u \u2223 A) \u2192 u \u2264 A := by\n  intro h\n  have h1 : u \u2264 A := by\n    by_contra h2\n    have h3 : A < 2 ^ u := by\n      have h4 : A < 2 ^ u := by\n        have h5 : u > A := by omega\n        have h6 : 2 ^ u > A := by\n          calc\n            A < 2 ^ A := by\n              exact Nat.lt_pow_self (by norm_num) A\n            _ \u2264 2 ^ u := by\n              exact Nat.pow_le_pow_of_le_right (by norm_num) (by omega)\n        omega\n      omega\n    have h4 : (2 ^ u \u2223 A) := h\n    have h5 : 2 ^ u \u2264 A := Nat.le_of_dvd (by omega) h4\n    omega\n  exact h1",
+        "custom_id": "pow_two_divides_bounded_by_A_0",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 13
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 15
+                    },
+                    "data": "unused variable `h5`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.09413576126098633,
+            "custom_id": "pow_two_divides_bounded_by_A_0"
+        }
+    },
+    {
+        "name": "pow_two_divides_bounded_by_A",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_two_divides_bounded_by_A (A u : \u2115) (hpos : 0 < A) :\n  ((2 : \u2115) ^ u \u2223 A) \u2192 u \u2264 A := by\n  intro h\n  have h\u2081 : u \u2264 A := by\n    have h\u2082 : (2 ^ u \u2223 A) := h\n    have h\u2083 : u \u2264 A := by\n      by_contra! h\u2084\n      have h\u2085 : 2 ^ u > A := by\n        have h\u2086 : 2 ^ u > A := by\n          have h\u2087 : u > A := by linarith\n          have h\u2088 : 2 ^ u > A := by\n            have h\u2089 : u \u2265 A + 1 := by linarith\n            have h\u2081\u2080 : 2 ^ u \u2265 2 ^ (A + 1) := by\n              exact pow_le_pow_right (by norm_num) h\u2089\n            have h\u2081\u2081 : 2 ^ (A + 1) > A := by\n              have h\u2081\u2082 : A + 1 \u2265 2 := by omega\n              have h\u2081\u2083 : 2 ^ (A + 1) \u2265 2 ^ 2 := by\n                exact pow_le_pow_right (by norm_num) (by omega)\n              have h\u2081\u2084 : 2 ^ 2 = 4 := by norm_num\n              have h\u2081\u2085 : 4 > A := by\n                nlinarith [hpos]\n              nlinarith\n            nlinarith\n          nlinarith\n        nlinarith\n      have h\u2086 : 2 ^ u \u2223 A := h\u2082\n      have h\u2087 : 2 ^ u \u2264 A := by\n        exact Nat.le_of_dvd (by positivity) h\u2086\n      nlinarith\n    exact h\u2083\n  exact h\u2081",
+        "custom_id": "pow_two_divides_bounded_by_A_1",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 26,
+                        "column": 16
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 32
+                    },
+                    "data": "linarith failed to find a contradiction\ncase h\nA u : \u2115\nhpos : 0 < A\nh h\u2082 : 2 ^ u \u2223 A\nh\u2084 : A < u\nh\u2087 : u > A\nh\u2089 : u \u2265 A + 1\nh\u2081\u2080 : 2 ^ u \u2265 2 ^ (A + 1)\nh\u2081\u2082 : A + 1 \u2265 2\nh\u2081\u2083 : 2 ^ (A + 1) \u2265 2 ^ 2\nh\u2081\u2084 : 2 ^ 2 = 4\na\u271d : A \u2265 4\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.316829204559326,
+            "custom_id": "pow_two_divides_bounded_by_A_1"
+        }
+    },
+    {
+        "name": "pow_two_divides_bounded_by_A",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_two_divides_bounded_by_A (A u : \u2115) (hpos : 0 < A) :\n  ((2 : \u2115) ^ u \u2223 A) \u2192 u \u2264 A := by\n  intro h\n  have h\u2081 : 2 ^ u \u2223 A := h\n  have h\u2082 : u \u2264 A := by\n    by_contra! h\u2083\n    have h\u2084 : 2 ^ u > A := by\n      have h\u2085 : 2 ^ u \u2265 2 ^ A := by\n        apply Nat.pow_le_pow_of_le_right\n        linarith\n        linarith\n      have h\u2086 : 2 ^ A > A := by\n        apply Nat.lt_pow_self\n        linarith\n      linarith\n    have h\u2085 : 2 ^ u \u2223 A := h\u2081\n    have h\u2086 : 2 ^ u \u2264 A := Nat.le_of_dvd (by linarith) h\u2085\n    linarith\n  exact h\u2082",
+        "custom_id": "pow_two_divides_bounded_by_A_2",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.6964142322540283,
+            "custom_id": "pow_two_divides_bounded_by_A_2"
+        }
+    },
+    {
+        "name": "pow_two_divides_bounded_by_A",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_two_divides_bounded_by_A (A u : \u2115) (hpos : 0 < A) :\n  ((2 : \u2115) ^ u \u2223 A) \u2192 u \u2264 A := by\n  intro h\n  have h\u2081 : 2 ^ u \u2223 A := h\n  have h\u2082 : u \u2264 A := by\n    by_contra h\u2083\n    have h\u2084 : A < 2 ^ u := by\n      have h\u2085 : u > A := by omega\n      have h\u2086 : 2 ^ u > A := by\n        calc\n          A < 2 ^ A := by\n            exact Nat.lt_pow_self (by norm_num) A\n          _ \u2264 2 ^ u := by\n            exact Nat.pow_le_pow_of_le_right (by norm_num) (by omega)\n      exact h\u2086\n    have h\u2087 : 2 ^ u \u2223 A := h\u2081\n    have h\u2088 : 2 ^ u \u2264 A := Nat.le_of_dvd (by omega) h\u2087\n    omega\n  exact h\u2082",
+        "custom_id": "pow_two_divides_bounded_by_A_3",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 13
+                    },
+                    "data": "unused variable `h\u2085`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.09940958023071289,
+            "custom_id": "pow_two_divides_bounded_by_A_3"
+        }
+    },
+    {
+        "name": "pow_two_divides_bounded_by_A",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_two_divides_bounded_by_A (A u : \u2115) (hpos : 0 < A) :\n  ((2 : \u2115) ^ u \u2223 A) \u2192 u \u2264 A := by\n  intro h\n  have h\u2081 : (2 : \u2115) ^ u \u2223 A := h\n  have h\u2082 : u \u2264 A := by\n    have h\u2083 : (2 : \u2115) ^ u \u2264 A := Nat.le_of_dvd (by positivity) h\u2081\n    have h\u2084 : u \u2264 A := by\n      by_contra! h\u2085\n      have h\u2086 : (2 : \u2115) ^ u > A := by\n        have h\u2087 : (2 : \u2115) ^ u \u2265 2 ^ A := by\n          apply Nat.pow_le_pow_of_le_right\n          norm_num\n          linarith\n        have h\u2088 : 2 ^ A > A := by\n          apply Nat.lt_pow_self\n          linarith\n        linarith\n      have h\u2087 : (2 : \u2115) ^ u \u2264 A := Nat.le_of_dvd (by positivity) h\u2081\n      linarith\n    exact h\u2084\n  exact h\u2082",
+        "custom_id": "pow_two_divides_bounded_by_A_4",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 23,
+                        "column": 11
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 13
+                    },
+                    "data": "unused variable `h\u2087`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.5261843204498291,
+            "custom_id": "pow_two_divides_bounded_by_A_4"
+        }
+    },
+    {
+        "name": "pow_two_divides_bounded_by_A",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_two_divides_bounded_by_A (A u : \u2115) (hpos : 0 < A) :\n  ((2 : \u2115) ^ u \u2223 A) \u2192 u \u2264 A := by\n  intro h\n  have h\u2081 : 2 ^ u \u2223 A := h\n  have h\u2082 : u \u2264 A := by\n    have h\u2083 : 2 ^ u \u2264 A := Nat.le_of_dvd (by positivity) h\u2081\n    have h\u2084 : u \u2264 A := by\n      by_contra! h\u2085\n      have h\u2086 : 2 ^ u > A := by\n        calc\n          2 ^ u \u2265 2 ^ A := by\n            apply Nat.pow_le_pow_of_le_right\n            norm_num\n            linarith\n          _ > A := by\n            exact Nat.lt_pow_self (by norm_num) A\n      linarith\n    exact h\u2084\n  exact h\u2082",
+        "custom_id": "pow_two_divides_bounded_by_A_5",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.29125308990478516,
+            "custom_id": "pow_two_divides_bounded_by_A_5"
+        }
+    },
+    {
+        "name": "pow_two_divides_bounded_by_A",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_two_divides_bounded_by_A (A u : \u2115) (hpos : 0 < A) :\n  ((2 : \u2115) ^ u \u2223 A) \u2192 u \u2264 A := by\n  intro h\n  have h\u2081 : 2 ^ u \u2223 A := h\n  have h\u2082 : u \u2264 A := by\n    have h\u2083 : u \u2264 A := by\n      have h\u2084 : 2 ^ u \u2223 A := h\u2081\n      have h\u2085 : u \u2264 A := by\n        by_contra h\u2086\n        have h\u2087 : A < u := by linarith\n        have h\u2088 : 2 ^ u > A := by\n          have h\u2089 : 2 ^ u \u2265 2 ^ A := by\n            apply pow_le_pow_of_le_right\n            linarith\n            linarith\n          have h\u2081\u2080 : 2 ^ A > A := by\n            exact Nat.lt_pow_self (by linarith) A\n          linarith\n        have h\u2089 : 2 ^ u \u2223 A := h\u2084\n        have h\u2081\u2080 : 2 ^ u \u2264 A := Nat.le_of_dvd (by linarith) h\u2089\n        linarith\n      exact h\u2085\n    exact h\u2083\n  exact h\u2082",
+        "custom_id": "pow_two_divides_bounded_by_A_6",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 13
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 15
+                    },
+                    "data": "unused variable `h\u2087`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.8105168342590332,
+            "custom_id": "pow_two_divides_bounded_by_A_6"
+        }
+    },
+    {
+        "name": "pow_two_divides_bounded_by_A",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_two_divides_bounded_by_A (A u : \u2115) (hpos : 0 < A) :\n  ((2 : \u2115) ^ u \u2223 A) \u2192 u \u2264 A := by\n  intro h\n  have h\u2081 : 2 ^ u \u2223 A := h\n  have h\u2082 : u \u2264 A := by\n    have h\u2083 : u \u2264 A := by\n      apply Nat.le_of_not_gt\n      intro h\u2084\n      have h\u2085 : 2 ^ u > A := by\n        have h\u2086 : 2 ^ u > A := by\n          calc\n            2 ^ u \u2265 2 ^ A := by\n              apply Nat.pow_le_pow_of_le_right\n              norm_num\n              linarith\n            _ > A := by\n              have : 2 ^ A > A := by\n                apply Nat.lt_pow_self\n                linarith\n              linarith\n        linarith\n      have h\u2086 : 2 ^ u \u2223 A := h\u2081\n      have h\u2087 : 2 ^ u \u2264 A := Nat.le_of_dvd (by linarith) h\u2086\n      linarith\n    exact h\u2083\n  exact h\u2082",
+        "custom_id": "pow_two_divides_bounded_by_A_7",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.6247668266296387,
+            "custom_id": "pow_two_divides_bounded_by_A_7"
+        }
+    },
+    {
+        "name": "pow_two_divides_bounded_by_A",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_two_divides_bounded_by_A (A u : \u2115) (hpos : 0 < A) :\n  ((2 : \u2115) ^ u \u2223 A) \u2192 u \u2264 A := by\n  intro h\n  have h2 : 2 ^ u \u2223 A := h\n  have h3 : u \u2264 A := by\n    have h4 : 2 ^ u \u2223 A := h2\n    have h5 : u \u2264 A := by\n      apply Nat.le_of_not_gt\n      intro h6\n      have h7 : 2 ^ u > A := by\n        have h8 : 2 ^ u > A := by\n          calc\n            2 ^ u \u2265 2 ^ A := by apply Nat.pow_le_pow_of_le_right; norm_num; linarith\n            _ > A := by\n              apply Nat.lt_pow_self (by norm_num : (1 : \u2115) < 2)\n              <;> linarith\n        exact h8\n      have h9 : 2 ^ u \u2223 A := h4\n      have h10 : 2 ^ u \u2264 A := Nat.le_of_dvd (by linarith) h9\n      linarith\n    exact h5\n  exact h3",
+        "custom_id": "pow_two_divides_bounded_by_A_8",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 21,
+                        "column": 18
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 26
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.5094480514526367,
+            "custom_id": "pow_two_divides_bounded_by_A_8"
+        }
+    },
+    {
+        "name": "pow_two_divides_bounded_by_A",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_two_divides_bounded_by_A (A u : \u2115) (hpos : 0 < A) :\n  ((2 : \u2115) ^ u \u2223 A) \u2192 u \u2264 A := by\n  intro h\n  have h\u2081 : u \u2264 A := by\n    have h\u2082 : 2 ^ u \u2223 A := h\n    have h\u2083 : u \u2264 A := by\n      apply Nat.le_of_not_gt\n      intro h\u2084\n      have h\u2085 : 2 ^ u > A := by\n        calc\n          2 ^ u \u2265 2 ^ A := by\n            apply Nat.pow_le_pow_of_le_right\n            norm_num\n            linarith\n          _ > A := by\n            apply Nat.lt_pow_self\n            norm_num\n      have h\u2086 : 2 ^ u \u2223 A := h\u2082\n      have h\u2087 : 2 ^ u \u2264 A := Nat.le_of_dvd (by linarith) h\u2086\n      linarith\n    exact h\u2083\n  exact h\u2081",
+        "custom_id": "pow_two_divides_bounded_by_A_9",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.34748172760009766,
+            "custom_id": "pow_two_divides_bounded_by_A_9"
+        }
+    },
+    {
+        "name": "pow_two_divides_bounded_by_A",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_two_divides_bounded_by_A (A u : \u2115) (hpos : 0 < A) :\n  ((2 : \u2115) ^ u \u2223 A) \u2192 u \u2264 A := by\n  intro h\n  have h\u2081 : u \u2264 A := by\n    have h\u2082 : 2 ^ u \u2223 A := h\n    have h\u2083 : u \u2264 A := by\n      by_contra h\u2084\n      have h\u2085 : u > A := by linarith\n      have h\u2086 : 2 ^ u > A := by\n        have h\u2087 : 2 ^ u > A := by\n          calc\n            2 ^ u \u2265 2 ^ (A + 1) := by apply Nat.pow_le_pow_of_le_right; linarith; linarith\n            _ > A := by\n              have : 2 ^ (A + 1) > A := by\n                calc\n                  2 ^ (A + 1) \u2265 2 ^ (A + 1) := by linarith\n                  _ > A := by\n                    apply Nat.lt_pow_self\n                    linarith\n              linarith\n        linarith\n      have h\u2088 : 2 ^ u \u2223 A := h\u2082\n      have h\u2089 : 2 ^ u \u2264 A := Nat.le_of_dvd (by linarith) h\u2088\n      linarith\n    exact h\u2083\n  exact h\u2081",
+        "custom_id": "pow_two_divides_bounded_by_A_10",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 20
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 41
+                    },
+                    "data": "tactic 'apply' failed, failed to unify\n  ?n < ?a ^ ?n\nwith\n  2 ^ (A + 1) > A\nA u : \u2115\nhpos : 0 < A\nh h\u2082 : 2 ^ u \u2223 A\nh\u2084 : \u00acu \u2264 A\nh\u2085 : u > A\n\u22a2 2 ^ (A + 1) > A"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.8825507164001465,
+            "custom_id": "pow_two_divides_bounded_by_A_10"
+        }
+    },
+    {
+        "name": "pow_two_divides_bounded_by_A",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_two_divides_bounded_by_A (A u : \u2115) (hpos : 0 < A) :\n  ((2 : \u2115) ^ u \u2223 A) \u2192 u \u2264 A := by\n  intro h\n  have h\u2081 : u \u2264 A := by\n    have h\u2082 : 2 ^ u \u2223 A := h\n    have h\u2083 : u \u2264 A := by\n      by_contra! h\u2084\n      have h\u2085 : 2 ^ u > A := by\n        have h\u2086 : 2 ^ u > A := by\n          have h\u2087 : u > A := by omega\n          have h\u2088 : 2 ^ u > A := by\n            calc\n              2 ^ u \u2265 2 ^ A := by apply Nat.pow_le_pow_of_le_right; norm_num; omega\n              _ > A := by\n                have h\u2089 : 2 ^ A > A := by\n                  apply Nat.lt_pow_self\n                  linarith\n                linarith\n          linarith\n        linarith\n      have h\u2086 : \u00ac(2 ^ u \u2223 A) := by\n        intro h\u2087\n        have h\u2088 : 2 ^ u \u2264 A := Nat.le_of_dvd (by omega) h\u2087\n        omega\n      exact h\u2086 h\u2082\n    exact h\u2083\n  exact h\u2081",
+        "custom_id": "pow_two_divides_bounded_by_A_11",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 15
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 17
+                    },
+                    "data": "unused variable `h\u2087`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.5490632057189941,
+            "custom_id": "pow_two_divides_bounded_by_A_11"
+        }
+    },
+    {
+        "name": "pow_two_divides_bounded_by_A",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_two_divides_bounded_by_A (A u : \u2115) (hpos : 0 < A) :\n  ((2 : \u2115) ^ u \u2223 A) \u2192 u \u2264 A := by\n  intro h\n  have h\u2081 : 2 ^ u \u2223 A := h\n  have h\u2082 : u \u2264 A := by\n    by_contra h\u2083\n    have h\u2084 : 2 ^ u > A := by\n      have h\u2085 : u > A := by omega\n      have h\u2086 : 2 ^ u > A := by\n        have h\u2087 : 2 ^ u > A := by\n          have h\u2088 : u \u2265 A + 1 := by omega\n          calc\n            2 ^ u \u2265 2 ^ (A + 1) := pow_le_pow_of_le_right (by norm_num) h\u2088\n            _ > A := by\n              have h\u2089 : 2 ^ (A + 1) > A := by\n                have h\u2081\u2080 : A + 1 \u2265 A + 1 := by linarith\n                have h\u2081\u2081 : 2 ^ (A + 1) > A := by\n                  calc\n                    2 ^ (A + 1) \u2265 2 ^ A := pow_le_pow_of_le_right (by norm_num) (by linarith)\n                    _ > A := by\n                      have h\u2081\u2082 : 2 ^ A > A := by\n                        exact Nat.lt_pow_self (by norm_num) A\n                      linarith\n                exact h\u2081\u2081\n              exact h\u2089\n        exact by linarith\n      exact h\u2086\n    have h\u2087 : 2 ^ u \u2223 A := h\u2081\n    have h\u2088 : 2 ^ u \u2264 A := Nat.le_of_dvd (by omega) h\u2087\n    omega\n  exact h\u2082",
+        "custom_id": "pow_two_divides_bounded_by_A_12",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 13
+                    },
+                    "data": "unused variable `h\u2085`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 21,
+                        "column": 21
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 24
+                    },
+                    "data": "unused variable `h\u2081\u2080`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.6082751750946045,
+            "custom_id": "pow_two_divides_bounded_by_A_12"
+        }
+    },
+    {
+        "name": "pow_two_divides_bounded_by_A",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_two_divides_bounded_by_A (A u : \u2115) (hpos : 0 < A) :\n  ((2 : \u2115) ^ u \u2223 A) \u2192 u \u2264 A := by\n  intro h\n  have h2 : u \u2264 A := by\n    by_contra h'\n    have h3 : A < 2 ^ u := by\n      have h4 : A < 2 ^ u := by\n        have h5 : 2 ^ u > A := by\n          apply Nat.lt_pow_self (by norm_num : 1 < 2)\n          omega\n        linarith\n      exact h4\n    have h4 : (2 : \u2115) ^ u \u2223 A := h\n    have h5 : (2 : \u2115) ^ u \u2264 A := Nat.le_of_dvd (by omega) h4\n    omega\n  exact h2",
+        "custom_id": "pow_two_divides_bounded_by_A_13",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 53
+                    },
+                    "data": "tactic 'apply' failed, failed to unify\n  ?n < 2 ^ ?n\nwith\n  2 ^ u > A\nA u : \u2115\nhpos : 0 < A\nh : 2 ^ u \u2223 A\nh' : \u00acu \u2264 A\n\u22a2 2 ^ u > A"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.1643669605255127,
+            "custom_id": "pow_two_divides_bounded_by_A_13"
+        }
+    },
+    {
+        "name": "pow_two_divides_bounded_by_A",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_two_divides_bounded_by_A (A u : \u2115) (hpos : 0 < A) :\n  ((2 : \u2115) ^ u \u2223 A) \u2192 u \u2264 A := by\n  intro h\n  apply Nat.le_of_not_gt\n  intro h\u2081\n  have h\u2082 := Nat.pow_dvd_pow 2 h\u2081\n  have h\u2083 := Nat.dvd_trans h\u2082 h\n  rw [Nat.pow_succ] at h\u2083\n  norm_num at h\u2083\n  have h\u2084 : A < 2 ^ A := by\n    apply Nat.lt_pow_self\n    omega\n  omega",
+        "custom_id": "pow_two_divides_bounded_by_A_14",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a - d \u2264 -1\n  b \u2265 1\n  d \u2265 1\n  c \u2265 0\n  a - c \u2264 -1\n  a \u2265 1\nwhere\n a := \u2191A\n b := \u21912 ^ u\n c := \u2191u\n d := \u21912 ^ A"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.09607720375061035,
+            "custom_id": "pow_two_divides_bounded_by_A_14"
+        }
+    },
+    {
+        "name": "pow_two_divides_bounded_by_A",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_two_divides_bounded_by_A (A u : \u2115) (hpos : 0 < A) :\n  ((2 : \u2115) ^ u \u2223 A) \u2192 u \u2264 A := by\n  intro h\n  have h\u2081 : 2 ^ u \u2223 A := h\n  have h\u2082 : u \u2264 A := by\n    by_contra! h\u2083\n    have h\u2084 : 2 ^ u > A := by\n      have h\u2085 : 2 ^ u \u2265 2 ^ A := by\n        apply Nat.pow_le_pow_of_le_right\n        linarith\n        linarith\n      have h\u2086 : 2 ^ A > A := by\n        apply Nat.lt_pow_self\n        linarith\n      linarith\n    have h\u2085 : 2 ^ u \u2223 A := h\u2081\n    have h\u2086 : 2 ^ u \u2264 A := Nat.le_of_dvd (by linarith) h\u2085\n    linarith\n  exact h\u2082",
+        "custom_id": "pow_two_divides_bounded_by_A_15",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.606536865234375,
+            "custom_id": "pow_two_divides_bounded_by_A_15"
+        }
+    },
+    {
+        "name": "exists_max_in_finset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_in_finset (S : Finset \u2115) (hnon : S.Nonempty) :\n  \u2203 u, u \u2208 S \u2227 \u2200 v \u2208 S, v \u2264 u := by\n  classical\n  exact \u27e8Finset.max' S (Finset.nonempty_iff_ne_empty.mpr hnon.ne_empty),\n    Finset.max'_mem S _, fun v hv => Finset.le_max' S v hv\u27e9",
+        "custom_id": "exists_max_in_finset_16",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.020965099334716797,
+            "custom_id": "exists_max_in_finset_16"
+        }
+    },
+    {
+        "name": "exists_max_in_finset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_in_finset (S : Finset \u2115) (hnon : S.Nonempty) :\n  \u2203 u, u \u2208 S \u2227 \u2200 v \u2208 S, v \u2264 u := by\n  classical\n  apply Exists.intro (Finset.max' S hnon)\n  constructor\n  exact Finset.max'_mem S hnon\n  intro v hv\n  exact Finset.le_max' S v hv",
+        "custom_id": "exists_max_in_finset_17",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.012282133102416992,
+            "custom_id": "exists_max_in_finset_17"
+        }
+    },
+    {
+        "name": "exists_max_in_finset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_in_finset (S : Finset \u2115) (hnon : S.Nonempty) :\n  \u2203 u, u \u2208 S \u2227 \u2200 v \u2208 S, v \u2264 u := by\n  classical\n  exact \u27e8Finset.max' S hnon, Finset.max'_mem S hnon, fun v hv =>\n    Finset.le_max' S v hv\u27e9",
+        "custom_id": "exists_max_in_finset_18",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.020877599716186523,
+            "custom_id": "exists_max_in_finset_18"
+        }
+    },
+    {
+        "name": "exists_max_in_finset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_in_finset (S : Finset \u2115) (hnon : S.Nonempty) :\n  \u2203 u, u \u2208 S \u2227 \u2200 v \u2208 S, v \u2264 u := by\n  classical\n  exact \u27e8Finset.max' S hnon, Finset.max'_mem S hnon, fun v hv =>\n    Finset.le_max' S v hv\u27e9",
+        "custom_id": "exists_max_in_finset_19",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.013954639434814453,
+            "custom_id": "exists_max_in_finset_19"
+        }
+    },
+    {
+        "name": "exists_max_in_finset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_in_finset (S : Finset \u2115) (hnon : S.Nonempty) :\n  \u2203 u, u \u2208 S \u2227 \u2200 v \u2208 S, v \u2264 u := by\n  classical\n  exact\n    Finset.exists_max_image S (fun x => x) hnon",
+        "custom_id": "exists_max_in_finset_20",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.009304523468017578,
+            "custom_id": "exists_max_in_finset_20"
+        }
+    },
+    {
+        "name": "exists_max_in_finset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_in_finset (S : Finset \u2115) (hnon : S.Nonempty) :\n  \u2203 u, u \u2208 S \u2227 \u2200 v \u2208 S, v \u2264 u := by\n  classical\n  exact \u27e8Finset.max' S hnon, Finset.max'_mem S hnon, fun v hv =>\n    Finset.le_max' S v hv\u27e9",
+        "custom_id": "exists_max_in_finset_21",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.01304936408996582,
+            "custom_id": "exists_max_in_finset_21"
+        }
+    },
+    {
+        "name": "exists_max_in_finset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_in_finset (S : Finset \u2115) (hnon : S.Nonempty) :\n  \u2203 u, u \u2208 S \u2227 \u2200 v \u2208 S, v \u2264 u := by\n  classical\n  exact\n    Finset.exists_max_image S (fun n => (n : \u2115)) (by simpa using hnon)",
+        "custom_id": "exists_max_in_finset_22",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.018410921096801758,
+            "custom_id": "exists_max_in_finset_22"
+        }
+    },
+    {
+        "name": "exists_max_in_finset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_in_finset (S : Finset \u2115) (hnon : S.Nonempty) :\n  \u2203 u, u \u2208 S \u2227 \u2200 v \u2208 S, v \u2264 u := by\n  classical\n  exact \u27e8Finset.max' S hnon, Finset.max'_mem S hnon, fun v hv => Finset.le_max' S v hv\u27e9",
+        "custom_id": "exists_max_in_finset_23",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.020375490188598633,
+            "custom_id": "exists_max_in_finset_23"
+        }
+    },
+    {
+        "name": "exists_max_in_finset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_in_finset (S : Finset \u2115) (hnon : S.Nonempty) :\n  \u2203 u, u \u2208 S \u2227 \u2200 v \u2208 S, v \u2264 u := by\n  classical\n  use S.max' hnon\n  exact \u27e8Finset.max'_mem S hnon, fun v hv => Finset.le_max' S v hv\u27e9",
+        "custom_id": "exists_max_in_finset_24",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.02722787857055664,
+            "custom_id": "exists_max_in_finset_24"
+        }
+    },
+    {
+        "name": "exists_max_in_finset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_in_finset (S : Finset \u2115) (hnon : S.Nonempty) :\n  \u2203 u, u \u2208 S \u2227 \u2200 v \u2208 S, v \u2264 u := by\n  classical\n  exact\n    Exists.intro (Finset.max' S hnon) (\u27e8Finset.max'_mem S hnon, fun v hv =>\n      Finset.le_max' S v hv\u27e9)",
+        "custom_id": "exists_max_in_finset_25",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.013061046600341797,
+            "custom_id": "exists_max_in_finset_25"
+        }
+    },
+    {
+        "name": "exists_max_in_finset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_in_finset (S : Finset \u2115) (hnon : S.Nonempty) :\n  \u2203 u, u \u2208 S \u2227 \u2200 v \u2208 S, v \u2264 u := by\n  classical\n  exact\n    Finset.exists_max_image S (fun x => x) hnon",
+        "custom_id": "exists_max_in_finset_26",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.012324333190917969,
+            "custom_id": "exists_max_in_finset_26"
+        }
+    },
+    {
+        "name": "exists_max_in_finset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_in_finset (S : Finset \u2115) (hnon : S.Nonempty) :\n  \u2203 u, u \u2208 S \u2227 \u2200 v \u2208 S, v \u2264 u := by\n  induction' S using Finset.induction_on with a S ha IH\n  \u00b7 exfalso\n    exact hnon.ne_empty rfl\n  \u00b7 by_cases h : S.Nonempty\n    \u00b7 obtain \u27e8u, hu, hu'\u27e9 := IH h\n      refine' \u27e8max a u, Finset.mem_insert_of_mem hu, _\u27e9\n      intro v hv\n      simp_all [Nat.le_max_iff]\n      <;> omega\n    \u00b7 refine' \u27e8a, Finset.mem_insert_self a S, _\u27e9\n      intro v hv\n      simp_all\n      <;> omega",
+        "custom_id": "exists_max_in_finset_27",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 49
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 51
+                    },
+                    "data": "application type mismatch\n  Finset.mem_insert_of_mem hu\nargument\n  hu\nhas type\n  u \u2208 S : Prop\nbut is expected to have type\n  max a u \u2208 S : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 16
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 30
+                    },
+                    "data": "unknown constant 'Nat.le_max_iff'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  d \u2265 0\n  b - c \u2265 1\n  c \u2265 0\n  b - d \u2265 1\n  b \u2265 0\nwhere\n b := \u2191v\n c := \u2191a\n d := \u2191u"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 5
+                    },
+                    "data": "unsolved goals\ncase pos.intro.intro\na : \u2115\nS : Finset \u2115\nha : a \u2209 S\nu v : \u2115\nIH : \u2203 u \u2208 S, \u2200 v \u2208 S, v \u2264 u\nh : S.Nonempty\nhu : u \u2208 S\nhu' : \u2200 v \u2208 S, v \u2264 u\nhv : v = a \u2228 v \u2208 S\n\u22a2 v \u2264 a \u2228 v \u2264 u"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.2548704147338867,
+            "custom_id": "exists_max_in_finset_27"
+        }
+    },
+    {
+        "name": "exists_max_in_finset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_in_finset (S : Finset \u2115) (hnon : S.Nonempty) :\n  \u2203 u, u \u2208 S \u2227 \u2200 v \u2208 S, v \u2264 u := by\n  refine' \u27e8S.max' hnon, _\u27e9\n  constructor\n  exact Finset.max'_mem S hnon\n  intro v hv\n  exact Finset.le_max' S v hv",
+        "custom_id": "exists_max_in_finset_28",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.020328044891357422,
+            "custom_id": "exists_max_in_finset_28"
+        }
+    },
+    {
+        "name": "exists_max_in_finset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_in_finset (S : Finset \u2115) (hnon : S.Nonempty) :\n  \u2203 u, u \u2208 S \u2227 \u2200 v \u2208 S, v \u2264 u := by\n  classical\n  exact \u27e8Finset.max' S hnon, Finset.max'_mem S hnon, fun v hv => Finset.le_max' S v hv\u27e9",
+        "custom_id": "exists_max_in_finset_29",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.014305591583251953,
+            "custom_id": "exists_max_in_finset_29"
+        }
+    },
+    {
+        "name": "exists_max_in_finset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_in_finset (S : Finset \u2115) (hnon : S.Nonempty) :\n  \u2203 u, u \u2208 S \u2227 \u2200 v \u2208 S, v \u2264 u := by\n  classical\n  exact \u27e8Finset.max' S hnon, Finset.max'_mem S hnon, fun v hv =>\n    Finset.le_max' S v hv\u27e9",
+        "custom_id": "exists_max_in_finset_30",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.012839078903198242,
+            "custom_id": "exists_max_in_finset_30"
+        }
+    },
+    {
+        "name": "exists_max_in_finset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_max_in_finset (S : Finset \u2115) (hnon : S.Nonempty) :\n  \u2203 u, u \u2208 S \u2227 \u2200 v \u2208 S, v \u2264 u := by\n  classical\n  exact \u27e8S.max' hnon, Finset.max'_mem S hnon, fun v hv => Finset.le_max' S v hv\u27e9",
+        "custom_id": "exists_max_in_finset_31",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.022982120513916016,
+            "custom_id": "exists_max_in_finset_31"
+        }
+    },
+    {
+        "name": "maximality_implies_no_next_divides",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem maximality_implies_no_next_divides (A : \u2115) (S : Finset \u2115) (u : \u2115)\n  (hS_def : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)))\n  (u_mem : u \u2208 S) (u_max : \u2200 v \u2208 S, v \u2264 u) :\n  \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  have h\u2081 : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)) := hS_def\n  rw [h\u2081] at u_mem u_max\n  by_contra h\n  have h\u2082 : u + 1 \u2208 Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)) := by\n    apply Finset.mem_filter.mpr\n    exact \u27e8Finset.mem_range.mpr (by linarith [Nat.lt_succ_self A]), h\u27e9\n  have h\u2083 : u + 1 \u2264 u := u_max (u + 1) h\u2082\n  linarith",
+        "custom_id": "maximality_implies_no_next_divides_32",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 36
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 65
+                    },
+                    "data": "linarith failed to find a contradiction\ncase h\nA : \u2115\nS : Finset \u2115\nu : \u2115\nhS_def : S = Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1))\nu_mem : u \u2208 Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1))\nu_max : \u2200 v \u2208 Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1)), v \u2264 u\nh\u2081 : S = Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1))\nh : 2 ^ (u + 1) \u2223 A\na\u271d : u + 1 \u2265 A + 1\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.20058965682983398,
+            "custom_id": "maximality_implies_no_next_divides_32"
+        }
+    },
+    {
+        "name": "maximality_implies_no_next_divides",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem maximality_implies_no_next_divides (A : \u2115) (S : Finset \u2115) (u : \u2115)\n  (hS_def : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)))\n  (u_mem : u \u2208 S) (u_max : \u2200 v \u2208 S, v \u2264 u) :\n  \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  rw [hS_def] at u_mem u_max\n  have h\u2081 : u \u2208 Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)) := u_mem\n  have h\u2082 : \u2200 v \u2208 Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)), v \u2264 u := u_max\n  simp only [Finset.mem_filter, Finset.mem_range] at h\u2081 h\u2082\n  have h\u2083 : (2 : \u2115) ^ u \u2223 A := by tauto\n  have h\u2084 : \u00ac((2 : \u2115) ^ (u + 1) \u2223 A) := by\n    intro h\n    have h\u2085 : (2 : \u2115) ^ (u + 1) \u2223 A := h\n    have h\u2086 : (2 : \u2115) ^ u \u2223 A := h\u2083\n    have h\u2087 : (2 : \u2115) ^ (u + 1) \u2223 A \u2192 False := by\n      intro h\n      have h\u2088 : (2 : \u2115) ^ (u + 1) \u2223 A := h\n      have h\u2089 : (2 : \u2115) ^ u \u2223 A := h\u2086\n      have h\u2081\u2080 : (2 : \u2115) ^ (u + 1) \u2223 A \u2192 (2 : \u2115) ^ u \u2223 A \u2192 False := by\n        intro h\u2081\u2081 h\u2081\u2082\n        have h\u2081\u2083 : (2 : \u2115) ^ (u + 1) \u2223 A := h\u2081\u2081\n        have h\u2081\u2084 : (2 : \u2115) ^ u \u2223 A := h\u2081\u2082\n        have h\u2081\u2085 : (2 : \u2115) ^ (u + 1) \u2223 A := h\u2081\u2083\n        have h\u2081\u2086 : (2 : \u2115) ^ (u + 1) \u2223 A \u2192 (2 : \u2115) ^ u \u2223 A \u2192 (2 : \u2115) ^ (u + 1) \u2264 (2 : \u2115) ^ u := by\n          intro h\u2081\u2087 h\u2081\u2088\n          exact Nat.le_of_dvd (Nat.pos_of_ne_zero (show (2 : \u2115) ^ u \u2260 0 by simp)) (by simpa [Nat.pow_succ] using h\u2081\u2087)\n        have h\u2081\u2087 : (2 : \u2115) ^ (u + 1) \u2264 (2 : \u2115) ^ u := h\u2081\u2086 h\u2081\u2085 h\u2081\u2084\n        have h\u2081\u2088 : (2 : \u2115) ^ (u + 1) > (2 : \u2115) ^ u := by\n          apply Nat.pow_lt_pow_of_lt_right\n          norm_num\n          linarith\n        linarith\n      exact h\u2081\u2080 h\u2088 h\u2086\n    exact h\u2087 h\u2085\n  exact h\u2084",
+        "custom_id": "maximality_implies_no_next_divides_33",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 30,
+                        "column": 86
+                    },
+                    "endPos": {
+                        "line": 30,
+                        "column": 116
+                    },
+                    "data": "type mismatch\n  h\u271d\nhas type\n  2 ^ u * 2 \u2223 A : Prop\nbut is expected to have type\n  2 ^ u * 2 \u2223 2 ^ u : Prop"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 33,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 33,
+                        "column": 42
+                    },
+                    "data": "`Nat.pow_lt_pow_of_lt_right` has been deprecated, use `pow_lt_pow_right` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.581998348236084,
+            "custom_id": "maximality_implies_no_next_divides_33"
+        }
+    },
+    {
+        "name": "maximality_implies_no_next_divides",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem maximality_implies_no_next_divides (A : \u2115) (S : Finset \u2115) (u : \u2115)\n  (hS_def : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)))\n  (u_mem : u \u2208 S) (u_max : \u2200 v \u2208 S, v \u2264 u) :\n  \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  have h\u2081 : u \u2208 Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)) := hS_def \u25b8 u_mem\n  have h\u2082 : ((2 : \u2115) ^ u \u2223 A) := by\n    simp_all [Finset.mem_filter, Finset.mem_range]\n  have h\u2083 : \u2200 v \u2208 Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)), v \u2264 u := by\n    simp_all [Finset.mem_filter, Finset.mem_range]\n  have h\u2084 : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n    intro h\n    have h\u2085 : (u + 1) \u2208 Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)) := by\n      simp_all [Finset.mem_filter, Finset.mem_range]\n      <;> omega\n    have h\u2086 : u + 1 \u2264 u := by\n      simp_all [Finset.mem_filter, Finset.mem_range]\n      <;> omega\n    omega\n  exact h\u2084",
+        "custom_id": "maximality_implies_no_next_divides_34",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  b \u2265 1\n  a \u2265 0\nwhere\n a := \u2191u\n b := \u21912 ^ u"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 93
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 15
+                    },
+                    "data": "unsolved goals\nA : \u2115\nS : Finset \u2115\nu : \u2115\nhS_def : S = Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1))\nh\u2081 : u < A + 1\nh\u2082 : 2 ^ u \u2223 A\nh\u2083 : \u2200 v < A + 1, 2 ^ v \u2223 A \u2192 v \u2264 u\nh : 2 ^ (u + 1) \u2223 A\n\u22a2 u < A"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.7961046695709229,
+            "custom_id": "maximality_implies_no_next_divides_34"
+        }
+    },
+    {
+        "name": "maximality_implies_no_next_divides",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem maximality_implies_no_next_divides (A : \u2115) (S : Finset \u2115) (u : \u2115)\n  (hS_def : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)))\n  (u_mem : u \u2208 S) (u_max : \u2200 v \u2208 S, v \u2264 u) :\n  \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  have hS_def' : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)) := by\n    rw [hS_def]\n  simp_all only [Finset.mem_filter, Finset.mem_range]\n  intro h\n  have h\u2081 : u + 1 \u2264 A + 1 := by\n    by_contra! h\u2082\n    have h\u2083 : (2 : \u2115) ^ (u + 1) \u2223 A := by simp_all\n    have h\u2084 : u + 1 < A + 1 := by omega\n    have h\u2085 : (2 : \u2115) ^ (u + 1) \u2223 A := by simp_all\n    have h\u2086 : u + 1 < A + 1 := by omega\n    have h\u2087 : u < A := by omega\n    have h\u2088 : u \u2208 S := by simp_all\n    have h\u2089 : u \u2264 u := by omega\n    have h\u2081\u2080 : u \u2264 u := by omega\n    have h\u2081\u2081 : u \u2264 u := by omega\n    have h\u2081\u2082 : u \u2264 u := by omega\n    have h\u2081\u2083 : u \u2264 u := by omega\n    have h\u2081\u2084 : u \u2264 u := by omega\n    omega\n  have h\u2082 : (2 : \u2115) ^ (u + 1) \u2223 A := by simp_all\n  have h\u2083 : u + 1 \u2264 A + 1 := by omega\n  have h\u2084 : (2 : \u2115) ^ (u + 1) \u2223 A := by simp_all\n  have h\u2085 : u \u2208 S := by simp_all\n  have h\u2086 : u \u2264 u := by omega\n  have h\u2087 : u \u2264 u := by omega\n  have h\u2088 : u \u2264 u := by omega\n  have h\u2089 : u \u2264 u := by omega\n  have h\u2081\u2080 : u \u2264 u := by omega\n  simp_all\n  <;> omega",
+        "custom_id": "maximality_implies_no_next_divides_35",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 39,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 39,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 1\n  c \u2265 1\n  a - b \u2265 0\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191A\n b := \u2191u\n c := \u21912 ^ u"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 31
+                    },
+                    "endPos": {
+                        "line": 39,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nA : \u2115\nS : Finset \u2115\nu : \u2115\nu_mem : u < A + 1 \u2227 2 ^ u \u2223 A\nu_max : \u2200 v < A + 1, 2 ^ v \u2223 A \u2192 v \u2264 u\nhS_def' : S = Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1))\nh\u2083 : u \u2264 A\nh\u2084 : 2 ^ (u + 1) \u2223 A\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.4900753498077393,
+            "custom_id": "maximality_implies_no_next_divides_35"
+        }
+    },
+    {
+        "name": "maximality_implies_no_next_divides",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem maximality_implies_no_next_divides (A : \u2115) (S : Finset \u2115) (u : \u2115)\n  (hS_def : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)))\n  (u_mem : u \u2208 S) (u_max : \u2200 v \u2208 S, v \u2264 u) :\n  \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  have h\u2081 : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)) := hS_def\n  have h\u2082 : u \u2208 S := u_mem\n  have h\u2083 : \u2200 v \u2208 S, v \u2264 u := u_max\n  have h\u2084 : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n    intro h\n    have h\u2085 : u + 1 \u2208 S := by\n      rw [h\u2081] at *\n      simp_all [Finset.mem_filter, Finset.mem_range]\n      <;> omega\n    have h\u2086 : u + 1 \u2264 u := h\u2083 (u + 1) h\u2085\n    omega\n  exact h\u2084",
+        "custom_id": "maximality_implies_no_next_divides_36",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  b \u2265 1\n  a \u2265 0\nwhere\n a := \u2191u\n b := \u21912 ^ u"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 27
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 15
+                    },
+                    "data": "unsolved goals\nA : \u2115\nS : Finset \u2115\nu : \u2115\nhS_def : S = Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1))\nh\u2082 : u < A + 1 \u2227 2 ^ u \u2223 A\nh\u2083 : \u2200 v < A + 1, 2 ^ v \u2223 A \u2192 v \u2264 u\nh : 2 ^ (u + 1) \u2223 A\n\u22a2 u < A"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6590874195098877,
+            "custom_id": "maximality_implies_no_next_divides_36"
+        }
+    },
+    {
+        "name": "maximality_implies_no_next_divides",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem maximality_implies_no_next_divides (A : \u2115) (S : Finset \u2115) (u : \u2115)\n  (hS_def : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)))\n  (u_mem : u \u2208 S) (u_max : \u2200 v \u2208 S, v \u2264 u) :\n  \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  have h\u2081 : u \u2208 Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)) := by\n    rw [hS_def] at u_mem\n    exact u_mem\n  have h\u2082 : ((2 : \u2115) ^ u \u2223 A) := by\n    simp_all [Finset.mem_filter, Finset.mem_range]\n  have h\u2083 : \u2200 v \u2208 S, v \u2264 u := by\n    intro v hv\n    exact u_max v hv\n  have h\u2084 : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n    intro h\n    have h\u2085 : (u + 1) \u2208 S := by\n      rw [hS_def]\n      simp_all [Finset.mem_filter, Finset.mem_range]\n      <;> omega\n    have h\u2086 : (u + 1) \u2264 u := by\n      apply h\u2083 (u + 1) h\u2085\n    omega\n  exact h\u2084",
+        "custom_id": "maximality_implies_no_next_divides_37",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  b \u2265 1\n  a \u2265 0\nwhere\n a := \u2191u\n b := \u21912 ^ u"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 29
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 15
+                    },
+                    "data": "unsolved goals\nA : \u2115\nS : Finset \u2115\nu : \u2115\nhS_def : S = Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1))\nh\u2081 : u < A + 1\nh\u2082 : 2 ^ u \u2223 A\nh\u2083 : \u2200 v < A + 1, 2 ^ v \u2223 A \u2192 v \u2264 u\nh : 2 ^ (u + 1) \u2223 A\n\u22a2 u < A"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.9657752513885498,
+            "custom_id": "maximality_implies_no_next_divides_37"
+        }
+    },
+    {
+        "name": "maximality_implies_no_next_divides",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem maximality_implies_no_next_divides (A : \u2115) (S : Finset \u2115) (u : \u2115)\n  (hS_def : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)))\n  (u_mem : u \u2208 S) (u_max : \u2200 v \u2208 S, v \u2264 u) :\n  \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  rw [hS_def] at u_mem u_max\n  simp_all only [Finset.mem_filter, Finset.mem_range, Nat.lt_succ_iff]\n  intro h\n  have h\u2081 := u_max u (by aesop)\n  have h\u2082 := u_max (u + 1)\n  simp_all [Nat.pow_succ, Nat.mul_div_cancel_left]\n  <;> omega",
+        "custom_id": "maximality_implies_no_next_divides_38",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 1\n  a - b \u2265 0\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191A\n b := \u2191u\n c := \u21912 ^ u"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 31
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nA : \u2115\nS : Finset \u2115\nu : \u2115\nhS_def : S = Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1))\nu_mem : u \u2264 A \u2227 2 ^ u \u2223 A\nu_max : \u2200 v \u2264 A, 2 ^ v \u2223 A \u2192 v \u2264 u\nh : 2 ^ u * 2 \u2223 A\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.8533437252044678,
+            "custom_id": "maximality_implies_no_next_divides_38"
+        }
+    },
+    {
+        "name": "maximality_implies_no_next_divides",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem maximality_implies_no_next_divides (A : \u2115) (S : Finset \u2115) (u : \u2115)\n  (hS_def : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)))\n  (u_mem : u \u2208 S) (u_max : \u2200 v \u2208 S, v \u2264 u) :\n  \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  have h\u2081 : u \u2208 S := u_mem\n  have h\u2082 : \u2200 v \u2208 S, v \u2264 u := u_max\n  rw [hS_def] at h\u2081 h\u2082\n  have h\u2083 : u \u2208 Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)) := h\u2081\n  rw [Finset.mem_filter] at h\u2083\n  have h\u2084 : u \u2208 Finset.range (A + 1) := by tauto\n  rw [Finset.mem_range] at h\u2084\n  have h\u2085 : ((2 : \u2115) ^ u \u2223 A) := by tauto\n  have h\u2086 : \u2200 v \u2208 Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)), v \u2264 u := h\u2082\n  have h\u2087 : ((2 : \u2115) ^ (u + 1) \u2223 A) \u2192 False := by\n    intro h\n    have h\u2088 : (u + 1) \u2208 Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)) := by\n      rw [Finset.mem_filter]\n      constructor\n      \u00b7 rw [Finset.mem_range]\n        omega\n      \u00b7 exact h\n    have h\u2089 : (u + 1) \u2264 u := h\u2082 (u + 1) h\u2088\n    omega\n  exact h\u2087",
+        "custom_id": "maximality_implies_no_next_divides_39",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 25,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\n  b \u2265 0\n  a \u2265 1\nwhere\n a := \u21912 ^ u\n b := \u2191u"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.12036943435668945,
+            "custom_id": "maximality_implies_no_next_divides_39"
+        }
+    },
+    {
+        "name": "maximality_implies_no_next_divides",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem maximality_implies_no_next_divides (A : \u2115) (S : Finset \u2115) (u : \u2115)\n  (hS_def : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)))\n  (u_mem : u \u2208 S) (u_max : \u2200 v \u2208 S, v \u2264 u) :\n  \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  have h\u2081 : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)) := hS_def\n  rw [h\u2081] at u_mem u_max\n  by_contra h\n  have h\u2082 : u + 1 \u2208 Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)) := by\n    apply Finset.mem_filter.mpr\n    exact \u27e8Finset.mem_range.mpr (by linarith [Nat.lt_succ_self A]), h\u27e9\n  have h\u2083 : u + 1 \u2264 u := u_max (u + 1) h\u2082\n  linarith",
+        "custom_id": "maximality_implies_no_next_divides_40",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 36
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 65
+                    },
+                    "data": "linarith failed to find a contradiction\ncase h\nA : \u2115\nS : Finset \u2115\nu : \u2115\nhS_def : S = Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1))\nu_mem : u \u2208 Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1))\nu_max : \u2200 v \u2208 Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1)), v \u2264 u\nh\u2081 : S = Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1))\nh : 2 ^ (u + 1) \u2223 A\na\u271d : u + 1 \u2265 A + 1\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.19972753524780273,
+            "custom_id": "maximality_implies_no_next_divides_40"
+        }
+    },
+    {
+        "name": "maximality_implies_no_next_divides",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem maximality_implies_no_next_divides (A : \u2115) (S : Finset \u2115) (u : \u2115)\n  (hS_def : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)))\n  (u_mem : u \u2208 S) (u_max : \u2200 v \u2208 S, v \u2264 u) :\n  \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  intro h_next_div\n  have h_u_max : u \u2208 S := u_mem\n  have h_u_max' : \u2200 v \u2208 S, v \u2264 u := u_max\n  have h_next_max : u + 1 \u2208 S := by\n    rw [hS_def]\n    simp_all [Finset.mem_filter, Finset.mem_range]\n    <;> omega\n  have h_contradiction := h_u_max' (u + 1) h_next_max\n  omega",
+        "custom_id": "maximality_implies_no_next_divides_41",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  b \u2265 1\n  a \u2265 0\nwhere\n a := \u2191u\n b := \u21912 ^ u"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 33
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\nA : \u2115\nS : Finset \u2115\nu : \u2115\nhS_def : S = Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1))\nu_mem : u < A + 1 \u2227 2 ^ u \u2223 A\nh_next_div : 2 ^ (u + 1) \u2223 A\nh_u_max' : \u2200 v < A + 1, 2 ^ v \u2223 A \u2192 v \u2264 u\n\u22a2 u < A"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6576540470123291,
+            "custom_id": "maximality_implies_no_next_divides_41"
+        }
+    },
+    {
+        "name": "maximality_implies_no_next_divides",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem maximality_implies_no_next_divides (A : \u2115) (S : Finset \u2115) (u : \u2115)\n  (hS_def : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)))\n  (u_mem : u \u2208 S) (u_max : \u2200 v \u2208 S, v \u2264 u) :\n  \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  rw [hS_def] at u_mem u_max\n  simp_all [Finset.mem_filter, Finset.mem_range]\n  <;> intro h\n  <;> have h\u2081 := u_max u \u27e8by simp_all, by linarith\u27e9\n  <;> have h\u2082 := u_max 0\n  <;> simp_all [Nat.pow_succ]\n  <;> omega",
+        "custom_id": "maximality_implies_no_next_divides_42",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 25
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 51
+                    },
+                    "data": "invalid constructor \u27e8...\u27e9, expected type must be an inductive type with only one constructor \n  u.succ.le (A + 1)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 1\n  a - b \u2265 0\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191A\n b := \u2191u\n c := \u21912 ^ u"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 31
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nA : \u2115\nS : Finset \u2115\nu : \u2115\nhS_def : S = Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1))\nu_mem : u < A + 1 \u2227 2 ^ u \u2223 A\nu_max : \u2200 v < A + 1, 2 ^ v \u2223 A \u2192 v \u2264 u\nh : 2 ^ u * 2 \u2223 A\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.1275343894958496,
+            "custom_id": "maximality_implies_no_next_divides_42"
+        }
+    },
+    {
+        "name": "maximality_implies_no_next_divides",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem maximality_implies_no_next_divides (A : \u2115) (S : Finset \u2115) (u : \u2115)\n  (hS_def : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)))\n  (u_mem : u \u2208 S) (u_max : \u2200 v \u2208 S, v \u2264 u) :\n  \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  have hS_def' : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)) := hS_def\n  rw [hS_def'] at u_mem u_max\n  by_contra h\n  have h' : u + 1 \u2208 Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)) := by\n    simp_all [Nat.pow_succ]\n    <;> aesop\n  have h'' : u + 1 \u2264 u := u_max (u + 1) h'\n  linarith",
+        "custom_id": "maximality_implies_no_next_divides_43",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 89
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\nA u : \u2115\nu_max : \u2200 v < A + 1, 2 ^ v \u2223 A \u2192 v \u2264 u\nh : 2 ^ u * 2 \u2223 A\nleft : u < A + 1\nright : 2 ^ u \u2223 A\n\u22a2 u < A"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 13
+                    },
+                    "data": "aesop: failed to prove the goal after exhaustive search."
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.0521442890167236,
+            "custom_id": "maximality_implies_no_next_divides_43"
+        }
+    },
+    {
+        "name": "maximality_implies_no_next_divides",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem maximality_implies_no_next_divides (A : \u2115) (S : Finset \u2115) (u : \u2115)\n  (hS_def : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)))\n  (u_mem : u \u2208 S) (u_max : \u2200 v \u2208 S, v \u2264 u) :\n  \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  have h\u2081 : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)) := hS_def\n  rw [h\u2081] at u_mem u_max\n  by_contra h\n  have h\u2082 : u + 1 \u2208 Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)) := by\n    simp_all [Nat.lt_succ_iff]\n    <;> aesop\n  have h\u2083 : u + 1 \u2264 u := by\n    simp_all [Finset.mem_filter, Finset.mem_range]\n    <;> omega\n  omega",
+        "custom_id": "maximality_implies_no_next_divides_44",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 89
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\nA u : \u2115\nu_max : \u2200 v \u2264 A, 2 ^ v \u2223 A \u2192 v \u2264 u\nh : 2 ^ (u + 1) \u2223 A\nleft : u \u2264 A\nright : 2 ^ u \u2223 A\n\u22a2 u < A"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 13
+                    },
+                    "data": "aesop: failed to prove the goal after exhaustive search."
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.161377191543579,
+            "custom_id": "maximality_implies_no_next_divides_44"
+        }
+    },
+    {
+        "name": "maximality_implies_no_next_divides",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem maximality_implies_no_next_divides (A : \u2115) (S : Finset \u2115) (u : \u2115)\n  (hS_def : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)))\n  (u_mem : u \u2208 S) (u_max : \u2200 v \u2208 S, v \u2264 u) :\n  \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  have h\u2081 : u \u2208 Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)) := by simpa [hS_def] using u_mem\n  have h\u2082 : ((2 : \u2115) ^ u \u2223 A) := by simpa using h\u2081.2\n  have h\u2083 : \u2200 v \u2208 Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)), v \u2264 u := by simpa [hS_def] using u_max\n  have h\u2084 : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n    intro h\n    have h\u2085 : (u + 1) \u2208 Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)) := by\n      apply Finset.mem_filter.mpr\n      constructor\n      \u00b7 apply Finset.mem_range.mpr\n        omega\n      \u00b7 exact h\n    have h\u2086 : (u + 1) \u2264 u := by\n      apply h\u2083\n      exact h\u2085\n    omega\n  exact h\u2084",
+        "custom_id": "maximality_implies_no_next_divides_45",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 48
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 52
+                    },
+                    "data": "invalid projection, structure expected\n  h\u2081\nhas type\n  u \u2208 Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1))"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 48
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 52
+                    },
+                    "data": "invalid projection, structure expected\n  h\u2081\nhas type\n  u \u2208 (Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1))).val"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 48
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 52
+                    },
+                    "data": "invalid projection, structure expected\n  h\u2081\nhas type\n  Multiset.Mem u (Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1))).val"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 48
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 52
+                    },
+                    "data": "invalid projection, structure expected\n  h\u2081\nhas type\n  Quot.liftOn (Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1))).val (fun l => u \u2208 l) \u22ef"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 48
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 52
+                    },
+                    "data": "invalid projection, structure expected\n  h\u2081\nhas type\n  u \u2208 List.filter (fun b => decide ((fun v => 2 ^ v \u2223 A) b)) (List.range (A + 1))"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 48
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 52
+                    },
+                    "data": "invalid projection, structure expected\n  h\u2081\nhas type\n  List.Mem u (List.filter (fun b => decide ((fun v => 2 ^ v \u2223 A) b)) (List.range (A + 1)))"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\n  c \u2265 0\n  b \u2265 0\n  b - c \u2265 0\n  a \u2265 1\nwhere\n a := \u21912 ^ u\n b := \u2191u\n c := \u2191A"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.46051788330078125,
+            "custom_id": "maximality_implies_no_next_divides_45"
+        }
+    },
+    {
+        "name": "maximality_implies_no_next_divides",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem maximality_implies_no_next_divides (A : \u2115) (S : Finset \u2115) (u : \u2115)\n  (hS_def : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)))\n  (u_mem : u \u2208 S) (u_max : \u2200 v \u2208 S, v \u2264 u) :\n  \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  have hS_def' : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)) := hS_def\n  rw [hS_def'] at u_mem u_max\n  have h_max_cond : \u2200 v \u2208 Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)), v \u2264 u := u_max\n  simp_all [Finset.mem_filter, Finset.mem_range]\n  <;> by_contra! h\n  <;> have h' := h_max_cond (u + 1)\n  <;> simp_all [Finset.mem_filter, Finset.mem_range]\n  <;> omega",
+        "custom_id": "maximality_implies_no_next_divides_46",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 1\n  c \u2265 1\n  a - b \u2265 0\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191A\n b := \u2191u\n c := \u21912 ^ u"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 31
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nA : \u2115\nS : Finset \u2115\nu : \u2115\nu_mem : u < A + 1 \u2227 2 ^ u \u2223 A\nhS_def' : S = Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1))\nh_max_cond : \u2200 v < A + 1, 2 ^ v \u2223 A \u2192 v \u2264 u\nh : 2 ^ (u + 1) \u2223 A\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.9990880489349365,
+            "custom_id": "maximality_implies_no_next_divides_46"
+        }
+    },
+    {
+        "name": "maximality_implies_no_next_divides",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem maximality_implies_no_next_divides (A : \u2115) (S : Finset \u2115) (u : \u2115)\n  (hS_def : S = Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)))\n  (u_mem : u \u2208 S) (u_max : \u2200 v \u2208 S, v \u2264 u) :\n  \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n  have h\u2081 : u \u2208 Finset.filter (fun v => ((2 : \u2115) ^ v \u2223 A)) (Finset.range (A + 1)) := by\n    rw [hS_def] at u_mem\n    exact u_mem\n  have h\u2082 : ((2 : \u2115) ^ u \u2223 A) := by\n    simp_all [Finset.mem_filter, Finset.mem_range]\n  have h\u2083 : \u2200 v \u2208 S, v \u2264 u := by\n    intro v hv\n    apply u_max v hv\n  have h\u2084 : \u00ac ((2 : \u2115) ^ (u + 1) \u2223 A) := by\n    intro h\n    have h\u2085 : (u + 1) \u2208 S := by\n      rw [hS_def]\n      simp_all [Finset.mem_filter, Finset.mem_range]\n      <;> omega\n    have h\u2086 : u + 1 \u2264 u := by\n      apply h\u2083 (u + 1) h\u2085\n    omega\n  exact h\u2084",
+        "custom_id": "maximality_implies_no_next_divides_47",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  b \u2265 1\n  a \u2265 0\nwhere\n a := \u2191u\n b := \u21912 ^ u"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 29
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 15
+                    },
+                    "data": "unsolved goals\nA : \u2115\nS : Finset \u2115\nu : \u2115\nhS_def : S = Finset.filter (fun v => 2 ^ v \u2223 A) (Finset.range (A + 1))\nh\u2081 : u < A + 1\nh\u2082 : 2 ^ u \u2223 A\nh\u2083 : \u2200 v < A + 1, 2 ^ v \u2223 A \u2192 v \u2264 u\nh : 2 ^ (u + 1) \u2223 A\n\u22a2 u < A"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.9553821086883545,
+            "custom_id": "maximality_implies_no_next_divides_47"
+        }
+    }
+]

@@ -1,0 +1,6 @@
+>>>>SEARCH
+exact reduced_fraction_unique (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1)
+      hsucc_copr (by simpa [Nat.cast_eq_zero] using (n_succ_nonzero m n h_recurrence k)) denom_nonzero (by simpa [←Nat.cast_mul, ←Nat.cast_add] using (h_recurrence k))
+>>>>REPLACE
+exact reduced_fraction_unique (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1)
+      hsucc_copr (by simpa [Nat.cast_eq_zero] using (denom_nonzero_from_recurrence m n h_recurrence k).1) denom_nonzero (by exact (h_recurrence k))

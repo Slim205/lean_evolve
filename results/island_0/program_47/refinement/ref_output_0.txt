@@ -1,0 +1,5 @@
+>>>>SEARCH
+  have hfinite : {k : ℕ | bad k}.Finite := by
+    exact finite_of_strict_decrease_on_bad t htpos bad hnoninc hdec_step
+>>>>REPLACE
+  have hfinite : {k : ℕ | bad k}.Finite := finite_of_strict_decrease_on_bad t htpos bad hnoninc hdec_step

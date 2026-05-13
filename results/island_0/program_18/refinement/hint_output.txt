@@ -1,0 +1,5 @@
+------
+Cause: The file uses "let d : ℕ := Nat.gcd …" inside lemma/result types without the required "in" (e.g. "let d := …" followed directly by the conclusion), producing a syntax error that stops parsing (so later identifiers like helper_diff_evolution are then "unknown").
+
+------
+Hint: When you need auxiliary names in a statement, either write the let-binding with "in" (let d := … in …) or introduce the helper definition inside the proof; avoid bare "let …" in the type to prevent parser errors.

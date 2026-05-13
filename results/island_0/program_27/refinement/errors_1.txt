@@ -1,0 +1,27 @@
+ERROR from position {'line': 55, 'column': 16} to {'line': 55, 'column': 30}:
+unknown identifier 'n_succ_nonzero'
+
+ERROR from position {'line': 61, 'column': 27} to {'line': 61, 'column': 42}:
+invalid field 'ne'', the environment does not contain 'Ne.ne''
+  n_succ_nz
+has type
+  n (k + 1) ≠ 0
+
+ERROR from position {'line': 61, 'column': 27} to {'line': 61, 'column': 42}:
+invalid field 'ne'', the environment does not contain 'Not.ne''
+  n_succ_nz
+has type
+  ¬n (k + 1) = 0
+
+ERROR from position {'line': 61, 'column': 27} to {'line': 61, 'column': 42}:
+invalid field notation, type is not of the form (C ...) where C is a constant
+  n_succ_nz
+has type
+  n (k + 1) = 0 → False
+
+ERROR from position {'line': 690, 'column': 77} to {'line': 690, 'column': 87}:
+unknown identifier 'h_rdiv_pos'
+
+ERROR from position {'line': 690, 'column': 94} to {'line': 690, 'column': 104}:
+unknown identifier 'h_rdiv_odd'
+

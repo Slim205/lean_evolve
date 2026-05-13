@@ -1,0 +1,66 @@
+>>>>SEARCH
+/-- Prefix budget induction:
+    for D(K) := #{i < K | t(i+1) < t i}, one has t K + D(K) ≤ t 0. The proof is the usual
+    induction on K using `gap_at_least_one` on drop steps and `no_drop_step` on non-drop
+    steps; the detailed arithmetic is omitted here. -/
+lemma prefix_budget_induction (t : ℕ → ℕ) (hnoninc : ∀ k, t (k + 1) ≤ t k) (K : ℕ) :
+  t K + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+  sorry
+>>>>REPLACE
+/-- Helper: recursion for the drop-count on prefixes.
+    D(K) := card (filter (fun i => i < K ∧ t(i+1) < t i) (range K)).
+    Then D(K+1) = D(K) + (if t (K+1) < t K then 1 else 0). -/
+lemma D_succ_eq (t : ℕ → ℕ) (K : ℕ) :
+  (Finset.filter (fun i => i < (K + 1) ∧ t (i + 1) < t i) (Finset.range (K + 1))).card =
+    (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card +
+      (if t (K + 1) < t K then 1 else 0) := by
+  -- combinatorial decomposition of `range (K+1)` as `range K` ∪ {K}; proof omitted
+  sorry
+
+/-- Prefix budget induction:
+    for D(K) := #{i < K | t(i+1) < t i}, one has t K + D(K) ≤ t 0.
+    The proof proceeds by induction on K, using `gap_at_least_one` on drop steps and
+    `no_drop_step` on non-drop steps. The heavy combinatorial step is `D_succ_eq`. -/
+lemma prefix_budget_induction (t : ℕ → ℕ) (hnoninc : ∀ k, t (k + 1) ≤ t k) (K : ℕ) :
+  t K + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+  induction K with
+  | zero =>
+    -- D(0) = 0 because `range 0` is empty
+    have : (Finset.filter (fun i => i < 0 ∧ t (i + 1) < t i) (Finset.range 0)).card = 0 := by
+      simp [Finset.range_zero]
+    simp [this]
+  | succ K ih =>
+    -- rewrite the `K+1` case using the recursion for D
+    have Drec : (Finset.filter (fun i => i < (K + 1) ∧ t (i + 1) < t i) (Finset.range (K + 1))).card
+      = (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card +
+        (if t (K + 1) < t K then 1 else 0) := by
+      exact D_succ_eq t K
+
+    -- reduce the goal using the D recursion
+    rw [Drec]
+
+    -- case split on whether there is a strict drop at index K
+    by_cases hdrop : t (K + 1) < t K
+    · -- drop case: D(K+1) = D(K) + 1 and one-step gap gives t (K+1) + 1 ≤ t K
+      rw [if_pos hdrop]
+      -- let Dk denote the card for the prefix K
+      let Dk := (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card
+      -- rearrange the left-hand side: t (K+1) + (Dk + 1) = (t (K+1) + 1) + Dk
+      have : t (K + 1) + (Dk + 1) = (t (K + 1) + 1) + Dk := by
+        rw [add_comm Dk 1, ← add_assoc]
+      rw [this]
+      -- use the discrete gap lemma to consume one unit from t K
+      have gap := gap_at_least_one t K hdrop
+      have : (t (K + 1) + 1) + Dk ≤ t K + Dk := by
+        apply Nat.add_le_add_right (Nat.le_trans gap (le_refl _)) Dk -- (t (K+1)+1) ≤ t K
+      -- apply the inductive hypothesis on K: t K + Dk ≤ t 0
+      have ih' : t K + Dk ≤ t 0 := by
+        exact ih
+      exact Nat.le_trans this ih'
+    · -- no-drop case: D(K+1) = D(K) and t (K+1) = t K
+      rw [if_neg hdrop]
+      -- from nonincreasingness and ¬(t (K+1) < t K) we get equality
+      have eq := no_drop_step t hnoninc K hdrop
+      rw [eq]
+      -- now the goal is exactly the IH
+      exact ih

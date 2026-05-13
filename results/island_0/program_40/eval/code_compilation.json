@@ -1,0 +1,516 @@
+[
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (h_recurrence : \u2200 j : \u2115,\n    (m (j + 1) : \u211a) / (n (j + 1) : \u211a) =\n      ((2 : \u211a) * (m j : \u211a) + 1) / ((2 : \u211a) * (n j : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := by\n    exact h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp at h1 \u22a2\n  <;> nlinarith",
+        "custom_id": "recurrence_cross_Q_0",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.6948442459106445,
+            "custom_id": "recurrence_cross_Q_0"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (h_recurrence : \u2200 j : \u2115,\n    (m (j + 1) : \u211a) / (n (j + 1) : \u211a) =\n      ((2 : \u211a) * (m j : \u211a) + 1) / ((2 : \u211a) * (n j : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := by\n    apply h_recurrence\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp at h1\n  nlinarith",
+        "custom_id": "recurrence_cross_Q_1",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.5991454124450684,
+            "custom_id": "recurrence_cross_Q_1"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (h_recurrence : \u2200 j : \u2115,\n    (m (j + 1) : \u211a) / (n (j + 1) : \u211a) =\n      ((2 : \u211a) * (m j : \u211a) + 1) / ((2 : \u211a) * (n j : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := by\n    apply h_recurrence\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp [h2, h3] at h1\n  nlinarith",
+        "custom_id": "recurrence_cross_Q_2",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.8634929656982422,
+            "custom_id": "recurrence_cross_Q_2"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (h_recurrence : \u2200 j : \u2115,\n    (m (j + 1) : \u211a) / (n (j + 1) : \u211a) =\n      ((2 : \u211a) * (m j : \u211a) + 1) / ((2 : \u211a) * (n j : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : ((m (k + 1) : \u211a) / (n (k + 1) : \u211a)) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := by\n    simpa using h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp at h1 \u22a2\n  <;> ring_nf at h1 \u22a2\n  <;> nlinarith",
+        "custom_id": "recurrence_cross_Q_3",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 19,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.9341950416564941,
+            "custom_id": "recurrence_cross_Q_3"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (h_recurrence : \u2200 j : \u2115,\n    (m (j + 1) : \u211a) / (n (j + 1) : \u211a) =\n      ((2 : \u211a) * (m j : \u211a) + 1) / ((2 : \u211a) * (n j : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := by\n    apply h_recurrence\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp at h1 \u22a2\n  <;> ring_nf at h1 \u22a2\n  <;> nlinarith",
+        "custom_id": "recurrence_cross_Q_4",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 19,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.9619226455688477,
+            "custom_id": "recurrence_cross_Q_4"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (h_recurrence : \u2200 j : \u2115,\n    (m (j + 1) : \u211a) / (n (j + 1) : \u211a) =\n      ((2 : \u211a) * (m j : \u211a) + 1) / ((2 : \u211a) * (n j : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := by\n    apply h_recurrence\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp [h2, h3] at h1\n  ring_nf at h1 \u22a2\n  nlinarith",
+        "custom_id": "recurrence_cross_Q_5",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.842301607131958,
+            "custom_id": "recurrence_cross_Q_5"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (h_recurrence : \u2200 j : \u2115,\n    (m (j + 1) : \u211a) / (n (j + 1) : \u211a) =\n      ((2 : \u211a) * (m j : \u211a) + 1) / ((2 : \u211a) * (n j : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := by\n    apply h_recurrence\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp [h2, h3] at h1 \u22a2\n  <;> ring_nf at h1 \u22a2\n  <;> linarith",
+        "custom_id": "recurrence_cross_Q_6",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 19,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.6125760078430176,
+            "custom_id": "recurrence_cross_Q_6"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (h_recurrence : \u2200 j : \u2115,\n    (m (j + 1) : \u211a) / (n (j + 1) : \u211a) =\n      ((2 : \u211a) * (m j : \u211a) + 1) / ((2 : \u211a) * (n j : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := by\n    simpa using h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp [h2, h3] at h1 \u22a2\n  <;> ring_nf at h1 \u22a2\n  <;> nlinarith",
+        "custom_id": "recurrence_cross_Q_7",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 19,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 1.023102045059204,
+            "custom_id": "recurrence_cross_Q_7"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (h_recurrence : \u2200 j : \u2115,\n    (m (j + 1) : \u211a) / (n (j + 1) : \u211a) =\n      ((2 : \u211a) * (m j : \u211a) + 1) / ((2 : \u211a) * (n j : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := by\n    specialize h_recurrence k\n    exact h_recurrence\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp at h1 \u22a2\n  <;> ring_nf at h1 \u22a2\n  <;> nlinarith",
+        "custom_id": "recurrence_cross_Q_8",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 19,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 20,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.9061214923858643,
+            "custom_id": "recurrence_cross_Q_8"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (h_recurrence : \u2200 j : \u2115,\n    (m (j + 1) : \u211a) / (n (j + 1) : \u211a) =\n      ((2 : \u211a) * (m j : \u211a) + 1) / ((2 : \u211a) * (n j : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := by\n    apply h_recurrence\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp at h1 \u22a2\n  nlinarith",
+        "custom_id": "recurrence_cross_Q_9",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.688101053237915,
+            "custom_id": "recurrence_cross_Q_9"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (h_recurrence : \u2200 j : \u2115,\n    (m (j + 1) : \u211a) / (n (j + 1) : \u211a) =\n      ((2 : \u211a) * (m j : \u211a) + 1) / ((2 : \u211a) * (n j : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := by\n    simpa using h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp [h2, h3] at h1 \u22a2\n  <;> ring_nf at h1 \u22a2\n  <;> nlinarith",
+        "custom_id": "recurrence_cross_Q_10",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 19,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.9843850135803223,
+            "custom_id": "recurrence_cross_Q_10"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (h_recurrence : \u2200 j : \u2115,\n    (m (j + 1) : \u211a) / (n (j + 1) : \u211a) =\n      ((2 : \u211a) * (m j : \u211a) + 1) / ((2 : \u211a) * (n j : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := by\n    apply h_recurrence\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp at h1\n  nlinarith",
+        "custom_id": "recurrence_cross_Q_11",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.6204907894134521,
+            "custom_id": "recurrence_cross_Q_11"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (h_recurrence : \u2200 j : \u2115,\n    (m (j + 1) : \u211a) / (n (j + 1) : \u211a) =\n      ((2 : \u211a) * (m j : \u211a) + 1) / ((2 : \u211a) * (n j : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := by\n    simpa using h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp [h2, h3] at h1 \u22a2\n  <;> ring_nf at h1 \u22a2\n  <;> nlinarith",
+        "custom_id": "recurrence_cross_Q_12",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 19,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 1.0085721015930176,
+            "custom_id": "recurrence_cross_Q_12"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (h_recurrence : \u2200 j : \u2115,\n    (m (j + 1) : \u211a) / (n (j + 1) : \u211a) =\n      ((2 : \u211a) * (m j : \u211a) + 1) / ((2 : \u211a) * (n j : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h\u2081 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := by\n    apply h_recurrence\n  have h\u2082 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h\u2083 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp [h\u2082, h\u2083] at h\u2081 \u22a2\n  <;> ring_nf at h\u2081 \u22a2\n  <;> nlinarith",
+        "custom_id": "recurrence_cross_Q_13",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 19,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 1.1328225135803223,
+            "custom_id": "recurrence_cross_Q_13"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (h_recurrence : \u2200 j : \u2115,\n    (m (j + 1) : \u211a) / (n (j + 1) : \u211a) =\n      ((2 : \u211a) * (m j : \u211a) + 1) / ((2 : \u211a) * (n j : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := by\n    apply h_recurrence\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp at h1\n  rw [mul_comm] at h1\n  rw [mul_comm] at h1\n  field_simp at h1 \u22a2\n  <;> ring_nf at h1 \u22a2\n  <;> nlinarith",
+        "custom_id": "recurrence_cross_Q_14",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 20
+                    },
+                    "data": "simp made no progress"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.35291171073913574,
+            "custom_id": "recurrence_cross_Q_14"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (h_recurrence : \u2200 j : \u2115,\n    (m (j + 1) : \u211a) / (n (j + 1) : \u211a) =\n      ((2 : \u211a) * (m j : \u211a) + 1) / ((2 : \u211a) * (n j : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := by\n    simpa using h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp [h2, h3] at h1\n  nlinarith",
+        "custom_id": "recurrence_cross_Q_15",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.6778597831726074,
+            "custom_id": "recurrence_cross_Q_15"
+        }
+    }
+]

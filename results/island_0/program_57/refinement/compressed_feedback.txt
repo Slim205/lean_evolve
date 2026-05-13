@@ -1,0 +1,7 @@
+<lemma noncoprime_gcd_gt_one {a b : ℕ} (h : ¬ Nat.Coprime a b) : 1 < Nat.gcd a b := by>
+Failure mode: INCORRECT
+Recommendation: The statement is false when `a = 0` and `b = 0`: then `¬Nat.Coprime 0 0` holds but `Nat.gcd 0 0 = 0` so `1 < 0` is impossible. Revise the lemma by adding a nondegeneracy hypothesis, e.g.
+- `0 < a ∨ 0 < b`, or
+- `a ≠ 0 ∨ b ≠ 0`, or
+- (stronger) `0 < a ∧ 0 < b`.
+In your application `a = 2*m k + 1` and `b = 2*n k + 1` are automatically positive, so you can either use a revised lemma or specialize a version assuming positivity.

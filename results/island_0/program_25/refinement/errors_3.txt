@@ -1,0 +1,3 @@
+ERROR from position {'line': 58, 'column': 11} to {'line': 58, 'column': 25}:
+unknown identifier 'n_succ_nonzero'
+

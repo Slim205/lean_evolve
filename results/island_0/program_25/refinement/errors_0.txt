@@ -1,0 +1,21 @@
+ERROR from position {'line': 56, 'column': 11} to {'line': 56, 'column': 25}:
+unknown identifier 'n_succ_nonzero'
+
+ERROR from position {'line': 61, 'column': 58} to {'line': 61, 'column': 68}:
+application type mismatch
+  reduced_fraction_unique (m (k + 1)) (n (k + 1)) hsucc_copr
+argument
+  hsucc_copr
+has type
+  (m (k + 1)).Coprime (n (k + 1)) : Prop
+but is expected to have type
+  ℕ : Type
+
+ERROR from position {'line': 62, 'column': 10} to {'line': 62, 'column': 38}:
+type mismatch
+  h✝
+has type
+  ↑(m (k + 1)) / ↑(n (k + 1)) = (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1) : Prop
+but is expected to have type
+  ¬n (k + 1) = 0 : Prop
+

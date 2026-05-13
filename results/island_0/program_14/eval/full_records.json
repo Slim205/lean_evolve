@@ -1,0 +1,43 @@
+[
+    {
+        "name": "exists_pow_two_mul_odd_for_pos_nat",
+        "formal_statement": "lemma exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by",
+        "model_input": "Complete the following Lean 4 code :\n\n```lean4\nimport Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by",
+        "model_outputs": [
+            "\n  use 0\n  use A\n  simp [hpos]\n  <;> omega\n```",
+            "\n  use 0\n  use A\n  simp [hpos]\n  <;> omega\n```",
+            "\n  use 0, A\n  simp [hpos]\n  <;> omega\n```",
+            "\n  use 0, A\n  simp [hpos]\n  <;> omega\n```",
+            "\n  use 0, A\n  simp [hpos]\n  <;> omega\n```",
+            "\n  use 0, A\n  simp [hpos, Nat.mod_eq_of_lt]\n  <;> omega\n```",
+            "\n  use 0, A\n  simp [hpos]\n  <;> omega\n```",
+            "\n  use 0, A\n  simp [hpos]\n  <;> omega\n```",
+            "\n  use 0, A\n  simp [hpos]\n  <;> omega\n```",
+            "\n  use 0, A\n  simp [hpos]\n  <;> omega\n  <;> simp_all\n  <;> omega\n```",
+            "\n  use 0, A\n  simp [hpos]\n  <;> omega\n```",
+            "\n  use 0\n  use A\n  simp [hpos]\n  <;> omega\n```",
+            "\n  use 0, A\n  simp [hpos]\n  <;> omega\n```",
+            "\n  use 0, A\n  simp [hpos]\n  <;> omega\n  <;> omega\n  <;> omega\n```",
+            "\n  use 0, A\n  simp [hpos]\n  <;> omega\n```",
+            "\n  use 0, A\n  simp [hpos]\n  <;> omega\n  <;> aesop\n  <;> omega\n  <;> aesop\n  <;> omega\n  <;> aesop\n  <;> omega\n```lean4\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega\n  <;> aesop\n  <;> omega\n  <;> aesop\n  <;> omega\n  <;> aesop\n  <;> omega\n```"
+        ],
+        "full_code": [
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0\n  use A\n  simp [hpos]\n  <;> omega",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0\n  use A\n  simp [hpos]\n  <;> omega",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos, Nat.mod_eq_of_lt]\n  <;> omega",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega\n  <;> simp_all\n  <;> omega",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0\n  use A\n  simp [hpos]\n  <;> omega",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega\n  <;> omega\n  <;> omega",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega\n  <;> aesop\n  <;> omega\n  <;> aesop\n  <;> omega\n  <;> aesop\n  <;> omega"
+        ]
+    }
+]

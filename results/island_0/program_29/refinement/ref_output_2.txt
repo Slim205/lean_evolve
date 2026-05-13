@@ -1,0 +1,10 @@
+>>>>SEARCH
+  have hnext : (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+    exact helper_next_eq_div_gcd m n h_coprime h_recurrence k
+>>>>REPLACE
+  have hnext : (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+    exact next_eq_div_gcd m n h_coprime h_recurrence k
+>>>>SEARCH
+  have hg := by exact helper_gcd_odd_and_dvd_diff m n k
+>>>>REPLACE
+  have hg := by exact gcd_odd_and_dvd_diff m n k

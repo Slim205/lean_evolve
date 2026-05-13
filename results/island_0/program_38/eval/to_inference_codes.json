@@ -1,0 +1,258 @@
+[
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  field_simp [h\u2082, h\u2083] at h\u2081\n  linarith"
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h1 : a / b = c / d := h\n  have h2 : b \u2260 0 := by assumption\n  have h3 : d \u2260 0 := by assumption\n  field_simp at h1\n  linarith"
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  field_simp [h\u2082, h\u2083] at h\u2081\n  linarith"
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  field_simp [h\u2082, h\u2083] at h\u2081\n  linarith"
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h1 : a / b = c / d := h\n  have h2 : b \u2260 0 := hb\n  have h3 : d \u2260 0 := hd\n  field_simp [h2, h3] at h1\n  linarith"
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  field_simp [h\u2082, h\u2083] at h\u2081\n  linarith"
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  have h\u2084 : a * d = c * b := by\n    field_simp at h\u2081\n    nlinarith\n  exact h\u2084"
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  field_simp at h\u2081\n  linarith"
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  field_simp [h\u2082, h\u2083] at h\u2081\n  linarith"
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h1 : b \u2260 0 := by assumption\n  have h2 : d \u2260 0 := by assumption\n  field_simp [h1, h2] at h \u22a2\n  <;> simp_all [mul_comm]\n  <;> ring_nf at h \u22a2\n  <;> linarith"
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := by assumption\n  have h\u2083 : d \u2260 0 := by assumption\n  field_simp [h\u2082, h\u2083] at h\u2081\n  linarith"
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  field_simp at h\u2081\n  linarith"
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : (a / b) = (c / d) := h\n  have h\u2082 : (b : \u211a) \u2260 0 := by exact_mod_cast hb\n  have h\u2083 : (d : \u211a) \u2260 0 := by exact_mod_cast hd\n  field_simp at h\u2081\n  linarith"
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  field_simp at h\u2081\n  linarith"
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  field_simp at h\u2081\n  linarith"
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  field_simp at h\u2081\n  -- Cross-multiplying to clear the denominators\n  <;> ring_nf at h\u2081 \u22a2\n  <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n  -- Simplifying the equation to show a * d = c * b\n  <;> linarith"
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [add_comm, add_left_comm, add_assoc]\n  <;> norm_cast\n  <;> ring\n  <;> norm_cast\n  <;> omega"
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm, mul_assoc]\n  <;> norm_cast\n  <;> linarith"
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> ring_nf\n  <;> norm_cast\n  <;> omega"
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [add_comm, add_assoc, add_left_comm]\n  <;> norm_cast\n  <;> omega"
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [Nat.cast_add, Nat.cast_mul, Nat.cast_one]\n  <;> ring\n  <;> norm_cast\n  <;> omega"
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat]\n  <;> ring\n  <;> simp [Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat]\n  <;> ring\n  <;> simp [Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat]\n  <;> ring"
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> norm_cast\n  <;> omega"
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [add_comm, add_left_comm, add_assoc]\n  <;> norm_cast\n  <;> linarith"
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat]\n  <;> ring_nf\n  <;> norm_cast\n  <;> omega"
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> ring_nf\n  <;> norm_cast\n  <;> omega"
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [mul_add, mul_comm, mul_left_comm, mul_assoc]\n  <;> norm_cast\n  <;> linarith"
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [mul_add, add_mul, mul_comm, mul_left_comm, mul_assoc]\n  <;> ring\n  <;> norm_cast\n  <;> omega"
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm, mul_assoc]\n  <;> ring\n  <;> norm_cast\n  <;> omega"
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [mul_add, add_mul, Nat.cast_add, Nat.cast_mul, Nat.cast_one]\n  <;> ring\n  <;> simp [Nat.cast_add, Nat.cast_mul, Nat.cast_one]\n  <;> norm_cast\n  <;> linarith"
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  simp [\u2190 Nat.cast_add, \u2190 Nat.cast_mul, \u2190 Nat.cast_one]\n  <;> norm_cast\n  <;> linarith"
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [add_comm, add_left_comm, mul_comm, mul_left_comm]\n  <;> norm_cast\n  <;> ring\n  <;> norm_cast\n  <;> omega"
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp [h2, h3] at h1\n  linarith"
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h1\n  linarith"
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp at h1\n  <;> ring_nf at h1 \u22a2\n  <;> linarith"
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h1\n  linarith"
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := by\n    exact h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp at h1\n  nlinarith"
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h1 \u22a2\n  <;> nlinarith"
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h1\n  <;>\n  nlinarith"
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h\u2081 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h\u2082 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h\u2083 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h\u2081 \u22a2\n  <;> ring_nf at h\u2081 \u22a2\n  <;> nlinarith"
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp [h2, h3] at h1\n  linarith"
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h\u2081 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h\u2082 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h\u2083 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp at h\u2081\n  nlinarith"
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h1 \u22a2\n  <;> ring_nf at h1 \u22a2 <;> nlinarith"
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h1 \u22a2\n  <;> nlinarith"
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h\u2081 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h\u2082 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h\u2083 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h\u2081 \u22a2\n  <;> nlinarith"
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h\u2081 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h\u2082 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h\u2083 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp [h\u2082, h\u2083] at h\u2081 \u22a2\n  <;> ring_nf at h\u2081 \u22a2 <;> nlinarith"
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp [h2, h3] at h1\n  linarith"
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp at h1\n  rw [eq_comm] at h1\n  field_simp [h2, h3] at h1 \u22a2\n  nlinarith"
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  ring_nf at h\n  norm_cast at h \u22a2\n  <;>\n  rcases a with (_ | _) <;>\n  rcases b with (_ | _) <;>\n  rcases c with (_ | _) <;>\n  rcases d with (_ | _) <;>\n  simp_all [Nat.mul_eq_zero, Nat.mul_eq_zero] <;>\n  omega"
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;>\n  simp_all [mul_comm, mul_left_comm, mul_assoc]\n  <;>\n  nlinarith\n  <;>\n  nlinarith\n  <;>\n  nlinarith\n  <;>\n  nlinarith\n  <;>\n  nlinarith\n  <;>\n  nlinarith\n  <;>\n  nlinarith\n  <;>\n  nlinarith\n  <;>\n  nlinarith\n  <;>\n  nlinarith"
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  ring_nf at h\n  norm_cast at h \u22a2\n  <;>\n  simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;>\n  omega"
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;> ring_nf at h \u22a2\n  <;> omega"
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;> ring_nf at h \u22a2\n  <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;> omega"
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;>\n  field_simp [mul_comm] at h \u22a2\n  <;>\n  ring_nf at h \u22a2\n  <;>\n  norm_cast at h \u22a2\n  <;>\n  linarith"
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h\n  <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;> ring_nf at h \u22a2\n  <;> omega"
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  have h\u2081 : (a : \u211a) * (b : \u211a) = (c : \u211a) * (d : \u211a) := h\n  norm_cast at h\u2081\n  <;> ring_nf at h\u2081 \u22a2\n  <;> norm_cast at h\u2081 \u22a2\n  <;> linarith"
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;> ring_nf at h \u22a2\n  <;> aesop"
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;> ring_nf at h \u22a2\n  <;> omega"
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;>\n  ring_nf at h \u22a2\n  <;>\n  simp_all [mul_eq_mul_left_iff, Nat.mul_eq_zero, Nat.dvd_iff_mod_eq_zero]\n  <;>\n  omega"
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;>\n  simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;>\n  ring_nf at h \u22a2\n  <;>\n  omega"
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h\n  <;> simp_all [mul_comm, mul_left_comm, mul_assoc]\n  <;> ring_nf at h \u22a2\n  <;> aesop"
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;> norm_cast at h \u22a2\n  <;> ring_nf at h \u22a2\n  <;> omega"
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;> simp_all [mul_comm, mul_left_comm, mul_assoc]\n  <;> ring_nf at h \u22a2\n  <;> norm_cast at h \u22a2\n  <;> omega"
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;> ring_nf at h \u22a2\n  <;> norm_cast at h \u22a2\n  <;> omega"
+    }
+]

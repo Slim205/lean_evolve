@@ -1,0 +1,7 @@
+>>>>SEARCH
+  -- Step 5: apply the abstract finiteness lemma using the properties of `t`
+  have hfinite : {k : ℕ | bad k}.Finite := by
+    exact finite_of_strict_decrease_on_bad t htpos bad hnoninc hdec_step
+>>>>REPLACE
+  -- Step 5: apply the abstract finiteness lemma using the properties of `t`
+  have hfinite : {k : ℕ | bad k}.Finite := finite_of_strict_decrease_on_bad t htpos bad hnoninc hdec_step

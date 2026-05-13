@@ -1,0 +1,2952 @@
+[
+    {
+        "name": "nat_coprime_of_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_coprime_of_odd (d : \u2115) (hd_odd : d % 2 = 1) : Nat.Coprime d 2 := by\n  rw [Nat.coprime_iff_gcd_eq_one]\n  have h : d.gcd 2 = 1 := by\n    have h\u2081 : d % 2 = 1 := hd_odd\n    have h\u2082 : d.gcd 2 \u2223 2 := Nat.gcd_dvd_right d 2\n    have h\u2083 : d.gcd 2 \u2223 d := Nat.gcd_dvd_left d 2\n    have h\u2084 : d.gcd 2 \u2264 2 := Nat.le_of_dvd (by norm_num) h\u2082\n    interval_cases d.gcd 2 <;> simp_all (config := {decide := true}) <;> omega\n  exact h",
+        "custom_id": "nat_coprime_of_odd_0",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 69
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 72
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.14107990264892578,
+            "custom_id": "nat_coprime_of_odd_0"
+        }
+    },
+    {
+        "name": "nat_coprime_of_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_coprime_of_odd (d : \u2115) (hd_odd : d % 2 = 1) : Nat.Coprime d 2 := by\n  rw [Nat.coprime_iff_gcd_eq_one]\n  have h : Nat.gcd d 2 = 1 := by\n    have h\u2081 : Nat.gcd d 2 \u2223 d := Nat.gcd_dvd_left d 2\n    have h\u2082 : Nat.gcd d 2 \u2223 2 := Nat.gcd_dvd_right d 2\n    have h\u2083 : Nat.gcd d 2 = 1 := by\n      have h\u2084 : Nat.gcd d 2 \u2223 d := Nat.gcd_dvd_left d 2\n      have h\u2085 : Nat.gcd d 2 \u2223 2 := Nat.gcd_dvd_right d 2\n      have h\u2086 : Nat.gcd d 2 \u2264 2 := Nat.le_of_dvd (by norm_num) h\u2085\n      interval_cases Nat.gcd d 2 <;> simp_all [Nat.dvd_one]\n      <;> omega\n    exact h\u2083\n  exact h",
+        "custom_id": "nat_coprime_of_odd_1",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 9
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.30612802505493164,
+            "custom_id": "nat_coprime_of_odd_1"
+        }
+    },
+    {
+        "name": "nat_coprime_of_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_coprime_of_odd (d : \u2115) (hd_odd : d % 2 = 1) : Nat.Coprime d 2 := by\n  apply Nat.Coprime.symm\n  simp [Nat.coprime_iff_gcd_eq_one, Nat.gcd_comm]\n  <;>\n    rw [Nat.gcd_comm]\n  <;>\n    simp [Nat.gcd_comm, Nat.gcd_eq_right_iff_dvd, Nat.dvd_iff_mod_eq_zero, Nat.mod_eq_of_lt]\n  <;>\n    omega",
+        "custom_id": "nat_coprime_of_odd_2",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 20
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  ?m.gcd ?n\ncase a\nd : \u2115\nhd_odd : d % 2 = 1\n\u22a2 \u00acEven d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 92
+                    },
+                    "data": "simp made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 9
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 0\nwhere\n a := \u2191d / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 6,
+                        "column": 77
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 9
+                    },
+                    "data": "unsolved goals\ncase a\nd : \u2115\nhd_odd : d % 2 = 1\n\u22a2 \u00acEven d"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.022951841354370117,
+            "custom_id": "nat_coprime_of_odd_2"
+        }
+    },
+    {
+        "name": "nat_coprime_of_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_coprime_of_odd (d : \u2115) (hd_odd : d % 2 = 1) : Nat.Coprime d 2 := by\n  rw [Nat.coprime_iff_gcd_eq_one]\n  have h : d.gcd 2 = 1 := by\n    have h\u2081 : d % 2 = 1 := hd_odd\n    have h\u2082 : d.gcd 2 \u2223 2 := Nat.gcd_dvd_right d 2\n    have h\u2083 : d.gcd 2 \u2223 d := Nat.gcd_dvd_left d 2\n    have h\u2084 : d.gcd 2 = 1 := by\n      have h\u2085 : d.gcd 2 \u2223 2 := Nat.gcd_dvd_right d 2\n      have h\u2086 : d.gcd 2 \u2264 2 := Nat.le_of_dvd (by norm_num) h\u2085\n      interval_cases d.gcd 2 <;> simp_all [Nat.dvd_one]\n      <;> omega\n    exact h\u2084\n  exact h",
+        "custom_id": "nat_coprime_of_odd_3",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 9
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.38652896881103516,
+            "custom_id": "nat_coprime_of_odd_3"
+        }
+    },
+    {
+        "name": "nat_coprime_of_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_coprime_of_odd (d : \u2115) (hd_odd : d % 2 = 1) : Nat.Coprime d 2 := by\n  rw [Nat.coprime_iff_gcd_eq_one]\n  rw [Nat.gcd_comm]\n  rw [\u2190 Nat.mod_add_div d 2]\n  simp [hd_odd, Nat.gcd_comm]\n  <;> norm_num\n  <;> omega",
+        "custom_id": "nat_coprime_of_odd_4",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03249955177307129,
+            "custom_id": "nat_coprime_of_odd_4"
+        }
+    },
+    {
+        "name": "nat_coprime_of_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_coprime_of_odd (d : \u2115) (hd_odd : d % 2 = 1) : Nat.Coprime d 2 := by\n  rw [Nat.coprime_iff_gcd_eq_one]\n  have h : d.gcd 2 = 1 := by\n    have h\u2081 : d % 2 = 1 := hd_odd\n    have h\u2082 : d.gcd 2 \u2223 2 := Nat.gcd_dvd_right d 2\n    have h\u2083 : d.gcd 2 \u2223 d := Nat.gcd_dvd_left d 2\n    have h\u2084 : d.gcd 2 \u2264 2 := Nat.le_of_dvd (by norm_num) h\u2082\n    interval_cases d.gcd 2 <;> simp_all (config := {decide := true})\n  exact h",
+        "custom_id": "nat_coprime_of_odd_5",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 26
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 68
+                    },
+                    "data": "unsolved goals\ncase \u00ab2\u00bb\nd : \u2115\nh\u2081 : d % 2 = 1\nh\u2083 : 2 \u2223 d\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.10677099227905273,
+            "custom_id": "nat_coprime_of_odd_5"
+        }
+    },
+    {
+        "name": "nat_coprime_of_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_coprime_of_odd (d : \u2115) (hd_odd : d % 2 = 1) : Nat.Coprime d 2 := by\n  apply Nat.Coprime.symm\n  simp [Nat.coprime_iff_gcd_eq_one, Nat.gcd_comm]\n  <;>\n  rw [Nat.gcd_comm]\n  <;>\n  norm_num\n  <;>\n  rw [\u2190 Nat.mod_add_div d 2]\n  <;>\n  simp [hd_odd, Nat.mul_mod, Nat.add_mod, Nat.mod_mod]\n  <;>\n  norm_num\n  <;>\n  omega",
+        "custom_id": "nat_coprime_of_odd_6",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 18
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  ?m.gcd ?n\ncase a\nd : \u2115\nhd_odd : d % 2 = 1\n\u22a2 \u00acEven d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 0\nwhere\n a := \u2191d / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 6,
+                        "column": 77
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 7
+                    },
+                    "data": "unsolved goals\ncase a\nd : \u2115\nhd_odd : d % 2 = 1\n\u22a2 \u00acEven (1 + 2 * (d / 2))"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.09323883056640625,
+            "custom_id": "nat_coprime_of_odd_6"
+        }
+    },
+    {
+        "name": "nat_coprime_of_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_coprime_of_odd (d : \u2115) (hd_odd : d % 2 = 1) : Nat.Coprime d 2 := by\n  rw [Nat.coprime_comm]\n  -- We use the commutativity of coprimality to simplify the problem.\n  -- We need to show that 2 and d are coprime, which is equivalent to showing that d and 2 are coprime.\n  simp [Nat.coprime_iff_gcd_eq_one, Nat.gcd_comm, Nat.gcd_eq_right_iff_dvd, Nat.dvd_iff_mod_eq_zero,\n    hd_odd]\n  -- Simplify the conditions using the fact that d is odd, which means d % 2 = 1.\n  -- This step uses the property that the gcd of an even number and an odd number is 1.\n  <;> omega",
+        "custom_id": "nat_coprime_of_odd_7",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 0\nwhere\n a := \u2191d / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 6,
+                        "column": 77
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nd : \u2115\nhd_odd : d % 2 = 1\n\u22a2 \u00acEven d"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.029633283615112305,
+            "custom_id": "nat_coprime_of_odd_7"
+        }
+    },
+    {
+        "name": "nat_coprime_of_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_coprime_of_odd (d : \u2115) (hd_odd : d % 2 = 1) : Nat.Coprime d 2 := by\n  rw [Nat.coprime_iff_gcd_eq_one]\n  have h : d % 2 = 1 := hd_odd\n  have h' : Nat.gcd d 2 = 1 := by\n    rw [Nat.gcd_comm]\n    have h\u2081 : d % 2 = 1 := hd_odd\n    have h\u2082 : d = 2 * (d / 2) + 1 := by omega\n    rw [h\u2082]\n    simp [Nat.gcd_comm, Nat.gcd_mul_left, Nat.gcd_one_left]\n  exact h'",
+        "custom_id": "nat_coprime_of_odd_8",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 8
+                    },
+                    "data": "unused variable `h`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.10238766670227051,
+            "custom_id": "nat_coprime_of_odd_8"
+        }
+    },
+    {
+        "name": "nat_coprime_of_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_coprime_of_odd (d : \u2115) (hd_odd : d % 2 = 1) : Nat.Coprime d 2 := by\n  rw [Nat.coprime_iff_gcd_eq_one]\n  have : d.gcd 2 = 1 := by\n    have h : d.gcd 2 \u2223 2 := Nat.gcd_dvd_right d 2\n    have h' : d.gcd 2 = 1 := by\n      have h\u2081 : d.gcd 2 \u2223 d := Nat.gcd_dvd_left d 2\n      have h\u2082 : d % 2 = 1 := hd_odd\n      have h\u2083 : d.gcd 2 \u2223 2 := Nat.gcd_dvd_right d 2\n      have h\u2084 : d.gcd 2 \u2264 2 := Nat.le_of_dvd (by decide) h\u2083\n      interval_cases d.gcd 2 <;> simp_all (config := {decide := true})\n      <;> omega\n    exact h'\n  exact this",
+        "custom_id": "nat_coprime_of_odd_9",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 9
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.1767578125,
+            "custom_id": "nat_coprime_of_odd_9"
+        }
+    },
+    {
+        "name": "nat_coprime_of_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_coprime_of_odd (d : \u2115) (hd_odd : d % 2 = 1) : Nat.Coprime d 2 := by\n  rw [Nat.coprime_iff_gcd_eq_one]\n  have h : d.gcd 2 = 1 := by\n    have h : d % 2 = 1 := hd_odd\n    have h' : d.gcd 2 = 1 := by\n      -- Use the fact that if d is odd, then d and 2 are coprime\n      rw [Nat.gcd_comm]\n      -- Since 2 is a prime number and d is odd, their GCD is 1\n      simp [h, Nat.gcd_eq_right_iff_dvd, Nat.dvd_iff_mod_eq_zero, Nat.mod_eq_of_lt]\n    exact h'\n  exact h",
+        "custom_id": "nat_coprime_of_odd_10",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 29
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 83
+                    },
+                    "data": "unsolved goals\nd : \u2115\nhd_odd h : d % 2 = 1\n\u22a2 \u00acEven d"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.03530764579772949,
+            "custom_id": "nat_coprime_of_odd_10"
+        }
+    },
+    {
+        "name": "nat_coprime_of_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_coprime_of_odd (d : \u2115) (hd_odd : d % 2 = 1) : Nat.Coprime d 2 := by\n  apply Nat.Coprime.symm\n  simp_all [Nat.coprime_iff_gcd_eq_one, Nat.gcd_comm]\n  <;>\n    rw [Nat.gcd_comm]\n  <;>\n    simp_all [Nat.coprime_iff_gcd_eq_one, Nat.gcd_comm]\n  <;>\n    omega",
+        "custom_id": "nat_coprime_of_odd_11",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 20
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  ?m.gcd ?n\ncase a\nd : \u2115\nhd_odd : d % 2 = 1\n\u22a2 \u00acEven d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 55
+                    },
+                    "data": "simp_all made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 9
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 0\nwhere\n a := \u2191d / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 6,
+                        "column": 77
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 9
+                    },
+                    "data": "unsolved goals\ncase a\nd : \u2115\nhd_odd : d % 2 = 1\n\u22a2 \u00acEven d"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.038483381271362305,
+            "custom_id": "nat_coprime_of_odd_11"
+        }
+    },
+    {
+        "name": "nat_coprime_of_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_coprime_of_odd (d : \u2115) (hd_odd : d % 2 = 1) : Nat.Coprime d 2 := by\n  rw [Nat.coprime_iff_gcd_eq_one]\n  have : d.gcd 2 = 1 := by\n    have h : d % 2 = 1 := hd_odd\n    have h\u2081 : d.gcd 2 \u2223 2 := Nat.gcd_dvd_right d 2\n    have h\u2082 : d.gcd 2 \u2223 d := Nat.gcd_dvd_left d 2\n    have h\u2083 : d.gcd 2 \u2264 2 := Nat.le_of_dvd (by decide) h\u2081\n    interval_cases d.gcd 2 <;> simp_all (config := {decide := true}) <;> omega\n  exact this",
+        "custom_id": "nat_coprime_of_odd_12",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 69
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 72
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.16268014907836914,
+            "custom_id": "nat_coprime_of_odd_12"
+        }
+    },
+    {
+        "name": "nat_coprime_of_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_coprime_of_odd (d : \u2115) (hd_odd : d % 2 = 1) : Nat.Coprime d 2 := by\n  rw [Nat.coprime_iff_gcd_eq_one]\n  have : Nat.gcd d 2 = 1 := by\n    have : Nat.gcd d 2 \u2223 2 := Nat.gcd_dvd_right d 2\n    have : Nat.gcd d 2 \u2223 d := Nat.gcd_dvd_left d 2\n    have : Nat.gcd d 2 \u2264 2 := Nat.le_of_dvd (by norm_num) this\n    interval_cases Nat.gcd d 2 <;> simp_all (config := {decide := true})\n    <;> omega\n  simp_all",
+        "custom_id": "nat_coprime_of_odd_13",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 58
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 62
+                    },
+                    "data": "application type mismatch\n  le_of_dvd ?m.229 this\nargument\n  this\nhas type\n  d.gcd 2 \u2223 d : Prop\nbut is expected to have type\n  d.gcd 2 \u2223 2 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.14694929122924805,
+            "custom_id": "nat_coprime_of_odd_13"
+        }
+    },
+    {
+        "name": "nat_coprime_of_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_coprime_of_odd (d : \u2115) (hd_odd : d % 2 = 1) : Nat.Coprime d 2 := by\n  rw [Nat.coprime_iff_gcd_eq_one]\n  have h\u2081 : d % 2 = 1 := hd_odd\n  have h\u2082 : d.gcd 2 = 1 := by\n    have h\u2083 : d.gcd 2 \u2223 2 := Nat.gcd_dvd_right d 2\n    have h\u2084 : d.gcd 2 \u2223 d := Nat.gcd_dvd_left d 2\n    have h\u2085 : d.gcd 2 = 1 := by\n      have h\u2086 : d.gcd 2 \u2223 2 := Nat.gcd_dvd_right d 2\n      have h\u2087 : d.gcd 2 \u2264 2 := Nat.le_of_dvd (by norm_num) h\u2086\n      interval_cases d.gcd 2 <;> simp_all [Nat.dvd_one]\n      <;> omega\n    exact h\u2085\n  exact h\u2082",
+        "custom_id": "nat_coprime_of_odd_14",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 9
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.31273555755615234,
+            "custom_id": "nat_coprime_of_odd_14"
+        }
+    },
+    {
+        "name": "nat_coprime_of_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_coprime_of_odd (d : \u2115) (hd_odd : d % 2 = 1) : Nat.Coprime d 2 := by\n  rw [Nat.coprime_iff_gcd_eq_one]\n  have h : d.gcd 2 = 1 := by\n    have h\u2081 : d % 2 = 1 := hd_odd\n    have h\u2082 : d.gcd 2 \u2223 2 := Nat.gcd_dvd_right d 2\n    have h\u2083 : d.gcd 2 \u2223 d := Nat.gcd_dvd_left d 2\n    have h\u2084 : d.gcd 2 \u2264 2 := Nat.le_of_dvd (by decide) h\u2082\n    interval_cases d.gcd 2 <;> simp_all [Nat.dvd_one, Nat.dvd_iff_mod_eq_zero, Nat.mod_eq_of_lt]\n    <;> omega\n  exact h",
+        "custom_id": "nat_coprime_of_odd_15",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 13
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.18944644927978516,
+            "custom_id": "nat_coprime_of_odd_15"
+        }
+    },
+    {
+        "name": "int_bezout_of_coprime",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_bezout_of_coprime (a b : \u2115) (hc : Nat.Coprime a b) : \u2203 x y : \u2124, x * (a : \u2124) + y * (b : \u2124) = 1 := by\n  use a.gcdA b, a.gcdB b\n  have h := Nat.gcd_eq_gcd_ab a b\n  simp_all [Int.ofNat_mul, Int.ofNat_add, Int.ofNat_one]\n  <;> norm_cast\n  <;> simp_all [Nat.Coprime, Nat.gcd_eq_right]\n  <;> omega",
+        "custom_id": "int_bezout_of_coprime_16",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c + d \u2264 0\nwhere\n c := a.gcdA b * \u2191a\n d := a.gcdB b * \u2191b"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 6,
+                        "column": 109
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\na b : \u2115\nhc : a.gcd b = 1\nh : 1 = \u2191a * a.gcdA b + \u2191b * a.gcdB b\n\u22a2 a.gcdA b * \u2191a + a.gcdB b * \u2191b = \u2191a * a.gcdA b + \u2191b * a.gcdB b"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.2815380096435547,
+            "custom_id": "int_bezout_of_coprime_16"
+        }
+    },
+    {
+        "name": "int_bezout_of_coprime",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_bezout_of_coprime (a b : \u2115) (hc : Nat.Coprime a b) : \u2203 x y : \u2124, x * (a : \u2124) + y * (b : \u2124) = 1 := by\n  have h := Nat.gcd_eq_one_iff_coprime.mpr hc\n  -- Use the fact that the gcd of a and b is 1 to find integers x and y such that x * a + y * b = 1\n  use Nat.gcdA a b, Nat.gcdB a b\n  norm_cast\n  -- Verify that the chosen x and y satisfy the equation x * a + y * b = 1\n  rw [\u2190 h]\n  <;> simp [Nat.gcd_eq_gcd_ab]\n  <;> ring\n  <;> norm_cast\n  <;> linarith",
+        "custom_id": "int_bezout_of_coprime_17",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 45
+                    },
+                    "data": "unknown constant 'Nat.gcd_eq_one_iff_coprime.mpr'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 6,
+                        "column": 109
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 14
+                    },
+                    "data": "unsolved goals\na b : \u2115\nhc : a.Coprime b\n\u22a2 \u2203 x y, x * \u2191a + y * \u2191b = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.015616178512573242,
+            "custom_id": "int_bezout_of_coprime_17"
+        }
+    },
+    {
+        "name": "int_bezout_of_coprime",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_bezout_of_coprime (a b : \u2115) (hc : Nat.Coprime a b) : \u2203 x y : \u2124, x * (a : \u2124) + y * (b : \u2124) = 1 := by\n  use a.gcdA b, a.gcdB b\n  have h\u2081 := Nat.gcd_eq_gcd_ab a b\n  simp_all [Nat.coprime_iff_gcd_eq_one, Int.gcd]\n  <;> norm_cast\n  <;> linarith",
+        "custom_id": "int_bezout_of_coprime_18",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.3563380241394043,
+            "custom_id": "int_bezout_of_coprime_18"
+        }
+    },
+    {
+        "name": "int_bezout_of_coprime",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_bezout_of_coprime (a b : \u2115) (hc : Nat.Coprime a b) : \u2203 x y : \u2124, x * (a : \u2124) + y * (b : \u2124) = 1 := by\n  use a.gcdA b, a.gcdB b\n  have h\u2081 := Nat.gcd_eq_gcd_ab a b\n  norm_cast at h\u2081\n  <;> simp_all [Nat.coprime_iff_gcd_eq_one]\n  <;> norm_cast\n  <;> linarith",
+        "custom_id": "int_bezout_of_coprime_19",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.321103572845459,
+            "custom_id": "int_bezout_of_coprime_19"
+        }
+    },
+    {
+        "name": "int_bezout_of_coprime",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_bezout_of_coprime (a b : \u2115) (hc : Nat.Coprime a b) : \u2203 x y : \u2124, x * (a : \u2124) + y * (b : \u2124) = 1 := by\n  use a.gcdA b, a.gcdB b\n  have h\u2081 := Nat.gcd_eq_gcd_ab a b\n  norm_cast at h\u2081\n  <;> simp_all [Nat.coprime_iff_gcd_eq_one]\n  <;> ring\n  <;> linarith",
+        "custom_id": "int_bezout_of_coprime_20",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.17507147789001465,
+            "custom_id": "int_bezout_of_coprime_20"
+        }
+    },
+    {
+        "name": "int_bezout_of_coprime",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_bezout_of_coprime (a b : \u2115) (hc : Nat.Coprime a b) : \u2203 x y : \u2124, x * (a : \u2124) + y * (b : \u2124) = 1 := by\n  have h := Nat.gcd_eq_one_iff_coprime.2 hc\n  use Nat.gcdA a b, Nat.gcdB a b\n  norm_cast\n  <;> simp_all [Nat.gcd_eq_gcd_ab]\n  <;> ring\n  <;> nlinarith",
+        "custom_id": "int_bezout_of_coprime_21",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 43
+                    },
+                    "data": "unknown constant 'Nat.gcd_eq_one_iff_coprime'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 6,
+                        "column": 109
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 15
+                    },
+                    "data": "unsolved goals\na b : \u2115\nhc : a.Coprime b\n\u22a2 \u2203 x y, x * \u2191a + y * \u2191b = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.02983832359313965,
+            "custom_id": "int_bezout_of_coprime_21"
+        }
+    },
+    {
+        "name": "int_bezout_of_coprime",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_bezout_of_coprime (a b : \u2115) (hc : Nat.Coprime a b) : \u2203 x y : \u2124, x * (a : \u2124) + y * (b : \u2124) = 1 := by\n  use Nat.gcdA a b, Nat.gcdB a b\n  have h\u2081 := Nat.gcd_eq_gcd_ab a b\n  simp_all [Nat.coprime_iff_gcd_eq_one, Nat.gcd_comm]\n  <;> norm_cast\n  <;> linarith",
+        "custom_id": "int_bezout_of_coprime_22",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.3617706298828125,
+            "custom_id": "int_bezout_of_coprime_22"
+        }
+    },
+    {
+        "name": "int_bezout_of_coprime",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_bezout_of_coprime (a b : \u2115) (hc : Nat.Coprime a b) : \u2203 x y : \u2124, x * (a : \u2124) + y * (b : \u2124) = 1 := by\n  have := Nat.gcd_eq_one_iff_coprime.2 hc\n  use Nat.gcdA a b, Nat.gcdB a b\n  norm_cast\n  <;> simp_all [Nat.gcd_eq_gcd_ab]\n  <;> ring\n  <;> nlinarith",
+        "custom_id": "int_bezout_of_coprime_23",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 41
+                    },
+                    "data": "unknown constant 'Nat.gcd_eq_one_iff_coprime'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 6,
+                        "column": 109
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 15
+                    },
+                    "data": "unsolved goals\na b : \u2115\nhc : a.Coprime b\n\u22a2 \u2203 x y, x * \u2191a + y * \u2191b = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.014998197555541992,
+            "custom_id": "int_bezout_of_coprime_23"
+        }
+    },
+    {
+        "name": "int_bezout_of_coprime",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_bezout_of_coprime (a b : \u2115) (hc : Nat.Coprime a b) : \u2203 x y : \u2124, x * (a : \u2124) + y * (b : \u2124) = 1 := by\n  use a.gcdA b, a.gcdB b\n  have h\u2081 := Nat.gcd_eq_gcd_ab a b\n  simp_all [Int.ofNat_mul, Int.ofNat_add]\n  <;> ring_nf\n  <;> omega",
+        "custom_id": "int_bezout_of_coprime_24",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.17001795768737793,
+            "custom_id": "int_bezout_of_coprime_24"
+        }
+    },
+    {
+        "name": "int_bezout_of_coprime",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_bezout_of_coprime (a b : \u2115) (hc : Nat.Coprime a b) : \u2203 x y : \u2124, x * (a : \u2124) + y * (b : \u2124) = 1 := by\n  use a.gcdA b, a.gcdB b\n  rw [\u2190 Nat.gcd_eq_gcd_ab]\n  <;> simp [hc]\n  <;> norm_cast\n  <;> simp [Nat.gcd_eq_right]\n  <;> linarith",
+        "custom_id": "int_bezout_of_coprime_25",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 25
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  \u2191?x * ?x.gcdA ?y + \u2191?y * ?x.gcdB ?y\ncase h\na b : \u2115\nhc : a.Coprime b\n\u22a2 a.gcdA b * \u2191a + a.gcdB b * \u2191b = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.01766681671142578,
+            "custom_id": "int_bezout_of_coprime_25"
+        }
+    },
+    {
+        "name": "int_bezout_of_coprime",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_bezout_of_coprime (a b : \u2115) (hc : Nat.Coprime a b) : \u2203 x y : \u2124, x * (a : \u2124) + y * (b : \u2124) = 1 := by\n  use a.gcdA b, a.gcdB b\n  have h := Nat.gcd_eq_gcd_ab a b\n  norm_cast at h \u22a2\n  <;> simp_all [Nat.coprime_iff_gcd_eq_one]\n  <;> linarith",
+        "custom_id": "int_bezout_of_coprime_26",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.3590543270111084,
+            "custom_id": "int_bezout_of_coprime_26"
+        }
+    },
+    {
+        "name": "int_bezout_of_coprime",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_bezout_of_coprime (a b : \u2115) (hc : Nat.Coprime a b) : \u2203 x y : \u2124, x * (a : \u2124) + y * (b : \u2124) = 1 := by\n  use Nat.gcdA a b, Nat.gcdB a b\n  have h\u2081 := Nat.gcd_eq_gcd_ab a b\n  have h\u2082 : (Nat.gcd a b : \u2124) = 1 := by\n    rw [Nat.coprime_iff_gcd_eq_one] at hc\n    exact_mod_cast hc\n  simp_all\n  <;> norm_cast\n  <;> linarith",
+        "custom_id": "int_bezout_of_coprime_27",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2082`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.3954322338104248,
+            "custom_id": "int_bezout_of_coprime_27"
+        }
+    },
+    {
+        "name": "int_bezout_of_coprime",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_bezout_of_coprime (a b : \u2115) (hc : Nat.Coprime a b) : \u2203 x y : \u2124, x * (a : \u2124) + y * (b : \u2124) = 1 := by\n  use Nat.gcdA a b, Nat.gcdB a b\n  have h\u2081 := Nat.gcd_eq_gcd_ab a b\n  simp_all [Nat.coprime_iff_gcd_eq_one]\n  <;> norm_cast\n  <;> linarith",
+        "custom_id": "int_bezout_of_coprime_28",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.29215097427368164,
+            "custom_id": "int_bezout_of_coprime_28"
+        }
+    },
+    {
+        "name": "int_bezout_of_coprime",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_bezout_of_coprime (a b : \u2115) (hc : Nat.Coprime a b) : \u2203 x y : \u2124, x * (a : \u2124) + y * (b : \u2124) = 1 := by\n  use a.gcdA b, a.gcdB b\n  have h := Nat.gcd_eq_gcd_ab a b\n  norm_cast at h \u22a2\n  <;> simp_all [Nat.Coprime, Nat.gcd_eq_right]\n  <;> linarith",
+        "custom_id": "int_bezout_of_coprime_29",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.38488006591796875,
+            "custom_id": "int_bezout_of_coprime_29"
+        }
+    },
+    {
+        "name": "int_bezout_of_coprime",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_bezout_of_coprime (a b : \u2115) (hc : Nat.Coprime a b) : \u2203 x y : \u2124, x * (a : \u2124) + y * (b : \u2124) = 1 := by\n  use a.gcdA b, a.gcdB b\n  have h := Nat.gcd_eq_gcd_ab a b\n  simp_all [Int.gcd]\n  <;> norm_cast\n  <;> linarith",
+        "custom_id": "int_bezout_of_coprime_30",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.3057432174682617,
+            "custom_id": "int_bezout_of_coprime_30"
+        }
+    },
+    {
+        "name": "int_bezout_of_coprime",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_bezout_of_coprime (a b : \u2115) (hc : Nat.Coprime a b) : \u2203 x y : \u2124, x * (a : \u2124) + y * (b : \u2124) = 1 := by\n  obtain \u27e8x, y, h\u27e9 := Nat.Coprime.int_gcd_eq_one hc\n  use x, y\n  <;> simp_all\n  <;> ring_nf at h \u22a2\n  <;> simp_all\n  <;> linarith",
+        "custom_id": "int_bezout_of_coprime_31",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 22
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 51
+                    },
+                    "data": "unknown constant 'Nat.Coprime.int_gcd_eq_one'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 18
+                    },
+                    "data": "rcases tactic failed: x\u271d : ?m.258 is not an inductive datatype"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.012151956558227539,
+            "custom_id": "int_bezout_of_coprime_31"
+        }
+    },
+    {
+        "name": "int_mul_dvd_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_mul_dvd_of_dvd (d : \u2124) {t : \u2124} (h : d \u2223 t) (y : \u2124) : d \u2223 y * t := by\n  obtain \u27e8k, hk\u27e9 := h\n  rw [hk]\n  exact \u27e8y * k, by ring\u27e9",
+        "custom_id": "int_mul_dvd_of_dvd_32",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.02503228187561035,
+            "custom_id": "int_mul_dvd_of_dvd_32"
+        }
+    },
+    {
+        "name": "int_mul_dvd_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_mul_dvd_of_dvd (d : \u2124) {t : \u2124} (h : d \u2223 t) (y : \u2124) : d \u2223 y * t := by\n  exact dvd_mul_of_dvd_right h y",
+        "custom_id": "int_mul_dvd_of_dvd_33",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.016814231872558594,
+            "custom_id": "int_mul_dvd_of_dvd_33"
+        }
+    },
+    {
+        "name": "int_mul_dvd_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_mul_dvd_of_dvd (d : \u2124) {t : \u2124} (h : d \u2223 t) (y : \u2124) : d \u2223 y * t := by\n  obtain \u27e8k, rfl\u27e9 := h\n  use y * k\n  <;> ring\n  <;> simp [mul_assoc, mul_comm, mul_left_comm]\n  <;> aesop\n  <;> omega\n  <;> linarith\n  <;> nlinarith",
+        "custom_id": "int_mul_dvd_of_dvd_34",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 47
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.027883291244506836,
+            "custom_id": "int_mul_dvd_of_dvd_34"
+        }
+    },
+    {
+        "name": "int_mul_dvd_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_mul_dvd_of_dvd (d : \u2124) {t : \u2124} (h : d \u2223 t) (y : \u2124) : d \u2223 y * t := by\n  cases' h with k hk\n  use y * k\n  <;> simp [hk, mul_assoc, mul_comm, mul_left_comm]",
+        "custom_id": "int_mul_dvd_of_dvd_35",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.031575918197631836,
+            "custom_id": "int_mul_dvd_of_dvd_35"
+        }
+    },
+    {
+        "name": "int_mul_dvd_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_mul_dvd_of_dvd (d : \u2124) {t : \u2124} (h : d \u2223 t) (y : \u2124) : d \u2223 y * t := by\n  exact dvd_mul_of_dvd_right h y",
+        "custom_id": "int_mul_dvd_of_dvd_36",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.011026620864868164,
+            "custom_id": "int_mul_dvd_of_dvd_36"
+        }
+    },
+    {
+        "name": "int_mul_dvd_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_mul_dvd_of_dvd (d : \u2124) {t : \u2124} (h : d \u2223 t) (y : \u2124) : d \u2223 y * t := by\n  obtain \u27e8k, hk\u27e9 := h\n  use y * k\n  rw [hk]\n  <;> ring\n  <;> simp [mul_comm, mul_assoc, mul_left_comm]\n  <;> simp_all\n  <;> ring\n  <;> simp [mul_comm, mul_assoc, mul_left_comm]\n  <;> simp_all\n  <;> ring\n  <;> simp [mul_comm, mul_assoc, mul_left_comm]\n  <;> simp_all\n  <;> ring\n  <;> simp [mul_comm, mul_assoc, mul_left_comm]\n  <;> simp_all",
+        "custom_id": "int_mul_dvd_of_dvd_37",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 47
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 47
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 17,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 47
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 19,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 20,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 47
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 21,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03157639503479004,
+            "custom_id": "int_mul_dvd_of_dvd_37"
+        }
+    },
+    {
+        "name": "int_mul_dvd_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_mul_dvd_of_dvd (d : \u2124) {t : \u2124} (h : d \u2223 t) (y : \u2124) : d \u2223 y * t := by\n  exact dvd_mul_of_dvd_right h y\n  <;> assumption\n  <;> simp_all\n  <;> omega",
+        "custom_id": "int_mul_dvd_of_dvd_38",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 16
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.010985136032104492,
+            "custom_id": "int_mul_dvd_of_dvd_38"
+        }
+    },
+    {
+        "name": "int_mul_dvd_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_mul_dvd_of_dvd (d : \u2124) {t : \u2124} (h : d \u2223 t) (y : \u2124) : d \u2223 y * t := by\n  exact dvd_mul_of_dvd_right h y",
+        "custom_id": "int_mul_dvd_of_dvd_39",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.010592937469482422,
+            "custom_id": "int_mul_dvd_of_dvd_39"
+        }
+    },
+    {
+        "name": "int_mul_dvd_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_mul_dvd_of_dvd (d : \u2124) {t : \u2124} (h : d \u2223 t) (y : \u2124) : d \u2223 y * t := by\n  obtain \u27e8k, rfl\u27e9 := h\n  use y * k\n  <;> ring",
+        "custom_id": "int_mul_dvd_of_dvd_40",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.019249677658081055,
+            "custom_id": "int_mul_dvd_of_dvd_40"
+        }
+    },
+    {
+        "name": "int_mul_dvd_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_mul_dvd_of_dvd (d : \u2124) {t : \u2124} (h : d \u2223 t) (y : \u2124) : d \u2223 y * t := by\n  have h2 : d \u2223 y * t := by\n    cases' h with k hk\n    use y * k\n    rw [hk]\n    ring\n  exact h2",
+        "custom_id": "int_mul_dvd_of_dvd_41",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.02635025978088379,
+            "custom_id": "int_mul_dvd_of_dvd_41"
+        }
+    },
+    {
+        "name": "int_mul_dvd_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_mul_dvd_of_dvd (d : \u2124) {t : \u2124} (h : d \u2223 t) (y : \u2124) : d \u2223 y * t := by\n  obtain \u27e8k, rfl\u27e9 := h\n  -- We express t as d * k, where k is an integer.\n  use y * k\n  -- We need to show that d divides y * t. Since t = d * k, we have y * t = y * (d * k) = d * (y * k).\n  ring\n  -- Simplifying, we see that y * t = d * (y * k), which is clearly divisible by d.\n  <;> simp [mul_assoc, mul_comm, mul_left_comm]\n  -- This confirms that d divides y * t.\n  <;> omega",
+        "custom_id": "int_mul_dvd_of_dvd_42",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 47
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.026081323623657227,
+            "custom_id": "int_mul_dvd_of_dvd_42"
+        }
+    },
+    {
+        "name": "int_mul_dvd_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_mul_dvd_of_dvd (d : \u2124) {t : \u2124} (h : d \u2223 t) (y : \u2124) : d \u2223 y * t := by\n  obtain \u27e8k, rfl\u27e9 := h\n  -- We have t = d * k for some integer k because d divides t.\n  exact \u27e8y * k, by ring\u27e9\n  -- Therefore, y * t = y * (d * k) = d * (y * k), which shows that d divides y * t.\n  <;> simp [mul_assoc, mul_comm, mul_left_comm]\n  -- Simplify the expression to show that y * t = d * (y * k), confirming that d divides y * t.\n  <;> omega",
+        "custom_id": "int_mul_dvd_of_dvd_43",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 47
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.021100997924804688,
+            "custom_id": "int_mul_dvd_of_dvd_43"
+        }
+    },
+    {
+        "name": "int_mul_dvd_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_mul_dvd_of_dvd (d : \u2124) {t : \u2124} (h : d \u2223 t) (y : \u2124) : d \u2223 y * t := by\n  cases' h with k hk\n  use y * k\n  simp [hk, mul_assoc, mul_comm, mul_left_comm]",
+        "custom_id": "int_mul_dvd_of_dvd_44",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03575491905212402,
+            "custom_id": "int_mul_dvd_of_dvd_44"
+        }
+    },
+    {
+        "name": "int_mul_dvd_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_mul_dvd_of_dvd (d : \u2124) {t : \u2124} (h : d \u2223 t) (y : \u2124) : d \u2223 y * t := by\n  obtain \u27e8k, rfl\u27e9 := h\n  use y * k\n  <;> ring",
+        "custom_id": "int_mul_dvd_of_dvd_45",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.025147199630737305,
+            "custom_id": "int_mul_dvd_of_dvd_45"
+        }
+    },
+    {
+        "name": "int_mul_dvd_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_mul_dvd_of_dvd (d : \u2124) {t : \u2124} (h : d \u2223 t) (y : \u2124) : d \u2223 y * t := by\n  obtain \u27e8k, rfl\u27e9 := h\n  use y * k\n  <;> ring\n  <;> simp [mul_assoc, mul_comm, mul_left_comm]\n  <;> omega",
+        "custom_id": "int_mul_dvd_of_dvd_46",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 47
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03750348091125488,
+            "custom_id": "int_mul_dvd_of_dvd_46"
+        }
+    },
+    {
+        "name": "int_mul_dvd_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_mul_dvd_of_dvd (d : \u2124) {t : \u2124} (h : d \u2223 t) (y : \u2124) : d \u2223 y * t := by\n  obtain \u27e8k, hk\u27e9 := h\n  use y * k\n  rw [hk]\n  ring",
+        "custom_id": "int_mul_dvd_of_dvd_47",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.023331880569458008,
+            "custom_id": "int_mul_dvd_of_dvd_47"
+        }
+    },
+    {
+        "name": "int_dvd_add_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_add_of_dvd (d : \u2124) {x y : \u2124} (hdx : d \u2223 x) (hdy : d \u2223 y) : d \u2223 (x + y) := by\n  obtain \u27e8k, rfl\u27e9 := hdx\n  obtain \u27e8l, rfl\u27e9 := hdy\n  -- We need to show that d divides x + y.\n  -- Given that d divides x and y, we can write x = d * k and y = d * l for some integers k and l.\n  -- Therefore, x + y = d * k + d * l = d * (k + l).\n  -- This shows that x + y is a multiple of d, hence d divides x + y.\n  exact \u27e8k + l, by ring\u27e9",
+        "custom_id": "int_dvd_add_of_dvd_48",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.02300548553466797,
+            "custom_id": "int_dvd_add_of_dvd_48"
+        }
+    },
+    {
+        "name": "int_dvd_add_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_add_of_dvd (d : \u2124) {x y : \u2124} (hdx : d \u2223 x) (hdy : d \u2223 y) : d \u2223 (x + y) := by\n  obtain \u27e8a, rfl\u27e9 := hdx\n  obtain \u27e8b, rfl\u27e9 := hdy\n  apply Int.dvd_of_emod_eq_zero\n  simp [Int.add_emod, Int.mul_emod, Int.emod_emod]",
+        "custom_id": "int_dvd_add_of_dvd_49",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.041802406311035156,
+            "custom_id": "int_dvd_add_of_dvd_49"
+        }
+    },
+    {
+        "name": "int_dvd_add_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_add_of_dvd (d : \u2124) {x y : \u2124} (hdx : d \u2223 x) (hdy : d \u2223 y) : d \u2223 (x + y) := by\n  cases' hdx with k hk\n  cases' hdy with l hl\n  use k + l\n  rw [hk, hl]\n  ring\n  <;> simp_all\n  <;> ring\n  <;> omega",
+        "custom_id": "int_dvd_add_of_dvd_50",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.028461694717407227,
+            "custom_id": "int_dvd_add_of_dvd_50"
+        }
+    },
+    {
+        "name": "int_dvd_add_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_add_of_dvd (d : \u2124) {x y : \u2124} (hdx : d \u2223 x) (hdy : d \u2223 y) : d \u2223 (x + y) := by\n  exact dvd_add hdx hdy",
+        "custom_id": "int_dvd_add_of_dvd_51",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.015755176544189453,
+            "custom_id": "int_dvd_add_of_dvd_51"
+        }
+    },
+    {
+        "name": "int_dvd_add_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_add_of_dvd (d : \u2124) {x y : \u2124} (hdx : d \u2223 x) (hdy : d \u2223 y) : d \u2223 (x + y) := by\n  exact dvd_add hdx hdy",
+        "custom_id": "int_dvd_add_of_dvd_52",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.013536691665649414,
+            "custom_id": "int_dvd_add_of_dvd_52"
+        }
+    },
+    {
+        "name": "int_dvd_add_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_add_of_dvd (d : \u2124) {x y : \u2124} (hdx : d \u2223 x) (hdy : d \u2223 y) : d \u2223 (x + y) := by\n  obtain \u27e8k, rfl\u27e9 := hdx\n  obtain \u27e8l, rfl\u27e9 := hdy\n  -- We need to show that d divides x + y.\n  -- Given that d divides x and y, we can write x = d * k and y = d * l for some integers k and l.\n  -- Then x + y = d * k + d * l = d * (k + l).\n  -- Since k + l is an integer, d * (k + l) is an integer multiple of d, hence d divides x + y.\n  exact \u27e8k + l, by ring\u27e9",
+        "custom_id": "int_dvd_add_of_dvd_53",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.024113893508911133,
+            "custom_id": "int_dvd_add_of_dvd_53"
+        }
+    },
+    {
+        "name": "int_dvd_add_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_add_of_dvd (d : \u2124) {x y : \u2124} (hdx : d \u2223 x) (hdy : d \u2223 y) : d \u2223 (x + y) := by\n  obtain \u27e8k, rfl\u27e9 := hdx\n  obtain \u27e8l, rfl\u27e9 := hdy\n  apply Dvd.intro (k + l)\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring",
+        "custom_id": "int_dvd_add_of_dvd_54",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 17,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 19,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 20,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 21,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 22,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 23,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 24,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 25,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 26,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 27,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 27,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 28,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 28,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 29,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 29,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 30,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 30,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 31,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 31,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 32,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 32,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 33,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 33,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 34,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 34,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 35,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 35,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 36,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 36,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 37,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 37,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 38,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 38,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 39,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 39,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 40,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 40,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 41,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 41,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 42,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 42,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 43,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 43,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 44,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 44,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 45,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 45,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 46,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 46,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 47,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 47,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 48,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 48,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 49,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 49,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 50,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 50,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 51,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 51,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 52,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 52,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 53,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 53,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 54,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 54,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.15658807754516602,
+            "custom_id": "int_dvd_add_of_dvd_54"
+        }
+    },
+    {
+        "name": "int_dvd_add_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_add_of_dvd (d : \u2124) {x y : \u2124} (hdx : d \u2223 x) (hdy : d \u2223 y) : d \u2223 (x + y) := by\n  exact dvd_add hdx hdy",
+        "custom_id": "int_dvd_add_of_dvd_55",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.015123128890991211,
+            "custom_id": "int_dvd_add_of_dvd_55"
+        }
+    },
+    {
+        "name": "int_dvd_add_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_add_of_dvd (d : \u2124) {x y : \u2124} (hdx : d \u2223 x) (hdy : d \u2223 y) : d \u2223 (x + y) := by\n  exact dvd_add hdx hdy",
+        "custom_id": "int_dvd_add_of_dvd_56",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.013855218887329102,
+            "custom_id": "int_dvd_add_of_dvd_56"
+        }
+    },
+    {
+        "name": "int_dvd_add_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_add_of_dvd (d : \u2124) {x y : \u2124} (hdx : d \u2223 x) (hdy : d \u2223 y) : d \u2223 (x + y) := by\n  cases' hdx with k hk\n  cases' hdy with l hl\n  -- We need to find an integer m such that x + y = d * m.\n  -- By the properties of divisibility, we can write x = d * k and y = d * l for some integers k and l.\n  -- Adding these two equations gives x + y = d * k + d * l = d * (k + l).\n  -- Let m = k + l, then x + y = d * m, which means d divides x + y.\n  use k + l\n  rw [hk, hl]\n  ring",
+        "custom_id": "int_dvd_add_of_dvd_57",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.027924299240112305,
+            "custom_id": "int_dvd_add_of_dvd_57"
+        }
+    },
+    {
+        "name": "int_dvd_add_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_add_of_dvd (d : \u2124) {x y : \u2124} (hdx : d \u2223 x) (hdy : d \u2223 y) : d \u2223 (x + y) := by\n  exact dvd_add hdx hdy",
+        "custom_id": "int_dvd_add_of_dvd_58",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.016376256942749023,
+            "custom_id": "int_dvd_add_of_dvd_58"
+        }
+    },
+    {
+        "name": "int_dvd_add_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_add_of_dvd (d : \u2124) {x y : \u2124} (hdx : d \u2223 x) (hdy : d \u2223 y) : d \u2223 (x + y) := by\n  exact Int.dvd_add hdx hdy\n  <;> assumption\n  <;> simp_all [Int.dvd_iff_emod_eq_zero]\n  <;> omega",
+        "custom_id": "int_dvd_add_of_dvd_59",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 16
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 41
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.012312173843383789,
+            "custom_id": "int_dvd_add_of_dvd_59"
+        }
+    },
+    {
+        "name": "int_dvd_add_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_add_of_dvd (d : \u2124) {x y : \u2124} (hdx : d \u2223 x) (hdy : d \u2223 y) : d \u2223 (x + y) := by\n  exact dvd_add hdx hdy",
+        "custom_id": "int_dvd_add_of_dvd_60",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.013735055923461914,
+            "custom_id": "int_dvd_add_of_dvd_60"
+        }
+    },
+    {
+        "name": "int_dvd_add_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_add_of_dvd (d : \u2124) {x y : \u2124} (hdx : d \u2223 x) (hdy : d \u2223 y) : d \u2223 (x + y) := by\n  exact dvd_add hdx hdy",
+        "custom_id": "int_dvd_add_of_dvd_61",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.01768803596496582,
+            "custom_id": "int_dvd_add_of_dvd_61"
+        }
+    },
+    {
+        "name": "int_dvd_add_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_add_of_dvd (d : \u2124) {x y : \u2124} (hdx : d \u2223 x) (hdy : d \u2223 y) : d \u2223 (x + y) := by\n  obtain \u27e8k, rfl\u27e9 := hdx\n  obtain \u27e8m, rfl\u27e9 := hdy\n  -- We now have x = d * k and y = d * m for some integers k and m.\n  -- We need to show that d divides x + y.\n  use k + m\n  -- Substitute the expressions for x and y into x + y.\n  ring\n  -- Simplify the expression to show that x + y = d * (k + m).\n  <;> simp [mul_add, add_mul, mul_comm, mul_left_comm]\n  -- This confirms that x + y is indeed a multiple of d, hence d divides x + y.\n  <;> linarith",
+        "custom_id": "int_dvd_add_of_dvd_62",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 17,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.0255124568939209,
+            "custom_id": "int_dvd_add_of_dvd_62"
+        }
+    },
+    {
+        "name": "int_dvd_add_of_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_add_of_dvd (d : \u2124) {x y : \u2124} (hdx : d \u2223 x) (hdy : d \u2223 y) : d \u2223 (x + y) := by\n  obtain \u27e8a, rfl\u27e9 := hdx\n  obtain \u27e8b, rfl\u27e9 := hdy\n  simp [mul_add]\n  <;> exact \u27e8a + b, by ring\u27e9",
+        "custom_id": "int_dvd_add_of_dvd_63",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 16
+                    },
+                    "data": "simp made no progress"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.03153371810913086,
+            "custom_id": "int_dvd_add_of_dvd_63"
+        }
+    }
+]

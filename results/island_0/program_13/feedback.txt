@@ -1,0 +1,63 @@
+---------
+lemma decomposition_of_diff
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0) :
+  ∀ k : ℕ, ∃ (u r : ℕ),
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+Failure mode: HARD
+Recommendation: Decompose the goal into a “2-adic factorization” pipeline on the natural number `A := Int.natAbs ((m k : ℤ) - (n k : ℤ))`.
+1) Lemma (natAbs_pos): If `z ≠ 0` then `0 < Int.natAbs z`.
+2) Lemma (exists_pow_two_mul_odd_for_pos_nat): For any `A : ℕ` with `0 < A`, there exist `u r : ℕ` such that `A = 2^u * r`, `r` is odd (`r % 2 = 1`), and `0 < r`.
+3) Lemma (specialize_to_diff): Apply (1) to `z = (m k : ℤ) - (n k : ℤ)` using `hΔ k`, then apply (2) to `A = Int.natAbs z`, producing the required `u r` and properties.
+---------
+
+---------
+lemma odd_part_noninc_step
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∀ k u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 ≤ r1 := by
+Failure mode: HARD
+Recommendation: The statement is plausibly true, but it hides the key arithmetic invariant (how `(m,n)` updates via dividing by the gcd) and the connection between “odd parts” across steps. Prove it via explicit intermediate lemmas that expose those invariants.
+1) Lemma (succ_is_reduced_gcd_quotient): Let `d = gcd(2*m k + 1, 2*n k + 1)`. Using `h_recurrence` and `Nat.Coprime (m (k+1)) (n (k+1))` (from `h_coprime (k+1)`), show
+   - `m (k+1) = (2*m k + 1) / d` and `n (k+1) = (2*n k + 1) / d`.
+2) Lemma (diff_update): With the same `d`, show the integer difference satisfies
+   - `(m (k+1) : ℤ) - (n (k+1) : ℤ) = (2 * ((m k : ℤ) - (n k : ℤ))) / d`
+   in a form compatible with `Int.natAbs` (often via divisibility and rewriting `natAbs` of a quotient).
+3) Lemma (d_odd_and_dvd_diff): Show `d` is odd and `(d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))`. (This is essentially your earlier “Step 3”.)
+4) Lemma (odd_factor_divides_odd_part): If `A = 2^u * r` with `r` odd, and `d` is odd with `d ∣ A`, then `d ∣ r`.
+5) Lemma (odd_part_monotone_under_division): If `A = 2^u * r` with `r` odd, `d` odd, and `d ∣ r`, and `B = A / d` has decomposition `B = 2^u' * r'` with `r'` odd, then `r' ≤ r`.
+6) Lemma (conclude_r2_le_r1): Combine (1)–(5) with the provided decompositions at `k` and `k+1` to deduce `r2 ≤ r1`.
+(If possible, simplify the entire approach by replacing arbitrary decompositions with a canonical “odd part” function, then prove `oddPart (Δ_{k+1}) ≤ oddPart (Δ_k)` directly and derive the decomposition-based inequality as a corollary.)
+---------
+
+---------
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by
+Failure mode: HARD
+Recommendation: This is the strict version of the previous lemma; the missing ingredient is turning `¬Coprime(...)` into a nontrivial odd divisor that actually divides the odd part, then showing division by a nontrivial factor strictly reduces a positive natural.
+1) Lemma (nontrivial_gcd_of_not_coprime): Let `d = gcd(2*m k + 1, 2*n k + 1)`. From `hbad`, prove `1 < d`.
+2) Lemma (reuse_succ_is_reduced_gcd_quotient): As above, obtain `m (k+1) = (2*m k + 1)/d` and `n (k+1) = (2*n k + 1)/d`.
+3) Lemma (reuse_d_odd_and_dvd_diff): Prove `d` is odd and `(d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))`.
+4) Lemma (odd_divisor_hits_odd_part): Using the decomposition `natAbs(Δ_k) = 2^u1 * r1` with `r1` odd, deduce `d ∣ r1`.
+5) Lemma (strict_drop_under_division): If `0 < r1` and `1 < d` and `d ∣ r1`, then `r1 / d < r1`.
+6) Lemma (identify_or_bound_r2): Show the odd part `r2` of `Δ_{k+1}` is equal to (or at least ≤) `r1 / d` using the explicit `Δ_{k+1}` formula and the fact that multiplying by `2` does not change the odd part.
+7) Lemma (conclude_r2_lt_r1): Combine (5) and (6) to get `r2 < r1`.
+(Again, a cleaner strategy is to define `t k := oddPart (Int.natAbs (Δ_k))` canonically, then prove `hbad → t (k+1) < t k`; your decomposition-based statement can follow from uniqueness of the odd-part decomposition.)
+---------

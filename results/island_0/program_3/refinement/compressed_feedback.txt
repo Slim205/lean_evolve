@@ -1,0 +1,14 @@
+lemma exists_odd_measure
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∃ (t : ℕ → ℕ),
+    (∀ k : ℕ, 0 < t k) ∧
+    (∀ k : ℕ, t (k + 1) ≤ t k) ∧
+    (∀ k : ℕ, (¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) → t (k + 1) < t k) := by
+Failure mode: INCORRECT
+Recommendation: As stated, the premises are too weak: the recurrence only constrains the *ratio* in ℚ, so you can rescale \((m(k+1), n(k+1))\) by arbitrary large factors without breaking the recurrence. That freedom can make any “difference-derived” measure (or any measure forced to strictly drop on some bad steps) fail to be globally nonincreasing or fail to strictly decrease when “bad” happens. To fix this, strengthen the hypotheses so that \((m(k+1), n(k+1))\) is the reduced form of \((2m k+1, 2n k+1)\), e.g. assume a normalization lemma like:
+- \(m(k+1) = (2 m k + 1)/d\) and \(n(k+1) = (2 n k + 1)/d\) where \(d = \gcd(2 m k + 1, 2 n k + 1)\),
+and/or assume \(Nat.Coprime (m (k+1)) (n (k+1))\).
+Then you can *define* \(t(k)\) explicitly (e.g. via the odd part of \(|m k - n k|\)) and prove the three required properties, rather than postulating an abstract existence from just the ratio recurrence.

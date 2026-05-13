@@ -1,0 +1,43 @@
+Pruned Lemmas : 
+
+lemma cross_mul_of_recurrence
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  (m (k + 1) * (2 * n k + 1) : ℤ) = (n (k + 1) * (2 * m k + 1) : ℤ) := by
+lemma euclid_coprime_mul_eq {a b x y : ℕ} (hcop : Nat.Coprime a b)
+  (h : (a * x : ℕ) = b * y) :
+  a ∣ y ∧ b ∣ x := by
+lemma gcd_odd_and_dvd_diff
+  (m n : ℕ → ℕ)
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  d % 2 = 1 ∧ ((d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) := by
+lemma oddPart_measure_pos
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0) :
+  ∀ k : ℕ,
+    0 < Int.natAbs ((m k : ℤ) - (n k : ℤ)) := by
+lemma oddPart_strict_decrease_of_not_coprime
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) <
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) := by
+lemma strict_drop_gives_pred (t : ℕ → ℕ) (k : ℕ) :
+  t (k + 1) < t k → t (k + 1) ≤ t k - 1 := by
+lemma strict_drop_gives_pred_aux (t : ℕ → ℕ) (k : ℕ) :
+  t (k + 1) < t k → t (k + 1) ≤ t k - 1 := by
+lemma one_step_drop_consumes_budget (t : ℕ → ℕ) (k : ℕ) :
+  t (k + 1) ≤ t k - 1 → t (k + 1) + 1 ≤ t k := by
+lemma drop_consumes_one (t : ℕ → ℕ) (k : ℕ) :
+  t (k + 1) < t k → t (k + 1) + 1 ≤ t k := by
+lemma range_filter_simplification (t : ℕ → ℕ) (K : ℕ) :
+  (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card =
+    (Finset.filter (fun i => t (i + 1) < t i) (Finset.range K)).card := by

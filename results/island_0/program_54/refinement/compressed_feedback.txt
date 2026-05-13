@@ -1,0 +1,16 @@
+lemma pow_divides_of_coprime_left {p q : ℕ} {x y : ℕ}
+  (hc : Nat.Coprime ((2 : ℕ) ^ p) x)
+  (hdiv : ((2 : ℕ) ^ p) ∣ ((2 : ℕ) ^ q * y)) : ((2 : ℕ) ^ p) ∣ ((2 : ℕ) ^ q) := by
+Failure mode: INCORRECT
+Recommendation: This statement is false: take `p=1, q=0, x=1, y=2`. Then `Coprime (2^1) 1` holds and `2 ∣ 1*2` holds, but `2 ∣ 1` is false. The “coprime cancellation from a product” lemma applies when the coprime factor is coprime to the *other* multiplicand. Revise to something like:
+1) if `Nat.Coprime ((2^p)) y` and `(2^p) ∣ (2^q * y)` then `(2^p) ∣ (2^q)`;
+or alternatively keep `Coprime ((2^p)) x` but change the divisibility hypothesis to `(2^p) ∣ (2^q * x)` (so you can cancel `x`).
+---------
+lemma le_of_mul_eq_left (p q x y : ℕ)
+  (h : (2 : ℕ) ^ p * x = (2 : ℕ) ^ q * y) (hx_odd : x % 2 = 1) :
+  p ≤ q := by
+Failure mode: INCORRECT
+Recommendation: The direction is wrong (and it’s also missing hypotheses). Counterexample: `p=1, q=0, x=1` (odd), `y=2` satisfies `2^1*1 = 2^0*2`, but `1 ≤ 0` is false. From “`x` is odd” you can only conclude `q ≤ p` (since `v₂(2^p*x)=p` while `v₂(2^q*y)=q+v₂(y) ≥ q`). To get `p ≤ q` you’d need `y` odd instead. Fix by changing the statement to either:
+- `hx_odd : x % 2 = 1 → q ≤ p`, or
+- add `hy_odd : y % 2 = 1` and conclude `p = q` (or conclude `p ≤ q` from `hy_odd`).
+This will align with the later use in `pow_mul_odd_eq_pow_mul_odd`, where both sides are intended to be odd parts.

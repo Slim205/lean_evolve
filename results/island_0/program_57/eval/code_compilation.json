@@ -1,0 +1,569 @@
+[
+    {
+        "name": "noncoprime_gcd_gt_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem noncoprime_gcd_gt_one {a b : \u2115} (h : \u00ac Nat.Coprime a b) (ha : 0 < a) (hb : 0 < b) :\n  1 < Nat.gcd a b := by\n  have h1 : Nat.gcd a b \u2260 1 := by\n    intro h2\n    apply h\n    rw [Nat.coprime_iff_gcd_eq_one]\n    exact h2\n  have h2 : Nat.gcd a b > 0 := Nat.gcd_pos_of_pos_left b ha\n  contrapose! h1\n  interval_cases Nat.gcd a b <;> simp_all (config := {decide := true})",
+        "custom_id": "noncoprime_gcd_gt_one_0",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 6,
+                        "column": 78
+                    },
+                    "endPos": {
+                        "line": 6,
+                        "column": 80
+                    },
+                    "data": "unused variable `hb`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 29
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 32
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.10400199890136719,
+            "custom_id": "noncoprime_gcd_gt_one_0"
+        }
+    },
+    {
+        "name": "noncoprime_gcd_gt_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem noncoprime_gcd_gt_one {a b : \u2115} (h : \u00ac Nat.Coprime a b) (ha : 0 < a) (hb : 0 < b) :\n  1 < Nat.gcd a b := by\n  have h\u2081 : 0 < Nat.gcd a b := Nat.gcd_pos_of_pos_left b ha\n  have h\u2082 : \u00acNat.Coprime a b := h\n  rw [Nat.coprime_iff_gcd_eq_one] at h\u2082\n  omega",
+        "custom_id": "noncoprime_gcd_gt_one_1",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 6,
+                        "column": 78
+                    },
+                    "endPos": {
+                        "line": 6,
+                        "column": 80
+                    },
+                    "data": "unused variable `hb`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03220057487487793,
+            "custom_id": "noncoprime_gcd_gt_one_1"
+        }
+    },
+    {
+        "name": "noncoprime_gcd_gt_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem noncoprime_gcd_gt_one {a b : \u2115} (h : \u00ac Nat.Coprime a b) (ha : 0 < a) (hb : 0 < b) :\n  1 < Nat.gcd a b := by\n  by_contra hc\n  have h\u2081 : Nat.gcd a b = 0 \u2228 Nat.gcd a b = 1 := by\n    omega\n  cases h\u2081 with\n  | inl h\u2081 =>\n    simp_all [Nat.gcd_eq_zero_iff]\n  | inr h\u2081 =>\n    simp_all [Nat.coprime_iff_gcd_eq_one, Nat.gcd_eq_right]\n    <;> omega",
+        "custom_id": "noncoprime_gcd_gt_one_2",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 6,
+                        "column": 78
+                    },
+                    "endPos": {
+                        "line": 6,
+                        "column": 80
+                    },
+                    "data": "unused variable `hb`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 13
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.11517214775085449,
+            "custom_id": "noncoprime_gcd_gt_one_2"
+        }
+    },
+    {
+        "name": "noncoprime_gcd_gt_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem noncoprime_gcd_gt_one {a b : \u2115} (h : \u00ac Nat.Coprime a b) (ha : 0 < a) (hb : 0 < b) :\n  1 < Nat.gcd a b := by\n  have h\u2081 : Nat.gcd a b \u2260 1 := by\n    intro h\u2082\n    apply h\n    simp_all [Nat.coprime_iff_gcd_eq_one]\n  have h\u2082 : 0 < Nat.gcd a b := Nat.gcd_pos_of_pos_left b ha\n  contrapose! h\u2081\n  interval_cases Nat.gcd a b <;> simp_all (config := {decide := true})\n  <;> omega",
+        "custom_id": "noncoprime_gcd_gt_one_3",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 6,
+                        "column": 78
+                    },
+                    "endPos": {
+                        "line": 6,
+                        "column": 80
+                    },
+                    "data": "unused variable `hb`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 29
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 32
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.0688326358795166,
+            "custom_id": "noncoprime_gcd_gt_one_3"
+        }
+    },
+    {
+        "name": "noncoprime_gcd_gt_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem noncoprime_gcd_gt_one {a b : \u2115} (h : \u00ac Nat.Coprime a b) (ha : 0 < a) (hb : 0 < b) :\n  1 < Nat.gcd a b := by\n  rw [Nat.coprime_iff_gcd_eq_one] at h\n  rw [Nat.gcd_comm] at h\n  -- Use the fact that if gcd(a, b) \u2260 1, then it must be greater than 1.\n  exact Nat.one_lt_iff_ne_zero_and_ne_one.mpr \u27e8Nat.pos_iff_ne_zero.mp (Nat.gcd_pos_of_pos_left b ha), by aesop\u27e9",
+        "custom_id": "noncoprime_gcd_gt_one_4",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 102
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 110
+                    },
+                    "data": "unsolved goals\ncase h\na b : \u2115\nh : \u00acb.gcd a = 1\nha : 0 < a\nhb : 0 < b\na_1 : a.gcd b = 1\n\u22a2 False"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 105
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 110
+                    },
+                    "data": "aesop: failed to prove the goal. Some goals were not explored because the maximum rule application depth (30) was reached. Set option 'maxRuleApplicationDepth' to increase the limit."
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.5634491443634033,
+            "custom_id": "noncoprime_gcd_gt_one_4"
+        }
+    },
+    {
+        "name": "noncoprime_gcd_gt_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem noncoprime_gcd_gt_one {a b : \u2115} (h : \u00ac Nat.Coprime a b) (ha : 0 < a) (hb : 0 < b) :\n  1 < Nat.gcd a b := by\n  have h\u2081 : Nat.gcd a b \u2260 1 := by\n    intro h\u2082\n    apply h\n    rw [Nat.coprime_iff_gcd_eq_one]\n    exact h\u2082\n  apply Nat.one_lt_iff_ne_zero_and_ne_one.mpr\n  constructor\n  \u00b7 apply Nat.pos_iff_ne_zero.mp\n    apply Nat.gcd_pos_of_pos_left\n    exact ha\n  \u00b7 exact h\u2081",
+        "custom_id": "noncoprime_gcd_gt_one_5",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 6,
+                        "column": 78
+                    },
+                    "endPos": {
+                        "line": 6,
+                        "column": 80
+                    },
+                    "data": "unused variable `hb`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.014302492141723633,
+            "custom_id": "noncoprime_gcd_gt_one_5"
+        }
+    },
+    {
+        "name": "noncoprime_gcd_gt_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem noncoprime_gcd_gt_one {a b : \u2115} (h : \u00ac Nat.Coprime a b) (ha : 0 < a) (hb : 0 < b) :\n  1 < Nat.gcd a b := by\n  rw [Nat.coprime_iff_gcd_eq_one] at h\n  -- Use the fact that if a and b are not coprime, then their gcd is greater than 1.\n  cases' Nat.eq_zero_or_pos (Nat.gcd a b) with h\u2080 h\u2080\n  \u00b7 -- If gcd(a, b) = 0, this is a contradiction since gcd is always positive.\n    exfalso\n    simp_all\n  \u00b7 -- If gcd(a, b) > 0, we need to show that gcd(a, b) > 1.\n    contrapose! h\n    -- Use the fact that if gcd(a, b) \u2264 1, then gcd(a, b) = 1, which contradicts the assumption that a and b are not coprime.\n    interval_cases Nat.gcd a b <;> simp_all (config := {decide := true})\n    <;> omega",
+        "custom_id": "noncoprime_gcd_gt_one_6",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 3
+                    },
+                    "data": "unsolved goals\ncase inl\na b : \u2115\nha : 0 < a\nhb : 0 < b\nh\u2080 : a.gcd b = 0\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.09225821495056152,
+            "custom_id": "noncoprime_gcd_gt_one_6"
+        }
+    },
+    {
+        "name": "noncoprime_gcd_gt_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem noncoprime_gcd_gt_one {a b : \u2115} (h : \u00ac Nat.Coprime a b) (ha : 0 < a) (hb : 0 < b) :\n  1 < Nat.gcd a b := by\n  rw [Nat.coprime_iff_gcd_eq_one] at h\n  exact Nat.one_lt_iff_ne_zero_and_ne_one.mpr \u27e8Nat.ne_of_gt (Nat.gcd_pos_of_pos_left b ha), by\n    aesop\u27e9",
+        "custom_id": "noncoprime_gcd_gt_one_7",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.05222344398498535,
+            "custom_id": "noncoprime_gcd_gt_one_7"
+        }
+    },
+    {
+        "name": "noncoprime_gcd_gt_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem noncoprime_gcd_gt_one {a b : \u2115} (h : \u00ac Nat.Coprime a b) (ha : 0 < a) (hb : 0 < b) :\n  1 < Nat.gcd a b := by\n  rw [Nat.coprime_iff_gcd_eq_one] at h\n  -- Use the fact that if gcd(a, b) \u2260 1, then it must be greater than 1.\n  cases' Nat.eq_zero_or_pos (Nat.gcd a b) with h\u2080 h\u2080\n  -- If gcd(a, b) = 0, it's a contradiction because gcd(a, b) >= 1.\n  exfalso\n  simp_all [Nat.gcd_eq_zero_iff]\n  -- If gcd(a, b) > 0, we need to show it's greater than 1.\n  have h\u2081 : 1 < Nat.gcd a b := by\n    contrapose! h\n    interval_cases Nat.gcd a b <;> simp_all (config := {decide := true})\n  exact h\u2081",
+        "custom_id": "noncoprime_gcd_gt_one_8",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 17,
+                        "column": 31
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 34
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.12042856216430664,
+            "custom_id": "noncoprime_gcd_gt_one_8"
+        }
+    },
+    {
+        "name": "noncoprime_gcd_gt_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem noncoprime_gcd_gt_one {a b : \u2115} (h : \u00ac Nat.Coprime a b) (ha : 0 < a) (hb : 0 < b) :\n  1 < Nat.gcd a b := by\n  have h\u2081 : 0 < Nat.gcd a b := Nat.gcd_pos_of_pos_left b ha\n  have h\u2082 : \u00acNat.Coprime a b := h\n  rw [Nat.coprime_iff_gcd_eq_one] at h\u2082\n  omega",
+        "custom_id": "noncoprime_gcd_gt_one_9",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 6,
+                        "column": 78
+                    },
+                    "endPos": {
+                        "line": 6,
+                        "column": 80
+                    },
+                    "data": "unused variable `hb`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03236198425292969,
+            "custom_id": "noncoprime_gcd_gt_one_9"
+        }
+    },
+    {
+        "name": "noncoprime_gcd_gt_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem noncoprime_gcd_gt_one {a b : \u2115} (h : \u00ac Nat.Coprime a b) (ha : 0 < a) (hb : 0 < b) :\n  1 < Nat.gcd a b := by\n  rw [Nat.coprime_iff_gcd_eq_one] at h\n  -- Use the fact that if gcd(a, b) = 1, then a and b are coprime, which contradicts the given condition.\n  cases' Nat.eq_zero_or_pos (Nat.gcd a b) with h\u2080 h\u2080\n  -- If gcd(a, b) = 0, this is a contradiction because gcd(a, b) is always positive for positive a and b.\n  all_goals simp_all [Nat.gcd_eq_zero_iff]\n  -- If gcd(a, b) > 0, then we need to show that gcd(a, b) > 1.\n  <;> omega",
+        "custom_id": "noncoprime_gcd_gt_one_10",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.11360740661621094,
+            "custom_id": "noncoprime_gcd_gt_one_10"
+        }
+    },
+    {
+        "name": "noncoprime_gcd_gt_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem noncoprime_gcd_gt_one {a b : \u2115} (h : \u00ac Nat.Coprime a b) (ha : 0 < a) (hb : 0 < b) :\n  1 < Nat.gcd a b := by\n  have h1 : 0 < Nat.gcd a b := Nat.gcd_pos_of_pos_left b ha\n  have h2 : \u00acNat.Coprime a b := h\n  rw [Nat.coprime_iff_gcd_eq_one] at h2\n  omega",
+        "custom_id": "noncoprime_gcd_gt_one_11",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 6,
+                        "column": 78
+                    },
+                    "endPos": {
+                        "line": 6,
+                        "column": 80
+                    },
+                    "data": "unused variable `hb`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.04800152778625488,
+            "custom_id": "noncoprime_gcd_gt_one_11"
+        }
+    },
+    {
+        "name": "noncoprime_gcd_gt_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem noncoprime_gcd_gt_one {a b : \u2115} (h : \u00ac Nat.Coprime a b) (ha : 0 < a) (hb : 0 < b) :\n  1 < Nat.gcd a b := by\n  by_contra! h\u2081\n  have h\u2082 : Nat.gcd a b = 0 \u2228 Nat.gcd a b = 1 := by omega\n  cases h\u2082 with\n  | inl h\u2082 =>\n    simp_all [Nat.gcd_eq_zero_iff]\n  | inr h\u2082 =>\n    simp_all [Nat.coprime_iff_gcd_eq_one, Nat.gcd_eq_zero_iff]\n  <;> omega",
+        "custom_id": "noncoprime_gcd_gt_one_12",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 6,
+                        "column": 78
+                    },
+                    "endPos": {
+                        "line": 6,
+                        "column": 80
+                    },
+                    "data": "unused variable `hb`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.10419201850891113,
+            "custom_id": "noncoprime_gcd_gt_one_12"
+        }
+    },
+    {
+        "name": "noncoprime_gcd_gt_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem noncoprime_gcd_gt_one {a b : \u2115} (h : \u00ac Nat.Coprime a b) (ha : 0 < a) (hb : 0 < b) :\n  1 < Nat.gcd a b := by\n  rw [Nat.not_coprime_iff_gcd_ne_one] at h\n  have h\u2081 : 0 < Nat.gcd a b := Nat.gcd_pos_of_pos_left b ha\n  contrapose! h\n  interval_cases Nat.gcd a b <;> simp_all (config := {decide := true})",
+        "custom_id": "noncoprime_gcd_gt_one_13",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 36
+                    },
+                    "data": "unknown constant 'Nat.not_coprime_iff_gcd_ne_one'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 36
+                    },
+                    "data": "tactic 'rewrite' failed, equality or iff proof expected\n  ?m.121\na b : \u2115\nh : \u00aca.Coprime b\nha : 0 < a\nhb : 0 < b\n\u22a2 1 < a.gcd b"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.010605096817016602,
+            "custom_id": "noncoprime_gcd_gt_one_13"
+        }
+    },
+    {
+        "name": "noncoprime_gcd_gt_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem noncoprime_gcd_gt_one {a b : \u2115} (h : \u00ac Nat.Coprime a b) (ha : 0 < a) (hb : 0 < b) :\n  1 < Nat.gcd a b := by\n  have h\u2081 : 0 < Nat.gcd a b := Nat.gcd_pos_of_pos_left b ha\n  have h\u2082 : \u00acNat.Coprime a b := h\n  have h\u2083 : Nat.gcd a b \u2260 1 := by\n    intro h\u2084\n    apply h\u2082\n    simpa [h\u2084] using Nat.coprime_iff_gcd_eq_one.mpr\n  omega",
+        "custom_id": "noncoprime_gcd_gt_one_14",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 51
+                    },
+                    "data": "type mismatch\n  h\u271d\nhas type\n  True : Prop\nbut is expected to have type\n  a.Coprime b : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.04153728485107422,
+            "custom_id": "noncoprime_gcd_gt_one_14"
+        }
+    },
+    {
+        "name": "noncoprime_gcd_gt_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem noncoprime_gcd_gt_one {a b : \u2115} (h : \u00ac Nat.Coprime a b) (ha : 0 < a) (hb : 0 < b) :\n  1 < Nat.gcd a b := by\n  have h\u2081 : 1 < Nat.gcd a b := by\n    rw [Nat.not_coprime_iff_gcd_ne_one] at h\n    contrapose! h\n    aesop\n  exact h\u2081",
+        "custom_id": "noncoprime_gcd_gt_one_15",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 38
+                    },
+                    "data": "unknown constant 'Nat.not_coprime_iff_gcd_ne_one'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 38
+                    },
+                    "data": "tactic 'rewrite' failed, equality or iff proof expected\n  ?m.153\na b : \u2115\nh : \u00aca.Coprime b\nha : 0 < a\nhb : 0 < b\n\u22a2 1 < a.gcd b"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.017724990844726562,
+            "custom_id": "noncoprime_gcd_gt_one_15"
+        }
+    }
+]

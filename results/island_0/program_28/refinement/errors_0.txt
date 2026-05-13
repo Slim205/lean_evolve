@@ -1,0 +1,11 @@
+ERROR from position {'line': 55, 'column': 17} to {'line': 55, 'column': 31}:
+unknown identifier 'n_succ_nonzero'
+
+ERROR from position {'line': 668, 'column': 4} to {'line': 668, 'column': 49}:
+type mismatch
+  helper_diff_evolution m n k d rfl hnext
+has type
+  (↑(m (k + 1)) - ↑(n (k + 1))) * ↑d = 2 * (↑(m k) - ↑(n k)) : Prop
+but is expected to have type
+  ↑(m (k + 1)) - ↑(n (k + 1)) = 2 * (↑(m k) - ↑(n k)) / ↑d : Prop
+

@@ -1,0 +1,19 @@
+Failed Lemmas : 
+
+lemma nat_div_eq_of_mul_eq {d m n : ℕ} (h : n = d * m) : n / d = m := by
+lemma pow_mul_odd_eq_pow_mul_odd (p q x y : ℕ)
+  (h : (2 : ℕ) ^ p * x = (2 : ℕ) ^ q * y) (hx_odd : x % 2 = 1) (hy_odd : y % 2 = 1) :
+  p = q ∧ x = y := by
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by

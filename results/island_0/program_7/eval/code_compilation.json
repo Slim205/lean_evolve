@@ -1,0 +1,690 @@
+[
+    {
+        "name": "finite_strict_drops_of_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_strict_drops_of_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  {k : \u2115 | t (k + 1) < t k}.Finite := by\n  apply Set.Finite.subset (Finset.finite_toSet {0})\n  intro k hk\n  simp_all [Set.mem_setOf_eq, Set.mem_singleton_iff]\n  <;> induction k <;> simp_all [Nat.le_of_lt_succ, Nat.le_of_lt_succ]\n  <;> omega",
+        "custom_id": "finite_strict_drops_of_bound_0",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  e \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  c - e \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t (n\u271d + 1))\n d := \u2191(t (n\u271d + 1 + 1))\n e := \u2191(t n\u271d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 38
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase succ\nt : \u2115 \u2192 \u2115\nN : \u2115\nh0 : t 0 \u2264 N\nhnoninc : \u2200 (k : \u2115), t (k + 1) \u2264 t k\nn\u271d : \u2115\na\u271d : t (n\u271d + 1) < t n\u271d \u2192 n\u271d = 0\nhk : t (n\u271d + 1 + 1) < t (n\u271d + 1)\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.2743215560913086,
+            "custom_id": "finite_strict_drops_of_bound_0"
+        }
+    },
+    {
+        "name": "finite_strict_drops_of_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_strict_drops_of_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  {k : \u2115 | t (k + 1) < t k}.Finite := by\n  apply Set.Finite.subset (Finset.finite_toSet {0})\n  intro k hk\n  simp only [Set.mem_setOf_eq, Finset.mem_singleton] at hk \u22a2\n  have h1 : t (k + 1) < t k := hk\n  have h2 : t (k + 1) \u2264 t k := hnoninc k\n  have h3 : t (k + 1) < t k := h1\n  have h4 : t (k + 1) \u2264 t k := hnoninc k\n  have h5 : t (k + 1) < t k := h1\n  have h6 : k = 0 := by\n    by_contra h\n    have h7 : k \u2265 1 := by\n      by_contra h8\n      have h9 : k = 0 := by omega\n      simp_all\n    have h8 : t (k + 1) \u2264 t k := hnoninc k\n    have h9 : t (k + 1) < t k := h5\n    have h10 : t (k + 1) \u2264 t k := h8\n    have h11 : t k < t k := by omega\n    omega\n  simp_all",
+        "custom_id": "finite_strict_drops_of_bound_1",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 26,
+                        "column": 31
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 36
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  e \u2265 1\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t k)\n d := \u2191(t (k + 1))\n e := \u2191k"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.2784290313720703,
+            "custom_id": "finite_strict_drops_of_bound_1"
+        }
+    },
+    {
+        "name": "finite_strict_drops_of_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_strict_drops_of_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  {k : \u2115 | t (k + 1) < t k}.Finite := by\n  have h\u2081 : {k : \u2115 | t (k + 1) < t k} \u2286 {k : \u2115} := by\n    intro k hk\n    have h2 : t (k + 1) < t k := hk\n    have h3 : t (k + 1) \u2264 t k := by linarith [hnoninc k]\n    have h4 : t (k + 1) < t k := by linarith\n    have h5 : k = 0 := by\n      by_contra h6\n      have h7 : t (k + 1) \u2264 t k := by linarith [hnoninc k]\n      linarith\n    simp_all\n  exact Set.Finite.subset (Set.finite_singleton 0) h\u2081",
+        "custom_id": "finite_strict_drops_of_bound_2",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 40
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 47
+                    },
+                    "data": "invalid {...} notation, structure type expected\n  \u2115"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 14
+                    },
+                    "data": "linarith failed to find a contradiction\nt : \u2115 \u2192 \u2115\nN : \u2115\nh0 : t 0 \u2264 N\nhnoninc : \u2200 (k : \u2115), t (k + 1) \u2264 t k\nk : \u2115\nhk : k \u2208 {k | t (k + 1) < t k}\nh2 : t (k + 1) < t k\nh3 : t (k + 1) \u2264 t k\nh4 : t (k + 1) < t k\nh6 : \u00ack = 0\nh7 : t (k + 1) \u2264 t k\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 51
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 12
+                    },
+                    "data": "unsolved goals\nt : \u2115 \u2192 \u2115\nN : \u2115\nh0 : t 0 \u2264 N\nhnoninc : \u2200 (k : \u2115), t (k + 1) \u2264 t k\nk : \u2115\nhk : t 1 < t 0\nh5 : k = 0\n\u22a2 0 \u2208 sorryAx (Set \u2115) true"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.48843979835510254,
+            "custom_id": "finite_strict_drops_of_bound_2"
+        }
+    },
+    {
+        "name": "finite_strict_drops_of_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_strict_drops_of_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  {k : \u2115 | t (k + 1) < t k}.Finite := by\n  apply Set.Finite.subset (Finset.finite_toSet {0})\n  intro k hk\n  simp_all [Set.mem_setOf_eq, Finset.mem_singleton]\n  <;> induction k <;> simp_all [Nat.le_of_lt_succ, Nat.lt_succ_self]\n  <;> omega",
+        "custom_id": "finite_strict_drops_of_bound_3",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  e \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  c - e \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t (n\u271d + 1))\n d := \u2191(t (n\u271d + 1 + 1))\n e := \u2191(t n\u271d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 38
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase succ\nt : \u2115 \u2192 \u2115\nN : \u2115\nh0 : t 0 \u2264 N\nhnoninc : \u2200 (k : \u2115), t (k + 1) \u2264 t k\nn\u271d : \u2115\na\u271d : t (n\u271d + 1) < t n\u271d \u2192 n\u271d = 0\nhk : t (n\u271d + 1 + 1) < t (n\u271d + 1)\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.4208395481109619,
+            "custom_id": "finite_strict_drops_of_bound_3"
+        }
+    },
+    {
+        "name": "finite_strict_drops_of_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_strict_drops_of_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  {k : \u2115 | t (k + 1) < t k}.Finite := by\n  apply Set.Finite.subset (Finset.finite_toSet (Finset.range N))\n  intro k\n  simp only [Set.mem_setOf_eq, Finset.mem_coe, Finset.mem_range]\n  intro h\n  have h1 : t (k + 1) < t k := h\n  have h2 : t (k + 1) \u2264 t k := hnoninc k\n  omega",
+        "custom_id": "finite_strict_drops_of_bound_4",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  e \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  a - e \u2264 0\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t k)\n d := \u2191(t (k + 1))\n e := \u2191k"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.02060842514038086,
+            "custom_id": "finite_strict_drops_of_bound_4"
+        }
+    },
+    {
+        "name": "finite_strict_drops_of_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_strict_drops_of_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  {k : \u2115 | t (k + 1) < t k}.Finite := by\n  apply Set.Finite.subset (Finset.finite_toSet {0})\n  intro k hk\n  simp only [Finset.mem_coe, Set.mem_setOf_eq] at hk \u22a2\n  have h1 : t (k + 1) < t k := hk\n  have h2 : k = 0 := by\n    by_contra h\n    have h3 : t (k + 1) \u2264 t k := hnoninc k\n    have h4 : t (k + 1) < t k := h1\n    linarith\n  simp [h2] at h1 \u22a2\n  <;> omega",
+        "custom_id": "finite_strict_drops_of_bound_5",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 12
+                    },
+                    "data": "linarith failed to find a contradiction\nt : \u2115 \u2192 \u2115\nN : \u2115\nh0 : t 0 \u2264 N\nhnoninc : \u2200 (k : \u2115), t (k + 1) \u2264 t k\nk : \u2115\nhk h1 : t (k + 1) < t k\nh : \u00ack = 0\nh3 : t (k + 1) \u2264 t k\nh4 : t (k + 1) < t k\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.10879182815551758,
+            "custom_id": "finite_strict_drops_of_bound_5"
+        }
+    },
+    {
+        "name": "finite_strict_drops_of_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_strict_drops_of_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  {k : \u2115 | t (k + 1) < t k}.Finite := by\n  apply Set.Finite.subset (Finset.finite_toSet {0})\n  intro k hk\n  simp_all [Set.mem_setOf_eq, Finset.mem_singleton]\n  <;> omega",
+        "custom_id": "finite_strict_drops_of_bound_6",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  e \u2265 1\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t k)\n d := \u2191(t (k + 1))\n e := \u2191k"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 38
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nt : \u2115 \u2192 \u2115\nN : \u2115\nh0 : t 0 \u2264 N\nhnoninc : \u2200 (k : \u2115), t (k + 1) \u2264 t k\nk : \u2115\nhk : t (k + 1) < t k\n\u22a2 k = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.06709527969360352,
+            "custom_id": "finite_strict_drops_of_bound_6"
+        }
+    },
+    {
+        "name": "finite_strict_drops_of_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_strict_drops_of_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  {k : \u2115 | t (k + 1) < t k}.Finite := by\n  apply Set.Finite.subset (Set.finite_le_nat (t 0))\n  intro k hk\n  have h1 : t (k + 1) < t k := by simpa using hk\n  have h2 : t (k + 1) \u2264 t 0 := by\n    induction k with\n    | zero => simp_all\n    | succ k ih =>\n      specialize hnoninc (k + 1)\n      omega\n  omega",
+        "custom_id": "finite_strict_drops_of_bound_7",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  b - d \u2264 -1\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t (k + 1))\n d := \u2191(t (k + 1 + 1))"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  b - d \u2265 0\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t k)\n d := \u2191(t (k + 1))"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.08492374420166016,
+            "custom_id": "finite_strict_drops_of_bound_7"
+        }
+    },
+    {
+        "name": "finite_strict_drops_of_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_strict_drops_of_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  {k : \u2115 | t (k + 1) < t k}.Finite := by\n  apply Set.Finite.subset (Finset.finite_toSet {0})\n  intro k hk\n  simp_all [Set.mem_setOf_eq, Finset.mem_singleton]\n  <;> induction k <;> simp_all [Nat.le_of_lt_succ, Nat.le_of_lt_succ]\n  <;> omega",
+        "custom_id": "finite_strict_drops_of_bound_8",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  e \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  c - e \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t (n\u271d + 1))\n d := \u2191(t (n\u271d + 1 + 1))\n e := \u2191(t n\u271d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 38
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase succ\nt : \u2115 \u2192 \u2115\nN : \u2115\nh0 : t 0 \u2264 N\nhnoninc : \u2200 (k : \u2115), t (k + 1) \u2264 t k\nn\u271d : \u2115\na\u271d : t (n\u271d + 1) < t n\u271d \u2192 n\u271d = 0\nhk : t (n\u271d + 1 + 1) < t (n\u271d + 1)\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.29048871994018555,
+            "custom_id": "finite_strict_drops_of_bound_8"
+        }
+    },
+    {
+        "name": "finite_strict_drops_of_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_strict_drops_of_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  {k : \u2115 | t (k + 1) < t k}.Finite := by\n  apply Set.Finite.subset (Finset.finite_toSet {0})\n  intro k hk\n  simp_all [Set.mem_setOf_eq]\n  <;> induction k <;> simp_all [Nat.le_of_lt_succ, Nat.le_of_lt_succ]\n  <;> omega",
+        "custom_id": "finite_strict_drops_of_bound_9",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  e \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  c - e \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t (n\u271d + 1))\n d := \u2191(t (n\u271d + 1 + 1))\n e := \u2191(t n\u271d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 38
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase succ\nt : \u2115 \u2192 \u2115\nN : \u2115\nh0 : t 0 \u2264 N\nhnoninc : \u2200 (k : \u2115), t (k + 1) \u2264 t k\nn\u271d : \u2115\na\u271d : t (n\u271d + 1) < t n\u271d \u2192 n\u271d = 0\nhk : t (n\u271d + 1 + 1) < t (n\u271d + 1)\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.27325892448425293,
+            "custom_id": "finite_strict_drops_of_bound_9"
+        }
+    },
+    {
+        "name": "finite_strict_drops_of_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_strict_drops_of_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  {k : \u2115 | t (k + 1) < t k}.Finite := by\n  apply Set.Finite.subset (Set.finite_le_nat (t 0))\n  rintro k hk\n  have h\u2081 : t (k + 1) < t k := by simpa using hk\n  have h\u2082 : t (k + 1) \u2264 t 0 := by\n    induction' k with k ih\n    \u00b7 simp_all\n    \u00b7 simp_all [Nat.succ_eq_add_one, Nat.add_assoc]\n      <;> omega\n  omega",
+        "custom_id": "finite_strict_drops_of_bound_10",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  e \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  c - e \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  b - d \u2264 -1\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t (k + 1))\n d := \u2191(t (k + 2))\n e := \u2191(t k)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 5
+                    },
+                    "data": "unsolved goals\ncase succ\nt : \u2115 \u2192 \u2115\nN : \u2115\nh0 : t 0 \u2264 N\nhnoninc : \u2200 (k : \u2115), t (k + 1) \u2264 t k\nk : \u2115\nih : t (k + 1) < t k \u2192 t (k + 1) \u2264 t 0\nh\u2081 : t (k + 2) < t (k + 1)\n\u22a2 t (k + 2) \u2264 t 0"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  b - d \u2265 0\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t k)\n d := \u2191(t (k + 1))"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.26333189010620117,
+            "custom_id": "finite_strict_drops_of_bound_10"
+        }
+    },
+    {
+        "name": "finite_strict_drops_of_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_strict_drops_of_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  {k : \u2115 | t (k + 1) < t k}.Finite := by\n  apply Set.Finite.subset (Set.finite_le_nat (t 0))\n  intro k hk\n  have h\u2081 : t (k + 1) < t k := by simpa using hk\n  have h\u2082 : t (k + 1) \u2264 t 0 := by\n    induction' k with k ih\n    \u00b7 simp_all\n    \u00b7 have : t (k + 2) \u2264 t (k + 1) := hnoninc (k + 1)\n      omega\n  omega",
+        "custom_id": "finite_strict_drops_of_bound_11",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  e \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  c - e \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  b - d \u2264 -1\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t (k + 1))\n d := \u2191(t (k + 1 + 1))\n e := \u2191(t (k + 2))"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  b - d \u2265 0\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t k)\n d := \u2191(t (k + 1))"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.08840227127075195,
+            "custom_id": "finite_strict_drops_of_bound_11"
+        }
+    },
+    {
+        "name": "finite_strict_drops_of_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_strict_drops_of_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  {k : \u2115 | t (k + 1) < t k}.Finite := by\n  apply Set.Finite.subset (Set.finite_le_nat (t 0))\n  intro k\n  simp only [Set.mem_setOf_eq, Set.mem_setOf_eq]\n  intro h\n  induction k with\n  | zero =>\n    -- Base case: k = 0\n    simp_all [Nat.lt_succ_iff]\n  | succ k ih =>\n    -- Inductive step: assume the statement holds for k, prove for k+1\n    simp_all [Nat.lt_succ_iff]\n    <;> omega",
+        "custom_id": "finite_strict_drops_of_bound_12",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 30
+                    },
+                    "data": "simp_all made no progress"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.08697867393493652,
+            "custom_id": "finite_strict_drops_of_bound_12"
+        }
+    },
+    {
+        "name": "finite_strict_drops_of_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_strict_drops_of_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  {k : \u2115 | t (k + 1) < t k}.Finite := by\n  apply Set.Finite.subset (Finset.finite_toSet {0})\n  intro k hk\n  simp_all [Set.mem_setOf_eq, Finset.mem_singleton]\n  <;> induction k <;> simp_all [Nat.lt_succ_iff, Nat.le_of_lt_succ, hnoninc]\n  <;> omega",
+        "custom_id": "finite_strict_drops_of_bound_13",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  e \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  c - e \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t (n\u271d + 1))\n d := \u2191(t (n\u271d + 1 + 1))\n e := \u2191(t n\u271d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 38
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase succ\nt : \u2115 \u2192 \u2115\nN : \u2115\nh0 : t 0 \u2264 N\nhnoninc : \u2200 (k : \u2115), t (k + 1) \u2264 t k\nn\u271d : \u2115\na\u271d : t (n\u271d + 1) < t n\u271d \u2192 n\u271d = 0\nhk : t (n\u271d + 1 + 1) < t (n\u271d + 1)\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.4592738151550293,
+            "custom_id": "finite_strict_drops_of_bound_13"
+        }
+    },
+    {
+        "name": "finite_strict_drops_of_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_strict_drops_of_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  {k : \u2115 | t (k + 1) < t k}.Finite := by\n  apply Set.Finite.subset (Finset.finite_toSet (Finset.Icc 0 N))\n  intro k hk\n  have h1 : t (k + 1) < t k := hk\n  have h2 : k \u2264 N := by\n    by_contra h\n    have h' : k \u2265 N + 1 := by linarith\n    have h3 : t k \u2264 t 0 := by\n      have h4 : \u2200 m, m \u2265 N + 1 \u2192 t m \u2264 t 0 := by\n        intro m hm\n        induction' hm with m hm IH\n        \u00b7 simp_all\n        \u00b7 simp_all [Nat.succ_eq_add_one, hnoninc]\n          <;> omega\n      exact h4 k h'\n    have h4 : t (k + 1) \u2264 t k := hnoninc k\n    have h5 : t k < t k := by nlinarith\n    nlinarith\n  simp_all\n  <;> omega",
+        "custom_id": "finite_strict_drops_of_bound_14",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 9
+                    },
+                    "data": "unsolved goals\ncase refl\nt : \u2115 \u2192 \u2115\nN : \u2115\nh0 : t 0 \u2264 N\nhnoninc : \u2200 (k : \u2115), t (k + 1) \u2264 t k\nk : \u2115\nh1 : t (k + 1) < t k\nm : \u2115\nh : N < k\nh' : N + 1 \u2264 k\n\u22a2 t (N + 1) \u2264 t 0"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 21,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 19
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  i \u2265 0\n  f \u2265 0\n  a - b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\n  a - f \u2264 -1\n  c \u2265 0\n  b - i \u2264 -1\n  b - g \u2265 0\n  e \u2265 0\n  d \u2265 0\n  g \u2265 0\n  a - e \u2264 -1\n  b \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t k)\n d := \u2191(t (k + 1))\n e := \u2191k\n f := \u2191m\n g := \u2191(t m)\n i := \u2191(t (m + 1))"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 9
+                    },
+                    "data": "unsolved goals\ncase step\nt : \u2115 \u2192 \u2115\nN : \u2115\nh0 : t 0 \u2264 N\nhnoninc : \u2200 (k : \u2115), t (k + 1) \u2264 t k\nk : \u2115\nh1 : t (k + 1) < t k\nm\u271d m : \u2115\nh : N < k\nh' : N + 1 \u2264 k\nhm : N + 1 \u2264 m\nIH : t m \u2264 t 0\n\u22a2 t (m + 1) \u2264 t 0"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 24,
+                        "column": 30
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 39
+                    },
+                    "data": "linarith failed to find a contradiction\ncase h\nt : \u2115 \u2192 \u2115\nN : \u2115\nh0 : t 0 \u2264 N\nhnoninc : \u2200 (k : \u2115), t (k + 1) \u2264 t k\nk : \u2115\nhk : k \u2208 {k | t (k + 1) < t k}\nh1 : t (k + 1) < t k\nh : \u00ack \u2264 N\nh' : k \u2265 N + 1\nh3 : t k \u2264 t 0\nh4 : t (k + 1) \u2264 t k\na\u271d : t k \u2265 t k\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.4725124835968018,
+            "custom_id": "finite_strict_drops_of_bound_14"
+        }
+    },
+    {
+        "name": "finite_strict_drops_of_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_strict_drops_of_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  {k : \u2115 | t (k + 1) < t k}.Finite := by\n  apply Set.Finite.subset (Finset.finite_toSet {0})\n  intro k hk\n  simp_all [Set.mem_setOf_eq, Finset.mem_singleton]\n  <;> omega",
+        "custom_id": "finite_strict_drops_of_bound_15",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  e \u2265 1\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t k)\n d := \u2191(t (k + 1))\n e := \u2191k"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 38
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nt : \u2115 \u2192 \u2115\nN : \u2115\nh0 : t 0 \u2264 N\nhnoninc : \u2200 (k : \u2115), t (k + 1) \u2264 t k\nk : \u2115\nhk : t (k + 1) < t k\n\u22a2 k = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.06580686569213867,
+            "custom_id": "finite_strict_drops_of_bound_15"
+        }
+    }
+]

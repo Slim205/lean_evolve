@@ -1,0 +1,4 @@
+>>>>SEARCH
+denom_nonzero (h_recurrence k)
+>>>>REPLACE
+denom_nonzero (by simpa [←Nat.cast_mul, ←Nat.cast_add] using (h_recurrence k))

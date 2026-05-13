@@ -1,0 +1,45 @@
+>>>>SEARCH
+/-- Step 5: if a positive-ℕ valued measure is globally nonincreasing and strictly decreases
+whenever `bad k`, then `{k | bad k}` is finite. -/
+lemma finite_of_strict_decrease_on_bad
+  (t : ℕ → ℕ)
+  (htpos : ∀ k : ℕ, 0 < t k)
+  (bad : ℕ → Prop)
+  (hnoninc : ∀ k : ℕ, t (k + 1) ≤ t k)
+  (hdec : ∀ k : ℕ, bad k → t (k + 1) < t k) :
+  {k : ℕ | bad k}.Finite := by
+  sorry
+>>>>REPLACE
+/-- Helper 1: a strict decrease `t (k+1) < t k` yields the `nat`-inequality
+`t (k+1) ≤ t k - 1`. This is the usual discrete gap lemma. -/
+lemma strict_drop_gives_pred (t : ℕ → ℕ) (k : ℕ) :
+  t (k + 1) < t k → t (k + 1) ≤ t k - 1 := by
+  sorry
+
+/-- Helper 2: if t 0 ≤ N then the set of indices where `t` strictly drops is finite.
+We state this abstractly; the proof is left as `sorry`. -/
+lemma finite_strict_drops_of_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N) :
+  {k : ℕ | t (k + 1) < t k}.Finite := by
+  sorry
+
+/-- Step 5: if a positive-ℕ valued measure is globally nonincreasing and strictly decreases
+whenever `bad k`, then `{k | bad k}` is finite. The proof below is glue: we use the
+helpers above to reduce to the finiteness of the strict-drop set and then take the subset. -/
+lemma finite_of_strict_decrease_on_bad
+  (t : ℕ → ℕ)
+  (htpos : ∀ k : ℕ, 0 < t k)
+  (bad : ℕ → Prop)
+  (hnoninc : ∀ k : ℕ, t (k + 1) ≤ t k)
+  (hdec : ∀ k : ℕ, bad k → t (k + 1) < t k) :
+  {k : ℕ | bad k}.Finite := by
+  -- show bad ⊆ strict-drop set using hdec
+  have hsub : {k : ℕ | bad k} ⊆ {k : ℕ | t (k + 1) < t k} := by
+    intro k hk
+    exact hdec k hk
+
+  -- apply the bounded-number-of-strict-drops lemma with N := t 0 (trivial bound)
+  have hstr_drops_fin : {k : ℕ | t (k + 1) < t k}.Finite := by
+    exact finite_strict_drops_of_bound t (t 0) (by exact le_refl (t 0))
+
+  -- conclude finiteness of the bad set by subset-of-finite
+  exact Set.Finite.subset hstr_drops_fin hsub

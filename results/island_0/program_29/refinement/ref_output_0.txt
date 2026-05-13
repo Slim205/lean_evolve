@@ -1,0 +1,12 @@
+>>>>SEARCH
+  have hden : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0 ∧ ((2 : ℚ) * (m k : ℚ) + 1) ≠ 0 := by
+    exact denom_nonzero_from_recurrence m n h_recurrence
+>>>>REPLACE
+  have hden : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0 ∧ ((2 : ℚ) * (m k : ℚ) + 1) ≠ 0 := by
+    exact (denom_nonzero_from_recurrence m n h_recurrence k)
+>>>>SEARCH
+    exact helper_reduced_form_uniqueness (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1)
+      (by exact hsucc_nz) (by exact (hden k).1) hcop_succ (h_recurrence k)
+>>>>REPLACE
+    exact helper_reduced_form_uniqueness (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1)
+      (by exact hsucc_nz) (by exact hden.1) hcop_succ (h_recurrence k)

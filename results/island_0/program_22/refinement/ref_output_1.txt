@@ -1,0 +1,19 @@
+>>>>SEARCH
+  -- define the gcd used in the conclusion
+  let d := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+>>>>REPLACE
+  -- define the gcd used in the conclusion
+>>>>SEARCH
+  -- apply the reduced-fraction uniqueness helper to the given rational equality
+  have hred : let g := Nat.gcd (2 * m k + 1) (2 * n k + 1) in
+    m (k + 1) = (2 * m k + 1) / g ∧ n (k + 1) = (2 * n k + 1) / g :=
+    reduced_fraction_gcd_quotients hsucc_copr (h_recurrence k)
+
+  -- the `g` in the helper is definitionally the same as our `d`, so we can close the goal
+  exact hred
+>>>>REPLACE
+  -- apply the reduced-fraction uniqueness helper to the given rational equality
+  have hred := reduced_fraction_gcd_quotients hsucc_copr (h_recurrence k)
+
+  -- the `g` in the helper is definitionally the same as our `d`, so we can close the goal
+  exact hred

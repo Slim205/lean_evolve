@@ -1,0 +1,5 @@
+>>>>SEARCH
+/-- Iterated decrease bound: the number of strict drops below K forces a decrease in t K.
+    We state this as a finitary cardinality bound on the set of drops below any K.
+    The detailed combinatorial induction is omitted here. -/
+>>>>REPLACE

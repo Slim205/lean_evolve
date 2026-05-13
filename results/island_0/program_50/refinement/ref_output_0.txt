@@ -1,0 +1,19 @@
+>>>>SEARCH
+exact coprime_dvd_cancel hc hdvd
+>>>>REPLACE
+exact coprime_dvd_cancel hc (by rwa [hA] at hdvd)
+>>>>SEARCH
+simp [pow_succ]
+>>>>REPLACE
+ring
+>>>>SEARCH
+have hunique := uniqueness_of_odd_decomposition (u1 + 1) u2 r1' r2 heq_pow_parts hr1'_odd hr2_odd
+    (by linarith [hr1_pos]) hr2_pos
+>>>>REPLACE
+have hunique := uniqueness_of_odd_decomposition (u1 + 1) u2 r1' r2 heq_pow_parts hr1'_odd hr2_odd
+    (by
+      by_contra h
+      have this := hr1_eq
+      rw [h] at this
+      rw [mul_zero] at this
+      linarith [hr1_pos, this]) hr2_pos

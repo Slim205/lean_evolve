@@ -1,0 +1,9 @@
+lemma exists_max_pow_two_dividing (A : ℕ) (hpos : 0 < A) :
+  ∃ u, ((2 : ℕ) ^ u ∣ A) ∧ ¬ ((2 : ℕ) ^ (u + 1) ∣ A)
+Failure mode: HARD
+Recommendation: Decompose this into a standard “2-adic valuation” package.
+1) Lemma: For every positive natural `A`, the set `{u | 2^u ∣ A}` is nonempty.  
+2) Lemma: For positive `A`, the set `{u | 2^u ∣ A}` is bounded above by `A` (or by `Nat.log 2 A + 1`), hence finite.  
+3) Lemma: Every nonempty finite set of naturals has a maximum element `u`.  
+4) Lemma: If `u` is the maximum with `2^u ∣ A`, then `¬(2^(u+1) ∣ A)`.  
+5) Conclude the desired existence by choosing `u = max {u | 2^u ∣ A}`.

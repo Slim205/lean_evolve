@@ -1,0 +1,35 @@
+>>>>SEARCH
+/-- Budget inequality on an initial prefix [0,K): the number of strict drops in `[0,K)` plus
+`t K` is bounded by the initial value `t 0`. This is proved by iterating the
+one-step consumption inequality and using `hnoninc` when no strict drop occurs. -/
+lemma budget_inequality_on_prefix (t : ℕ → ℕ) (hnoninc : ∀ k, t (k + 1) ≤ t k) (K : ℕ) :
+  (t K) + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+  sorry
+>>>>REPLACE
+/-- If there is a strict drop at index `i` then `t (i+1) + 1 ≤ t i`. (Gap-at-least-one.) -/
+lemma gap_at_least_one (t : ℕ → ℕ) (i : ℕ) :
+  t (i + 1) < t i → t (i + 1) + 1 ≤ t i := by
+  sorry
+
+/-- If `t` is nonincreasing and there is no strict drop at `i` then `t (i+1) = t i`. -/
+lemma no_drop_step (t : ℕ → ℕ) (hnoninc : ∀ k, t (k + 1) ≤ t k) (i : ℕ) :
+  ¬ (t (i + 1) < t i) → t (i + 1) = t i := by
+  sorry
+
+/-- Prefix budget induction:
+    for D(K) := #{i < K | t(i+1) < t i}, one has t K + D(K) ≤ t 0. The proof is the usual
+    induction on K using `gap_at_least_one` on drop steps and `no_drop_step` on non-drop
+    steps; the detailed arithmetic is omitted here. -/
+lemma prefix_budget_induction (t : ℕ → ℕ) (hnoninc : ∀ k, t (k + 1) ≤ t k) (K : ℕ) :
+  t K + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+  sorry
+
+/-- Budget inequality on an initial prefix [0,K): the number of strict drops in `[0,K)` plus
+`t K` is bounded by the initial value `t 0`. We glue the proof from the decomposition lemmas. -/
+lemma budget_inequality_on_prefix (t : ℕ → ℕ) (hnoninc : ∀ k, t (k + 1) ≤ t k) (K : ℕ) :
+  (t K) + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+  -- delegate the core induction to the helper lemma
+  have hpref : t K + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card
+    ≤ t 0 := by
+    exact prefix_budget_induction t hnoninc K
+  exact hpref

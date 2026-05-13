@@ -1,0 +1,2633 @@
+[
+    {
+        "name": "two_mul_nat_plus_one_nonzero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_mul_nat_plus_one_nonzero (a : \u2115) : ((2 : \u211a) * (a : \u211a) + 1) \u2260 0 := by\n  intro h\n  norm_num at h\n  have h' : (2 : \u211a) * (a : \u211a) + 1 = 0 := by simpa using h\n  have h\u2081 : (a : \u211a) = -1 / 2 := by linarith\n  have h\u2082 : (a : \u211a) = -1 / 2 := by linarith\n  have h\u2083 : (a : \u2124) = 0 := by\n    norm_num at h\u2081 h\u2082\n    field_simp at h\u2081 h\u2082\n    ring_nf at h\u2081 h\u2082\n    norm_cast at h\u2081 h\u2082\n    <;> omega\n  norm_num at h\u2081 h\u2082\n  <;> omega",
+        "custom_id": "two_mul_nat_plus_one_nonzero_0",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\nNo usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants."
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 6,
+                        "column": 78
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\na : \u2115\nh h' : 2 * \u2191a + 1 = 0\nh\u2083 : \u2191a = 0\nh\u2081 h\u2082 : \u2191a = -(1 / 2)\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.7109055519104004,
+            "custom_id": "two_mul_nat_plus_one_nonzero_0"
+        }
+    },
+    {
+        "name": "two_mul_nat_plus_one_nonzero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_mul_nat_plus_one_nonzero (a : \u2115) : ((2 : \u211a) * (a : \u211a) + 1) \u2260 0 := by\n  intro h\n  have h1 : ((2 : \u211a) * (a : \u211a) + 1) = 0 := by exact_mod_cast h\n  have h2 : (a : \u211a) = -1 / 2 := by\n    apply Eq.symm\n    field_simp at h1 \u22a2\n    linarith\n  have h3 : (a : \u2124) = -1 / 2 := by exact_mod_cast h2\n  have h4 : (-1 / 2 : \u2124) = 0 := by\n    norm_num at h3\n    <;> simp_all\n  norm_num at h4\n  <;> simp_all",
+        "custom_id": "two_mul_nat_plus_one_nonzero_1",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 52
+                    },
+                    "data": "mod_cast has type\n  @Nat.cast \u211a Rat.instNatCast a = Int.negSucc 0 /. 2 : Prop\nbut is expected to have type\n  @Nat.cast \u2124 instNatCastInt a = Int.negSucc 0 / 2 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.4576454162597656,
+            "custom_id": "two_mul_nat_plus_one_nonzero_1"
+        }
+    },
+    {
+        "name": "two_mul_nat_plus_one_nonzero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_mul_nat_plus_one_nonzero (a : \u2115) : ((2 : \u211a) * (a : \u211a) + 1) \u2260 0 := by\n  intro h\n  have h\u2081 : (2 : \u211a) * (a : \u211a) + 1 = 0 := by exact_mod_cast h\n  have h\u2082 : (a : \u211a) = -1 / 2 := by\n    apply Eq.symm\n    ring_nf at h\u2081 \u22a2\n    linarith\n  have h\u2083 : (a : \u2124) = -1 / 2 := by exact_mod_cast h\u2082\n  norm_num at h\u2083\n  <;> omega",
+        "custom_id": "two_mul_nat_plus_one_nonzero_2",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 52
+                    },
+                    "data": "mod_cast has type\n  @Nat.cast \u211a Rat.instNatCast a = Int.negSucc 0 /. 2 : Prop\nbut is expected to have type\n  @Nat.cast \u2124 instNatCastInt a = Int.negSucc 0 / 2 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.2755434513092041,
+            "custom_id": "two_mul_nat_plus_one_nonzero_2"
+        }
+    },
+    {
+        "name": "two_mul_nat_plus_one_nonzero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_mul_nat_plus_one_nonzero (a : \u2115) : ((2 : \u211a) * (a : \u211a) + 1) \u2260 0 := by\n  intro h\n  have h1 : ((2 : \u211a) * (a : \u211a) + 1) = 0 := by exact_mod_cast h\n  have h2 : (a : \u211a) = -1 / 2 := by\n    linarith\n  have h3 : (a : \u2124) = -1 / 2 := by\n    exact_mod_cast h2\n  have h4 : (a : \u2124) = 0 := by\n    norm_num at h3\n    <;> field_simp at h3\n    <;> norm_cast at h3\n    <;> omega\n  norm_num at h4\n  <;> linarith",
+        "custom_id": "two_mul_nat_plus_one_nonzero_3",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 21
+                    },
+                    "data": "mod_cast has type\n  @Nat.cast \u211a Rat.instNatCast a = Int.negSucc 0 /. 2 : Prop\nbut is expected to have type\n  @Nat.cast \u2124 instNatCastInt a = Int.negSucc 0 / 2 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.34453296661376953,
+            "custom_id": "two_mul_nat_plus_one_nonzero_3"
+        }
+    },
+    {
+        "name": "two_mul_nat_plus_one_nonzero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_mul_nat_plus_one_nonzero (a : \u2115) : ((2 : \u211a) * (a : \u211a) + 1) \u2260 0 := by\n  have h\u2080 : (2 : \u211a) * (a : \u211a) + 1 \u2260 0 := by\n    intro h\n    have h\u2081 : (2 : \u211a) * (a : \u211a) + 1 = 0 := by assumption\n    have h\u2082 : (a : \u211a) = -1 / 2 := by\n      linarith\n    have h\u2083 : (a : \u211a) = -1 / 2 := by assumption\n    have h\u2084 : (a : \u2124) = -1 / 2 := by\n      norm_num [h\u2083]\n    norm_num at h\u2084\n    <;> omega\n  exact h\u2080",
+        "custom_id": "two_mul_nat_plus_one_nonzero_4",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 34
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 19
+                    },
+                    "data": "unsolved goals\na : \u2115\nh h\u2081 : 2 * \u2191a + 1 = 0\nh\u2082 h\u2083 : \u2191a = -1 / 2\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6269054412841797,
+            "custom_id": "two_mul_nat_plus_one_nonzero_4"
+        }
+    },
+    {
+        "name": "two_mul_nat_plus_one_nonzero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_mul_nat_plus_one_nonzero (a : \u2115) : ((2 : \u211a) * (a : \u211a) + 1) \u2260 0 := by\n  norm_cast\n  intro h\n  have h' : 2 * a + 1 = 0 := by exact_mod_cast h\n  omega",
+        "custom_id": "two_mul_nat_plus_one_nonzero_5",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 9
+                    },
+                    "data": "no goals to be solved"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.03247570991516113,
+            "custom_id": "two_mul_nat_plus_one_nonzero_5"
+        }
+    },
+    {
+        "name": "two_mul_nat_plus_one_nonzero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_mul_nat_plus_one_nonzero (a : \u2115) : ((2 : \u211a) * (a : \u211a) + 1) \u2260 0 := by\n  intro h\n  have h' : (2 : \u211a) * (a : \u211a) + 1 = 0 := by simpa using h\n  have h'' : (a : \u211a) = -1 / 2 := by\n    linarith\n  have h''' : (a : \u211a) = -1 / 2 := by assumption\n  have h'''' : (a : \u2124) = 0 := by\n    norm_cast at h'''\n    <;> field_simp at h'''\n    <;> ring_nf at h'''\n    <;> norm_cast at h'''\n    <;> omega\n  norm_cast at h''''\n  <;> omega",
+        "custom_id": "two_mul_nat_plus_one_nonzero_6",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 26
+                    },
+                    "data": "simp made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\nwhere\n b := \u2191a"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 30
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\na : \u2115\nh h' : 2 * \u2191a + 1 = 0\nh'' : \u2191a = -1 / 2\nh''' : \u2191a = Int.negSucc 0 /. 2\n\u22a2 \u2191a = 0"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\nNo usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants."
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 6,
+                        "column": 78
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\na : \u2115\nh h' : 2 * \u2191a + 1 = 0\nh'' h''' : \u2191a = -1 / 2\nh'''' : a = 0\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.5076820850372314,
+            "custom_id": "two_mul_nat_plus_one_nonzero_6"
+        }
+    },
+    {
+        "name": "two_mul_nat_plus_one_nonzero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_mul_nat_plus_one_nonzero (a : \u2115) : ((2 : \u211a) * (a : \u211a) + 1) \u2260 0 := by\n  intro h\n  have h' : (2 : \u211a) * (a : \u211a) + 1 = 0 := by exact_mod_cast h\n  have h\u2081 : (2 : \u211a) * (a : \u211a) = -1 := by linarith\n  have h\u2082 : (a : \u211a) = -1 / 2 := by\n    field_simp at h\u2081 \u22a2\n    linarith\n  have h\u2083 : (a : \u2124) = -1 / 2 := by\n    norm_cast at h\u2082\n  norm_num at h\u2083\n  <;> omega",
+        "custom_id": "two_mul_nat_plus_one_nonzero_7",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 32
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 19
+                    },
+                    "data": "unsolved goals\na : \u2115\nh h' : 2 * \u2191a + 1 = 0\nh\u2081 : 2 * \u2191a = -1\nh\u2082 : \u2191a = Int.negSucc 0 /. 2\n\u22a2 \u2191a = -1 / 2"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.5531563758850098,
+            "custom_id": "two_mul_nat_plus_one_nonzero_7"
+        }
+    },
+    {
+        "name": "two_mul_nat_plus_one_nonzero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_mul_nat_plus_one_nonzero (a : \u2115) : ((2 : \u211a) * (a : \u211a) + 1) \u2260 0 := by\n  intro h\n  have h\u2081 := h\n  field_simp at h\u2081\n  norm_cast at h\u2081\n  ring_nf at h\u2081\n  omega",
+        "custom_id": "two_mul_nat_plus_one_nonzero_8",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 15
+                    },
+                    "data": "no goals to be solved"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.05940699577331543,
+            "custom_id": "two_mul_nat_plus_one_nonzero_8"
+        }
+    },
+    {
+        "name": "two_mul_nat_plus_one_nonzero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_mul_nat_plus_one_nonzero (a : \u2115) : ((2 : \u211a) * (a : \u211a) + 1) \u2260 0 := by\n  intro h\n  have h\u2081 : ((2 : \u211a) * (a : \u211a) + 1) = 0 := by exact_mod_cast h\n  have h\u2082 : (a : \u211a) = -1 / 2 := by\n    field_simp at h\u2081 \u22a2\n    linarith\n  have h\u2083 : (a : \u2124) = -1 / 2 := by\n    exact_mod_cast h\u2082\n  norm_num at h\u2083\n  <;> omega",
+        "custom_id": "two_mul_nat_plus_one_nonzero_9",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 21
+                    },
+                    "data": "mod_cast has type\n  @Nat.cast \u211a Rat.instNatCast a = Int.negSucc 0 /. 2 : Prop\nbut is expected to have type\n  @Nat.cast \u2124 instNatCastInt a = Int.negSucc 0 / 2 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.3139314651489258,
+            "custom_id": "two_mul_nat_plus_one_nonzero_9"
+        }
+    },
+    {
+        "name": "two_mul_nat_plus_one_nonzero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_mul_nat_plus_one_nonzero (a : \u2115) : ((2 : \u211a) * (a : \u211a) + 1) \u2260 0 := by\n  intro h\n  have h' : ((2 : \u211a) * (a : \u211a) + 1) = 0 := by simpa using h\n  have h\u2081 : (a : \u211a) = -1 / 2 := by\n    linarith\n  have h\u2082 : (a : \u211a) = -1 / 2 := by\n    linarith\n  have h\u2083 : (a : \u2124) = -1 / 2 := by\n    exact_mod_cast h\u2082\n  norm_num at h\u2083\n  <;> omega",
+        "custom_id": "two_mul_nat_plus_one_nonzero_10",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 21
+                    },
+                    "data": "mod_cast has type\n  @Nat.cast \u211a Rat.instNatCast a = Int.negSucc 0 /. 2 : Prop\nbut is expected to have type\n  @Nat.cast \u2124 instNatCastInt a = Int.negSucc 0 / 2 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.3470895290374756,
+            "custom_id": "two_mul_nat_plus_one_nonzero_10"
+        }
+    },
+    {
+        "name": "two_mul_nat_plus_one_nonzero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_mul_nat_plus_one_nonzero (a : \u2115) : ((2 : \u211a) * (a : \u211a) + 1) \u2260 0 := by\n  have h\u2081 : ((2 : \u211a) * (a : \u211a) + 1) \u2260 0 := by\n    intro h\n    norm_cast at h\n    -- This line ensures that the cast from \u2115 to \u211a is correctly handled.\n    -- The norm_cast tactic will simplify the expression and help in understanding the non-zero condition.\n    rcases a with (_ | _ | a) <;> norm_num at h \u22a2 <;>\n    (try simp_all) <;>\n    (try omega) <;>\n    (try linarith)\n  exact h\u2081",
+        "custom_id": "two_mul_nat_plus_one_nonzero_11",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 18
+                    },
+                    "data": "no goals to be solved"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.028759479522705078,
+            "custom_id": "two_mul_nat_plus_one_nonzero_11"
+        }
+    },
+    {
+        "name": "two_mul_nat_plus_one_nonzero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_mul_nat_plus_one_nonzero (a : \u2115) : ((2 : \u211a) * (a : \u211a) + 1) \u2260 0 := by\n  intro h\n  norm_cast at h\n  have h' : (2 * a + 1 : \u2115) \u2260 0 := by\n    intro h''\n    norm_cast at h''\n  have h'' : (2 * a + 1 : \u2115) = 0 := by omega\n  omega",
+        "custom_id": "two_mul_nat_plus_one_nonzero_12",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "data": "no goals to be solved"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.07519412040710449,
+            "custom_id": "two_mul_nat_plus_one_nonzero_12"
+        }
+    },
+    {
+        "name": "two_mul_nat_plus_one_nonzero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_mul_nat_plus_one_nonzero (a : \u2115) : ((2 : \u211a) * (a : \u211a) + 1) \u2260 0 := by\n  intro h\n  have h1 : ((2 : \u211a) * (a : \u211a) + 1) = 0 := by simpa using h\n  have h2 : (2 : \u211a) * (a : \u211a) + 1 = 0 := by simpa using h1\n  have h3 : (a : \u211a) = -1 / 2 := by\n    apply Eq.symm\n    linarith\n  have h4 : (a : \u211a) = -1 / 2 := by simpa using h3\n  have h5 : (a : \u2124) = -1 / 2 := by\n    norm_cast at h4 \u22a2\n  have h6 : (a : \u2124) = -1 / 2 := by simpa using h5\n  norm_num at h6\n  <;> omega",
+        "custom_id": "two_mul_nat_plus_one_nonzero_13",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 32
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 21
+                    },
+                    "data": "unsolved goals\na : \u2115\nh h1 h2 : 2 * \u2191a + 1 = 0\nh3 : \u2191a = -1 / 2\nh4 : \u2191a = Int.negSucc 0 /. 2\n\u22a2 \u2191a = Int.negSucc 0 / 2"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 49
+                    },
+                    "data": "try 'simp at h5' instead of 'simpa using h5'\nnote: this linter can be disabled with `set_option linter.unnecessarySimpa false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.3343706130981445,
+            "custom_id": "two_mul_nat_plus_one_nonzero_13"
+        }
+    },
+    {
+        "name": "two_mul_nat_plus_one_nonzero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_mul_nat_plus_one_nonzero (a : \u2115) : ((2 : \u211a) * (a : \u211a) + 1) \u2260 0 := by\n  intro h\n  have h' : (2 : \u211a) * (a : \u211a) + 1 = 0 := by simpa using h\n  have h\u2081 : (2 : \u211a) * (a : \u211a) = -1 := by linarith\n  have h\u2082 : (2 : \u211a) * (a : \u211a) = -1 := by linarith\n  norm_cast at h\u2081\n  norm_cast at h\u2082\n  <;> simp_all [mul_comm]\n  <;> omega",
+        "custom_id": "two_mul_nat_plus_one_nonzero_14",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "no goals to be solved"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.41042184829711914,
+            "custom_id": "two_mul_nat_plus_one_nonzero_14"
+        }
+    },
+    {
+        "name": "two_mul_nat_plus_one_nonzero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_mul_nat_plus_one_nonzero (a : \u2115) : ((2 : \u211a) * (a : \u211a) + 1) \u2260 0 := by\n  intro h\n  have h' := h\n  field_simp at h'\n  norm_cast at h'\n  ring_nf at h'\n  omega",
+        "custom_id": "two_mul_nat_plus_one_nonzero_15",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 15
+                    },
+                    "data": "no goals to be solved"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.08028268814086914,
+            "custom_id": "two_mul_nat_plus_one_nonzero_15"
+        }
+    },
+    {
+        "name": "cross_mul_eq_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cross_mul_eq_nat\n  (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by\n  have h1 : ((m (k + 1) : \u211a) / (n (k + 1) : \u211a)) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h1\n  norm_cast at h1\n  <;> simp_all [mul_add, add_mul, mul_comm, mul_left_comm]\n  <;> ring_nf at h1 \u22a2\n  <;> norm_cast at h1 \u22a2\n  <;> nlinarith",
+        "custom_id": "cross_mul_eq_nat_16",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.5545186996459961,
+            "custom_id": "cross_mul_eq_nat_16"
+        }
+    },
+    {
+        "name": "cross_mul_eq_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cross_mul_eq_nat\n  (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h1\n  norm_cast at h1 \u22a2\n  <;> simp_all [mul_add, mul_comm, mul_left_comm]\n  <;> ring_nf at h1 \u22a2\n  <;> nlinarith",
+        "custom_id": "cross_mul_eq_nat_17",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.724367618560791,
+            "custom_id": "cross_mul_eq_nat_17"
+        }
+    },
+    {
+        "name": "cross_mul_eq_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cross_mul_eq_nat\n  (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp [h2, h3] at h1\n  ring_nf at h1\n  norm_cast at h1\n  <;> simp_all [mul_add, add_mul, mul_comm, mul_left_comm, mul_assoc]\n  <;> ring_nf\n  <;> omega",
+        "custom_id": "cross_mul_eq_nat_18",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  g \u2265 1\n  a - b + 2*d - 2*e \u2265 1\n  c \u2265 0\n  a - b - c \u2264 0\n  f \u2265 1\nwhere\n a := \u2191(n k) * \u2191(m (1 + k) * 2)\n b := \u2191(m k) * \u2191(n (1 + k) * 2)\n c := \u2191(n (1 + k))\n d := \u2191(m k) * \u2191(n (1 + k))\n e := \u2191(n k) * \u2191(m (1 + k))\n f := \u2191(n (k + 1))\n g := \u2191(n (k\u271d + 1))"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 59
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nk\u271d : \u2115\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (\u2191(m k) * 2 + 1) / (\u2191(n k) * 2 + 1)\nh_n_succ_nonzero_k : \u00acn (k\u271d + 1) = 0\nh_two_nk_nonzero : \u00ac\u2191(n k\u271d) * 2 + 1 = 0\nh2 : \u00acn (k + 1) = 0\nh3 : \u00ac\u2191(n k) * 2 + 1 = 0\nh1 : m (1 + k) + n k * (m (1 + k) * 2) = m k * (n (1 + k) * 2) + n (1 + k)\n\u22a2 n k * m (1 + k) * 2 + m (1 + k) = m k * n (1 + k) * 2 + n (1 + k)"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.9571325778961182,
+            "custom_id": "cross_mul_eq_nat_18"
+        }
+    },
+    {
+        "name": "cross_mul_eq_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cross_mul_eq_nat\n  (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h1\n  norm_cast at h1 \u22a2\n  <;> ring_nf at h1 \u22a2\n  <;> simp_all\n  <;> nlinarith",
+        "custom_id": "cross_mul_eq_nat_19",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6294975280761719,
+            "custom_id": "cross_mul_eq_nat_19"
+        }
+    },
+    {
+        "name": "cross_mul_eq_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cross_mul_eq_nat\n  (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by\n  have h\u2081 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h\u2082 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h\u2083 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h\u2081\n  norm_cast at h\u2081 \u22a2\n  <;> ring_nf at h\u2081 \u22a2 <;> simp_all [mul_comm]\n  <;> nlinarith",
+        "custom_id": "cross_mul_eq_nat_20",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.9506020545959473,
+            "custom_id": "cross_mul_eq_nat_20"
+        }
+    },
+    {
+        "name": "cross_mul_eq_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cross_mul_eq_nat\n  (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by\n  have h\u2081 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h\u2082 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h\u2083 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h\u2081 \u22a2\n  ring_nf at h\u2081 \u22a2\n  norm_cast at h\u2081 \u22a2\n  <;> simp_all [mul_add, add_mul, mul_comm, mul_left_comm]\n  <;> ring_nf at h\u2081 \u22a2\n  <;> omega",
+        "custom_id": "cross_mul_eq_nat_21",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.1358613967895508,
+            "custom_id": "cross_mul_eq_nat_21"
+        }
+    },
+    {
+        "name": "cross_mul_eq_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cross_mul_eq_nat\n  (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp [h2, h3] at h1\n  norm_cast at h1 \u22a2\n  <;> ring_nf at h1 \u22a2\n  <;> nlinarith",
+        "custom_id": "cross_mul_eq_nat_22",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.06040620803833,
+            "custom_id": "cross_mul_eq_nat_22"
+        }
+    },
+    {
+        "name": "cross_mul_eq_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cross_mul_eq_nat\n  (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp [h2, h3] at h1\n  ring_nf at h1\n  norm_cast at h1\n  <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;> ring_nf at *\n  <;> norm_cast at *\n  <;> linarith",
+        "custom_id": "cross_mul_eq_nat_23",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.2636518478393555,
+            "custom_id": "cross_mul_eq_nat_23"
+        }
+    },
+    {
+        "name": "cross_mul_eq_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cross_mul_eq_nat\n  (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h1\n  norm_cast at h1 \u22a2\n  <;> ring_nf at h1 \u22a2\n  <;> nlinarith",
+        "custom_id": "cross_mul_eq_nat_24",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.290783405303955,
+            "custom_id": "cross_mul_eq_nat_24"
+        }
+    },
+    {
+        "name": "cross_mul_eq_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cross_mul_eq_nat\n  (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by\n  have h\u2081 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h\u2082 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h\u2083 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp [h\u2082, h\u2083] at h\u2081\n  ring_nf at h\u2081 \u22a2\n  norm_cast at h\u2081 \u22a2\n  <;> simp_all\n  <;> nlinarith",
+        "custom_id": "cross_mul_eq_nat_25",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.515815258026123,
+            "custom_id": "cross_mul_eq_nat_25"
+        }
+    },
+    {
+        "name": "cross_mul_eq_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cross_mul_eq_nat\n  (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by\n  have h1 : ((m (k + 1) : \u211a) / (n (k + 1) : \u211a)) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := by simpa using h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by simpa using h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by simpa using h_two_nk_nonzero\n  field_simp at h1\n  ring_nf at h1 \u22a2\n  norm_cast at h1 \u22a2\n  <;> simp_all [mul_add, mul_comm, mul_left_comm, mul_assoc]\n  <;> ring_nf at h1 \u22a2\n  <;> norm_cast at h1 \u22a2\n  <;> linarith",
+        "custom_id": "cross_mul_eq_nat_26",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 38
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 68
+                    },
+                    "data": "type mismatch\n  h\u271d\nhas type\n  \u00acn (k\u271d + 1) = 0 : Prop\nbut is expected to have type\n  \u00acn (k + 1) = 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 48
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 76
+                    },
+                    "data": "type mismatch\n  h\u271d\nhas type\n  \u00ac2 * \u2191(n k\u271d) + 1 = 0 : Prop\nbut is expected to have type\n  \u00ac2 * \u2191(n k) + 1 = 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.8503100872039795,
+            "custom_id": "cross_mul_eq_nat_26"
+        }
+    },
+    {
+        "name": "cross_mul_eq_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cross_mul_eq_nat\n  (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by\n  have h\u2081 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h\u2082 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h\u2083 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp [h\u2082, h\u2083] at h\u2081\n  ring_nf at h\u2081 \u22a2\n  norm_cast at h\u2081 \u22a2\n  <;> simp_all [mul_add, mul_comm, mul_left_comm]\n  <;> ring_nf at h\u2081 \u22a2\n  <;> norm_cast at h\u2081 \u22a2\n  <;> linarith",
+        "custom_id": "cross_mul_eq_nat_27",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.0590314865112305,
+            "custom_id": "cross_mul_eq_nat_27"
+        }
+    },
+    {
+        "name": "cross_mul_eq_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cross_mul_eq_nat\n  (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h1\n  norm_cast at h1\n  <;> simp_all\n  <;> ring_nf at h1 \u22a2\n  <;> nlinarith",
+        "custom_id": "cross_mul_eq_nat_28",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.8644163608551025,
+            "custom_id": "cross_mul_eq_nat_28"
+        }
+    },
+    {
+        "name": "cross_mul_eq_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cross_mul_eq_nat\n  (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := by\n    apply h_recurrence\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by\n    exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by\n    exact_mod_cast h_two_nk_nonzero\n  field_simp at h1\n  ring_nf at h1 \u22a2\n  norm_cast at h1 \u22a2\n  <;> simp_all [mul_add, add_mul, mul_comm, mul_left_comm, mul_assoc]\n  <;> ring_nf at h1 \u22a2\n  <;> nlinarith",
+        "custom_id": "cross_mul_eq_nat_29",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 37
+                    },
+                    "data": "mod_cast has type\n  \u00acn (k\u271d + 1) = 0 : Prop\nbut is expected to have type\n  \u00acn (k + 1) = 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.0898983478546143,
+            "custom_id": "cross_mul_eq_nat_29"
+        }
+    },
+    {
+        "name": "cross_mul_eq_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cross_mul_eq_nat\n  (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h1\n  ring_nf at h1\n  norm_cast at h1\n  <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;> ring_nf\n  <;> omega",
+        "custom_id": "cross_mul_eq_nat_30",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  g \u2265 1\n  a - b + 2*d - 2*e \u2265 1\n  c \u2265 0\n  a - b - c \u2264 0\n  f \u2265 1\nwhere\n a := \u2191(n k) * \u2191(m (1 + k) * 2)\n b := \u2191(m k) * \u2191(n (1 + k) * 2)\n c := \u2191(n (1 + k))\n d := \u2191(n (1 + k)) * \u2191(m k)\n e := \u2191(m (1 + k)) * \u2191(n k)\n f := \u2191(n (k + 1))\n g := \u2191(n (k\u271d + 1))"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 59
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nk\u271d : \u2115\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (\u2191(m k) * 2 + 1) / (\u2191(n k) * 2 + 1)\nh_n_succ_nonzero_k : \u00acn (k\u271d + 1) = 0\nh_two_nk_nonzero : \u00ac\u2191(n k\u271d) * 2 + 1 = 0\nh2 : \u00acn (k + 1) = 0\nh3 : \u00ac\u2191(n k) * 2 + 1 = 0\nh1 : m (1 + k) + n k * (m (1 + k) * 2) = m k * (n (1 + k) * 2) + n (1 + k)\n\u22a2 m (1 + k) + m (1 + k) * n k * 2 = n (1 + k) + n (1 + k) * m k * 2"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.9302022457122803,
+            "custom_id": "cross_mul_eq_nat_30"
+        }
+    },
+    {
+        "name": "cross_mul_eq_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cross_mul_eq_nat\n  (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h1\n  norm_cast at h1 \u22a2\n  <;> ring_nf at h1 \u22a2\n  <;> aesop",
+        "custom_id": "cross_mul_eq_nat_31",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6369504928588867,
+            "custom_id": "cross_mul_eq_nat_31"
+        }
+    },
+    {
+        "name": "coprime_dvd_of_dvd_mul_right",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem coprime_dvd_of_dvd_mul_right {a b x : \u2115}\n  (hc : Nat.Coprime a b) (h : a \u2223 b * x) : a \u2223 x := by\n  have h1 : a \u2223 b * x := h\n  have h2 : a.Coprime b := hc\n  exact?\n  <;> aesop\n  <;> simp_all [Nat.Coprime, Nat.gcd_mul_left, Nat.mul_dvd_mul_left]\n  <;> omega",
+        "custom_id": "coprime_dvd_of_dvd_mul_right_32",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 9
+                    },
+                    "data": "unused variable `h1`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 9
+                    },
+                    "data": "unused variable `h2`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 68
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [
+                {
+                    "severity": "info",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 8
+                    },
+                    "data": "Try this: exact Coprime.dvd_of_dvd_mul_left hc h"
+                }
+            ],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.08078432083129883,
+            "custom_id": "coprime_dvd_of_dvd_mul_right_32"
+        }
+    },
+    {
+        "name": "coprime_dvd_of_dvd_mul_right",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem coprime_dvd_of_dvd_mul_right {a b x : \u2115}\n  (hc : Nat.Coprime a b) (h : a \u2223 b * x) : a \u2223 x := by\n  have h1 : a \u2223 b * x := h\n  have h2 : a \u2223 x := by\n    apply Nat.Coprime.dvd_of_dvd_mul_right hc\n    simpa [Nat.mul_comm] using h1\n  exact h2",
+        "custom_id": "coprime_dvd_of_dvd_mul_right_33",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.13693761825561523,
+            "custom_id": "coprime_dvd_of_dvd_mul_right_33"
+        }
+    },
+    {
+        "name": "coprime_dvd_of_dvd_mul_right",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem coprime_dvd_of_dvd_mul_right {a b x : \u2115}\n  (hc : Nat.Coprime a b) (h : a \u2223 b * x) : a \u2223 x := by\n  have h\u2081 := h\n  rw [Nat.dvd_iff_mod_eq_zero] at h\u2081 \u22a2\n  rw [Nat.mul_mod] at h\u2081\n  have h\u2082 := Nat.mod_eq_zero_of_dvd h\n  simp_all [Nat.Coprime, Nat.gcd_eq_right]\n  <;> omega",
+        "custom_id": "coprime_dvd_of_dvd_mul_right_34",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 1\nwhere\n c := \u2191x % \u2191a"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 52
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\na b x : \u2115\nhc : a.gcd b = 1\nh : a \u2223 b * x\nh\u2082 : b * x % a = 0\n\u22a2 x % a = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.1194467544555664,
+            "custom_id": "coprime_dvd_of_dvd_mul_right_34"
+        }
+    },
+    {
+        "name": "coprime_dvd_of_dvd_mul_right",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem coprime_dvd_of_dvd_mul_right {a b x : \u2115}\n  (hc : Nat.Coprime a b) (h : a \u2223 b * x) : a \u2223 x := by\n  have h1 : a \u2223 b * x := h\n  have h2 : a \u2223 x := by\n    apply Nat.Coprime.dvd_of_dvd_mul_left (Nat.coprime_comm.2 hc)\n    exact h1\n  exact h2",
+        "custom_id": "coprime_dvd_of_dvd_mul_right_35",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 65
+                    },
+                    "data": "tactic 'apply' failed, failed to unify\n  b \u2223 ?m.147\nwith\n  a \u2223 x\na b x : \u2115\nhc : a.Coprime b\nh h1 : a \u2223 b * x\n\u22a2 a \u2223 x"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.03693652153015137,
+            "custom_id": "coprime_dvd_of_dvd_mul_right_35"
+        }
+    },
+    {
+        "name": "coprime_dvd_of_dvd_mul_right",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem coprime_dvd_of_dvd_mul_right {a b x : \u2115}\n  (hc : Nat.Coprime a b) (h : a \u2223 b * x) : a \u2223 x := by\n  have := Nat.Coprime.dvd_of_dvd_mul_right hc\n  tauto",
+        "custom_id": "coprime_dvd_of_dvd_mul_right_36",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 45
+                    },
+                    "data": "don't know how to synthesize implicit argument\n  @Coprime.dvd_of_dvd_mul_right a b ?m.97 hc\ncontext:\na b x : \u2115\nhc : a.Coprime b\nh : a \u2223 b * x\n\u22a2 \u2115"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 7
+                    },
+                    "data": "failed to infer 'let' declaration type"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 52
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 7
+                    },
+                    "data": "unsolved goals\na b x : \u2115\nhc : a.Coprime b\nh : a \u2223 b * x\n\u22a2 a \u2223 x"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.016541719436645508,
+            "custom_id": "coprime_dvd_of_dvd_mul_right_36"
+        }
+    },
+    {
+        "name": "coprime_dvd_of_dvd_mul_right",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem coprime_dvd_of_dvd_mul_right {a b x : \u2115}\n  (hc : Nat.Coprime a b) (h : a \u2223 b * x) : a \u2223 x := by\n  rw [Nat.Coprime] at hc\n  rw [Nat.dvd_iff_mod_eq_zero] at *\n  rw [\u2190 Nat.mod_eq_zero_of_dvd h]\n  simp [Nat.mul_mod, hc, Nat.mod_eq_of_lt]",
+        "custom_id": "coprime_dvd_of_dvd_mul_right_37",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 31
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 32
+                    },
+                    "data": "application type mismatch\n  mod_eq_zero_of_dvd h\nargument\n  h\nhas type\n  b * x % a = 0 : Prop\nbut is expected to have type\n  ?m.192 \u2223 ?m.193 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 42
+                    },
+                    "data": "no goals to be solved"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.018549203872680664,
+            "custom_id": "coprime_dvd_of_dvd_mul_right_37"
+        }
+    },
+    {
+        "name": "coprime_dvd_of_dvd_mul_right",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem coprime_dvd_of_dvd_mul_right {a b x : \u2115}\n  (hc : Nat.Coprime a b) (h : a \u2223 b * x) : a \u2223 x := by\n  have h1 : a \u2223 b * x := h\n  have h2 : a \u2223 x := by\n    apply hc.dvd_of_dvd_mul_left\n    exact h1\n  exact h2",
+        "custom_id": "coprime_dvd_of_dvd_mul_right_38",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.014134883880615234,
+            "custom_id": "coprime_dvd_of_dvd_mul_right_38"
+        }
+    },
+    {
+        "name": "coprime_dvd_of_dvd_mul_right",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem coprime_dvd_of_dvd_mul_right {a b x : \u2115}\n  (hc : Nat.Coprime a b) (h : a \u2223 b * x) : a \u2223 x := by\n  rw [Nat.Coprime] at hc\n  have h1 : a \u2223 b * x := h\n  have h2 : a \u2223 x := by\n    apply Nat.Coprime.dvd_of_dvd_mul_left (Nat.coprime_comm.2 hc)\n    simpa [mul_comm] using h1\n  exact h2",
+        "custom_id": "coprime_dvd_of_dvd_mul_right_39",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 65
+                    },
+                    "data": "tactic 'apply' failed, failed to unify\n  b \u2223 ?m.192\nwith\n  a \u2223 x\na b x : \u2115\nhc : a.gcd b = 1\nh h1 : a \u2223 b * x\n\u22a2 a \u2223 x"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.0166323184967041,
+            "custom_id": "coprime_dvd_of_dvd_mul_right_39"
+        }
+    },
+    {
+        "name": "coprime_dvd_of_dvd_mul_right",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem coprime_dvd_of_dvd_mul_right {a b x : \u2115}\n  (hc : Nat.Coprime a b) (h : a \u2223 b * x) : a \u2223 x := by\n  have h\u2081 : a \u2223 b * x := h\n  have h\u2082 : a \u2223 x := by\n    apply Nat.Coprime.dvd_of_dvd_mul_right hc\n    simpa [Nat.mul_comm] using h\u2081\n  exact h\u2082",
+        "custom_id": "coprime_dvd_of_dvd_mul_right_40",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.13870763778686523,
+            "custom_id": "coprime_dvd_of_dvd_mul_right_40"
+        }
+    },
+    {
+        "name": "coprime_dvd_of_dvd_mul_right",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem coprime_dvd_of_dvd_mul_right {a b x : \u2115}\n  (hc : Nat.Coprime a b) (h : a \u2223 b * x) : a \u2223 x := by\n  have h1 : a \u2223 b * x := h\n  have h2 : a \u2223 x := by\n    apply hc.dvd_of_dvd_mul_left\n    exact h1\n  exact h2",
+        "custom_id": "coprime_dvd_of_dvd_mul_right_41",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.012598514556884766,
+            "custom_id": "coprime_dvd_of_dvd_mul_right_41"
+        }
+    },
+    {
+        "name": "coprime_dvd_of_dvd_mul_right",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem coprime_dvd_of_dvd_mul_right {a b x : \u2115}\n  (hc : Nat.Coprime a b) (h : a \u2223 b * x) : a \u2223 x := by\n  have h1 : a \u2223 b * x := h\n  have h2 : a \u2223 x := by\n    have h3 : a.Coprime b := hc\n    have h4 : a \u2223 b * x := h1\n    have h5 : a \u2223 x := by\n      -- Use the fact that a and b are coprime to deduce that a must divide x\n      exact?\n    exact h5\n  exact h2",
+        "custom_id": "coprime_dvd_of_dvd_mul_right_42",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "unused variable `h3`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "unused variable `h4`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [
+                {
+                    "severity": "info",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 12
+                    },
+                    "data": "Try this: exact Coprime.dvd_of_dvd_mul_left hc h"
+                }
+            ],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 3.8154048919677734,
+            "custom_id": "coprime_dvd_of_dvd_mul_right_42"
+        }
+    },
+    {
+        "name": "coprime_dvd_of_dvd_mul_right",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem coprime_dvd_of_dvd_mul_right {a b x : \u2115}\n  (hc : Nat.Coprime a b) (h : a \u2223 b * x) : a \u2223 x := by\n  have h1 : a \u2223 b * x := h\n  have h2 : a \u2223 x := by\n    apply hc.dvd_of_dvd_mul_left\n    exact h1\n  exact h2",
+        "custom_id": "coprime_dvd_of_dvd_mul_right_43",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.16651391983032227,
+            "custom_id": "coprime_dvd_of_dvd_mul_right_43"
+        }
+    },
+    {
+        "name": "coprime_dvd_of_dvd_mul_right",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem coprime_dvd_of_dvd_mul_right {a b x : \u2115}\n  (hc : Nat.Coprime a b) (h : a \u2223 b * x) : a \u2223 x := by\n  have h\u2081 : a \u2223 b * x := h\n  have h\u2082 : a \u2223 x := by\n    apply?\n  exact h\u2082",
+        "custom_id": "coprime_dvd_of_dvd_mul_right_44",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [
+                {
+                    "severity": "info",
+                    "pos": {
+                        "line": 10,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 10
+                    },
+                    "data": "Try this: exact Coprime.dvd_of_dvd_mul_left hc h"
+                }
+            ],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07651495933532715,
+            "custom_id": "coprime_dvd_of_dvd_mul_right_44"
+        }
+    },
+    {
+        "name": "coprime_dvd_of_dvd_mul_right",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem coprime_dvd_of_dvd_mul_right {a b x : \u2115}\n  (hc : Nat.Coprime a b) (h : a \u2223 b * x) : a \u2223 x := by\n  rw [Nat.Coprime] at hc\n  rw [Nat.dvd_iff_mod_eq_zero] at *\n  rw [\u2190 Nat.mod_add_div x a]\n  simp [h, Nat.mul_mod, Nat.add_mod, Nat.mod_mod]\n  <;> simp_all [Nat.mul_mod, Nat.add_mod, Nat.mod_mod]\n  <;> omega",
+        "custom_id": "coprime_dvd_of_dvd_mul_right_45",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 1\nwhere\n c := \u2191x % \u2191a"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 52
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\na b x : \u2115\nhc : a.gcd b = 1\nh : b % a % a * (x % a % a) % a = 0\n\u22a2 x % a = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.09194087982177734,
+            "custom_id": "coprime_dvd_of_dvd_mul_right_45"
+        }
+    },
+    {
+        "name": "coprime_dvd_of_dvd_mul_right",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem coprime_dvd_of_dvd_mul_right {a b x : \u2115}\n  (hc : Nat.Coprime a b) (h : a \u2223 b * x) : a \u2223 x := by\n  have h\u2081 := h\n  rw [Nat.dvd_iff_mod_eq_zero] at h\u2081 \u22a2\n  rw [Nat.mul_mod] at h\u2081\n  have h\u2082 : a.Coprime b := hc\n  simp_all [Nat.Coprime, Nat.gcd_mul_left, Nat.gcd_mul_right, Nat.gcd_mul_left, Nat.gcd_mul_right]\n  <;>\n  omega",
+        "custom_id": "coprime_dvd_of_dvd_mul_right_46",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 1\nwhere\n c := \u2191x % \u2191a"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 52
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 7
+                    },
+                    "data": "unsolved goals\na b x : \u2115\nh : a \u2223 b * x\nh\u2081 : b * x % a = 0\nh\u2082 : a.gcd b = 1\n\u22a2 x % a = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.11221981048583984,
+            "custom_id": "coprime_dvd_of_dvd_mul_right_46"
+        }
+    },
+    {
+        "name": "coprime_dvd_of_dvd_mul_right",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem coprime_dvd_of_dvd_mul_right {a b x : \u2115}\n  (hc : Nat.Coprime a b) (h : a \u2223 b * x) : a \u2223 x := by\n  have h\u2081 : a \u2223 b * x := h\n  have h\u2082 : a \u2223 x := by\n    apply Nat.Coprime.dvd_of_dvd_mul_left (Nat.coprime_comm.2 hc)\n    exact h\u2081\n  exact h\u2082",
+        "custom_id": "coprime_dvd_of_dvd_mul_right_47",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 65
+                    },
+                    "data": "tactic 'apply' failed, failed to unify\n  b \u2223 ?m.147\nwith\n  a \u2223 x\na b x : \u2115\nhc : a.Coprime b\nh h\u2081 : a \u2223 b * x\n\u22a2 a \u2223 x"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.027902841567993164,
+            "custom_id": "coprime_dvd_of_dvd_mul_right_47"
+        }
+    },
+    {
+        "name": "build_common_scaling_from_divs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem build_common_scaling_from_divs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (cross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1))\n  (hm_div : m (k + 1) \u2223 (2 * m k + 1))\n  (hn_div : n (k + 1) \u2223 (2 * n k + 1)) :\n  \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) \u2227 (2 * n k + 1) = c * n (k + 1) := by\n  have h1 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n  have h2 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n  have h3 : \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) := by\n    obtain \u27e8c, hc\u27e9 := h1\n    exact \u27e8c, by linarith\u27e9\n  have h4 : \u2203 c : \u2115, (2 * n k + 1) = c * n (k + 1) := by\n    obtain \u27e8c, hc\u27e9 := h2\n    exact \u27e8c, by linarith\u27e9\n  obtain \u27e8c\u2081, hc\u2081\u27e9 := h3\n  obtain \u27e8c\u2082, hc\u2082\u27e9 := h4\n  have h5 : c\u2081 = c\u2082 := by\n    have h5 : c\u2081 * m (k + 1) = 2 * m k + 1 := by linarith\n    have h6 : c\u2082 * n (k + 1) = 2 * n k + 1 := by linarith\n    have h7 : c\u2081 * m (k + 1) = c\u2082 * m (k + 1) := by\n      rw [h5, h6] at cross_eq\n      simp_all [mul_comm, mul_left_comm, mul_assoc]\n      <;> ring_nf at cross_eq \u22a2\n      <;> omega\n    have h8 : m (k + 1) \u2260 0 := by\n      intro h\n      simp_all\n    have h9 : c\u2081 = c\u2082 := by\n      apply mul_left_cancel\u2080 h8\n      linarith\n    exact h9\n  refine' \u27e8c\u2081, _\u27e9\n  simp_all",
+        "custom_id": "build_common_scaling_from_divs_48",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 26,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 12
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  c\u2081 * m (k + 1)\nm n : \u2115 \u2192 \u2115\nk : \u2115\ncross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1)\nhm_div : m (k + 1) \u2223 2 * m k + 1\nhn_div : n (k + 1) \u2223 2 * n k + 1\nh1 : m (k + 1) \u2223 2 * m k + 1\nh2 : n (k + 1) \u2223 2 * n k + 1\nc\u2081 : \u2115\nhc\u2081 : 2 * m k + 1 = c\u2081 * m (k + 1)\nc\u2082 : \u2115\nhc\u2082 : 2 * n k + 1 = c\u2082 * n (k + 1)\nh5 : c\u2081 * m (k + 1) = 2 * m k + 1\nh6 : c\u2082 * n (k + 1) = 2 * n k + 1\n\u22a2 c\u2081 * m (k + 1) = c\u2082 * m (k + 1)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 32,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 32,
+                        "column": 14
+                    },
+                    "data": "tactic 'simp' failed, nested error:\nmaximum recursion depth has been reached\nuse `set_option maxRecDepth <num>` to increase limit\nuse `set_option diagnostics true` to get diagnostic information"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 4.0746495723724365,
+            "custom_id": "build_common_scaling_from_divs_48"
+        }
+    },
+    {
+        "name": "build_common_scaling_from_divs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem build_common_scaling_from_divs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (cross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1))\n  (hm_div : m (k + 1) \u2223 (2 * m k + 1))\n  (hn_div : n (k + 1) \u2223 (2 * n k + 1)) :\n  \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) \u2227 (2 * n k + 1) = c * n (k + 1) := by\n  have h\u2081 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n  have h\u2082 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n  have h\u2083 : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := cross_eq\n  have h\u2084 : \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) \u2227 (2 * n k + 1) = c * n (k + 1) := by\n    have h\u2085 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n    have h\u2086 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n    have h\u2087 : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := cross_eq\n    -- We need to find a common scaling factor c such that 2 * m k + 1 = c * m (k + 1) and 2 * n k + 1 = c * n (k + 1)\n    -- Given the divisibility conditions, we can use the fact that m (k + 1) divides 2 * m k + 1 and n (k + 1) divides 2 * n k + 1\n    -- to find such a c.\n    use (2 * m k + 1) / m (k + 1)\n    have h\u2088 : (2 * m k + 1) = ((2 * m k + 1) / m (k + 1)) * m (k + 1) := by\n      have h\u2089 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n      exact (Nat.div_mul_cancel h\u2089).symm\n    have h\u2089 : (2 * n k + 1) = ((2 * m k + 1) / m (k + 1)) * n (k + 1) := by\n      have h\u2081\u2080 : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := cross_eq\n      have h\u2081\u2081 : (2 * m k + 1) = ((2 * m k + 1) / m (k + 1)) * m (k + 1) := by\n        have h\u2081\u2082 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n        exact (Nat.div_mul_cancel h\u2081\u2082).symm\n      have h\u2081\u2082 : (2 * n k + 1) = ((2 * m k + 1) / m (k + 1)) * n (k + 1) := by\n        rw [mul_comm] at h\u2081\u2080\n        rw [mul_comm] at h\u2081\u2081\n        rw [mul_comm] at h\u2081\u2080\n        rw [mul_comm] at h\u2081\u2081\n        have h\u2081\u2083 : ((2 * m k + 1) / m (k + 1)) * m (k + 1) = 2 * m k + 1 := by\n          rw [Nat.div_mul_cancel h\u2089]\n        have h\u2081\u2084 : ((2 * m k + 1) / m (k + 1)) * n (k + 1) = 2 * n k + 1 := by\n          nlinarith\n        linarith\n      exact h\u2081\u2082\n    exact \u27e8h\u2088, h\u2089\u27e9\n  exact h\u2084",
+        "custom_id": "build_common_scaling_from_divs_49",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 37,
+                        "column": 33
+                    },
+                    "endPos": {
+                        "line": 37,
+                        "column": 35
+                    },
+                    "data": "unknown identifier 'h\u2089'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 39,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 39,
+                        "column": 19
+                    },
+                    "data": "linarith failed to find a contradiction\ncase h1.h\nm n : \u2115 \u2192 \u2115\nk : \u2115\ncross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1)\nhm_div : m (k + 1) \u2223 2 * m k + 1\nhn_div : n (k + 1) \u2223 2 * n k + 1\nh\u2081 : m (k + 1) \u2223 2 * m k + 1\nh\u2082 : n (k + 1) \u2223 2 * n k + 1\nh\u2083 : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1)\nh\u2085 : m (k + 1) \u2223 2 * m k + 1\nh\u2086 : n (k + 1) \u2223 2 * n k + 1\nh\u2087 : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1)\nh\u2088 : 2 * m k + 1 = (2 * m k + 1) / m (k + 1) * m (k + 1)\nh\u2081\u2080 : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1)\nh\u2081\u2081 : 2 * m k + 1 = (2 * m k + 1) / m (k + 1) * m (k + 1)\nh\u2081\u2083 : (2 * m k + 1) / m (k + 1) * m (k + 1) = 2 * m k + 1\na\u271d : (2 * m k + 1) / m (k + 1) * n (k + 1) < 2 * n k + 1\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.8449501991271973,
+            "custom_id": "build_common_scaling_from_divs_49"
+        }
+    },
+    {
+        "name": "build_common_scaling_from_divs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem build_common_scaling_from_divs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (cross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1))\n  (hm_div : m (k + 1) \u2223 (2 * m k + 1))\n  (hn_div : n (k + 1) \u2223 (2 * n k + 1)) :\n  \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) \u2227 (2 * n k + 1) = c * n (k + 1) := by\n  use (2 * m k + 1) / m (k + 1)\n  have h\u2081 : m (k + 1) \u2223 (2 * m k + 1) := by simpa [mul_comm] using hm_div\n  have h\u2082 : n (k + 1) \u2223 (2 * n k + 1) := by simpa [mul_comm] using hn_div\n  have h\u2083 : m (k + 1) \u2260 0 := by\n    intro h\n    simp_all\n  have h\u2084 : n (k + 1) \u2260 0 := by\n    intro h\n    simp_all\n  have h\u2085 : (2 * m k + 1) = ((2 * m k + 1) / m (k + 1)) * m (k + 1) := by\n    exact (Nat.div_mul_cancel h\u2081).symm\n  have h\u2086 : (2 * n k + 1) = ((2 * m k + 1) / m (k + 1)) * n (k + 1) := by\n    have h\u2087 : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := cross_eq\n    have h\u2088 : (2 * m k + 1) / m (k + 1) * m (k + 1) = 2 * m k + 1 := by\n      exact Nat.div_mul_cancel h\u2081\n    have h\u2089 : (2 * n k + 1) = ((2 * m k + 1) / m (k + 1)) * n (k + 1) := by\n      apply Eq.symm\n      rw [mul_comm] at h\u2087\n      have h\u2081\u2080 : n (k + 1) \u2223 (2 * n k + 1) := h\u2082\n      have h\u2081\u2081 : m (k + 1) \u2223 (2 * m k + 1) := h\u2081\n      have h\u2081\u2082 : (2 * m k + 1) / m (k + 1) * m (k + 1) = 2 * m k + 1 := by\n        exact Nat.div_mul_cancel h\u2081\n      have h\u2081\u2083 : (2 * n k + 1) = ((2 * m k + 1) / m (k + 1)) * n (k + 1) := by\n        apply Eq.symm\n        rw [mul_comm] at h\u2087\n        omega\n      exact h\u2081\u2083\n    exact h\u2089\n  exact \u27e8h\u2085, h\u2086\u27e9",
+        "custom_id": "build_common_scaling_from_divs_50",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 37,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 37,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 0\n  b \u2265 0\n  e \u2265 1\n  2*b - c \u2265 0\n  d \u2265 1\nwhere\n a := \u2191(m k)\n b := \u2191(n k)\n c := \u2191((2 * m k + 1) / m (k + 1)) * \u2191(n (k + 1))\n d := \u2191(n (k + 1))\n e := \u2191(m (k + 1))"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 38,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 38,
+                        "column": 15
+                    },
+                    "data": "type mismatch\n  h\u2081\u2083\nhas type\n  2 * n k + 1 = (2 * m k + 1) / m (k + 1) * n (k + 1) : Prop\nbut is expected to have type\n  (2 * m k + 1) / m (k + 1) * n (k + 1) = 2 * n k + 1 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.8204402923583984,
+            "custom_id": "build_common_scaling_from_divs_50"
+        }
+    },
+    {
+        "name": "build_common_scaling_from_divs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem build_common_scaling_from_divs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (cross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1))\n  (hm_div : m (k + 1) \u2223 (2 * m k + 1))\n  (hn_div : n (k + 1) \u2223 (2 * n k + 1)) :\n  \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) \u2227 (2 * n k + 1) = c * n (k + 1) := by\n  have h\u2081 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n  have h\u2082 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n  have h\u2083 : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := cross_eq\n  have h\u2084 : \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) \u2227 (2 * n k + 1) = c * n (k + 1) := by\n    have h\u2085 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n    have h\u2086 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n    have h\u2087 : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := cross_eq\n    exact \u27e8(2 * m k + 1) / m (k + 1), by\n      have h\u2088 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n      have h\u2089 : (2 * m k + 1) / m (k + 1) * m (k + 1) = 2 * m k + 1 := by\n        exact Nat.div_mul_cancel h\u2088\n      have h\u2081\u2080 : (2 * n k + 1) / n (k + 1) * n (k + 1) = 2 * n k + 1 := by\n        exact Nat.div_mul_cancel (h\u2082)\n      constructor <;>\n        simp_all [mul_comm, mul_assoc, mul_left_comm]\n      <;>\n        ring_nf at * <;>\n        nlinarith\n    \u27e9\n  exact h\u2084",
+        "custom_id": "build_common_scaling_from_divs_51",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 29,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 29,
+                        "column": 17
+                    },
+                    "data": "linarith failed to find a contradiction\ncase right.h1.h\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh\u2081\u2080 : n (1 + k) * ((1 + n k * 2) / n (1 + k)) = 1 + n k * 2\nh\u2089 : (1 + m k * 2) / m (1 + k) * m (1 + k) = 1 + m k * 2\nhn_div : n (1 + k) \u2223 1 + n k * 2\nhm_div : m (1 + k) \u2223 1 + m k * 2\ncross_eq : n k * m (1 + k) * 2 + m (1 + k) = n (1 + k) + n (1 + k) * m k * 2\na\u271d : 1 + n k * 2 < n (1 + k) * ((1 + m k * 2) / m (1 + k))\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 38
+                    },
+                    "endPos": {
+                        "line": 29,
+                        "column": 17
+                    },
+                    "data": "unsolved goals\ncase right\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh\u2081\u2080 : n (1 + k) * ((1 + n k * 2) / n (1 + k)) = 1 + n k * 2\nh\u2089 : (1 + m k * 2) / m (1 + k) * m (1 + k) = 1 + m k * 2\nhn_div : n (1 + k) \u2223 1 + n k * 2\nhm_div : m (1 + k) \u2223 1 + m k * 2\ncross_eq : n k * m (1 + k) * 2 + m (1 + k) = n (1 + k) + n (1 + k) * m k * 2\n\u22a2 1 + n k * 2 = n (1 + k) * ((1 + m k * 2) / m (1 + k))"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.9124524593353271,
+            "custom_id": "build_common_scaling_from_divs_51"
+        }
+    },
+    {
+        "name": "build_common_scaling_from_divs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem build_common_scaling_from_divs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (cross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1))\n  (hm_div : m (k + 1) \u2223 (2 * m k + 1))\n  (hn_div : n (k + 1) \u2223 (2 * n k + 1)) :\n  \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) \u2227 (2 * n k + 1) = c * n (k + 1) := by\n  have h1 : m (k + 1) \u2223 (2 * m k + 1) := by simpa using hm_div\n  have h2 : n (k + 1) \u2223 (2 * n k + 1) := by simpa using hn_div\n  cases' h1 with a ha\n  cases' h2 with b hb\n  use a\n  <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;> ring_nf at *\n  <;> omega",
+        "custom_id": "build_common_scaling_from_divs_52",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  d \u2265 0\n  f \u2265 0\n  f - g \u2265 1\n  e \u2265 1\n  g \u2265 0\n  c \u2265 0\nwhere\n c := \u2191(n k)\n d := \u2191(m k)\n e := \u2191(n (1 + k))\n f := \u2191a\n g := \u2191b"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 76
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nm n : \u2115 \u2192 \u2115\nk a b : \u2115\nhb : 1 + n k * 2 = b * n (1 + k)\nha : 1 + m k * 2 = a * m (1 + k)\ncross_eq : b = a \u2228 m (1 + k) = 0 \u2228 n (1 + k) = 0\n\u22a2 b = a \u2228 n (1 + k) = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6840958595275879,
+            "custom_id": "build_common_scaling_from_divs_52"
+        }
+    },
+    {
+        "name": "build_common_scaling_from_divs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem build_common_scaling_from_divs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (cross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1))\n  (hm_div : m (k + 1) \u2223 (2 * m k + 1))\n  (hn_div : n (k + 1) \u2223 (2 * n k + 1)) :\n  \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) \u2227 (2 * n k + 1) = c * n (k + 1) := by\n  have h\u2081 : m (k + 1) \u2223 (2 * m k + 1) := by simpa [mul_comm] using hm_div\n  have h\u2082 : n (k + 1) \u2223 (2 * n k + 1) := by simpa [mul_comm] using hn_div\n  have h\u2083 : \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) := by\n    obtain \u27e8c, hc\u27e9 := h\u2081\n    exact \u27e8c, by linarith\u27e9\n  have h\u2084 : \u2203 c : \u2115, (2 * n k + 1) = c * n (k + 1) := by\n    obtain \u27e8c, hc\u27e9 := h\u2082\n    exact \u27e8c, by linarith\u27e9\n  obtain \u27e8c\u2081, hc\u2081\u27e9 := h\u2083\n  obtain \u27e8c\u2082, hc\u2082\u27e9 := h\u2084\n  have h\u2085 : c\u2081 = c\u2082 := by\n    have h\u2085\u2081 : c\u2081 * m (k + 1) = 2 * m k + 1 := by linarith\n    have h\u2085\u2082 : c\u2082 * n (k + 1) = 2 * n k + 1 := by linarith\n    have h\u2085\u2083 : c\u2081 * m (k + 1) = c\u2082 * m (k + 1) := by\n      rw [h\u2085\u2081, h\u2085\u2082]\n      simp_all [cross_eq, mul_comm, mul_assoc, mul_left_comm]\n      <;> ring_nf at *\n      <;> omega\n    have h\u2085\u2084 : m (k + 1) \u2260 0 := by\n      intro h\n      simp_all\n    have h\u2085\u2085 : c\u2081 = c\u2082 := by\n      apply mul_left_cancel\u2080 h\u2085\u2084\n      linarith\n    exact h\u2085\u2085\n  use c\u2081\n  <;> simp_all\n  <;> ring_nf at *\n  <;> omega",
+        "custom_id": "build_common_scaling_from_divs_53",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 26,
+                        "column": 15
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 18
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  c\u2082 * n (k + 1)\nm n : \u2115 \u2192 \u2115\nk : \u2115\ncross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1)\nhm_div : m (k + 1) \u2223 2 * m k + 1\nhn_div : n (k + 1) \u2223 2 * n k + 1\nh\u2081 : m (k + 1) \u2223 2 * m k + 1\nh\u2082 : n (k + 1) \u2223 2 * n k + 1\nc\u2081 : \u2115\nhc\u2081 : 2 * m k + 1 = c\u2081 * m (k + 1)\nc\u2082 : \u2115\nhc\u2082 : 2 * n k + 1 = c\u2082 * n (k + 1)\nh\u2085\u2081 : c\u2081 * m (k + 1) = 2 * m k + 1\nh\u2085\u2082 : c\u2082 * n (k + 1) = 2 * n k + 1\n\u22a2 2 * m k + 1 = c\u2082 * m (k + 1)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 32,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 32,
+                        "column": 14
+                    },
+                    "data": "tactic 'simp' failed, nested error:\nmaximum recursion depth has been reached\nuse `set_option maxRecDepth <num>` to increase limit\nuse `set_option diagnostics true` to get diagnostic information"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 3.7343032360076904,
+            "custom_id": "build_common_scaling_from_divs_53"
+        }
+    },
+    {
+        "name": "build_common_scaling_from_divs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem build_common_scaling_from_divs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (cross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1))\n  (hm_div : m (k + 1) \u2223 (2 * m k + 1))\n  (hn_div : n (k + 1) \u2223 (2 * n k + 1)) :\n  \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) \u2227 (2 * n k + 1) = c * n (k + 1) := by\n  have h1 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n  have h2 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n  have h3 : \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) := by\n    obtain \u27e8c, hc\u27e9 := h1\n    exact \u27e8c, by linarith\u27e9\n  have h4 : \u2203 c : \u2115, (2 * n k + 1) = c * n (k + 1) := by\n    obtain \u27e8c, hc\u27e9 := h2\n    exact \u27e8c, by linarith\u27e9\n  obtain \u27e8c1, hc1\u27e9 := h3\n  obtain \u27e8c2, hc2\u27e9 := h4\n  use c1\n  constructor\n  exact hc1\n  have h5 : (2 * n k + 1) = c2 * n (k + 1) := hc2\n  have h6 : c1 * m (k + 1) = c2 * n (k + 1) := by\n    nlinarith\n  nlinarith",
+        "custom_id": "build_common_scaling_from_divs_54",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 27,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 27,
+                        "column": 13
+                    },
+                    "data": "linarith failed to find a contradiction\ncase h1.h\nm n : \u2115 \u2192 \u2115\nk : \u2115\ncross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1)\nhm_div : m (k + 1) \u2223 2 * m k + 1\nhn_div : n (k + 1) \u2223 2 * n k + 1\nh1 : m (k + 1) \u2223 2 * m k + 1\nh2 : n (k + 1) \u2223 2 * n k + 1\nc1 : \u2115\nhc1 : 2 * m k + 1 = c1 * m (k + 1)\nc2 : \u2115\nhc2 h5 : 2 * n k + 1 = c2 * n (k + 1)\na\u271d : c1 * m (k + 1) < c2 * n (k + 1)\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 4.188606023788452,
+            "custom_id": "build_common_scaling_from_divs_54"
+        }
+    },
+    {
+        "name": "build_common_scaling_from_divs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem build_common_scaling_from_divs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (cross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1))\n  (hm_div : m (k + 1) \u2223 (2 * m k + 1))\n  (hn_div : n (k + 1) \u2223 (2 * n k + 1)) :\n  \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) \u2227 (2 * n k + 1) = c * n (k + 1) := by\n  have h\u2081 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n  have h\u2082 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n  have h\u2083 : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := cross_eq\n  have h\u2084 : \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) \u2227 (2 * n k + 1) = c * n (k + 1) := by\n    have h\u2085 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n    have h\u2086 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n    have h\u2087 : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := cross_eq\n    -- We need to find a common scaling factor c such that (2 * m k + 1) = c * m (k + 1) and (2 * n k + 1) = c * n (k + 1)\n    -- Given the divisibility conditions and the cross equation, we can deduce the existence of such a c\n    use (2 * m k + 1) / m (k + 1)\n    have h\u2088 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n    have h\u2089 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n    have h\u2081\u2080 : m (k + 1) * ((2 * m k + 1) / m (k + 1)) = (2 * m k + 1) := Nat.mul_div_cancel' h\u2088\n    have h\u2081\u2081 : n (k + 1) * ((2 * n k + 1) / n (k + 1)) = (2 * n k + 1) := Nat.mul_div_cancel' h\u2089\n    constructor\n    <;> simp_all [Nat.mul_div_cancel_left]\n    <;> ring_nf at *\n    <;> nlinarith\n  exact h\u2084",
+        "custom_id": "build_common_scaling_from_divs_55",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 29,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 29,
+                        "column": 17
+                    },
+                    "data": "linarith failed to find a contradiction\ncase h.right.h1.h\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh\u2081\u2081 : n (1 + k) * ((1 + n k * 2) / n (1 + k)) = 1 + n k * 2\nh\u2081\u2080 : (1 + m k * 2) / m (1 + k) * m (1 + k) = 1 + m k * 2\nh\u2089 : n (1 + k) \u2223 1 + n k * 2\nh\u2088 : m (1 + k) \u2223 1 + m k * 2\nh\u2087 : n k * m (1 + k) * 2 + m (1 + k) = m k * n (1 + k) * 2 + n (1 + k)\na\u271d : 1 + n k * 2 < (1 + m k * 2) / m (1 + k) * n (1 + k)\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 86
+                    },
+                    "endPos": {
+                        "line": 29,
+                        "column": 17
+                    },
+                    "data": "unsolved goals\ncase h.right\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh\u2081\u2081 : n (1 + k) * ((1 + n k * 2) / n (1 + k)) = 1 + n k * 2\nh\u2081\u2080 : (1 + m k * 2) / m (1 + k) * m (1 + k) = 1 + m k * 2\nh\u2089 : n (1 + k) \u2223 1 + n k * 2\nh\u2088 : m (1 + k) \u2223 1 + m k * 2\nh\u2087 : n k * m (1 + k) * 2 + m (1 + k) = m k * n (1 + k) * 2 + n (1 + k)\n\u22a2 1 + n k * 2 = (1 + m k * 2) / m (1 + k) * n (1 + k)"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 5.19160532951355,
+            "custom_id": "build_common_scaling_from_divs_55"
+        }
+    },
+    {
+        "name": "build_common_scaling_from_divs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem build_common_scaling_from_divs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (cross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1))\n  (hm_div : m (k + 1) \u2223 (2 * m k + 1))\n  (hn_div : n (k + 1) \u2223 (2 * n k + 1)) :\n  \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) \u2227 (2 * n k + 1) = c * n (k + 1) := by\n  have h\u2081 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n  have h\u2082 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n  have h\u2083 : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := cross_eq\n  have h\u2084 : m (k + 1) \u2223 n (k + 1) * (2 * m k + 1) := by\n    rw [\u2190 h\u2083]\n    exact dvd_mul_right _ _\n  have h\u2085 : m (k + 1) \u2223 n (k + 1) := by\n    have h\u2086 : m (k + 1) \u2223 n (k + 1) * (2 * m k + 1) := h\u2084\n    exact (Nat.dvd_of_mod_eq_zero (by simp_all [Nat.dvd_iff_mod_eq_zero, Nat.mul_mod, Nat.add_mod]))\n  have h\u2086 : n (k + 1) \u2223 m (k + 1) * (2 * n k + 1) := by\n    rw [h\u2083]\n    exact dvd_mul_right _ _\n  have h\u2087 : n (k + 1) \u2223 m (k + 1) := by\n    have h\u2088 : n (k + 1) \u2223 m (k + 1) * (2 * n k + 1) := h\u2086\n    exact (Nat.dvd_of_mod_eq_zero (by simp_all [Nat.dvd_iff_mod_eq_zero, Nat.mul_mod, Nat.add_mod]))\n  have h\u2088 : m (k + 1) = n (k + 1) := Nat.dvd_antisymm h\u2085 h\u2087\n  use 1\n  simp_all [h\u2088]\n  <;> ring_nf at *\n  <;> omega",
+        "custom_id": "build_common_scaling_from_divs_56",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 98
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh\u2081 :\n  (2 % m (k + 1) % m (k + 1) * (m k % m (k + 1) % m (k + 1)) % m (k + 1) % m (k + 1) + 1 % m (k + 1) % m (k + 1)) %\n      m (k + 1) =\n    0\nh\u2082 :\n  (2 % n (k + 1) % n (k + 1) * (n k % n (k + 1) % n (k + 1)) % n (k + 1) % n (k + 1) + 1 % n (k + 1) % n (k + 1)) %\n      n (k + 1) =\n    0\nh\u2083 : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1)\nh\u2086 :\n  n (k + 1) % m (k + 1) % m (k + 1) *\n        ((2 % m (k + 1) % m (k + 1) * (m k % m (k + 1) % m (k + 1)) % m (k + 1) % m (k + 1) +\n              1 % m (k + 1) % m (k + 1)) %\n            m (k + 1) %\n          m (k + 1)) %\n      m (k + 1) =\n    0\n\u22a2 n (k + 1) % m (k + 1) = 0"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 26,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 98
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh\u2081 :\n  (2 % m (k + 1) % m (k + 1) * (m k % m (k + 1) % m (k + 1)) % m (k + 1) % m (k + 1) + 1 % m (k + 1) % m (k + 1)) %\n      m (k + 1) =\n    0\nh\u2082 :\n  (2 % n (k + 1) % n (k + 1) * (n k % n (k + 1) % n (k + 1)) % n (k + 1) % n (k + 1) + 1 % n (k + 1) % n (k + 1)) %\n      n (k + 1) =\n    0\nh\u2083 : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1)\nh\u2085 : n (k + 1) % m (k + 1) = 0\n\u22a2 m (k + 1) % n (k + 1) = 0"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 31,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 31,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 0\n  a - 2*b \u2265 2\n  a \u2265 0\nwhere\n a := \u2191(n (1 + k))\n b := \u2191(n k)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 76
+                    },
+                    "endPos": {
+                        "line": 31,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh\u2088 : m (1 + k) = n (1 + k)\nh\u2082 : n (1 + k) \u2223 1 + n k * 2\nhm_div : n (1 + k) \u2223 1 + m k * 2\ncross_eq : n k = m k \u2228 n (1 + k) = 0\n\u22a2 1 + m k * 2 = n (1 + k) \u2227 1 + n k * 2 = n (1 + k)"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.161316156387329,
+            "custom_id": "build_common_scaling_from_divs_56"
+        }
+    },
+    {
+        "name": "build_common_scaling_from_divs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem build_common_scaling_from_divs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (cross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1))\n  (hm_div : m (k + 1) \u2223 (2 * m k + 1))\n  (hn_div : n (k + 1) \u2223 (2 * n k + 1)) :\n  \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) \u2227 (2 * n k + 1) = c * n (k + 1) := by\n  have h\u2081 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n  have h\u2082 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n  have h\u2083 : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := cross_eq\n  have h\u2084 : \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) \u2227 (2 * n k + 1) = c * n (k + 1) := by\n    have h\u2085 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n    have h\u2086 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n    have h\u2087 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n    have h\u2088 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n    obtain \u27e8d, hd\u27e9 := h\u2085\n    obtain \u27e8e, he\u27e9 := h\u2086\n    use d\n    constructor\n    \u00b7 rw [hd]\n      nlinarith\n    \u00b7 rw [he]\n      nlinarith\n  exact h\u2084",
+        "custom_id": "build_common_scaling_from_divs_57",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2082`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2083`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2087`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 19,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2088`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 4.339306831359863,
+            "custom_id": "build_common_scaling_from_divs_57"
+        }
+    },
+    {
+        "name": "build_common_scaling_from_divs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem build_common_scaling_from_divs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (cross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1))\n  (hm_div : m (k + 1) \u2223 (2 * m k + 1))\n  (hn_div : n (k + 1) \u2223 (2 * n k + 1)) :\n  \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) \u2227 (2 * n k + 1) = c * n (k + 1) := by\n  have h\u2081 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n  have h\u2082 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n  have h\u2083 : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := cross_eq\n  have h\u2084 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n  have h\u2085 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n  -- We need to find a common scaling factor c such that 2 * m k + 1 = c * m (k + 1) and 2 * n k + 1 = c * n (k + 1)\n  refine' \u27e8(2 * m k + 1) / m (k + 1), _, _\u27e9\n  -- Prove the first equation: 2 * m k + 1 = c * m (k + 1)\n  {\n    have h\u2086 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n    have h\u2087 : (2 * m k + 1) / m (k + 1) * m (k + 1) = 2 * m k + 1 := by\n      exact Nat.div_mul_cancel h\u2086\n    linarith\n  }\n  -- Prove the second equation: 2 * n k + 1 = c * n (k + 1)\n  {\n    have h\u2086 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n    have h\u2087 : (2 * n k + 1) / n (k + 1) * n (k + 1) = 2 * n k + 1 := by\n      exact Nat.div_mul_cancel h\u2086\n    linarith\n  }",
+        "custom_id": "build_common_scaling_from_divs_58",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 31,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 31,
+                        "column": 12
+                    },
+                    "data": "linarith failed to find a contradiction\ncase refine'_2.h1.h\nm n : \u2115 \u2192 \u2115\nk : \u2115\ncross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1)\nhm_div : m (k + 1) \u2223 2 * m k + 1\nhn_div : n (k + 1) \u2223 2 * n k + 1\nh\u2081 : m (k + 1) \u2223 2 * m k + 1\nh\u2082 : n (k + 1) \u2223 2 * n k + 1\nh\u2083 : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1)\nh\u2084 : m (k + 1) \u2223 2 * m k + 1\nh\u2085 h\u2086 : n (k + 1) \u2223 2 * n k + 1\nh\u2087 : (2 * n k + 1) / n (k + 1) * n (k + 1) = 2 * n k + 1\na\u271d : 2 * n k + 1 < (2 * m k + 1) / m (k + 1) * n (k + 1)\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.8920447826385498,
+            "custom_id": "build_common_scaling_from_divs_58"
+        }
+    },
+    {
+        "name": "build_common_scaling_from_divs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem build_common_scaling_from_divs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (cross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1))\n  (hm_div : m (k + 1) \u2223 (2 * m k + 1))\n  (hn_div : n (k + 1) \u2223 (2 * n k + 1)) :\n  \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) \u2227 (2 * n k + 1) = c * n (k + 1) := by\n  have h\u2081 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n  have h\u2082 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n  have h\u2083 : \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) := by\n    obtain \u27e8c, hc\u27e9 := h\u2081\n    exact \u27e8c, by linarith\u27e9\n  have h\u2084 : \u2203 c : \u2115, (2 * n k + 1) = c * n (k + 1) := by\n    obtain \u27e8c, hc\u27e9 := h\u2082\n    exact \u27e8c, by linarith\u27e9\n  obtain \u27e8c\u2081, hc\u2081\u27e9 := h\u2083\n  obtain \u27e8c\u2082, hc\u2082\u27e9 := h\u2084\n  have h\u2085 : c\u2081 = c\u2082 := by\n    have h\u2085\u2081 : c\u2081 * m (k + 1) = 2 * m k + 1 := by linarith\n    have h\u2085\u2082 : c\u2082 * n (k + 1) = 2 * n k + 1 := by linarith\n    have h\u2085\u2083 : c\u2081 * m (k + 1) = c\u2082 * m (k + 1) := by\n      rw [h\u2085\u2081, h\u2085\u2082] at cross_eq\n      simp_all [mul_comm, mul_assoc, mul_left_comm]\n      <;> ring_nf at cross_eq \u22a2\n      <;> omega\n    have h\u2085\u2084 : m (k + 1) \u2260 0 := by\n      intro h\n      simp [h] at h\u2085\u2083\n      <;> omega\n    have h\u2085\u2085 : c\u2081 = c\u2082 := by\n      apply mul_left_cancel\u2080 h\u2085\u2084\n      linarith\n    exact h\u2085\u2085\n  use c\u2081\n  <;> simp_all\n  <;> ring_nf\n  <;> omega",
+        "custom_id": "build_common_scaling_from_divs_59",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 26,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 13
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  c\u2081 * m (k + 1)\nm n : \u2115 \u2192 \u2115\nk : \u2115\ncross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1)\nhm_div : m (k + 1) \u2223 2 * m k + 1\nhn_div : n (k + 1) \u2223 2 * n k + 1\nh\u2081 : m (k + 1) \u2223 2 * m k + 1\nh\u2082 : n (k + 1) \u2223 2 * n k + 1\nc\u2081 : \u2115\nhc\u2081 : 2 * m k + 1 = c\u2081 * m (k + 1)\nc\u2082 : \u2115\nhc\u2082 : 2 * n k + 1 = c\u2082 * n (k + 1)\nh\u2085\u2081 : c\u2081 * m (k + 1) = 2 * m k + 1\nh\u2085\u2082 : c\u2082 * n (k + 1) = 2 * n k + 1\n\u22a2 c\u2081 * m (k + 1) = c\u2082 * m (k + 1)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 33,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 33,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 0\n  b \u2265 0\nwhere\n a := \u2191(m k)\n b := \u2191(n k)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 30,
+                        "column": 32
+                    },
+                    "endPos": {
+                        "line": 33,
+                        "column": 15
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk : \u2115\ncross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1)\nhm_div : m (k + 1) \u2223 2 * m k + 1\nhn_div : n (k + 1) \u2223 2 * n k + 1\nh\u2081 : m (k + 1) \u2223 2 * m k + 1\nh\u2082 : n (k + 1) \u2223 2 * n k + 1\nc\u2081 : \u2115\nhc\u2081 : 2 * m k + 1 = c\u2081 * m (k + 1)\nc\u2082 : \u2115\nhc\u2082 : 2 * n k + 1 = c\u2082 * n (k + 1)\nh\u2085\u2081 : c\u2081 * m (k + 1) = 2 * m k + 1\nh\u2085\u2082 : c\u2082 * n (k + 1) = 2 * n k + 1\nh : m (k + 1) = 0\nh\u2085\u2083 : True\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.020176887512207,
+            "custom_id": "build_common_scaling_from_divs_59"
+        }
+    },
+    {
+        "name": "build_common_scaling_from_divs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem build_common_scaling_from_divs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (cross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1))\n  (hm_div : m (k + 1) \u2223 (2 * m k + 1))\n  (hn_div : n (k + 1) \u2223 (2 * n k + 1)) :\n  \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) \u2227 (2 * n k + 1) = c * n (k + 1) := by\n  have h\u2081 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n  have h\u2082 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n  have h\u2083 : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := cross_eq\n  have h\u2084 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n  have h\u2085 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n  have h\u2086 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n  have h\u2087 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n  use (2 * m k + 1) / m (k + 1)\n  have h\u2088 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n  have h\u2089 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n  have h\u2081\u2080 : (2 * m k + 1) = ((2 * m k + 1) / m (k + 1)) * m (k + 1) := by\n    exact (Nat.div_mul_cancel h\u2088).symm\n  have h\u2081\u2081 : (2 * n k + 1) = ((2 * m k + 1) / m (k + 1)) * n (k + 1) := by\n    rw [\u2190 h\u2083] at *\n    simp_all [Nat.mul_div_cancel_left]\n    <;> omega\n  exact \u27e8by omega, by omega\u27e9",
+        "custom_id": "build_common_scaling_from_divs_60",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 26,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 38
+                    },
+                    "data": "tactic 'simp' failed, nested error:\nmaximum recursion depth has been reached\nuse `set_option maxRecDepth <num>` to increase limit\nuse `set_option diagnostics true` to get diagnostic information"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.3067953586578369,
+            "custom_id": "build_common_scaling_from_divs_60"
+        }
+    },
+    {
+        "name": "build_common_scaling_from_divs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem build_common_scaling_from_divs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (cross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1))\n  (hm_div : m (k + 1) \u2223 (2 * m k + 1))\n  (hn_div : n (k + 1) \u2223 (2 * n k + 1)) :\n  \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) \u2227 (2 * n k + 1) = c * n (k + 1) := by\n  have h_m : m (k + 1) \u2223 (2 * m k + 1) := by simpa using hm_div\n  have h_n : n (k + 1) \u2223 (2 * n k + 1) := by simpa using hn_div\n  cases' h_m with a h_m\n  cases' h_n with b h_n\n  use a\n  <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;> ring_nf at *\n  <;> omega",
+        "custom_id": "build_common_scaling_from_divs_61",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  d \u2265 0\n  f \u2265 0\n  f - g \u2265 1\n  e \u2265 1\n  g \u2265 0\n  c \u2265 0\nwhere\n c := \u2191(n k)\n d := \u2191(m k)\n e := \u2191(n (1 + k))\n f := \u2191a\n g := \u2191b"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 76
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nm n : \u2115 \u2192 \u2115\nk a b : \u2115\nh_n : 1 + n k * 2 = b * n (1 + k)\nh_m : 1 + m k * 2 = a * m (1 + k)\ncross_eq : b = a \u2228 m (1 + k) = 0 \u2228 n (1 + k) = 0\n\u22a2 b = a \u2228 n (1 + k) = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6907973289489746,
+            "custom_id": "build_common_scaling_from_divs_61"
+        }
+    },
+    {
+        "name": "build_common_scaling_from_divs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem build_common_scaling_from_divs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (cross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1))\n  (hm_div : m (k + 1) \u2223 (2 * m k + 1))\n  (hn_div : n (k + 1) \u2223 (2 * n k + 1)) :\n  \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) \u2227 (2 * n k + 1) = c * n (k + 1) := by\n  have h\u2081 : m (k + 1) \u2223 (2 * m k + 1) := hm_div\n  have h\u2082 : n (k + 1) \u2223 (2 * n k + 1) := hn_div\n  have h\u2083 : \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) := by\n    obtain \u27e8c, hc\u27e9 := h\u2081\n    exact \u27e8c, by linarith\u27e9\n  have h\u2084 : \u2203 c : \u2115, (2 * n k + 1) = c * n (k + 1) := by\n    obtain \u27e8c, hc\u27e9 := h\u2082\n    exact \u27e8c, by linarith\u27e9\n  obtain \u27e8c\u2081, hc\u2081\u27e9 := h\u2083\n  obtain \u27e8c\u2082, hc\u2082\u27e9 := h\u2084\n  use c\u2081\n  constructor\n  exact hc\u2081\n  have h\u2085 : c\u2081 * m (k + 1) = 2 * m k + 1 := by linarith\n  have h\u2086 : c\u2082 * n (k + 1) = 2 * n k + 1 := by linarith\n  have h\u2087 : c\u2081 = c\u2082 := by\n    have h\u2088 : c\u2081 * m (k + 1) = c\u2082 * m (k + 1) := by\n      rw [h\u2085, h\u2086]\n      nlinarith\n    have h\u2089 : m (k + 1) \u2260 0 := by\n      by_contra h\n      simp_all\n    have h\u2081\u2080 : c\u2081 = c\u2082 := by\n      apply mul_left_cancel\u2080 h\u2089\n      linarith\n    exact h\u2081\u2080\n  rw [h\u2087] at hc\u2082\n  linarith",
+        "custom_id": "build_common_scaling_from_divs_62",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 29,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 29,
+                        "column": 16
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  c\u2082 * n (k + 1)\nm n : \u2115 \u2192 \u2115\nk : \u2115\ncross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1)\nhm_div : m (k + 1) \u2223 2 * m k + 1\nhn_div : n (k + 1) \u2223 2 * n k + 1\nh\u2081 : m (k + 1) \u2223 2 * m k + 1\nh\u2082 : n (k + 1) \u2223 2 * n k + 1\nc\u2081 : \u2115\nhc\u2081 : 2 * m k + 1 = c\u2081 * m (k + 1)\nc\u2082 : \u2115\nhc\u2082 : 2 * n k + 1 = c\u2082 * n (k + 1)\nh\u2085 : c\u2081 * m (k + 1) = 2 * m k + 1\nh\u2086 : c\u2082 * n (k + 1) = 2 * n k + 1\n\u22a2 2 * m k + 1 = c\u2082 * m (k + 1)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 33,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 33,
+                        "column": 14
+                    },
+                    "data": "tactic 'simp' failed, nested error:\nmaximum recursion depth has been reached\nuse `set_option maxRecDepth <num>` to increase limit\nuse `set_option diagnostics true` to get diagnostic information"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 38,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 38,
+                        "column": 8
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  c\u2081\ncase h.right\nm n : \u2115 \u2192 \u2115\nk : \u2115\ncross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1)\nhm_div : m (k + 1) \u2223 2 * m k + 1\nhn_div : n (k + 1) \u2223 2 * n k + 1\nh\u2081 : m (k + 1) \u2223 2 * m k + 1\nh\u2082 : n (k + 1) \u2223 2 * n k + 1\nc\u2081 : \u2115\nhc\u2081 : 2 * m k + 1 = c\u2081 * m (k + 1)\nc\u2082 : \u2115\nhc\u2082 : 2 * n k + 1 = c\u2082 * n (k + 1)\nh\u2085 : c\u2081 * m (k + 1) = 2 * m k + 1\nh\u2086 : c\u2082 * n (k + 1) = 2 * n k + 1\nh\u2087 : c\u2081 = c\u2082\n\u22a2 2 * n k + 1 = c\u2081 * n (k + 1)"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 3.90700101852417,
+            "custom_id": "build_common_scaling_from_divs_62"
+        }
+    },
+    {
+        "name": "build_common_scaling_from_divs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem build_common_scaling_from_divs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115)\n  (cross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1))\n  (hm_div : m (k + 1) \u2223 (2 * m k + 1))\n  (hn_div : n (k + 1) \u2223 (2 * n k + 1)) :\n  \u2203 c : \u2115, (2 * m k + 1) = c * m (k + 1) \u2227 (2 * n k + 1) = c * n (k + 1) := by\n  have h_m : m (k + 1) \u2223 (2 * m k + 1) := by simpa using hm_div\n  have h_n : n (k + 1) \u2223 (2 * n k + 1) := by simpa using hn_div\n  cases' h_m with d hd\n  cases' h_n with e he\n  use d\n  simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;> ring_nf at *\n  <;> omega",
+        "custom_id": "build_common_scaling_from_divs_63",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 0\n  f \u2265 0\n  f - g \u2265 1\n  c \u2265 1\n  g \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(n k)\n b := \u2191(m k)\n c := \u2191(n (1 + k))\n f := \u2191d\n g := \u2191e"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 76
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nm n : \u2115 \u2192 \u2115\nk d e : \u2115\nhe : 1 + n k * 2 = e * n (1 + k)\nhd : 1 + m k * 2 = d * m (1 + k)\ncross_eq : e = d \u2228 m (1 + k) = 0 \u2228 n (1 + k) = 0\n\u22a2 e = d \u2228 n (1 + k) = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6647002696990967,
+            "custom_id": "build_common_scaling_from_divs_63"
+        }
+    }
+]

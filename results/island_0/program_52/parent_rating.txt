@@ -1,0 +1,56 @@
+---------
+lemma nat_div_eq_of_mul_eq {d m n : ℕ} (h : n = d * m) : n / d = m := by
+Failure mode: INCORRECT
+Recommendation: The statement is false in `ℕ` because division is truncated and, crucially, division by zero is defined (so `0 / 0 = 0`). Counterexample: take `d = 0`, `m = 1`, `n = 0`; then `h : n = d*m` holds, but `n/d = 0/0 = 0 ≠ 1 = m`. Revise the lemma by adding a positivity/nonzeroness hypothesis on the divisor, e.g. `0 < d` (or `d ≠ 0`), and then prove `n / d = m` from `n = d*m` using exactness of division when the divisor is positive.
+---------
+
+---------
+lemma pow_mul_odd_eq_pow_mul_odd (p q x y : ℕ)
+  (h : (2 : ℕ) ^ p * x = (2 : ℕ) ^ q * y) (hx_odd : x % 2 = 1) (hy_odd : y % 2 = 1) :
+  p = q ∧ x = y := by
+Failure mode: HARD
+Recommendation: Decompose the goal via a 2-adic/“odd part” uniqueness argument. A workable lemma-plan is:
+
+1) **Odd means not divisible by 2**: from `x % 2 = 1` derive `¬ (2 ∣ x)` and similarly for `y`.
+2) **Compare exponents by divisibility**: prove `p ≤ q ∨ q ≤ p` and handle both cases symmetrically.
+3) **If p ≤ q, factor out 2^p**: set `r := q - p` and rewrite the equality as  
+   `x = (2^r) * y` (using cancellation of the common factor `2^p`).
+4) **Odd forces r = 0**: show that if `r > 0` then `2 ∣ (2^r * y)`, hence `2 ∣ x`, contradicting oddness of `x`. Conclude `r = 0`, hence `p = q`.
+5) **With p = q, cancel to get x = y**: substitute `p = q` back into `h` and cancel the common factor `2^p` to conclude `x = y`.
+
+This avoids any heavy machinery: the key intermediate facts are “`r>0` implies `2 ∣ 2^r`” and “odd ↔ not divisible by 2”.
+---------
+
+---------
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by
+Failure mode: HARD
+Recommendation: This is a true but very composite statement; prove it by isolating the “divide-by-nontrivial-odd-gcd strictly shrinks the odd part” mechanism. A proof plan:
+
+1) **Nontrivial gcd from not-coprime**: let `d := gcd(2*m k + 1) (2*n k + 1)`. Prove `1 < d` from `hbad`.
+2) **d is odd**: prove `d % 2 = 1` (since both inputs are odd).
+3) **Reduced successor form**: using `next_eq_div_gcd`, obtain
+   - `2*m k + 1 = d * m (k+1)`
+   - `2*n k + 1 = d * n (k+1)`.
+4) **Difference evolution**: derive the integer identity  
+   `(d:ℤ) * ( (m(k+1):ℤ) - (n(k+1):ℤ) ) = (2:ℤ) * ( (m k:ℤ) - (n k:ℤ) )`.
+5) **d divides the previous difference**: show `(d:ℤ) ∣ ( (m k:ℤ) - (n k:ℤ) )` (your `gcd_odd_and_dvd_diff` already packages this).
+6) **Translate to natAbs and divide by d**: conclude  
+   `Int.natAbs(nextDiff) = Int.natAbs( (2*prevDiff)/d )`.
+7) **Push divisibility into the odd part r1**: from the decomposition `Int.natAbs(prevDiff) = 2^u1 * r1` with `r1` odd and `d` odd, prove `d ∣ r1`. (This is the same coprime-cancellation pattern you used elsewhere: `Coprime d (2^u1)` and `d ∣ 2^u1*r1` imply `d ∣ r1`.)
+8) **Write r1 = d * r1' with r1' > 0**: obtain `r1'` and show `r1' < r1` using `1 < d` and `0 < r1'`.
+9) **Identify r2 with r1'**: show that the “odd part” of `Int.natAbs(nextDiff)` equals `r1'` (use uniqueness of 2-adic decomposition, i.e. your `pow_mul_odd_eq_pow_mul_odd`, on the equality expressing `2*(A/d)`).
+10) **Conclude strict decrease**: from `r2 = r1'` and `r1' < r1`, infer `r2 < r1`.
+
+This isolates the two genuinely hard ingredients: (i) proving `1 < gcd` from `¬Coprime`, and (ii) uniqueness of the `2^u * (odd)` decomposition.

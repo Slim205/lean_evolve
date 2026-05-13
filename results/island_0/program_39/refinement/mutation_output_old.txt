@@ -1,0 +1,29 @@
+>>>>SEARCH
+lemma recurrence_cross_Q (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_n_succ_nonzero_k : (n (k + 1) : ℚ) ≠ 0)
+  (h_two_nk_nonzero : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0)
+  (k : ℕ) :
+  (m (k + 1) : ℚ) * ((2 : ℚ) * (n k : ℚ) + 1) = (n (k + 1) : ℚ) * ((2 : ℚ) * (m k : ℚ) + 1) := by
+  -- clear denominators in ℚ; proof omitted
+  sorry
+>>>>REPLACE
+lemma recurrence_cross_Q (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_n_succ_nonzero_k : ∀ k, (n (k + 1) : ℚ) ≠ 0)
+  (h_two_nk_nonzero : ∀ k, ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0)
+  (k : ℕ) :
+  (m (k + 1) : ℚ) * ((2 : ℚ) * (n k : ℚ) + 1) = (n (k + 1) : ℚ) * ((2 : ℚ) * (m k : ℚ) + 1) := by
+  -- clear denominators in ℚ by applying `clear_denoms_Q` to the equality `h_recurrence k`
+  have h_eq : (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+               ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1) := by
+    exact h_recurrence k
+  have hb : (n (k + 1) : ℚ) ≠ 0 := by
+    exact h_n_succ_nonzero_k k
+  have hd : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0 := by
+    exact h_two_nk_nonzero k
+  exact clear_denoms_Q hb hd h_eq

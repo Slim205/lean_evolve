@@ -1,0 +1,77 @@
+>>>>SEARCH
+lemma next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+  -- obtain the successor coprimality hypothesis for index `k+1`
+  have hsucc_copr : Nat.Coprime (m (k + 1)) (n (k + 1)) := by
+    exact h_coprime (k + 1) (Nat.succ_pos k)
+
+  -- the right-hand denominator (2 * n k + 1) is a nonzero natural number
+  have denom_nonzero : (2 * n k + 1) ≠ 0 := by
+    simp [Nat.succ_ne_zero]
+
+  -- obtain that the successor denominator `n (k+1)` is nonzero (as a nat) from the recurrence
+  have hb : n (k + 1) ≠ 0 := by
+    intro h
+    have : (n (k + 1) : ℚ) = 0 := by simp [h]
+    exact (n_succ_nonzero m n h_recurrence k) this
+
+  -- apply the reduced-fraction uniqueness lemma to the equality of rationals
+  have hpair : (m (k + 1) = (2 * m k + 1) / Nat.gcd (2 * m k + 1) (2 * n k + 1)) ∧
+               (n (k + 1) = (2 * n k + 1) / Nat.gcd (2 * m k + 1) (2 * n k + 1)) := by
+    exact reduced_fraction_unique (m (k + 1)) (n (k + 1)) hsucc_copr hb denom_nonzero
+      (by simpa using (h_recurrence k))
+
+  exact hpair
+>>>>REPLACE
+/-- Helper: the successor denominator n_{k+1} is nonzero (so one can form ratios). -/
+lemma n_succ_nonzero
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k, (n (k + 1) : ℚ) ≠ 0 := by
+  sorry
+
+lemma next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+  -- obtain the successor coprimality hypothesis for index `k+1`
+  have hsucc_copr : Nat.Coprime (m (k + 1)) (n (k + 1)) := by
+    exact h_coprime (k + 1) (Nat.succ_pos k)
+
+  -- the right-hand denominator (2 * n k + 1) is a nonzero natural number
+  have denom_nonzero : (2 * n k + 1) ≠ 0 := by
+    simp [Nat.succ_ne_zero]
+
+  -- obtain that the successor denominator `n (k+1)` is nonzero (as a nat) from the recurrence
+  have hb : n (k + 1) ≠ 0 := by
+    intro h
+    have : (n (k + 1) : ℚ) = 0 := by simp [h]
+    exact (n_succ_nonzero m n h_recurrence k) this
+
+  -- apply the reduced-fraction uniqueness lemma to the equality of rationals
+  have hpair : (m (k + 1) = (2 * m k + 1) / Nat.gcd (2 * m k + 1) (2 * n k + 1)) ∧
+               (n (k + 1) = (2 * n k + 1) / Nat.gcd (2 * m k + 1) (2 * n k + 1)) := by
+    exact reduced_fraction_unique (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1)
+      hsucc_copr hb denom_nonzero (h_recurrence k)
+
+  exact hpair
+>>>>SEARCH
+/-- Helper: the successor denominator n_{k+1} is nonzero (so one can form ratios). -/
+lemma n_succ_nonzero
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k, (n (k + 1) : ℚ) ≠ 0 := by
+  sorry
+>>>>REPLACE

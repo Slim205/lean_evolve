@@ -1,0 +1,8 @@
+lemma gcd_odd_of_odds {a b : ℕ} (ha : a % 2 = 1) (hb : b % 2 = 1) :
+  (Nat.gcd a b) % 2 = 1 := by
+Failure mode: HARD
+Recommendation:
+1) Lemma `mod2_eq_one_iff_odd`: for any `x : ℕ`, `x % 2 = 1 ↔ Nat.Odd x`.
+2) Lemma `odd_gcd`: if `Nat.Odd a` and `Nat.Odd b` then `Nat.Odd (Nat.gcd a b)`. Prove by contradiction: if `2 ∣ gcd a b` then `2 ∣ a` and `2 ∣ b`, contradicting oddness.
+3) Lemma `odd_iff_mod2_eq_one`: `Nat.Odd x → x % 2 = 1`.
+4) Combine (1)(2)(3) to translate `ha hb` into oddness, get oddness of `gcd`, then return to `% 2 = 1`.

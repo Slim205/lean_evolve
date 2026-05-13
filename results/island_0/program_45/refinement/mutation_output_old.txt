@@ -1,0 +1,65 @@
+>>>>SEARCH
+/-- Helper: from the reduced successor multiplicative form
+    (2*m_k+1) = d * m_{k+1} and (2*n_k+1) = d * n_{k+1}, the absolute value of the
+    next difference equals the absolute value of (2 * previous difference) divided by d (in ℤ). -/
+lemma diff_evolution_natAbs
+  (m n : ℕ → ℕ) (k : ℕ) (d : ℕ)
+  (hm_mul : (2 * m k + 1) = d * m (k + 1))
+  (hn_mul : (2 * n k + 1) = d * n (k + 1))
+  (h_dvd : (d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    Int.natAbs (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+  -- arithmetic reduction lemma: left as helper
+  sorry
+>>>>REPLACE
+/-- From the multiplicative successor relations one can lift them to ℤ and obtain
+    (d : ℤ) * ((m (k+1) : ℤ) - (n (k+1) : ℤ)) = (2 : ℤ) * ((m k : ℤ) - (n k : ℤ)). -/
+lemma diff_mul_eq_two_mul_prev_int
+  (m n : ℕ → ℕ) (k : ℕ) (d : ℕ)
+  (hm_mul : (2 * m k + 1) = d * m (k + 1))
+  (hn_mul : (2 * n k + 1) = d * n (k + 1)) :
+  (d : ℤ) * ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℤ) * ((m k : ℤ) - (n k : ℤ)) := by
+  -- proof omitted
+  sorry
+
+/-- From the multiplicative identity (2*m_k + 1) = d * m_{k+1} we see that `d` is positive
+    (hence `(d : ℤ) ≠ 0`). -/
+lemma d_nat_nonzero_of_mul_eq
+  (m n : ℕ → ℕ) (k : ℕ) (d : ℕ)
+  (hm_mul : (2 * m k + 1) = d * m (k + 1)) :
+  (d : ℤ) ≠ 0 := by
+  -- trivial positivity/nonzeroness reasoning; proof omitted
+  sorry
+
+/-- If `d * x = y` in ℤ and `d ≠ 0` then `x = y / d`. (Exact division when divisor divides.) -/
+lemma int_div_eq_of_mul_eq (d : ℤ) {x y : ℤ} (hdnz : d ≠ 0) (h : d * x = y) :
+  x = y / d := by
+  -- division is exact in this situation; proof omitted
+  sorry
+
+/-- Helper: from the reduced successor multiplicative form
+    (2*m_k+1) = d * m_{k+1} and (2*n_k+1) = d * n_{k+1}, the absolute value of the
+    next difference equals the absolute value of (2 * previous difference) divided by d (in ℤ). -/
+lemma diff_evolution_natAbs
+  (m n : ℕ → ℕ) (k : ℕ) (d : ℕ)
+  (hm_mul : (2 * m k + 1) = d * m (k + 1))
+  (hn_mul : (2 * n k + 1) = d * n (k + 1))
+  (h_dvd : (d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    Int.natAbs (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+  -- 1) lift the multiplicative relations to the integer identity
+  have hmul_int : (d : ℤ) * ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    (2 : ℤ) * ((m k : ℤ) - (n k : ℤ)) := by
+    exact diff_mul_eq_two_mul_prev_int m n k d hm_mul hn_mul
+
+  -- 2) d is nonzero as an integer
+  have hd_ne : (d : ℤ) ≠ 0 := by
+    exact d_nat_nonzero_of_mul_eq m n k d hm_mul
+
+  -- 3) divide the integer equality by d to get the exact division identity
+  have hdiv_eq : ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    ((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ) := by
+    exact int_div_eq_of_mul_eq (d : ℤ) hd_ne hmul_int
+
+  -- 4) apply Int.natAbs to the equality to conclude the lemma
+  exact congrArg Int.natAbs hdiv_eq

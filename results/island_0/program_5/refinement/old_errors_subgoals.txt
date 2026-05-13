@@ -1,0 +1,60 @@
+Failed Lemmas : 
+
+lemma next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+lemma gcd_odd_and_dvd_diff
+  (m n : ℕ → ℕ)
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  d % 2 = 1 ∧ ((d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) := by
+lemma oddPart_strict_decrease_of_not_coprime
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) <
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) := by
+lemma finite_of_strict_decrease_on_bad
+  (t : ℕ → ℕ)
+  (htpos : ∀ k : ℕ, 0 < t k)
+  (bad : ℕ → Prop)
+  (hnoninc : ∀ k : ℕ, t (k + 1) ≤ t k)
+  (hdec : ∀ k : ℕ, bad k → t (k + 1) < t k) :
+  {k : ℕ | bad k}.Finite := by
+lemma decomposition_of_diff
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0) :
+  ∀ k : ℕ, ∃ (u r : ℕ),
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+lemma odd_part_noninc_step
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∀ k u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 ≤ r1 := by
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by

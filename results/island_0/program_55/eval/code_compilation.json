@@ -1,0 +1,2259 @@
+[
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  by_contra! h\n  have h' : x = 0 := by omega\n  simp_all",
+        "custom_id": "odd_pos_0",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07485008239746094,
+            "custom_id": "odd_pos_0"
+        }
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  by_contra! h\n  have h' : x = 0 := by omega\n  rw [h'] at hx\n  norm_num at hx\n  <;> omega",
+        "custom_id": "odd_pos_1",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.10423707962036133,
+            "custom_id": "odd_pos_1"
+        }
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  match x with\n  | 0 => contradiction\n  | x + 1 => omega",
+        "custom_id": "odd_pos_2",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.06193852424621582,
+            "custom_id": "odd_pos_2"
+        }
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  have : 0 < x := by\n    -- Use the fact that x % 2 = 1 to show that x is positive.\n    have h : x % 2 = 1 := hx\n    have h\u2081 : x \u2260 0 := by\n      intro h\u2082\n      rw [h\u2082] at h\n      norm_num at h\n    -- Use the fact that x is not zero to show that x is positive.\n    omega\n  exact this",
+        "custom_id": "odd_pos_3",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07205486297607422,
+            "custom_id": "odd_pos_3"
+        }
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  by_contra h\n  have h' : x = 0 := by omega\n  rw [h'] at hx\n  norm_num at hx",
+        "custom_id": "odd_pos_4",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.09626555442810059,
+            "custom_id": "odd_pos_4"
+        }
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  have h : x % 2 = 1 := hx\n  have h\u2081 : x % 2 = 1 := h\n  have h\u2082 : x % 2 = 1 := h\u2081\n  have h\u2083 : x % 2 = 1 := h\u2082\n  have h\u2084 : x % 2 = 1 := h\u2083\n  have h\u2085 : x % 2 = 1 := h\u2084\n  omega",
+        "custom_id": "odd_pos_5",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2085`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.09995031356811523,
+            "custom_id": "odd_pos_5"
+        }
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  match x with\n  | 0 => contradiction\n  | x + 1 => exact Nat.succ_pos _",
+        "custom_id": "odd_pos_6",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.01659107208251953,
+            "custom_id": "odd_pos_6"
+        }
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  by_contra h\n  have h\u2081 : x = 0 := by omega\n  rw [h\u2081] at hx\n  norm_num at hx\n  <;> omega",
+        "custom_id": "odd_pos_7",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07179903984069824,
+            "custom_id": "odd_pos_7"
+        }
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  have h := Nat.mod_add_div x 2\n  have h\u2081 : 0 < x := by\n    by_contra h\u2081\n    have h\u2082 : x = 0 := by omega\n    simp_all\n  exact h\u2081",
+        "custom_id": "odd_pos_8",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 7,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 8
+                    },
+                    "data": "unused variable `h`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.08370208740234375,
+            "custom_id": "odd_pos_8"
+        }
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  match x with\n  | 0 => contradiction\n  | x + 1 => simp_all [Nat.mod_eq_of_lt]\n  <;> omega",
+        "custom_id": "odd_pos_9",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.15053153038024902,
+            "custom_id": "odd_pos_9"
+        }
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  contrapose! hx\n  have : x = 0 := by omega\n  simp [this]",
+        "custom_id": "odd_pos_10",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.04823923110961914,
+            "custom_id": "odd_pos_10"
+        }
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  match x with\n  | 0 =>\n    -- If x were 0, then x % 2 would also be 0, which contradicts hx.\n    contradiction\n  | 1 =>\n    -- If x were 1, then x % 2 would be 1, which is consistent with hx.\n    norm_num [Nat.mod_eq_of_lt]\n  | (n + 2) =>\n    -- For any n \u2265 0, if x = n + 2, then x % 2 = (n + 2) % 2.\n    norm_num [Nat.add_mod, Nat.mul_mod, Nat.mod_eq_of_lt] at hx \u22a2\n    -- Since n % 2 is either 0 or 1, (n + 2) % 2 would be 0 or 1.\n    <;> omega",
+        "custom_id": "odd_pos_11",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 13
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.16914749145507812,
+            "custom_id": "odd_pos_11"
+        }
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  match x with\n  | 0 => contradiction\n  | 1 => simp\n  | x + 2 => omega\n  <;> omega",
+        "custom_id": "odd_pos_12",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.1091012954711914,
+            "custom_id": "odd_pos_12"
+        }
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  have h : x % 2 = 1 := hx\n  have h\u2081 : x % 2 = 1 := h\n  have h\u2082 : x % 2 = 1 := h\u2081\n  have h\u2083 : x % 2 = 1 := h\u2082\n  have h\u2084 : x % 2 = 1 := h\u2083\n  have h\u2085 : x % 2 = 1 := h\u2084\n  omega",
+        "custom_id": "odd_pos_13",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2085`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.0715780258178711,
+            "custom_id": "odd_pos_13"
+        }
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  have h := Nat.mod_lt x (by norm_num : 0 < 2)\n  -- Use the fact that x % 2 = 1 to show that x is positive\n  omega",
+        "custom_id": "odd_pos_14",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 7,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 8
+                    },
+                    "data": "unused variable `h`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.08383584022521973,
+            "custom_id": "odd_pos_14"
+        }
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  by_contra h\n  have h\u2081 : x = 0 := by\n    have h\u2082 : x \u2264 0 := by omega\n    omega\n  rw [h\u2081] at hx\n  norm_num at hx",
+        "custom_id": "odd_pos_15",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2082`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07428765296936035,
+            "custom_id": "odd_pos_15"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    -- We use the fact that p < q to show that 2^(p+1) divides 2^q * y.\n    have h\u2081 : p + 1 \u2264 q := by omega\n    -- Since p + 1 \u2264 q, we can use the property of exponents and divisibility.\n    exact calc\n      (2 : \u2115) ^ (p + 1) \u2223 (2 : \u2115) ^ q := by\n        -- 2^(p+1) divides 2^q because p+1 \u2264 q.\n        exact pow_dvd_pow _ h\u2081\n      _ \u2223 (2 ^ q * y) := by\n        -- 2^q divides 2^q * y because 2^q * y = 2^q * y.\n        exact dvd_mul_right _ _\n  exact h",
+        "custom_id": "pow_succ_dvd_pow_mul_16",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.04109907150268555,
+            "custom_id": "pow_succ_dvd_pow_mul_16"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h\u2081 : 2 ^ (p + 1) \u2223 2 ^ q * y := by\n    have h\u2081 : p + 1 \u2264 q := by omega\n    have h\u2082 : 2 ^ (p + 1) \u2223 2 ^ q := by\n      apply pow_dvd_pow\n      omega\n    have h\u2083 : 2 ^ (p + 1) \u2223 2 ^ q * y := by\n      exact dvd_mul_of_dvd_left h\u2082 y\n    exact h\u2083\n  exact h\u2081",
+        "custom_id": "pow_succ_dvd_pow_mul_17",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.051352739334106445,
+            "custom_id": "pow_succ_dvd_pow_mul_17"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h\u2081 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h\u2082 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      -- We use the fact that p < q to show that 2^(p+1) divides 2^q * y\n      have h\u2083 : p + 1 \u2264 q := by omega\n      have h\u2084 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q) := by\n        -- Since p + 1 \u2264 q, we can use the property of powers\n        exact pow_dvd_pow _ h\u2083\n      have h\u2085 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n        -- If a divides b, then a divides any multiple of b\n        exact dvd_mul_of_dvd_left h\u2084 _\n      exact h\u2085\n    exact h\u2082\n  exact h\u2081",
+        "custom_id": "pow_succ_dvd_pow_mul_18",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.05397987365722656,
+            "custom_id": "pow_succ_dvd_pow_mul_18"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h\u2081 : 2 ^ (p + 1) \u2223 2 ^ q * y := by\n    have h\u2082 : p + 1 \u2264 q := by omega\n    have h\u2083 : 2 ^ (p + 1) \u2223 2 ^ q := by\n      apply pow_dvd_pow\n      linarith\n    have h\u2084 : 2 ^ (p + 1) \u2223 2 ^ q * y := by\n      apply dvd_mul_of_dvd_left h\u2083\n    exact h\u2084\n  exact h\u2081",
+        "custom_id": "pow_succ_dvd_pow_mul_19",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2082`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.15470170974731445,
+            "custom_id": "pow_succ_dvd_pow_mul_19"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h\u2081 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h\u2082 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      -- We need to show that 2^(p+1) divides 2^q * y.\n      -- Since p < q, we can use the property of powers of 2.\n      have h\u2083 : p + 1 \u2264 q := by omega\n      have h\u2084 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n        -- We use the fact that 2^(p+1) divides 2^q.\n        exact dvd_mul_of_dvd_left (pow_dvd_pow _ h\u2083) _\n      exact h\u2084\n    exact h\u2082\n  exact h\u2081",
+        "custom_id": "pow_succ_dvd_pow_mul_20",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07552289962768555,
+            "custom_id": "pow_succ_dvd_pow_mul_20"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h\u2081 : p + 1 \u2264 q := by omega\n    have h\u2082 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      apply dvd_mul_of_pow_dvd_left\n      apply pow_dvd_pow _ h\u2081\n    exact h\u2082\n  exact h",
+        "custom_id": "pow_succ_dvd_pow_mul_21",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 35
+                    },
+                    "data": "unknown identifier 'dvd_mul_of_pow_dvd_left'"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.054857492446899414,
+            "custom_id": "pow_succ_dvd_pow_mul_21"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h\u2081 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h\u2082 : p + 1 \u2264 q := by omega\n    have h\u2083 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      calc\n        (2 : \u2115) ^ (p + 1) \u2223 2 ^ q := by\n          apply pow_dvd_pow\n          omega\n        _ \u2223 2 ^ q * y := by\n          apply dvd_mul_right\n    exact h\u2083\n  exact h\u2081",
+        "custom_id": "pow_succ_dvd_pow_mul_22",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2082`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.08227705955505371,
+            "custom_id": "pow_succ_dvd_pow_mul_22"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h1 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      -- We need to show that 2^(p+1) divides 2^q * y\n      -- Since p < q, we can use the fact that 2^(p+1) divides 2^q\n      have h2 : (p + 1 : \u2115) \u2264 q := by\n        omega\n      -- Using the fact that p + 1 \u2264 q, we can write 2^q as 2^(p+1) * 2^(q - (p+1))\n      have h3 : (2 : \u2115) ^ q = (2 : \u2115) ^ (p + 1) * (2 : \u2115) ^ (q - (p + 1)) := by\n        rw [\u2190 pow_add, add_tsub_cancel_of_le h2]\n      rw [h3]\n      -- Now we have 2^q * y = 2^(p+1) * (2^(q - (p+1)) * y)\n      -- This shows that 2^(p+1) divides 2^q * y\n      exact \u27e8(2 ^ (q - (p + 1)) * y), by ring\u27e9\n    exact h1\n  exact h",
+        "custom_id": "pow_succ_dvd_pow_mul_23",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.13536763191223145,
+            "custom_id": "pow_succ_dvd_pow_mul_23"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h : 2 ^ (p + 1) \u2223 2 ^ q * y := by\n    have h\u2081 : p + 1 \u2264 q := by omega\n    have h\u2082 : 2 ^ (p + 1) \u2223 2 ^ q := by\n      apply pow_dvd_pow _\n      omega\n    have h\u2083 : 2 ^ (p + 1) \u2223 2 ^ q * y := by\n      exact dvd_mul_of_dvd_left h\u2082 y\n    exact h\u2083\n  exact h",
+        "custom_id": "pow_succ_dvd_pow_mul_24",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.053392887115478516,
+            "custom_id": "pow_succ_dvd_pow_mul_24"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h\u2081 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h\u2082 : p + 1 \u2264 q := by linarith\n    have h\u2083 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      calc\n        (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n          apply Dvd.intro (2 ^ (q - (p + 1)) * y)\n          rw [Nat.pow_succ]\n          cases' q with q\n          \u00b7 omega\n          \u00b7 simp [Nat.mul_sub_left_distrib, Nat.mul_sub_right_distrib, Nat.pow_succ]\n            <;> ring_nf\n            <;> omega\n        _ = (2 ^ q * y) := by rfl\n    exact h\u2083\n  exact h\u2081",
+        "custom_id": "pow_succ_dvd_pow_mul_25",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 16
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 21
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a - b \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191q\n b := \u2191p\n c := \u2191y * \u2191(2 ^ q)\n d := \u2191(y * 2 ^ p) * \u2191(2 ^ (q - p))"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase succ\np y q : \u2115\nhpq : p < q + 1\nh\u2082 : p + 1 \u2264 q + 1\n\u22a2 y * 2 ^ p * 2 ^ (q - p) * 2 = y * 2 ^ q * 2"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.4454352855682373,
+            "custom_id": "pow_succ_dvd_pow_mul_25"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h : (2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y) := by\n    have h\u2081 : (2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y) := by\n      -- We need to show that 2^(p+1) divides 2^q * y\n      -- Since p < q, we can write q = p + k for some positive integer k\n      -- This implies 2^q = 2^(p+k) = 2^p * 2^k\n      -- Thus, 2^q * y = 2^p * 2^k * y = 2^(p+k) * y\n      -- We need to show that 2^(p+1) divides 2^(p+k) * y\n      -- Since 2^(p+1) = 2^p * 2, and 2^p divides 2^(p+k), it suffices to show that 2 divides y\n      -- This is not necessarily true, so we need to refine this approach\n      -- Instead, we can directly use the fact that p < q implies 2^(p+1) divides 2^q * y\n      apply Nat.dvd_of_mod_eq_zero\n      rw [Nat.mul_mod]\n      simp [Nat.pow_mod, Nat.pow_add, Nat.pow_one, Nat.mod_eq_of_lt hpq]\n      <;> induction y <;> simp_all [Nat.mul_mod, Nat.pow_mod, Nat.pow_add, Nat.pow_one]\n      <;> omega\n    exact h\u2081\n  exact h",
+        "custom_id": "pow_succ_dvd_pow_mul_26",
+        "compilation_result": {
+            "pass": false,
+            "complete": false,
+            "system_errors": "Traceback (most recent call last):\n  File \"/juice5b/scr5b/slimbark/projects/evolutionary-lean/lean_evolve/utils.py\", line 127, in get_verification_results\n    \"sorries\": old_result.get(\"sorries\", []),\n               ^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'get'\n",
+            "system_messages": "Lean process timed out",
+            "tactics": [],
+            "custom_id": "pow_succ_dvd_pow_mul_26"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h\u2081 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      -- We need to show that 2^(p+1) divides 2^q * y\n      -- Since p < q, we can use the fact that 2^(p+1) divides 2^q\n      -- and thus 2^(p+1) divides 2^q * y\n      have h\u2082 : (p + 1 : \u2115) \u2264 q := by omega\n      have h\u2083 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q) := by\n        -- Since p + 1 \u2264 q, we have 2^(p+1) \u2223 2^q\n        exact pow_dvd_pow _ h\u2082\n      have h\u2084 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n        -- Since 2^(p+1) \u2223 2^q, we have 2^(p+1) \u2223 2^q * y\n        exact dvd_mul_of_dvd_left h\u2083 _\n      exact h\u2084\n    exact h\u2081\n  exact h",
+        "custom_id": "pow_succ_dvd_pow_mul_27",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.055953025817871094,
+            "custom_id": "pow_succ_dvd_pow_mul_27"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h\u2081 : p + 1 \u2264 q := by omega\n    have h\u2082 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      calc\n        (2 ^ (p + 1) : \u2115) \u2223 2 ^ q := by\n          apply pow_dvd_pow _\n          omega\n        _ \u2223 2 ^ q * y := by simp [Nat.dvd_mul_right]\n    exact h\u2082\n  exact h",
+        "custom_id": "pow_succ_dvd_pow_mul_28",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.12168121337890625,
+            "custom_id": "pow_succ_dvd_pow_mul_28"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h\u2081 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      -- Use the fact that \\( p < q \\) to show that \\( 2^{p+1} \\) divides \\( 2^q \\)\n      have h\u2082 : p + 1 \u2264 q := by linarith\n      have h\u2083 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q) := by\n        exact pow_dvd_pow _ h\u2082\n      -- Since \\( 2^{p+1} \\) divides \\( 2^q \\), it also divides their product\n      exact dvd_trans h\u2083 (dvd_mul_right _ _)\n    exact h\u2081\n  exact h",
+        "custom_id": "pow_succ_dvd_pow_mul_29",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.12675166130065918,
+            "custom_id": "pow_succ_dvd_pow_mul_29"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h\u2081 : p + 1 \u2264 q := by omega\n    have h\u2082 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      calc\n        (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n          apply Dvd.intro (2 ^ (q - (p + 1)) * y)\n          rw [pow_right_comm]\n          cases' q with q\n          \u00b7 omega\n          \u00b7 simp_all [Nat.pow_succ, Nat.mul_assoc, Nat.mul_comm, Nat.mul_left_comm]\n            <;> ring_nf at * <;> omega\n        _ = (2 ^ q * y) := by rfl\n    exact h\u2082\n  exact h",
+        "custom_id": "pow_succ_dvd_pow_mul_30",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 28
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  (?a ^ ?m) ^ ?n\np q y : \u2115\nhpq : p < q\nh\u2081 : p + 1 \u2264 q\n\u22a2 2 ^ (p + 1) * (2 ^ (q - (p + 1)) * y) = 2 ^ q * y"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.0554506778717041,
+            "custom_id": "pow_succ_dvd_pow_mul_30"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h\u2081 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h\u2082 : p + 1 \u2264 q := by omega\n    have h\u2083 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      calc\n        (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q) := by\n          apply pow_dvd_pow _\n          omega\n        _ \u2223 (2 ^ q * y) := by\n          apply Nat.dvd_of_mod_eq_zero\n          simp [Nat.mul_mod, Nat.pow_mod]\n    exact h\u2083\n  exact h\u2081",
+        "custom_id": "pow_succ_dvd_pow_mul_31",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2082`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.08913540840148926,
+            "custom_id": "pow_succ_dvd_pow_mul_31"
+        }
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  rw [h] at *\n  <;> assumption",
+        "custom_id": "dvd_of_eq'_32",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.010871648788452148,
+            "custom_id": "dvd_of_eq'_32"
+        }
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  simp_all\n  <;> simp_all [Nat.dvd_iff_mod_eq_zero]\n  <;> omega",
+        "custom_id": "dvd_of_eq'_33",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 40
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03067755699157715,
+            "custom_id": "dvd_of_eq'_33"
+        }
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  rw [h] at *\n  <;> simp_all",
+        "custom_id": "dvd_of_eq'_34",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03663063049316406,
+            "custom_id": "dvd_of_eq'_34"
+        }
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  simpa [h] using hd",
+        "custom_id": "dvd_of_eq'_35",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.029775381088256836,
+            "custom_id": "dvd_of_eq'_35"
+        }
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  rw [h]\n  <;> assumption",
+        "custom_id": "dvd_of_eq'_36",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.014772415161132812,
+            "custom_id": "dvd_of_eq'_36"
+        }
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  rw [h]\n  <;> assumption\n  <;> simp_all\n  <;> apply hd\n  <;> simp_all\n  <;> apply hd\n  <;> simp_all\n  <;> apply hd\n  <;> simp_all\n  <;> apply hd\n  <;> simp_all\n  <;> apply hd\n  <;> simp_all\n  <;> apply hd\n  <;> simp_all\n  <;> apply hd\n  <;> simp_all",
+        "custom_id": "dvd_of_eq'_37",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 17,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 19,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 20,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 21,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 22,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 23,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.01916980743408203,
+            "custom_id": "dvd_of_eq'_37"
+        }
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  simpa [h] using hd",
+        "custom_id": "dvd_of_eq'_38",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03186678886413574,
+            "custom_id": "dvd_of_eq'_38"
+        }
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  rw [h] at *\n  <;> simp_all\n  <;> simp_all\n  <;> simp_all",
+        "custom_id": "dvd_of_eq'_39",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03169393539428711,
+            "custom_id": "dvd_of_eq'_39"
+        }
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  -- Substitute \\( A \\) with \\( B \\) using the given equality \\( A = B \\).\n  rw [h]\n  -- Since \\( d \\) divides \\( B \\), it also divides \\( A \\).\n  exact hd",
+        "custom_id": "dvd_of_eq'_40",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.01200413703918457,
+            "custom_id": "dvd_of_eq'_40"
+        }
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  subst h\n  -- Substitute \\( A \\) with \\( B \\) in the hypothesis \\( d \\mid A \\)\n  assumption\n  -- Since \\( d \\mid B \\) and \\( A = B \\), the goal \\( d \\mid A \\) is directly satisfied\n  <;> simp_all\n  -- Simplify all hypotheses and goals, ensuring that the proof is complete and correct\n  <;> omega",
+        "custom_id": "dvd_of_eq'_41",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.009688854217529297,
+            "custom_id": "dvd_of_eq'_41"
+        }
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  subst_vars\n  <;> simp_all\n  <;> assumption",
+        "custom_id": "dvd_of_eq'_42",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 16
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.02953958511352539,
+            "custom_id": "dvd_of_eq'_42"
+        }
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  rw [h]\n  <;> simp_all\n  <;> exact hd",
+        "custom_id": "dvd_of_eq'_43",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.044753313064575195,
+            "custom_id": "dvd_of_eq'_43"
+        }
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  -- Substitute \\( A \\) with \\( B \\) in the hypothesis that \\( d \\) divides \\( A \\)\n  rw [h]\n  -- Since \\( d \\) divides \\( B \\), it will also divide \\( B \\) after substitution\n  <;> simp_all\n  <;> assumption\n  <;> simp_all\n  <;> assumption\n  <;> simp_all\n  <;> assumption\n  <;> simp_all\n  <;> assumption",
+        "custom_id": "dvd_of_eq'_44",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 16
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 16
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 16
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 17,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 16
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.052793025970458984,
+            "custom_id": "dvd_of_eq'_44"
+        }
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  subst h\n  assumption",
+        "custom_id": "dvd_of_eq'_45",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.008937358856201172,
+            "custom_id": "dvd_of_eq'_45"
+        }
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  subst h\n  <;> simp_all",
+        "custom_id": "dvd_of_eq'_46",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.026592731475830078,
+            "custom_id": "dvd_of_eq'_46"
+        }
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  rw [h]\n  <;> assumption\n  <;> simp_all\n  <;> omega",
+        "custom_id": "dvd_of_eq'_47",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.015443563461303711,
+            "custom_id": "dvd_of_eq'_47"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.pow_succ] at h\n  rw [Nat.mul_comm] at h\n  rw [Nat.dvd_iff_mod_eq_zero] at *\n  rcases x with (_ | _ | x) <;> simp_all [Nat.pow_succ, Nat.mul_mod, Nat.mul_assoc]\n  <;> omega",
+        "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_48",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\nNo usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants."
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191(x + 1 + 1) / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 59
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase succ.zero\np : \u2115\nh : 2 ^ p % (2 * 2 ^ p) = 0\n\u22a2 False\n\ncase succ.succ\np x : \u2115\nh : 2 ^ p % (2 * 2 ^ p) % (2 * 2 ^ p) * ((x + 1 + 1) % (2 * 2 ^ p) % (2 * 2 ^ p)) % (2 * 2 ^ p) = 0\n\u22a2 (x + 1 + 1) % 2 = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.21665239334106445,
+            "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_48"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.dvd_iff_mod_eq_zero]\n  rw [Nat.pow_succ] at h\n  rw [Nat.mul_mod] at h\n  induction p <;> simp_all [Nat.pow_succ, Nat.mul_mod, Nat.mul_assoc]\n  <;> omega",
+        "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_49",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 17
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  ?a * ?b % ?n\np x : \u2115\nh : 2 ^ p * 2 \u2223 2 ^ p * x\n\u22a2 x % 2 = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.018151283264160156,
+            "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_49"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.dvd_iff_mod_eq_zero]\n  revert h\n  intro h\n  rcases p with (_ | _ | p) <;> simp_all [Nat.pow_succ, Nat.mul_mod, Nat.pow_mod]\n  all_goals\n    omega",
+        "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_50",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 9
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 0\nwhere\n a := \u2191x / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 59
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 9
+                    },
+                    "data": "unsolved goals\ncase succ.succ\nx p : \u2115\nh : 2 ^ p * 2 * 2 * 2 \u2223 2 ^ p * 2 * 2 * x\n\u22a2 x % 2 = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.7656517028808594,
+            "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_50"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.dvd_iff_mod_eq_zero]\n  rw [Nat.dvd_iff_mod_eq_zero] at h\n  induction p <;> simp_all [Nat.pow_succ, Nat.mul_mod, Nat.mul_comm]\n  <;> omega",
+        "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_51",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 0\n  b \u2265 1\nwhere\n a := \u2191x / 2\n b := \u2191(x % (2 * 2 ^ n\u271d) % (2 * 2 ^ n\u271d) * (2 ^ n\u271d % (2 * 2 ^ n\u271d) % (2 * 2 ^ n\u271d))) % \u2191(2 * 2 ^ n\u271d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 59
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase succ\nx n\u271d : \u2115\na\u271d : x % (2 * 2 ^ n\u271d) % (2 * 2 ^ n\u271d) * (2 ^ n\u271d % (2 * 2 ^ n\u271d) % (2 * 2 ^ n\u271d)) % (2 * 2 ^ n\u271d) = 0 \u2192 x % 2 = 0\nh :\n  x % (2 * (2 * 2 ^ n\u271d)) % (2 * (2 * 2 ^ n\u271d)) *\n        (2 % (2 * (2 * 2 ^ n\u271d)) % (2 * (2 * 2 ^ n\u271d)) * (2 ^ n\u271d % (2 * (2 * 2 ^ n\u271d)) % (2 * (2 * 2 ^ n\u271d))) %\n            (2 * (2 * 2 ^ n\u271d)) %\n          (2 * (2 * 2 ^ n\u271d))) %\n      (2 * (2 * 2 ^ n\u271d)) =\n    0\n\u22a2 x % 2 = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.37962818145751953,
+            "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_51"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  have h2 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\n  have h3 : 2 ^ (p + 1) \u2223 2 ^ p * x := h2\n  have h4 : 2 ^ (p + 1) \u2223 2 ^ p * x := h3\n  have h5 : 2 \u2223 x := by\n    have h6 : 2 ^ (p + 1) \u2223 2 ^ p * x := h4\n    have h7 : 2 ^ (p + 1) \u2223 2 ^ p * x := h6\n    have h8 : 2 ^ (p + 1) \u2223 2 ^ p * x := h7\n    have h9 : 2 \u2223 x := by\n      apply Nat.Prime.dvd_of_dvd_pow\n      norm_num\n      exact Nat.dvd_of_mod_eq_zero (by simp_all [Nat.pow_succ, Nat.mul_mod, Nat.pow_mod])\n    exact h9\n  exact h5",
+        "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_52",
+        "compilation_result": {
+            "pass": false,
+            "complete": false,
+            "system_errors": "Traceback (most recent call last):\n  File \"/juice5b/scr5b/slimbark/projects/evolutionary-lean/lean_evolve/utils.py\", line 127, in get_verification_results\n    \"sorries\": old_result.get(\"sorries\", []),\n               ^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'get'\n",
+            "system_messages": "Lean process timed out",
+            "tactics": [],
+            "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_52"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.dvd_iff_mod_eq_zero]\n  rw [Nat.mul_mod] at *\n  cases' p with p\n  all_goals simp_all [Nat.pow_succ]\n  all_goals omega",
+        "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_53",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 17
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the current goal\np x : \u2115\nh : 2 ^ (p + 1) \u2223 2 ^ p * x\n\u22a2 x % 2 = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.01532888412475586,
+            "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_53"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.dvd_iff_mod_eq_zero]\n  have h\u2081 := h\n  rw [Nat.dvd_iff_mod_eq_zero] at h\u2081\n  induction p with\n  | zero =>\n    -- Base case: p = 0\n    simp_all [Nat.pow_succ]\n  | succ p ih =>\n    -- Inductive step: assume the statement holds for p, prove for p+1\n    simp_all [Nat.mul_mod, Nat.pow_succ]\n    <;> omega",
+        "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_54",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  a \u2265 0\nwhere\n a := \u2191x / 2\n b := \u2191(2 ^ p * x) % \u2191(2 ^ p * 2)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\ncase succ\nx p : \u2115\nih :\n  2 ^ p * 2 \u2223 2 ^ p * x \u2192\n    2 ^ p % (2 ^ p * 2) % (2 ^ p * 2) * (x % (2 ^ p * 2) % (2 ^ p * 2)) % (2 ^ p * 2) = 0 \u2192 x % 2 = 0\nh : 2 ^ p * 2 * 2 \u2223 2 ^ p * 2 * x\nh\u2081 :\n  2 ^ p % (2 ^ p * 2 * 2) % (2 ^ p * 2 * 2) * (2 % (2 ^ p * 2 * 2) % (2 ^ p * 2 * 2)) % (2 ^ p * 2 * 2) %\n          (2 ^ p * 2 * 2) *\n        (x % (2 ^ p * 2 * 2) % (2 ^ p * 2 * 2)) %\n      (2 ^ p * 2 * 2) =\n    0\n\u22a2 x % 2 = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.2939679622650146,
+            "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_54"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [mul_comm] at h\n  rw [Nat.pow_dvd_pow_iff] at h <;> try norm_num <;> omega\n  <;> simp_all [Nat.pow_succ]\n  <;> omega",
+        "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_55",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 25
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  ?m.589 ^ ?m.591 \u2223 ?m.590 ^ ?m.591\np x : \u2115\nh : 2 ^ (p + 1) \u2223 x * 2 ^ p\n\u22a2 2 \u2223 x"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.02305746078491211,
+            "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_55"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.dvd_iff_mod_eq_zero]\n  have h' := h\n  rw [Nat.dvd_iff_mod_eq_zero] at h'\n  induction p with\n  | zero =>\n    -- Base case: p = 0\n    simp_all [Nat.pow_succ, Nat.mul_mod, Nat.pow_zero]\n  | succ p ih =>\n    -- Inductive step: assume the statement holds for p, prove for p + 1\n    simp_all [Nat.pow_succ, Nat.mul_mod, Nat.pow_succ]\n    <;> omega",
+        "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_56",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  a \u2265 0\nwhere\n a := \u2191x / 2\n b := \u2191(2 ^ p * x) % \u2191(2 ^ p * 2)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\ncase succ\nx p : \u2115\nih :\n  2 ^ p * 2 \u2223 2 ^ p * x \u2192\n    2 ^ p % (2 ^ p * 2) % (2 ^ p * 2) * (x % (2 ^ p * 2) % (2 ^ p * 2)) % (2 ^ p * 2) = 0 \u2192 x % 2 = 0\nh : 2 ^ p * 2 * 2 \u2223 2 ^ p * 2 * x\nh' :\n  2 ^ p % (2 ^ p * 2 * 2) % (2 ^ p * 2 * 2) * (2 % (2 ^ p * 2 * 2) % (2 ^ p * 2 * 2)) % (2 ^ p * 2 * 2) %\n          (2 ^ p * 2 * 2) *\n        (x % (2 ^ p * 2 * 2) % (2 ^ p * 2 * 2)) %\n      (2 ^ p * 2 * 2) =\n    0\n\u22a2 x % 2 = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.310103416442871,
+            "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_56"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  have h\u2081 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\n  have h\u2082 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2081\n  have h\u2083 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2082\n  -- We use the fact that if a number divides another, it must divide any factor of the latter.\n  have h\u2084 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2083\n  -- We simplify the expression to show that 2 must divide x.\n  have h\u2085 : 2 \u2223 x := by\n    have h\u2086 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2084\n    have h\u2087 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2086\n    -- We use the fact that 2 ^ (p + 1) = 2 ^ p * 2 and thus 2 ^ p * 2 divides 2 ^ p * x implies 2 divides x.\n    exact?\n  exact h\u2085",
+        "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_57",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 10
+                    },
+                    "data": "`exact?` could not close the goal. Try `apply?` to see partial suggestions."
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.4185328483581543,
+            "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_57"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.dvd_iff_mod_eq_zero] at h \u22a2\n  induction p with\n  | zero => simp_all [Nat.pow_succ]\n  | succ p ih =>\n    simp_all [Nat.mul_mod, Nat.pow_succ]\n    <;> omega",
+        "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_58",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 0\n  b \u2265 1\nwhere\n a := \u2191x / 2\n b := \u2191(2 ^ p % (2 ^ p * 2) % (2 ^ p * 2) * (x % (2 ^ p * 2) % (2 ^ p * 2))) % \u2191(2 ^ p * 2)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\ncase succ\nx p : \u2115\nih : 2 ^ p % (2 ^ p * 2) % (2 ^ p * 2) * (x % (2 ^ p * 2) % (2 ^ p * 2)) % (2 ^ p * 2) = 0 \u2192 x % 2 = 0\nh :\n  2 ^ p % (2 ^ p * 2 * 2) % (2 ^ p * 2 * 2) * (2 % (2 ^ p * 2 * 2) % (2 ^ p * 2 * 2)) % (2 ^ p * 2 * 2) %\n          (2 ^ p * 2 * 2) *\n        (x % (2 ^ p * 2 * 2) % (2 ^ p * 2 * 2)) %\n      (2 ^ p * 2 * 2) =\n    0\n\u22a2 x % 2 = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.43089723587036133,
+            "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_58"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.pow_succ] at h\n  rw [Nat.mul_comm] at h\n  rw [Nat.pow_succ] at h\n  rw [Nat.mul_comm] at h\n  exact?",
+        "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_59",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 18
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  ?n ^ ?m.succ\np x : \u2115\nh : 2 * 2 ^ p \u2223 2 ^ p * x\n\u22a2 2 \u2223 x"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.028134584426879883,
+            "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_59"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  have h2 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\n  have h3 : 2 ^ (p + 1) \u2223 2 ^ p * x := h2\n  have h4 : 2 ^ (p + 1) \u2223 2 ^ p * x := h3\n  have h5 : 2 \u2223 x := by\n    have h6 : 2 ^ (p + 1) \u2223 2 ^ p * x := h4\n    have h7 : 2 ^ (p + 1) \u2223 2 ^ p * x := h6\n    have h8 : 2 ^ (p + 1) \u2223 2 ^ p * x := h7\n    have h9 : 2 \u2223 x := by\n      have h10 : 2 ^ (p + 1) \u2223 2 ^ p * x := h8\n      have h11 : 2 ^ (p + 1) \u2223 2 ^ p * x := h10\n      have h12 : 2 ^ (p + 1) \u2223 2 ^ p * x := h11\n      -- Use the fact that 2^(p+1) divides 2^p * x to deduce that 2 divides x\n      exact by\n        rw [Nat.dvd_iff_mod_eq_zero] at h10 \u22a2\n        have h13 := h10\n        simp [Nat.pow_succ, Nat.mul_mod, Nat.pow_mod] at h13 \u22a2\n        <;> induction p <;> simp_all [Nat.pow_succ, Nat.mul_mod, Nat.pow_mod] <;> omega\n    exact h9\n  exact h5",
+        "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_60",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 24,
+                        "column": 82
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 87
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  a \u2265 0\nwhere\n a := \u2191x / 2\n b := \u2191(2 ^ n\u271d * x) % \u2191(2 ^ n\u271d * 2)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 87
+                    },
+                    "data": "unsolved goals\ncase succ\nx n\u271d : \u2115\na\u271d :\n  2 ^ n\u271d * 2 \u2223 2 ^ n\u271d * x \u2192\n    (2 % (2 ^ n\u271d * 2) % (2 ^ n\u271d * 2)) ^ n\u271d % (2 ^ n\u271d * 2) % (2 ^ n\u271d * 2) * (x % (2 ^ n\u271d * 2) % (2 ^ n\u271d * 2)) %\n          (2 ^ n\u271d * 2) =\n        0 \u2192\n      (2 % (2 ^ n\u271d * 2) % (2 ^ n\u271d * 2)) ^ n\u271d % (2 ^ n\u271d * 2) % (2 ^ n\u271d * 2) * (x % (2 ^ n\u271d * 2) % (2 ^ n\u271d * 2)) %\n            (2 ^ n\u271d * 2) =\n          0 \u2192\n        x % 2 = 0\nh : 2 ^ n\u271d * 2 * 2 \u2223 2 ^ n\u271d * 2 * x\nh10 h13 :\n  (2 % (2 ^ n\u271d * 2 * 2) % (2 ^ n\u271d * 2 * 2)) ^ n\u271d % (2 ^ n\u271d * 2 * 2) % (2 ^ n\u271d * 2 * 2) *\n              (2 % (2 ^ n\u271d * 2 * 2) % (2 ^ n\u271d * 2 * 2)) %\n            (2 ^ n\u271d * 2 * 2) %\n          (2 ^ n\u271d * 2 * 2) *\n        (x % (2 ^ n\u271d * 2 * 2) % (2 ^ n\u271d * 2 * 2)) %\n      (2 ^ n\u271d * 2 * 2) =\n    0\n\u22a2 x % 2 = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 3.3439533710479736,
+            "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_60"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  have h\u2081 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\n  have h\u2082 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2081\n  have h\u2083 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2082\n  have h\u2084 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2083\n  have h\u2085 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2084\n  -- We use the fact that if a number divides another, it also divides any multiple of it.\n  have h\u2086 : 2 \u2223 x := by\n    have h\u2087 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2085\n    have h\u2088 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2087\n    have h\u2089 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2088\n    have h\u2081\u2080 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2089\n    -- We simplify the expression to show that 2 divides x.\n    have h\u2081\u2081 : 2 \u2223 x := by\n      rw [Nat.pow_succ] at h\u2081\u2080\n      simp [Nat.mul_dvd_mul_iff_left] at h\u2081\u2080\n      <;> simp_all [Nat.pow_succ, Nat.mul_dvd_mul_iff_left]\n      <;> omega\n    exact h\u2081\u2081\n  exact h\u2086",
+        "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_61",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 24,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 23,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 9
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 1.018158197402954,
+            "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_61"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.dvd_iff_mod_eq_zero] at *\n  rcases p with (_ | _) <;> simp_all [Nat.pow_succ, Nat.mul_mod, Nat.pow_succ]\n  <;> omega",
+        "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_62",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 0\nwhere\n a := \u2191x / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 59
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase succ\nx n\u271d : \u2115\nh :\n  2 ^ n\u271d % (2 ^ n\u271d * 2 * 2) % (2 ^ n\u271d * 2 * 2) * (2 % (2 ^ n\u271d * 2 * 2) % (2 ^ n\u271d * 2 * 2)) % (2 ^ n\u271d * 2 * 2) %\n          (2 ^ n\u271d * 2 * 2) *\n        (x % (2 ^ n\u271d * 2 * 2) % (2 ^ n\u271d * 2 * 2)) %\n      (2 ^ n\u271d * 2 * 2) =\n    0\n\u22a2 x % 2 = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.24610614776611328,
+            "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_62"
+        }
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.dvd_iff_mod_eq_zero] at *\n  rcases p with (_ | _ | p) <;> simp_all [Nat.pow_succ, Nat.mul_mod, Nat.pow_add]\n  all_goals omega",
+        "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_63",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 17
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 0\nwhere\n a := \u2191x / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 59
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 17
+                    },
+                    "data": "unsolved goals\ncase succ.succ\nx p : \u2115\nh :\n  2 ^ p % (2 ^ p * 2 * 2 * 2) % (2 ^ p * 2 * 2 * 2) * (2 % (2 ^ p * 2 * 2 * 2) % (2 ^ p * 2 * 2 * 2)) %\n                  (2 ^ p * 2 * 2 * 2) %\n                (2 ^ p * 2 * 2 * 2) *\n              (2 % (2 ^ p * 2 * 2 * 2) % (2 ^ p * 2 * 2 * 2)) %\n            (2 ^ p * 2 * 2 * 2) %\n          (2 ^ p * 2 * 2 * 2) *\n        (x % (2 ^ p * 2 * 2 * 2) % (2 ^ p * 2 * 2 * 2)) %\n      (2 ^ p * 2 * 2 * 2) =\n    0\n\u22a2 x % 2 = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.38892269134521484,
+            "custom_id": "pow_succ_dvd_pow_mul_implies_two_dvd_63"
+        }
+    }
+]

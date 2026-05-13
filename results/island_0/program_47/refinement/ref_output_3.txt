@@ -1,0 +1,8 @@
+>>>>SEARCH
+  have hsucc_one := by exact fun k => succ_equal_implies_ratio_one m n hsucc_nonzero k
+>>>>REPLACE
+  have hsucc_one := fun k => succ_equal_implies_ratio_one m n hsucc_nonzero k
+>>>>SEARCH
+  have heq_prev := by exact fun k => ratio_one_implies_eq_prev m n (fun k => (hden k).1) k
+>>>>REPLACE
+  have heq_prev := fun k => ratio_one_implies_eq_prev m n (fun k => (hden k).1) k

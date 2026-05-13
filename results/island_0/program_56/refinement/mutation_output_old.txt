@@ -1,0 +1,131 @@
+>>>>SEARCH
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by
+  sorry
+>>>>REPLACE
+/-- Helper: non-coprime naturals have gcd > 1. -/
+lemma noncoprime_gcd_gt_one {a b : ℕ} (h : ¬ Nat.Coprime a b) : 1 < Nat.gcd a b := by
+  -- proof omitted
+  sorry
+
+/-- Helper: if an odd natural divisor `d` divides `A = 2^u * r` with r odd, then `d` divides r. -/
+lemma odd_divides_odd_part (A d u r : ℕ)
+  (hA : A = (2 : ℕ) ^ u * r) (hr_odd : r % 2 = 1) (hd_odd : d % 2 = 1) (hdvd : d ∣ A) :
+  d ∣ r := by
+  -- proof omitted
+  sorry
+
+/-- Helper: if r = d * r' with d > 1 and r' > 0 then r' < r. -/
+lemma mul_strict_gt_right {d r r' : ℕ} (hr_eq : r = d * r') (hd_gt1 : 1 < d) (hr'_pos : 0 < r') :
+  r' < r := by
+  -- proof omitted
+  sorry
+
+/-- Helper: combine the various equalities to identify the next odd part as the quotient r1 / d.
+    We require an explicit witness r1' with r1 = d * r1'. -/
+lemma odd_part_next_eq_quotient
+  (A d u1 r1 u2 r2 r1' : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1)
+  (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hr1_eq : r1 = d * r1')
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2)
+  (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 = r1' := by
+  -- proof omitted: uses uniqueness of odd part in 2-adic decompositions
+  sorry
+
+/-- Strict-decrease lemma (glue): when gcd is nontrivial, the next odd part is strictly smaller. -/
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by
+  intro u1 r1 u2 r2 hA hr1_odd hr1_pos hB hr2_odd hr2_pos
+  -- abbreviations
+  let a := 2 * m k + 1
+  let b := 2 * n k + 1
+  let d := Nat.gcd a b
+
+  -- 1) from non-coprimality get gcd > 1
+  have hd_gt1 : 1 < d := by
+    apply noncoprime_gcd_gt_one
+    -- instantiate with ¬Coprime a b using hbad
+    exact hbad
+
+  -- 2) from gcd facts get that d is odd and divides the integer difference
+  have hg := gcd_odd_and_dvd_diff m n k
+  rcases hg with ⟨hd_odd, hd_int_div⟩
+
+  -- 3) obtain the normalized successor equalities (m_{k+1} and n_{k+1} as quotients by d)
+  have hnext := next_eq_div_gcd m n h_coprime h_recurrence k
+  rcases hnext with ⟨hm_succ_eq, hn_succ_eq⟩
+
+  -- 4) relate the next natAbs to 2 * (A / d) using the integer evolution lemmas
+  let z : ℤ := (m k : ℤ) - (n k : ℤ)
+  have h_step_natabs := diff_evolution_natAbs m n k d hm_succ_eq hn_succ_eq hd_int_div
+  have h_scale := natAbs_two_mul_div_of_odd_divisor z d hd_odd hd_int_div
+
+  -- combine to get the numeric decomposition of the next absolute difference:
+  -- 2 * (A / d) = 2^u2 * r2, where A = Int.natAbs z
+  have hB_from_defs : 2 * (Int.natAbs z / d) = (2 : ℕ) ^ u2 * r2 := by
+    calc
+      2 * (Int.natAbs z / d) = Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) := Eq.symm h_scale
+      _ = Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) := Eq.symm h_step_natabs
+      _ = (2 : ℕ) ^ u2 * r2 := hB
+
+  -- 5) get that d divides A = Int.natAbs z (convert integer divisibility to nat divisibility)
+  have hdvd_A : d ∣ (Int.natAbs z) := by
+    exact int_dvd_to_nat_dvd z d hd_int_div
+
+  -- 6) from A = 2^u1 * r1 and d odd dividing A, deduce d divides r1
+  have hd_dvd_r1 : d ∣ r1 := by
+    -- A is Int.natAbs z by definition of hA input, so apply odd_divides_odd_part
+    have hA_nat : (Int.natAbs z) = (2 : ℕ) ^ u1 * r1 := by
+      exact hA
+    -- now use odd_divides_odd_part with these facts
+    exact odd_divides_odd_part (Int.natAbs z) d u1 r1 hA_nat hr1_odd hd_odd hdvd_A
+
+  -- 7) witness the quotient r1' with r1 = d * r1'
+  rcases nat_dvd_exists_mul d hd_dvd_r1 with ⟨r1', hr1_eq⟩
+
+  -- 8) rewrite A as d * (2^u1 * r1') and deduce A / d = 2^u1 * r1'
+  have hA_mul : (Int.natAbs z) = d * ((2 : ℕ) ^ u1 * r1') := by
+    calc
+      (Int.natAbs z) = (2 : ℕ) ^ u1 * r1 := hA
+      _ = (2 : ℕ) ^ u1 * (d * r1') := by rw [hr1_eq]
+      _ = d * ((2 : ℕ) ^ u1 * r1') := by ring
+  have h1_le_d : 1 ≤ d := by
+    exact odd_implies_one_le d hd_odd
+  have h_divA_eq : (Int.natAbs z) / d = (2 : ℕ) ^ u1 * r1' := by
+    exact nat_div_eq_of_mul_eq h1_le_d hA_mul
+
+  -- 9) now apply the uniqueness helper to show r2 = r1'
+  have hr2_eq_r1' : r2 = r1' := by
+    exact odd_part_next_eq_quotient (Int.natAbs z) d u1 r1 u2 r2 r1'
+      (hA) hr1_odd hr1_pos hr1_eq (by simpa [h_divA_eq] using hB_from_defs) hr2_odd hr2_pos hd_odd
+
+  -- 10) conclude strict inequality r2 < r1 because r1 = d * r1' and d > 1
+  have : r2 < r1 := by
+    rw [hr2_eq_r1']
+    exact mul_strict_gt_right hr1_eq hd_gt1 (by linarith [hr1_pos])
+  exact this

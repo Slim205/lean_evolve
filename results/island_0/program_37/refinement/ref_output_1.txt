@@ -1,0 +1,5 @@
+>>>>SEARCH
+    exact clear_denoms_Q (hb := h_n_succ_nonzero_k) (hd := h_two_nk_nonzero) (h := h_recurrence k)
+>>>>REPLACE
+    exact @clear_denoms_Q (m (k + 1) : ℚ) (n (k + 1) : ℚ) ((2 : ℚ) * (m k : ℚ) + 1) ((2 : ℚ) * (n k : ℚ) + 1)
+      (h_n_succ_nonzero_k) (h_two_nk_nonzero) (h_recurrence k)

@@ -1,0 +1,71 @@
+---------
+lemma maximality_implies_no_next_divides (A : ℕ) (S : Finset ℕ) (u : ℕ)
+  (hS_def : S = Finset.filter (fun v => ((2 : ℕ) ^ v ∣ A)) (Finset.range (A + 1)))
+  (u_mem : u ∈ S) (u_max : ∀ v ∈ S, v ≤ u) :
+  ¬ ((2 : ℕ) ^ (u + 1) ∣ A) := by
+Failure mode: INCORRECT
+Recommendation: As stated it is false (counterexample: `A = 0`. Then `S = {0}`, `u = 0` is maximal, but `2^(u+1)=2 ∣ 0`). To make it true, strengthen the hypotheses so the “otherwise `u+1 ∈ S`” argument works:
+1) Add `hpos : 0 < A` (or at least `A ≠ 0`), and
+2) Add (or derive) a bound lemma `((2 : ℕ)^(u+1) ∣ A) → u+1 ≤ A`, so that `u+1 ∈ range (A+1)` and hence `u+1 ∈ S`, contradicting maximality.
+(Alternatively, redefine `S` using `range (A+2)` and keep `0 < A`.)
+---------
+
+---------
+lemma odd_part_noninc_step
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∀ k u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 ≤ r1 := by
+Failure mode: HARD
+Recommendation: This is plausibly true but too “compressed”: it hides several nontrivial arithmetic links between the recurrence, the gcd-normalization step, and the 2-adic/odd-part decomposition. A workable proof plan is to expose the gcd step and then reason about how dividing by an odd gcd affects the odd part.
+
+Proof plan (decompose into lemmas):
+1) **Normalization lemma (gcd step)**: For each `k`, let `d = gcd(2*m k + 1, 2*n k + 1)`. Show  
+   `m (k+1) = (2*m k + 1) / d` and `n (k+1) = (2*n k + 1) / d`.  
+   (This uses the rational recurrence plus `Nat.Coprime (m (k+1)) (n (k+1))` coming from `h_coprime (k+1)`.)
+2) **Oddness of the gcd**: Prove `d` is odd, e.g. `d % 2 = 1`, since it is a gcd of two odd naturals.
+3) **Gcd divides the difference**: Prove `d ∣ (m k - n k)` in `ℤ` (or in `ℕ` via `natAbs`), using `d ∣ (2*m k+1) - (2*n k+1) = 2*(m k - n k)` plus “odd divides `2x` implies divides `x`”.
+4) **Difference evolution formula**: Using (1), show in `ℤ`:
+   \[
+   (m(k+1)-n(k+1)) = \frac{(2*m k+1)-(2*n k+1)}{d} = \frac{2\,(m k-n k)}{d}.
+   \]
+   Then translate to `Int.natAbs`:
+   \[
+   natAbs(m(k+1)-n(k+1)) = \frac{2 \cdot natAbs(m k-n k)}{d},
+   \]
+   with a separate lemma justifying exactness of the division (from (3)).
+5) **Odd-part divides by odd factor**: If `X = 2^u * r` with `r` odd and `d` is odd and `d ∣ X`, prove `d ∣ r` and hence `X / d = 2^u * (r/d)`, so the odd part weakly decreases: `(r/d) ≤ r`.
+6) **Conclude nonincrease**: Apply (4) and (5) with `X = natAbs(m k - n k)` and the supplied decompositions to identify `r2 = r1 / d` (or at least `r2 ≤ r1`), yielding the goal.
+---------
+
+---------
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by
+Failure mode: HARD
+Recommendation: This is the “strict” version of the previous lemma and needs one additional ingredient: the gcd `d` must be > 1 under `hbad`, and then dividing the odd part by `d` strictly shrinks it. The proof should be split so the strictness is isolated.
+
+Proof plan (decompose into lemmas):
+1) **Define and relate `d`**: Let `d = gcd(2*m k + 1, 2*n k + 1)`. Prove the same normalization identities for `m(k+1), n(k+1)` as in the nonincreasing lemma.
+2) **Nontrivial gcd from non-coprime**: From `hbad`, prove `d > 1` (equivalently `d ≠ 1` plus `d ≥ 1`).
+3) **`d` is odd and divides the difference**: As before, prove `d` is odd and `d ∣ (m k - n k)` (hence `d ∣ natAbs(m k - n k)`), using “odd divides `2x` implies divides `x`”.
+4) **Odd part is divisible by `d`**: From a decomposition `natAbs(m k - n k) = 2^u1 * r1` with `r1` odd, and `d` odd dividing `natAbs(m k - n k)`, deduce `d ∣ r1`.
+5) **Compute the next odd part**: Using the difference evolution `natAbs(diff_{k+1}) = (2 * natAbs(diff_k)) / d`, show that the odd part at `k+1` equals `r1 / d`. (Here `hΔ` is used to keep `natAbs` positive and avoid degenerate “0” cases.)
+6) **Strictness**: From `d > 1` and `0 < r1` and `d ∣ r1`, conclude `r1 / d < r1`, hence `r2 < r1`.
+7) **Conclude**: Assemble (5)–(6) to get the desired strict inequality.
+---------

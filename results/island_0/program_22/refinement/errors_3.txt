@@ -1,0 +1,6 @@
+ERROR from position {'line': 37, 'column': 23} to None:
+expected ';' or line break
+
+ERROR from position {'line': 56, 'column': 8} to {'line': 56, 'column': 38}:
+unknown identifier 'reduced_fraction_gcd_quotients'
+

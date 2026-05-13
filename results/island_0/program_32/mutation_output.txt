@@ -1,0 +1,88 @@
+>>>>SEARCH
+lemma next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+  sorry
+>>>>REPLACE
+lemma next_scaling_exists
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  ∃ c : ℕ, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+  -- existence of an integer scaling factor c coming from cross-multiplication of the rational
+  -- equality. Proof omitted here; we keep it as a helper.
+  sorry
+
+lemma scaling_factor_eq_gcd
+  (m n : ℕ → ℕ) (k c : ℕ)
+  (hc1 : (2 * m k + 1) = c * m (k + 1))
+  (hc2 : (2 * n k + 1) = c * n (k + 1))
+  (h_coprime_succ : Nat.Coprime (m (k + 1)) (n (k + 1))) :
+  c = Nat.gcd (2 * m k + 1) (2 * n k + 1) := by
+  -- if c scales both numerators and the scaling targets are coprime, then c must equal the gcd
+  -- of the two numerators. Proof omitted.
+  sorry
+
+lemma next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  ((2 * m k + 1) = d * m (k + 1)) ∧ ((2 * n k + 1) = d * n (k + 1)) := by
+  -- obtain a scaling factor c making the two numerators multiples of the successors
+  have hscal : ∃ c, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+    exact next_scaling_exists m n h_recurrence k
+  rcases hscal with ⟨c, ⟨hc1, hc2⟩⟩
+
+  -- use coprimality of the successor pair (applied at k+1) to identify c with the gcd
+  have hc_gcd : c = Nat.gcd (2 * m k + 1) (2 * n k + 1) := by
+    have succ_copr : Nat.Coprime (m (k + 1)) (n (k + 1)) := h_coprime (k + 1) (Nat.succ_pos k)
+    exact scaling_factor_eq_gcd m n k c hc1 hc2 succ_copr
+
+  -- substitute c by the gcd and return the multiplicative equalities (exact divisibility form)
+  let d := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  have : (2 * m k + 1) = d * m (k + 1) := by
+    rw [←hc_gcd] at hc1
+    exact hc1
+  have : (2 * n k + 1) = d * n (k + 1) := by
+    rw [←hc_gcd] at hc2
+    exact hc2
+  -- assemble the conjunction
+  show ((2 * m k + 1) = d * m (k + 1)) ∧ ((2 * n k + 1) = d * n (k + 1))
+  from ⟨by assumption, by assumption⟩
+>>>>SEARCH
+/-- Helper: from the reduced successor form m_{k+1} = (2 m_k + 1)/d and
+n_{k+1} = (2 n_k + 1)/d and `d` dividing the previous difference, the absolute value of the
+next difference equals the absolute value of (2 * previous difference) divided by d (in ℤ). -/
+lemma diff_evolution_natAbs
+  (m n : ℕ → ℕ) (k : ℕ) (d : ℕ)
+  (hm_succ_eq : m (k + 1) = (2 * m k + 1) / d)
+  (hn_succ_eq : n (k + 1) = (2 * n k + 1) / d)
+  (h_dvd : (d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    Int.natAbs (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+  -- arithmetic reduction lemma: left as helper
+  sorry
+>>>>REPLACE
+/-- Helper: from the reduced successor multiplicative form
+    (2*m_k+1) = d * m_{k+1} and (2*n_k+1) = d * n_{k+1}, the absolute value of the
+    next difference equals the absolute value of (2 * previous difference) divided by d (in ℤ). -/
+lemma diff_evolution_natAbs
+  (m n : ℕ → ℕ) (k : ℕ) (d : ℕ)
+  (hm_mul : (2 * m k + 1) = d * m (k + 1))
+  (hn_mul : (2 * n k + 1) = d * n (k + 1))
+  (h_dvd : (d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    Int.natAbs (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+  -- arithmetic reduction lemma: left as helper
+  sorry

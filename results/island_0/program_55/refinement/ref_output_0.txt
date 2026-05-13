@@ -1,0 +1,12 @@
+>>>>SEARCH
+lemma dvd_of_eq {d A B : ℕ} (h : A = B) (hd : d ∣ B) : d ∣ A := by
+  -- if A = B and d ∣ B then d ∣ A; proof omitted
+  sorry
+>>>>REPLACE
+lemma dvd_of_eq' {d A B : ℕ} (h : A = B) (hd : d ∣ B) : d ∣ A := by
+  -- if A = B and d ∣ B then d ∣ A; proof omitted
+  sorry
+>>>>SEARCH
+      exact dvd_of_eq h hpow
+>>>>REPLACE
+      exact dvd_of_eq' h hpow

@@ -1,0 +1,3 @@
+ERROR from position {'line': 1048, 'column': 12} to {'line': 1048, 'column': 17}:
+unknown identifier 'hddvd'
+

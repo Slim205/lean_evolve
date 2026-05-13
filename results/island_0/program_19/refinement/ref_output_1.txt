@@ -1,0 +1,18 @@
+>>>>SEARCH
+lemma helper_natabs_scaling_by_odd_div
+  (z : ℤ) (u r : ℕ) (d : ℕ)
+  (hA : Int.natAbs z = (2 : ℕ) ^ u * r)
+  (hrodd : r % 2 = 1) (hrpos : 0 < r)
+  (hdodd : d % 2 = 1) (hd_dvd : (d : ℤ) ∣ z) :
+  Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = (2 : ℕ) ^ (u + 1) * (r / d) ∧ (r / d) % 2 = 1 ∧ 0 < (r / d) := by
+  -- The detailed derivation that `d ∣ r` and the exact equality of the natAbs is omitted.
+  sorry
+>>>>REPLACE
+lemma helper_natabs_scaling_by_odd_div
+  (z : ℤ) (u r : ℕ) (d : ℕ)
+  (hA : Int.natAbs z = (2 : ℕ) ^ u * r)
+  (hrodd : r % 2 = 1) (hrpos : 0 < r)
+  (hdodd : d % 2 = 1) (hd_dvd : (d : ℤ) ∣ z) :
+  Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = (2 : ℕ) ^ (u + 1) * (r / d) ∧ (r / d) % 2 = 1 ∧ 0 < (r / d) := by
+  -- The detailed derivation that `d ∣ r` and the exact equality of the natAbs is omitted.
+  sorry

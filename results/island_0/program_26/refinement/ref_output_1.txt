@@ -1,0 +1,10 @@
+>>>>SEARCH
+  have hpair : (m (k + 1) = (2 * m k + 1) / Nat.gcd (2 * m k + 1) (2 * n k + 1)) ∧
+               (n (k + 1) = (2 * n k + 1) / Nat.gcd (2 * m k + 1) (2 * n k + 1)) := by
+    exact reduced_fraction_unique (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1)
+      hsucc_copr (by simpa using (h_recurrence k)) denom_nonzero
+>>>>REPLACE
+  have hpair : (m (k + 1) = (2 * m k + 1) / Nat.gcd (2 * m k + 1) (2 * n k + 1)) ∧
+               (n (k + 1) = (2 * n k + 1) / Nat.gcd (2 * m k + 1) (2 * n k + 1)) := by
+    exact reduced_fraction_unique (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1)
+      hsucc_copr (by simpa [Nat.cast_eq_zero] using (n_succ_nonzero m n h_recurrence k)) denom_nonzero (h_recurrence k)

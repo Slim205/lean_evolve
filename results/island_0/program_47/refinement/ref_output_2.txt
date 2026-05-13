@@ -1,0 +1,8 @@
+>>>>SEARCH
+  have hres := odd_part_le_from_div_by_odd (Int.natAbs z) d hdvd_nat u1 r1 u2 r2
+    hA hA_odd hA_pos h_combo hB_odd hB_pos hd_odd
+  exact hres
+>>>>REPLACE
+  have hres : r2 ≤ r1 := odd_part_le_from_div_by_odd (Int.natAbs z) d hdvd_nat u1 r1 u2 r2
+    hA hA_odd hA_pos h_combo hB_odd hB_pos hd_odd
+  exact hres

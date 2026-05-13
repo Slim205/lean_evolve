@@ -1,0 +1,22 @@
+>>>>SEARCH
+  have hsucc_one := by exact fun k => succ_equal_implies_ratio_one m n hsucc_nonzero k
+>>>>REPLACE
+  have hsucc_one := fun k => succ_equal_implies_ratio_one m n hsucc_nonzero k
+>>>>SEARCH
+  have heq_prev := by exact fun k => ratio_one_implies_eq_prev m n (fun k => (hden k).1) k
+>>>>REPLACE
+  have heq_prev := fun k => ratio_one_implies_eq_prev m n (fun k => (hden k).1) k
+>>>>SEARCH
+  have hred : let g := Nat.gcd (2 * m k + 1) (2 * n k + 1) in
+    m (k + 1) = (2 * m k + 1) / g ∧ n (k + 1) = (2 * n k + 1) / g := by
+    exact reduced_fraction_gcd_quotients (hsucc_copr) (h_recurrence k)
+
+  -- the `g` in the helper is definitionally the same as our `d`, so we can close the goal
+  exact hred
+>>>>REPLACE
+  have hred : let g := Nat.gcd (2 * m k + 1) (2 * n k + 1) in
+    m (k + 1) = (2 * m k + 1) / g ∧ n (k + 1) = (2 * n k + 1) / g :=
+    reduced_fraction_gcd_quotients hsucc_copr (h_recurrence k)
+
+  -- the `g` in the helper is definitionally the same as our `d`, so we can close the goal
+  exact hred

@@ -1,0 +1,16 @@
+>>>>SEARCH
+/-- From the recurrence and nonzeroness hypotheses one can cross-multiply to obtain the
+    exact integer/nat equality
+      m (k+1) * (2 * n k + 1) = n (k+1) * (2 * m k + 1).
+    The required nonzeroness hypotheses are provided as arguments. -/
+>>>>REPLACE
+-- From the recurrence and nonzeroness hypotheses one can cross-multiply to obtain the
+--     exact integer/nat equality
+--       m (k+1) * (2 * n k + 1) = n (k+1) * (2 * m k + 1).
+--     The required nonzeroness hypotheses are provided as arguments.
+>>>>SEARCH
+    rw [← hleft_cast, ← hright_cast] at hq
+    exact hq
+>>>>REPLACE
+    rw [hleft_cast, hright_cast] at hq
+    exact hq

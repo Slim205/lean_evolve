@@ -1,0 +1,1751 @@
+[
+    {
+        "name": "pow_divides_of_coprime_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_divides_of_coprime_left {p q : \u2115} {x y : \u2115}\n  (hc : Nat.Coprime ((2 : \u2115) ^ p) y)\n  (hdiv : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y)) : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n  have h1 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := hdiv\n  have h2 : Nat.Coprime ((2 : \u2115) ^ p) y := hc\n  have h3 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n    -- Use the fact that if a number divides a product and is coprime with one of the factors, it must divide the other factor.\n    have h4 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := h1\n    have h5 : Nat.Coprime ((2 : \u2115) ^ p) y := h2\n    exact?\n  exact h3",
+        "custom_id": "pow_divides_of_coprime_left_0",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 6,
+                        "column": 47
+                    },
+                    "endPos": {
+                        "line": 6,
+                        "column": 48
+                    },
+                    "data": "unused variable `x`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "unused variable `h4`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "unused variable `h5`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [
+                {
+                    "severity": "info",
+                    "pos": {
+                        "line": 15,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 10
+                    },
+                    "data": "Try this: exact Coprime.dvd_of_dvd_mul_right hc hdiv"
+                }
+            ],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.3666708469390869,
+            "custom_id": "pow_divides_of_coprime_left_0"
+        }
+    },
+    {
+        "name": "pow_divides_of_coprime_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_divides_of_coprime_left {p q : \u2115} {x y : \u2115}\n  (hc : Nat.Coprime ((2 : \u2115) ^ p) y)\n  (hdiv : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y)) : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n  have h\u2080 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := hdiv\n  have h\u2081 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := h\u2080\n  have h\u2082 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n    have h\u2083 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := h\u2081\n    have h\u2084 : Nat.Coprime ((2 : \u2115) ^ p) y := hc\n    exact (Nat.Coprime.pow_left p h\u2084).dvd_of_dvd_mul_right (by simp_all [Nat.coprime_comm])\n  exact h\u2082",
+        "custom_id": "pow_divides_of_coprime_left_1",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 60
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 90
+                    },
+                    "data": "unsolved goals\np q x y : \u2115\nhc\u271d : (2 ^ p).Coprime y\nhdiv h\u2080 h\u2081 h\u2083\u271d : 2 ^ p \u2223 2 ^ q * y\nh\u2084\u271d : (2 ^ p).Coprime y\nhc : y.Coprime (2 ^ p)\nh\u2083 : 2 ^ p \u2223 2 ^ q * y\nh\u2084 : y.Coprime (2 ^ p)\n\u22a2 (2 ^ p) ^ p \u2223 ?m.766 * y"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 91
+                    },
+                    "data": "type mismatch\n  Coprime.dvd_of_dvd_mul_right (Coprime.pow_left p h\u2084) (?m.20642 (Eq.mp _auxLemma.1 hc) h\u2083 (Eq.mp _auxLemma.1 h\u2084))\nhas type\n  (2 ^ p) ^ p \u2223 ?m.766 : Prop\nbut is expected to have type\n  2 ^ p \u2223 2 ^ q : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.296165943145752,
+            "custom_id": "pow_divides_of_coprime_left_1"
+        }
+    },
+    {
+        "name": "pow_divides_of_coprime_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_divides_of_coprime_left {p q : \u2115} {x y : \u2115}\n  (hc : Nat.Coprime ((2 : \u2115) ^ p) y)\n  (hdiv : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y)) : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n  have h : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := hdiv\n  have h\u2081 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := hdiv\n  have h\u2082 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n    -- Use the fact that 2^p divides 2^q * y and 2^p and y are coprime to conclude that 2^p divides 2^q\n    exact (Nat.Coprime.pow_left p hc).symm.dvd_of_dvd_mul_right (by simpa [mul_comm] using h\u2081)\n  exact h\u2082",
+        "custom_id": "pow_divides_of_coprime_left_2",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 68
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 93
+                    },
+                    "data": "type mismatch\n  h\u271d\nhas type\n  2 ^ p \u2223 y * 2 ^ q : Prop\nbut is expected to have type\n  y \u2223 ?m.615 * (2 ^ p) ^ p : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 94
+                    },
+                    "data": "type mismatch\n  Coprime.dvd_of_dvd_mul_right (Coprime.symm (Coprime.pow_left p hc))\n    (?m.8201 (Eq.mp (congrArg (Dvd.dvd (2 ^ p)) (mul_comm (2 ^ q) y)) h\u2081))\nhas type\n  y \u2223 ?m.615 : Prop\nbut is expected to have type\n  2 ^ p \u2223 2 ^ q : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.14371562004089355,
+            "custom_id": "pow_divides_of_coprime_left_2"
+        }
+    },
+    {
+        "name": "pow_divides_of_coprime_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_divides_of_coprime_left {p q : \u2115} {x y : \u2115}\n  (hc : Nat.Coprime ((2 : \u2115) ^ p) y)\n  (hdiv : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y)) : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n  have h\u2081 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := hdiv\n  have h\u2082 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n    have h\u2083 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := h\u2081\n    have h\u2084 : Nat.Coprime ((2 : \u2115) ^ p) y := hc\n    exact?\n  exact h\u2082",
+        "custom_id": "pow_divides_of_coprime_left_3",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 6,
+                        "column": 47
+                    },
+                    "endPos": {
+                        "line": 6,
+                        "column": 48
+                    },
+                    "data": "unused variable `x`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2083`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2084`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [
+                {
+                    "severity": "info",
+                    "pos": {
+                        "line": 13,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 10
+                    },
+                    "data": "Try this: exact Coprime.dvd_of_dvd_mul_right hc hdiv"
+                }
+            ],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 3.9650509357452393,
+            "custom_id": "pow_divides_of_coprime_left_3"
+        }
+    },
+    {
+        "name": "pow_divides_of_coprime_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_divides_of_coprime_left {p q : \u2115} {x y : \u2115}\n  (hc : Nat.Coprime ((2 : \u2115) ^ p) y)\n  (hdiv : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y)) : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n  have h : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := hdiv\n  have h2 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := hdiv\n  exact?",
+        "custom_id": "pow_divides_of_coprime_left_4",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 6,
+                        "column": 47
+                    },
+                    "endPos": {
+                        "line": 6,
+                        "column": 48
+                    },
+                    "data": "unused variable `x`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 8
+                    },
+                    "data": "unused variable `h`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 9
+                    },
+                    "data": "unused variable `h2`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [
+                {
+                    "severity": "info",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 8
+                    },
+                    "data": "Try this: exact Coprime.dvd_of_dvd_mul_right hc hdiv"
+                }
+            ],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.49944639205932617,
+            "custom_id": "pow_divides_of_coprime_left_4"
+        }
+    },
+    {
+        "name": "pow_divides_of_coprime_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_divides_of_coprime_left {p q : \u2115} {x y : \u2115}\n  (hc : Nat.Coprime ((2 : \u2115) ^ p) y)\n  (hdiv : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y)) : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n  have h\u2080 : (2 : \u2115) ^ p \u2223 (2 ^ q * y) := hdiv\n  have h\u2081 : (2 ^ p) \u2223 (2 ^ q * y) := h\u2080\n  have h\u2082 : (2 ^ p) \u2223 (2 ^ q) := by\n    -- Use the fact that if a number divides a product of two numbers and is coprime with one of them, it must divide the other.\n    exact Nat.Coprime.dvd_of_dvd_mul_right (by simpa [Nat.coprime_comm] using hc) h\u2081\n  exact h\u2082",
+        "custom_id": "pow_divides_of_coprime_left_5",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 6,
+                        "column": 47
+                    },
+                    "endPos": {
+                        "line": 6,
+                        "column": 48
+                    },
+                    "data": "unused variable `x`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.09561777114868164,
+            "custom_id": "pow_divides_of_coprime_left_5"
+        }
+    },
+    {
+        "name": "pow_divides_of_coprime_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_divides_of_coprime_left {p q : \u2115} {x y : \u2115}\n  (hc : Nat.Coprime ((2 : \u2115) ^ p) y)\n  (hdiv : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y)) : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n  have h\u2081 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := hdiv\n  have h\u2082 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n    have h\u2083 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := h\u2081\n    have h\u2084 : Nat.Coprime ((2 : \u2115) ^ p) y := hc\n    exact?\n  exact h\u2082",
+        "custom_id": "pow_divides_of_coprime_left_6",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 6,
+                        "column": 47
+                    },
+                    "endPos": {
+                        "line": 6,
+                        "column": 48
+                    },
+                    "data": "unused variable `x`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2083`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2084`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [
+                {
+                    "severity": "info",
+                    "pos": {
+                        "line": 13,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 10
+                    },
+                    "data": "Try this: exact Coprime.dvd_of_dvd_mul_right hc hdiv"
+                }
+            ],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.8734190464019775,
+            "custom_id": "pow_divides_of_coprime_left_6"
+        }
+    },
+    {
+        "name": "pow_divides_of_coprime_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_divides_of_coprime_left {p q : \u2115} {x y : \u2115}\n  (hc : Nat.Coprime ((2 : \u2115) ^ p) y)\n  (hdiv : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y)) : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n  have h\u2081 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := hdiv\n  have h\u2082 : Nat.Coprime ((2 : \u2115) ^ p) y := hc\n  exact?",
+        "custom_id": "pow_divides_of_coprime_left_7",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 6,
+                        "column": 47
+                    },
+                    "endPos": {
+                        "line": 6,
+                        "column": 48
+                    },
+                    "data": "unused variable `x`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2082`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [
+                {
+                    "severity": "info",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 8
+                    },
+                    "data": "Try this: exact Coprime.dvd_of_dvd_mul_right hc hdiv"
+                }
+            ],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.4721400737762451,
+            "custom_id": "pow_divides_of_coprime_left_7"
+        }
+    },
+    {
+        "name": "pow_divides_of_coprime_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_divides_of_coprime_left {p q : \u2115} {x y : \u2115}\n  (hc : Nat.Coprime ((2 : \u2115) ^ p) y)\n  (hdiv : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y)) : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n  have h\u2081 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := hdiv\n  have h\u2082 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n    -- Use the fact that if a number divides a product and is coprime to one factor, it must divide the other factor.\n    have h\u2083 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := h\u2081\n    have h\u2084 : Nat.Coprime ((2 : \u2115) ^ p) y := hc\n    exact (Nat.Coprime.dvd_of_dvd_mul_right h\u2084) h\u2083\n  exact h\u2082",
+        "custom_id": "pow_divides_of_coprime_left_8",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 6,
+                        "column": 47
+                    },
+                    "endPos": {
+                        "line": 6,
+                        "column": 48
+                    },
+                    "data": "unused variable `x`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.05095219612121582,
+            "custom_id": "pow_divides_of_coprime_left_8"
+        }
+    },
+    {
+        "name": "pow_divides_of_coprime_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_divides_of_coprime_left {p q : \u2115} {x y : \u2115}\n  (hc : Nat.Coprime ((2 : \u2115) ^ p) y)\n  (hdiv : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y)) : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n  have h1 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := hdiv\n  have h2 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n    have h3 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := h1\n    have h4 : Nat.Coprime ((2 : \u2115) ^ p) y := hc\n    exact?\n  exact h2",
+        "custom_id": "pow_divides_of_coprime_left_9",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 6,
+                        "column": 47
+                    },
+                    "endPos": {
+                        "line": 6,
+                        "column": 48
+                    },
+                    "data": "unused variable `x`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "unused variable `h3`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "unused variable `h4`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [
+                {
+                    "severity": "info",
+                    "pos": {
+                        "line": 13,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 10
+                    },
+                    "data": "Try this: exact Coprime.dvd_of_dvd_mul_right hc hdiv"
+                }
+            ],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.3439171314239502,
+            "custom_id": "pow_divides_of_coprime_left_9"
+        }
+    },
+    {
+        "name": "pow_divides_of_coprime_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_divides_of_coprime_left {p q : \u2115} {x y : \u2115}\n  (hc : Nat.Coprime ((2 : \u2115) ^ p) y)\n  (hdiv : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y)) : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n  have h\u2081 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := hdiv\n  have h\u2082 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := hdiv\n  have h\u2083 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n    have h\u2084 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := hdiv\n    have h\u2085 : Nat.Coprime ((2 : \u2115) ^ p) y := hc\n    have h\u2086 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n      -- Use the fact that if a number divides a product and is coprime with one of the factors, it must divide the other factor.\n      exact (Nat.Coprime.pow_left p h\u2085).symm.dvd_of_dvd_mul_right (by simpa using h\u2084)\n    exact h\u2086\n  exact h\u2083",
+        "custom_id": "pow_divides_of_coprime_left_10",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 70
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 84
+                    },
+                    "data": "type mismatch\n  h\u271d\nhas type\n  2 ^ p \u2223 2 ^ q * y : Prop\nbut is expected to have type\n  y \u2223 ?m.851 * (2 ^ p) ^ p : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.11314201354980469,
+            "custom_id": "pow_divides_of_coprime_left_10"
+        }
+    },
+    {
+        "name": "pow_divides_of_coprime_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_divides_of_coprime_left {p q : \u2115} {x y : \u2115}\n  (hc : Nat.Coprime ((2 : \u2115) ^ p) y)\n  (hdiv : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y)) : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n  have h\u2081 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := hdiv\n  have h\u2082 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n    apply Nat.dvd_of_mod_eq_zero\n    have h\u2083 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := h\u2081\n    have h\u2084 : Nat.gcd ((2 : \u2115) ^ p) y = 1 := hc\n    have h\u2085 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n      -- Use the fact that gcd(2^p, y) = 1 to simplify the divisibility condition\n      rw [Nat.dvd_iff_mod_eq_zero] at h\u2083 \u22a2\n      simp [Nat.Coprime, Nat.gcd_eq_right_iff_dvd, Nat.gcd_eq_left_iff_dvd, h\u2084] at h\u2083 \u22a2\n      <;> omega\n    exact h\u2085\n  exact h\u2082",
+        "custom_id": "pow_divides_of_coprime_left_11",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 87
+                    },
+                    "data": "simp made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 12
+                    },
+                    "data": "type mismatch\n  h\u2085\nhas type\n  2 ^ p \u2223 2 ^ q : Prop\nbut is expected to have type\n  2 ^ q % 2 ^ p = 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.054015398025512695,
+            "custom_id": "pow_divides_of_coprime_left_11"
+        }
+    },
+    {
+        "name": "pow_divides_of_coprime_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_divides_of_coprime_left {p q : \u2115} {x y : \u2115}\n  (hc : Nat.Coprime ((2 : \u2115) ^ p) y)\n  (hdiv : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y)) : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n  have h : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := hdiv\n  have h\u2081 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := hdiv\n  have h\u2082 : Nat.Coprime ((2 : \u2115) ^ p) y := hc\n  -- We use the fact that if a number divides a product and is coprime to one of the factors, it must divide the other factor.\n  have h\u2083 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n    -- We use the fact that if a number divides a product and is coprime to one of the factors, it must divide the other factor.\n    have h\u2084 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := h\u2081\n    have h\u2085 : Nat.Coprime ((2 : \u2115) ^ p) y := h\u2082\n    exact?\n  exact h\u2083",
+        "custom_id": "pow_divides_of_coprime_left_12",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 6,
+                        "column": 47
+                    },
+                    "endPos": {
+                        "line": 6,
+                        "column": 48
+                    },
+                    "data": "unused variable `x`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 8
+                    },
+                    "data": "unused variable `h`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2084`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2085`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [
+                {
+                    "severity": "info",
+                    "pos": {
+                        "line": 17,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 10
+                    },
+                    "data": "Try this: exact Coprime.dvd_of_dvd_mul_right hc hdiv"
+                }
+            ],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 1.4645047187805176,
+            "custom_id": "pow_divides_of_coprime_left_12"
+        }
+    },
+    {
+        "name": "pow_divides_of_coprime_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_divides_of_coprime_left {p q : \u2115} {x y : \u2115}\n  (hc : Nat.Coprime ((2 : \u2115) ^ p) y)\n  (hdiv : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y)) : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n  have h\u2080 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := hdiv\n  have h\u2081 : Nat.Coprime ((2 : \u2115) ^ p) y := hc\n  have h\u2082 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n    have h\u2083 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := h\u2080\n    exact?\n  exact h\u2082",
+        "custom_id": "pow_divides_of_coprime_left_13",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 6,
+                        "column": 47
+                    },
+                    "endPos": {
+                        "line": 6,
+                        "column": 48
+                    },
+                    "data": "unused variable `x`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2083`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [
+                {
+                    "severity": "info",
+                    "pos": {
+                        "line": 13,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 10
+                    },
+                    "data": "Try this: exact Coprime.dvd_of_dvd_mul_right hc hdiv"
+                }
+            ],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.33000826835632324,
+            "custom_id": "pow_divides_of_coprime_left_13"
+        }
+    },
+    {
+        "name": "pow_divides_of_coprime_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_divides_of_coprime_left {p q : \u2115} {x y : \u2115}\n  (hc : Nat.Coprime ((2 : \u2115) ^ p) y)\n  (hdiv : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y)) : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n  have h\u2080 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := hdiv\n  have h\u2081 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := h\u2080\n  have h\u2082 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n    have h\u2083 : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y) := h\u2081\n    have h\u2084 : Nat.Coprime ((2 : \u2115) ^ p) y := hc\n    exact?\n  exact h\u2082",
+        "custom_id": "pow_divides_of_coprime_left_14",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 6,
+                        "column": 47
+                    },
+                    "endPos": {
+                        "line": 6,
+                        "column": 48
+                    },
+                    "data": "unused variable `x`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2083`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "unused variable `h\u2084`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [
+                {
+                    "severity": "info",
+                    "pos": {
+                        "line": 14,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 10
+                    },
+                    "data": "Try this: exact Coprime.dvd_of_dvd_mul_right hc hdiv"
+                }
+            ],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.4413032531738281,
+            "custom_id": "pow_divides_of_coprime_left_14"
+        }
+    },
+    {
+        "name": "pow_divides_of_coprime_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_divides_of_coprime_left {p q : \u2115} {x y : \u2115}\n  (hc : Nat.Coprime ((2 : \u2115) ^ p) y)\n  (hdiv : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q * y)) : ((2 : \u2115) ^ p) \u2223 ((2 : \u2115) ^ q) := by\n  have h\u2080 : (2 ^ p) \u2223 (2 ^ q * y) := hdiv\n  have h\u2081 : (2 ^ p) \u2223 (2 ^ q * y) := h\u2080\n  have h\u2082 : (2 ^ p) \u2223 (2 ^ q * y) := h\u2081\n  -- We use the fact that if a number divides a product, it must divide at least one of the factors if coprime with the other.\n  have h\u2083 : (2 ^ p) \u2223 (2 ^ q) := by\n    -- We use the fact that 2^p and y are coprime to deduce that 2^p must divide 2^q.\n    exact Nat.Coprime.pow_left (p := p) (q := 1) (Nat.coprime_comm.2 hc) |>.dvd_of_dvd_mul_right (by simpa using h\u2082)\n  exact h\u2083",
+        "custom_id": "pow_divides_of_coprime_left_15",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 49
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 72
+                    },
+                    "data": "application type mismatch\n  Coprime.pow_left (coprime_comm.mpr hc)\nargument\n  coprime_comm.mpr hc\nhas type\n  y.Coprime (2 ^ p) : Prop\nbut is expected to have type\n  \u2115 : Type"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 31
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 39
+                    },
+                    "data": "invalid argument name 'p' for function 'Nat.Coprime.pow_left'"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.054735660552978516,
+            "custom_id": "pow_divides_of_coprime_left_15"
+        }
+    },
+    {
+        "name": "le_of_mul_eq_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem le_of_mul_eq_left (p q x y : \u2115)\n  (h : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y) (hx_odd : x % 2 = 1) :\n  q \u2264 p := by\n  by_contra h_contra\n  have h_2 : p < q := by linarith\n  have h_3 : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y := h\n  have h_4 : x % 2 = 1 := hx_odd\n  have h_5 : (2 : \u2115) ^ p * x % 2 = (2 : \u2115) ^ p * 1 % 2 := by\n    rw [\u2190 Nat.mod_add_div x 2]\n    simp [h_4, Nat.mul_mod, Nat.pow_mod]\n  have h_6 : (2 : \u2115) ^ q * y % 2 = (2 : \u2115) ^ q * y % 2 := rfl\n  have h_7 : (2 : \u2115) ^ p * 1 % 2 = 0 := by\n    cases p with\n    | zero => simp\n    | succ p' =>\n      simp [Nat.pow_succ, Nat.mul_mod]\n  have h_8 : (2 : \u2115) ^ q * y % 2 = 0 := by\n    cases q with\n    | zero =>\n      simp_all [Nat.pow_zero, Nat.mul_one]\n    | succ q' =>\n      simp [Nat.pow_succ, Nat.mul_mod] at *\n      <;> omega\n  omega",
+        "custom_id": "le_of_mul_eq_left_16",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 11
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 18
+                    },
+                    "data": "unsolved goals\ncase zero\nq x y : \u2115\nhx_odd h_4 : x % 2 = 1\nh_6 : 2 ^ q * y % 2 = 2 ^ q * y % 2\nh : 2 ^ 0 * x = 2 ^ q * y\nh_contra : \u00acq \u2264 0\nh_2 : 0 < q\nh_3 : 2 ^ 0 * x = 2 ^ q * y\nh_5 : 2 ^ 0 * x % 2 = 2 ^ 0 * 1 % 2\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 29,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 29,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b - c \u2265 1\n  c \u2265 0\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191x / 2\n b := \u2191q\n c := \u2191p"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.159330368041992,
+            "custom_id": "le_of_mul_eq_left_16"
+        }
+    },
+    {
+        "name": "le_of_mul_eq_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem le_of_mul_eq_left (p q x y : \u2115)\n  (h : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y) (hx_odd : x % 2 = 1) :\n  q \u2264 p := by\n  by_contra! h_contra\n  have h1 : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y := h\n  have h2 : p < q := by omega\n  have h3 : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y := h\n  have h4 : x % 2 = 1 := hx_odd\n  have h5 : y % 2 = 0 := by\n    have h6 : (2 : \u2115) ^ q * y % 2 = 0 := by\n      cases' q with q\n      \u00b7 simp_all\n      \u00b7 simp [pow_succ, Nat.mul_mod, Nat.add_mod]\n    have h7 : (2 : \u2115) ^ p * x % 2 = 1 := by\n      cases' p with p\n      \u00b7 simp_all\n      \u00b7 simp [pow_succ, Nat.mul_mod, Nat.add_mod, h4]\n    omega\n  have h6 : (2 : \u2115) ^ q * y = (2 : \u2115) ^ p * x := by omega\n  have h7 : (2 : \u2115) ^ q * y % 2 = 0 := by\n    omega\n  have h8 : (2 : \u2115) ^ p * x % 2 = 1 := by\n    cases' p with p\n    \u00b7 simp_all\n    \u00b7 simp [pow_succ, Nat.mul_mod, Nat.add_mod, h4]\n  omega",
+        "custom_id": "le_of_mul_eq_left_17",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 22,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 7
+                    },
+                    "data": "unsolved goals\ncase succ\nq x y : \u2115\nhx_odd h4 : x % 2 = 1\nh6 : 2 ^ q * y % 2 = 0\np : \u2115\nh : 2 ^ (p + 1) * x = 2 ^ q * y\nh_contra : p + 1 < q\nh1 : 2 ^ (p + 1) * x = 2 ^ q * y\nh2 : p + 1 < q\nh3 : 2 ^ (p + 1) * x = 2 ^ q * y\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 26,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 9
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  d \u2265 0\n  b - c \u2265 1\n  c \u2265 0\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191x / 2\n b := \u2191q\n c := \u2191p\n d := \u2191y / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 30,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 30,
+                        "column": 5
+                    },
+                    "data": "unsolved goals\ncase succ\nq x y : \u2115\nhx_odd h4 : x % 2 = 1\nh5 : y % 2 = 0\nh7 : 2 ^ q * y % 2 = 0\np : \u2115\nh : 2 ^ (p + 1) * x = 2 ^ q * y\nh_contra : p + 1 < q\nh1 : 2 ^ (p + 1) * x = 2 ^ q * y\nh2 : p + 1 < q\nh3 : 2 ^ (p + 1) * x = 2 ^ q * y\nh6 : 2 ^ q * y = 2 ^ (p + 1) * x\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.5113208293914795,
+            "custom_id": "le_of_mul_eq_left_17"
+        }
+    },
+    {
+        "name": "le_of_mul_eq_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem le_of_mul_eq_left (p q x y : \u2115)\n  (h : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y) (hx_odd : x % 2 = 1) :\n  q \u2264 p := by\n  by_contra! h'\n  have h\u2081 : p < q := by omega\n  have h\u2082 : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y := h\n  have h\u2083 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q * y := by\n    use x\n    linarith\n  have h\u2084 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q := by\n    exact Nat.pow_dvd_pow _ (by omega)\n  have h\u2085 : (2 : \u2115) ^ p \u2223 y := by\n    exact Nat.dvd_trans h\u2084 (by simpa using h\u2083)\n  have h\u2086 : y % 2 = 0 := by\n    cases' Nat.mod_two_eq_zero_or_one y with hy hy\n    \u00b7 exact hy\n    \u00b7 have h\u2087 : y % 2 = 1 := hy\n      have h\u2088 : (2 : \u2115) ^ p \u2223 y := h\u2085\n      have h\u2089 : (2 : \u2115) ^ p \u2264 y := Nat.le_of_dvd (by omega) h\u2088\n      have h\u2081\u2080 : y < 2 ^ p := by\n        have h\u2081\u2081 : y % 2 = 1 := h\u2087\n        have h\u2081\u2082 : y < 2 ^ p := by\n          calc\n            y < 2 ^ p := by\n              have h\u2081\u2083 : y % 2 = 1 := h\u2087\n              have h\u2081\u2084 : y < 2 ^ p := by\n                calc\n                  y < 2 ^ p := by\n                    apply Nat.lt_pow_self\n                    omega\n                  _ = 2 ^ p := by rfl\n              exact h\u2081\u2084\n            _ = 2 ^ p := by rfl\n        exact h\u2081\u2082\n      omega\n  have h\u2087 : x % 2 = 1 := hx_odd\n  have h\u2088 : (2 : \u2115) ^ p * x % 2 = 0 := by\n    cases' p with p\n    \u00b7 simp_all\n    \u00b7 simp [Nat.mul_mod, Nat.pow_mod, h\u2087, h\u2086]\n      <;> omega\n  have h\u2089 : (2 : \u2115) ^ q * y % 2 = 0 := by\n    cases' q with q\n    \u00b7 simp_all\n    \u00b7 simp [Nat.mul_mod, Nat.pow_mod, h\u2086]\n      <;> omega\n  omega",
+        "custom_id": "le_of_mul_eq_left_18",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 31
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 45
+                    },
+                    "data": "type mismatch\n  h\u271d\nhas type\n  2 ^ p \u2223 2 ^ q * y : Prop\nbut is expected to have type\n  2 ^ q \u2223 y : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 34,
+                        "column": 20
+                    },
+                    "endPos": {
+                        "line": 34,
+                        "column": 41
+                    },
+                    "data": "tactic 'apply' failed, failed to unify\n  ?n < ?a ^ ?n\nwith\n  y < 2 ^ p\np q x y : \u2115\nh : 2 ^ p * x = 2 ^ q * y\nhx_odd : x % 2 = 1\nh' : p < q\nh\u2081 : p < q\nh\u2082 : 2 ^ p * x = 2 ^ q * y\nh\u2083 : 2 ^ p \u2223 2 ^ q * y\nh\u2084 : 2 ^ p \u2223 2 ^ q\nh\u2085 : 2 ^ p \u2223 y\nhy h\u2087 : y % 2 = 1\nh\u2088 : 2 ^ p \u2223 y\nh\u2089 : 2 ^ p \u2264 y\nh\u2081\u2081 h\u2081\u2083 : y % 2 = 1\n\u22a2 y < 2 ^ p"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 44,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 44,
+                        "column": 5
+                    },
+                    "data": "unsolved goals\ncase zero\nq x y : \u2115\nh\u2086 : y % 2 = 0\nh\u2087 : 2 ^ q * y % 2 = 1\nh : x = 2 ^ q * y\nh\u2081 : 0 < q\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 52,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 52,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  d \u2265 1\n  b - c \u2265 1\n  c \u2265 0\n  b \u2265 0\n  a \u2265 0\n  e \u2265 0\n  d \u2265 1\n  d \u2265 1\nwhere\n a := \u2191x / 2\n b := \u2191q\n c := \u2191p\n d := \u21912 ^ p\n e := \u2191y / 2"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.254896640777588,
+            "custom_id": "le_of_mul_eq_left_18"
+        }
+    },
+    {
+        "name": "le_of_mul_eq_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem le_of_mul_eq_left (p q x y : \u2115)\n  (h : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y) (hx_odd : x % 2 = 1) :\n  q \u2264 p := by\n  by_contra! h_contra\n  have h1 : p < q := by omega\n  have h2 : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y := h\n  have h3 : x % 2 = 1 := hx_odd\n  have h4 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q * y := by\n    use x\n    linarith\n  have h5 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q := by\n    exact Nat.pow_dvd_pow _ (by omega)\n  have h6 : (2 : \u2115) ^ p \u2223 y := by\n    exact Nat.dvd_trans h5 (Nat.dvd_of_mul_dvd_mul_right (by norm_num) h4)\n  have h7 : y % 2 = 0 := by\n    cases' h6 with k hk\n    omega\n  have h8 : x % 2 = 1 := hx_odd\n  have h9 : (2 : \u2115) ^ q * y % 2 = 0 := by\n    cases' y with y\n    \u00b7 simp_all\n    \u00b7 simp_all [Nat.mul_mod, Nat.pow_mod]\n  have h10 : (2 : \u2115) ^ p * x % 2 = x % 2 := by\n    simp [Nat.mul_mod, Nat.pow_mod, Nat.mod_eq_of_lt]\n    <;> omega\n  have h11 : x % 2 = 1 := hx_odd\n  omega",
+        "custom_id": "le_of_mul_eq_left_19",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 71
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 73
+                    },
+                    "data": "application type mismatch\n  Nat.dvd_of_mul_dvd_mul_right ?m.16529 h4\nargument\n  h4\nhas type\n  2 ^ p \u2223 2 ^ q * y : Prop\nbut is expected to have type\n  2 ^ q * ?m.16526 \u2223 y * ?m.16526 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 58
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 69
+                    },
+                    "data": "unsolved goals\np q x y : \u2115\nh : 2 ^ p * x = 2 ^ q * y\nhx_odd : x % 2 = 1\nh_contra : p < q\nh1 : p < q\nh2 : 2 ^ p * x = 2 ^ q * y\nh3 : x % 2 = 1\nh4 : 2 ^ p \u2223 2 ^ q * y\nh5 : 2 ^ p \u2223 2 ^ q\n\u22a2 0 < ?m.16526"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 22,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 9
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  d \u2265 1\n  b - c \u2265 1\n  c \u2265 0\n  b \u2265 0\n  a \u2265 0\n  e \u2265 0\n  d \u2265 1\nwhere\n a := \u2191x / 2\n b := \u2191q\n c := \u2191p\n d := \u21912 ^ p\n e := \u2191y / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 30,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 30,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  d \u2265 1\n  b - c \u2265 1\n  c \u2265 0\n  b \u2265 0\n  a \u2265 0\n  e \u2265 0\n  d \u2265 1\n  d \u2265 1\nwhere\n a := \u2191x / 2\n b := \u2191q\n c := \u2191p\n d := \u21912 ^ p\n e := \u2191y / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 28,
+                        "column": 44
+                    },
+                    "endPos": {
+                        "line": 30,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\np q x y : \u2115\nh : 2 ^ p * x = 2 ^ q * y\nhx_odd : x % 2 = 1\nh_contra : p < q\nh1 : p < q\nh2 : 2 ^ p * x = 2 ^ q * y\nh3 : x % 2 = 1\nh4 : 2 ^ p \u2223 2 ^ q * y\nh5 : 2 ^ p \u2223 2 ^ q\nh6 : 2 ^ p \u2223 y\nh7 : y % 2 = 0\nh8 : x % 2 = 1\nh9 : 2 ^ q * y % 2 = 0\n\u22a2 (0 % 2) ^ p % 2 % 2 * (x % 2 % 2) % 2 = x % 2"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.544290781021118,
+            "custom_id": "le_of_mul_eq_left_19"
+        }
+    },
+    {
+        "name": "le_of_mul_eq_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem le_of_mul_eq_left (p q x y : \u2115)\n  (h : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y) (hx_odd : x % 2 = 1) :\n  q \u2264 p := by\n  by_contra! h_contra\n  have h_ineq : p < q := by omega\n  have h_pow : (2 : \u2115) ^ p < (2 : \u2115) ^ q := pow_lt_pow_right (by norm_num) h_ineq\n  have h_mul_ineq : (2 : \u2115) ^ p * x < (2 : \u2115) ^ q * y := by\n    nlinarith [pow_pos (by norm_num : (0 : \u2115) < 2) p, pow_pos (by norm_num : (0 : \u2115) < 2) q,\n      Nat.mul_le_mul_right x (Nat.pos_of_ne_zero (show (2 : \u2115) ^ p \u2260 0 by positivity)),\n      Nat.mul_le_mul_right y (Nat.pos_of_ne_zero (show (2 : \u2115) ^ q \u2260 0 by positivity))]\n  nlinarith [pow_pos (by norm_num : (0 : \u2115) < 2) p, pow_pos (by norm_num : (0 : \u2115) < 2) q,\n    Nat.mul_le_mul_right x (Nat.pos_of_ne_zero (show (2 : \u2115) ^ p \u2260 0 by positivity)),\n    Nat.mul_le_mul_right y (Nat.pos_of_ne_zero (show (2 : \u2115) ^ q \u2260 0 by positivity))]",
+        "custom_id": "le_of_mul_eq_left_20",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 87
+                    },
+                    "data": "linarith failed to find a contradiction\ncase h\np q x y : \u2115\nh : 2 ^ p * x = 2 ^ q * y\nhx_odd : x % 2 = 1\nh_contra : p < q\nh_ineq : p < q\nh_pow : 2 ^ p < 2 ^ q\na\u271d : 2 ^ p * x \u2265 2 ^ q * y\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.8291378021240234,
+            "custom_id": "le_of_mul_eq_left_20"
+        }
+    },
+    {
+        "name": "le_of_mul_eq_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem le_of_mul_eq_left (p q x y : \u2115)\n  (h : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y) (hx_odd : x % 2 = 1) :\n  q \u2264 p := by\n  by_contra! h_contra\n  have h_ineq : p < q := by omega\n  have h_pow : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y := h\n  have h_pow_2 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q * y := by\n    use x\n    linarith\n  have h_pow_3 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q * y := by\n    simpa [mul_comm] using h_pow_2\n  have h_pow_4 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q := by\n    exact dvd_mul_of_dvd_right (by simp [Nat.pow_dvd_pow]) _\n  have h_pow_5 : p \u2264 q := by\n    exact?\n  omega",
+        "custom_id": "le_of_mul_eq_left_21",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 57
+                    },
+                    "data": "simp made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 21,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  d \u2265 1\n  b - c \u2265 1\n  c \u2265 0\n  b \u2265 0\n  a \u2265 0\n  d \u2265 1\nwhere\n a := \u2191x / 2\n b := \u2191q\n c := \u2191p\n d := \u21912 ^ p"
+                }
+            ],
+            "warnings": [],
+            "infos": [
+                {
+                    "severity": "info",
+                    "pos": {
+                        "line": 20,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 10
+                    },
+                    "data": "Try this: exact le_of_succ_le h_contra"
+                }
+            ],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.8798537254333496,
+            "custom_id": "le_of_mul_eq_left_21"
+        }
+    },
+    {
+        "name": "le_of_mul_eq_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem le_of_mul_eq_left (p q x y : \u2115)\n  (h : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y) (hx_odd : x % 2 = 1) :\n  q \u2264 p := by\n  by_contra! h_contra\n  have h_pow : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y := h\n  have h_odd : x % 2 = 1 := hx_odd\n  have h_2_p : (2 : \u2115) ^ p > 0 := by positivity\n  have h_2_q : (2 : \u2115) ^ q > 0 := by positivity\n  have h_2_pq : (2 : \u2115) ^ p \u2264 (2 : \u2115) ^ q := by\n    apply Nat.pow_le_pow_of_le_right\n    norm_num\n    omega\n  have h_x_even : x % 2 = 0 := by\n    rw [\u2190 Nat.mod_add_div x 2] at h_pow\n    rw [h_odd] at h_pow\n    ring_nf at h_pow\n    omega\n  omega",
+        "custom_id": "le_of_mul_eq_left_22",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 22,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 9
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  d \u2265 1\n  b - c \u2265 1\n  2*e - f \u2264 -1\n  c \u2265 0\n  b \u2265 0\n  a \u2265 0\n  d + 2*e - f \u2265 0\nwhere\n a := \u2191x / 2\n b := \u2191q\n c := \u2191p\n d := \u21912 ^ q\n e := \u2191(x / 2) * \u2191(2 ^ p)\n f := \u2191y * \u2191(2 ^ q)"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.31191444396972656,
+            "custom_id": "le_of_mul_eq_left_22"
+        }
+    },
+    {
+        "name": "le_of_mul_eq_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem le_of_mul_eq_left (p q x y : \u2115)\n  (h : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y) (hx_odd : x % 2 = 1) :\n  q \u2264 p := by\n  by_contra hpq\n  have hpq' : p < q := by omega\n  have h1 : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y := h\n  have h2 : x % 2 = 1 := hx_odd\n  rw [Nat.mul_comm] at h1\n  rw [Nat.mul_comm] at h1\n  have h3 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q * y := \u27e8x, by linarith\u27e9\n  have h4 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q * y := by simpa [Nat.pow_dvd_pow_iff] using h3\n  have h5 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q * y := by simpa [Nat.pow_dvd_pow_iff] using h3\n  have h6 : p \u2264 q := by\n    apply Nat.le_of_dvd\n    \u00b7 exact Nat.pos_of_ne_zero (fun h => by simp_all)\n    \u00b7 exact Nat.dvd_of_mod_eq_zero (by simp_all [Nat.pow_mod, Nat.mul_mod, Nat.mod_eq_of_lt])\n  omega",
+        "custom_id": "le_of_mul_eq_left_23",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 21,
+                        "column": 36
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 92
+                    },
+                    "data": "unsolved goals\np q x y : \u2115\nhpq' : p < q\nh1 : 2 ^ p * x = 2 ^ q * y\nh2 : x % 2 = 1\nh5 : 2 ^ p \u2223 2 ^ q * y\n\u22a2 q % p = 0"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 22,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b - c \u2265 1\n  d \u2265 1\n  c \u2265 0\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191x / 2\n b := \u2191q\n c := \u2191p\n d := \u21912 ^ p"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.00899600982666,
+            "custom_id": "le_of_mul_eq_left_23"
+        }
+    },
+    {
+        "name": "le_of_mul_eq_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem le_of_mul_eq_left (p q x y : \u2115)\n  (h : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y) (hx_odd : x % 2 = 1) :\n  q \u2264 p := by\n  by_contra! h_contra\n  have h1 : (2 : \u2115) ^ q * y = (2 : \u2115) ^ p * x := by rw [h]\n  have h2 : (2 : \u2115) ^ p > 0 := pow_pos (by norm_num) p\n  have h3 : (2 : \u2115) ^ q > 0 := pow_pos (by norm_num) q\n  have h4 : q > p := by linarith\n  have h5 : (2 : \u2115) ^ q \u2265 (2 : \u2115) ^ (p + 1) := by\n    apply Nat.pow_le_pow_of_le_right\n    linarith\n    linarith\n  have h6 : (2 : \u2115) ^ p * x % 2 = 1 := by\n    rw [Nat.mul_mod]\n    simp [hx_odd, Nat.pow_mod]\n  have h7 : (2 : \u2115) ^ q * y % 2 = 0 := by\n    rw [Nat.mul_mod]\n    simp [Nat.pow_mod]\n    <;> omega\n  omega",
+        "custom_id": "le_of_mul_eq_left_24",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 39
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 30
+                    },
+                    "data": "unsolved goals\np q x y : \u2115\nh : 2 ^ p * x = 2 ^ q * y\nhx_odd : x % 2 = 1\nh_contra : p < q\nh1 : 2 ^ q * y = 2 ^ p * x\nh2 : 2 ^ p > 0\nh3 : 2 ^ q > 0\nh4 : q > p\nh5 : 2 ^ q \u2265 2 ^ (p + 1)\n\u22a2 (0 % 2) ^ p % 2 = 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 24,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b - c \u2265 1\n  e \u2265 1\n  c \u2265 0\n  b \u2265 0\n  a \u2265 0\n  d \u2265 1\n  2*d - e \u2264 0\nwhere\n a := \u2191x / 2\n b := \u2191q\n c := \u2191p\n d := \u21912 ^ p\n e := \u21912 ^ q"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 21,
+                        "column": 39
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\np q x y : \u2115\nh : 2 ^ p * x = 2 ^ q * y\nhx_odd : x % 2 = 1\nh_contra : p < q\nh1 : 2 ^ q * y = 2 ^ p * x\nh2 : 2 ^ p > 0\nh3 : 2 ^ q > 0\nh4 : q > p\nh5 : 2 ^ q \u2265 2 ^ (p + 1)\nh6 : 2 ^ p * x % 2 = 1\n\u22a2 0 ^ q * y % 2 = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.0925207138061523,
+            "custom_id": "le_of_mul_eq_left_24"
+        }
+    },
+    {
+        "name": "le_of_mul_eq_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem le_of_mul_eq_left (p q x y : \u2115)\n  (h : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y) (hx_odd : x % 2 = 1) :\n  q \u2264 p := by\n  by_contra! hpq\n  have h\u2081 : x % 2 = 1 := hx_odd\n  have h\u2082 : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y := h\n  have h\u2083 : p > q := by omega\n  have h\u2084 : (2 : \u2115) ^ p > (2 : \u2115) ^ q := by\n    apply Nat.pow_lt_pow_of_lt_right\n    norm_num\n    omega\n  have h\u2085 : (2 : \u2115) ^ p * x > (2 : \u2115) ^ q * x := by\n    nlinarith [pow_pos (by norm_num : (0 : \u2115) < 2) q, pow_pos (by norm_num : (0 : \u2115) < 2) p]\n  have h\u2086 : (2 : \u2115) ^ q * y \u2265 (2 : \u2115) ^ q * y := by nlinarith\n  have h\u2087 : (2 : \u2115) ^ q * y < (2 : \u2115) ^ p * x := by\n    nlinarith [pow_pos (by norm_num : (0 : \u2115) < 2) q, pow_pos (by norm_num : (0 : \u2115) < 2) p]\n  nlinarith",
+        "custom_id": "le_of_mul_eq_left_25",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 24
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 29
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b - c \u2265 1\n  c \u2265 0\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191x / 2\n b := \u2191q\n c := \u2191p"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 36
+                    },
+                    "data": "`Nat.pow_lt_pow_of_lt_right` has been deprecated, use `pow_lt_pow_right` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 4.832513809204102,
+            "custom_id": "le_of_mul_eq_left_25"
+        }
+    },
+    {
+        "name": "le_of_mul_eq_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem le_of_mul_eq_left (p q x y : \u2115)\n  (h : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y) (hx_odd : x % 2 = 1) :\n  q \u2264 p := by\n  by_contra h_contra\n  have h\u2081 : p < q := by omega\n  have h\u2082 : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y := h\n  have h\u2083 : x % 2 = 1 := hx_odd\n  have h\u2084 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q * y := by\n    use x\n    linarith\n  have h\u2085 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q := by\n    apply pow_dvd_pow _\n    omega\n  have h\u2086 : (2 : \u2115) ^ p \u2223 y := by\n    have h\u2087 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q * y := h\u2084\n    have h\u2088 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q * y := h\u2084\n    exact (Nat.dvd_of_mod_eq_zero (by simp_all [Nat.mod_eq_zero_of_dvd, Nat.pow_dvd_pow_iff]))\n  have h\u2087 : y % 2 = 0 := by\n    have h\u2088 : (2 : \u2115) ^ p \u2223 y := h\u2086\n    have h\u2089 : y % 2 = 0 := by\n      have h\u2081\u2080 : (2 : \u2115) ^ p % 2 = 0 := by\n        cases p <;> simp_all [Nat.pow_succ, Nat.mul_mod]\n      have h\u2081\u2081 : y % 2 = 0 := by\n        exact Nat.mod_eq_zero_of_dvd (Nat.dvd_trans h\u2088 (by norm_num : 2 \u2223 2 ^ p))\n      exact h\u2081\u2081\n    exact h\u2089\n  have h\u2088 : x % 2 = 1 := hx_odd\n  have h\u2089 : (2 : \u2115) ^ p * x % 2 = x % 2 := by\n    simp_all [Nat.mul_mod, Nat.pow_mod]\n  have h\u2081\u2080 : (2 : \u2115) ^ q * y % 2 = 0 := by\n    simp_all [Nat.mul_mod, Nat.pow_mod]\n  omega",
+        "custom_id": "le_of_mul_eq_left_26",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 22,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 92
+                    },
+                    "data": "unsolved goals\np q x y : \u2115\nh\u2081 : p < q\nh\u2082 : 2 ^ p * x = 2 ^ q * y\nh\u2083 : x % 2 = 1\nh\u2085 : 2 ^ p \u2223 2 ^ q\nh\u2088 : 2 ^ p \u2223 2 ^ q * y\n\u22a2 y % 2 ^ p = 0"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 26,
+                        "column": 40
+                    },
+                    "endPos": {
+                        "line": 27,
+                        "column": 56
+                    },
+                    "data": "unsolved goals\ncase zero\nq x y : \u2115\nh\u2083 : 2 ^ q % 2 % 2 * (y % 2 % 2) % 2 = 1\nh : x = 2 ^ q * y\nh_contra : \u00acq = 0\nh\u2081 : 0 < q\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 29,
+                        "column": 55
+                    },
+                    "endPos": {
+                        "line": 29,
+                        "column": 80
+                    },
+                    "data": "application type mismatch\n  Nat.dvd_trans ?m.75058 ?m.75427\nargument\n  ?m.75427\nhas type\n  2 \u2223 2 ^ p : Prop\nbut is expected to have type\n  2 \u2223 y : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 29,
+                        "column": 56
+                    },
+                    "endPos": {
+                        "line": 29,
+                        "column": 67
+                    },
+                    "data": "unsolved goals\np q x y : \u2115\nh : 2 ^ p * x = 2 ^ q * y\nhx_odd : x % 2 = 1\nh_contra : \u00acq \u2264 p\nh\u2081 : p < q\nh\u2082 : 2 ^ p * x = 2 ^ q * y\nh\u2083 : x % 2 = 1\nh\u2084 : 2 ^ p \u2223 2 ^ q * y\nh\u2085 : 2 ^ p \u2223 2 ^ q\nh\u2086 h\u2088 : 2 ^ p \u2223 y\nh\u2081\u2080 : 2 ^ p % 2 = 0\n\u22a2 2 \u2223 2 ^ p"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 29,
+                        "column": 52
+                    },
+                    "endPos": {
+                        "line": 29,
+                        "column": 54
+                    },
+                    "data": "application type mismatch\n  Nat.dvd_trans h\u2088\nargument\n  h\u2088\nhas type\n  2 ^ p \u2223 y : Prop\nbut is expected to have type\n  2 \u2223 2 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 33,
+                        "column": 43
+                    },
+                    "endPos": {
+                        "line": 34,
+                        "column": 39
+                    },
+                    "data": "unsolved goals\np q x y : \u2115\nh\u2081 : p < q\nh\u2082 : 2 ^ p * x = 2 ^ q * y\nh\u2084 : 2 ^ p \u2223 2 ^ q * y\nh\u2085 : 2 ^ p \u2223 2 ^ q\nh\u2086 : 2 ^ p \u2223 y\nh\u2087 : y % 2 = 0\nh\u2088 : x % 2 = 1\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 3.535122871398926,
+            "custom_id": "le_of_mul_eq_left_26"
+        }
+    },
+    {
+        "name": "le_of_mul_eq_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem le_of_mul_eq_left (p q x y : \u2115)\n  (h : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y) (hx_odd : x % 2 = 1) :\n  q \u2264 p := by\n  by_contra h_contra\n  have h_pow : (2 : \u2115) ^ q * y < (2 : \u2115) ^ p * x := by\n    have : q > p := by omega\n    have : (2 : \u2115) ^ q < (2 : \u2115) ^ p := by\n      apply Nat.pow_lt_pow_of_lt_right\n      norm_num\n      omega\n    have : (2 : \u2115) ^ q * y < (2 : \u2115) ^ q * x := by\n      apply Nat.mul_lt_mul_of_pos_left\n      omega\n      have : 0 < (2 : \u2115) ^ q := by\n        apply Nat.pos_pow_of_pos\n        norm_num\n      omega\n    nlinarith\n  nlinarith\n  <;> simp_all [Nat.mul_mod, Nat.pow_mod, Nat.add_mod]\n  <;> omega",
+        "custom_id": "le_of_mul_eq_left_27",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b - c \u2265 1\n  c \u2265 0\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191x / 2\n b := \u2191q\n c := \u2191p"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b - c \u2265 1\n  c \u2265 0\n  d - e \u2265 1\n  b \u2265 0\n  a \u2265 0\n  2*a - f \u2264 -1\n  f \u2265 0\nwhere\n a := \u2191x / 2\n b := \u2191q\n c := \u2191p\n d := \u21912 ^ p\n e := \u21912 ^ q\n f := \u2191y"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 38
+                    },
+                    "data": "`Nat.pow_lt_pow_of_lt_right` has been deprecated, use `pow_lt_pow_right` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.5285489559173584,
+            "custom_id": "le_of_mul_eq_left_27"
+        }
+    },
+    {
+        "name": "le_of_mul_eq_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem le_of_mul_eq_left (p q x y : \u2115)\n  (h : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y) (hx_odd : x % 2 = 1) :\n  q \u2264 p := by\n  by_contra! hpq\n  have h1 : p < q := by omega\n  have h2 : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y := h\n  have h3 : x % 2 = 1 := hx_odd\n  have h4 : (2 : \u2115) ^ p > 0 := by positivity\n  have h5 : (2 : \u2115) ^ q > 0 := by positivity\n  have h6 : (2 : \u2115) ^ p \u2264 (2 : \u2115) ^ q := by\n    apply Nat.pow_le_pow_of_le_right\n    linarith\n    linarith\n  have h7 : (2 : \u2115) ^ p * x < (2 : \u2115) ^ q * y := by\n    nlinarith [Nat.mul_div_cancel' (show (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q by\n      exact Nat.pow_dvd_pow _ (by omega))]\n  nlinarith",
+        "custom_id": "le_of_mul_eq_left_28",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 42
+                    },
+                    "data": "linarith failed to find a contradiction\ncase h\np q x y : \u2115\nh : 2 ^ p * x = 2 ^ q * y\nhx_odd : x % 2 = 1\nhpq : p < q\nh1 : p < q\nh2 : 2 ^ p * x = 2 ^ q * y\nh3 : x % 2 = 1\nh4 : 2 ^ p > 0\nh5 : 2 ^ q > 0\nh6 : 2 ^ p \u2264 2 ^ q\na\u271d : 2 ^ p * x \u2265 2 ^ q * y\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.895009994506836,
+            "custom_id": "le_of_mul_eq_left_28"
+        }
+    },
+    {
+        "name": "le_of_mul_eq_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem le_of_mul_eq_left (p q x y : \u2115)\n  (h : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y) (hx_odd : x % 2 = 1) :\n  q \u2264 p := by\n  by_contra! h_contra\n  have h_pq : p < q := by omega\n  have h_pq_pow : (2 : \u2115) ^ p < (2 : \u2115) ^ q := Nat.pow_lt_pow_of_lt_right (by norm_num) h_pq\n  have h_mul : (2 : \u2115) ^ p * x < (2 : \u2115) ^ q * y := by\n    nlinarith [Nat.mul_le_mul_left ((2 : \u2115) ^ p) (Nat.zero_le y),\n      Nat.mul_le_mul_left ((2 : \u2115) ^ q) (Nat.zero_le x)]\n  nlinarith\n  <;> omega\n  <;> omega\n  <;> omega\n  <;> omega\n  <;> omega\n  <;> omega",
+        "custom_id": "le_of_mul_eq_left_29",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 56
+                    },
+                    "data": "linarith failed to find a contradiction\ncase h\np q x y : \u2115\nh : 2 ^ p * x = 2 ^ q * y\nhx_odd : x % 2 = 1\nh_contra : p < q\nh_pq : p < q\nh_pq_pow : 2 ^ p < 2 ^ q\na\u271d : 2 ^ p * x \u2265 2 ^ q * y\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 47
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 73
+                    },
+                    "data": "`Nat.pow_lt_pow_of_lt_right` has been deprecated, use `pow_lt_pow_right` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.575984001159668,
+            "custom_id": "le_of_mul_eq_left_29"
+        }
+    },
+    {
+        "name": "le_of_mul_eq_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem le_of_mul_eq_left (p q x y : \u2115)\n  (h : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y) (hx_odd : x % 2 = 1) :\n  q \u2264 p := by\n  by_contra h'\n  have h\u2082 : p < q := by omega\n  have h\u2083 : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y := h\n  have h\u2084 : x % 2 = 1 := hx_odd\n  have h\u2085 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q * y := by\n    use x\n    linarith\n  have h\u2086 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q := by\n    apply pow_dvd_pow _\n    omega\n  have h\u2087 : (2 : \u2115) ^ p \u2223 y := by\n    have h\u2088 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q * y := h\u2085\n    have h\u2089 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q := h\u2086\n    exact Nat.dvd_of_mod_eq_zero (by simp_all [Nat.dvd_mul_right])\n  have h\u2088 : y % 2 = 0 := by\n    cases' Nat.eq_zero_or_pos (y % 2) with h h <;> simp_all [Nat.dvd_iff_mod_eq_zero]\n    <;> omega\n  have h\u2089 : x % 2 = 1 := h\u2084\n  have h\u2081\u2080 : (2 : \u2115) ^ p * x % 2 = x % 2 := by\n    simp [Nat.mul_mod, Nat.pow_mod]\n  have h\u2081\u2081 : (2 : \u2115) ^ q * y % 2 = 0 := by\n    simp [Nat.mul_mod, Nat.pow_mod, h\u2088]\n  omega",
+        "custom_id": "le_of_mul_eq_left_30",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 22,
+                        "column": 34
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 65
+                    },
+                    "data": "unsolved goals\np q x y : \u2115\nh\u2082 : p < q\nh\u2083 : 2 ^ p * x = 2 ^ q * y\nh\u2084 : x % 2 = 1\nh\u2088 : 2 ^ p \u2223 2 ^ q * y\nh\u2089 : 2 ^ p \u2223 2 ^ q\n\u22a2 y % 2 ^ p = 0"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 25,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  d \u2265 1\n  c \u2265 0\n  a - b \u2265 1\n  e \u2265 0\n  d \u2265 1\n  b \u2265 0\n  a \u2265 0\n  d \u2265 1\nwhere\n a := \u2191q\n b := \u2191p\n c := \u2191x / 2\n d := \u21912 ^ p\n e := \u2191y / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 25
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\ncase inr\np q x y : \u2115\nh\u2082 : p < q\nh\u2083 : 2 ^ p * x = 2 ^ q * y\nh\u2084 : x % 2 = 1\nh\u2085 : 2 ^ q * y % 2 ^ p = 0\nh\u2086 : 2 ^ q % 2 ^ p = 0\nh\u2087 : y % 2 ^ p = 0\nh : 0 < y % 2\n\u22a2 y % 2 = 0"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 27,
+                        "column": 44
+                    },
+                    "endPos": {
+                        "line": 28,
+                        "column": 35
+                    },
+                    "data": "unsolved goals\np q x y : \u2115\nh : 2 ^ p * x = 2 ^ q * y\nhx_odd : x % 2 = 1\nh' : \u00acq \u2264 p\nh\u2082 : p < q\nh\u2083 : 2 ^ p * x = 2 ^ q * y\nh\u2084 : x % 2 = 1\nh\u2085 : 2 ^ p \u2223 2 ^ q * y\nh\u2086 : 2 ^ p \u2223 2 ^ q\nh\u2087 : 2 ^ p \u2223 y\nh\u2088 : y % 2 = 0\nh\u2089 : x % 2 = 1\n\u22a2 (0 % 2) ^ p % 2 % 2 * (x % 2 % 2) % 2 = x % 2"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.7060110569000244,
+            "custom_id": "le_of_mul_eq_left_30"
+        }
+    },
+    {
+        "name": "le_of_mul_eq_left",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem le_of_mul_eq_left (p q x y : \u2115)\n  (h : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y) (hx_odd : x % 2 = 1) :\n  q \u2264 p := by\n  by_contra hpq\n  have hpq' : p < q := by omega\n  have h1 : (2 : \u2115) ^ p * x = (2 : \u2115) ^ q * y := h\n  have h2 : x % 2 = 1 := hx_odd\n  have h3 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q * y := by\n    use x\n    linarith\n  have h4 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q * y := by assumption\n  have h5 : (2 : \u2115) ^ p \u2223 (2 : \u2115) ^ q := by\n    exact Nat.dvd_of_mod_eq_zero (by simp [Nat.pow_mod, h2, Nat.mul_mod, Nat.mod_eq_of_lt hpq'])\n  have h6 : p \u2264 q := by\n    exact Nat.le_of_dvd (by exact pow_pos (by norm_num) q) h5\n  omega",
+        "custom_id": "le_of_mul_eq_left_31",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 34
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 95
+                    },
+                    "data": "unsolved goals\np q x y : \u2115\nh : 2 ^ p * x = 2 ^ q * y\nhx_odd : x % 2 = 1\nhpq : \u00acq \u2264 p\nhpq' : p < q\nh1 : 2 ^ p * x = 2 ^ q * y\nh2 : x % 2 = 1\nh3 h4 : 2 ^ p \u2223 2 ^ q * y\n\u22a2 (2 % 2 ^ p % 2 ^ p) ^ q % 2 ^ p = 0"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 59
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 61
+                    },
+                    "data": "application type mismatch\n  le_of_dvd ?m.17445 h5\nargument\n  h5\nhas type\n  2 ^ p \u2223 2 ^ q : Prop\nbut is expected to have type\n  p \u2223 q : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 43
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 54
+                    },
+                    "data": "unsolved goals\np q x y : \u2115\nh : 2 ^ p * x = 2 ^ q * y\nhx_odd : x % 2 = 1\nhpq : \u00acq \u2264 p\nhpq' : p < q\nh1 : 2 ^ p * x = 2 ^ q * y\nh2 : x % 2 = 1\nh3 h4 : 2 ^ p \u2223 2 ^ q * y\nh5 : 2 ^ p \u2223 2 ^ q\n\u22a2 0 < ?m.17814"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 21,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  d \u2265 1\n  b - c \u2265 1\n  c \u2265 0\n  b \u2265 0\n  a \u2265 0\n  d \u2265 1\nwhere\n a := \u2191x / 2\n b := \u2191q\n c := \u2191p\n d := \u21912 ^ p"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.5954775810241699,
+            "custom_id": "le_of_mul_eq_left_31"
+        }
+    }
+]

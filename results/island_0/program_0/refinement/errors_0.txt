@@ -1,0 +1,18 @@
+ERROR from position {'line': 30, 'column': 2} to {'line': 30, 'column': 11}:
+unknown constant 'Nat.Odd'
+
+ERROR from position {'line': 38, 'column': 8} to {'line': 38, 'column': 56}:
+unknown constant 'Nat.oddPart'
+
+ERROR from position {'line': 50, 'column': 2} to {'line': 50, 'column': 62}:
+unknown constant 'Nat.oddPart'
+
+ERROR from position {'line': 51, 'column': 4} to {'line': 51, 'column': 52}:
+unknown constant 'Nat.oddPart'
+
+ERROR from position {'line': 80, 'column': 4} to {'line': 80, 'column': 52}:
+unknown constant 'Nat.oddPart'
+
+ERROR from position {'line': 94, 'column': 7} to {'line': 94, 'column': 45}:
+unknown identifier 'oddPart_strict_decrease_of_not_coprime'
+

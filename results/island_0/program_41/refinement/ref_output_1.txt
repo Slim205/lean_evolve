@@ -1,0 +1,14 @@
+>>>>SEARCH
+  have ab_eq_two_mul_diff : ((a : ℤ) - (b : ℤ)) = ((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) := by
+    calc
+      ((a : ℤ) - (b : ℤ)) = (((2 * m k + 1) : ℤ) - ((2 * n k + 1) : ℤ)) := rfl
+      _ = ((2 : ℤ) * (m k : ℤ) + 1 - (2 : ℤ) * (n k : ℤ) - 1) := by
+        -- `norm_cast` turns the nat-casts into integer arithmetic; then `ring` finishes.
+        norm_cast; ring
+      _ = ((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) := by
+        ring
+>>>>REPLACE
+  have ab_eq_two_mul_diff : ((a : ℤ) - (b : ℤ)) = ((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) := by
+    -- simplify the integer casts and finish by ring
+    norm_cast
+    ring

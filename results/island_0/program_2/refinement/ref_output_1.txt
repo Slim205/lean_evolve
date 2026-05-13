@@ -1,0 +1,4 @@
+>>>>SEARCH
+let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1) in
+>>>>REPLACE
+let d := Nat.gcd (2 * m k + 1) (2 * n k + 1) in

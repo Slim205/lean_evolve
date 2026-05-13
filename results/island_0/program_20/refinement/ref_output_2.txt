@@ -1,0 +1,4 @@
+>>>>SEARCH
+  have hL : (2 : ℕ) ^ u2 * r2 = (2 : ℕ) ^ u1 * (r1 / d) := by
+>>>>REPLACE
+  have hL : (2 : ℕ) ^ u2 * r2 = (2 : ℕ) ^ (u1 + 1) * (r1 / d) := by

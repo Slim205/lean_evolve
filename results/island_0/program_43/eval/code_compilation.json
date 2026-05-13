@@ -1,0 +1,1176 @@
+[
+    {
+        "name": "gcd_divides_both",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem gcd_divides_both (p a b : \u2115) : p \u2223 Nat.gcd a b \u2192 p \u2223 a \u2227 p \u2223 b := by\n  intro h\n  have h\u2081 : p \u2223 Nat.gcd a b := h\n  have h\u2082 : p \u2223 a := Nat.dvd_trans h\u2081 (Nat.gcd_dvd_left a b)\n  have h\u2083 : p \u2223 b := Nat.dvd_trans h\u2081 (Nat.gcd_dvd_right a b)\n  exact \u27e8h\u2082, h\u2083\u27e9",
+        "custom_id": "gcd_divides_both_0",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.014119386672973633,
+            "custom_id": "gcd_divides_both_0"
+        }
+    },
+    {
+        "name": "gcd_divides_both",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem gcd_divides_both (p a b : \u2115) : p \u2223 Nat.gcd a b \u2192 p \u2223 a \u2227 p \u2223 b := by\n  intro h\n  have h1 : p \u2223 a := by\n    have h2 : p \u2223 Nat.gcd a b := h\n    have h3 : Nat.gcd a b \u2223 a := Nat.gcd_dvd_left a b\n    exact dvd_trans h2 h3\n  have h2 : p \u2223 b := by\n    have h4 : p \u2223 Nat.gcd a b := h\n    have h5 : Nat.gcd a b \u2223 b := Nat.gcd_dvd_right a b\n    exact dvd_trans h4 h5\n  exact \u27e8h1, h2\u27e9",
+        "custom_id": "gcd_divides_both_1",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.036253929138183594,
+            "custom_id": "gcd_divides_both_1"
+        }
+    },
+    {
+        "name": "gcd_divides_both",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem gcd_divides_both (p a b : \u2115) : p \u2223 Nat.gcd a b \u2192 p \u2223 a \u2227 p \u2223 b := by\n  intro h\n  have h\u2081 : p \u2223 Nat.gcd a b := h\n  have h\u2082 : p \u2223 a := Nat.dvd_trans h\u2081 (Nat.gcd_dvd_left a b)\n  have h\u2083 : p \u2223 b := Nat.dvd_trans h\u2081 (Nat.gcd_dvd_right a b)\n  exact \u27e8h\u2082, h\u2083\u27e9",
+        "custom_id": "gcd_divides_both_2",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.01504659652709961,
+            "custom_id": "gcd_divides_both_2"
+        }
+    },
+    {
+        "name": "gcd_divides_both",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem gcd_divides_both (p a b : \u2115) : p \u2223 Nat.gcd a b \u2192 p \u2223 a \u2227 p \u2223 b := by\n  intro h\n  have h1 : p \u2223 Nat.gcd a b := h\n  have h2 : p \u2223 a := Nat.dvd_trans h1 (Nat.gcd_dvd_left a b)\n  have h3 : p \u2223 b := Nat.dvd_trans h1 (Nat.gcd_dvd_right a b)\n  exact \u27e8h2, h3\u27e9",
+        "custom_id": "gcd_divides_both_3",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.019467592239379883,
+            "custom_id": "gcd_divides_both_3"
+        }
+    },
+    {
+        "name": "gcd_divides_both",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem gcd_divides_both (p a b : \u2115) : p \u2223 Nat.gcd a b \u2192 p \u2223 a \u2227 p \u2223 b := by\n  intro h\n  have h\u2081 : p \u2223 Nat.gcd a b := h\n  have h\u2082 : p \u2223 a := Nat.dvd_trans h\u2081 (Nat.gcd_dvd_left a b)\n  have h\u2083 : p \u2223 b := Nat.dvd_trans h\u2081 (Nat.gcd_dvd_right a b)\n  exact \u27e8h\u2082, h\u2083\u27e9",
+        "custom_id": "gcd_divides_both_4",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.013313055038452148,
+            "custom_id": "gcd_divides_both_4"
+        }
+    },
+    {
+        "name": "gcd_divides_both",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem gcd_divides_both (p a b : \u2115) : p \u2223 Nat.gcd a b \u2192 p \u2223 a \u2227 p \u2223 b := by\n  intro h\n  have h\u2081 : p \u2223 Nat.gcd a b := h\n  have h\u2082 : p \u2223 a := by\n    -- Since p divides gcd(a, b), and gcd(a, b) divides a, by transitivity, p divides a.\n    exact Nat.dvd_trans h\u2081 (Nat.gcd_dvd_left a b)\n  have h\u2083 : p \u2223 b := by\n    -- Similarly, since p divides gcd(a, b), and gcd(a, b) divides b, by transitivity, p divides b.\n    exact Nat.dvd_trans h\u2081 (Nat.gcd_dvd_right a b)\n  exact \u27e8h\u2082, h\u2083\u27e9",
+        "custom_id": "gcd_divides_both_5",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.014158487319946289,
+            "custom_id": "gcd_divides_both_5"
+        }
+    },
+    {
+        "name": "gcd_divides_both",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem gcd_divides_both (p a b : \u2115) : p \u2223 Nat.gcd a b \u2192 p \u2223 a \u2227 p \u2223 b := by\n  intro h\n  have h1 : p \u2223 Nat.gcd a b := h\n  have h2 : p \u2223 a := Nat.dvd_trans h1 (Nat.gcd_dvd_left a b)\n  have h3 : p \u2223 b := Nat.dvd_trans h1 (Nat.gcd_dvd_right a b)\n  exact \u27e8h2, h3\u27e9",
+        "custom_id": "gcd_divides_both_6",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.012090444564819336,
+            "custom_id": "gcd_divides_both_6"
+        }
+    },
+    {
+        "name": "gcd_divides_both",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem gcd_divides_both (p a b : \u2115) : p \u2223 Nat.gcd a b \u2192 p \u2223 a \u2227 p \u2223 b := by\n  intro h\n  have h1 : p \u2223 Nat.gcd a b := h\n  have h2 : p \u2223 a := by\n    exact Nat.dvd_trans h1 (Nat.gcd_dvd_left a b)\n  have h3 : p \u2223 b := by\n    exact Nat.dvd_trans h1 (Nat.gcd_dvd_right a b)\n  exact \u27e8h2, h3\u27e9",
+        "custom_id": "gcd_divides_both_7",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.021045207977294922,
+            "custom_id": "gcd_divides_both_7"
+        }
+    },
+    {
+        "name": "gcd_divides_both",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem gcd_divides_both (p a b : \u2115) : p \u2223 Nat.gcd a b \u2192 p \u2223 a \u2227 p \u2223 b := by\n  intro h\n  have h1 : p \u2223 Nat.gcd a b := h\n  have h2 : p \u2223 a := by\n    exact Nat.dvd_trans h1 (Nat.gcd_dvd_left a b)\n  have h3 : p \u2223 b := by\n    exact Nat.dvd_trans h1 (Nat.gcd_dvd_right a b)\n  exact \u27e8h2, h3\u27e9",
+        "custom_id": "gcd_divides_both_8",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.01370382308959961,
+            "custom_id": "gcd_divides_both_8"
+        }
+    },
+    {
+        "name": "gcd_divides_both",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem gcd_divides_both (p a b : \u2115) : p \u2223 Nat.gcd a b \u2192 p \u2223 a \u2227 p \u2223 b := by\n  intro h\n  have h\u2081 : p \u2223 Nat.gcd a b := h\n  have h\u2082 : p \u2223 a := by\n    exact Nat.dvd_trans h\u2081 (Nat.gcd_dvd_left a b)\n  have h\u2083 : p \u2223 b := by\n    exact Nat.dvd_trans h\u2081 (Nat.gcd_dvd_right a b)\n  exact \u27e8h\u2082, h\u2083\u27e9",
+        "custom_id": "gcd_divides_both_9",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.013948202133178711,
+            "custom_id": "gcd_divides_both_9"
+        }
+    },
+    {
+        "name": "gcd_divides_both",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem gcd_divides_both (p a b : \u2115) : p \u2223 Nat.gcd a b \u2192 p \u2223 a \u2227 p \u2223 b := by\n  intro h\n  have h1 : p \u2223 Nat.gcd a b := h\n  have h2 : p \u2223 a := by\n    exact Nat.dvd_trans h1 (Nat.gcd_dvd_left a b)\n  have h3 : p \u2223 b := by\n    exact Nat.dvd_trans h1 (Nat.gcd_dvd_right a b)\n  exact \u27e8h2, h3\u27e9",
+        "custom_id": "gcd_divides_both_10",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.01671624183654785,
+            "custom_id": "gcd_divides_both_10"
+        }
+    },
+    {
+        "name": "gcd_divides_both",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem gcd_divides_both (p a b : \u2115) : p \u2223 Nat.gcd a b \u2192 p \u2223 a \u2227 p \u2223 b := by\n  intro h\n  have h\u2081 : p \u2223 a := by\n    -- Use the fact that if p divides the gcd of a and b, then p divides a.\n    exact Nat.dvd_trans h (Nat.gcd_dvd_left a b)\n  have h\u2082 : p \u2223 b := by\n    -- Similarly, use the fact that if p divides the gcd of a and b, then p divides b.\n    exact Nat.dvd_trans h (Nat.gcd_dvd_right a b)\n  exact \u27e8h\u2081, h\u2082\u27e9",
+        "custom_id": "gcd_divides_both_11",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.01200413703918457,
+            "custom_id": "gcd_divides_both_11"
+        }
+    },
+    {
+        "name": "gcd_divides_both",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem gcd_divides_both (p a b : \u2115) : p \u2223 Nat.gcd a b \u2192 p \u2223 a \u2227 p \u2223 b := by\n  intro h\n  have h1 : p \u2223 Nat.gcd a b := h\n  have h2 : p \u2223 a := by\n    have h3 : Nat.gcd a b \u2223 a := Nat.gcd_dvd_left a b\n    exact dvd_trans h1 h3\n  have h4 : p \u2223 b := by\n    have h5 : Nat.gcd a b \u2223 b := Nat.gcd_dvd_right a b\n    exact dvd_trans h1 h5\n  exact \u27e8h2, h4\u27e9",
+        "custom_id": "gcd_divides_both_12",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.027896404266357422,
+            "custom_id": "gcd_divides_both_12"
+        }
+    },
+    {
+        "name": "gcd_divides_both",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem gcd_divides_both (p a b : \u2115) : p \u2223 Nat.gcd a b \u2192 p \u2223 a \u2227 p \u2223 b := by\n  intro h\n  have h\u2081 : p \u2223 Nat.gcd a b := h\n  have h\u2082 : p \u2223 a := by\n    apply Nat.dvd_trans h\u2081 (Nat.gcd_dvd_left a b)\n  have h\u2083 : p \u2223 b := by\n    apply Nat.dvd_trans h\u2081 (Nat.gcd_dvd_right a b)\n  exact \u27e8h\u2082, h\u2083\u27e9",
+        "custom_id": "gcd_divides_both_13",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.020023345947265625,
+            "custom_id": "gcd_divides_both_13"
+        }
+    },
+    {
+        "name": "gcd_divides_both",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem gcd_divides_both (p a b : \u2115) : p \u2223 Nat.gcd a b \u2192 p \u2223 a \u2227 p \u2223 b := by\n  intro h\n  have h1 : p \u2223 Nat.gcd a b := h\n  have h2 : p \u2223 a := by\n    have h3 : Nat.gcd a b \u2223 a := Nat.gcd_dvd_left a b\n    exact dvd_trans h1 h3\n  have h4 : p \u2223 b := by\n    have h5 : Nat.gcd a b \u2223 b := Nat.gcd_dvd_right a b\n    exact dvd_trans h1 h5\n  exact \u27e8h2, h4\u27e9",
+        "custom_id": "gcd_divides_both_14",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.023461341857910156,
+            "custom_id": "gcd_divides_both_14"
+        }
+    },
+    {
+        "name": "gcd_divides_both",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem gcd_divides_both (p a b : \u2115) : p \u2223 Nat.gcd a b \u2192 p \u2223 a \u2227 p \u2223 b := by\n  intro h\n  have h\u2081 : p \u2223 Nat.gcd a b := h\n  have h\u2082 : p \u2223 a := Nat.dvd_trans h\u2081 (Nat.gcd_dvd_left a b)\n  have h\u2083 : p \u2223 b := Nat.dvd_trans h\u2081 (Nat.gcd_dvd_right a b)\n  exact \u27e8h\u2082, h\u2083\u27e9",
+        "custom_id": "gcd_divides_both_15",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.01426076889038086,
+            "custom_id": "gcd_divides_both_15"
+        }
+    },
+    {
+        "name": "not_odd_imp_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem not_odd_imp_two_dvd {x : \u2115} : \u00ac Odd x \u2192 2 \u2223 x := by\n  intro h\n  rw [Nat.dvd_iff_mod_eq_zero]\n  have h' : x % 2 = 0 := by\n    cases' Nat.mod_two_eq_zero_or_one x with h\u2081 h\u2081\n    \u00b7 exact h\u2081\n    \u00b7 exfalso\n      simp_all [Nat.odd_iff_not_even, Nat.even_iff, Nat.mod_eq_of_lt]\n      <;> omega\n  exact h'",
+        "custom_id": "not_odd_imp_two_dvd_16",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.04694056510925293,
+            "custom_id": "not_odd_imp_two_dvd_16"
+        }
+    },
+    {
+        "name": "not_odd_imp_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem not_odd_imp_two_dvd {x : \u2115} : \u00ac Odd x \u2192 2 \u2223 x := by\n  intro h\n  rw [Nat.dvd_iff_mod_eq_zero]\n  have h' : x % 2 = 0 := by\n    cases' Nat.mod_two_eq_zero_or_one x with h\u2081 h\u2081\n    \u00b7 exact h\u2081\n    \u00b7 exfalso\n      simp_all [Nat.odd_iff_not_even, Nat.even_iff, Nat.mod_eq_of_lt]\n      <;> omega\n  exact h'",
+        "custom_id": "not_odd_imp_two_dvd_17",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03416895866394043,
+            "custom_id": "not_odd_imp_two_dvd_17"
+        }
+    },
+    {
+        "name": "not_odd_imp_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem not_odd_imp_two_dvd {x : \u2115} : \u00ac Odd x \u2192 2 \u2223 x := by\n  intro h\n  rw [Nat.dvd_iff_mod_eq_zero]\n  have h' : x % 2 = 0 := by\n    cases' Nat.mod_two_eq_zero_or_one x with h\u2081 h\u2081\n    \u00b7 exact h\u2081\n    \u00b7 exfalso\n      simp_all [Nat.odd_iff_not_even, Nat.even_iff]\n  exact h'",
+        "custom_id": "not_odd_imp_two_dvd_18",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03726816177368164,
+            "custom_id": "not_odd_imp_two_dvd_18"
+        }
+    },
+    {
+        "name": "not_odd_imp_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem not_odd_imp_two_dvd {x : \u2115} : \u00ac Odd x \u2192 2 \u2223 x := by\n  intro h\n  rw [Nat.dvd_iff_mod_eq_zero]\n  cases' Nat.mod_two_eq_zero_or_one x with h\u2081 h\u2081\n  exact?\n  exfalso\n  simp_all [Nat.odd_iff_not_even, Nat.even_iff, Nat.mod_eq_of_lt]\n  <;> omega",
+        "custom_id": "not_odd_imp_two_dvd_19",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [
+                {
+                    "severity": "info",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 8
+                    },
+                    "data": "Try this: exact h\u2081"
+                }
+            ],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.05183911323547363,
+            "custom_id": "not_odd_imp_two_dvd_19"
+        }
+    },
+    {
+        "name": "not_odd_imp_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem not_odd_imp_two_dvd {x : \u2115} : \u00ac Odd x \u2192 2 \u2223 x := by\n  intro h\n  rw [Nat.dvd_iff_mod_eq_zero]\n  have h' : x % 2 = 0 := by\n    cases' Nat.mod_two_eq_zero_or_one x with h\u2081 h\u2081\n    \u00b7 exact h\u2081\n    \u00b7 exfalso\n      simp_all [Nat.odd_iff_not_even, Nat.even_iff]\n  exact h'",
+        "custom_id": "not_odd_imp_two_dvd_20",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03224921226501465,
+            "custom_id": "not_odd_imp_two_dvd_20"
+        }
+    },
+    {
+        "name": "not_odd_imp_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem not_odd_imp_two_dvd {x : \u2115} : \u00ac Odd x \u2192 2 \u2223 x := by\n  intro h\n  rw [Nat.dvd_iff_mod_eq_zero]\n  cases' x with x\n  \u00b7 simp_all\n  \u00b7 cases' x with x\n    \u00b7 simp_all [Nat.odd_iff_not_even, Nat.even_iff]\n    \u00b7 simp_all [Nat.odd_iff_not_even, Nat.even_iff, Nat.mod_eq_of_lt]\n      <;> omega",
+        "custom_id": "not_odd_imp_two_dvd_21",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.08455848693847656,
+            "custom_id": "not_odd_imp_two_dvd_21"
+        }
+    },
+    {
+        "name": "not_odd_imp_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem not_odd_imp_two_dvd {x : \u2115} : \u00ac Odd x \u2192 2 \u2223 x := by\n  intro h\n  rw [Nat.dvd_iff_mod_eq_zero]\n  have h' : x % 2 = 0 := by\n    cases' Nat.mod_two_eq_zero_or_one x with h\u2081 h\u2081\n    \u00b7 exact h\u2081\n    \u00b7 exfalso\n      simp_all [Nat.odd_iff_not_even, Nat.even_iff, Nat.mod_eq_of_lt]\n      <;> omega\n  exact h'",
+        "custom_id": "not_odd_imp_two_dvd_22",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.034212589263916016,
+            "custom_id": "not_odd_imp_two_dvd_22"
+        }
+    },
+    {
+        "name": "not_odd_imp_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem not_odd_imp_two_dvd {x : \u2115} : \u00ac Odd x \u2192 2 \u2223 x := by\n  intro h\n  rw [Nat.dvd_iff_mod_eq_zero]\n  have h' : x % 2 = 0 := by\n    cases' Nat.mod_two_eq_zero_or_one x with h\u2081 h\u2081\n    \u00b7 exact h\u2081\n    \u00b7 exfalso\n      simp_all [Nat.odd_iff_not_even, Nat.even_iff]\n  exact h'",
+        "custom_id": "not_odd_imp_two_dvd_23",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.0483548641204834,
+            "custom_id": "not_odd_imp_two_dvd_23"
+        }
+    },
+    {
+        "name": "not_odd_imp_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem not_odd_imp_two_dvd {x : \u2115} : \u00ac Odd x \u2192 2 \u2223 x := by\n  intro h\n  rw [Nat.dvd_iff_mod_eq_zero]\n  have h' : x % 2 = 0 := by\n    cases' Nat.mod_two_eq_zero_or_one x with h\u2081 h\u2081\n    \u00b7 exact h\u2081\n    \u00b7 exfalso\n      simp_all [Nat.odd_iff_not_even, Nat.even_iff, Nat.mod_eq_of_lt]\n      <;> omega\n  exact h'",
+        "custom_id": "not_odd_imp_two_dvd_24",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.038060665130615234,
+            "custom_id": "not_odd_imp_two_dvd_24"
+        }
+    },
+    {
+        "name": "not_odd_imp_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem not_odd_imp_two_dvd {x : \u2115} : \u00ac Odd x \u2192 2 \u2223 x := by\n  intro h\n  rw [Nat.dvd_iff_mod_eq_zero]\n  have h' : x % 2 = 0 := by\n    cases' Nat.mod_two_eq_zero_or_one x with h\u2081 h\u2081\n    \u00b7 exact h\u2081\n    \u00b7 exfalso\n      simp_all [Nat.odd_iff_not_even, Nat.even_iff]\n  exact h'",
+        "custom_id": "not_odd_imp_two_dvd_25",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03422427177429199,
+            "custom_id": "not_odd_imp_two_dvd_25"
+        }
+    },
+    {
+        "name": "not_odd_imp_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem not_odd_imp_two_dvd {x : \u2115} : \u00ac Odd x \u2192 2 \u2223 x := by\n  intro h\n  rw [Nat.dvd_iff_mod_eq_zero]\n  have h' : x % 2 = 0 := by\n    cases' Nat.mod_two_eq_zero_or_one x with h\u2081 h\u2081\n    \u00b7 exact h\u2081\n    \u00b7 exfalso\n      simp_all [Nat.odd_iff_not_even, Nat.even_iff, Nat.mod_eq_of_lt]\n      <;> omega\n  exact h'",
+        "custom_id": "not_odd_imp_two_dvd_26",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.05986976623535156,
+            "custom_id": "not_odd_imp_two_dvd_26"
+        }
+    },
+    {
+        "name": "not_odd_imp_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem not_odd_imp_two_dvd {x : \u2115} : \u00ac Odd x \u2192 2 \u2223 x := by\n  intro h\n  rw [Nat.dvd_iff_mod_eq_zero]\n  have h' : x % 2 = 0 := by\n    cases' Nat.mod_two_eq_zero_or_one x with h\u2081 h\u2081\n    \u00b7 exact h\u2081\n    \u00b7 exfalso\n      exact h (by simp_all [Nat.odd_iff_not_even, Nat.even_iff])\n  exact h'",
+        "custom_id": "not_odd_imp_two_dvd_27",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.05568337440490723,
+            "custom_id": "not_odd_imp_two_dvd_27"
+        }
+    },
+    {
+        "name": "not_odd_imp_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem not_odd_imp_two_dvd {x : \u2115} : \u00ac Odd x \u2192 2 \u2223 x := by\n  intro h\n  rw [Nat.dvd_iff_mod_eq_zero]\n  have h' : x % 2 = 0 := by\n    cases' Nat.mod_two_eq_zero_or_one x with h\u2081 h\u2081\n    \u00b7 exact h\u2081\n    \u00b7 exfalso\n      simp_all [Nat.odd_iff_not_even, Nat.even_iff, Nat.mod_eq_of_lt]\n      <;> omega\n  exact h'",
+        "custom_id": "not_odd_imp_two_dvd_28",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03534841537475586,
+            "custom_id": "not_odd_imp_two_dvd_28"
+        }
+    },
+    {
+        "name": "not_odd_imp_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem not_odd_imp_two_dvd {x : \u2115} : \u00ac Odd x \u2192 2 \u2223 x := by\n  intro h\n  rw [Nat.dvd_iff_mod_eq_zero]\n  have h' : x % 2 = 0 := by\n    cases' Nat.mod_two_eq_zero_or_one x with h\u2081 h\u2081\n    \u00b7 exact h\u2081\n    \u00b7 exfalso\n      simp_all [Nat.odd_iff_not_even, Nat.even_iff]\n  exact h'",
+        "custom_id": "not_odd_imp_two_dvd_29",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.034909963607788086,
+            "custom_id": "not_odd_imp_two_dvd_29"
+        }
+    },
+    {
+        "name": "not_odd_imp_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem not_odd_imp_two_dvd {x : \u2115} : \u00ac Odd x \u2192 2 \u2223 x := by\n  intro h\n  rw [Nat.dvd_iff_mod_eq_zero]\n  have h' : x % 2 = 0 := by\n    cases' Nat.mod_two_eq_zero_or_one x with h\u2081 h\u2081\n    \u00b7 exact h\u2081\n    \u00b7 exfalso\n      apply h\n      rw [Nat.odd_iff_not_even]\n      simp_all [Nat.even_iff, Nat.mod_eq_of_lt]\n      <;> omega\n  exact h'",
+        "custom_id": "not_odd_imp_two_dvd_30",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.04623746871948242,
+            "custom_id": "not_odd_imp_two_dvd_30"
+        }
+    },
+    {
+        "name": "not_odd_imp_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem not_odd_imp_two_dvd {x : \u2115} : \u00ac Odd x \u2192 2 \u2223 x := by\n  intro h\n  rw [Nat.dvd_iff_mod_eq_zero]\n  have h' : x % 2 = 0 := by\n    cases' Nat.mod_two_eq_zero_or_one x with h\u2081 h\u2081\n    \u00b7 exact h\u2081\n    \u00b7 exfalso\n      apply h\n      simp_all [Nat.odd_iff_not_even, Nat.even_iff, Nat.mod_eq_of_lt]\n      <;> omega\n  exact h'",
+        "custom_id": "not_odd_imp_two_dvd_31",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03859734535217285,
+            "custom_id": "not_odd_imp_two_dvd_31"
+        }
+    },
+    {
+        "name": "odd_implies_not_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_not_two_dvd {x : \u2115} (hx : Odd x) : \u00ac (2 \u2223 x) := by\n  intro h\n  cases' hx with k hk\n  rw [hk] at h\n  norm_num at h\n  <;> omega",
+        "custom_id": "odd_implies_not_two_dvd_32",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.12295126914978027,
+            "custom_id": "odd_implies_not_two_dvd_32"
+        }
+    },
+    {
+        "name": "odd_implies_not_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_not_two_dvd {x : \u2115} (hx : Odd x) : \u00ac (2 \u2223 x) := by\n  intro h\n  cases' hx with k hk\n  rw [hk] at h\n  norm_num at h\n  <;> omega",
+        "custom_id": "odd_implies_not_two_dvd_33",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.10493159294128418,
+            "custom_id": "odd_implies_not_two_dvd_33"
+        }
+    },
+    {
+        "name": "odd_implies_not_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_not_two_dvd {x : \u2115} (hx : Odd x) : \u00ac (2 \u2223 x) := by\n  cases' hx with k hk\n  rw [hk]\n  simp [Nat.dvd_iff_mod_eq_zero]\n  <;> omega\n  <;> simp_all [Nat.mul_mod, Nat.add_mod]\n  <;> omega",
+        "custom_id": "odd_implies_not_two_dvd_34",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 41
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.1385970115661621,
+            "custom_id": "odd_implies_not_two_dvd_34"
+        }
+    },
+    {
+        "name": "odd_implies_not_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_not_two_dvd {x : \u2115} (hx : Odd x) : \u00ac (2 \u2223 x) := by\n  rw [Nat.dvd_iff_mod_eq_zero]\n  cases' hx with k hk\n  rw [hk]\n  have : k % 2 = 0 \u2228 k % 2 = 1 := by omega\n  rcases this with (h | h) <;> simp [h, Nat.add_mod, Nat.mul_mod, Nat.pow_mod]\n  <;> omega",
+        "custom_id": "odd_implies_not_two_dvd_35",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.13398098945617676,
+            "custom_id": "odd_implies_not_two_dvd_35"
+        }
+    },
+    {
+        "name": "odd_implies_not_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_not_two_dvd {x : \u2115} (hx : Odd x) : \u00ac (2 \u2223 x) := by\n  intro h\n  cases' hx with k hk\n  rw [hk] at h\n  norm_num at h\n  <;> omega",
+        "custom_id": "odd_implies_not_two_dvd_36",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.14713406562805176,
+            "custom_id": "odd_implies_not_two_dvd_36"
+        }
+    },
+    {
+        "name": "odd_implies_not_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_not_two_dvd {x : \u2115} (hx : Odd x) : \u00ac (2 \u2223 x) := by\n  intro h\n  cases' hx with k hk\n  rw [hk] at h\n  norm_num at h\n  <;> omega",
+        "custom_id": "odd_implies_not_two_dvd_37",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.1540818214416504,
+            "custom_id": "odd_implies_not_two_dvd_37"
+        }
+    },
+    {
+        "name": "odd_implies_not_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_not_two_dvd {x : \u2115} (hx : Odd x) : \u00ac (2 \u2223 x) := by\n  intro h\n  cases' hx with k hk\n  rw [hk] at h\n  norm_num at h\n  <;> omega",
+        "custom_id": "odd_implies_not_two_dvd_38",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.148817777633667,
+            "custom_id": "odd_implies_not_two_dvd_38"
+        }
+    },
+    {
+        "name": "odd_implies_not_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_not_two_dvd {x : \u2115} (hx : Odd x) : \u00ac (2 \u2223 x) := by\n  cases' hx with k hk\n  rw [hk]\n  intro h\n  rw [Nat.dvd_iff_mod_eq_zero] at h\n  omega\n  <;> omega",
+        "custom_id": "odd_implies_not_two_dvd_39",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07558512687683105,
+            "custom_id": "odd_implies_not_two_dvd_39"
+        }
+    },
+    {
+        "name": "odd_implies_not_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_not_two_dvd {x : \u2115} (hx : Odd x) : \u00ac (2 \u2223 x) := by\n  -- Assume for contradiction that 2 divides x.\n  intro h\n  -- Since x is odd, we can write x as 2k + 1 for some integer k.\n  cases' hx with k hk\n  -- Substitute the expression for x into the divisibility condition.\n  rw [hk] at h\n  -- Simplify the expression to show that 2 divides an odd number, which is a contradiction.\n  cases' h with m hm\n  omega",
+        "custom_id": "odd_implies_not_two_dvd_40",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07741379737854004,
+            "custom_id": "odd_implies_not_two_dvd_40"
+        }
+    },
+    {
+        "name": "odd_implies_not_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_not_two_dvd {x : \u2115} (hx : Odd x) : \u00ac (2 \u2223 x) := by\n  rcases hx with \u27e8k, rfl\u27e9\n  intro h\n  rw [Nat.dvd_iff_mod_eq_zero] at h\n  norm_num at h\n  omega",
+        "custom_id": "odd_implies_not_two_dvd_41",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.0956423282623291,
+            "custom_id": "odd_implies_not_two_dvd_41"
+        }
+    },
+    {
+        "name": "odd_implies_not_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_not_two_dvd {x : \u2115} (hx : Odd x) : \u00ac (2 \u2223 x) := by\n  cases' hx with k hk\n  rw [hk]\n  intro h\n  -- We have an expression for x as 2k + 1, and we need to show that 2 cannot divide x.\n  -- If x were even, it could be written as 2k, but we have x = 2k + 1, which is odd.\n  -- Therefore, x cannot be both even and odd, leading to a contradiction.\n  omega",
+        "custom_id": "odd_implies_not_two_dvd_42",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07661652565002441,
+            "custom_id": "odd_implies_not_two_dvd_42"
+        }
+    },
+    {
+        "name": "odd_implies_not_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_not_two_dvd {x : \u2115} (hx : Odd x) : \u00ac (2 \u2223 x) := by\n  intro h\n  cases' hx with k hk\n  rw [hk] at h\n  norm_num at h\n  <;> omega",
+        "custom_id": "odd_implies_not_two_dvd_43",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.10310864448547363,
+            "custom_id": "odd_implies_not_two_dvd_43"
+        }
+    },
+    {
+        "name": "odd_implies_not_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_not_two_dvd {x : \u2115} (hx : Odd x) : \u00ac (2 \u2223 x) := by\n  cases' hx with k hk\n  rw [hk]\n  intro h\n  cases' h with m hm\n  omega",
+        "custom_id": "odd_implies_not_two_dvd_44",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.06865048408508301,
+            "custom_id": "odd_implies_not_two_dvd_44"
+        }
+    },
+    {
+        "name": "odd_implies_not_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_not_two_dvd {x : \u2115} (hx : Odd x) : \u00ac (2 \u2223 x) := by\n  rcases hx with \u27e8k, rfl\u27e9\n  intro h\n  rw [Nat.dvd_iff_mod_eq_zero] at h\n  omega",
+        "custom_id": "odd_implies_not_two_dvd_45",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07034182548522949,
+            "custom_id": "odd_implies_not_two_dvd_45"
+        }
+    },
+    {
+        "name": "odd_implies_not_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_not_two_dvd {x : \u2115} (hx : Odd x) : \u00ac (2 \u2223 x) := by\n  rcases hx with \u27e8k, rfl\u27e9\n  simp [Nat.dvd_add_right, Nat.dvd_mul_right, Nat.dvd_mul_left, Nat.dvd_add_left, Nat.dvd_one]\n  <;> omega",
+        "custom_id": "odd_implies_not_two_dvd_46",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07234668731689453,
+            "custom_id": "odd_implies_not_two_dvd_46"
+        }
+    },
+    {
+        "name": "odd_implies_not_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_not_two_dvd {x : \u2115} (hx : Odd x) : \u00ac (2 \u2223 x) := by\n  intro h\n  cases' hx with k hk\n  rw [hk] at h\n  norm_num at h\n  <;> omega",
+        "custom_id": "odd_implies_not_two_dvd_47",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.10549163818359375,
+            "custom_id": "odd_implies_not_two_dvd_47"
+        }
+    }
+]

@@ -1,0 +1,8 @@
+>>>>SEARCH
+  -- also the successor denominator n (k+1) is nonzero so we can apply reduced_fraction_unique
+  have n_succ_nz : n (k + 1) ≠ 0 := by
+    simpa using (h_recurrence k)
+>>>>REPLACE
+  -- also the successor denominator n (k+1) is nonzero so we can apply reduced_fraction_unique
+  have n_succ_nz : n (k + 1) ≠ 0 := by
+    exact n_succ_nonzero m n h_recurrence k

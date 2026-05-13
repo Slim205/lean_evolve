@@ -1,0 +1,10 @@
+ERROR from position {'line': 1038, 'column': 47} to {'line': 1038, 'column': 48}:
+application type mismatch
+  pow_coprime_helper p
+argument
+  p
+has type
+  ℕ : Type
+but is expected to have type
+  ?m.80891 % 2 = 1 : Prop
+

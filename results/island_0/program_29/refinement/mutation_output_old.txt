@@ -1,0 +1,78 @@
+>>>>SEARCH
+lemma next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+  sorry
+>>>>REPLACE
+/-- Helper: cross-multiplication of the recurrence equality, expressed in integers. -/
+lemma helper_cross_mul
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  (m (k + 1) : ℤ) * (((2 : ℤ) * (n k : ℤ)) + 1) =
+    (n (k + 1) : ℤ) * (((2 : ℤ) * (m k : ℤ)) + 1) := by
+  sorry
+
+/-- Helper: lift the `h_coprime` hypothesis to the successor index. -/
+lemma helper_succ_coprime
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (k : ℕ) :
+  Nat.Coprime (m (k + 1)) (n (k + 1)) := by
+  -- uses h_coprime at index `k+1` and `0 < k+1`
+  exact h_coprime (k + 1) (Nat.zero_lt_succ k)
+
+/-- Helper (Euclidean-style): if `Coprime a b` and `a * x = b * y` (in `ℤ`) then
+`a ∣ y` and `b ∣ x` (as naturals). -/
+lemma helper_divisibility_transfer
+  {a b x y : ℕ}
+  (hcop : Nat.Coprime a b)
+  (heq : (a : ℤ) * (x : ℤ) = (b : ℤ) * (y : ℤ)) :
+  a ∣ y ∧ b ∣ x := by
+  sorry
+
+/-- Helper: uniqueness of a reduced representation. If `a/b = c/d` (rationals),
+and `a` and `b` are coprime, then `a = c / gcd(c,d)` and `b = d / gcd(c,d)`.
+Denominators are required to be nonzero as rationals. -/
+lemma helper_reduced_form_uniqueness
+  (a b c d : ℕ)
+  (hb : (b : ℚ) ≠ 0) (hd : (d : ℚ) ≠ 0)
+  (hcop : Nat.Coprime a b)
+  (heq : (a : ℚ) / (b : ℚ) = (c : ℚ) / (d : ℚ)) :
+  let g := Nat.gcd c d in a = c / g ∧ b = d / g := by
+  sorry
+
+lemma next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+  -- obtain nonvanishing facts for denominators from the recurrence helper already present
+  have hden : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0 ∧ ((2 : ℚ) * (m k : ℚ) + 1) ≠ 0 := by
+    exact denom_nonzero_from_recurrence m n h_recurrence
+
+  -- get that the successor denominator `(n (k+1) : ℚ)` is nonzero
+  have hsucc_nz : (n (k + 1) : ℚ) ≠ 0 := by
+    exact n_succ_nonzero m n h_recurrence k
+
+  -- successor coprimality (from the input hypothesis)
+  have hcop_succ : Nat.Coprime (m (k + 1)) (n (k + 1)) := by
+    exact helper_succ_coprime m n h_coprime k
+
+  -- apply the reduced-form uniqueness lemma to deduce the gcd-quotient equalities
+  have hres : let d := Nat.gcd (2 * m k + 1) (2 * n k + 1) in
+    (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+    exact helper_reduced_form_uniqueness (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1)
+      (by exact hsucc_nz) (by exact (hden k).1) hcop_succ (h_recurrence k)
+
+  exact hres

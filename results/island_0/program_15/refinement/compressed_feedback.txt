@@ -1,0 +1,8 @@
+lemma exists_pow_two_mul_odd_for_pos_nat (A : ℕ) (hpos : 0 < A) :
+  ∃ (u r : ℕ), A = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+Failure mode: HARD
+Recommendation: Decompose into a “maximal power of 2” factorization argument.
+1) Lemma (existence of maximal 2-adic exponent): For any `A > 0`, there exists `u` such that `2^u ∣ A` and `¬(2^(u+1) ∣ A)`.
+2) Lemma (define odd part by division): With such `u`, let `r := A / 2^u`; then `A = 2^u * r` and `0 < r`.
+3) Lemma (oddness of the remainder): If `¬(2^(u+1) ∣ A)` and `A = 2^u * r`, then `r` is odd, i.e. `r % 2 = 1`.
+4) Combine (2) and (3) to obtain the required `⟨u, r, …⟩`.

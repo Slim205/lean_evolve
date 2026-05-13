@@ -1,0 +1,1570 @@
+[
+    {
+        "name": "diff_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_ne_zero\n  (m n : \u2115 \u2192 \u2115)\n  (h_distinct : m 0 \u2260 n 0)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1)) :\n  \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n  intro k\n  have h\u2081 : (m k : \u211a) - (n k : \u211a) \u2260 0 := by\n    intro h\n    have h\u2082 := h_recurrence k\n    field_simp at h\u2082\n    norm_cast at h\u2082\n    simp_all [sub_eq_zero]\n    <;> aesop\n  exact_mod_cast h\u2081",
+        "custom_id": "diff_ne_zero_0",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 13
+                    },
+                    "data": "tactic 'aesop' failed, made no progress\nInitial goal:\n  m n : \u2115 \u2192 \u2115\n  k : \u2115\n  h_distinct : \u00acm 0 = n 0\n  h_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\n  h : m k = n k\n  h\u2082 : \u2191(m (k + 1)) * (2 * \u2191(n k) + 1) / \u2191(n (k + 1)) = 2 * \u2191(n k) + 1\n  \u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 41
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh_distinct : \u00acm 0 = n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nh : m k = n k\nh\u2082 : \u2191(m (k + 1)) * (2 * \u2191(n k) + 1) / \u2191(n (k + 1)) = 2 * \u2191(n k) + 1\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 8.633047580718994,
+            "custom_id": "diff_ne_zero_0"
+        }
+    },
+    {
+        "name": "diff_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_ne_zero\n  (m n : \u2115 \u2192 \u2115)\n  (h_distinct : m 0 \u2260 n 0)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1)) :\n  \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n  intro k\n  have h\u2081 : (m k : \u211a) - (n k : \u211a) \u2260 0 := by\n    intro h\n    have h\u2082 := h_recurrence k\n    have h\u2083 := h_recurrence 0\n    field_simp [sub_ne_zero.mpr h_distinct] at h\u2082 h\u2083\n    ring_nf at h\u2082 h\u2083\n    norm_cast at h\u2082 h\u2083\n    <;> simp_all [mul_comm]\n    <;> ring_nf at h\u2082 h\u2083 \u22a2\n    <;> omega\n  exact_mod_cast h\u2081",
+        "custom_id": "diff_ne_zero_1",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 16
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 42
+                    },
+                    "data": "failed to synthesize\n  AddGroup \u2115\nuse `set_option diagnostics true` to get diagnostic information"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 22,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a - b \u2265 1\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(n 0)\n b := \u2191(m 0)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 41
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh_distinct : \u00acm 0 = n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (\u2191(m k) * 2 + 1) / (\u2191(n k) * 2 + 1)\nh : \u2191(m k) - \u2191(n k) = 0\nh\u2082 : \u2191(n k) * \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 * 2 + \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = 1 + \u2191(m k) * 2\nh\u2083 : \u2191(n 0) * \u2191(m 1) * (\u2191(n 1))\u207b\u00b9 * 2 + \u2191(m 1) * (\u2191(n 1))\u207b\u00b9 = 1 + \u2191(m 0) * 2\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.6930739879608154,
+            "custom_id": "diff_ne_zero_1"
+        }
+    },
+    {
+        "name": "diff_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_ne_zero\n  (m n : \u2115 \u2192 \u2115)\n  (h_distinct : m 0 \u2260 n 0)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1)) :\n  \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n  intro k\n  have h\u2081 : (m k : \u211a) - (n k : \u211a) \u2260 0 := by\n    intro h\n    have h\u2082 := h_recurrence k\n    have h\u2083 := h_recurrence 0\n    have h\u2084 : (m 0 : \u211a) \u2260 (n 0 : \u211a) := by exact_mod_cast h_distinct\n    field_simp [sub_ne_zero.mpr h\u2084] at h\u2082 h\u2083\n    ring_nf at h\u2082 h\u2083 h\n    norm_cast at h\u2082 h\u2083 h\n    <;> simp_all [mul_comm]\n    <;> norm_cast at *\n    <;> nlinarith\n  exact_mod_cast h\u2081",
+        "custom_id": "diff_ne_zero_2",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 17
+                    },
+                    "data": "linarith failed to find a contradiction\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh_distinct : \u00acm 0 = n 0\nh : -\u2191(n k) + \u2191(m k) = 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = \u2191(m k * 2 + 1) / \u2191(n k * 2 + 1)\nh\u2082 : \u2191(n k * m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 * 2 + \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = \u2191(1 + m k * 2)\nh\u2083 : \u2191(n 0 * m 1) * (\u2191(n 1))\u207b\u00b9 * 2 + \u2191(m 1) * (\u2191(n 1))\u207b\u00b9 = \u2191(1 + m 0 * 2)\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 41
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 17
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh_distinct : \u00acm 0 = n 0\nh : -\u2191(n k) + \u2191(m k) = 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = \u2191(m k * 2 + 1) / \u2191(n k * 2 + 1)\nh\u2082 : \u2191(n k * m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 * 2 + \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = \u2191(1 + m k * 2)\nh\u2083 : \u2191(n 0 * m 1) * (\u2191(n 1))\u207b\u00b9 * 2 + \u2191(m 1) * (\u2191(n 1))\u207b\u00b9 = \u2191(1 + m 0 * 2)\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.276737928390503,
+            "custom_id": "diff_ne_zero_2"
+        }
+    },
+    {
+        "name": "diff_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_ne_zero\n  (m n : \u2115 \u2192 \u2115)\n  (h_distinct : m 0 \u2260 n 0)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1)) :\n  \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n  intro k\n  have h\u2081 : (m k : \u211a) - (n k : \u211a) \u2260 0 := by\n    intro h\n    have h\u2082 := h_recurrence k\n    field_simp [sub_eq_zero] at h\u2082 h\n    norm_cast at h\u2082 h\n    <;> simp_all [mul_comm]\n    <;> ring_nf at h\u2082 h\n    <;> norm_num at h\u2082 h\n    <;> omega\n  exact_mod_cast h\u2081",
+        "custom_id": "diff_ne_zero_3",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 21,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 0\n  c \u2265 0\n  a \u2265 0\n  b - c \u2265 1\nwhere\n a := \u2191(n k)\n b := \u2191(n 0)\n c := \u2191(m 0)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 41
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh_distinct : \u00acm 0 = n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (\u2191(m k) * 2 + 1) / (\u2191(n k) * 2 + 1)\nh : m k = n k\nh\u2082 : \u2191(m (1 + k)) * \u2191(n k) * (\u2191(n (1 + k)))\u207b\u00b9 * 2 + \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = 1 + \u2191(n k) * 2\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.003739833831787,
+            "custom_id": "diff_ne_zero_3"
+        }
+    },
+    {
+        "name": "diff_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_ne_zero\n  (m n : \u2115 \u2192 \u2115)\n  (h_distinct : m 0 \u2260 n 0)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1)) :\n  \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n  intro k\n  have h1 : (m k : \u211a) - (n k : \u211a) \u2260 0 := by\n    intro h\n    have h2 := h_recurrence k\n    field_simp [sub_eq_zero] at h2 h\n    have h3 : (m k : \u211a) = (n k : \u211a) := by linarith\n    norm_cast at h3\n    have h4 : m k = n k := by exact_mod_cast h3\n    simp_all\n  exact_mod_cast h1",
+        "custom_id": "diff_ne_zero_4",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 42
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 50
+                    },
+                    "data": "linarith failed to find a contradiction\ncase h1.h\nm n : \u2115 \u2192 \u2115\nh_distinct : m 0 \u2260 n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nk : \u2115\nh2 : \u2191(m (k + 1)) * (2 * \u2191(n k) + 1) / \u2191(n (k + 1)) = 2 * \u2191(m k) + 1\nh : m k = n k\na\u271d : \u2191(m k) < \u2191(n k)\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 41
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 12
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh_distinct : \u00acm 0 = n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nh2 : \u2191(m (k + 1)) * (2 * \u2191(n k) + 1) / \u2191(n (k + 1)) = 2 * \u2191(n k) + 1\nh4 : m k = n k\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.7082326412200928,
+            "custom_id": "diff_ne_zero_4"
+        }
+    },
+    {
+        "name": "diff_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_ne_zero\n  (m n : \u2115 \u2192 \u2115)\n  (h_distinct : m 0 \u2260 n 0)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1)) :\n  \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n  intro k\n  have h\u2081 : (m k : \u211a) / (n k : \u211a) = (m k : \u211a) / (n k : \u211a) := rfl\n  have h\u2082 : (m k : \u211a) / (n k : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1) := by\n    rw [\u2190 h_recurrence]\n    <;> simp [h\u2081]\n  have h\u2083 : (n k : \u211a) \u2260 0 := by\n    intro h\n    rw [h] at h\u2082\n    norm_num at h\u2082\n    <;> simp_all [div_eq_mul_inv]\n    <;> ring_nf at h\u2082 \u22a2\n    <;> field_simp at h\u2082 \u22a2\n    <;> norm_cast at h\u2082 \u22a2\n    <;> simp_all [mul_comm]\n    <;> norm_num at h\u2082 \u22a2\n    <;> linarith\n  have h\u2084 : (m k : \u211a) / (n k : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1) := by\n    linarith\n  have h\u2085 : (m k : \u211a) * (2 * (n k : \u211a) + 1) = (n k : \u211a) * (2 * (m k : \u211a) + 1) := by\n    field_simp at h\u2084 \u22a2\n    <;> ring_nf at h\u2084 \u22a2 <;> linarith\n  have h\u2086 : (m k : \u2124) * (2 * (n k : \u2124) + 1) = (n k : \u2124) * (2 * (m k : \u2124) + 1) := by\n    norm_cast at h\u2085 \u22a2\n  have h\u2087 : (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n    intro h\n    have h\u2088 : (m k : \u2124) = (n k : \u2124) := by linarith\n    rw [h\u2088] at h\u2086\n    ring_nf at h\u2086\n    <;> norm_cast at h\u2086\n    <;> simp_all\n  exact h\u2087",
+        "custom_id": "diff_ne_zero_5",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 17
+                    },
+                    "data": "simp made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 81
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 17
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nh_distinct : m 0 \u2260 n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nk : \u2115\nh\u2081 : \u2191(m k) / \u2191(n k) = \u2191(m k) / \u2191(n k)\n\u22a2 \u2191(m k) / \u2191(n k) = \u2191(m (k + 1)) / \u2191(n (k + 1))"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 26
+                    },
+                    "data": "simp made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 41,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 41,
+                        "column": 16
+                    },
+                    "data": "tactic 'simp' failed, nested error:\nmaximum recursion depth has been reached\nuse `set_option maxRecDepth <num>` to increase limit\nuse `set_option diagnostics true` to get diagnostic information"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 35,
+                        "column": 41
+                    },
+                    "endPos": {
+                        "line": 41,
+                        "column": 16
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nh_distinct : m 0 \u2260 n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nk : \u2115\nh\u2081 : \u2191(m k) / \u2191(n k) = \u2191(m k) / \u2191(n k)\nh\u2082 : \u2191(m k) / \u2191(n k) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nh\u2083 : \u2191(n k) \u2260 0\nh\u2084 : \u2191(m k) / \u2191(n k) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nh\u2085 : \u2191(m k) * (2 * \u2191(n k) + 1) = \u2191(n k) * (2 * \u2191(m k) + 1)\nh : \u2191(m k) - \u2191(n k) = 0\nh\u2088 : \u2191(m k) = \u2191(n k)\nh\u2086 : True\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.0857105255126953,
+            "custom_id": "diff_ne_zero_5"
+        }
+    },
+    {
+        "name": "diff_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_ne_zero\n  (m n : \u2115 \u2192 \u2115)\n  (h_distinct : m 0 \u2260 n 0)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1)) :\n  \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n  have step1 : \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n    intro k\n    have h1 : (m k : \u211a) / (n k : \u211a) = (m k : \u211a) / (n k : \u211a) := rfl\n    have h2 : (m 0 : \u211a) \u2260 (n 0 : \u211a) := by exact_mod_cast h_distinct\n    have h3 : \u2200 k : \u2115, (m k : \u211a) / (n k : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1) := by\n      intro k\n      have h4 := h_recurrence k\n      field_simp [show (n k : \u211a) \u2260 0 by\n        intro h\n        have h5 : (n k : \u211a) = 0 := by exact_mod_cast h\n        rw [h5] at h4\n        norm_num at h4\n        <;> simp_all [div_eq_mul_inv] <;> ring_nf at * <;> nlinarith\n      ] at h4 \u22a2\n      <;> ring_nf at * <;> nlinarith\n    have h4 : \u2200 k : \u2115, (m k : \u211a) / (n k : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1) := by\n      intro k\n      exact h3 k\n    have h5 : \u2200 k : \u2115, (n k : \u211a) \u2260 0 := by\n      intro k\n      have h6 := h4 k\n      have h7 : (m k : \u211a) / (n k : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1) := h6\n      by_contra h8\n      rw [h8] at h7\n      field_simp [h8] at h7\n      <;> ring_nf at * <;> norm_num at * <;>\n      (try {\n        nlinarith\n      }) <;>\n      (try {\n        simp_all [div_eq_mul_inv] <;>\n        ring_nf at * <;>\n        nlinarith\n      })\n    have h6 : \u2200 k : \u2115, (n k : \u211a) \u2260 0 := by exact h5\n    have h7 : \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n      intro k\n      have h8 := h4 k\n      have h9 : (m k : \u211a) / (n k : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1) := h8\n      have h10 : (n k : \u211a) \u2260 0 := h6 k\n      have h11 : (m k : \u211a) / (n k : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1) := h9\n      field_simp at h11\n      <;> norm_num at h11\n      <;>\n      (try {\n        nlinarith [sq_pos_of_ne_zero (sub_ne_zero.mpr h_distinct), sq_nonneg ((m k : \u211a) - (n k : \u211a)),\n          sq_nonneg ((m k : \u211a) + (n k : \u211a)), sq_nonneg ((2 * (m k : \u211a) + 1) - (2 * (n k : \u211a) + 1))]\n      }) <;>\n      (try {\n        ring_nf at *\n        <;>\n        field_simp [h10] at *\n        <;>\n        norm_cast at *\n        <;>\n        intro h12 <;>\n        simp_all [mul_comm] <;>\n        ring_nf at * <;>\n        nlinarith [sq_pos_of_ne_zero (sub_ne_zero.mpr h_distinct), sq_nonneg ((m k : \u2124) - (n k : \u2124)),\n          sq_nonneg ((m k : \u2124) + (n k : \u2124)), sq_nonneg ((2 * (m k : \u2124) + 1) - (2 * (n k : \u2124) + 1))]\n      })\n    exact_mod_cast h7 k\n  \n  exact step1",
+        "custom_id": "diff_ne_zero_6",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 24,
+                        "column": 59
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 68
+                    },
+                    "data": "linarith failed to find a contradiction\nm n : \u2115 \u2192 \u2115\nk\u271d k : \u2115\nh_distinct : \u00acm 0 = n 0\nh5 : n k = 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = \u2191(m k) * (1 + \u2191(n k) * 2)\u207b\u00b9 * 2 + (1 + \u2191(n k) * 2)\u207b\u00b9\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 18
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 68
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk\u271d k : \u2115\nh_distinct : \u00acm 0 = n 0\nh5 : n k = 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = \u2191(m k) * (1 + \u2191(n k) * 2)\u207b\u00b9 * 2 + (1 + \u2191(n k) * 2)\u207b\u00b9\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 26,
+                        "column": 27
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 36
+                    },
+                    "data": "linarith failed to find a contradiction\ncase h1.h\nm n : \u2115 \u2192 \u2115\nh_distinct : m 0 \u2260 n 0\nk\u271d : \u2115\nh2 : \u2191(m 0) \u2260 \u2191(n 0)\nk : \u2115\nh4 : \u2191(n k) * \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 * 2 + \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = 1 + \u2191(m k) * 2\nh1 : True\nh_recurrence : \u2200 (k : \u2115), \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = \u2191(m k) * (1 + \u2191(n k) * 2)\u207b\u00b9 * 2 + (1 + \u2191(n k) * 2)\u207b\u00b9\na\u271d : \u2191(m k) + \u2191(m k) * \u2191(n k) * 2 < \u2191(m k) * \u2191(n k) * 2 + \u2191(n k)\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 92
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 36
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nh_distinct : m 0 \u2260 n 0\nk\u271d : \u2115\nh2 : \u2191(m 0) \u2260 \u2191(n 0)\nk : \u2115\nh4 : \u2191(n k) * \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 * 2 + \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = 1 + \u2191(m k) * 2\nh1 : True\nh_recurrence : \u2200 (k : \u2115), \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = \u2191(m k) * (1 + \u2191(n k) * 2)\u207b\u00b9 * 2 + (1 + \u2191(n k) * 2)\u207b\u00b9\n\u22a2 \u2191(m k) + \u2191(m k) * \u2191(n k) * 2 = \u2191(m k) * \u2191(n k) * 2 + \u2191(n k)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 47,
+                        "column": 52
+                    },
+                    "endPos": {
+                        "line": 72,
+                        "column": 8
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nh_distinct : m 0 \u2260 n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nk\u271d : \u2115\nh1 : \u2191(m k\u271d) / \u2191(n k\u271d) = \u2191(m k\u271d) / \u2191(n k\u271d)\nh2 : \u2191(m 0) \u2260 \u2191(n 0)\nh3 h4 : \u2200 (k : \u2115), \u2191(m k) / \u2191(n k) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nh5 h6 : \u2200 (k : \u2115), \u2191(n k) \u2260 0\nk : \u2115\nh8 h9 : \u2191(m k) / \u2191(n k) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nh10 : \u2191(n k) \u2260 0\nh11 : \u2191(m k) * (2 * \u2191(n k) + 1) = (2 * \u2191(m k) + 1) * \u2191(n k)\n\u22a2 \u2191(m k) - \u2191(n k) \u2260 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 7.580627918243408,
+            "custom_id": "diff_ne_zero_6"
+        }
+    },
+    {
+        "name": "diff_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_ne_zero\n  (m n : \u2115 \u2192 \u2115)\n  (h_distinct : m 0 \u2260 n 0)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1)) :\n  \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n  intro k\n  have h\u2081 : (m k : \u211a) - (n k : \u211a) \u2260 0 := by\n    intro h\n    have h\u2082 := h_recurrence k\n    have h\u2083 := h_recurrence 0\n    have h\u2084 : (m 0 : \u211a) \u2260 (n 0 : \u211a) := by\n      exact_mod_cast h_distinct\n    field_simp [h\u2084] at h\u2082 h\u2083\n    ring_nf at h\u2082 h\u2083 \u22a2\n    norm_cast at h\u2082 h\u2083 \u22a2\n    <;> simp_all [mul_comm]\n    <;> ring_nf at *\n    <;> norm_cast at *\n    <;> omega\n  exact_mod_cast h\u2081",
+        "custom_id": "diff_ne_zero_7",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 25,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 0\n  c \u2265 0\n  a \u2265 0\n  b - c \u2265 1\nwhere\n a := \u2191(m k)\n b := \u2191(n 0)\n c := \u2191(m 0)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 41
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh_distinct : \u00acm 0 = n 0\nh\u2082 : \u2191(n k * m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 * 2 + \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = \u2191(1 + m k * 2)\nh\u2083 : \u2191(n 0 * m 1) * (\u2191(n 1))\u207b\u00b9 * 2 + \u2191(m 1) * (\u2191(n 1))\u207b\u00b9 = \u2191(1 + m 0 * 2)\nh : -\u2191(n k) + \u2191(m k) = 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = \u2191(m k) * (\u2191(1 + n k * 2))\u207b\u00b9 * 2 + (\u2191(1 + n k * 2))\u207b\u00b9\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.168252468109131,
+            "custom_id": "diff_ne_zero_7"
+        }
+    },
+    {
+        "name": "diff_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_ne_zero\n  (m n : \u2115 \u2192 \u2115)\n  (h_distinct : m 0 \u2260 n 0)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1)) :\n  \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n  have step\u2081 : \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n    intro k\n    have h\u2081 : (m k : \u211a) / (n k : \u211a) = (m k : \u211a) / (n k : \u211a) := rfl\n    have h\u2082 : (m k : \u211a) / (n k : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1) := by\n      have h\u2083 := h_recurrence k\n      field_simp [h_distinct] at h\u2083 \u22a2\n      <;> ring_nf at *\n      <;> nlinarith\n    have h\u2083 : (n k : \u211a) \u2260 0 := by\n      intro h\n      rw [h] at h\u2082\n      norm_num at h\u2082\n      <;> field_simp at * <;>\n        norm_cast at * <;>\n        simp_all [div_eq_mul_inv] <;>\n        norm_num at * <;>\n        ring_nf at * <;>\n        nlinarith\n    have h\u2084 : (m k : \u211a) / (n k : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1) := h\u2082\n    have h\u2085 : (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n      intro h\n      have h\u2086 : (m k : \u2124) = (n k : \u2124) := by omega\n      have h\u2087 : (m k : \u211a) = (n k : \u211a) := by exact_mod_cast h\u2086\n      field_simp [h\u2086, h\u2083] at h\u2084 h\u2082 h\u2087\n      <;> norm_num at *\n      <;> nlinarith\n    exact_mod_cast h\u2085\n  \n  have step\u2082 : \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n    exact step\u2081\n  exact step\u2082",
+        "custom_id": "diff_ne_zero_8",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 19
+                    },
+                    "data": "linarith failed to find a contradiction\ncase h1.h\nm n : \u2115 \u2192 \u2115\nh_distinct : m 0 \u2260 n 0\nk : \u2115\nh\u2083 : \u2191(n k) * \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 * 2 + \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = 1 + \u2191(m k) * 2\nh\u2081 : True\nh_recurrence : \u2200 (k : \u2115), \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = \u2191(m k) * (1 + \u2191(n k) * 2)\u207b\u00b9 * 2 + (1 + \u2191(n k) * 2)\u207b\u00b9\na\u271d : \u2191(m k) * \u2191(n k) * (\u2191(n k))\u207b\u00b9 * 2 + \u2191(m k) * (\u2191(n k))\u207b\u00b9 < 1 + \u2191(m k) * 2\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 83
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 19
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nh_distinct : m 0 \u2260 n 0\nk : \u2115\nh\u2083 : \u2191(n k) * \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 * 2 + \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = 1 + \u2191(m k) * 2\nh\u2081 : True\nh_recurrence : \u2200 (k : \u2115), \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = \u2191(m k) * (1 + \u2191(n k) * 2)\u207b\u00b9 * 2 + (1 + \u2191(n k) * 2)\u207b\u00b9\n\u22a2 \u2191(m k) * \u2191(n k) * (\u2191(n k))\u207b\u00b9 * 2 + \u2191(m k) * (\u2191(n k))\u207b\u00b9 = 1 + \u2191(m k) * 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 37,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 37,
+                        "column": 19
+                    },
+                    "data": "linarith failed to find a contradiction\nm n : \u2115 \u2192 \u2115\nh_distinct : \u00acm 0 = n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nk : \u2115\nh : \u2191(m k) - \u2191(n k) = 0\nh\u2084 h\u2082 : \u2191(m k) * (2 * \u2191(n k) + 1) = (2 * \u2191(m k) + 1) * \u2191(n k)\nh\u2087 : m k = n k\nh\u2081 : True\nh\u2083 : \u00acn k = 0\nh\u2086 : m k = n k\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 31,
+                        "column": 43
+                    },
+                    "endPos": {
+                        "line": 37,
+                        "column": 19
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nh_distinct : \u00acm 0 = n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nk : \u2115\nh : \u2191(m k) - \u2191(n k) = 0\nh\u2084 h\u2082 : \u2191(m k) * (2 * \u2191(n k) + 1) = (2 * \u2191(m k) + 1) * \u2191(n k)\nh\u2087 : m k = n k\nh\u2081 : True\nh\u2083 : \u00acn k = 0\nh\u2086 : m k = n k\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.6405396461486816,
+            "custom_id": "diff_ne_zero_8"
+        }
+    },
+    {
+        "name": "diff_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_ne_zero\n  (m n : \u2115 \u2192 \u2115)\n  (h_distinct : m 0 \u2260 n 0)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1)) :\n  \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n  intro k\n  have h\u2081 : (m k : \u211a) - (n k : \u211a) \u2260 0 := by\n    intro h\n    have h\u2082 := h_recurrence k\n    have h\u2083 := h_recurrence 0\n    have h\u2084 : (m 0 : \u211a) \u2260 (n 0 : \u211a) := by exact_mod_cast h_distinct\n    field_simp [sub_eq_zero] at h\u2082 h\u2083\n    ring_nf at h\u2082 h\u2083 \u22a2\n    norm_cast at h\u2082 h\u2083 \u22a2\n    <;> simp_all [sub_eq_zero]\n    <;> omega\n  exact_mod_cast h\u2081",
+        "custom_id": "diff_ne_zero_9",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 22,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 0\n  c \u2265 0\n  a \u2265 0\n  b - c \u2265 1\nwhere\n a := \u2191(n k)\n b := \u2191(n 0)\n c := \u2191(m 0)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 41
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh_distinct : \u00acm 0 = n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nh : m k = n k\nh\u2082 : \u2191(m (1 + k)) * \u2191(n k) * (\u2191(n (1 + k)))\u207b\u00b9 * 2 + \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = 1 + \u2191(n k) * 2\nh\u2083 : \u2191(m 1) * \u2191(n 0) * (\u2191(n 1))\u207b\u00b9 * 2 + \u2191(m 1) * (\u2191(n 1))\u207b\u00b9 = 1 + \u2191(m 0) * 2\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.4221229553222656,
+            "custom_id": "diff_ne_zero_9"
+        }
+    },
+    {
+        "name": "diff_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_ne_zero\n  (m n : \u2115 \u2192 \u2115)\n  (h_distinct : m 0 \u2260 n 0)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1)) :\n  \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n  intro k\n  have h\u2081 : (m k : \u211a) - (n k : \u211a) \u2260 0 := by\n    intro h\n    have h\u2082 := h_recurrence k\n    have h\u2083 := h_recurrence 0\n    field_simp at h\u2082 h\u2083\n    norm_cast at h\u2082 h\u2083\n    <;> simp_all [sub_eq_zero]\n    <;> nlinarith\n  exact_mod_cast h\u2081",
+        "custom_id": "diff_ne_zero_10",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 17
+                    },
+                    "data": "linarith failed to find a contradiction\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh_distinct : \u00acm 0 = n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nh : m k = n k\nh\u2082 : \u2191(m (k + 1)) * (2 * \u2191(n k) + 1) / \u2191(n (k + 1)) = 2 * \u2191(n k) + 1\nh\u2083 : \u2191(m 1) * (2 * \u2191(n 0) + 1) / \u2191(n 1) = 2 * \u2191(m 0) + 1\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 41
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 17
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh_distinct : \u00acm 0 = n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nh : m k = n k\nh\u2082 : \u2191(m (k + 1)) * (2 * \u2191(n k) + 1) / \u2191(n (k + 1)) = 2 * \u2191(n k) + 1\nh\u2083 : \u2191(m 1) * (2 * \u2191(n 0) + 1) / \u2191(n 1) = 2 * \u2191(m 0) + 1\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.2781474590301514,
+            "custom_id": "diff_ne_zero_10"
+        }
+    },
+    {
+        "name": "diff_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_ne_zero\n  (m n : \u2115 \u2192 \u2115)\n  (h_distinct : m 0 \u2260 n 0)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1)) :\n  \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n  intro k\n  have h1 : (m k : \u211a) - (n k : \u211a) \u2260 0 := by\n    intro h\n    have h2 : (m k : \u211a) = (n k : \u211a) := by linarith\n    have h3 : (m k : \u211a) = (n k : \u211a) := by simpa using h2\n    have h4 : (m k : \u2124) = (n k : \u2124) := by\n      norm_cast at h3 \u22a2\n    have h5 : m k = n k := by simpa using h4\n    have h6 : m 0 \u2260 n 0 := h_distinct\n    have h7 : \u2200 k : \u2115, m k = n k \u2192 False := by\n      intro k hk\n      induction k with\n      | zero => simp_all\n      | succ k ih =>\n        have h8 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1) := h_recurrence k\n        have h9 : (n (k + 1) : \u211a) \u2260 0 := by\n          intro hn\n          simp_all\n        field_simp [ih] at h8\n        ring_nf at h8\n        norm_cast at h8\n        <;> simp_all [mul_comm]\n        <;> ring_nf at *\n        <;> omega\n    exact h7 k h5\n  exact_mod_cast h1",
+        "custom_id": "diff_ne_zero_11",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 27,
+                        "column": 41
+                    },
+                    "endPos": {
+                        "line": 29,
+                        "column": 18
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nk\u271d : \u2115\nh5 : m k\u271d = n k\u271d\nk : \u2115\nh6 : \u00acm 0 = n 0\nih : \u00acm k = n k\nhk : m (k + 1) = n (k + 1)\nh8 : 0 = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nhn : \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 35,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 35,
+                        "column": 17
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  d \u2265 0\n  b \u2265 1\n  c - d \u2265 1\n  e - f \u2265 1\n  c \u2265 0\n  a \u2265 0\n  f \u2265 0\n  e \u2265 0\nwhere\n a := \u2191(n k\u271d)\n b := \u2191(n (1 + k))\n c := \u2191(n k)\n d := \u2191(m k)\n e := \u2191(n 0)\n f := \u2191(m 0)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 25,
+                        "column": 18
+                    },
+                    "endPos": {
+                        "line": 35,
+                        "column": 17
+                    },
+                    "data": "unsolved goals\ncase succ\nm n : \u2115 \u2192 \u2115\nk\u271d k : \u2115\nh5 : m k\u271d = n k\u271d\nh6 : \u00acm 0 = n 0\nih : \u00acm k = n k\nh8 : m (1 + k) + m (1 + k) * n k * 2 = m k * n (1 + k) * 2 + n (1 + k)\nh9 : \u00acn (1 + k) = 0\nhk : m (1 + k) = n (1 + k)\nh_recurrence : \u2200 (k : \u2115), \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = \u2191(m k) * (1 + \u2191(n k) * 2)\u207b\u00b9 * 2 + (1 + \u2191(n k) * 2)\u207b\u00b9\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.4452009201049805,
+            "custom_id": "diff_ne_zero_11"
+        }
+    },
+    {
+        "name": "diff_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_ne_zero\n  (m n : \u2115 \u2192 \u2115)\n  (h_distinct : m 0 \u2260 n 0)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1)) :\n  \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n  intro k\n  have h\u2081 : (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n    intro h\n    have h\u2082 : (m k : \u211a) = (n k : \u211a) := by\n      norm_cast at h \u22a2\n      <;> simp_all [sub_eq_zero]\n    have h\u2083 : (m 0 : \u211a) \u2260 (n 0 : \u211a) := by\n      exact_mod_cast h_distinct\n    have h\u2084 : \u2200 k : \u2115, (m k : \u211a) = (n k : \u211a) := by\n      intro k\n      induction k with\n      | zero => simp_all\n      | succ k ih =>\n        have h\u2085 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1) := h_recurrence k\n        have h\u2086 : (m k : \u211a) = (n k : \u211a) := ih\n        field_simp [h\u2086] at h\u2085 \u22a2\n        <;> ring_nf at * <;> nlinarith\n    have h\u2085 := h\u2084 k\n    have h\u2086 := h\u2084 0\n    simp_all [sub_eq_zero]\n    <;> aesop\n  exact h\u2081",
+        "custom_id": "diff_ne_zero_12",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 39
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 32
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh_distinct : \u00acm 0 = n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nh : Int.subNatNat (m k) (n k) = 0\n\u22a2 m k = n k"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 13
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 24
+                    },
+                    "data": "unsolved goals\ncase zero\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh_distinct : \u00acm 0 = n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nh\u2082 : m k = n k\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 28,
+                        "column": 29
+                    },
+                    "endPos": {
+                        "line": 28,
+                        "column": 38
+                    },
+                    "data": "linarith failed to find a contradiction\ncase succ.h1.h\nm n : \u2115 \u2192 \u2115\nh_distinct : m 0 \u2260 n 0\nk\u271d : \u2115\nh : \u2191(m k\u271d) - \u2191(n k\u271d) = 0\nh\u2082 : \u2191(m k\u271d) = \u2191(n k\u271d)\nh\u2083 : \u2191(m 0) \u2260 \u2191(n 0)\nk : \u2115\nih h\u2086 : \u2191(m k) = \u2191(n k)\nh\u2085 : \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = 1\nh_recurrence : \u2200 (k : \u2115), \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = \u2191(m k) * (1 + \u2191(n k) * 2)\u207b\u00b9 * 2 + (1 + \u2191(n k) * 2)\u207b\u00b9\na\u271d : m (1 + k) < n (1 + k)\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 24,
+                        "column": 18
+                    },
+                    "endPos": {
+                        "line": 28,
+                        "column": 38
+                    },
+                    "data": "unsolved goals\ncase succ\nm n : \u2115 \u2192 \u2115\nh_distinct : m 0 \u2260 n 0\nk\u271d : \u2115\nh : \u2191(m k\u271d) - \u2191(n k\u271d) = 0\nh\u2082 : \u2191(m k\u271d) = \u2191(n k\u271d)\nh\u2083 : \u2191(m 0) \u2260 \u2191(n 0)\nk : \u2115\nih h\u2086 : \u2191(m k) = \u2191(n k)\nh\u2085 : \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = 1\nh_recurrence : \u2200 (k : \u2115), \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = \u2191(m k) * (1 + \u2191(n k) * 2)\u207b\u00b9 * 2 + (1 + \u2191(n k) * 2)\u207b\u00b9\n\u22a2 m (1 + k) = n (1 + k)"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.7940034866333008,
+            "custom_id": "diff_ne_zero_12"
+        }
+    },
+    {
+        "name": "diff_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_ne_zero\n  (m n : \u2115 \u2192 \u2115)\n  (h_distinct : m 0 \u2260 n 0)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1)) :\n  \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n  intro k\n  have h\u2081 : (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n    intro h\n    have h\u2082 : (m k : \u211a) = (n k : \u211a) := by\n      norm_cast at h \u22a2\n      <;> simp_all [sub_eq_zero]\n    have h\u2083 : (m k : \u211a) = (n k : \u211a) := by assumption\n    have h\u2084 : (m 0 : \u211a) \u2260 (n 0 : \u211a) := by\n      norm_cast\n      <;> simp_all\n    have h\u2085 : \u2200 k : \u2115, (m k : \u211a) = (n k : \u211a) := by\n      intro k\n      induction k with\n      | zero => simp_all\n      | succ k ih =>\n        have h\u2086 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1) := by apply h_recurrence\n        field_simp [ih, h\u2084] at h\u2086 \u22a2\n        <;> ring_nf at *\n        <;> nlinarith\n    have h\u2086 : (m 0 : \u211a) = (n 0 : \u211a) := by apply h\u2085 0\n    simp_all\n  exact_mod_cast h\u2081",
+        "custom_id": "diff_ne_zero_13",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 39
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 32
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh_distinct : \u00acm 0 = n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nh : Int.subNatNat (m k) (n k) = 0\n\u22a2 m k = n k"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 25,
+                        "column": 13
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 24
+                    },
+                    "data": "unsolved goals\ncase zero\nm n : \u2115 \u2192 \u2115\nk : \u2115\nh_distinct : \u00acm 0 = n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nh\u2083 : m k = n k\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 30,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 30,
+                        "column": 21
+                    },
+                    "data": "linarith failed to find a contradiction\ncase succ.h1.h\nm n : \u2115 \u2192 \u2115\nh_distinct : m 0 \u2260 n 0\nk\u271d : \u2115\nh : \u2191(m k\u271d) - \u2191(n k\u271d) = 0\nh\u2082 h\u2083 : \u2191(m k\u271d) = \u2191(n k\u271d)\nh\u2084 : \u2191(m 0) \u2260 \u2191(n 0)\nk : \u2115\nih : \u2191(m k) = \u2191(n k)\nh\u2086 : \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = 1\nh_recurrence : \u2200 (k : \u2115), \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = \u2191(m k) * (1 + \u2191(n k) * 2)\u207b\u00b9 * 2 + (1 + \u2191(n k) * 2)\u207b\u00b9\na\u271d : m (1 + k) < n (1 + k)\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 26,
+                        "column": 18
+                    },
+                    "endPos": {
+                        "line": 30,
+                        "column": 21
+                    },
+                    "data": "unsolved goals\ncase succ\nm n : \u2115 \u2192 \u2115\nh_distinct : m 0 \u2260 n 0\nk\u271d : \u2115\nh : \u2191(m k\u271d) - \u2191(n k\u271d) = 0\nh\u2082 h\u2083 : \u2191(m k\u271d) = \u2191(n k\u271d)\nh\u2084 : \u2191(m 0) \u2260 \u2191(n 0)\nk : \u2115\nih : \u2191(m k) = \u2191(n k)\nh\u2086 : \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = 1\nh_recurrence : \u2200 (k : \u2115), \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = \u2191(m k) * (1 + \u2191(n k) * 2)\u207b\u00b9 * 2 + (1 + \u2191(n k) * 2)\u207b\u00b9\n\u22a2 m (1 + k) = n (1 + k)"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.8243682384490967,
+            "custom_id": "diff_ne_zero_13"
+        }
+    },
+    {
+        "name": "diff_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_ne_zero\n  (m n : \u2115 \u2192 \u2115)\n  (h_distinct : m 0 \u2260 n 0)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1)) :\n  \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n  intro k\n  have h1 : (m k : \u211a) - (n k : \u211a) \u2260 0 := by\n    intro h\n    have h2 := h_recurrence k\n    field_simp at h2\n    ring_nf at h2\n    norm_cast at h2\n    have h3 : m k = n k := by\n      apply le_antisymm\n      \u00b7 nlinarith\n      \u00b7 nlinarith\n    rw [h3] at h\n    norm_num at h\n  exact_mod_cast h1",
+        "custom_id": "diff_ne_zero_14",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 21,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 17
+                    },
+                    "data": "linarith failed to find a contradiction\ncase a.a\nm n : \u2115 \u2192 \u2115\nh_distinct : m 0 \u2260 n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nk : \u2115\nh : \u2191(m k) - \u2191(n k) = 0\nh2 : \u2191(m (1 + k) * n k) * (\u2191(n (1 + k)))\u207b\u00b9 * 2 + \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = \u2191(1 + m k * 2)\na\u271d : m k > n k\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 22,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 17
+                    },
+                    "data": "linarith failed to find a contradiction\ncase a.a\nm n : \u2115 \u2192 \u2115\nh_distinct : m 0 \u2260 n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nk : \u2115\nh : \u2191(m k) - \u2191(n k) = 0\nh2 : \u2191(m (1 + k) * n k) * (\u2191(n (1 + k)))\u207b\u00b9 * 2 + \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = \u2191(1 + m k * 2)\na\u271d : n k > m k\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 41
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 17
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nh_distinct : m 0 \u2260 n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nk : \u2115\nh2 : \u2191(m (1 + k) * n k) * (\u2191(n (1 + k)))\u207b\u00b9 * 2 + \u2191(m (1 + k)) * (\u2191(n (1 + k)))\u207b\u00b9 = \u2191(1 + m k * 2)\nh3 : m k = n k\nh : True\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.0736050605773926,
+            "custom_id": "diff_ne_zero_14"
+        }
+    },
+    {
+        "name": "diff_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_ne_zero\n  (m n : \u2115 \u2192 \u2115)\n  (h_distinct : m 0 \u2260 n 0)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1)) :\n  \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n  have key : \u2200 k : \u2115, (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n    intro k\n    have h\u2081 : (m k : \u211a) / (n k : \u211a) = (m k : \u211a) / (n k : \u211a) := by rfl\n    have h\u2082 : (m 0 : \u211a) / (n 0 : \u211a) \u2260 (m 0 : \u211a) / (n 0 : \u211a) := by\n      norm_cast at h_distinct \u22a2\n      <;> simp_all [div_eq_div_iff] <;> aesop\n    have h\u2083 : \u2200 k : \u2115, (m k : \u211a) / (n k : \u211a) = (m 0 : \u211a) / (n 0 : \u211a) := by\n      intro k\n      induction k with\n      | zero => norm_num\n      | succ k ih =>\n        have h\u2084 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = (2 * (m k : \u211a) + 1) / (2 * (n k : \u211a) + 1) := h_recurrence k\n        have h\u2085 : (n k : \u211a) \u2260 0 := by\n          intro h\n          rw [h] at ih\n          simp_all\n          <;> norm_num at * <;> aesop\n        have h\u2086 : (n (k + 1) : \u211a) \u2260 0 := by\n          intro h\n          rw [h] at h\u2084\n          simp_all\n          <;> norm_num at * <;> aesop\n        field_simp at *\n        <;> ring_nf at * <;> nlinarith\n    have h\u2084 : (m k : \u211a) / (n k : \u211a) = (m 0 : \u211a) / (n 0 : \u211a) := h\u2083 k\n    have h\u2085 : (n k : \u211a) \u2260 0 := by\n      intro h\n      have h\u2086 : (n k : \u211a) = 0 := by exact_mod_cast h\n      rw [h\u2086] at h\u2084\n      norm_num at * <;> simp_all [div_eq_mul_inv] <;> ring_nf at * <;> field_simp at * <;> aesop\n    have h\u2086 : (n 0 : \u211a) \u2260 0 := by\n      intro h\n      have h\u2087 := h\u2083 0\n      simp_all [div_eq_mul_inv] <;> norm_num at * <;> aesop\n    have h\u2087 : (m k : \u211a) / (n k : \u211a) = (m 0 : \u211a) / (n 0 : \u211a) := h\u2083 k\n    have h\u2088 : (m k : \u2124) - (n k : \u2124) \u2260 0 := by\n      intro h\n      norm_num at *\n      have h\u2089 : (m k : \u211a) = (n k : \u211a) := by\n        norm_num at *\n        <;>\n        field_simp at * <;>\n        nlinarith\n      have h\u2089' : (m k : \u211a) / (n k : \u211a) = 1 := by\n        rw [h\u2089]\n        <;> field_simp <;> nlinarith\n      norm_num at *\n      <;> simp_all [div_eq_iff, mul_comm] <;>\n      (try ring_nf at * <;> nlinarith) <;>\n      (try field_simp at * <;> nlinarith)\n    exact_mod_cast h\u2088\n  \n  exact key",
+        "custom_id": "diff_ne_zero_15",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 40
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 45
+                    },
+                    "data": "tactic 'aesop' failed, made no progress\nInitial goal:\n  m n : \u2115 \u2192 \u2115\n  h_distinct : \u00acm 0 = n 0\n  h_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\n  k : \u2115\n  \u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 63
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 45
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nh_distinct : \u00acm 0 = n 0\nh_recurrence : \u2200 (k : \u2115), \u2191(m (k + 1)) / \u2191(n (k + 1)) = (2 * \u2191(m k) + 1) / (2 * \u2191(n k) + 1)\nk : \u2115\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 50,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 50,
+                        "column": 10
+                    },
+                    "data": "no goals to be solved"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 5.288822174072266,
+            "custom_id": "diff_ne_zero_15"
+        }
+    },
+    {
+        "name": "finite_of_strict_decrease_on_bad",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_of_strict_decrease_on_bad\n  (t : \u2115 \u2192 \u2115)\n  (htpos : \u2200 k : \u2115, 0 < t k)\n  (bad : \u2115 \u2192 Prop)\n  (hdec : \u2200 k : \u2115, bad k \u2192 t (k + 1) < t k) :\n  {k : \u2115 | bad k}.Finite := by\n  apply Set.Finite.subset (Set.finite_le_nat (t 0))\n  intro k hk\n  have hk' : t k \u2264 t 0 := by\n    induction k with\n    | zero => simp_all\n    | succ k ih =>\n      have h := hdec k\n      have h' := htpos k\n      have h'' := htpos (k + 1)\n      simp_all [Nat.lt_succ_iff, Nat.le_of_lt_succ]\n      <;> omega\n  simp_all",
+        "custom_id": "finite_of_strict_decrease_on_bad_16",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 22,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a - b \u2265 1\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(t (k + 1))\n b := \u2191(t 0)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 16
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 15
+                    },
+                    "data": "unsolved goals\ncase succ\nt : \u2115 \u2192 \u2115\nhtpos : \u2200 (k : \u2115), 0 < t k\nbad : \u2115 \u2192 Prop\nhdec : \u2200 (k : \u2115), bad k \u2192 t (k + 1) < t k\nk : \u2115\nih : bad k \u2192 t k \u2264 t 0\nhk : bad (k + 1)\n\u22a2 t (k + 1) \u2264 t 0"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 28
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 10
+                    },
+                    "data": "unsolved goals\nt : \u2115 \u2192 \u2115\nhtpos : \u2200 (k : \u2115), 0 < t k\nbad : \u2115 \u2192 Prop\nhdec : \u2200 (k : \u2115), bad k \u2192 t (k + 1) < t k\nk : \u2115\nhk : bad k\nhk' : t k \u2264 t 0\n\u22a2 k \u2264 t 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.3558676242828369,
+            "custom_id": "finite_of_strict_decrease_on_bad_16"
+        }
+    },
+    {
+        "name": "finite_of_strict_decrease_on_bad",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_of_strict_decrease_on_bad\n  (t : \u2115 \u2192 \u2115)\n  (htpos : \u2200 k : \u2115, 0 < t k)\n  (bad : \u2115 \u2192 Prop)\n  (hdec : \u2200 k : \u2115, bad k \u2192 t (k + 1) < t k) :\n  {k : \u2115 | bad k}.Finite := by\n  apply Set.Finite.subset (Set.finite_le_nat (t 0))\n  intro k hk\n  have h := htpos 0\n  have h' := htpos k\n  have h'' := htpos (k + 1)\n  simp at h h' h''\n  have h1 : t k \u2265 0 := by linarith\n  have h2 : t (k + 1) < t k := by\n    apply hdec\n    exact hk\n  omega",
+        "custom_id": "finite_of_strict_decrease_on_bad_17",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 22,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 1\n  b \u2265 1\n  a \u2265 1\n  b - c \u2265 1\nwhere\n a := \u2191(t 0)\n b := \u2191(t k)\n c := \u2191(t (k + 1))"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.16286754608154297,
+            "custom_id": "finite_of_strict_decrease_on_bad_17"
+        }
+    },
+    {
+        "name": "finite_of_strict_decrease_on_bad",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_of_strict_decrease_on_bad\n  (t : \u2115 \u2192 \u2115)\n  (htpos : \u2200 k : \u2115, 0 < t k)\n  (bad : \u2115 \u2192 Prop)\n  (hdec : \u2200 k : \u2115, bad k \u2192 t (k + 1) < t k) :\n  {k : \u2115 | bad k}.Finite := by\n  have h : {k : \u2115 | bad k} \u2286 {k : \u2115 | t k = 0} := by\n    intro k hk\n    have h1 := hdec k hk\n    have h2 : t k > 0 := htpos k\n    have h3 : t (k + 1) < t k := h1\n    have h4 : t k \u2264 0 := by\n      omega\n    omega\n  exact Set.Finite.subset (Set.finite_singleton 0) h",
+        "custom_id": "finite_of_strict_decrease_on_bad_18",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a - b \u2265 1\n  b \u2265 0\n  a \u2265 1\nwhere\n a := \u2191(t k)\n b := \u2191(t (k + 1))"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 51
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 52
+                    },
+                    "data": "application type mismatch\n  Set.Finite.subset (Set.finite_singleton 0) h\nargument\n  h\nhas type\n  {k | bad k} \u2286 {k | t k = 0} : Prop\nbut is expected to have type\n  {k | bad k} \u2286 {0} : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.0477290153503418,
+            "custom_id": "finite_of_strict_decrease_on_bad_18"
+        }
+    },
+    {
+        "name": "finite_of_strict_decrease_on_bad",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_of_strict_decrease_on_bad\n  (t : \u2115 \u2192 \u2115)\n  (htpos : \u2200 k : \u2115, 0 < t k)\n  (bad : \u2115 \u2192 Prop)\n  (hdec : \u2200 k : \u2115, bad k \u2192 t (k + 1) < t k) :\n  {k : \u2115 | bad k}.Finite := by\n  apply Set.Finite.subset (Finset.finite_toSet {0})\n  intro k hk\n  have hk' := hk\n  simp only [Set.mem_setOf_eq, Set.mem_singleton_iff] at hk \u22a2\n  have h\u2081 := htpos 0\n  have h\u2082 := htpos k\n  have h\u2083 := htpos (k + 1)\n  have h\u2084 := hdec k hk'\n  have h\u2085 := htpos 0\n  have h\u2086 := htpos k\n  have h\u2087 := htpos (k + 1)\n  have h\u2088 := hdec k hk'\n  have h\u2089 := htpos 0\n  have h\u2081\u2080 := htpos k\n  have h\u2081\u2081 := htpos (k + 1)\n  have h\u2081\u2082 := hdec k hk'\n  -- Use omega to solve the inequality\n  omega",
+        "custom_id": "finite_of_strict_decrease_on_bad_19",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 29,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 29,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 1\n  b \u2265 1\n  a \u2265 1\n  b - c \u2265 1\nwhere\n a := \u2191(t 0)\n b := \u2191(t k)\n c := \u2191(t (k + 1))"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.03305482864379883,
+            "custom_id": "finite_of_strict_decrease_on_bad_19"
+        }
+    },
+    {
+        "name": "finite_of_strict_decrease_on_bad",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_of_strict_decrease_on_bad\n  (t : \u2115 \u2192 \u2115)\n  (htpos : \u2200 k : \u2115, 0 < t k)\n  (bad : \u2115 \u2192 Prop)\n  (hdec : \u2200 k : \u2115, bad k \u2192 t (k + 1) < t k) :\n  {k : \u2115 | bad k}.Finite := by\n  apply Set.Finite.subset (Finset.finite_toSet (Finset.Icc 0 (t 0)))\n  intro k hk\n  have h1 : k \u2264 t 0 := by\n    by_contra h\n    have h2 : t 0 < k := by linarith\n    have h3 : t (k) < t (k - 1) := by\n      have h4 : bad (k - 1) := by\n        have h5 : k - 1 \u2264 t 0 := by omega\n        have h6 : k \u2265 1 := by omega\n        have h7 : bad (k - 1) := by\n          simp_all [Nat.lt_succ_iff]\n          <;> omega\n        exact h7\n      have h8 : t (k + 1) < t k := hdec (k - 1) h4\n      omega\n    have h9 : t k \u2265 0 := by apply Nat.zero_le\n    omega\n  simp_all\n  <;> omega",
+        "custom_id": "finite_of_strict_decrease_on_bad_20",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 36
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 41
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 0\n  a \u2265 0\n  a - b \u2264 -1\nwhere\n a := \u2191(t 0)\n b := \u2191(k - 1)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 19
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 0\nwhere\n a := \u2191(t 0)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 21,
+                        "column": 33
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 19
+                    },
+                    "data": "unsolved goals\nt : \u2115 \u2192 \u2115\nhtpos : \u2200 (k : \u2115), 0 < t k\nbad : \u2115 \u2192 Prop\nhdec : \u2200 (k : \u2115), bad k \u2192 t (k + 1) < t k\nk : \u2115\nhk : bad k\nh2 : t 0 < k\nh5 : k \u2264 t 0 + 1\nh6 : 1 \u2264 k\n\u22a2 bad (k - 1)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 25,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 50
+                    },
+                    "data": "type mismatch\n  hdec (k - 1) h4\nhas type\n  t (k - 1 + 1) < t (k - 1) : Prop\nbut is expected to have type\n  t (k + 1) < t k : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 26,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  e \u2265 0\n  a - b \u2265 1\n  d \u2265 0\n  c - e \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191k\n b := \u2191(t 0)\n c := \u2191(t k)\n d := \u2191(t (k + 1))\n e := \u2191(t (k - 1))"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 28,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 28,
+                        "column": 9
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 1\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191k\n b := \u2191(t 0)\n c := \u2191(t (k - 1))\n d := \u2191(t k)"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.4439842700958252,
+            "custom_id": "finite_of_strict_decrease_on_bad_20"
+        }
+    },
+    {
+        "name": "finite_of_strict_decrease_on_bad",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_of_strict_decrease_on_bad\n  (t : \u2115 \u2192 \u2115)\n  (htpos : \u2200 k : \u2115, 0 < t k)\n  (bad : \u2115 \u2192 Prop)\n  (hdec : \u2200 k : \u2115, bad k \u2192 t (k + 1) < t k) :\n  {k : \u2115 | bad k}.Finite := by\n  apply Set.Finite.subset (Set.finite_le_nat (t 0))\n  intro k hk\n  have h := hk\n  have h' := htpos k\n  have h'' := htpos (k + 1)\n  simp at h' h''\n  have h''' := hdec k hk\n  simp at h'''\n  -- Use the fact that t_{k+1} < t_k to show that k is bounded above by t_0\n  have h'''' : k \u2264 t 0 := by\n    by_contra! h''''\n    have h'''''' : t (k + 1) \u2264 t k := by\n      linarith [hdec k hk]\n    linarith [hdec k hk]\n  simp_all",
+        "custom_id": "finite_of_strict_decrease_on_bad_21",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 25,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 24
+                    },
+                    "data": "linarith failed to find a contradiction\nt : \u2115 \u2192 \u2115\nhtpos : \u2200 (k : \u2115), 0 < t k\nbad : \u2115 \u2192 Prop\nhdec : \u2200 (k : \u2115), bad k \u2192 t (k + 1) < t k\nk : \u2115\nhk h : k \u2208 {k | bad k}\nh' : 0 < t k\nh'' : 0 < t (k + 1)\nh''' : t (k + 1) < t k\nh'''' : t 0 < k\nh'''''' : t (k + 1) \u2264 t k\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.3255453109741211,
+            "custom_id": "finite_of_strict_decrease_on_bad_21"
+        }
+    },
+    {
+        "name": "finite_of_strict_decrease_on_bad",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_of_strict_decrease_on_bad\n  (t : \u2115 \u2192 \u2115)\n  (htpos : \u2200 k : \u2115, 0 < t k)\n  (bad : \u2115 \u2192 Prop)\n  (hdec : \u2200 k : \u2115, bad k \u2192 t (k + 1) < t k) :\n  {k : \u2115 | bad k}.Finite := by\n  apply Set.Finite.subset (Set.finite_le_nat (t 0))\n  intro k hk\n  have hk' : bad k := hk\n  have h1 : t (k + 1) < t k := hdec k hk'\n  have h2 : t k \u2264 t 0 := by\n    induction k with\n    | zero => simp\n    | succ k ih =>\n      have h3 : t (k + 1) < t k := hdec k (by simp_all)\n      omega\n  omega",
+        "custom_id": "finite_of_strict_decrease_on_bad_22",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 43
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 54
+                    },
+                    "data": "unsolved goals\nt : \u2115 \u2192 \u2115\nhtpos : \u2200 (k : \u2115), 0 < t k\nbad : \u2115 \u2192 Prop\nhdec : \u2200 (k : \u2115), bad k \u2192 t (k + 1) < t k\nk : \u2115\nih : bad k \u2192 t k \u2264 t 0\nhk' : bad (k + 1)\n\u22a2 bad k"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 21,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 1\n  d \u2265 0\n  b \u2265 0\n  a - d \u2265 1\n  a \u2265 0\n  a - c \u2264 -1\nwhere\n a := \u2191(t (k + 1))\n b := \u2191(t (k + 1 + 1))\n c := \u2191(t k)\n d := \u2191(t 0)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 22,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 1\n  b \u2265 0\n  a \u2265 0\n  a - c \u2264 0\nwhere\n a := \u2191(t k)\n b := \u2191(t (k + 1))\n c := \u2191(t 0)"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.15176892280578613,
+            "custom_id": "finite_of_strict_decrease_on_bad_22"
+        }
+    },
+    {
+        "name": "finite_of_strict_decrease_on_bad",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_of_strict_decrease_on_bad\n  (t : \u2115 \u2192 \u2115)\n  (htpos : \u2200 k : \u2115, 0 < t k)\n  (bad : \u2115 \u2192 Prop)\n  (hdec : \u2200 k : \u2115, bad k \u2192 t (k + 1) < t k) :\n  {k : \u2115 | bad k}.Finite := by\n  have h : Set.Finite {k : \u2115 | bad k} := by\n    apply Set.Finite.subset (Set.finite_le_nat (t 0))\n    intro k hk\n    have hk' : bad k := by simpa using hk\n    have : t k \u2264 t 0 := by\n      induction k with\n      | zero => simp_all\n      | succ k ih =>\n        have : t (k + 1) < t k := hdec k (by simpa using hk')\n        omega\n    simpa using this\n  exact h",
+        "custom_id": "finite_of_strict_decrease_on_bad_23",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 60
+                    },
+                    "data": "type mismatch\n  h\u271d\nhas type\n  bad (k + 1) : Prop\nbut is expected to have type\n  bad k : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 21,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 1\n  b \u2265 0\n  a \u2265 0\n  b - c \u2265 1\nwhere\n a := \u2191(t k)\n b := \u2191(t (k + 1))\n c := \u2191(t 0)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 22,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 20
+                    },
+                    "data": "type mismatch\n  h\u271d\nhas type\n  t k \u2264 t 0 : Prop\nbut is expected to have type\n  k \u2264 t 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.08935999870300293,
+            "custom_id": "finite_of_strict_decrease_on_bad_23"
+        }
+    },
+    {
+        "name": "finite_of_strict_decrease_on_bad",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_of_strict_decrease_on_bad\n  (t : \u2115 \u2192 \u2115)\n  (htpos : \u2200 k : \u2115, 0 < t k)\n  (bad : \u2115 \u2192 Prop)\n  (hdec : \u2200 k : \u2115, bad k \u2192 t (k + 1) < t k) :\n  {k : \u2115 | bad k}.Finite := by\n  apply Set.Finite.subset (Finset.finite_toSet (Finset.range (t 0 + 1)))\n  intro k hk\n  have hk' := hk\n  simp only [Set.mem_setOf_eq, Finset.mem_coe, Finset.mem_range] at hk \u22a2\n  have h := htpos k\n  have h' := htpos 0\n  have h'' := hdec k hk'\n  have h''' := hdec 0\n  simp at h h' h'' h'''\n  omega",
+        "custom_id": "finite_of_strict_decrease_on_bad_24",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 21,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  d \u2265 0\n  b \u2265 1\n  b - d \u2264 -1\n  a \u2265 1\n  a - c \u2265 1\nwhere\n a := \u2191(t k)\n b := \u2191(t 0)\n c := \u2191(t (k + 1))\n d := \u2191k"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.10118389129638672,
+            "custom_id": "finite_of_strict_decrease_on_bad_24"
+        }
+    },
+    {
+        "name": "finite_of_strict_decrease_on_bad",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_of_strict_decrease_on_bad\n  (t : \u2115 \u2192 \u2115)\n  (htpos : \u2200 k : \u2115, 0 < t k)\n  (bad : \u2115 \u2192 Prop)\n  (hdec : \u2200 k : \u2115, bad k \u2192 t (k + 1) < t k) :\n  {k : \u2115 | bad k}.Finite := by\n  apply Set.Finite.subset (Finset.finite_toSet (Finset.range (t 0 + 1)))\n  intro k hk\n  have h := htpos k\n  have h2 := htpos (k + 1)\n  have h3 := hdec k hk\n  simp at h h2 h3 \u22a2\n  omega",
+        "custom_id": "finite_of_strict_decrease_on_bad_25",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 1\n  d \u2265 0\n  b \u2265 1\n  c - d \u2265 1\n  a \u2265 1\nwhere\n a := \u2191(t k)\n b := \u2191(t (k + 1))\n c := \u2191k\n d := \u2191(t 0)"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.0587611198425293,
+            "custom_id": "finite_of_strict_decrease_on_bad_25"
+        }
+    },
+    {
+        "name": "finite_of_strict_decrease_on_bad",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_of_strict_decrease_on_bad\n  (t : \u2115 \u2192 \u2115)\n  (htpos : \u2200 k : \u2115, 0 < t k)\n  (bad : \u2115 \u2192 Prop)\n  (hdec : \u2200 k : \u2115, bad k \u2192 t (k + 1) < t k) :\n  {k : \u2115 | bad k}.Finite := by\n  apply Set.Finite.subset (Finset.finite_toSet (\u2205 : Finset \u2115))\n  intro k hk\n  exfalso\n  have h := hdec k hk\n  linarith [htpos k, htpos (k + 1)]",
+        "custom_id": "finite_of_strict_decrease_on_bad_26",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 35
+                    },
+                    "data": "linarith failed to find a contradiction\nt : \u2115 \u2192 \u2115\nhtpos : \u2200 (k : \u2115), 0 < t k\nbad : \u2115 \u2192 Prop\nhdec : \u2200 (k : \u2115), bad k \u2192 t (k + 1) < t k\nk : \u2115\nhk : k \u2208 {k | bad k}\nh : t (k + 1) < t k\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.07408738136291504,
+            "custom_id": "finite_of_strict_decrease_on_bad_26"
+        }
+    },
+    {
+        "name": "finite_of_strict_decrease_on_bad",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_of_strict_decrease_on_bad\n  (t : \u2115 \u2192 \u2115)\n  (htpos : \u2200 k : \u2115, 0 < t k)\n  (bad : \u2115 \u2192 Prop)\n  (hdec : \u2200 k : \u2115, bad k \u2192 t (k + 1) < t k) :\n  {k : \u2115 | bad k}.Finite := by\n  apply Set.Finite.subset (Finset.finite_toSet (\u2205 : Finset \u2115))\n  intro k hk\n  exfalso\n  have h\u2081 := hk\n  simp_all\n  <;> have h\u2082 := htpos 0\n  <;> have h\u2083 := htpos 1\n  <;> have h\u2084 := htpos 2\n  <;> have h\u2085 := htpos 3\n  <;> have h\u2086 := hdec 0\n  <;> have h\u2087 := hdec 1\n  <;> have h\u2088 := hdec 2\n  <;> have h\u2089 := hdec 3\n  <;> omega",
+        "custom_id": "finite_of_strict_decrease_on_bad_27",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 25,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 1\n  d \u2265 1\n  b \u2265 1\n  a \u2265 1\nwhere\n a := \u2191(t 0)\n b := \u2191(t 1)\n c := \u2191(t 2)\n d := \u2191(t 3)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 28
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nt : \u2115 \u2192 \u2115\nhtpos : \u2200 (k : \u2115), 0 < t k\nbad : \u2115 \u2192 Prop\nhdec : \u2200 (k : \u2115), bad k \u2192 t (k + 1) < t k\nk : \u2115\nh\u2081 : bad k\nh\u2082 : 0 < t 0\nh\u2083 : 0 < t 1\nh\u2084 : 0 < t 2\nh\u2085 : 0 < t 3\nh\u2086 : bad 0 \u2192 t (0 + 1) < t 0\nh\u2087 : bad 1 \u2192 t (1 + 1) < t 1\nh\u2088 : bad 2 \u2192 t (2 + 1) < t 2\nh\u2089 : bad 3 \u2192 t (3 + 1) < t 3\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.09166288375854492,
+            "custom_id": "finite_of_strict_decrease_on_bad_27"
+        }
+    },
+    {
+        "name": "finite_of_strict_decrease_on_bad",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_of_strict_decrease_on_bad\n  (t : \u2115 \u2192 \u2115)\n  (htpos : \u2200 k : \u2115, 0 < t k)\n  (bad : \u2115 \u2192 Prop)\n  (hdec : \u2200 k : \u2115, bad k \u2192 t (k + 1) < t k) :\n  {k : \u2115 | bad k}.Finite := by\n  have h : {k : \u2115 | bad k} \u2286 Set.Iic 0 := by\n    intro k hk\n    have h\u2081 : t (k + 1) < t k := hdec k hk\n    have h\u2082 : t k > 0 := htpos k\n    have h\u2083 : t (k + 1) > 0 := htpos (k + 1)\n    have h\u2084 : k \u2264 0 := by\n      by_contra hc\n      have h\u2085 : k \u2265 1 := by linarith\n      have h\u2086 : t k \u2264 t (k + 1) := by\n        have h\u2087 : t (k + 1) \u2265 t k := by\n          linarith [htpos (k + 1), htpos k]\n        linarith\n      linarith\n    exact h\u2084.trans (by linarith)\n  exact Set.Finite.subset (Set.finite_Iic 0) h",
+        "custom_id": "finite_of_strict_decrease_on_bad_28",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 22,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 43
+                    },
+                    "data": "linarith failed to find a contradiction\ncase a\nt : \u2115 \u2192 \u2115\nhtpos : \u2200 (k : \u2115), 0 < t k\nbad : \u2115 \u2192 Prop\nhdec : \u2200 (k : \u2115), bad k \u2192 t (k + 1) < t k\nk : \u2115\nhk : k \u2208 {k | bad k}\nh\u2081 : t (k + 1) < t k\nh\u2082 : t k > 0\nh\u2083 : t (k + 1) > 0\nhc : \u00ack \u2264 0\nh\u2085 : k \u2265 1\na\u271d : t k > t (k + 1)\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.5830309391021729,
+            "custom_id": "finite_of_strict_decrease_on_bad_28"
+        }
+    },
+    {
+        "name": "finite_of_strict_decrease_on_bad",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_of_strict_decrease_on_bad\n  (t : \u2115 \u2192 \u2115)\n  (htpos : \u2200 k : \u2115, 0 < t k)\n  (bad : \u2115 \u2192 Prop)\n  (hdec : \u2200 k : \u2115, bad k \u2192 t (k + 1) < t k) :\n  {k : \u2115 | bad k}.Finite := by\n  apply Set.Finite.subset (Finset.finite_toSet (Finset.range (t 0 + 1)))\n  intro k hk\n  have hk' := hk\n  simp only [Set.mem_setOf_eq, Set.mem_setOf_eq] at hk' \u22a2\n  have h := htpos k\n  have h' := htpos 0\n  have h'' := hdec k\n  simp_all\n  <;> omega",
+        "custom_id": "finite_of_strict_decrease_on_bad_29",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a - b \u2265 1\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191k\n b := \u2191(t 0)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 28
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nt : \u2115 \u2192 \u2115\nhtpos : \u2200 (k : \u2115), 0 < t k\nbad : \u2115 \u2192 Prop\nhdec : \u2200 (k : \u2115), bad k \u2192 t (k + 1) < t k\nk : \u2115\nhk' : bad k\n\u22a2 k < t 0 + 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.11324739456176758,
+            "custom_id": "finite_of_strict_decrease_on_bad_29"
+        }
+    },
+    {
+        "name": "finite_of_strict_decrease_on_bad",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_of_strict_decrease_on_bad\n  (t : \u2115 \u2192 \u2115)\n  (htpos : \u2200 k : \u2115, 0 < t k)\n  (bad : \u2115 \u2192 Prop)\n  (hdec : \u2200 k : \u2115, bad k \u2192 t (k + 1) < t k) :\n  {k : \u2115 | bad k}.Finite := by\n  apply Set.Finite.subset (Set.finite_le_nat (t 0))\n  intro k hk\n  have h := hdec k hk\n  have h' := htpos k\n  have h'' := htpos (k + 1)\n  simp_all [Nat.lt_succ_iff]\n  <;> omega",
+        "custom_id": "finite_of_strict_decrease_on_bad_30",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a - b \u2265 1\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191k\n b := \u2191(t 0)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 28
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nt : \u2115 \u2192 \u2115\nhtpos : \u2200 (k : \u2115), 0 < t k\nbad : \u2115 \u2192 Prop\nhdec : \u2200 (k : \u2115), bad k \u2192 t (k + 1) < t k\nk : \u2115\nhk : bad k\n\u22a2 k \u2264 t 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.17935943603515625,
+            "custom_id": "finite_of_strict_decrease_on_bad_30"
+        }
+    },
+    {
+        "name": "finite_of_strict_decrease_on_bad",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem finite_of_strict_decrease_on_bad\n  (t : \u2115 \u2192 \u2115)\n  (htpos : \u2200 k : \u2115, 0 < t k)\n  (bad : \u2115 \u2192 Prop)\n  (hdec : \u2200 k : \u2115, bad k \u2192 t (k + 1) < t k) :\n  {k : \u2115 | bad k}.Finite := by\n  apply Set.Finite.subset (Finset.finite_toSet (\u2205 : Finset \u2115))\n  intro k hk\n  exfalso\n  have h1 := hk\n  simp_all\n  <;> have h2 := hdec k h1\n  <;> have h3 := htpos (k + 1)\n  <;> have h4 := htpos k\n  <;> omega",
+        "custom_id": "finite_of_strict_decrease_on_bad_31",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a - b \u2265 1\n  b \u2265 1\n  a \u2265 1\nwhere\n a := \u2191(t k)\n b := \u2191(t (k + 1))"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 28
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nt : \u2115 \u2192 \u2115\nhtpos : \u2200 (k : \u2115), 0 < t k\nbad : \u2115 \u2192 Prop\nhdec : \u2200 (k : \u2115), bad k \u2192 t (k + 1) < t k\nk : \u2115\nh1 : bad k\nh2 : t (k + 1) < t k\nh3 : 0 < t (k + 1)\nh4 : 0 < t k\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.08212614059448242,
+            "custom_id": "finite_of_strict_decrease_on_bad_31"
+        }
+    }
+]

@@ -1,0 +1,1023 @@
+{
+  "sorries": [],
+  "tactics": [],
+  "errors": [],
+  "warnings": [
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 27,
+        "column": 6
+      },
+      "endPos": {
+        "line": 27,
+        "column": 13
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 28,
+        "column": 6
+      },
+      "endPos": {
+        "line": 28,
+        "column": 15
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 29,
+        "column": 6
+      },
+      "endPos": {
+        "line": 29,
+        "column": 11
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 48,
+        "column": 2
+      },
+      "endPos": {
+        "line": 48,
+        "column": 47
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 50,
+        "column": 2
+      },
+      "endPos": {
+        "line": 50,
+        "column": 7
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 80,
+        "column": 7
+      },
+      "endPos": {
+        "line": 80,
+        "column": 9
+      },
+      "data": "unused variable `h₁`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 89,
+        "column": 7
+      },
+      "endPos": {
+        "line": 89,
+        "column": 9
+      },
+      "data": "unused variable `h₁`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 90,
+        "column": 7
+      },
+      "endPos": {
+        "line": 90,
+        "column": 9
+      },
+      "data": "unused variable `h₂`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 91,
+        "column": 7
+      },
+      "endPos": {
+        "line": 91,
+        "column": 9
+      },
+      "data": "unused variable `h₃`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 95,
+        "column": 9
+      },
+      "endPos": {
+        "line": 95,
+        "column": 11
+      },
+      "data": "unused variable `h₇`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 96,
+        "column": 9
+      },
+      "endPos": {
+        "line": 96,
+        "column": 11
+      },
+      "data": "unused variable `h₈`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 150,
+        "column": 4
+      },
+      "endPos": {
+        "line": 150,
+        "column": 7
+      },
+      "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 162,
+        "column": 32
+      },
+      "endPos": {
+        "line": 162,
+        "column": 47
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 162,
+        "column": 52
+      },
+      "endPos": {
+        "line": 162,
+        "column": 57
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 162,
+        "column": 6
+      },
+      "endPos": {
+        "line": 162,
+        "column": 9
+      },
+      "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 203,
+        "column": 4
+      },
+      "endPos": {
+        "line": 203,
+        "column": 7
+      },
+      "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 205,
+        "column": 4
+      },
+      "endPos": {
+        "line": 205,
+        "column": 7
+      },
+      "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 207,
+        "column": 4
+      },
+      "endPos": {
+        "line": 207,
+        "column": 7
+      },
+      "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 209,
+        "column": 4
+      },
+      "endPos": {
+        "line": 209,
+        "column": 7
+      },
+      "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 211,
+        "column": 4
+      },
+      "endPos": {
+        "line": 211,
+        "column": 7
+      },
+      "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 213,
+        "column": 4
+      },
+      "endPos": {
+        "line": 213,
+        "column": 7
+      },
+      "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 224,
+        "column": 2
+      },
+      "endPos": {
+        "line": 224,
+        "column": 5
+      },
+      "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 235,
+        "column": 6
+      },
+      "endPos": {
+        "line": 235,
+        "column": 11
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 238,
+        "column": 6
+      },
+      "endPos": {
+        "line": 238,
+        "column": 11
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 279,
+        "column": 6
+      },
+      "endPos": {
+        "line": 279,
+        "column": 10
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 280,
+        "column": 6
+      },
+      "endPos": {
+        "line": 280,
+        "column": 11
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 283,
+        "column": 6
+      },
+      "endPos": {
+        "line": 283,
+        "column": 11
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 297,
+        "column": 6
+      },
+      "endPos": {
+        "line": 297,
+        "column": 11
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 304,
+        "column": 38
+      },
+      "endPos": {
+        "line": 304,
+        "column": 40
+      },
+      "data": "unused variable `hb`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 311,
+        "column": 26
+      },
+      "endPos": {
+        "line": 311,
+        "column": 29
+      },
+      "data": "unused variable `hb2`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 343,
+        "column": 6
+      },
+      "endPos": {
+        "line": 343,
+        "column": 14
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 344,
+        "column": 6
+      },
+      "endPos": {
+        "line": 344,
+        "column": 11
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 349,
+        "column": 2
+      },
+      "endPos": {
+        "line": 349,
+        "column": 5
+      },
+      "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 350,
+        "column": 2
+      },
+      "endPos": {
+        "line": 350,
+        "column": 5
+      },
+      "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 425,
+        "column": 7
+      },
+      "endPos": {
+        "line": 425,
+        "column": 9
+      },
+      "data": "unused variable `h₁`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 458,
+        "column": 8
+      },
+      "endPos": {
+        "line": 458,
+        "column": 13
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 449,
+        "column": 10
+      },
+      "endPos": {
+        "line": 449,
+        "column": 13
+      },
+      "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 470,
+        "column": 8
+      },
+      "endPos": {
+        "line": 470,
+        "column": 11
+      },
+      "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 517,
+        "column": 44
+      },
+      "endPos": {
+        "line": 517,
+        "column": 46
+      },
+      "data": "unused variable `h0`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 550,
+        "column": 6
+      },
+      "endPos": {
+        "line": 550,
+        "column": 11
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 559,
+        "column": 10
+      },
+      "endPos": {
+        "line": 559,
+        "column": 34
+      },
+      "data": "`Finset.card_le_of_subset` has been deprecated, use `Finset.card_le_card` instead"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 582,
+        "column": 7
+      },
+      "endPos": {
+        "line": 582,
+        "column": 12
+      },
+      "data": "unused variable `hglob`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 593,
+        "column": 3
+      },
+      "endPos": {
+        "line": 593,
+        "column": 8
+      },
+      "data": "unused variable `htpos`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 609,
+        "column": 38
+      },
+      "endPos": {
+        "line": 609,
+        "column": 42
+      },
+      "data": "unused variable `hpos`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 640,
+        "column": 3
+      },
+      "endPos": {
+        "line": 640,
+        "column": 8
+      },
+      "data": "unused variable `u_mem`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 692,
+        "column": 8
+      },
+      "endPos": {
+        "line": 692,
+        "column": 13
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 736,
+        "column": 9
+      },
+      "endPos": {
+        "line": 736,
+        "column": 11
+      },
+      "data": "unused variable `h1`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 737,
+        "column": 9
+      },
+      "endPos": {
+        "line": 737,
+        "column": 11
+      },
+      "data": "unused variable `h2`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 740,
+        "column": 35
+      },
+      "endPos": {
+        "line": 740,
+        "column": 36
+      },
+      "data": "unused variable `n`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 747,
+        "column": 6
+      },
+      "endPos": {
+        "line": 747,
+        "column": 11
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 753,
+        "column": 6
+      },
+      "endPos": {
+        "line": 753,
+        "column": 10
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 754,
+        "column": 6
+      },
+      "endPos": {
+        "line": 754,
+        "column": 29
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 755,
+        "column": 6
+      },
+      "endPos": {
+        "line": 755,
+        "column": 11
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 752,
+        "column": 2
+      },
+      "endPos": {
+        "line": 752,
+        "column": 5
+      },
+      "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 760,
+        "column": 3
+      },
+      "endPos": {
+        "line": 760,
+        "column": 8
+      },
+      "data": "unused variable `h_dvd`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 782,
+        "column": 2
+      },
+      "endPos": {
+        "line": 782,
+        "column": 5
+      },
+      "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 791,
+        "column": 2
+      },
+      "endPos": {
+        "line": 791,
+        "column": 8
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 794,
+        "column": 6
+      },
+      "endPos": {
+        "line": 794,
+        "column": 11
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 801,
+        "column": 6
+      },
+      "endPos": {
+        "line": 801,
+        "column": 11
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 799,
+        "column": 2
+      },
+      "endPos": {
+        "line": 799,
+        "column": 5
+      },
+      "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 818,
+        "column": 7
+      },
+      "endPos": {
+        "line": 818,
+        "column": 13
+      },
+      "data": "unused variable `h_left`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 833,
+        "column": 2
+      },
+      "endPos": {
+        "line": 833,
+        "column": 41
+      },
+      "data": "`Int.coe_nat_dvd_left` has been deprecated, use `Int.natCast_dvd` instead"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 843,
+        "column": 8
+      },
+      "endPos": {
+        "line": 843,
+        "column": 13
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 842,
+        "column": 4
+      },
+      "endPos": {
+        "line": 842,
+        "column": 7
+      },
+      "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 858,
+        "column": 2
+      },
+      "endPos": {
+        "line": 858,
+        "column": 5
+      },
+      "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 865,
+        "column": 9
+      },
+      "endPos": {
+        "line": 865,
+        "column": 11
+      },
+      "data": "unused variable `h₁`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 893,
+        "column": 10
+      },
+      "endPos": {
+        "line": 893,
+        "column": 15
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 892,
+        "column": 6
+      },
+      "endPos": {
+        "line": 892,
+        "column": 9
+      },
+      "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 914,
+        "column": 6
+      },
+      "endPos": {
+        "line": 914,
+        "column": 11
+      },
+      "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 930,
+        "column": 7
+      },
+      "endPos": {
+        "line": 930,
+        "column": 8
+      },
+      "data": "unused variable `h`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 931,
+        "column": 7
+      },
+      "endPos": {
+        "line": 931,
+        "column": 9
+      },
+      "data": "unused variable `h'`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 937,
+        "column": 55
+      },
+      "endPos": {
+        "line": 937,
+        "column": 62
+      },
+      "data": "unused variable `hr1_pos`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 938,
+        "column": 68
+      },
+      "endPos": {
+        "line": 938,
+        "column": 75
+      },
+      "data": "unused variable `hr2_pos`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 1025,
+        "column": 78
+      },
+      "endPos": {
+        "line": 1025,
+        "column": 80
+      },
+      "data": "unused variable `hb`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 1032,
+        "column": 30
+      },
+      "endPos": {
+        "line": 1032,
+        "column": 36
+      },
+      "data": "unused variable `hr_odd`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 1047,
+        "column": 7
+      },
+      "endPos": {
+        "line": 1047,
+        "column": 9
+      },
+      "data": "unused variable `h₁`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 1052,
+        "column": 26
+      },
+      "endPos": {
+        "line": 1052,
+        "column": 33
+      },
+      "data": "unused variable `hr1_pos`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 1055,
+        "column": 26
+      },
+      "endPos": {
+        "line": 1055,
+        "column": 33
+      },
+      "data": "unused variable `hr2_pos`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 1088,
+        "column": 3
+      },
+      "endPos": {
+        "line": 1088,
+        "column": 5
+      },
+      "data": "unused variable `hΔ`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 1194,
+        "column": 3
+      },
+      "endPos": {
+        "line": 1194,
+        "column": 5
+      },
+      "data": "unused variable `hm`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    },
+    {
+      "severity": "warning",
+      "pos": {
+        "line": 1195,
+        "column": 3
+      },
+      "endPos": {
+        "line": 1195,
+        "column": 5
+      },
+      "data": "unused variable `hn`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+    }
+  ],
+  "infos": [
+    {
+      "severity": "info",
+      "pos": {
+        "line": 82,
+        "column": 4
+      },
+      "endPos": {
+        "line": 82,
+        "column": 10
+      },
+      "data": "Try this: exact Coprime.dvd_of_dvd_mul_left hc h"
+    },
+    {
+      "severity": "info",
+      "pos": {
+        "line": 294,
+        "column": 2
+      },
+      "endPos": {
+        "line": 294,
+        "column": 8
+      },
+      "data": "Try this: exact h₁"
+    },
+    {
+      "severity": "info",
+      "pos": {
+        "line": 834,
+        "column": 2
+      },
+      "endPos": {
+        "line": 834,
+        "column": 8
+      },
+      "data": "Try this: exact h"
+    }
+  ],
+  "system_messages": null,
+  "system_errors": null,
+  "pass": true,
+  "complete": true,
+  "verify_time": 14.444025039672852,
+  "custom_id": "1"
+}

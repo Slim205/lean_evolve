@@ -1,0 +1,43 @@
+[
+    {
+        "name": "nat_div_eq_of_mul_eq",
+        "formal_statement": "lemma nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by",
+        "model_input": "Complete the following Lean 4 code :\n\n```lean4\nimport Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by",
+        "model_outputs": [
+            "\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)\n```",
+            "\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_right (by linarith) (by ring)\n```",
+            "\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)\n```",
+            "\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)\n```",
+            "\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)\n```",
+            "\n  rw [h]\n  <;> simp_all [Nat.mul_div_cancel_left]\n  <;> omega\n  <;> exact Nat.pos_of_ne_zero fun h => by simp_all\n```",
+            "\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)\n```\n\nThe theorem `nat_div_eq_of_mul_eq` states that if `n = d * m` and `d` is a positive integer, then `n / d = m`. This is a fundamental property of division and multiplication in the natural numbers.\n\n**Proof:**\n\n1. Assume `n = d * m` and `d \u2265 1`.\n2. We need to show that `n / d = m`.\n3. By the definition of division, `n / d` is the largest integer `k` such that `d * k \u2264 n`.\n4. Substitute `n = d * m` into this inequality: `d * k \u2264 d * m`.\n5. Since `d \u2265 1`, we can divide both sides by `d` to get `k \u2264 m`.\n6. Additionally, we need to ensure that `k * d \u2265 n`, which becomes `k * d \u2265 d * m` after substitution. Since `d \u2265 1`, we can divide both sides by `d` to get `k \u2265 m`.\n7. Combining `k \u2264 m` and `k \u2265 m`, we get `k = m`.\n8. Therefore, `n / d = m`.\n\nThis completes the proof that `n / d = m` under the given conditions.",
+            "\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)\n```",
+            "\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_right (by positivity) (by ring)\n```",
+            "\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by positivity) (by ring)\n```",
+            "\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)\n```",
+            "\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by positivity) (by ring)\n```",
+            "\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)\n```",
+            "\n  have h\u2081 : n / d = m := by\n    rw [h]\n    have h\u2082 : d * m / d = m := by\n      apply Nat.div_eq_of_eq_mul_left\n      \u00b7 linarith\n      \u00b7 nlinarith\n    exact h\u2082\n  exact h\u2081\n```",
+            "\n  rw [h]\n  apply Nat.div_eq_of_eq_mul_left (by linarith)\n  <;> ring\n  <;> omega\n  <;> simp_all\n  <;> omega\n  <;> omega\n  <;> omega\n```",
+            "\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)\n```"
+        ],
+        "full_code": [
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_right (by linarith) (by ring)",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  <;> simp_all [Nat.mul_div_cancel_left]\n  <;> omega\n  <;> exact Nat.pos_of_ne_zero fun h => by simp_all",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_right (by positivity) (by ring)",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by positivity) (by ring)",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by positivity) (by ring)",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  have h\u2081 : n / d = m := by\n    rw [h]\n    have h\u2082 : d * m / d = m := by\n      apply Nat.div_eq_of_eq_mul_left\n      \u00b7 linarith\n      \u00b7 nlinarith\n    exact h\u2082\n  exact h\u2081",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  apply Nat.div_eq_of_eq_mul_left (by linarith)\n  <;> ring\n  <;> omega\n  <;> simp_all\n  <;> omega\n  <;> omega\n  <;> omega",
+            "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)"
+        ]
+    }
+]

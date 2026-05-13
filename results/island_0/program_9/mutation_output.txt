@@ -1,0 +1,36 @@
+>>>>SEARCH
+lemma fin_card_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ N := by
+  -- omitted
+  sorry
+>>>>REPLACE
+/-- Helper: one step drop consumption: if `t (k+1) ≤ t k - 1` then
+    `t (k+1) + 1 ≤ t k`. This expresses the idea that a single strict drop
+    consumes at least one unit of the initial budget. -/
+lemma one_step_drop_consumes_budget (t : ℕ → ℕ) (k : ℕ) :
+  t (k + 1) ≤ t k - 1 → t (k + 1) + 1 ≤ t k := by
+  sorry
+
+/-- Summed budget bound on initial segments.
+    Intuitively, each strict drop in [0,K) consumes at least one unit from the initial
+    value `t 0`, so the number of drops up to K is bounded by `t 0`. We state the
+    resulting cardinality bound here (proof omitted). -/
+lemma sum_budget_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+  sorry
+
+/-- Cardinality bound for the number of strict drops in initial segments.
+    This is the wrapper glue-lemma that uses the more detailed `sum_budget_bound`
+    above to conclude the desired uniform cardinality bound by transitivity with
+    the global bound `t 0 ≤ N`. -/
+lemma fin_card_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ N := by
+  -- delegate the combinatorial/budget argument to the helper lemma
+  have hsum : ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+    exact sum_budget_bound t N h0 hnoninc
+  -- now finish by transitivity with the hypothesis t 0 ≤ N
+  intro K
+  exact Nat.le_trans (hsum K) h0

@@ -1,0 +1,7 @@
+lemma odd_gcd {a b : ℕ} (ha : Odd a) (hb : Odd b) : Odd (Nat.gcd a b) := by
+Failure mode: HARD
+Recommendation: Prove it by contradiction via divisibility of the gcd.
+1) Lemma: `Even (Nat.gcd a b) ↔ 2 ∣ Nat.gcd a b`.
+2) Lemma: `p ∣ Nat.gcd a b → p ∣ a ∧ p ∣ b`.
+3) Lemma: `Odd x → ¬ (2 ∣ x)`.
+4) Conclude: if `2 ∣ Nat.gcd a b` then `2 ∣ a` and `2 ∣ b`, contradicting `ha` and `hb`, hence `Odd (Nat.gcd a b)`.

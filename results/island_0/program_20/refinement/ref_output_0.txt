@@ -1,0 +1,16 @@
+>>>>SEARCH
+  (k : ℕ)
+  (h_coprime_succ : Nat.Coprime (m (k + 1)) (n (k + 1)))
+  (h_n_succ_pos : 0 < n (k + 1)) :
+>>>>REPLACE
+  (k : ℕ) :
+>>>>SEARCH
+    exact helper_diff_evolution m n h_recurrence k
+>>>>REPLACE
+    exact helper_diff_evolution m n h_recurrence k hnext
+>>>>SEARCH
+      _ = (2 : ℕ) ^ u1 * (r1 / d) := by
+        exact h_scaled_eq
+>>>>REPLACE
+      _ = (2 : ℕ) ^ (u1 + 1) * (r1 / d) := by
+        exact h_scaled_eq

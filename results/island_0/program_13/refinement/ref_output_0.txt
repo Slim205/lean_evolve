@@ -1,0 +1,15 @@
+>>>>SEARCH
+/-- Abstract finiteness lemma: if for every K the number of drops in [0,K) is ≤ N,
+    then the full set of drops is finite. (Proof omitted.) -/
+>>>>REPLACE
+-- Abstract finiteness lemma: if for every K the number of drops in [0,K) is ≤ N,
+-- then the full set of drops is finite. (Proof omitted.)
+>>>>SEARCH
+  have hbad : N + 1 ≤ N := by
+    rwa [← hFcard] at hFle
+  exact Nat.not_succ_le_self N hbad
+>>>>REPLACE
+  have hbad : N + 1 ≤ N := by
+    rw [hFcard] at hFle
+    exact hFle
+  exact Nat.not_succ_le_self N hbad

@@ -1,0 +1,43 @@
+>>>>SEARCH
+lemma le_of_mul_eq_left (p q x y : ℕ)
+  (h : (2 : ℕ) ^ p * x = (2 : ℕ) ^ q * y) (hx_odd : x % 2 = 1) :
+  q ≤ p := by
+  -- With x odd, the 2-adic valuation of the LHS is exactly p, while the RHS has valuation
+  -- q + v2(y); hence p = q + v2(y) and in particular q ≤ p. Proof omitted.
+  sorry
+>>>>REPLACE
+lemma odd_pos (x : ℕ) (hx : x % 2 = 1) : 0 < x := by
+  -- odd numbers are positive; proof omitted
+  sorry
+
+lemma pow_succ_dvd_pow_mul (p q y : ℕ) (hpq : p < q) :
+  ((2 : ℕ) ^ (p + 1) ∣ ((2 : ℕ) ^ q * y)) := by
+  -- if p < q then 2^(p+1) divides 2^q * y; proof omitted
+  sorry
+
+lemma dvd_of_eq {d A B : ℕ} (h : A = B) (hd : d ∣ B) : d ∣ A := by
+  -- if A = B and d ∣ B then d ∣ A; proof omitted
+  sorry
+
+lemma pow_succ_dvd_pow_mul_implies_two_dvd {p x : ℕ}
+  (h : ((2 : ℕ) ^ (p + 1) ∣ ((2 : ℕ) ^ p * x))) : 2 ∣ x := by
+  -- from 2^(p+1) ∣ 2^p * x derive 2 ∣ x by cancelling 2^p; proof omitted
+  sorry
+
+lemma le_of_mul_eq_left (p q x y : ℕ)
+  (h : (2 : ℕ) ^ p * x = (2 : ℕ) ^ q * y) (hx_odd : x % 2 = 1) :
+  q ≤ p := by
+  -- Proceed by cases: either p < q (impossible because x is odd) or ¬(p < q) which yields q ≤ p.
+  by_cases hpq : p < q
+  · -- derive a contradiction: from p < q we obtain 2^(p+1) ∣ 2^p * x, hence 2 ∣ x, contradicting oddness
+    have hpow : ((2 : ℕ) ^ (p + 1) ∣ ((2 : ℕ) ^ q * y)) := by
+      exact pow_succ_dvd_pow_mul p q y hpq
+    have hpow' : ((2 : ℕ) ^ (p + 1) ∣ ((2 : ℕ) ^ p * x)) := by
+      exact dvd_of_eq h hpow
+    have h2divx : 2 ∣ x := by
+      exact pow_succ_dvd_pow_mul_implies_two_dvd hpow'
+    -- odd_not_two_dvd is defined elsewhere in the file: it yields ¬ (2 ∣ x) from x % 2 = 1
+    have hfalse : False := (odd_not_two_dvd hx_odd) h2divx
+    exact False.elim hfalse
+  · -- otherwise ¬(p < q), hence q ≤ p
+    exact Nat.le_of_not_lt hpq

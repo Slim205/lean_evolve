@@ -1,0 +1,12 @@
+lemma natAbs_two_mul_div_of_odd_divisor (z : ℤ) (d : ℕ)
+  (hd_odd : d % 2 = 1) (hdiv : (d : ℤ) ∣ z) :
+  Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = 2 * (Int.natAbs z / d) := by
+Failure mode: HARD
+Recommendation: Decompose into exact-division and `natAbs`-multiplicativity facts.
+1) Lemma: `d % 2 = 1 → (d : ℤ) ≠ 0` (equivalently `0 < d` in ℕ).
+2) Lemma: If `(d : ℤ) ∣ z`, then `∃ q : ℤ, z = (d : ℤ) * q`.
+3) Lemma: For `z = (d : ℤ) * q` with `d ≠ 0`, one has `((2:ℤ) * z) / (d:ℤ) = (2:ℤ) * q` (exact integer division under a divisibility hypothesis).
+4) Lemma: For `d : ℕ` and `q : ℤ`, `Int.natAbs ((d : ℤ) * q) = d * Int.natAbs q`.
+5) Lemma: If `d ∣ Int.natAbs z` then `Int.natAbs z / d` is the exact quotient; in particular under `z = (d:ℤ)*q` conclude `Int.natAbs z / d = Int.natAbs q`.
+6) Lemma: `Int.natAbs ((2:ℤ) * q) = 2 * Int.natAbs q`.
+7) Combine (3)(6) for the left side and (4)(5) for the right side.

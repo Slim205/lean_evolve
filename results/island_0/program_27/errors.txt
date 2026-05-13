@@ -1,0 +1,11 @@
+ERROR from position {'line': 55, 'column': 10} to {'line': 55, 'column': 24}:
+unknown identifier 'n_succ_nonzero'
+
+ERROR from position {'line': 61, 'column': 21} to {'line': 61, 'column': 36}:
+type mismatch
+  n_succ_nz
+has type
+  ↑(n (k + 1)) ≠ 0 : Prop
+but is expected to have type
+  n (k + 1) ≠ 0 : Prop
+

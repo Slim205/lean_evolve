@@ -1,0 +1,8 @@
+>>>>SEARCH
+exact coprime_dvd_of_dvd_mul_right (h_coprime_succ k) hm_div_mul
+>>>>REPLACE
+exact @coprime_dvd_of_dvd_mul_right (m (k + 1)) (n (k + 1)) (2 * m k + 1) (h_coprime_succ k) hm_div_mul
+>>>>SEARCH
+exact coprime_dvd_of_dvd_mul_right (h_coprime_succ k) hn_div_mul
+>>>>REPLACE
+exact @coprime_dvd_of_dvd_mul_right (n (k + 1)) (m (k + 1)) (2 * n k + 1) (Nat.Coprime.symm (h_coprime_succ k)) hn_div_mul

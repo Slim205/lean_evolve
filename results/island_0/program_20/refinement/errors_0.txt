@@ -1,0 +1,25 @@
+ERROR from position {'line': 562, 'column': 65} to None:
+expected ';' or line break
+
+ERROR from position {'line': 618, 'column': 4} to {'line': 618, 'column': 51}:
+type mismatch
+  helper_next_eq_div_gcd m n h_recurrence k
+has type
+  (m (k + 1)).Coprime (n (k + 1)) →
+    0 < n (k + 1) →
+      let d := (2 * m k + 1).gcd (2 * n k + 1);
+      m (k + 1) = (2 * m k + 1) / d ∧ n (k + 1) = (2 * n k + 1) / d : Prop
+but is expected to have type
+  m (k + 1) = (2 * m k + 1) / d ∧ n (k + 1) = (2 * n k + 1) / d : Prop
+
+ERROR from position {'line': 627, 'column': 10} to {'line': 627, 'column': 31}:
+unknown identifier 'helper_diff_evolution'
+
+ERROR from position {'line': 644, 'column': 8} to {'line': 644, 'column': 25}:
+type mismatch
+  h_scaled_eq
+has type
+  (2 * z / ↑d).natAbs = 2 ^ (u1 + 1) * (r1 / d) : Prop
+but is expected to have type
+  (2 * z / ↑d).natAbs = 2 ^ u1 * (r1 / d) : Prop
+

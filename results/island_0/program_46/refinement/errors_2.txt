@@ -1,0 +1,3 @@
+ERROR from position {'line': 970, 'column': 4} to {'line': 970, 'column': 22}:
+no goals to be solved
+

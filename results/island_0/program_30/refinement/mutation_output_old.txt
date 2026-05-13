@@ -1,0 +1,206 @@
+>>>>SEARCH
+/-- Helper A: the successor pair is the reduction of (2*m_k+1,2*n_k+1) by their gcd `d`. -/
+lemma helper_next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+  sorry
+>>>>REPLACE
+/-- Helper A: the successor pair is the reduction of (2*m_k+1,2*n_k+1) by their gcd `d`.
+This cannot be deduced from the rational equality alone; we therefore require that the
+successor pair is normalized (coprime) and that the successor denominator is nonzero,
+so that the rational equality identifies the reduced fraction uniquely. -/
+lemma helper_next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_nsucc_nonzero : ∀ k, (n (k + 1) : ℚ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+  -- The proof requires the extra normalization/coprimality hypothesis and that the successor
+  -- denominator is nonzero so that the rational equality determines the reduced numerator
+  -- and denominator uniquely; we omit the algebraic uniqueness proof here.
+  sorry
+>>>>SEARCH
+/-- Helper C: the recurrence yields the integer evolution
+    (m_{k+1} - n_{k+1}) = (2*(m_k - n_k)) / d in `ℤ`, with `d` as above. -/
+lemma helper_diff_evolution
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+  sorry
+>>>>REPLACE
+/-- Helper C: if the successor pair is given by dividing (2*m_k+1,2*n_k+1) by their gcd
+`d` then the integer difference evolves as
+    (m_{k+1} - n_{k+1}) = (2*(m_k - n_k)) / d
+in `ℤ`. We state the lemma assuming the pair-equalities as input (this avoids deriving them
+from the rational equality inside this helper). -/
+lemma helper_diff_evolution
+  (m n : ℕ → ℕ)
+  (k : ℕ)
+  (h_next_eqs : let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1) in
+    (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d)) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+  -- Straightforward algebraic rewriting from the integer equalities; omitted.
+  sorry
+>>>>SEARCH
+lemma helper_natabs_scaling_by_odd_div
+  (z : ℤ) (u r : ℕ) (d : ℕ)
+  (hA : Int.natAbs z = (2 : ℕ) ^ u * r)
+  (hrodd : r % 2 = 1) (hrpos : 0 < r)
+  (hdodd : d % 2 = 1) (hd_dvd : (d : ℤ) ∣ z) :
+  Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = (2 : ℕ) ^ u * (r / d) ∧ (r / d) % 2 = 1 ∧ 0 < (r / d) := by
+  sorry
+>>>>REPLACE
+lemma helper_natabs_scaling_by_odd_div
+  (z : ℤ) (u r : ℕ) (d : ℕ)
+  (hA : Int.natAbs z = (2 : ℕ) ^ u * r)
+  (hrodd : r % 2 = 1) (hrpos : 0 < r)
+  (hdodd : d % 2 = 1) (hd_dvd : (d : ℤ) ∣ z) :
+  -- multiplying by 2 increases the 2-adic exponent by 1; dividing by an odd `d` preserves it,
+  -- hence the natAbs becomes 2^(u+1) * (r/d). We also assert that `d` divides `r` so that `r/d`
+  -- is a natural number; the derivation of `d ∣ r` from `hd_dvd` + oddness is omitted.
+  Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = (2 : ℕ) ^ (u + 1) * (r / d) ∧ (r / d) % 2 = 1 ∧ 0 < (r / d) := by
+  sorry
+>>>>SEARCH
+lemma odd_part_noninc_step
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∀ k u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 ≤ r1 := by
+  intro k u1 r1 u2 r2 hA1 hodd1 hpos1 hA2 hodd2 hpos2
+  -- set d
+  let d := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+
+  -- get next-equals-division by gcd
+  have hnext : (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+    exact helper_next_eq_div_gcd m n h_recurrence k
+
+  -- gcd oddness and divisibility of the integer difference
+  have hg := by exact helper_gcd_odd_and_dvd_diff m n k
+  rcases hg with ⟨hd_odd, hd_dvd⟩
+
+  -- relation giving exact integer evolution of the difference
+  have hdiff : ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+    exact helper_diff_evolution m n h_recurrence k
+
+  -- apply the scaling lemma to the integer `z = m_k - n_k`
+  let z : ℤ := (m k : ℤ) - (n k : ℤ)
+  have hscale := by
+    exact helper_natabs_scaling_by_odd_div z u1 r1 d hA1 hodd1 hpos1 hd_odd hd_dvd
+
+  rcases hscale with ⟨h_scaled_eq, h_rdiv_odd, h_rdiv_pos⟩
+
+  -- now relate the k+1 decomposition to the scaled expression: both are the natAbs of the same integer
+  have hL : (2 : ℕ) ^ u2 * r2 = (2 : ℕ) ^ u1 * (r1 / d) := by
+    calc
+      (2 : ℕ) ^ u2 * r2 = Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) := by
+        exact Eq.symm hA2
+      _ = Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) := by
+        rw [hdiff]
+      _ = (2 : ℕ) ^ u1 * (r1 / d) := by
+        exact h_scaled_eq
+
+  -- cancel powers of two using oddness to deduce r2 = r1 / d, hence r2 ≤ r1
+  have hu_eqs := helper_pow_two_mul_eq_of_odds u2 u1 r2 (r1 / d) hpos2 h_rdiv_pos hodd2 h_rdiv_odd
+  have hr_eq := (hu_eqs hL).2
+
+  -- conclude r2 ≤ r1
+  have : r2 = r1 / d := by exact hr_eq
+  calc
+    r2 = r1 / d := by exact this
+    _ ≤ r1 := Nat.div_le_self _ _
+>>>>REPLACE
+lemma odd_part_noninc_step
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_nsucc_nonzero : ∀ k, (n (k + 1) : ℚ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∀ k u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 ≤ r1 := by
+  intro k u1 r1 u2 r2 hA1 hodd1 hpos1 hA2 hodd2 hpos2
+  -- set d
+  let d := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+
+  -- get next-equals-division by gcd (requires nonzero denominator and coprimality normalization)
+  have hnext : (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+    exact helper_next_eq_div_gcd m n h_recurrence h_nsucc_nonzero h_coprime k
+
+  -- gcd oddness and divisibility of the integer difference
+  have hg := by exact helper_gcd_odd_and_dvd_diff m n k
+  rcases hg with ⟨hd_odd, hd_dvd⟩
+
+  -- relation giving exact integer evolution of the difference (uses the equalities above)
+  have hdiff := by
+    exact helper_diff_evolution m n k hnext
+
+  -- apply the scaling lemma to the integer `z = m_k - n_k`
+  let z : ℤ := (m k : ℤ) - (n k : ℤ)
+  have hscale := by
+    exact helper_natabs_scaling_by_odd_div z u1 r1 d hA1 hodd1 hpos1 hd_odd hd_dvd
+
+  rcases hscale with ⟨h_scaled_eq, h_rdiv_odd, h_rdiv_pos⟩
+
+  -- now relate the k+1 decomposition to the scaled expression: both are the natAbs of the same integer
+  have hL : (2 : ℕ) ^ u2 * r2 = (2 : ℕ) ^ (u1 + 1) * (r1 / d) := by
+    calc
+      (2 : ℕ) ^ u2 * r2 = Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) := by
+        exact Eq.symm hA2
+      _ = Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) := by
+        rw [hdiff]
+      _ = (2 : ℕ) ^ (u1 + 1) * (r1 / d) := by
+        exact h_scaled_eq
+
+  -- cancel powers of two using oddness to deduce r2 = r1 / d, hence r2 ≤ r1
+  have hu_eqs := helper_pow_two_mul_eq_of_odds u2 (u1 + 1) r2 (r1 / d) hpos2 h_rdiv_pos hodd2 h_rdiv_odd
+  have hr_eq := (hu_eqs hL).2
+
+  -- conclude r2 ≤ r1
+  have : r2 = r1 / d := by exact hr_eq
+  calc
+    r2 = r1 / d := by exact this
+    _ ≤ r1 := Nat.div_le_self _ _
+>>>>SEARCH
+  have hnoninc : ∀ k, t (k + 1) ≤ t k := by
+    intro k
+    have Hk := hu k
+    have Hk1 := hu (k + 1)
+    -- apply the stepwise nonincrease lemma using the equalities and oddness/positivity facts
+    exact odd_part_noninc_step m n h_recurrence h_coprime k (u k) (r k) (u (k + 1)) (r (k + 1))
+      (Hk) ((hr k).1) ((hr k).2) (Hk1) ((hr (k + 1)).1) ((hr (k + 1)).2)
+>>>>REPLACE
+  have hnoninc : ∀ k, t (k + 1) ≤ t k := by
+    intro k
+    have Hk := hu k
+    have Hk1 := hu (k + 1)
+    -- obtain the nonzero-denominator fact needed by the helper
+    have h_nsucc := n_succ_nonzero m n h_recurrence
+    -- apply the stepwise nonincrease lemma using the equalities and oddness/positivity facts
+    exact odd_part_noninc_step m n h_recurrence h_nsucc h_coprime k (u k) (r k) (u (k + 1)) (r (k + 1))
+      (Hk) ((hr k).1) ((hr k).2) (Hk1) ((hr (k + 1)).1) ((hr (k + 1)).2)

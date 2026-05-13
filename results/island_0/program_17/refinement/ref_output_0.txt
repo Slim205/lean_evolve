@@ -1,0 +1,6 @@
+>>>>SEARCH
+    have hnot_next : ¬ ((2 : ℕ) ^ (u + 1) ∣ A) := by
+    exact maximality_implies_no_next_divides A S u rfl u_mem u_max
+>>>>REPLACE
+    have hnot_next : ¬ ((2 : ℕ) ^ (u + 1) ∣ A) := by
+    exact maximality_implies_no_next_divides A S u hpos rfl u_mem u_max

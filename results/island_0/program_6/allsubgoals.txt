@@ -1,0 +1,52 @@
+lemma denom_nonzero_from_recurrence
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k, ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0 ∧ ((2 : ℚ) * (m k : ℚ) + 1) ≠ 0 := by
+lemma n_succ_nonzero
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k, (n (k + 1) : ℚ) ≠ 0 := by
+lemma succ_equal_implies_ratio_one
+  (m n : ℕ → ℕ)
+  (h_n_succ_nonzero : ∀ k, (n (k + 1) : ℚ) ≠ 0)
+  (k : ℕ) :
+  m (k + 1) = n (k + 1) →
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = 1 := by
+lemma ratio_one_implies_eq_prev
+  (m n : ℕ → ℕ)
+  (h_denom_nonzero : ∀ k, ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0)
+  (k : ℕ) :
+  (((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1) = 1) → m k = n k := by
+lemma int_sub_eq_zero_iff_eq_nat (a b : ℕ) : ((a : ℤ) - (b : ℤ) = 0) ↔ a = b := by
+lemma finite_strict_drops_of_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N) :
+  {k : ℕ | t (k + 1) < t k}.Finite := by
+lemma decomposition_of_diff
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0) :
+  ∀ k : ℕ, ∃ (u r : ℕ),
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+lemma odd_part_noninc_step
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∀ k u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 ≤ r1 := by
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by

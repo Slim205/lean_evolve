@@ -1,0 +1,1215 @@
+import Mathlib
+import Aesop
+
+set_option maxHeartbeats 0
+
+open BigOperators Real Nat Topology Rat
+
+theorem nat_cast_nonneg (a : ℕ) : (a : ℚ) ≥ 0 := by
+  exact_mod_cast Nat.zero_le a
+theorem two_nonneg : (2 : ℚ) ≥ 0 := by norm_num
+theorem mul_nonneg_of_nonneg {x y : ℚ} (hx : x ≥ 0) (hy : y ≥ 0) : x * y ≥ 0 := by
+  apply mul_nonneg hx hy
+theorem one_pos_q : (1 : ℚ) > 0 := by norm_num
+theorem add_pos_of_nonneg_and_pos {x y : ℚ} (hx : x ≥ 0) (hy : y > 0) : x + y > 0 := by
+  have : x + y > 0 := by linarith
+  exact this
+theorem pos_ne_zero {x : ℚ} (h : x > 0) : x ≠ 0 := by
+  exact ne_of_gt h
+lemma two_mul_nat_plus_one_nonzero (a : ℕ) : ((2 : ℚ) * (a : ℚ) + 1) ≠ 0 := by
+  have ha_nonneg : (a : ℚ) ≥ 0 := by exact nat_cast_nonneg a
+  have h2_nonneg : (2 : ℚ) ≥ 0 := by exact two_nonneg
+  have hmul_nonneg : (2 : ℚ) * (a : ℚ) ≥ 0 := by exact mul_nonneg_of_nonneg h2_nonneg ha_nonneg
+  have hone_pos : (1 : ℚ) > 0 := by exact one_pos_q
+  have hsum_pos : (2 : ℚ) * (a : ℚ) + 1 > 0 := by exact add_pos_of_nonneg_and_pos hmul_nonneg hone_pos
+  exact pos_ne_zero hsum_pos
+theorem cast_two_mul_nat_plus_one (x : ℕ) :
+  ((2 : ℚ) * (x : ℚ) + 1) = ((2 * x + 1 : ℕ) : ℚ) := by
+  norm_cast
+  <;> ring_nf
+  <;> norm_cast
+  <;> omega
+theorem recurrence_cross_Q (m n : ℕ → ℕ) (k : ℕ)
+  (h_recurrence : ∀ j : ℕ,
+    (m (j + 1) : ℚ) / (n (j + 1) : ℚ) =
+      ((2 : ℚ) * (m j : ℚ) + 1) / ((2 : ℚ) * (n j : ℚ) + 1))
+  (h_n_succ_nonzero_k : (n (k + 1) : ℚ) ≠ 0)
+  (h_two_nk_nonzero : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0) :
+  (m (k + 1) : ℚ) * ((2 : ℚ) * (n k : ℚ) + 1) = (n (k + 1) : ℚ) * ((2 : ℚ) * (m k : ℚ) + 1) := by
+  have h1 : (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1) := by
+    apply h_recurrence
+  have h2 : (n (k + 1) : ℚ) ≠ 0 := by exact_mod_cast h_n_succ_nonzero_k
+  have h3 : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0 := by exact_mod_cast h_two_nk_nonzero
+  field_simp at h1
+  nlinarith
+theorem nat_cast_inj_mul {a b c d : ℕ}
+  (h : ((a : ℚ) * (b : ℚ)) = ((c : ℚ) * (d : ℚ))) : a * b = c * d := by
+  ring_nf at h
+  norm_cast at h ⊢
+  <;>
+  simp_all [mul_comm, mul_assoc, mul_left_comm]
+  <;>
+  omega
+lemma cross_mul_eq_nat
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (h_n_succ_nonzero_k : (n (k + 1) : ℚ) ≠ 0)
+  (h_two_nk_nonzero : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0) :
+  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by
+  have hq : (m (k + 1) : ℚ) * ((2 : ℚ) * (n k : ℚ) + 1) =
+            (n (k + 1) : ℚ) * ((2 : ℚ) * (m k : ℚ) + 1) := by
+    exact recurrence_cross_Q m n k h_recurrence h_n_succ_nonzero_k h_two_nk_nonzero
+
+  have hleft_cast : ((2 : ℚ) * (n k : ℚ) + 1) = ((2 * n k + 1 : ℕ) : ℚ) := by
+    exact cast_two_mul_nat_plus_one (n k)
+  have hright_cast : ((2 : ℚ) * (m k : ℚ) + 1) = ((2 * m k + 1 : ℕ) : ℚ) := by
+    exact cast_two_mul_nat_plus_one (m k)
+
+  have hq_natcasts : (m (k + 1) : ℚ) * ((2 * n k + 1 : ℕ) : ℚ) =
+                     (n (k + 1) : ℚ) * ((2 * m k + 1 : ℕ) : ℚ) := by
+    rw [hleft_cast, hright_cast] at hq
+    exact hq
+
+  have hnat : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by
+    apply nat_cast_inj_mul
+    exact hq_natcasts
+  exact hnat
+theorem coprime_dvd_of_dvd_mul_right {a b x : ℕ}
+  (hc : Nat.Coprime a b) (h : a ∣ b * x) : a ∣ x := by
+  have h₁ : a ∣ b * x := h
+  have h₂ : a ∣ x := by
+    apply?
+  exact h₂
+theorem build_common_scaling_from_divs (m n : ℕ → ℕ) (k : ℕ)
+  (cross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1))
+  (hm_div : m (k + 1) ∣ (2 * m k + 1))
+  (hn_div : n (k + 1) ∣ (2 * n k + 1)) :
+  ∃ c : ℕ, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+  have h₁ : m (k + 1) ∣ (2 * m k + 1) := hm_div
+  have h₂ : n (k + 1) ∣ (2 * n k + 1) := hn_div
+  have h₃ : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := cross_eq
+  have h₄ : ∃ c : ℕ, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+    have h₅ : m (k + 1) ∣ (2 * m k + 1) := hm_div
+    have h₆ : n (k + 1) ∣ (2 * n k + 1) := hn_div
+    have h₇ : m (k + 1) ∣ (2 * m k + 1) := hm_div
+    have h₈ : n (k + 1) ∣ (2 * n k + 1) := hn_div
+    obtain ⟨d, hd⟩ := h₅
+    obtain ⟨e, he⟩ := h₆
+    use d
+    constructor
+    · rw [hd]
+      nlinarith
+    · rw [he]
+      nlinarith
+  exact h₄
+lemma next_scaling_exists
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_n_succ_nonzero : ∀ k, (n (k + 1) : ℚ) ≠ 0)
+  (h_coprime_succ : ∀ k, Nat.Coprime (m (k + 1)) (n (k + 1)))
+  (k : ℕ) :
+  ∃ c : ℕ, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+  have h2n_nonzero : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0 := by
+    exact two_mul_nat_plus_one_nonzero (n k)
+
+  have hcross : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by
+    exact cross_mul_eq_nat m n h_recurrence k (h_n_succ_nonzero k) h2n_nonzero
+
+  have hm_div_mul : m (k + 1) ∣ n (k + 1) * (2 * m k + 1) := by
+    have : n (k + 1) * (2 * m k + 1) = m (k + 1) * (2 * n k + 1) := by
+      exact Eq.symm hcross
+    rw [this]
+    exact dvd_mul_right _ _
+
+  have hm_div : m (k + 1) ∣ (2 * m k + 1) := by
+    exact @coprime_dvd_of_dvd_mul_right (m (k + 1)) (n (k + 1)) (2 * m k + 1) (h_coprime_succ k) hm_div_mul
+
+  have hn_div_mul : n (k + 1) ∣ m (k + 1) * (2 * n k + 1) := by
+    have : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by
+      exact hcross
+    rw [this]
+    exact dvd_mul_right _ _
+  have hn_div : n (k + 1) ∣ (2 * n k + 1) := by
+    exact @coprime_dvd_of_dvd_mul_right (n (k + 1)) (m (k + 1)) (2 * n k + 1) (Nat.Coprime.symm (h_coprime_succ k)) hn_div_mul
+
+  have hex : ∃ c, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+    exact build_common_scaling_from_divs m n k hcross hm_div hn_div
+  exact hex
+theorem scaling_factor_eq_gcd (m n : ℕ → ℕ) (k c : ℕ)
+  (hc1 : (2 * m k + 1) = c * m (k + 1))
+  (hc2 : (2 * n k + 1) = c * n (k + 1))
+  (h_coprime_succ : Nat.Coprime (m (k + 1)) (n (k + 1))) :
+  c = Nat.gcd (2 * m k + 1) (2 * n k + 1) := by
+  have h₁ : c = Nat.gcd (2 * m k + 1) (2 * n k + 1) := by
+    rw [show (2 * m k + 1) = c * m (k + 1) by omega]
+    rw [show (2 * n k + 1) = c * n (k + 1) by omega]
+    rw [Nat.gcd_mul_left]
+    <;> simp [h_coprime_succ, Nat.gcd_eq_right]
+  exact h₁
+theorem n_succ_nonzero (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k, (n (k + 1) : ℚ) ≠ 0 := by
+  intro k
+  have h1 : (n (k + 1) : ℚ) ≠ 0 := by
+    have h2 : (n (k + 1) : ℚ) ≠ 0 := by
+      intro h
+      have h3 := h_recurrence k
+      field_simp [h] at h3
+      <;> norm_cast at h3 ⊢ <;> ring_nf at h3 ⊢ <;> omega
+    exact h2
+  exact h1
+lemma next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  ((2 * m k + 1) = d * m (k + 1)) ∧ ((2 * n k + 1) = d * n (k + 1)) := by
+  have hscal : ∃ c, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+
+    exact next_scaling_exists m n h_recurrence (n_succ_nonzero m n h_recurrence)
+      (fun i => h_coprime (i + 1) (Nat.succ_pos i)) k
+  rcases hscal with ⟨c, ⟨hc1, hc2⟩⟩
+
+  have hc_gcd : c = Nat.gcd (2 * m k + 1) (2 * n k + 1) := by
+    have succ_copr : Nat.Coprime (m (k + 1)) (n (k + 1)) := h_coprime (k + 1) (Nat.succ_pos k)
+    exact scaling_factor_eq_gcd m n k c hc1 hc2 succ_copr
+
+  let d := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  have : (2 * m k + 1) = d * m (k + 1) := by
+    rw [hc_gcd] at hc1
+    exact hc1
+  have : (2 * n k + 1) = d * n (k + 1) := by
+    rw [hc_gcd] at hc2
+    exact hc2
+  exact ⟨by assumption, by assumption⟩
+theorem denom_nonzero_from_recurrence (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k, ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0 ∧ ((2 : ℚ) * (m k : ℚ) + 1) ≠ 0 := by
+  intro k
+  have h₁ : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0 ∧ ((2 : ℚ) * (m k : ℚ) + 1) ≠ 0 := by
+    have h₂ := h_recurrence k
+    have h₃ := h_recurrence 0
+    have h₄ := h_recurrence 1
+    have h₅ := h_recurrence 2
+    norm_num at h₂ h₃ h₄ h₅
+    <;>
+    (try simp_all [div_eq_mul_inv])
+    <;>
+    (try norm_num)
+    <;>
+    (try field_simp at * )
+    <;>
+    (try ring_nf at * )
+    <;>
+    (try norm_cast at * )
+    <;>
+    (try omega)
+  exact h₁
+theorem succ_equal_implies_ratio_one (m n : ℕ → ℕ)
+  (h_n_succ_nonzero : ∀ k, (n (k + 1) : ℚ) ≠ 0)
+  (k : ℕ) :
+  m (k + 1) = n (k + 1) →
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = 1 := by
+  intro h
+  have h₁ : (n (k + 1) : ℚ) ≠ 0 := h_n_succ_nonzero k
+  field_simp [h₁] at h ⊢
+  <;> simp_all
+theorem ratio_one_implies_eq_prev (m n : ℕ → ℕ)
+  (h_denom_nonzero : ∀ k, ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0)
+  (k : ℕ) :
+  (((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1) = 1) → m k = n k := by
+  intro h
+  have h1 : ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1) = 1 := h
+  have h2 : (2 : ℚ) * (n k : ℚ) + 1 ≠ 0 := h_denom_nonzero k
+  field_simp at h1
+  ring_nf at h1
+  norm_cast at h1
+  <;> omega
+theorem int_sub_eq_zero_iff_eq_nat (a b : ℕ) : ((a : ℤ) - (b : ℤ) = 0) ↔ a = b := by
+  simp [sub_eq_zero]
+  <;> omega
+lemma diff_ne_zero
+  (m n : ℕ → ℕ)
+  (h_distinct : m 0 ≠ n 0)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0 := by
+  have hden : ∀ k, ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0 ∧ ((2 : ℚ) * (m k : ℚ) + 1) ≠ 0 := by
+    exact denom_nonzero_from_recurrence m n h_recurrence
+  have hsucc_nonzero : ∀ k, (n (k + 1) : ℚ) ≠ 0 := by
+    exact n_succ_nonzero m n h_recurrence
+  have hsucc_one := by exact fun k => succ_equal_implies_ratio_one m n hsucc_nonzero k
+  have heq_prev := by exact fun k => ratio_one_implies_eq_prev m n (fun k => (hden k).1) k
+
+  have hmn : ∀ k, m k ≠ n k := by
+    intro k
+    induction k with
+    | zero => exact h_distinct
+    | succ k ih =>
+      by_contra h_eq_succ
+      have hL : (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = 1 := by
+        apply (hsucc_one k)
+        exact h_eq_succ
+      have hR : ((2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1) = 1) := by
+        calc
+          (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1) = (m (k + 1) : ℚ) / (n (k + 1) : ℚ) := Eq.symm (h_recurrence k)
+          _ = 1 := hL
+      have mk_eq_nk : m k = n k := by
+        apply (heq_prev k)
+        exact hR
+      exact ih mk_eq_nk
+
+  intro k
+  intro hzero
+  have eq_nat : m k = n k := by
+    have : (m k : ℤ) - (n k : ℤ) = 0 := hzero
+    exact (int_sub_eq_zero_iff_eq_nat (m k) (n k)).1 this
+  exact (hmn k) eq_nat
+theorem odd_two_mul_add_one_nat (x : ℕ) : (2 * x + 1) % 2 = 1 := by
+  rw [Nat.add_mod]
+  simp [Nat.mul_mod]
+  <;> simp
+  <;> omega
+theorem mod2_eq_one_iff_odd (x : ℕ) : x % 2 = 1 ↔ Odd x := by
+  simp [Nat.odd_iff_not_even, Nat.even_iff]
+  <;> omega
+theorem gcd_divides_both (p a b : ℕ) : p ∣ Nat.gcd a b → p ∣ a ∧ p ∣ b := by
+  intro h
+  have h₁ : p ∣ Nat.gcd a b := h
+  have h₂ : p ∣ a := Nat.dvd_trans h₁ (Nat.gcd_dvd_left a b)
+  have h₃ : p ∣ b := Nat.dvd_trans h₁ (Nat.gcd_dvd_right a b)
+  exact ⟨h₂, h₃⟩
+theorem not_odd_imp_two_dvd {x : ℕ} : ¬ Odd x → 2 ∣ x := by
+  intro h
+  rw [Nat.dvd_iff_mod_eq_zero]
+  cases' Nat.mod_two_eq_zero_or_one x with h₁ h₁
+  exact?
+  exfalso
+  simp_all [Nat.odd_iff_not_even, Nat.even_iff, Nat.mod_eq_of_lt]
+  <;> omega
+theorem odd_implies_not_two_dvd {x : ℕ} (hx : Odd x) : ¬ (2 ∣ x) := by
+  cases' hx with k hk
+  rw [hk]
+  intro h
+  cases' h with m hm
+  omega
+lemma odd_gcd {a b : ℕ} (ha : Odd a) (hb : Odd b) : Odd (Nat.gcd a b) := by
+
+  by_contra hneg
+  have h2 : 2 ∣ Nat.gcd a b := by
+    exact not_odd_imp_two_dvd hneg
+  have hdivs : 2 ∣ a ∧ 2 ∣ b := by
+    exact (gcd_divides_both 2 a b) h2
+  rcases hdivs with ⟨ha2, hb2⟩
+  have na := odd_implies_not_two_dvd ha
+  exact na ha2
+theorem odd_iff_mod2_eq_one (x : ℕ) : Odd x → x % 2 = 1 := by
+  intro hx
+  cases' hx with k hk
+  omega
+lemma gcd_odd_of_odds {a b : ℕ} (ha : a % 2 = 1) (hb : b % 2 = 1) :
+  (Nat.gcd a b) % 2 = 1 := by
+  have ha_odd : Odd a := by
+    exact (mod2_eq_one_iff_odd a).mp ha
+  have hb_odd : Odd b := by
+    exact (mod2_eq_one_iff_odd b).mp hb
+
+  have h_gcd_odd : Odd (Nat.gcd a b) := by
+    exact odd_gcd ha_odd hb_odd
+
+  exact odd_iff_mod2_eq_one (Nat.gcd a b) h_gcd_odd
+theorem gcd_cast_dvd_sub (a b : ℕ) :
+  let d := Nat.gcd a b
+  (d : ℤ) ∣ ((a : ℤ) - (b : ℤ)) := by
+  intro d
+  have h₁ : (d : ℤ) ∣ ((a : ℤ) - (b : ℤ)) := by
+    have h₂ : (d : ℤ) ∣ (a : ℤ) := by exact_mod_cast Nat.gcd_dvd_left a b
+    have h₃ : (d : ℤ) ∣ (b : ℤ) := by exact_mod_cast Nat.gcd_dvd_right a b
+    exact dvd_sub h₂ h₃
+  exact h₁
+theorem nat_coprime_of_odd (d : ℕ) (hd_odd : d % 2 = 1) : Nat.Coprime d 2 := by
+  rw [Nat.coprime_iff_gcd_eq_one]
+  rw [Nat.gcd_comm]
+  rw [← Nat.mod_add_div d 2]
+  simp [hd_odd, Nat.gcd_comm]
+  <;> norm_num
+  <;> omega
+theorem int_bezout_of_coprime (a b : ℕ) (hc : Nat.Coprime a b) : ∃ x y : ℤ, x * (a : ℤ) + y * (b : ℤ) = 1 := by
+  use a.gcdA b, a.gcdB b
+  have h := Nat.gcd_eq_gcd_ab a b
+  simp_all [Int.gcd]
+  <;> norm_cast
+  <;> linarith
+theorem int_mul_dvd_of_dvd (d : ℤ) {t : ℤ} (h : d ∣ t) (y : ℤ) : d ∣ y * t := by
+  exact dvd_mul_of_dvd_right h y
+theorem int_dvd_add_of_dvd (d : ℤ) {x y : ℤ} (hdx : d ∣ x) (hdy : d ∣ y) : d ∣ (x + y) := by
+  exact dvd_add hdx hdy
+lemma odd_int_divides_cancel_two {d : ℕ} {z : ℤ}
+  (hd_odd : d % 2 = 1) (hdiv : (d : ℤ) ∣ ((2 : ℤ) * z)) :
+  (d : ℤ) ∣ z := by
+
+  have hc : Nat.Coprime d 2 := by
+    exact nat_coprime_of_odd d hd_odd
+  have hbez_ex : ∃ x y : ℤ, x * (d : ℤ) + y * (2 : ℤ) = 1 := by
+    exact int_bezout_of_coprime d 2 hc
+  rcases hbez_ex with ⟨x, y, hbez⟩
+
+  have hz_eq : z = x * (d : ℤ) * z + y * (2 : ℤ) * z := by
+    calc
+      z = 1 * z := by simp
+      _ = (x * (d : ℤ) + y * (2 : ℤ)) * z := by rw [hbez]
+      _ = x * (d : ℤ) * z + y * (2 : ℤ) * z := by ring
+
+  have hterm1 : (d : ℤ) ∣ x * (d : ℤ) * z := by
+    use x * z
+    ring
+  have hterm2 : (d : ℤ) ∣ y * (2 : ℤ) * z := by
+    have h := int_mul_dvd_of_dvd (d : ℤ) hdiv (y : ℤ)
+    simpa [mul_assoc] using h
+
+  have hsum : (d : ℤ) ∣ (x * (d : ℤ) * z + y * (2 : ℤ) * z) := by
+    exact int_dvd_add_of_dvd (d : ℤ) hterm1 hterm2
+
+  rwa [← hz_eq] at hsum
+lemma gcd_odd_and_dvd_diff
+  (m n : ℕ → ℕ)
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  d % 2 = 1 ∧ ((d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) := by
+  let a := 2 * m k + 1
+  let b := 2 * n k + 1
+  let d := Nat.gcd a b
+
+  have ha : a % 2 = 1 := by
+    exact odd_two_mul_add_one_nat (m k)
+  have hb : b % 2 = 1 := by
+    exact odd_two_mul_add_one_nat (n k)
+
+  have hd_odd : d % 2 = 1 := by
+    exact gcd_odd_of_odds ha hb
+
+  have hd_div_ab : (d : ℤ) ∣ ((a : ℤ) - (b : ℤ)) := by
+    exact (gcd_cast_dvd_sub a b)
+
+  have ab_eq_two_mul_diff : ((a : ℤ) - (b : ℤ)) = ((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) := by
+    calc
+      (a : ℤ) - (b : ℤ) = ((2 * m k + 1 : ℕ) : ℤ) - ((2 * n k + 1 : ℕ) : ℤ) := by rfl
+      _ = ((2 : ℤ) * (m k : ℤ) + 1) - ((2 : ℤ) * (n k : ℤ) + 1) := by norm_cast
+      _ = (2 : ℤ) * ((m k : ℤ) - (n k : ℤ)) := by ring
+
+  have hd_div_two_diff : (d : ℤ) ∣ ((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) := by
+    rw [ab_eq_two_mul_diff] at hd_div_ab
+    exact hd_div_ab
+
+  have hd_div_diff : (d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ)) := by
+    exact odd_int_divides_cancel_two hd_odd hd_div_two_diff
+
+  exact ⟨hd_odd, hd_div_diff⟩
+theorem global_bound_from_h0 (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) : ∀ k, t k ≤ N := by
+  intro k
+  induction' k with k ih
+  · simp_all
+  · exact le_trans (hnoninc k) ih
+theorem gap_at_least_one (t : ℕ → ℕ) (i : ℕ) :
+  t (i + 1) < t i → t (i + 1) + 1 ≤ t i := by
+  intro h
+  have h₁ := h
+  omega
+theorem no_drop_step (t : ℕ → ℕ) (hnoninc : ∀ k, t (k + 1) ≤ t k) (i : ℕ) :
+  ¬ (t (i + 1) < t i) → t (i + 1) = t i := by
+  intro h
+  have h₁ := hnoninc i
+  omega
+theorem D_succ_eq (t : ℕ → ℕ) (K : ℕ) :
+  (Finset.filter (fun i => i < (K + 1) ∧ t (i + 1) < t i) (Finset.range (K + 1))).card =
+    (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card +
+      (if t (K + 1) < t K then 1 else 0) := by
+  split_ifs with h
+  case pos =>
+    -- Case: t (K + 1) < t K is true
+    have h₁ : (Finset.filter (fun i => i < (K + 1) ∧ t (i + 1) < t i) (Finset.range (K + 1))).card =
+      (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card + 1 := by
+      -- We need to show that the number of inversions involving K+1 is 1 more than the number of inversions not involving K+1
+      have h₂ : (Finset.filter (fun i => i < (K + 1) ∧ t (i + 1) < t i) (Finset.range (K + 1))).card =
+        (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card + 1 := by
+        -- We need to show that the number of inversions involving K+1 is 1 more than the number of inversions not involving K+1
+        have h₃ : (Finset.filter (fun i => i < (K + 1) ∧ t (i + 1) < t i) (Finset.range (K + 1))) =
+          (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)) ∪ {K} := by
+          ext x
+          simp [Finset.mem_filter, Finset.mem_range, Nat.lt_succ_iff]
+          <;>
+          by_cases h₄ : x < K <;>
+          by_cases h₅ : t (x + 1) < t x <;>
+          by_cases h₆ : x = K <;>
+          simp_all [Nat.lt_succ_iff] <;>
+          omega
+        rw [h₃]
+        simp [Finset.card_range]
+        <;>
+        omega
+      exact h₂
+    simp_all
+  case neg =>
+    -- Case: t (K + 1) < t K is false
+    have h₁ : (Finset.filter (fun i => i < (K + 1) ∧ t (i + 1) < t i) (Finset.range (K + 1))).card =
+      (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card := by
+      -- We need to show that the number of inversions involving K+1 is the same as the number of inversions not involving K+1
+      have h₂ : (Finset.filter (fun i => i < (K + 1) ∧ t (i + 1) < t i) (Finset.range (K + 1))) =
+        (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)) := by
+        ext x
+        simp [Finset.mem_filter, Finset.mem_range, Nat.lt_succ_iff]
+        <;>
+        by_cases h₃ : x < K <;>
+        by_cases h₄ : t (x + 1) < t x <;>
+        by_cases h₅ : x = K <;>
+        simp_all [Nat.lt_succ_iff] <;>
+        omega
+      rw [h₂]
+    simp_all
+lemma prefix_budget_induction (t : ℕ → ℕ) (hnoninc : ∀ k, t (k + 1) ≤ t k) (K : ℕ) :
+  t K + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+  induction K with
+  | zero =>
+    have : (Finset.filter (fun i => i < 0 ∧ t (i + 1) < t i) (Finset.range 0)).card = 0 := by
+      simp [Finset.range_zero]
+    simp [this]
+  | succ K ih =>
+    have Drec : (Finset.filter (fun i => i < (K + 1) ∧ t (i + 1) < t i) (Finset.range (K + 1))).card
+      = (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card +
+        (if t (K + 1) < t K then 1 else 0) := by
+      exact D_succ_eq t K
+
+    rw [Drec]
+
+    by_cases hdrop : t (K + 1) < t K
+    ·
+      rw [if_pos hdrop]
+      let Dk := (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card
+      have : t (K + 1) + (Dk + 1) = (t (K + 1) + 1) + Dk := by
+        rw [add_comm Dk 1, ← add_assoc]
+      rw [this]
+      have gap := gap_at_least_one t K hdrop
+      have : (t (K + 1) + 1) + Dk ≤ t K + Dk := by
+        apply Nat.add_le_add_right (Nat.le_trans gap (le_refl _)) Dk
+      have ih' : t K + Dk ≤ t 0 := by
+        exact ih
+      exact Nat.le_trans this ih'
+    ·
+      rw [if_neg hdrop]
+      have eq := no_drop_step t hnoninc K hdrop
+      rw [eq]
+      exact ih
+lemma budget_inequality_on_prefix (t : ℕ → ℕ) (hnoninc : ∀ k, t (k + 1) ≤ t k) (K : ℕ) :
+  (t K) + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+  have hpref : t K + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card
+    ≤ t 0 := by
+    exact prefix_budget_induction t hnoninc K
+  exact hpref
+lemma sum_budget_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+  intro K
+  have hprefix : (t K) + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card
+    ≤ t 0 := by
+    exact budget_inequality_on_prefix t hnoninc K
+
+  calc
+    (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card
+        ≤ (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card + (t K) :=
+      Nat.le_add_right _ _
+    _ = (t K) + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card := by
+      rw [Nat.add_comm]
+    _ ≤ t 0 := hprefix
+lemma fin_card_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ N := by
+  have hsum : ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+    exact sum_budget_bound t N h0 hnoninc
+  intro K
+  exact Nat.le_trans (hsum K) h0
+theorem prefix_captures_finite_set {P : ℕ → Prop} [DecidablePred P] (F : Finset ℕ)
+  (hF : ∀ x ∈ F, P x) :
+  ∃ K, F ⊆ (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)) := by
+  use F.sup (fun i => i) + 1
+  intro x hx
+  have h1 : x ∈ F := hx
+  have h2 : x < F.sup (fun i => i) + 1 := by
+    have h3 : x ≤ F.sup (fun i => i) := by
+      apply Finset.le_sup h1
+    omega
+  simp_all [Finset.mem_filter, Finset.mem_range]
+  <;> aesop
+lemma card_le_from_prefix_bound {P : ℕ → Prop} [DecidablePred P] (N : ℕ)
+  (hcard : ∀ K, (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)).card ≤ N)
+  (F : Finset ℕ) (hF : ∀ x ∈ F, P x) :
+  F.card ≤ N := by
+  have hcap : ∃ K, F ⊆ (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)) := by
+    exact prefix_captures_finite_set F hF
+  rcases hcap with ⟨K, hsub⟩
+  have hle : F.card ≤ (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)).card := by
+    exact Finset.card_le_of_subset hsub
+  exact Nat.le_trans hle (hcard K)
+theorem infinite_gives_large_finite_subset {P : ℕ → Prop} [DecidablePred P]
+  (M : ℕ) (hinf : Set.Infinite {k | P k}) :
+  ∃ F : Finset ℕ, (∀ x ∈ F, P x) ∧ F.card = M := by
+  classical
+  obtain ⟨s, hs⟩ := hinf.exists_subset_card_eq M
+  exact ⟨s, hs.1, hs.2⟩
+lemma finite_of_card_bounded {P : ℕ → Prop} (N : ℕ) [DecidablePred P]
+  (hcard : ∀ K, (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)).card ≤ N) :
+  {k : ℕ | P k}.Finite := by
+  by_contra hnot_fin
+  have hinf : Set.Infinite {k | P k} := hnot_fin
+  rcases infinite_gives_large_finite_subset (N + 1) hinf with ⟨F, hFprop, hFcard⟩
+  have hFle : F.card ≤ N := by
+    exact card_le_from_prefix_bound N hcard F hFprop
+  have hbad : N + 1 ≤ N := by
+    rw [hFcard] at hFle
+    exact hFle
+  exact Nat.not_succ_le_self N hbad
+lemma finite_strict_drops_of_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  {k : ℕ | t (k + 1) < t k}.Finite := by
+  have hglob : ∀ k, t k ≤ N := by
+    exact global_bound_from_h0 t N h0 hnoninc
+
+  have hcard_bound : ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ N := by
+    exact fin_card_bound t N h0 hnoninc
+
+  have hfin : {k : ℕ | t (k + 1) < t k}.Finite := by
+    exact finite_of_card_bounded N hcard_bound
+  exact hfin
+lemma finite_of_strict_decrease_on_bad
+  (t : ℕ → ℕ)
+  (htpos : ∀ k : ℕ, 0 < t k)
+  (bad : ℕ → Prop)
+  (hnoninc : ∀ k : ℕ, t (k + 1) ≤ t k)
+  (hdec : ∀ k : ℕ, bad k → t (k + 1) < t k) :
+  {k : ℕ | bad k}.Finite := by
+  have hsub : {k : ℕ | bad k} ⊆ {k : ℕ | t (k + 1) < t k} := by
+    intro k hk
+    exact hdec k hk
+
+  have hstr_drops_fin : {k : ℕ | t (k + 1) < t k}.Finite := by
+    exact finite_strict_drops_of_bound t (t 0) (by exact le_refl (t 0)) hnoninc
+
+  exact Set.Finite.subset hstr_drops_fin hsub
+theorem natAbs_pos (z : ℤ) (hz : z ≠ 0) : 0 < Int.natAbs z := by
+  rw [Int.natAbs_pos]
+  exact hz
+lemma exists_two_pow_divides (A : ℕ) (hpos : 0 < A) :
+  ∃ u, ((2 : ℕ) ^ u ∣ A) := by
+  use 0
+  simp
+theorem pow_two_divides_bounded_by_A (A u : ℕ) (hpos : 0 < A) :
+  ((2 : ℕ) ^ u ∣ A) → u ≤ A := by
+  intro h
+  have h₁ : 2 ^ u ∣ A := h
+  have h₂ : u ≤ A := by
+    by_contra! h₃
+    have h₄ : 2 ^ u > A := by
+      have h₅ : 2 ^ u ≥ 2 ^ A := by
+        apply Nat.pow_le_pow_of_le_right
+        linarith
+        linarith
+      have h₆ : 2 ^ A > A := by
+        apply Nat.lt_pow_self
+        linarith
+      linarith
+    have h₅ : 2 ^ u ∣ A := h₁
+    have h₆ : 2 ^ u ≤ A := Nat.le_of_dvd (by linarith) h₅
+    linarith
+  exact h₂
+theorem exists_max_in_finset (S : Finset ℕ) (hnon : S.Nonempty) :
+  ∃ u, u ∈ S ∧ ∀ v ∈ S, v ≤ u := by
+  classical
+  exact
+    Finset.exists_max_image S (fun x => x) hnon
+lemma maximality_implies_no_next_divides (A : ℕ) (S : Finset ℕ) (u : ℕ)
+  (hpos : 0 < A)
+  (hS_def : S = Finset.filter (fun v => ((2 : ℕ) ^ v ∣ A)) (Finset.range (A + 1)))
+  (u_mem : u ∈ S) (u_max : ∀ v ∈ S, v ≤ u) :
+  ¬ ((2 : ℕ) ^ (u + 1) ∣ A) := by
+  intro hdiv_next
+  have hbound : (u + 1) ≤ A := by
+    exact pow_two_divides_bounded_by_A A (u + 1) hpos hdiv_next
+  have in_range : u + 1 ∈ Finset.range (A + 1) := by
+    exact Finset.mem_range.mpr (Nat.lt_succ_of_le hbound)
+  have in_S : u + 1 ∈ S := by
+    rw [hS_def]
+    apply Finset.mem_filter.2
+    constructor
+    · exact in_range
+    · exact hdiv_next
+  have le_contra : u + 1 ≤ u := u_max (u + 1) in_S
+  have : u < u := Nat.lt_of_succ_le le_contra
+  exact Nat.lt_irrefl u this
+lemma exists_max_pow_two_dividing (A : ℕ) (hpos : 0 < A) :
+  ∃ u, ((2 : ℕ) ^ u ∣ A) ∧ ¬ ((2 : ℕ) ^ (u + 1) ∣ A) := by
+  have hex := exists_two_pow_divides A hpos
+  rcases hex with ⟨u0, hu0_div⟩
+
+  have hub : u0 ≤ A := by
+    exact pow_two_divides_bounded_by_A A u0 hpos hu0_div
+  have u0_in_range : u0 ∈ Finset.range (A + 1) := by
+    exact Finset.mem_range.mpr (Nat.lt_succ_of_le hub)
+
+  let S : Finset ℕ := Finset.filter (fun v => ((2 : ℕ) ^ v ∣ A)) (Finset.range (A + 1))
+
+  have S_nonempty : S.Nonempty := by
+    use u0
+    simp [S, u0_in_range, hu0_div]
+
+  rcases exists_max_in_finset S S_nonempty with ⟨u, ⟨u_mem, u_max⟩⟩
+
+  have hu_div : ((2 : ℕ) ^ u ∣ A) := by
+    simp [S] at u_mem
+    exact u_mem.2
+
+  have hnot_next : ¬ ((2 : ℕ) ^ (u + 1) ∣ A) := by
+    exact maximality_implies_no_next_divides A S u hpos rfl u_mem u_max
+  exact ⟨u, hu_div, hnot_next⟩
+theorem define_odd_part_by_division (A u : ℕ) (hdiv : ((2 : ℕ) ^ u ∣ A)) (hpos : 0 < A) :
+  ∃ r, A = (2 : ℕ) ^ u * r ∧ 0 < r := by
+  obtain ⟨k, hk⟩ := hdiv
+  use k
+  constructor
+  linarith
+  cases k with
+  | zero =>
+    simp_all
+  | succ k =>
+    simp_all [Nat.mul_succ]
+    <;> omega
+theorem oddness_of_quotient (A u r : ℕ)
+  (hA : A = (2 : ℕ) ^ u * r)
+  (hmax : ¬ ((2 : ℕ) ^ (u + 1) ∣ A)) :
+  r % 2 = 1 := by
+  rw [hA] at hmax
+  by_contra! h
+  have h₁ : 2 ∣ r := by
+    have h₂ : r % 2 = 0 := by omega
+    exact Nat.dvd_of_mod_eq_zero h₂
+  cases' h₁ with k hk
+  have h₂ : (2 : ℕ) ^ (u + 1) ∣ (2 : ℕ) ^ u * r := by
+    rw [hk]
+    exact ⟨k, by ring⟩
+  exact hmax h₂
+lemma exists_pow_two_mul_odd_for_pos_nat (A : ℕ) (hpos : 0 < A) :
+  ∃ (u r : ℕ), A = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+  have hmax := by exact exists_max_pow_two_dividing A hpos
+  rcases hmax with ⟨u, hdiv_u, hnot_next⟩
+
+  have hex_r : ∃ r, A = (2 : ℕ) ^ u * r ∧ 0 < r := by
+    exact define_odd_part_by_division A u hdiv_u hpos
+  rcases hex_r with ⟨r, ⟨hr_eq, hr_pos⟩⟩
+
+  have hord : r % 2 = 1 := by
+    exact oddness_of_quotient A u r hr_eq hnot_next
+
+  exact ⟨u, r, hr_eq, hord, hr_pos⟩
+lemma decomposition_of_diff
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0) :
+  ∀ k : ℕ, ∃ (u r : ℕ),
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+  intro k
+  have hpos : 0 < Int.natAbs ((m k : ℤ) - (n k : ℤ)) := by
+    exact natAbs_pos ((m k : ℤ) - (n k : ℤ)) (hΔ k)
+  rcases exists_pow_two_mul_odd_for_pos_nat (Int.natAbs ((m k : ℤ) - (n k : ℤ))) hpos
+    with ⟨u, r, h⟩
+  exact ⟨u, r, h⟩
+theorem diff_mul_eq_two_mul_prev_int (m n : ℕ → ℕ) (k : ℕ) (d : ℕ)
+  (hm_mul : (2 * m k + 1) = d * m (k + 1))
+  (hn_mul : (2 * n k + 1) = d * n (k + 1)) :
+  (d : ℤ) * ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℤ) * ((m k : ℤ) - (n k : ℤ)) := by
+  have h1 : (d : ℤ) * ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℤ) * ((m k : ℤ) - (n k : ℤ)) := by
+    have h1 : (2 * m k + 1 : ℤ) = d * m (k + 1) := by exact_mod_cast hm_mul
+    have h2 : (2 * n k + 1 : ℤ) = d * n (k + 1) := by exact_mod_cast hn_mul
+    linarith
+  exact_mod_cast h1
+theorem d_nat_nonzero_of_mul_eq (m n : ℕ → ℕ) (k : ℕ) (d : ℕ)
+  (hm_mul : (2 * m k + 1) = d * m (k + 1)) :
+  (d : ℤ) ≠ 0 := by
+  intro h
+  have h1 : d = 0 := by simpa using h
+  rw [h1] at hm_mul
+  norm_num at hm_mul
+  <;> omega
+theorem int_div_eq_of_mul_eq (d : ℤ) {x y : ℤ} (hdnz : d ≠ 0) (h : d * x = y) :
+  x = y / d := by
+  have h₁ : d * x = y := h
+  rw [← h₁]
+  <;> field_simp [hdnz]
+  <;> ring
+  <;> simp_all [Int.mul_emod]
+  <;> omega
+lemma diff_evolution_natAbs
+  (m n : ℕ → ℕ) (k : ℕ) (d : ℕ)
+  (hm_mul : (2 * m k + 1) = d * m (k + 1))
+  (hn_mul : (2 * n k + 1) = d * n (k + 1))
+  (h_dvd : (d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    Int.natAbs (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+  have hmul_int : (d : ℤ) * ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    (2 : ℤ) * ((m k : ℤ) - (n k : ℤ)) := by
+    exact diff_mul_eq_two_mul_prev_int m n k d hm_mul hn_mul
+
+  have hd_ne : (d : ℤ) ≠ 0 := by
+    exact d_nat_nonzero_of_mul_eq m n k d hm_mul
+
+  have hdiv_eq : ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    ((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ) := by
+    exact int_div_eq_of_mul_eq (d : ℤ) hd_ne hmul_int
+
+  exact congrArg Int.natAbs hdiv_eq
+theorem odd_implies_pos (d : ℕ) (hd_odd : d % 2 = 1) : 0 < d := by
+  by_contra h
+  have h₁ : d = 0 := by omega
+  rw [h₁] at hd_odd
+  omega
+theorem nat_pos_int_ne (d : ℕ) (hd_pos : 0 < d) : (d : ℤ) ≠ 0 := by
+  norm_cast
+  <;> omega
+theorem int_dvd_exists_mul (d : ℕ) {z : ℤ} (h : (d : ℤ) ∣ z) : ∃ q : ℤ, z = (d : ℤ) * q := by
+  obtain ⟨m, hm⟩ := h
+  exact ⟨m, by linarith⟩
+theorem div_mul_of_mul_eq {d : ℤ} {q z : ℤ} (hdnz : d ≠ 0) (hz : z = d * q) :
+  (((2 : ℤ) * z) / d) = (2 : ℤ) * q := by
+  rw [hz]
+  simp [hdnz, mul_comm, mul_assoc, mul_left_comm]
+  <;>
+  exact?
+theorem natAbs_two_mul (q : ℤ) : Int.natAbs ((2 : ℤ) * q) = 2 * Int.natAbs q := by
+  simp [Int.natAbs_mul, mul_comm]
+  <;> omega
+theorem natAbs_div_eq_natAbs_q (d : ℕ) (hd_pos : 0 < d) {z q : ℤ} (hz : z = (d : ℤ) * q) :
+  Int.natAbs z / d = Int.natAbs q := by
+  rw [hz]
+  simp [Int.natAbs_mul, Int.natAbs_ofNat, mul_comm]
+  <;> cases' d with d
+  <;> simp_all [Nat.div_eq_of_lt]
+  <;> omega
+lemma natAbs_two_mul_div_of_odd_divisor (z : ℤ) (d : ℕ)
+  (hd_odd : d % 2 = 1) (hdiv : (d : ℤ) ∣ z) :
+  Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = 2 * (Int.natAbs z / d) := by
+
+  have hd_pos : 0 < d := by
+    exact odd_implies_pos d hd_odd
+
+  have hd_int_ne : (d : ℤ) ≠ 0 := by
+    exact nat_pos_int_ne d hd_pos
+
+  rcases int_dvd_exists_mul d hdiv with ⟨q, hq⟩
+
+  have hdiv_eq : (((2 : ℤ) * z) / (d : ℤ)) = (2 : ℤ) * q := by
+    apply div_mul_of_mul_eq hd_int_ne
+    exact hq
+
+  have h_left : Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = Int.natAbs ((2 : ℤ) * q) := by
+    rw [hdiv_eq]
+  have h_left' : Int.natAbs ((2 : ℤ) * q) = 2 * Int.natAbs q := by
+    exact natAbs_two_mul q
+
+  have h_right : Int.natAbs z / d = Int.natAbs q := by
+    exact natAbs_div_eq_natAbs_q d hd_pos hq
+
+  calc
+    Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = Int.natAbs ((2 : ℤ) * q) := by rw [hdiv_eq]
+    _ = 2 * Int.natAbs q := by exact h_left'
+    _ = 2 * (Int.natAbs z / d) := by rw [h_right]
+theorem int_dvd_to_nat_dvd (z : ℤ) (d : ℕ) (hdiv : (d : ℤ) ∣ z) :
+  d ∣ Int.natAbs z := by
+  have h := hdiv
+  simp only [Int.coe_nat_dvd_left] at h ⊢
+  exact?
+theorem odd_implies_coprime_pow_two (d u : ℕ) (hd_odd : d % 2 = 1) :
+  Nat.Coprime d ((2 : ℕ) ^ u) := by
+  have h : Nat.Coprime d (2 ^ u) := by
+    rw [Nat.coprime_comm]
+    apply Nat.Coprime.symm
+    apply Nat.Coprime.pow_right
+    simp [Nat.coprime_iff_gcd_eq_one, Nat.gcd_comm]
+    <;> simp [hd_odd, Nat.even_iff, Nat.odd_iff, Nat.mod_eq_of_lt]
+    <;> omega
+  exact h
+theorem nat_dvd_exists_mul (d r : ℕ) (h : d ∣ r) : ∃ q, r = d * q := by
+  cases' h with k hk
+  exact ⟨k, by linarith⟩
+theorem nat_div_eq_of_mul_eq {d m n : ℕ} (hd_pos : 1 ≤ d) (h : n = d * m) : n / d = m := by
+  rw [h]
+  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)
+theorem odd_quotient_of_odd_divisor (r d r' : ℕ)
+  (h : r = d * r') (hr_odd : r % 2 = 1) (hd_odd : d % 2 = 1) : r' % 2 = 1 := by
+  have h' := congr_arg (· % 2) h
+  simp at h'
+  have h₁ := Nat.mul_mod d r' 2
+  have h₂ := Nat.mod_eq_of_lt (by omega : 1 < 2)
+  simp [hd_odd, hr_odd] at h₁ h₂
+  <;> omega
+theorem odd_not_two_dvd {x : ℕ} (hx : x % 2 = 1) : ¬ (2 ∣ x) := by
+  rw [Nat.dvd_iff_mod_eq_zero]
+  omega
+theorem pow_succ_dvd_pow_mul (p q y : ℕ) (hpq : p < q) :
+  ((2 : ℕ) ^ (p + 1) ∣ ((2 : ℕ) ^ q * y)) := by
+  have h₁ : 2 ^ (p + 1) ∣ 2 ^ q * y := by
+    have h₁ : p + 1 ≤ q := by omega
+    have h₂ : 2 ^ (p + 1) ∣ 2 ^ q := by
+      apply pow_dvd_pow
+      omega
+    have h₃ : 2 ^ (p + 1) ∣ 2 ^ q * y := by
+      exact dvd_mul_of_dvd_left h₂ y
+    exact h₃
+  exact h₁
+theorem dvd_of_eq' {d A B : ℕ} (h : A = B) (hd : d ∣ B) : d ∣ A := by
+  simpa [h] using hd
+theorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : ℕ}
+  (h : ((2 : ℕ) ^ (p + 1) ∣ ((2 : ℕ) ^ p * x))) : 2 ∣ x := by
+  have h₁ : 2 ^ (p + 1) ∣ 2 ^ p * x := h
+  have h₂ : 2 ^ (p + 1) ∣ 2 ^ p * x := h₁
+  have h₃ : 2 ^ (p + 1) ∣ 2 ^ p * x := h₂
+  have h₄ : 2 ^ (p + 1) ∣ 2 ^ p * x := h₃
+  have h₅ : 2 ^ (p + 1) ∣ 2 ^ p * x := h₄
+  -- We use the fact that if a number divides another, it also divides any multiple of it.
+  have h₆ : 2 ∣ x := by
+    have h₇ : 2 ^ (p + 1) ∣ 2 ^ p * x := h₅
+    have h₈ : 2 ^ (p + 1) ∣ 2 ^ p * x := h₇
+    have h₉ : 2 ^ (p + 1) ∣ 2 ^ p * x := h₈
+    have h₁₀ : 2 ^ (p + 1) ∣ 2 ^ p * x := h₉
+    -- We simplify the expression to show that 2 divides x.
+    have h₁₁ : 2 ∣ x := by
+      rw [Nat.pow_succ] at h₁₀
+      simp [Nat.mul_dvd_mul_iff_left] at h₁₀
+      <;> simp_all [Nat.pow_succ, Nat.mul_dvd_mul_iff_left]
+      <;> omega
+    exact h₁₁
+  exact h₆
+lemma le_of_mul_eq_left (p q x y : ℕ)
+  (h : (2 : ℕ) ^ p * x = (2 : ℕ) ^ q * y) (hx_odd : x % 2 = 1) :
+  q ≤ p := by
+  by_cases hpq : p < q
+  ·
+    have hpow : ((2 : ℕ) ^ (p + 1) ∣ ((2 : ℕ) ^ q * y)) := by
+      exact pow_succ_dvd_pow_mul p q y hpq
+    have hpow' : ((2 : ℕ) ^ (p + 1) ∣ ((2 : ℕ) ^ p * x)) := by
+      exact dvd_of_eq' h hpow
+    have h2divx : 2 ∣ x := by
+      exact pow_succ_dvd_pow_mul_implies_two_dvd hpow'
+    have hfalse : False := (odd_not_two_dvd hx_odd) h2divx
+    exact False.elim hfalse
+  ·
+    exact Nat.le_of_not_lt hpq
+theorem cancel_pow_mul_eq (p x y : ℕ) (h : (2 : ℕ) ^ p * x = (2 : ℕ) ^ p * y) : x = y := by
+  cases' p with p
+  all_goals simp_all [Nat.mul_left_inj, Nat.pow_succ]
+  <;> omega
+lemma pow_mul_odd_eq_pow_mul_odd (p q x y : ℕ)
+  (h : (2 : ℕ) ^ p * x = (2 : ℕ) ^ q * y) (hx_odd : x % 2 = 1) (hy_odd : y % 2 = 1) :
+  p = q ∧ x = y := by
+
+  have hle1 := le_of_mul_eq_left p q x y h hx_odd
+  have hle2 := le_of_mul_eq_left q p y x (Eq.symm h) hy_odd
+  have heq_pq : p = q := by
+    exact Nat.le_antisymm hle2 hle1
+  have hxy : x = y := by
+    have hpow : (2 : ℕ) ^ p * x = (2 : ℕ) ^ p * y := by
+      rw [← heq_pq] at h
+      exact h
+    exact cancel_pow_mul_eq p x y hpow
+  exact ⟨heq_pq, hxy⟩
+theorem odd_implies_one_le (d : ℕ) (hd_odd : d % 2 = 1) : 1 ≤ d := by
+  have h : d % 2 = 1 := hd_odd
+  have h' : d % 2 = 1 := by omega
+  omega
+theorem mul_le_of_one_le (d r : ℕ) (h1 : 1 ≤ d) : r ≤ d * r := by
+  apply Nat.le_mul_of_pos_left
+  omega
+lemma odd_part_le_from_div_by_odd (A d : ℕ) (hdvd : d ∣ A) (u1 r1 u2 r2 : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 ≤ r1 := by
+  have hcop : Nat.Coprime d ((2 : ℕ) ^ u1) := by
+    exact odd_implies_coprime_pow_two d u1 hd_odd
+
+  have hd_dvd_r1 : d ∣ r1 := by
+    have : d ∣ ( (2 : ℕ) ^ u1 * r1 ) := by
+      rw [← hA]
+      exact hdvd
+    exact coprime_dvd_of_dvd_mul_right hcop this
+
+  rcases nat_dvd_exists_mul d r1 hd_dvd_r1 with ⟨r1', hr1_eq⟩
+
+  have hA_mul : A = d * ((2 : ℕ) ^ u1 * r1') := by
+    calc
+      A = (2 : ℕ) ^ u1 * r1 := hA
+      _ = (2 : ℕ) ^ u1 * (d * r1') := by rw [hr1_eq]
+      _ = d * ((2 : ℕ) ^ u1 * r1') := by ring
+  have h1_le_d : 1 ≤ d := by
+    exact odd_implies_one_le d hd_odd
+  have h_divA : A / d = (2 : ℕ) ^ u1 * r1' := by
+    exact nat_div_eq_of_mul_eq h1_le_d hA_mul
+
+  have h_left : (2 : ℕ) ^ (u1 + 1) * r1' = 2 * (A / d) := by
+    calc
+      (2 : ℕ) ^ (u1 + 1) * r1' = 2 * ((2 : ℕ) ^ u1 * r1') := by ring
+      _ = 2 * (A / d) := by rw [h_divA]
+
+  have h_comb : (2 : ℕ) ^ (u1 + 1) * r1' = (2 : ℕ) ^ u2 * r2 := by
+    calc
+      (2 : ℕ) ^ (u1 + 1) * r1' = 2 * (A / d) := by exact h_left
+      _ = (2 : ℕ) ^ u2 * r2 := by exact hB_eq
+
+  have hr1'_odd : r1' % 2 = 1 := by
+    exact odd_quotient_of_odd_divisor r1 d r1' hr1_eq hr1_odd hd_odd
+
+  have huniq := pow_mul_odd_eq_pow_mul_odd (u1 + 1) u2 r1' r2 h_comb hr1'_odd hr2_odd
+  have _ := huniq
+  rcases huniq with ⟨_heq_pow, heq_oddpart⟩
+
+  have heq_r2_r1' : r2 = r1' := by
+    exact Eq.symm heq_oddpart
+  have hr1_def : r1 = d * r1' := hr1_eq
+  have h1_le_d : 1 ≤ d := by
+    exact odd_implies_one_le d hd_odd
+  have : r2 ≤ r1 := by
+    calc
+      r2 = r1' := by exact heq_r2_r1'
+      _ ≤ d * r1' := by exact mul_le_of_one_le d r1' h1_le_d
+      _ = r1 := by rw [hr1_def]
+  exact this
+lemma odd_part_noninc_step
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∀ k u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 ≤ r1 := by
+  intro k u1 r1 u2 r2 hA hA_odd hA_pos hB hB_odd hB_pos
+  let d := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+
+  have hnext := next_eq_div_gcd m n h_coprime h_recurrence k
+  rcases hnext with ⟨hm_succ_eq, hn_succ_eq⟩
+
+  have hg := gcd_odd_and_dvd_diff m n k
+  rcases hg with ⟨hd_odd, h_dvd⟩
+
+  have h_step_natabs := diff_evolution_natAbs m n k d hm_succ_eq hn_succ_eq h_dvd
+
+  let z : ℤ := (m k : ℤ) - (n k : ℤ)
+  have h_scale := natAbs_two_mul_div_of_odd_divisor z d hd_odd h_dvd
+
+  have h_combo : 2 * (Int.natAbs z / d) = (2 : ℕ) ^ u2 * r2 := by
+    calc
+      2 * (Int.natAbs z / d) = Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) := Eq.symm h_scale
+      _ = Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) := Eq.symm h_step_natabs
+      _ = (2 : ℕ) ^ u2 * r2 := hB
+
+  have hdvd_nat : d ∣ Int.natAbs z := by
+    exact int_dvd_to_nat_dvd z d h_dvd
+  have hres := odd_part_le_from_div_by_odd (Int.natAbs z) d hdvd_nat u1 r1 u2 r2
+    hA hA_odd hA_pos h_combo hB_odd hB_pos hd_odd
+  exact hres
+theorem noncoprime_gcd_gt_one {a b : ℕ} (h : ¬ Nat.Coprime a b) (ha : 0 < a) (hb : 0 < b) :
+  1 < Nat.gcd a b := by
+  have h₁ : 0 < Nat.gcd a b := Nat.gcd_pos_of_pos_left b ha
+  have h₂ : ¬Nat.Coprime a b := h
+  rw [Nat.coprime_iff_gcd_eq_one] at h₂
+  omega
+lemma odd_divides_odd_part (A d u r : ℕ)
+  (hA : A = (2 : ℕ) ^ u * r) (hr_odd : r % 2 = 1) (hd_odd : d % 2 = 1) (hdvd : d ∣ A) :
+  d ∣ r := by
+  have hcop : Nat.Coprime d ((2 : ℕ) ^ u) := by
+    exact odd_implies_coprime_pow_two d u hd_odd
+
+  have hdiv_mul : d ∣ ((2 : ℕ) ^ u * r) := by
+    rw [hA] at hdvd
+    exact hdvd
+
+  have hres : d ∣ r := by
+    exact coprime_dvd_of_dvd_mul_right hcop hdiv_mul
+  exact hres
+theorem mul_strict_gt_right {d r r' : ℕ} (hr_eq : r = d * r') (hd_gt1 : 1 < d) (hr'_pos : 0 < r') :
+  r' < r := by
+  rw [hr_eq]
+  have h₁ : 0 < d := by linarith
+  nlinarith
+lemma odd_part_next_eq_quotient
+  (A d u1 r1 u2 r2 r1' : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1)
+  (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hr1_eq : r1 = d * r1')
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2)
+  (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 = r1' := by
+  have h1_le_d : 1 ≤ d := by
+    exact odd_implies_one_le d hd_odd
+
+  have hA_mul : A = d * ((2 : ℕ) ^ u1 * r1') := by
+    calc
+      A = (2 : ℕ) ^ u1 * r1 := hA
+      _ = (2 : ℕ) ^ u1 * (d * r1') := by rw [hr1_eq]
+      _ = d * ((2 : ℕ) ^ u1 * r1') := by ring
+
+  have hdiv : A / d = (2 : ℕ) ^ u1 * r1' := by
+    exact nat_div_eq_of_mul_eq h1_le_d hA_mul
+
+  have hleft : 2 * (A / d) = (2 : ℕ) ^ (u1 + 1) * r1' := by
+    calc
+      2 * (A / d) = 2 * ((2 : ℕ) ^ u1 * r1') := by rw [hdiv]
+      _ = (2 : ℕ) ^ (u1 + 1) * r1' := by ring
+
+  have hr1'_odd : r1' % 2 = 1 := by
+    exact odd_quotient_of_odd_divisor r1 d r1' hr1_eq hr1_odd hd_odd
+
+  have h_eq_pow : (2 : ℕ) ^ (u1 + 1) * r1' = (2 : ℕ) ^ u2 * r2 := by
+    calc
+      (2 : ℕ) ^ (u1 + 1) * r1' = 2 * (A / d) := by rw [← hleft]
+      _ = (2 : ℕ) ^ u2 * r2 := by exact hB_eq
+
+  have huniq := pow_mul_odd_eq_pow_mul_odd (u1 + 1) u2 r1' r2 h_eq_pow hr1'_odd hr2_odd
+  rcases huniq with ⟨_heq_pow, heq_oddpart⟩
+  exact Eq.symm heq_oddpart
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by
+  intro u1 r1 u2 r2 hA hr1_odd hr1_pos hB hr2_odd hr2_pos
+  let a := 2 * m k + 1
+  let b := 2 * n k + 1
+  let d := Nat.gcd a b
+
+  have ha_pos : 0 < a := by
+    dsimp [a]
+    apply Nat.zero_lt_succ (2 * m k)
+  have hb_pos : 0 < b := by
+    dsimp [b]
+    apply Nat.zero_lt_succ (2 * n k)
+  have hd_gt1 : 1 < d := by
+    exact noncoprime_gcd_gt_one hbad ha_pos hb_pos
+
+  have hg := gcd_odd_and_dvd_diff m n k
+  rcases hg with ⟨hd_odd, hd_int_div⟩
+
+  have hnext := next_eq_div_gcd m n h_coprime h_recurrence k
+  rcases hnext with ⟨hm_succ_eq, hn_succ_eq⟩
+
+  let z : ℤ := (m k : ℤ) - (n k : ℤ)
+  have h_step_natabs := diff_evolution_natAbs m n k d hm_succ_eq hn_succ_eq hd_int_div
+  have h_scale := natAbs_two_mul_div_of_odd_divisor z d hd_odd hd_int_div
+
+  have hB_from_defs : 2 * (Int.natAbs z / d) = (2 : ℕ) ^ u2 * r2 := by
+    calc
+      2 * (Int.natAbs z / d) = Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) := Eq.symm h_scale
+      _ = Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) := Eq.symm h_step_natabs
+      _ = (2 : ℕ) ^ u2 * r2 := hB
+
+  have hdvd_A : d ∣ (Int.natAbs z) := by
+    exact int_dvd_to_nat_dvd z d hd_int_div
+
+  have hd_dvd_r1 : d ∣ r1 := by
+    have hA_nat : (Int.natAbs z) = (2 : ℕ) ^ u1 * r1 := by
+      exact hA
+    exact odd_divides_odd_part (Int.natAbs z) d u1 r1 hA_nat hr1_odd hd_odd hdvd_A
+
+  rcases nat_dvd_exists_mul d r1 hd_dvd_r1 with ⟨r1', hr1_eq⟩
+
+  have hA_mul : (Int.natAbs z) = d * ((2 : ℕ) ^ u1 * r1') := by
+    calc
+      (Int.natAbs z) = (2 : ℕ) ^ u1 * r1 := hA
+      _ = (2 : ℕ) ^ u1 * (d * r1') := by rw [hr1_eq]
+      _ = d * ((2 : ℕ) ^ u1 * r1') := by ring
+  have h1_le_d : 1 ≤ d := by
+    exact odd_implies_one_le d hd_odd
+  have h_divA_eq : (Int.natAbs z) / d = (2 : ℕ) ^ u1 * r1' := by
+    exact nat_div_eq_of_mul_eq h1_le_d hA_mul
+
+  have hr2_eq_r1' : r2 = r1' := by
+    exact odd_part_next_eq_quotient (Int.natAbs z) d u1 r1 u2 r2 r1'
+      (hA) hr1_odd hr1_pos hr1_eq (by simpa [h_divA_eq] using hB_from_defs) hr2_odd hr2_pos hd_odd
+
+  have : r2 < r1 := by
+    rw [hr2_eq_r1']
+    exact mul_strict_gt_right hr1_eq hd_gt1 (by linarith [hr1_pos])
+  exact this
+lemma exists_odd_measure
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∃ (t : ℕ → ℕ),
+    (∀ k : ℕ, 0 < t k) ∧
+    (∀ k : ℕ, t (k + 1) ≤ t k) ∧
+    (∀ k : ℕ, (¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) → t (k + 1) < t k) := by
+  have hdecomp : ∀ k, ∃ u r, Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+    exact decomposition_of_diff m n hΔ
+
+  choose u r hu hr using hdecomp
+
+  let t : ℕ → ℕ := fun k => r k
+
+  have htpos : ∀ k, 0 < t k := by
+    intro k
+    exact (hr k).2
+
+  have hnoninc : ∀ k, t (k + 1) ≤ t k := by
+    intro k
+    have Hk := hu k
+    have Hk1 := hu (k + 1)
+    exact odd_part_noninc_step m n h_recurrence h_coprime k (u k) (r k) (u (k + 1)) (r (k + 1))
+      (Hk) ((hr k).1) ((hr k).2) (Hk1) ((hr (k + 1)).1) ((hr (k + 1)).2)
+
+  have hdec : ∀ k, (¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) → t (k + 1) < t k := by
+    intro k hbad
+    have Hk := hu k
+    have Hk1 := hu (k + 1)
+    exact odd_part_strict_decrease_of_not_coprime' m n hΔ h_coprime h_recurrence k hbad
+      (u k) (r k) (u (k + 1)) (r (k + 1)) (Hk) ((hr k).1) ((hr k).2) (Hk1) ((hr (k + 1)).1) ((hr (k + 1)).2)
+  exact ⟨t, ⟨htpos, hnoninc, hdec⟩⟩
+theorem putnam_2025_a1
+  (m n : ℕ → ℕ)
+  (hm : ∀ k : ℕ, 0 < m k)
+  (hn : ∀ k : ℕ, 0 < n k)
+  (h_distinct : m 0 ≠ n 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  {k : ℕ | ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)}.Finite := by
+  classical
+
+  have hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0 := by
+    exact diff_ne_zero m n h_distinct h_recurrence
+
+  rcases exists_odd_measure m n hΔ h_recurrence h_coprime with ⟨t, ⟨htpos, hnoninc, hdec_step⟩⟩
+
+  let bad : ℕ → Prop := fun k => ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)
+
+  have hfinite : {k : ℕ | bad k}.Finite := by
+    exact finite_of_strict_decrease_on_bad t htpos bad hnoninc hdec_step
+
+  simpa [bad] using hfinite

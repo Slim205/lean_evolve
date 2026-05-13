@@ -1,0 +1,102 @@
+---------
+lemma gcd_odd_of_odds {a b : ℕ} (ha : a % 2 = 1) (hb : b % 2 = 1) :
+  (Nat.gcd a b) % 2 = 1 := by
+Failure mode: HARD
+Recommendation:
+1) Lemma `mod2_eq_one_iff_odd`: for any `x : ℕ`, `x % 2 = 1 ↔ Nat.Odd x`.
+2) Lemma `odd_gcd`: if `Nat.Odd a` and `Nat.Odd b` then `Nat.Odd (Nat.gcd a b)`. Prove by contradiction: if `2 ∣ gcd a b` then `2 ∣ a` and `2 ∣ b`, contradicting oddness.
+3) Lemma `odd_iff_mod2_eq_one`: `Nat.Odd x → x % 2 = 1`.
+4) Combine (1)(2)(3) to translate `ha hb` into oddness, get oddness of `gcd`, then return to `% 2 = 1`.
+---------
+
+---------
+lemma odd_int_divides_cancel_two {d : ℕ} {z : ℤ}
+  (hd_odd : d % 2 = 1) (hdiv : (d : ℤ) ∣ ((2 : ℤ) * z)) :
+  (d : ℤ) ∣ z := by
+Failure mode: HARD
+Recommendation:
+1) Lemma `d_pos_of_mod2_eq_one`: from `d % 2 = 1` conclude `d ≠ 0` (hence `(d:ℤ) ≠ 0`).
+2) Lemma `coprime_two_of_odd`: from `d % 2 = 1` derive `Nat.Coprime d 2`, and then lift to `IsCoprime (d:ℤ) (2:ℤ)` (or an equivalent gcd statement in `ℤ`).
+3) Lemma `dvd_of_isCoprime_mul_left`: in `ℤ`, if `IsCoprime D 2` and `D ∣ 2*z` then `D ∣ z` (Bezout identity: `u*D+v*2=1`, multiply by `z`).
+4) Apply (2)(3) with `D := (d:ℤ)`.
+---------
+
+---------
+lemma diff_evolution_natAbs
+  (m n : ℕ → ℕ) (k : ℕ) (d : ℕ)
+  (hm_mul : (2 * m k + 1) = d * m (k + 1))
+  (hn_mul : (2 * n k + 1) = d * n (k + 1))
+  (h_dvd : (d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    Int.natAbs (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+Failure mode: HARD
+Recommendation:
+1) Lemma `d_ne_zero_from_hm_mul`: from `hm_mul : 2*m_k+1 = d*m_{k+1}` deduce `d ≠ 0` (since `2*m_k+1 > 0`).
+2) Lemma `cast_mul_eq`: cast `hm_mul` and `hn_mul` into `ℤ` to get
+   `((d:ℤ) * (m_{k+1}:ℤ)) = (2*(m_k:ℤ)+1)` and similarly for `n`.
+3) Lemma `diff_mul_eq_two_diff`: subtract the cast equalities to obtain
+   `(d:ℤ) * ((m_{k+1}:ℤ) - (n_{k+1}:ℤ)) = (2:ℤ) * ((m_k:ℤ) - (n_k:ℤ))`.
+4) Lemma `exact_div_eq_of_dvd`: using `h_dvd`, write `((m_k:ℤ) - (n_k:ℤ)) = (d:ℤ) * q` for some `q`, and conclude
+   `((2:ℤ) * ((m_k:ℤ)-(n_k:ℤ))) / (d:ℤ) = (2:ℤ) * q` (exact division, using `d ≠ 0`).
+5) Lemma `solve_for_next_diff`: from (3) and the representation in (4), deduce
+   `((m_{k+1}:ℤ) - (n_{k+1}:ℤ)) = (((2:ℤ) * ((m_k:ℤ)-(n_k:ℤ))) / (d:ℤ))`.
+6) Conclude by applying `Int.natAbs` to the equality in (5).
+---------
+
+---------
+lemma natAbs_two_mul_div_of_odd_divisor (z : ℤ) (d : ℕ)
+  (hd_odd : d % 2 = 1) (hdiv : (d : ℤ) ∣ z) :
+  Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = 2 * (Int.natAbs z / d) := by
+Failure mode: HARD
+Recommendation:
+1) Lemma `d_ne_zero_of_mod2_eq_one`: from `hd_odd` get `d ≠ 0` (hence `(d:ℤ) ≠ 0`).
+2) Lemma `exists_quotient_int`: from `hdiv` obtain `q : ℤ` with `z = (d:ℤ) * q`.
+3) Lemma `ediv_mul_cancel`: using (2) and `d ≠ 0`, show `((2:ℤ) * z) / (d:ℤ) = (2:ℤ) * q`.
+4) Lemma `natAbs_mul_two`: `Int.natAbs ((2:ℤ) * q) = 2 * Int.natAbs q`.
+5) Lemma `natAbs_div_exact`: from `z = (d:ℤ) * q` deduce `Int.natAbs z / d = Int.natAbs q` (uses `d ≥ 1` and exactness of division on the natural side).
+6) Combine (3)(4)(5).
+(Observation: oddness is mainly used to ensure `d ≥ 1`; the algebra works for any `d > 0`.)
+---------
+
+---------
+lemma odd_part_le_from_div_by_odd (A d : ℕ) (hdvd : d ∣ A) (u1 r1 u2 r2 : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 ≤ r1 := by
+Failure mode: HARD
+Recommendation:
+1) Lemma `odd_coprime_pow_two`: from `hd_odd` show `Nat.Coprime d ((2:ℕ)^u1)`.
+2) Lemma `dvd_of_coprime_dvd_mul_right`: using (1) and `hdvd` plus `hA`, deduce `d ∣ r1` (since `d ∣ (2^u1)*r1` and `Coprime d (2^u1)`).
+3) Lemma `A_div_d_factor`: using `hA` and `d ∣ r1`, rewrite `A / d = (2^u1) * (r1 / d)` with exact division.
+4) Lemma `B_as_pow_two_times_oddquot`: from (3), rewrite
+   `2 * (A / d) = (2^(u1+1)) * (r1 / d)`.
+5) Lemma `uniqueness_of_two_adic_decomposition`: if `2^α * s = 2^β * t` with `s,t` odd and positive, then `s = t` and `α = β`. Apply to (4) and `hB_eq` using `hr2_odd` and the oddness of `r1 / d`.
+6) Conclude `r2 = r1 / d`, hence `r2 ≤ r1` (since `d ≥ 1` and `r1 > 0`).
+---------
+
+---------
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by
+Failure mode: HARD
+Recommendation:
+1) Lemma `d_def_and_gt_one`: let `d := gcd(2*m_k+1, 2*n_k+1)`; from `hbad` show `d > 1`.
+2) Lemma `d_odd_and_divides_diff`: reuse/prove `d % 2 = 1` and `(d:ℤ) ∣ ((m_k:ℤ)-(n_k:ℤ))`.
+3) Lemma `successor_scaling_by_gcd`: obtain `(2*m_k+1)=d*m_{k+1}` and `(2*n_k+1)=d*n_{k+1}` (your `next_eq_div_gcd`-style result).
+4) Lemma `odd_part_relation`: using steps (2)(3), show
+   `2 * (A / d) = (2^u2) * r2` where `A := natAbs((m_k:ℤ)-(n_k:ℤ))`, and also `A = 2^u1 * r1`.
+5) Lemma `r2_eq_r1_div_d`: as in the previous lemma’s plan, show `r2 = r1 / d` (key point: `d` odd implies `d ∣ r1`).
+6) Lemma `div_strict_lt_of_gt_one`: from `0 < r1` and `d > 1` and `d ∣ r1`, conclude `r1 / d < r1`.
+7) Combine (5)(6) to get `r2 < r1`.
+---------

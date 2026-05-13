@@ -1,0 +1,4 @@
+>>>>SEARCH
+by_contra h; simpa [h] using (h_recurrence k)
+>>>>REPLACE
+by_contra h; simpa [h] using (h_recurrence k); contradiction

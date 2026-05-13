@@ -1,0 +1,400 @@
+[
+    {
+        "name": "nat_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)",
+        "custom_id": "nat_div_eq_of_mul_eq_0",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.11168694496154785,
+            "custom_id": "nat_div_eq_of_mul_eq_0"
+        }
+    },
+    {
+        "name": "nat_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_right (by linarith) (by ring)",
+        "custom_id": "nat_div_eq_of_mul_eq_1",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.11711573600769043,
+            "custom_id": "nat_div_eq_of_mul_eq_1"
+        }
+    },
+    {
+        "name": "nat_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)",
+        "custom_id": "nat_div_eq_of_mul_eq_2",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.11436080932617188,
+            "custom_id": "nat_div_eq_of_mul_eq_2"
+        }
+    },
+    {
+        "name": "nat_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)",
+        "custom_id": "nat_div_eq_of_mul_eq_3",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.12027287483215332,
+            "custom_id": "nat_div_eq_of_mul_eq_3"
+        }
+    },
+    {
+        "name": "nat_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)",
+        "custom_id": "nat_div_eq_of_mul_eq_4",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.13164281845092773,
+            "custom_id": "nat_div_eq_of_mul_eq_4"
+        }
+    },
+    {
+        "name": "nat_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  <;> simp_all [Nat.mul_div_cancel_left]\n  <;> omega\n  <;> exact Nat.pos_of_ne_zero fun h => by simp_all",
+        "custom_id": "nat_div_eq_of_mul_eq_5",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 40
+                    },
+                    "data": "simp_all made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 0\n  c \u2265 0\n  c - e \u2265 1\n  a \u2265 1\nwhere\n a := \u2191d\n b := \u2191d * \u2191m\n c := \u2191m\n e := \u2191(d * m) / \u2191d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 6,
+                        "column": 89
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 51
+                    },
+                    "data": "unsolved goals\nd m n : \u2115\nhd_pos : 1 \u2264 d\nh : n = d * m\n\u22a2 d * m / d = m"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.11044907569885254,
+            "custom_id": "nat_div_eq_of_mul_eq_5"
+        }
+    },
+    {
+        "name": "nat_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)",
+        "custom_id": "nat_div_eq_of_mul_eq_6",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.12560415267944336,
+            "custom_id": "nat_div_eq_of_mul_eq_6"
+        }
+    },
+    {
+        "name": "nat_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)",
+        "custom_id": "nat_div_eq_of_mul_eq_7",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.1238410472869873,
+            "custom_id": "nat_div_eq_of_mul_eq_7"
+        }
+    },
+    {
+        "name": "nat_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_right (by positivity) (by ring)",
+        "custom_id": "nat_div_eq_of_mul_eq_8",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.05693197250366211,
+            "custom_id": "nat_div_eq_of_mul_eq_8"
+        }
+    },
+    {
+        "name": "nat_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by positivity) (by ring)",
+        "custom_id": "nat_div_eq_of_mul_eq_9",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.05486488342285156,
+            "custom_id": "nat_div_eq_of_mul_eq_9"
+        }
+    },
+    {
+        "name": "nat_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)",
+        "custom_id": "nat_div_eq_of_mul_eq_10",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.11183786392211914,
+            "custom_id": "nat_div_eq_of_mul_eq_10"
+        }
+    },
+    {
+        "name": "nat_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by positivity) (by ring)",
+        "custom_id": "nat_div_eq_of_mul_eq_11",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.037286996841430664,
+            "custom_id": "nat_div_eq_of_mul_eq_11"
+        }
+    },
+    {
+        "name": "nat_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)",
+        "custom_id": "nat_div_eq_of_mul_eq_12",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.11757445335388184,
+            "custom_id": "nat_div_eq_of_mul_eq_12"
+        }
+    },
+    {
+        "name": "nat_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  have h\u2081 : n / d = m := by\n    rw [h]\n    have h\u2082 : d * m / d = m := by\n      apply Nat.div_eq_of_eq_mul_left\n      \u00b7 linarith\n      \u00b7 nlinarith\n    exact h\u2082\n  exact h\u2081",
+        "custom_id": "nat_div_eq_of_mul_eq_13",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.49989938735961914,
+            "custom_id": "nat_div_eq_of_mul_eq_13"
+        }
+    },
+    {
+        "name": "nat_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  apply Nat.div_eq_of_eq_mul_left (by linarith)\n  <;> ring\n  <;> omega\n  <;> simp_all\n  <;> omega\n  <;> omega\n  <;> omega",
+        "custom_id": "nat_div_eq_of_mul_eq_14",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.13176679611206055,
+            "custom_id": "nat_div_eq_of_mul_eq_14"
+        }
+    },
+    {
+        "name": "nat_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_div_eq_of_mul_eq {d m n : \u2115} (hd_pos : 1 \u2264 d) (h : n = d * m) : n / d = m := by\n  rw [h]\n  exact Nat.div_eq_of_eq_mul_left (by linarith) (by ring)",
+        "custom_id": "nat_div_eq_of_mul_eq_15",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.12443208694458008,
+            "custom_id": "nat_div_eq_of_mul_eq_15"
+        }
+    }
+]

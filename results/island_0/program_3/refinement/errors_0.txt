@@ -1,0 +1,33 @@
+ERROR from position {'line': 73, 'column': 53} to None:
+expected ';' or line break
+
+ERROR from position {'line': 98, 'column': 53} to None:
+expected ';' or line break
+
+ERROR from position {'line': 89, 'column': 63} to {'line': 98, 'column': 52}:
+unsolved goals
+case hnext
+m n : ℕ → ℕ
+hm : ∀ (k : ℕ), 0 < m k
+hn : ∀ (k : ℕ), 0 < n k
+h_distinct : m 0 ≠ n 0
+h_coprime : ∀ (k : ℕ), 0 < k → (m k).Coprime (n k)
+h_recurrence : ∀ (k : ℕ), ↑(m (k + 1)) / ↑(n (k + 1)) = (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1)
+hΔ : ∀ (k : ℕ), ↑(m k) - ↑(n k) ≠ 0
+⊢ (k : ℕ) →
+    let d := (2 * m k + 1).gcd (2 * n k + 1);
+    sorryAx (Sort ?u.5776) true
+
+m n : ℕ → ℕ
+hm : ∀ (k : ℕ), 0 < m k
+hn : ∀ (k : ℕ), 0 < n k
+h_distinct : m 0 ≠ n 0
+h_coprime : ∀ (k : ℕ), 0 < k → (m k).Coprime (n k)
+h_recurrence : ∀ (k : ℕ), ↑(m (k + 1)) / ↑(n (k + 1)) = (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1)
+hΔ : ∀ (k : ℕ), ↑(m k) - ↑(n k) ≠ 0
+hnext :
+  (k : ℕ) →
+    let d := (2 * m k + 1).gcd (2 * n k + 1);
+    sorryAx (Sort ?u.5776) true
+⊢ {k | ¬(2 * m k + 1).Coprime (2 * n k + 1)}.Finite
+

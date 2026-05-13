@@ -1,0 +1,10 @@
+<lemma finite_strict_drops_of_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  {k : ℕ | t (k + 1) < t k}.Finite := by>
+Failure mode: HARD
+Recommendation: Prove finiteness by bounding the number of strict drops via a “value decreases in ℕ” argument. Suggested lemma plan:
+1) **Global upper bound**: prove `∀ k, t k ≤ N` from `h0` and `hnoninc`.
+2) **Drop gives at-least-1 decrease**: prove `t (k+1) < t k → t (k+1) ≤ t k - 1`.
+3) **Iterated decrease bound**: define `dropsUpTo(K) := #{i < K | t (i+1) < t i}` and prove `t K ≤ N - dropsUpTo(K)` for all `K` (by induction on `K` using (2)).
+4) **Bound on number of drops**: deduce `dropsUpTo(K) ≤ N` for all `K`, hence the set `{k | t (k+1) < t k}` has at most `N` elements.
+5) **Convert cardinal bound to finiteness**: conclude `{k | t (k+1) < t k}.Finite`.

@@ -1,0 +1,8 @@
+>>>>SEARCH
+  have hdiff : ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+    exact helper_diff_evolution m n k d rfl hnext
+>>>>REPLACE
+  have hdiff : ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) * (d : ℤ) =
+    (2 : ℤ) * ((m k : ℤ) - (n k : ℤ)) := by
+    exact helper_diff_evolution m n k d rfl hnext

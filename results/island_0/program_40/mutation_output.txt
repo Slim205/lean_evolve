@@ -1,0 +1,31 @@
+>>>>SEARCH
+/-- From the rational recurrence and nonzero denominators obtain the product-equality in ℚ. -/
+lemma recurrence_cross_Q (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_n_succ_nonzero_k : (n (k + 1) : ℚ) ≠ 0)
+  (h_two_nk_nonzero : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0)
+  (k : ℕ) :
+  (m (k + 1) : ℚ) * ((2 : ℚ) * (n k : ℚ) + 1) = (n (k + 1) : ℚ) * ((2 : ℚ) * (m k : ℚ) + 1) := by
+  -- clear denominators in ℚ; proof omitted
+  sorry
+>>>>REPLACE
+/-- From the rational recurrence and nonzero denominators obtain the product-equality in ℚ. -/
+lemma recurrence_cross_Q (m n : ℕ → ℕ) (k : ℕ)
+  (h_recurrence : ∀ j : ℕ,
+    (m (j + 1) : ℚ) / (n (j + 1) : ℚ) =
+      ((2 : ℚ) * (m j : ℚ) + 1) / ((2 : ℚ) * (n j : ℚ) + 1))
+  (h_n_succ_nonzero_k : (n (k + 1) : ℚ) ≠ 0)
+  (h_two_nk_nonzero : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0) :
+  (m (k + 1) : ℚ) * ((2 : ℚ) * (n k : ℚ) + 1) = (n (k + 1) : ℚ) * ((2 : ℚ) * (m k : ℚ) + 1) := by
+  -- clear denominators in ℚ; proof omitted
+  sorry
+>>>>SEARCH
+have hq : (m (k + 1) : ℚ) * ((2 : ℚ) * (n k : ℚ) + 1) =
+            (n (k + 1) : ℚ) * ((2 : ℚ) * (m k : ℚ) + 1) := by
+    exact recurrence_cross_Q m n h_recurrence h_n_succ_nonzero_k h_two_nk_nonzero k
+>>>>REPLACE
+have hq : (m (k + 1) : ℚ) * ((2 : ℚ) * (n k : ℚ) + 1) =
+            (n (k + 1) : ℚ) * ((2 : ℚ) * (m k : ℚ) + 1) := by
+    exact recurrence_cross_Q m n k h_recurrence h_n_succ_nonzero_k h_two_nk_nonzero

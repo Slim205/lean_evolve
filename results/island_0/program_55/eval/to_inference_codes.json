@@ -1,0 +1,258 @@
+[
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  by_contra! h\n  have h' : x = 0 := by omega\n  simp_all"
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  by_contra! h\n  have h' : x = 0 := by omega\n  rw [h'] at hx\n  norm_num at hx\n  <;> omega"
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  match x with\n  | 0 => contradiction\n  | x + 1 => omega"
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  have : 0 < x := by\n    -- Use the fact that x % 2 = 1 to show that x is positive.\n    have h : x % 2 = 1 := hx\n    have h\u2081 : x \u2260 0 := by\n      intro h\u2082\n      rw [h\u2082] at h\n      norm_num at h\n    -- Use the fact that x is not zero to show that x is positive.\n    omega\n  exact this"
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  by_contra h\n  have h' : x = 0 := by omega\n  rw [h'] at hx\n  norm_num at hx"
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  have h : x % 2 = 1 := hx\n  have h\u2081 : x % 2 = 1 := h\n  have h\u2082 : x % 2 = 1 := h\u2081\n  have h\u2083 : x % 2 = 1 := h\u2082\n  have h\u2084 : x % 2 = 1 := h\u2083\n  have h\u2085 : x % 2 = 1 := h\u2084\n  omega"
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  match x with\n  | 0 => contradiction\n  | x + 1 => exact Nat.succ_pos _"
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  by_contra h\n  have h\u2081 : x = 0 := by omega\n  rw [h\u2081] at hx\n  norm_num at hx\n  <;> omega"
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  have h := Nat.mod_add_div x 2\n  have h\u2081 : 0 < x := by\n    by_contra h\u2081\n    have h\u2082 : x = 0 := by omega\n    simp_all\n  exact h\u2081"
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  match x with\n  | 0 => contradiction\n  | x + 1 => simp_all [Nat.mod_eq_of_lt]\n  <;> omega"
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  contrapose! hx\n  have : x = 0 := by omega\n  simp [this]"
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  match x with\n  | 0 =>\n    -- If x were 0, then x % 2 would also be 0, which contradicts hx.\n    contradiction\n  | 1 =>\n    -- If x were 1, then x % 2 would be 1, which is consistent with hx.\n    norm_num [Nat.mod_eq_of_lt]\n  | (n + 2) =>\n    -- For any n \u2265 0, if x = n + 2, then x % 2 = (n + 2) % 2.\n    norm_num [Nat.add_mod, Nat.mul_mod, Nat.mod_eq_of_lt] at hx \u22a2\n    -- Since n % 2 is either 0 or 1, (n + 2) % 2 would be 0 or 1.\n    <;> omega"
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  match x with\n  | 0 => contradiction\n  | 1 => simp\n  | x + 2 => omega\n  <;> omega"
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  have h : x % 2 = 1 := hx\n  have h\u2081 : x % 2 = 1 := h\n  have h\u2082 : x % 2 = 1 := h\u2081\n  have h\u2083 : x % 2 = 1 := h\u2082\n  have h\u2084 : x % 2 = 1 := h\u2083\n  have h\u2085 : x % 2 = 1 := h\u2084\n  omega"
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  have h := Nat.mod_lt x (by norm_num : 0 < 2)\n  -- Use the fact that x % 2 = 1 to show that x is positive\n  omega"
+    },
+    {
+        "name": "odd_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_pos (x : \u2115) (hx : x % 2 = 1) : 0 < x := by\n  by_contra h\n  have h\u2081 : x = 0 := by\n    have h\u2082 : x \u2264 0 := by omega\n    omega\n  rw [h\u2081] at hx\n  norm_num at hx"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    -- We use the fact that p < q to show that 2^(p+1) divides 2^q * y.\n    have h\u2081 : p + 1 \u2264 q := by omega\n    -- Since p + 1 \u2264 q, we can use the property of exponents and divisibility.\n    exact calc\n      (2 : \u2115) ^ (p + 1) \u2223 (2 : \u2115) ^ q := by\n        -- 2^(p+1) divides 2^q because p+1 \u2264 q.\n        exact pow_dvd_pow _ h\u2081\n      _ \u2223 (2 ^ q * y) := by\n        -- 2^q divides 2^q * y because 2^q * y = 2^q * y.\n        exact dvd_mul_right _ _\n  exact h"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h\u2081 : 2 ^ (p + 1) \u2223 2 ^ q * y := by\n    have h\u2081 : p + 1 \u2264 q := by omega\n    have h\u2082 : 2 ^ (p + 1) \u2223 2 ^ q := by\n      apply pow_dvd_pow\n      omega\n    have h\u2083 : 2 ^ (p + 1) \u2223 2 ^ q * y := by\n      exact dvd_mul_of_dvd_left h\u2082 y\n    exact h\u2083\n  exact h\u2081"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h\u2081 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h\u2082 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      -- We use the fact that p < q to show that 2^(p+1) divides 2^q * y\n      have h\u2083 : p + 1 \u2264 q := by omega\n      have h\u2084 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q) := by\n        -- Since p + 1 \u2264 q, we can use the property of powers\n        exact pow_dvd_pow _ h\u2083\n      have h\u2085 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n        -- If a divides b, then a divides any multiple of b\n        exact dvd_mul_of_dvd_left h\u2084 _\n      exact h\u2085\n    exact h\u2082\n  exact h\u2081"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h\u2081 : 2 ^ (p + 1) \u2223 2 ^ q * y := by\n    have h\u2082 : p + 1 \u2264 q := by omega\n    have h\u2083 : 2 ^ (p + 1) \u2223 2 ^ q := by\n      apply pow_dvd_pow\n      linarith\n    have h\u2084 : 2 ^ (p + 1) \u2223 2 ^ q * y := by\n      apply dvd_mul_of_dvd_left h\u2083\n    exact h\u2084\n  exact h\u2081"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h\u2081 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h\u2082 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      -- We need to show that 2^(p+1) divides 2^q * y.\n      -- Since p < q, we can use the property of powers of 2.\n      have h\u2083 : p + 1 \u2264 q := by omega\n      have h\u2084 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n        -- We use the fact that 2^(p+1) divides 2^q.\n        exact dvd_mul_of_dvd_left (pow_dvd_pow _ h\u2083) _\n      exact h\u2084\n    exact h\u2082\n  exact h\u2081"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h\u2081 : p + 1 \u2264 q := by omega\n    have h\u2082 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      apply dvd_mul_of_pow_dvd_left\n      apply pow_dvd_pow _ h\u2081\n    exact h\u2082\n  exact h"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h\u2081 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h\u2082 : p + 1 \u2264 q := by omega\n    have h\u2083 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      calc\n        (2 : \u2115) ^ (p + 1) \u2223 2 ^ q := by\n          apply pow_dvd_pow\n          omega\n        _ \u2223 2 ^ q * y := by\n          apply dvd_mul_right\n    exact h\u2083\n  exact h\u2081"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h1 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      -- We need to show that 2^(p+1) divides 2^q * y\n      -- Since p < q, we can use the fact that 2^(p+1) divides 2^q\n      have h2 : (p + 1 : \u2115) \u2264 q := by\n        omega\n      -- Using the fact that p + 1 \u2264 q, we can write 2^q as 2^(p+1) * 2^(q - (p+1))\n      have h3 : (2 : \u2115) ^ q = (2 : \u2115) ^ (p + 1) * (2 : \u2115) ^ (q - (p + 1)) := by\n        rw [\u2190 pow_add, add_tsub_cancel_of_le h2]\n      rw [h3]\n      -- Now we have 2^q * y = 2^(p+1) * (2^(q - (p+1)) * y)\n      -- This shows that 2^(p+1) divides 2^q * y\n      exact \u27e8(2 ^ (q - (p + 1)) * y), by ring\u27e9\n    exact h1\n  exact h"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h : 2 ^ (p + 1) \u2223 2 ^ q * y := by\n    have h\u2081 : p + 1 \u2264 q := by omega\n    have h\u2082 : 2 ^ (p + 1) \u2223 2 ^ q := by\n      apply pow_dvd_pow _\n      omega\n    have h\u2083 : 2 ^ (p + 1) \u2223 2 ^ q * y := by\n      exact dvd_mul_of_dvd_left h\u2082 y\n    exact h\u2083\n  exact h"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h\u2081 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h\u2082 : p + 1 \u2264 q := by linarith\n    have h\u2083 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      calc\n        (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n          apply Dvd.intro (2 ^ (q - (p + 1)) * y)\n          rw [Nat.pow_succ]\n          cases' q with q\n          \u00b7 omega\n          \u00b7 simp [Nat.mul_sub_left_distrib, Nat.mul_sub_right_distrib, Nat.pow_succ]\n            <;> ring_nf\n            <;> omega\n        _ = (2 ^ q * y) := by rfl\n    exact h\u2083\n  exact h\u2081"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h : (2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y) := by\n    have h\u2081 : (2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y) := by\n      -- We need to show that 2^(p+1) divides 2^q * y\n      -- Since p < q, we can write q = p + k for some positive integer k\n      -- This implies 2^q = 2^(p+k) = 2^p * 2^k\n      -- Thus, 2^q * y = 2^p * 2^k * y = 2^(p+k) * y\n      -- We need to show that 2^(p+1) divides 2^(p+k) * y\n      -- Since 2^(p+1) = 2^p * 2, and 2^p divides 2^(p+k), it suffices to show that 2 divides y\n      -- This is not necessarily true, so we need to refine this approach\n      -- Instead, we can directly use the fact that p < q implies 2^(p+1) divides 2^q * y\n      apply Nat.dvd_of_mod_eq_zero\n      rw [Nat.mul_mod]\n      simp [Nat.pow_mod, Nat.pow_add, Nat.pow_one, Nat.mod_eq_of_lt hpq]\n      <;> induction y <;> simp_all [Nat.mul_mod, Nat.pow_mod, Nat.pow_add, Nat.pow_one]\n      <;> omega\n    exact h\u2081\n  exact h"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h\u2081 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      -- We need to show that 2^(p+1) divides 2^q * y\n      -- Since p < q, we can use the fact that 2^(p+1) divides 2^q\n      -- and thus 2^(p+1) divides 2^q * y\n      have h\u2082 : (p + 1 : \u2115) \u2264 q := by omega\n      have h\u2083 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q) := by\n        -- Since p + 1 \u2264 q, we have 2^(p+1) \u2223 2^q\n        exact pow_dvd_pow _ h\u2082\n      have h\u2084 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n        -- Since 2^(p+1) \u2223 2^q, we have 2^(p+1) \u2223 2^q * y\n        exact dvd_mul_of_dvd_left h\u2083 _\n      exact h\u2084\n    exact h\u2081\n  exact h"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h\u2081 : p + 1 \u2264 q := by omega\n    have h\u2082 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      calc\n        (2 ^ (p + 1) : \u2115) \u2223 2 ^ q := by\n          apply pow_dvd_pow _\n          omega\n        _ \u2223 2 ^ q * y := by simp [Nat.dvd_mul_right]\n    exact h\u2082\n  exact h"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h\u2081 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      -- Use the fact that \\( p < q \\) to show that \\( 2^{p+1} \\) divides \\( 2^q \\)\n      have h\u2082 : p + 1 \u2264 q := by linarith\n      have h\u2083 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q) := by\n        exact pow_dvd_pow _ h\u2082\n      -- Since \\( 2^{p+1} \\) divides \\( 2^q \\), it also divides their product\n      exact dvd_trans h\u2083 (dvd_mul_right _ _)\n    exact h\u2081\n  exact h"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h\u2081 : p + 1 \u2264 q := by omega\n    have h\u2082 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      calc\n        (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n          apply Dvd.intro (2 ^ (q - (p + 1)) * y)\n          rw [pow_right_comm]\n          cases' q with q\n          \u00b7 omega\n          \u00b7 simp_all [Nat.pow_succ, Nat.mul_assoc, Nat.mul_comm, Nat.mul_left_comm]\n            <;> ring_nf at * <;> omega\n        _ = (2 ^ q * y) := by rfl\n    exact h\u2082\n  exact h"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul (p q y : \u2115) (hpq : p < q) :\n  ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ q * y)) := by\n  have h\u2081 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n    have h\u2082 : p + 1 \u2264 q := by omega\n    have h\u2083 : (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q * y) := by\n      calc\n        (2 : \u2115) ^ (p + 1) \u2223 (2 ^ q) := by\n          apply pow_dvd_pow _\n          omega\n        _ \u2223 (2 ^ q * y) := by\n          apply Nat.dvd_of_mod_eq_zero\n          simp [Nat.mul_mod, Nat.pow_mod]\n    exact h\u2083\n  exact h\u2081"
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  rw [h] at *\n  <;> assumption"
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  simp_all\n  <;> simp_all [Nat.dvd_iff_mod_eq_zero]\n  <;> omega"
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  rw [h] at *\n  <;> simp_all"
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  simpa [h] using hd"
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  rw [h]\n  <;> assumption"
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  rw [h]\n  <;> assumption\n  <;> simp_all\n  <;> apply hd\n  <;> simp_all\n  <;> apply hd\n  <;> simp_all\n  <;> apply hd\n  <;> simp_all\n  <;> apply hd\n  <;> simp_all\n  <;> apply hd\n  <;> simp_all\n  <;> apply hd\n  <;> simp_all\n  <;> apply hd\n  <;> simp_all"
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  simpa [h] using hd"
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  rw [h] at *\n  <;> simp_all\n  <;> simp_all\n  <;> simp_all"
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  -- Substitute \\( A \\) with \\( B \\) using the given equality \\( A = B \\).\n  rw [h]\n  -- Since \\( d \\) divides \\( B \\), it also divides \\( A \\).\n  exact hd"
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  subst h\n  -- Substitute \\( A \\) with \\( B \\) in the hypothesis \\( d \\mid A \\)\n  assumption\n  -- Since \\( d \\mid B \\) and \\( A = B \\), the goal \\( d \\mid A \\) is directly satisfied\n  <;> simp_all\n  -- Simplify all hypotheses and goals, ensuring that the proof is complete and correct\n  <;> omega"
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  subst_vars\n  <;> simp_all\n  <;> assumption"
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  rw [h]\n  <;> simp_all\n  <;> exact hd"
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  -- Substitute \\( A \\) with \\( B \\) in the hypothesis that \\( d \\) divides \\( A \\)\n  rw [h]\n  -- Since \\( d \\) divides \\( B \\), it will also divide \\( B \\) after substitution\n  <;> simp_all\n  <;> assumption\n  <;> simp_all\n  <;> assumption\n  <;> simp_all\n  <;> assumption\n  <;> simp_all\n  <;> assumption"
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  subst h\n  assumption"
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  subst h\n  <;> simp_all"
+    },
+    {
+        "name": "dvd_of_eq'",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem dvd_of_eq' {d A B : \u2115} (h : A = B) (hd : d \u2223 B) : d \u2223 A := by\n  rw [h]\n  <;> assumption\n  <;> simp_all\n  <;> omega"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.pow_succ] at h\n  rw [Nat.mul_comm] at h\n  rw [Nat.dvd_iff_mod_eq_zero] at *\n  rcases x with (_ | _ | x) <;> simp_all [Nat.pow_succ, Nat.mul_mod, Nat.mul_assoc]\n  <;> omega"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.dvd_iff_mod_eq_zero]\n  rw [Nat.pow_succ] at h\n  rw [Nat.mul_mod] at h\n  induction p <;> simp_all [Nat.pow_succ, Nat.mul_mod, Nat.mul_assoc]\n  <;> omega"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.dvd_iff_mod_eq_zero]\n  revert h\n  intro h\n  rcases p with (_ | _ | p) <;> simp_all [Nat.pow_succ, Nat.mul_mod, Nat.pow_mod]\n  all_goals\n    omega"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.dvd_iff_mod_eq_zero]\n  rw [Nat.dvd_iff_mod_eq_zero] at h\n  induction p <;> simp_all [Nat.pow_succ, Nat.mul_mod, Nat.mul_comm]\n  <;> omega"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  have h2 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\n  have h3 : 2 ^ (p + 1) \u2223 2 ^ p * x := h2\n  have h4 : 2 ^ (p + 1) \u2223 2 ^ p * x := h3\n  have h5 : 2 \u2223 x := by\n    have h6 : 2 ^ (p + 1) \u2223 2 ^ p * x := h4\n    have h7 : 2 ^ (p + 1) \u2223 2 ^ p * x := h6\n    have h8 : 2 ^ (p + 1) \u2223 2 ^ p * x := h7\n    have h9 : 2 \u2223 x := by\n      apply Nat.Prime.dvd_of_dvd_pow\n      norm_num\n      exact Nat.dvd_of_mod_eq_zero (by simp_all [Nat.pow_succ, Nat.mul_mod, Nat.pow_mod])\n    exact h9\n  exact h5"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.dvd_iff_mod_eq_zero]\n  rw [Nat.mul_mod] at *\n  cases' p with p\n  all_goals simp_all [Nat.pow_succ]\n  all_goals omega"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.dvd_iff_mod_eq_zero]\n  have h\u2081 := h\n  rw [Nat.dvd_iff_mod_eq_zero] at h\u2081\n  induction p with\n  | zero =>\n    -- Base case: p = 0\n    simp_all [Nat.pow_succ]\n  | succ p ih =>\n    -- Inductive step: assume the statement holds for p, prove for p+1\n    simp_all [Nat.mul_mod, Nat.pow_succ]\n    <;> omega"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [mul_comm] at h\n  rw [Nat.pow_dvd_pow_iff] at h <;> try norm_num <;> omega\n  <;> simp_all [Nat.pow_succ]\n  <;> omega"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.dvd_iff_mod_eq_zero]\n  have h' := h\n  rw [Nat.dvd_iff_mod_eq_zero] at h'\n  induction p with\n  | zero =>\n    -- Base case: p = 0\n    simp_all [Nat.pow_succ, Nat.mul_mod, Nat.pow_zero]\n  | succ p ih =>\n    -- Inductive step: assume the statement holds for p, prove for p + 1\n    simp_all [Nat.pow_succ, Nat.mul_mod, Nat.pow_succ]\n    <;> omega"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  have h\u2081 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\n  have h\u2082 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2081\n  have h\u2083 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2082\n  -- We use the fact that if a number divides another, it must divide any factor of the latter.\n  have h\u2084 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2083\n  -- We simplify the expression to show that 2 must divide x.\n  have h\u2085 : 2 \u2223 x := by\n    have h\u2086 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2084\n    have h\u2087 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2086\n    -- We use the fact that 2 ^ (p + 1) = 2 ^ p * 2 and thus 2 ^ p * 2 divides 2 ^ p * x implies 2 divides x.\n    exact?\n  exact h\u2085"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.dvd_iff_mod_eq_zero] at h \u22a2\n  induction p with\n  | zero => simp_all [Nat.pow_succ]\n  | succ p ih =>\n    simp_all [Nat.mul_mod, Nat.pow_succ]\n    <;> omega"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.pow_succ] at h\n  rw [Nat.mul_comm] at h\n  rw [Nat.pow_succ] at h\n  rw [Nat.mul_comm] at h\n  exact?"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  have h2 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\n  have h3 : 2 ^ (p + 1) \u2223 2 ^ p * x := h2\n  have h4 : 2 ^ (p + 1) \u2223 2 ^ p * x := h3\n  have h5 : 2 \u2223 x := by\n    have h6 : 2 ^ (p + 1) \u2223 2 ^ p * x := h4\n    have h7 : 2 ^ (p + 1) \u2223 2 ^ p * x := h6\n    have h8 : 2 ^ (p + 1) \u2223 2 ^ p * x := h7\n    have h9 : 2 \u2223 x := by\n      have h10 : 2 ^ (p + 1) \u2223 2 ^ p * x := h8\n      have h11 : 2 ^ (p + 1) \u2223 2 ^ p * x := h10\n      have h12 : 2 ^ (p + 1) \u2223 2 ^ p * x := h11\n      -- Use the fact that 2^(p+1) divides 2^p * x to deduce that 2 divides x\n      exact by\n        rw [Nat.dvd_iff_mod_eq_zero] at h10 \u22a2\n        have h13 := h10\n        simp [Nat.pow_succ, Nat.mul_mod, Nat.pow_mod] at h13 \u22a2\n        <;> induction p <;> simp_all [Nat.pow_succ, Nat.mul_mod, Nat.pow_mod] <;> omega\n    exact h9\n  exact h5"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  have h\u2081 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\n  have h\u2082 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2081\n  have h\u2083 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2082\n  have h\u2084 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2083\n  have h\u2085 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2084\n  -- We use the fact that if a number divides another, it also divides any multiple of it.\n  have h\u2086 : 2 \u2223 x := by\n    have h\u2087 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2085\n    have h\u2088 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2087\n    have h\u2089 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2088\n    have h\u2081\u2080 : 2 ^ (p + 1) \u2223 2 ^ p * x := h\u2089\n    -- We simplify the expression to show that 2 divides x.\n    have h\u2081\u2081 : 2 \u2223 x := by\n      rw [Nat.pow_succ] at h\u2081\u2080\n      simp [Nat.mul_dvd_mul_iff_left] at h\u2081\u2080\n      <;> simp_all [Nat.pow_succ, Nat.mul_dvd_mul_iff_left]\n      <;> omega\n    exact h\u2081\u2081\n  exact h\u2086"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.dvd_iff_mod_eq_zero] at *\n  rcases p with (_ | _) <;> simp_all [Nat.pow_succ, Nat.mul_mod, Nat.pow_succ]\n  <;> omega"
+    },
+    {
+        "name": "pow_succ_dvd_pow_mul_implies_two_dvd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pow_succ_dvd_pow_mul_implies_two_dvd {p x : \u2115}\n  (h : ((2 : \u2115) ^ (p + 1) \u2223 ((2 : \u2115) ^ p * x))) : 2 \u2223 x := by\n  rw [Nat.dvd_iff_mod_eq_zero] at *\n  rcases p with (_ | _ | p) <;> simp_all [Nat.pow_succ, Nat.mul_mod, Nat.pow_add]\n  all_goals omega"
+    }
+]

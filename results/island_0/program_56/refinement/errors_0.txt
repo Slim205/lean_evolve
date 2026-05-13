@@ -1,0 +1,10 @@
+ERROR from position {'line': 1316, 'column': 30} to {'line': 1316, 'column': 39}:
+application type mismatch
+  nat_dvd_exists_mul d hd_dvd_r1
+argument
+  hd_dvd_r1
+has type
+  d ∣ r1 : Prop
+but is expected to have type
+  ℕ : Type
+

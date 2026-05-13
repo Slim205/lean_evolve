@@ -1,0 +1,12 @@
+ERROR from position {'line': 42, 'column': 14} to {'line': 42, 'column': 28}:
+unknown identifier 'n_succ_nonzero'
+
+ERROR from position {'line': 39, 'column': 71} to {'line': 61, 'column': 16}:
+unsolved goals
+m n : ℕ → ℕ
+h_coprime : ∀ (k : ℕ), 0 < k → (m k).Coprime (n k)
+h_recurrence : ∀ (k : ℕ), ↑(m (k + 1)) / ↑(n (k + 1)) = (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1)
+k : ℕ
+⊢ let d := (2 * m k + 1).gcd (2 * n k + 1);
+  2 * m k + 1 = d * m (k + 1) ∧ 2 * n k + 1 = d * n (k + 1)
+

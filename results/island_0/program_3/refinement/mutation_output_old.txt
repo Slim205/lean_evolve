@@ -1,0 +1,93 @@
+>>>>SEARCH
+/-- There exists an "odd-part" measure t(k) (derived from |m_k - n_k|) which is positive,
+globally nonincreasing, and strictly decreases whenever the corresponding gcd is nontrivial.
+We keep this as an abstract existence lemma (proved below in the informal argument). -/
+lemma exists_odd_measure
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∃ (t : ℕ → ℕ),
+    (∀ k : ℕ, 0 < t k) ∧
+    (∀ k : ℕ, t (k + 1) ≤ t k) ∧
+    (∀ k : ℕ, (¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) → t (k + 1) < t k) := by
+  sorry
+
+theorem putnam_2025_a1
+  (m n : ℕ → ℕ)
+  (hm : ∀ k : ℕ, 0 < m k)
+  (hn : ∀ k : ℕ, 0 < n k)
+  (h_distinct : m 0 ≠ n 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  {k : ℕ | ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)}.Finite := by
+  classical
+
+  -- Step 2: differences never vanish
+  have hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0 := by
+    exact diff_ne_zero m n h_distinct h_recurrence
+
+  -- Step 4: obtain the decreasing odd-part measure abstractly
+  rcases exists_odd_measure m n hΔ h_recurrence with ⟨t, ⟨htpos, hnoninc, hdec_step⟩⟩
+
+  -- Step 4/5: define the "bad" property
+  let bad : ℕ → Prop := fun k => ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)
+
+  -- Step 5: apply the abstract finiteness lemma using the properties of `t`
+  have hfinite : {k : ℕ | bad k}.Finite := by
+    exact finite_of_strict_decrease_on_bad t htpos bad hnoninc hdec_step
+
+  -- conclude in the required form
+  simpa [bad] using hfinite
+>>>>REPLACE
+/-- There exists an "odd-part" measure t(k) (derived from |m_k - n_k|) which is positive,
+globally nonincreasing, and strictly decreases whenever the corresponding gcd is nontrivial.
+To make this precise we require the normalization that (m (k+1), n (k+1)) is the reduced
+form of (2*m_k+1, 2*n_k+1), i.e. division by their gcd. -/
+lemma exists_odd_measure
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_next : ∀ k : ℕ,
+    let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1) in
+    (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d)) :
+  ∃ (t : ℕ → ℕ),
+    (∀ k : ℕ, 0 < t k) ∧
+    (∀ k : ℕ, t (k + 1) ≤ t k) ∧
+    (∀ k : ℕ, (¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) → t (k + 1) < t k) := by
+  sorry
+
+theorem putnam_2025_a1
+  (m n : ℕ → ℕ)
+  (hm : ∀ k : ℕ, 0 < m k)
+  (hn : ∀ k : ℕ, 0 < n k)
+  (h_distinct : m 0 ≠ n 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  {k : ℕ | ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)}.Finite := by
+  classical
+
+  -- Step 2: differences never vanish
+  have hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0 := by
+    exact diff_ne_zero m n h_distinct h_recurrence
+
+  -- obtain the normalization equalities from the gcd-reduction lemma
+  have hnext : ∀ k : ℕ,
+    let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1) in
+    (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+    intro k
+    exact next_eq_div_gcd m n h_coprime h_recurrence k
+
+  -- Step 4: obtain the decreasing odd-part measure (now using the normalization)
+  rcases exists_odd_measure m n hΔ hnext with ⟨t, ⟨htpos, hnoninc, hdec_step⟩⟩
+
+  -- Step 4/5: define the "bad" property
+  let bad : ℕ → Prop := fun k => ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)
+
+  -- Step 5: apply the abstract finiteness lemma using the properties of `t`
+  have hfinite : {k : ℕ | bad k}.Finite := by
+    exact finite_of_strict_decrease_on_bad t htpos bad hnoninc hdec_step
+
+  -- conclude in the required form
+  simpa [bad] using hfinite

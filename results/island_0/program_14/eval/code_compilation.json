@@ -1,0 +1,810 @@
+[
+    {
+        "name": "exists_pow_two_mul_odd_for_pos_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0\n  use A\n  simp [hpos]\n  <;> omega",
+        "custom_id": "exists_pow_two_mul_odd_for_pos_nat_0",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 58
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.040203094482421875,
+            "custom_id": "exists_pow_two_mul_odd_for_pos_nat_0"
+        }
+    },
+    {
+        "name": "exists_pow_two_mul_odd_for_pos_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0\n  use A\n  simp [hpos]\n  <;> omega",
+        "custom_id": "exists_pow_two_mul_odd_for_pos_nat_1",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 58
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.05077862739562988,
+            "custom_id": "exists_pow_two_mul_odd_for_pos_nat_1"
+        }
+    },
+    {
+        "name": "exists_pow_two_mul_odd_for_pos_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega",
+        "custom_id": "exists_pow_two_mul_odd_for_pos_nat_2",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 58
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.032747507095336914,
+            "custom_id": "exists_pow_two_mul_odd_for_pos_nat_2"
+        }
+    },
+    {
+        "name": "exists_pow_two_mul_odd_for_pos_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega",
+        "custom_id": "exists_pow_two_mul_odd_for_pos_nat_3",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 58
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.05089521408081055,
+            "custom_id": "exists_pow_two_mul_odd_for_pos_nat_3"
+        }
+    },
+    {
+        "name": "exists_pow_two_mul_odd_for_pos_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega",
+        "custom_id": "exists_pow_two_mul_odd_for_pos_nat_4",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 58
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.034780025482177734,
+            "custom_id": "exists_pow_two_mul_odd_for_pos_nat_4"
+        }
+    },
+    {
+        "name": "exists_pow_two_mul_odd_for_pos_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos, Nat.mod_eq_of_lt]\n  <;> omega",
+        "custom_id": "exists_pow_two_mul_odd_for_pos_nat_5",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 58
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.0384063720703125,
+            "custom_id": "exists_pow_two_mul_odd_for_pos_nat_5"
+        }
+    },
+    {
+        "name": "exists_pow_two_mul_odd_for_pos_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega",
+        "custom_id": "exists_pow_two_mul_odd_for_pos_nat_6",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 58
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.03602433204650879,
+            "custom_id": "exists_pow_two_mul_odd_for_pos_nat_6"
+        }
+    },
+    {
+        "name": "exists_pow_two_mul_odd_for_pos_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega",
+        "custom_id": "exists_pow_two_mul_odd_for_pos_nat_7",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 58
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.03316044807434082,
+            "custom_id": "exists_pow_two_mul_odd_for_pos_nat_7"
+        }
+    },
+    {
+        "name": "exists_pow_two_mul_odd_for_pos_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega",
+        "custom_id": "exists_pow_two_mul_odd_for_pos_nat_8",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 58
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.049585580825805664,
+            "custom_id": "exists_pow_two_mul_odd_for_pos_nat_8"
+        }
+    },
+    {
+        "name": "exists_pow_two_mul_odd_for_pos_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega\n  <;> simp_all\n  <;> omega",
+        "custom_id": "exists_pow_two_mul_odd_for_pos_nat_9",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 14
+                    },
+                    "data": "simp_all made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 58
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.05752873420715332,
+            "custom_id": "exists_pow_two_mul_odd_for_pos_nat_9"
+        }
+    },
+    {
+        "name": "exists_pow_two_mul_odd_for_pos_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega",
+        "custom_id": "exists_pow_two_mul_odd_for_pos_nat_10",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 58
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.05306816101074219,
+            "custom_id": "exists_pow_two_mul_odd_for_pos_nat_10"
+        }
+    },
+    {
+        "name": "exists_pow_two_mul_odd_for_pos_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0\n  use A\n  simp [hpos]\n  <;> omega",
+        "custom_id": "exists_pow_two_mul_odd_for_pos_nat_11",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 58
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.0371251106262207,
+            "custom_id": "exists_pow_two_mul_odd_for_pos_nat_11"
+        }
+    },
+    {
+        "name": "exists_pow_two_mul_odd_for_pos_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega",
+        "custom_id": "exists_pow_two_mul_odd_for_pos_nat_12",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 58
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.032526493072509766,
+            "custom_id": "exists_pow_two_mul_odd_for_pos_nat_12"
+        }
+    },
+    {
+        "name": "exists_pow_two_mul_odd_for_pos_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega\n  <;> omega\n  <;> omega",
+        "custom_id": "exists_pow_two_mul_odd_for_pos_nat_13",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 58
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.03999781608581543,
+            "custom_id": "exists_pow_two_mul_odd_for_pos_nat_13"
+        }
+    },
+    {
+        "name": "exists_pow_two_mul_odd_for_pos_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega",
+        "custom_id": "exists_pow_two_mul_odd_for_pos_nat_14",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 58
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.03516793251037598,
+            "custom_id": "exists_pow_two_mul_odd_for_pos_nat_14"
+        }
+    },
+    {
+        "name": "exists_pow_two_mul_odd_for_pos_nat",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem exists_pow_two_mul_odd_for_pos_nat (A : \u2115) (hpos : 0 < A) :\n  \u2203 (u r : \u2115), A = (2 : \u2115) ^ u * r \u2227 r % 2 = 1 \u2227 0 < r := by\n  use 0, A\n  simp [hpos]\n  <;> omega\n  <;> aesop\n  <;> omega\n  <;> aesop\n  <;> omega\n  <;> aesop\n  <;> omega",
+        "custom_id": "exists_pow_two_mul_odd_for_pos_nat_15",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "tactic 'aesop' failed, made no progress\nInitial goal:\n  case h\n  A : \u2115\n  hpos : 0 < A\n  \u22a2 A % 2 = 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "tactic 'aesop' failed, made no progress\nInitial goal:\n  case h\n  A : \u2115\n  hpos : 0 < A\n  \u22a2 A % 2 = 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 11
+                    },
+                    "data": "tactic 'aesop' failed, made no progress\nInitial goal:\n  case h\n  A : \u2115\n  hpos : 0 < A\n  \u22a2 A % 2 = 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191A / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 58
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nA : \u2115\nhpos : 0 < A\n\u22a2 A % 2 = 1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.10205817222595215,
+            "custom_id": "exists_pow_two_mul_odd_for_pos_nat_15"
+        }
+    }
+]

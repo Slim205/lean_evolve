@@ -1,0 +1,9 @@
+ERROR from position {'line': 75, 'column': 53} to None:
+expected ';' or line break
+
+ERROR from position {'line': 99, 'column': 9} to {'line': 99, 'column': 27}:
+unknown identifier 'exists_odd_measure'
+
+ERROR from position {'line': 100, 'column': 9} to {'line': 100, 'column': 41}:
+rcases tactic failed: x✝ : ?m.6315 is not an inductive datatype
+

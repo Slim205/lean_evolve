@@ -1,0 +1,3088 @@
+[
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  field_simp [h\u2082, h\u2083] at h\u2081\n  linarith",
+        "custom_id": "clear_denoms_Q_0",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.2272353172302246,
+            "custom_id": "clear_denoms_Q_0"
+        }
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h1 : a / b = c / d := h\n  have h2 : b \u2260 0 := by assumption\n  have h3 : d \u2260 0 := by assumption\n  field_simp at h1\n  linarith",
+        "custom_id": "clear_denoms_Q_1",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.19078540802001953,
+            "custom_id": "clear_denoms_Q_1"
+        }
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  field_simp [h\u2082, h\u2083] at h\u2081\n  linarith",
+        "custom_id": "clear_denoms_Q_2",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.210066556930542,
+            "custom_id": "clear_denoms_Q_2"
+        }
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  field_simp [h\u2082, h\u2083] at h\u2081\n  linarith",
+        "custom_id": "clear_denoms_Q_3",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.20319271087646484,
+            "custom_id": "clear_denoms_Q_3"
+        }
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h1 : a / b = c / d := h\n  have h2 : b \u2260 0 := hb\n  have h3 : d \u2260 0 := hd\n  field_simp [h2, h3] at h1\n  linarith",
+        "custom_id": "clear_denoms_Q_4",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.20442581176757812,
+            "custom_id": "clear_denoms_Q_4"
+        }
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  field_simp [h\u2082, h\u2083] at h\u2081\n  linarith",
+        "custom_id": "clear_denoms_Q_5",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.19303297996520996,
+            "custom_id": "clear_denoms_Q_5"
+        }
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  have h\u2084 : a * d = c * b := by\n    field_simp at h\u2081\n    nlinarith\n  exact h\u2084",
+        "custom_id": "clear_denoms_Q_6",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.24314022064208984,
+            "custom_id": "clear_denoms_Q_6"
+        }
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  field_simp at h\u2081\n  linarith",
+        "custom_id": "clear_denoms_Q_7",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.18500924110412598,
+            "custom_id": "clear_denoms_Q_7"
+        }
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  field_simp [h\u2082, h\u2083] at h\u2081\n  linarith",
+        "custom_id": "clear_denoms_Q_8",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.19699645042419434,
+            "custom_id": "clear_denoms_Q_8"
+        }
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h1 : b \u2260 0 := by assumption\n  have h2 : d \u2260 0 := by assumption\n  field_simp [h1, h2] at h \u22a2\n  <;> simp_all [mul_comm]\n  <;> ring_nf at h \u22a2\n  <;> linarith",
+        "custom_id": "clear_denoms_Q_9",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 20
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.2246685028076172,
+            "custom_id": "clear_denoms_Q_9"
+        }
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := by assumption\n  have h\u2083 : d \u2260 0 := by assumption\n  field_simp [h\u2082, h\u2083] at h\u2081\n  linarith",
+        "custom_id": "clear_denoms_Q_10",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.21377253532409668,
+            "custom_id": "clear_denoms_Q_10"
+        }
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  field_simp at h\u2081\n  linarith",
+        "custom_id": "clear_denoms_Q_11",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.20894336700439453,
+            "custom_id": "clear_denoms_Q_11"
+        }
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : (a / b) = (c / d) := h\n  have h\u2082 : (b : \u211a) \u2260 0 := by exact_mod_cast hb\n  have h\u2083 : (d : \u211a) \u2260 0 := by exact_mod_cast hd\n  field_simp at h\u2081\n  linarith",
+        "custom_id": "clear_denoms_Q_12",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.21295857429504395,
+            "custom_id": "clear_denoms_Q_12"
+        }
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  field_simp at h\u2081\n  linarith",
+        "custom_id": "clear_denoms_Q_13",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.2248542308807373,
+            "custom_id": "clear_denoms_Q_13"
+        }
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  field_simp at h\u2081\n  linarith",
+        "custom_id": "clear_denoms_Q_14",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.21505117416381836,
+            "custom_id": "clear_denoms_Q_14"
+        }
+    },
+    {
+        "name": "clear_denoms_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem clear_denoms_Q {a b c d : \u211a} (hb : b \u2260 0) (hd : d \u2260 0) (h : a / b = c / d) :\n  a * d = c * b := by\n  have h\u2081 : a / b = c / d := h\n  have h\u2082 : b \u2260 0 := hb\n  have h\u2083 : d \u2260 0 := hd\n  field_simp at h\u2081\n  -- Cross-multiplying to clear the denominators\n  <;> ring_nf at h\u2081 \u22a2\n  <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n  -- Simplifying the equation to show a * d = c * b\n  <;> linarith",
+        "custom_id": "clear_denoms_Q_15",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.2441112995147705,
+            "custom_id": "clear_denoms_Q_15"
+        }
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [add_comm, add_left_comm, add_assoc]\n  <;> norm_cast\n  <;> ring\n  <;> norm_cast\n  <;> omega",
+        "custom_id": "cast_two_mul_nat_plus_one_16",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 47
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.026445627212524414,
+            "custom_id": "cast_two_mul_nat_plus_one_16"
+        }
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm, mul_assoc]\n  <;> norm_cast\n  <;> linarith",
+        "custom_id": "cast_two_mul_nat_plus_one_17",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 65
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.04663896560668945,
+            "custom_id": "cast_two_mul_nat_plus_one_17"
+        }
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> ring_nf\n  <;> norm_cast\n  <;> omega",
+        "custom_id": "cast_two_mul_nat_plus_one_18",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 13
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.02788233757019043,
+            "custom_id": "cast_two_mul_nat_plus_one_18"
+        }
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [add_comm, add_assoc, add_left_comm]\n  <;> norm_cast\n  <;> omega",
+        "custom_id": "cast_two_mul_nat_plus_one_19",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 47
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.02776813507080078,
+            "custom_id": "cast_two_mul_nat_plus_one_19"
+        }
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [Nat.cast_add, Nat.cast_mul, Nat.cast_one]\n  <;> ring\n  <;> norm_cast\n  <;> omega",
+        "custom_id": "cast_two_mul_nat_plus_one_20",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 53
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.029157638549804688,
+            "custom_id": "cast_two_mul_nat_plus_one_20"
+        }
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat]\n  <;> ring\n  <;> simp [Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat]\n  <;> ring\n  <;> simp [Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat]\n  <;> ring",
+        "custom_id": "cast_two_mul_nat_plus_one_21",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 55
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 55
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 55
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03102564811706543,
+            "custom_id": "cast_two_mul_nat_plus_one_21"
+        }
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm]\n  <;> ring\n  <;> norm_cast\n  <;> omega",
+        "custom_id": "cast_two_mul_nat_plus_one_22",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 54
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.0466761589050293,
+            "custom_id": "cast_two_mul_nat_plus_one_22"
+        }
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [add_comm, add_left_comm, add_assoc]\n  <;> norm_cast\n  <;> linarith",
+        "custom_id": "cast_two_mul_nat_plus_one_23",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 47
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.028020858764648438,
+            "custom_id": "cast_two_mul_nat_plus_one_23"
+        }
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat]\n  <;> ring_nf\n  <;> norm_cast\n  <;> omega",
+        "custom_id": "cast_two_mul_nat_plus_one_24",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 55
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 13
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.02979755401611328,
+            "custom_id": "cast_two_mul_nat_plus_one_24"
+        }
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> ring_nf\n  <;> norm_cast\n  <;> omega",
+        "custom_id": "cast_two_mul_nat_plus_one_25",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 13
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.033367156982421875,
+            "custom_id": "cast_two_mul_nat_plus_one_25"
+        }
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [mul_add, mul_comm, mul_left_comm, mul_assoc]\n  <;> norm_cast\n  <;> linarith",
+        "custom_id": "cast_two_mul_nat_plus_one_26",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 56
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.028998851776123047,
+            "custom_id": "cast_two_mul_nat_plus_one_26"
+        }
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [mul_add, add_mul, mul_comm, mul_left_comm, mul_assoc]\n  <;> ring\n  <;> norm_cast\n  <;> omega",
+        "custom_id": "cast_two_mul_nat_plus_one_27",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 65
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.028234243392944336,
+            "custom_id": "cast_two_mul_nat_plus_one_27"
+        }
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [add_mul, mul_add, mul_comm, mul_left_comm, mul_assoc]\n  <;> ring\n  <;> norm_cast\n  <;> omega",
+        "custom_id": "cast_two_mul_nat_plus_one_28",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 65
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.033707618713378906,
+            "custom_id": "cast_two_mul_nat_plus_one_28"
+        }
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [mul_add, add_mul, Nat.cast_add, Nat.cast_mul, Nat.cast_one]\n  <;> ring\n  <;> simp [Nat.cast_add, Nat.cast_mul, Nat.cast_one]\n  <;> norm_cast\n  <;> linarith",
+        "custom_id": "cast_two_mul_nat_plus_one_29",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 71
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 53
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.027327537536621094,
+            "custom_id": "cast_two_mul_nat_plus_one_29"
+        }
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  simp [\u2190 Nat.cast_add, \u2190 Nat.cast_mul, \u2190 Nat.cast_one]\n  <;> norm_cast\n  <;> linarith",
+        "custom_id": "cast_two_mul_nat_plus_one_30",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 55
+                    },
+                    "data": "tactic 'simp' failed, nested error:\nmaximum recursion depth has been reached\nuse `set_option maxRecDepth <num>` to increase limit\nuse `set_option diagnostics true` to get diagnostic information"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.10833406448364258,
+            "custom_id": "cast_two_mul_nat_plus_one_30"
+        }
+    },
+    {
+        "name": "cast_two_mul_nat_plus_one",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem cast_two_mul_nat_plus_one (x : \u2115) :\n  ((2 : \u211a) * (x : \u211a) + 1) = ((2 * x + 1 : \u2115) : \u211a) := by\n  norm_cast\n  <;> simp [add_comm, add_left_comm, mul_comm, mul_left_comm]\n  <;> norm_cast\n  <;> ring\n  <;> norm_cast\n  <;> omega",
+        "custom_id": "cast_two_mul_nat_plus_one_31",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 61
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.028884410858154297,
+            "custom_id": "cast_two_mul_nat_plus_one_31"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp [h2, h3] at h1\n  linarith",
+        "custom_id": "recurrence_cross_Q_32",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.34885168075561523,
+            "custom_id": "recurrence_cross_Q_32"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h1\n  linarith",
+        "custom_id": "recurrence_cross_Q_33",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.3535301685333252,
+            "custom_id": "recurrence_cross_Q_33"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp at h1\n  <;> ring_nf at h1 \u22a2\n  <;> linarith",
+        "custom_id": "recurrence_cross_Q_34",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 38
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 71
+                    },
+                    "data": "mod_cast has type\n  \u00acn (k\u271d + 1) = 0 : Prop\nbut is expected to have type\n  \u00acn (k + 1) = 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.56221604347229,
+            "custom_id": "recurrence_cross_Q_34"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h1\n  linarith",
+        "custom_id": "recurrence_cross_Q_35",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.43921470642089844,
+            "custom_id": "recurrence_cross_Q_35"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := by\n    exact h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp at h1\n  nlinarith",
+        "custom_id": "recurrence_cross_Q_36",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 38
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 71
+                    },
+                    "data": "mod_cast has type\n  \u00acn (k\u271d + 1) = 0 : Prop\nbut is expected to have type\n  \u00acn (k + 1) = 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6083636283874512,
+            "custom_id": "recurrence_cross_Q_36"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h1 \u22a2\n  <;> nlinarith",
+        "custom_id": "recurrence_cross_Q_37",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6574010848999023,
+            "custom_id": "recurrence_cross_Q_37"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h1\n  <;>\n  nlinarith",
+        "custom_id": "recurrence_cross_Q_38",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6487126350402832,
+            "custom_id": "recurrence_cross_Q_38"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h\u2081 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h\u2082 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h\u2083 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h\u2081 \u22a2\n  <;> ring_nf at h\u2081 \u22a2\n  <;> nlinarith",
+        "custom_id": "recurrence_cross_Q_39",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.8978471755981445,
+            "custom_id": "recurrence_cross_Q_39"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp [h2, h3] at h1\n  linarith",
+        "custom_id": "recurrence_cross_Q_40",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.3392324447631836,
+            "custom_id": "recurrence_cross_Q_40"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h\u2081 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h\u2082 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h\u2083 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp at h\u2081\n  nlinarith",
+        "custom_id": "recurrence_cross_Q_41",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 38
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 71
+                    },
+                    "data": "mod_cast has type\n  \u00acn (k\u271d + 1) = 0 : Prop\nbut is expected to have type\n  \u00acn (k + 1) = 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6076078414916992,
+            "custom_id": "recurrence_cross_Q_41"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h1 \u22a2\n  <;> ring_nf at h1 \u22a2 <;> nlinarith",
+        "custom_id": "recurrence_cross_Q_42",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.9405419826507568,
+            "custom_id": "recurrence_cross_Q_42"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h1 \u22a2\n  <;> nlinarith",
+        "custom_id": "recurrence_cross_Q_43",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6617109775543213,
+            "custom_id": "recurrence_cross_Q_43"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h\u2081 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h\u2082 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h\u2083 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp at h\u2081 \u22a2\n  <;> nlinarith",
+        "custom_id": "recurrence_cross_Q_44",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6627204418182373,
+            "custom_id": "recurrence_cross_Q_44"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h\u2081 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h\u2082 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h\u2083 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp [h\u2082, h\u2083] at h\u2081 \u22a2\n  <;> ring_nf at h\u2081 \u22a2 <;> nlinarith",
+        "custom_id": "recurrence_cross_Q_45",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.9137766361236572,
+            "custom_id": "recurrence_cross_Q_45"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := h_two_nk_nonzero\n  field_simp [h2, h3] at h1\n  linarith",
+        "custom_id": "recurrence_cross_Q_46",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 53
+                    },
+                    "data": "type mismatch\n  h_n_succ_nonzero_k\nhas type\n  \u2191(n (k\u271d + 1)) \u2260 0 : Prop\nbut is expected to have type\n  \u2191(n (k + 1)) \u2260 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 61
+                    },
+                    "data": "type mismatch\n  h_two_nk_nonzero\nhas type\n  2 * \u2191(n k\u271d) + 1 \u2260 0 : Prop\nbut is expected to have type\n  2 * \u2191(n k) + 1 \u2260 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.41431593894958496,
+            "custom_id": "recurrence_cross_Q_46"
+        }
+    },
+    {
+        "name": "recurrence_cross_Q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem recurrence_cross_Q (m n : \u2115 \u2192 \u2115)\n  (h_recurrence : \u2200 k : \u2115,\n    (m (k + 1) : \u211a) / (n (k + 1) : \u211a) =\n      ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1))\n  (h_n_succ_nonzero_k : (n (k + 1) : \u211a) \u2260 0)\n  (h_two_nk_nonzero : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0)\n  (k : \u2115) :\n  (m (k + 1) : \u211a) * ((2 : \u211a) * (n k : \u211a) + 1) = (n (k + 1) : \u211a) * ((2 : \u211a) * (m k : \u211a) + 1) := by\n  have h1 : (m (k + 1) : \u211a) / (n (k + 1) : \u211a) = ((2 : \u211a) * (m k : \u211a) + 1) / ((2 : \u211a) * (n k : \u211a) + 1) := h_recurrence k\n  have h2 : (n (k + 1) : \u211a) \u2260 0 := by exact_mod_cast h_n_succ_nonzero_k\n  have h3 : ((2 : \u211a) * (n k : \u211a) + 1) \u2260 0 := by exact_mod_cast h_two_nk_nonzero\n  field_simp at h1\n  rw [eq_comm] at h1\n  field_simp [h2, h3] at h1 \u22a2\n  nlinarith",
+        "custom_id": "recurrence_cross_Q_47",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 38
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 71
+                    },
+                    "data": "mod_cast has type\n  \u00acn (k\u271d + 1) = 0 : Prop\nbut is expected to have type\n  \u00acn (k + 1) = 0 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 29
+                    },
+                    "data": "simp made no progress"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.35010218620300293,
+            "custom_id": "recurrence_cross_Q_47"
+        }
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  ring_nf at h\n  norm_cast at h \u22a2\n  <;>\n  rcases a with (_ | _) <;>\n  rcases b with (_ | _) <;>\n  rcases c with (_ | _) <;>\n  rcases d with (_ | _) <;>\n  simp_all [Nat.mul_eq_zero, Nat.mul_eq_zero] <;>\n  omega",
+        "custom_id": "nat_cast_inj_mul_48",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 23
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 23
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 23
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 23
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 45
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 7
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07780289649963379,
+            "custom_id": "nat_cast_inj_mul_48"
+        }
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;>\n  simp_all [mul_comm, mul_left_comm, mul_assoc]\n  <;>\n  nlinarith\n  <;>\n  nlinarith\n  <;>\n  nlinarith\n  <;>\n  nlinarith\n  <;>\n  nlinarith\n  <;>\n  nlinarith\n  <;>\n  nlinarith\n  <;>\n  nlinarith\n  <;>\n  nlinarith\n  <;>\n  nlinarith",
+        "custom_id": "nat_cast_inj_mul_49",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 47
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 20,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 22,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 24,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 26,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 28,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 28,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 30,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 30,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.030870914459228516,
+            "custom_id": "nat_cast_inj_mul_49"
+        }
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  ring_nf at h\n  norm_cast at h \u22a2\n  <;>\n  simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;>\n  omega",
+        "custom_id": "nat_cast_inj_mul_50",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 47
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 7
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.08761882781982422,
+            "custom_id": "nat_cast_inj_mul_50"
+        }
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;> ring_nf at h \u22a2\n  <;> omega",
+        "custom_id": "nat_cast_inj_mul_51",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 51
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 20
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.026634693145751953,
+            "custom_id": "nat_cast_inj_mul_51"
+        }
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;> ring_nf at h \u22a2\n  <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;> omega",
+        "custom_id": "nat_cast_inj_mul_52",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 20
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 51
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.026180028915405273,
+            "custom_id": "nat_cast_inj_mul_52"
+        }
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;>\n  field_simp [mul_comm] at h \u22a2\n  <;>\n  ring_nf at h \u22a2\n  <;>\n  norm_cast at h \u22a2\n  <;>\n  linarith",
+        "custom_id": "nat_cast_inj_mul_53",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 30
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 16
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 18
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03000020980834961,
+            "custom_id": "nat_cast_inj_mul_53"
+        }
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h\n  <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;> ring_nf at h \u22a2\n  <;> omega",
+        "custom_id": "nat_cast_inj_mul_54",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 51
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 20
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.024170637130737305,
+            "custom_id": "nat_cast_inj_mul_54"
+        }
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  have h\u2081 : (a : \u211a) * (b : \u211a) = (c : \u211a) * (d : \u211a) := h\n  norm_cast at h\u2081\n  <;> ring_nf at h\u2081 \u22a2\n  <;> norm_cast at h\u2081 \u22a2\n  <;> linarith",
+        "custom_id": "nat_cast_inj_mul_55",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 21
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 23
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.05255484580993652,
+            "custom_id": "nat_cast_inj_mul_55"
+        }
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;> ring_nf at h \u22a2\n  <;> aesop",
+        "custom_id": "nat_cast_inj_mul_56",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 51
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 20
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.04316139221191406,
+            "custom_id": "nat_cast_inj_mul_56"
+        }
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;> ring_nf at h \u22a2\n  <;> omega",
+        "custom_id": "nat_cast_inj_mul_57",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 51
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 20
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03034210205078125,
+            "custom_id": "nat_cast_inj_mul_57"
+        }
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;>\n  ring_nf at h \u22a2\n  <;>\n  simp_all [mul_eq_mul_left_iff, Nat.mul_eq_zero, Nat.dvd_iff_mod_eq_zero]\n  <;>\n  omega",
+        "custom_id": "nat_cast_inj_mul_58",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 16
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 74
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 7
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.02575373649597168,
+            "custom_id": "nat_cast_inj_mul_58"
+        }
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;>\n  simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;>\n  ring_nf at h \u22a2\n  <;>\n  omega",
+        "custom_id": "nat_cast_inj_mul_59",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 47
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 16
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 7
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.024356603622436523,
+            "custom_id": "nat_cast_inj_mul_59"
+        }
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h\n  <;> simp_all [mul_comm, mul_left_comm, mul_assoc]\n  <;> ring_nf at h \u22a2\n  <;> aesop",
+        "custom_id": "nat_cast_inj_mul_60",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 51
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 20
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.0318608283996582,
+            "custom_id": "nat_cast_inj_mul_60"
+        }
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;> norm_cast at h \u22a2\n  <;> ring_nf at h \u22a2\n  <;> omega",
+        "custom_id": "nat_cast_inj_mul_61",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 51
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 22
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 20
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.024544954299926758,
+            "custom_id": "nat_cast_inj_mul_61"
+        }
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;> simp_all [mul_comm, mul_left_comm, mul_assoc]\n  <;> ring_nf at h \u22a2\n  <;> norm_cast at h \u22a2\n  <;> omega",
+        "custom_id": "nat_cast_inj_mul_62",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 51
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 20
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 22
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.02366924285888672,
+            "custom_id": "nat_cast_inj_mul_62"
+        }
+    },
+    {
+        "name": "nat_cast_inj_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_inj_mul {a b c d : \u2115}\n  (h : ((a : \u211a) * (b : \u211a)) = ((c : \u211a) * (d : \u211a))) : a * b = c * d := by\n  norm_cast at h \u22a2\n  <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;> ring_nf at h \u22a2\n  <;> norm_cast at h \u22a2\n  <;> omega",
+        "custom_id": "nat_cast_inj_mul_63",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 51
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 20
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 22
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.030877351760864258,
+            "custom_id": "nat_cast_inj_mul_63"
+        }
+    }
+]

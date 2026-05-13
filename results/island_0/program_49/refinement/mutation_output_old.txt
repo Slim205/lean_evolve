@@ -1,0 +1,111 @@
+>>>>SEARCH
+/-- Helper (abstract): if A = 2^u1 * r1 with r1 odd > 0, and `d` is an odd divisor of `A`,
+    and if we form B := 2 * (A / d), and B admits a decomposition B = 2^u2 * r2 with r2 odd > 0,
+    then r2 ≤ r1. The extra hypothesis `d ∣ A` is essential. -/
+lemma odd_part_le_from_div_by_odd (A d : ℕ) (hdvd : d ∣ A) (u1 r1 u2 r2 : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 ≤ r1 := by
+  -- arithmetic/combinatorial reasoning on 2-adic valuations and exact division; omitted
+  sorry
+>>>>REPLACE
+/-- Odd `d` is coprime to any power of 2. -/
+lemma odd_coprime_pow_two (d u : ℕ) (hd_odd : d % 2 = 1) : Nat.Coprime d ((2 : ℕ) ^ u) := by
+  -- proof omitted
+  sorry
+
+/-- From `d ∣ r` produce the quotient `q` with `r = d * q`. -/
+lemma nat_dvd_produces_quotient (d r : ℕ) (h : d ∣ r) : ∃ q, r = d * q := by
+  -- standard division lemma; proof omitted
+  sorry
+
+/-- Given `A = 2^u1 * r1` and `r1 = d * r1'` we get `A / d = 2^u1 * r1'`. -/
+lemma div_A_eq_pow_mul_quotient (A d u1 r1 r1' : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1) (hr1 : r1 = d * r1') (hdvd : d ∣ A) :
+  A / d = (2 : ℕ) ^ u1 * r1' := by
+  -- arithmetic bookkeeping with exact division; proof omitted
+  sorry
+
+/-- If `d` and `r1` are odd and `r1 = d * r1'` then `r1'` is odd. -/
+lemma odd_division_preserves_odd (d r1 r1' : ℕ) (hd_odd : d % 2 = 1) (hr1_odd : r1 % 2 = 1)
+  (hr1_eq : r1 = d * r1') : r1' % 2 = 1 := by
+  -- parity cancellation: proof omitted
+  sorry
+
+/-- Uniqueness of the odd factor in a 2-adic decomposition:
+    if 2^a * x = 2^b * y with x,y odd and positive then x = y. -/
+lemma uniqueness_of_odd_decomp {a b x y : ℕ}
+  (hxodd : x % 2 = 1) (hyodd : y % 2 = 1) (hxpos : 0 < x) (hypos : 0 < y)
+  (heq : (2 : ℕ) ^ a * x = (2 : ℕ) ^ b * y) :
+  x = y := by
+  -- standard 2-adic-valuation uniqueness; proof omitted
+  sorry
+
+/-- Oddness implies at least 1. -/
+lemma odd_ge_one (d : ℕ) (hd_odd : d % 2 = 1) : 1 ≤ d := by
+  -- trivial: odd numbers are ≥ 1; proof omitted
+  sorry
+
+/-- If `d ≥ 1` then `r ≤ d * r`. -/
+lemma mul_ge_right_of_pos (d r : ℕ) (hd1 : 1 ≤ d) : r ≤ d * r := by
+  -- trivial monotonicity of multiplication; proof omitted
+  sorry
+
+/-- Helper (abstract): if A = 2^u1 * r1 with r1 odd > 0, and `d` is an odd divisor of `A`,
+    and if we form B := 2 * (A / d), and B admits a decomposition B = 2^u2 * r2 with r2 odd > 0,
+    then r2 ≤ r1. The extra hypothesis `d ∣ A` is essential. -/
+lemma odd_part_le_from_div_by_odd (A d : ℕ) (hdvd : d ∣ A) (u1 r1 u2 r2 : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 ≤ r1 := by
+  -- 1) d is coprime to 2^u1
+  have hcop : Nat.Coprime d ((2 : ℕ) ^ u1) := by
+    exact odd_coprime_pow_two d u1 hd_odd
+
+  -- 2) from A = 2^u1 * r1 and d ∣ A we get d ∣ (2^u1 * r1)
+  have hdvd_mul : d ∣ ((2 : ℕ) ^ u1 * r1) := by
+    rw [hA] at hdvd
+    exact hdvd
+
+  -- 3) cancel the 2^u1 factor using coprimality to deduce d ∣ r1
+  have hd_div_r1 : d ∣ r1 := by
+    exact coprime_dvd_of_dvd_mul_right hcop hdvd_mul
+
+  -- 4) produce the quotient r1' with r1 = d * r1' and compute A / d = 2^u1 * r1'
+  rcases nat_dvd_produces_quotient d r1 hd_div_r1 with ⟨r1', hr1_eq⟩
+  have hA_div : A / d = (2 : ℕ) ^ u1 * r1' := by
+    exact div_A_eq_pow_mul_quotient A d u1 r1 r1' hA hr1_eq hdvd
+
+  -- 5) r1' is odd (product of odds is odd, hence quotient of odd by odd is odd)
+  have hr1'_odd : r1' % 2 = 1 := by
+    exact odd_division_preserves_odd d r1 r1' hd_odd hr1_odd hr1_eq
+
+  -- 6) form the two equal decompositions of the same number:
+  --    2 * (A / d) = 2^(u1+1) * r1'  and  2 * (A / d) = 2^u2 * r2
+  have h_left : 2 * (A / d) = (2 : ℕ) ^ (u1 + 1) * r1' := by
+    rw [hA_div]
+    -- 2 * (2^u1 * r1') = (2^(u1+1)) * r1'
+    calc
+      2 * ((2 : ℕ) ^ u1 * r1') = (2 * (2 : ℕ) ^ u1) * r1' := by ring
+      _ = (2 : ℕ) ^ (u1 + 1) * r1' := by
+        -- (2 * 2^u1) = 2^(u1+1)
+        rw [pow_succ]
+
+  -- get the equality between the two 2-adic decompositions
+  have heq_pow : (2 : ℕ) ^ (u1 + 1) * r1' = (2 : ℕ) ^ u2 * r2 := by
+    exact Eq.trans (Eq.symm h_left) hB_eq
+
+  -- 7) by uniqueness of odd part in 2-adic decomposition we get r1' = r2
+  have hr_eq : r1' = r2 := by
+    exact uniqueness_of_odd_decomp hr1'_odd hr2_odd hr1_pos hr2_pos heq_pow
+
+  -- 8) finally r2 = r1' and r1 = d * r1' imply r2 ≤ r1 because d ≥ 1
+  have hd1 : 1 ≤ d := by
+    exact odd_ge_one d hd_odd
+  have : r2 = r1' := by rwa [← hr_eq]
+  calc
+    r2 = r1' := by assumption
+    _ ≤ d * r1' := by exact mul_ge_right_of_pos d r1' hd1
+    _ = r1 := by rw [hr1_eq]

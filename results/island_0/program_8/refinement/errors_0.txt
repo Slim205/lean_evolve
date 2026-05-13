@@ -1,0 +1,8 @@
+ERROR from position {'line': 141, 'column': 6} to {'line': 141, 'column': 28}:
+'strict_drop_gives_pred' has already been declared
+
+ERROR from position {'line': 158, 'column': 17} to {'line': 158, 'column': 70}:
+failed to synthesize
+  DecidablePred fun i => i < K ∧ P i
+use `set_option diagnostics true` to get diagnostic information
+

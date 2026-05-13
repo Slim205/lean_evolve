@@ -1,0 +1,10 @@
+lemma fin_card_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ N := by
+Failure mode: HARD
+Recommendation: Prove a “budget of strict drops” bound by decomposing into the following lemmas.
+1) **Discrete gap lemma**: for all `i`, if `t (i+1) < t i` then `t (i+1) ≤ t i - 1`.
+2) **One-step drop consumes 1 budget**: for all `i`, if `t (i+1) ≤ t i - 1` then `t (i+1) + 1 ≤ t i`.
+3) **Summed budget bound on initial segments**: for all `K`, `t K + (number of strict drops in [0,K)) ≤ t 0`.
+4) **Cardinality reformulation**: identify “number of strict drops in [0,K)” with the card of the given filtered `Finset.range K`.
+5) Conclude `card ≤ t 0 ≤ N` using `h0`.

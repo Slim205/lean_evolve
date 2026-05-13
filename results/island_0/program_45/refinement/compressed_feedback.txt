@@ -1,0 +1,16 @@
+<lemma diff_evolution_natAbs
+  (m n : ℕ → ℕ) (k : ℕ) (d : ℕ)
+  (hm_mul : (2 * m k + 1) = d * m (k + 1))
+  (hn_mul : (2 * n k + 1) = d * n (k + 1))
+  (h_dvd : (d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    Int.natAbs (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by>
+Failure mode: HARD
+Recommendation: Prove it by first establishing an exact integer-division identity, then taking `natAbs`.
+1) Lemma: from `hm_mul` and `hn_mul`, after casting to ℤ and subtracting, derive  
+   `(d : ℤ) * ((m (k+1) : ℤ) - (n (k+1) : ℤ)) = (2 : ℤ) * ((m k : ℤ) - (n k : ℤ))`.
+2) Lemma: deduce `d ≠ 0` (already forced by `hm_mul` since `2*m k + 1 > 0`) and hence `(d : ℤ) ≠ 0`.
+3) Lemma: use (1) and `d ≠ 0` to conclude  
+   `((m (k+1) : ℤ) - (n (k+1) : ℤ)) = ((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)`  
+   by “division is exact when the divisor divides the numerator”.
+4) Lemma: apply `Int.natAbs` to the equality in (3) to get the desired result.

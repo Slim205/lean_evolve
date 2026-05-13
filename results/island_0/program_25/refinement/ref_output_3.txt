@@ -1,0 +1,22 @@
+>>>>SEARCH
+  have hb : n (k + 1) ≠ 0 := by
+    intro h
+    have : (n (k + 1) : ℚ) = 0 := by simp [h]
+    exact (n_succ_nonzero m n h_recurrence k) this
+>>>>REPLACE
+  have hb : n (k + 1) ≠ 0 := by
+    intro h
+    -- use cross-multiplication to obtain an integer product equality and derive a contradiction
+    have hcross := cross_mul_of_recurrence m n h_recurrence k
+    simp [h] at hcross
+    -- now (m (k + 1) * (2 * n k + 1) : ℤ) = 0
+    have hcases := Int.mul_eq_zero.1 hcross
+    rcases hcases with hleft | hright
+    · -- (m (k+1) : ℤ) = 0, hence m (k+1) = 0 as a nat; then gcd 0 0 = 0 contradicts coprimality
+      have mzero : m (k + 1) = 0 := by exact Int.coe_nat_eq_zero.1 hleft
+      have g0 : Nat.gcd (m (k + 1)) (n (k + 1)) = 0 := by simp [mzero, h]
+      have g1 : Nat.gcd (m (k + 1)) (n (k + 1)) = 1 := by exact hsucc_copr
+      linarith
+    · -- (2 * n k + 1 : ℤ) = 0 contradicts basic nonzeroness of 2*n_k+1
+      have : (2 * n k + 1) ≠ 0 := by simp [Nat.succ_ne_zero]
+      simpa using this (Int.coe_nat_eq_zero.2 hright)

@@ -1,0 +1,4 @@
+>>>>SEARCH
+have hu_eqs := helper_pow_two_mul_eq_of_odds u2 u1 r2 (r1 / d) hpos2 h_rdiv_pos hodd2 h_rdiv_odd
+>>>>REPLACE
+have hu_eqs := helper_pow_two_mul_eq_of_odds u2 (u1 + 1) r2 (r1 / d) hpos2 h_rdiv_pos hodd2 h_rdiv_odd

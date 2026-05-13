@@ -1,0 +1,4 @@
+>>>>SEARCH
+/-- Helper (1): there exists some exponent u (take u = 0) with 2^u ∣ A. -/
+>>>>REPLACE
+/- Helper (1): there exists some exponent u (take u = 0) with 2^u ∣ A. -/

@@ -1,0 +1,57 @@
+---------
+lemma diff_ne_zero
+  (m n : ℕ → ℕ)
+  (h_distinct : m 0 ≠ n 0)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0 := by
+Failure mode: HARD
+Recommendation: Decompose into backward-propagation lemmas showing equality can’t “first appear”.
+1) Lemma: `∀ k, n (k+1) ≠ 0 ∧ m (k+1) ≠ 0` (derive from the recurrence and the fact `2*n k + 1 ≠ 0` in ℚ, so the RHS is never 0).
+2) Lemma: `∀ k, m (k+1) = n (k+1) → m k = n k` (use: equality at `k+1` gives ratio = 1; by the recurrence RHS = 1; since denominators `2*n k + 1` are nonzero, conclude `2*m k + 1 = 2*n k + 1`, hence `m k = n k`).
+3) Lemma: `∀ k, m k = n k → m 0 = n 0` (iterate Lemma 2 down to 0).
+4) Conclude: `∀ k, m k ≠ n k` from `h_distinct` and Lemma 3; then translate `m k ≠ n k` to `(m k : ℤ) - (n k : ℤ) ≠ 0`.
+---------
+
+---------
+lemma oddPart_strict_decrease_of_not_coprime
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) <
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) := by
+Failure mode: HARD
+Recommendation: This needs a multi-step arithmetic reduction via the gcd-quotient description of the recurrence.
+1) Lemma (use earlier sketch lemma): define `d := Nat.gcd (2*m k + 1) (2*n k + 1)` and prove
+   `m (k+1) = (2*m k + 1)/d` and `n (k+1) = (2*n k + 1)/d` (this is exactly `next_eq_div_gcd`).
+2) Lemma: from `hbad`, show `d > 1` (since `Nat.Coprime a b ↔ Nat.gcd a b = 1`).
+3) Lemma (use earlier sketch lemma): prove `d % 2 = 1` and `(d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))` (this is `gcd_odd_and_dvd_diff`).
+4) Lemma: derive the exact integer relation
+   `(d : ℤ) * ((m (k+1) : ℤ) - (n (k+1) : ℤ)) = 2 * ((m k : ℤ) - (n k : ℤ))`.
+   (Expand using Lemma 1 and the identities `2*m k + 1 = d * m (k+1)` and `2*n k + 1 = d * n (k+1)` in ℤ.)
+5) Lemma: take `Int.natAbs` of both sides and rewrite to
+   `d * natAbs(Δ_{k+1}) = 2 * natAbs(Δ_k)`.
+6) Lemma: from Lemmas 2–3, get `d ≥ 3` (odd and > 1), then conclude
+   `natAbs(Δ_{k+1}) = (2 * natAbs(Δ_k)) / d < natAbs(Δ_k)`,
+   using `hΔ k` to ensure `natAbs(Δ_k) > 0`.
+(If this proof becomes messy with plain `natAbs`, consider switching the measure to an “odd-part” of the difference; that often simplifies strict decrease arguments when the gcd is odd.)
+---------
+
+---------
+lemma finite_of_strict_decrease_on_bad
+  (t : ℕ → ℕ)
+  (htpos : ∀ k : ℕ, 0 < t k)
+  (bad : ℕ → Prop)
+  (hdec : ∀ k : ℕ, bad k → t (k + 1) < t k) :
+  {k : ℕ | bad k}.Finite := by
+Failure mode: INCORRECT
+Recommendation: As stated it is false: `t` may decrease at every bad index but later increase again, allowing infinitely many bad indices. Counterexample: let `t k := if k % 2 = 0 then 2 else 1` (always positive), and `bad k := (k % 2 = 0)`. Then `bad k → t (k+1) < t k` holds (1 < 2), but `{k | bad k}` is infinite.
+To fix the strategy, strengthen the hypothesis so repeated bad occurrences force a well-founded descent that cannot be “undone”, e.g.:
+- Require global nonincrease: `∀ k, t (k+1) ≤ t k`, and strict decrease on bad: `bad k → t (k+1) < t k`; or
+- Require descent along bad indices themselves: `∀ i j, i < j → bad i → bad j → t j < t i`.
+With such a revision, finiteness follows because ℕ admits no infinite strictly decreasing chain.
+---------

@@ -1,0 +1,9 @@
+ERROR from position {'line': 1043, 'column': 6} to {'line': 1043, 'column': 15}:
+'dvd_of_eq' has already been declared
+
+ERROR from position {'line': 1061, 'column': 12} to {'line': 1061, 'column': 28}:
+function expected at
+  dvd_of_eq h
+term has type
+  2 ^ p * x ∣ 2 ^ q * y
+

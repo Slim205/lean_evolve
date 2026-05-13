@@ -1,0 +1,82 @@
+---------
+<lemma finite_strict_drops_of_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  {k : ℕ | t (k + 1) < t k}.Finite := by>
+Failure mode: HARD
+Recommendation: Prove finiteness by bounding the number of strict drops via a “value decreases in ℕ” argument. Suggested lemma plan:
+1) **Global upper bound**: prove `∀ k, t k ≤ N` from `h0` and `hnoninc`.
+2) **Drop gives at-least-1 decrease**: prove `t (k+1) < t k → t (k+1) ≤ t k - 1`.
+3) **Iterated decrease bound**: define `dropsUpTo(K) := #{i < K | t (i+1) < t i}` and prove `t K ≤ N - dropsUpTo(K)` for all `K` (by induction on `K` using (2)).
+4) **Bound on number of drops**: deduce `dropsUpTo(K) ≤ N` for all `K`, hence the set `{k | t (k+1) < t k}` has at most `N` elements.
+5) **Convert cardinal bound to finiteness**: conclude `{k | t (k+1) < t k}.Finite`.
+
+---------
+
+<lemma decomposition_of_diff
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0) :
+  ∀ k : ℕ, ∃ (u r : ℕ),
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by>
+Failure mode: HARD
+Recommendation: Reduce to a standard “extract powers of 2” lemma for natural numbers applied to `Int.natAbs`. Suggested lemma plan:
+1) **Positivity of natAbs**: for `a : ℤ`, prove `a ≠ 0 → 0 < Int.natAbs a`.
+2) **Apply 2-adic decomposition on ℕ**: for `A : ℕ` with `0 < A`, use the standard existence lemma: `∃ u r, A = 2^u * r ∧ r` is odd (in whatever oddness predicate you prefer).
+3) **Translate oddness**: show “`r` odd” implies `r % 2 = 1`.
+4) **Extract positivity of odd part**: from `0 < A` and `A = 2^u * r`, derive `0 < r`.
+5) **Assemble** with `A := Int.natAbs ((m k : ℤ) - (n k : ℤ))` and hypothesis `hΔ k`.
+
+---------
+
+<lemma odd_part_noninc_step
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∀ k u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 ≤ r1 := by>
+Failure mode: HARD
+Recommendation: This needs a substantial arithmetic bridge: relate `m (k+1), n (k+1)` to `(2*m k+1, 2*n k+1)` via gcd-reduction, then relate the odd parts of differences using divisibility by the gcd. Suggested lemma plan:
+1) **Successor is gcd-reduction**: using `h_recurrence` and coprimality of `(m (k+1), n (k+1))` (from `h_coprime (k+1)`), prove
+   - `let d := gcd(2*m k+1, 2*n k+1)`; then `m (k+1) = (2*m k+1)/d` and `n (k+1) = (2*n k+1)/d`.
+2) **Gcd is odd**: prove `d % 2 = 1` since it is a gcd of two odd numbers.
+3) **Gcd divides the previous difference**: prove `(d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))` via `d ∣ (2*m k+1) - (2*n k+1) = 2*(m k - n k)` and oddness of `d`.
+4) **Difference recurrence in ℤ**: deduce
+   \[
+   (m(k+1)-n(k+1)) = \frac{2\,(m k - n k)}{d}
+   \]
+   as an equality in `ℤ` (well-defined since `d` divides the numerator).
+5) **Push to natAbs**: rewrite `Int.natAbs` of the successor difference in terms of `Int.natAbs` of the previous difference, using (4).
+6) **Odd-part effect**: from the decomposition `|Δ_k| = 2^{u1} r1` with `r1` odd and (3) with `d` odd, prove `d ∣ r1`.
+7) **Compute successor odd part**: show the odd part of `|Δ_{k+1}|` is `r1 / d`, hence `r2 = r1 / d` by uniqueness of the “`2^u * odd`” decomposition.
+8) **Conclude** `r2 ≤ r1` from `r2 = r1/d`.
+
+(If you want this lemma to be usable “as stated”, you’ll likely need to explicitly include lemma (1) (your `next_eq_div_gcd`) as a dependency, because it is the critical normalization step.)
+
+---------
+
+<lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by>
+Failure mode: HARD
+Recommendation: This is the strict version of the previous lemma; the only extra input is `hbad`, which should imply the gcd `d > 1`, hence dividing the odd part strictly shrinks it. Suggested lemma plan:
+1) **Define nontrivial gcd**: let `d := gcd(2*m k+1, 2*n k+1)`. Prove `hbad → d > 1` (equivalently `d ≠ 1`).
+2) **Reuse steps (1)–(7) from `odd_part_noninc_step`** to get `r2 = r1 / d` with `d ∣ r1` and `d` odd.
+3) **Strict inequality from division by >1**: prove that for naturals, if `0 < r1` and `1 < d` and `d ∣ r1`, then `r1 / d < r1`.
+4) **Conclude** `r2 < r1` using `r2 = r1 / d`.
+
+As above, it will be much easier and more modular if the lemma explicitly depends on the “successor equals gcd-reduction” statement (your `next_eq_div_gcd`) and on the “gcd divides difference” statement, rather than trying to reconstruct them implicitly from the rational recurrence each time.
+
+---------

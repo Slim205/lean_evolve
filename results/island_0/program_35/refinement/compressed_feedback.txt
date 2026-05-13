@@ -1,0 +1,19 @@
+lemma next_scaling_exists
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_n_succ_nonzero : ∀ k, (n (k + 1) : ℚ) ≠ 0)
+  (h_coprime_succ : ∀ k, Nat.Coprime (m (k + 1)) (n (k + 1)))
+  (k : ℕ) :
+  ∃ c : ℕ, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1)
+Failure mode: HARD
+Recommendation: Decompose the “common scaling factor” extraction from the rational equality into:
+1) Lemma: `((2 : ℚ) * (n k : ℚ) + 1) ≠ 0` and `((2 : ℚ) * (m k : ℚ) + 1) ≠ 0` for all `k` (positivity of coerced naturals).
+2) Lemma: From the recurrence and nonzeroness, derive the cross-multiplied identity in `ℤ`/`ℕ`:
+   `m (k+1) * (2 * n k + 1) = n (k+1) * (2 * m k + 1)`.
+3) Lemma (Euclid-style): If `Coprime a b` and `a ∣ b * x` then `a ∣ x`; apply to show
+   `m (k+1) ∣ (2 * m k + 1)` and `n (k+1) ∣ (2 * n k + 1)`.
+4) Lemma: Define `c := (2 * m k + 1) / m (k+1)` using exact divisibility, and prove simultaneously that
+   `(2 * m k + 1) = c * m (k+1)` and `(2 * n k + 1) = c * n (k+1)` (using the cross-multiplied identity to show the quotients match).
+5) Lemma: Show `c` is a natural (and positive) automatically since the left sides are positive.

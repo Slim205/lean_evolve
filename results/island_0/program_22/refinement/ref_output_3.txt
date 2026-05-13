@@ -1,0 +1,8 @@
+>>>>SEARCH
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+  -- define the gcd used in the conclusion
+>>>>REPLACE
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1) in
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+  -- define the gcd used in the conclusion

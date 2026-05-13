@@ -1,0 +1,48 @@
+<lemma helper_next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by>
+Failure mode: INCORRECT
+Recommendation: The recurrence only fixes the *value in* ℚ of the ratio; it does not imply that `(m (k+1), n (k+1))` is the reduced pair obtained by dividing `(2*m k+1, 2*n k+1)` by their gcd. Many different natural pairs can represent the same rational number. To make this provable, strengthen the statement/hypotheses to include a normalization/uniqueness condition, e.g.
+- assume `Nat.Coprime (m (k+1)) (n (k+1))` (and positivity/nonzero of `n (k+1)`), or
+- directly use your earlier lemma `next_eq_div_gcd` which already assumes a coprimality hypothesis.
+Then prove “uniqueness of reduced fraction in ℚ” to identify the pair with the gcd-quotient.
+---------
+<lemma helper_diff_evolution
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by>
+Failure mode: INCORRECT
+Recommendation: This “difference evolution” identity is not derivable from the ℚ-ratio recurrence alone; it implicitly assumes the much stronger fact that
+`m(k+1) = (2*m k+1)/d` and `n(k+1) = (2*n k+1)/d`.
+Without such an identification, the left-hand side is unconstrained except via the rational equality.
+
+Revise by either:
+- adding as a hypothesis the pair-equality conclusion from a corrected `helper_next_eq_div_gcd`, or
+- changing the lemma to *assume* `m(k+1), n(k+1)` are those gcd-quotients, then the evolution is a straightforward algebraic rewrite.
+(Also be careful: the statement uses ℤ-division; you will need that `(d:ℤ)` divides the numerator to avoid truncation issues.)
+---------
+<lemma helper_natabs_scaling_by_odd_div
+  (z : ℤ) (u r : ℕ) (d : ℕ)
+  (hA : Int.natAbs z = (2 : ℕ) ^ u * r)
+  (hrodd : r % 2 = 1) (hrpos : 0 < r)
+  (hdodd : d % 2 = 1) (hd_dvd : (d : ℤ) ∣ z) :
+  Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = (2 : ℕ) ^ u * (r / d) ∧ (r / d) % 2 = 1 ∧ 0 < (r / d) := by>
+Failure mode: INCORRECT
+Recommendation: The main equality has the wrong power of 2. From `|z| = 2^u * r`, one has
+`|2z/d| = 2^(u+1) * (r/d)` (since dividing by odd `d` does not change the 2-adic exponent, but multiplying by 2 increases it by 1). So the conclusion should use `2^(u+1)` rather than `2^u`.
+
+Also, as stated it silently treats `r/d` as an exact quotient in ℕ, but `Nat.div` is truncated unless you also ensure `d ∣ r` (which you *can* derive from `hd_dvd` + oddness, but it must be an intermediate lemma in the proof).
+
+Fix the lemma by:
+- replacing `(2 : ℕ) ^ u * (r / d)` with `(2 : ℕ) ^ (u+1) * (r / d)`, and
+- adding or proving internally the fact `d ∣ r` and “ℤ-division agrees with exact ℕ-division on natAbs” for this situation.

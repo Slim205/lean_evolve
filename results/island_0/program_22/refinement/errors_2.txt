@@ -1,0 +1,16 @@
+ERROR from position {'line': 37, 'column': 23} to None:
+expected ';' or line break
+
+ERROR from position {'line': 56, 'column': 15} to {'line': 56, 'column': 45}:
+unknown identifier 'reduced_fraction_gcd_quotients'
+
+ERROR from position {'line': 48, 'column': 71} to {'line': 59, 'column': 12}:
+unsolved goals
+m n : ℕ → ℕ
+h_coprime : ∀ (k : ℕ), 0 < k → (m k).Coprime (n k)
+h_recurrence : ∀ (k : ℕ), ↑(m (k + 1)) / ↑(n (k + 1)) = (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1)
+k : ℕ
+hsucc_copr : (m (k + 1)).Coprime (n (k + 1))
+⊢ let d := (2 * m k + 1).gcd (2 * n k + 1);
+  m (k + 1) = (2 * m k + 1) / d ∧ n (k + 1) = (2 * n k + 1) / d
+

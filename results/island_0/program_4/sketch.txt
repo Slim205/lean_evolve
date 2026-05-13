@@ -1,0 +1,199 @@
+import Mathlib
+import Aesop
+
+set_option maxHeartbeats 0
+
+open BigOperators Real Nat Topology Rat
+
+lemma next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+  sorry
+
+/-- Step 2: the differences never become zero. -/
+lemma diff_ne_zero
+  (m n : ℕ → ℕ)
+  (h_distinct : m 0 ≠ n 0)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0 := by
+  sorry
+
+/-- Step 3: `d_k = gcd(2m_k+1,2n_k+1)` is odd and divides the difference. -/
+lemma gcd_odd_and_dvd_diff
+  (m n : ℕ → ℕ)
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  d % 2 = 1 ∧ ((d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) := by
+  sorry
+
+/-- Step 4: define the "odd part" measure from the absolute difference. -/
+lemma oddPart_measure_pos
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0) :
+  ∀ k : ℕ,
+    0 < Int.natAbs ((m k : ℤ) - (n k : ℤ)) := by
+  sorry
+
+/-- Step 4/5: if `d_k > 1`, the odd-part measure strictly decreases. -/
+lemma oddPart_strict_decrease_of_not_coprime
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) <
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) := by
+  sorry
+
+/-- Step 5: if a positive-ℕ valued measure is globally nonincreasing and strictly decreases
+whenever `bad k`, then `{k | bad k}` is finite. -/
+lemma finite_of_strict_decrease_on_bad
+  (t : ℕ → ℕ)
+  (htpos : ∀ k : ℕ, 0 < t k)
+  (bad : ℕ → Prop)
+  (hnoninc : ∀ k : ℕ, t (k + 1) ≤ t k)
+  (hdec : ∀ k : ℕ, bad k → t (k + 1) < t k) :
+  {k : ℕ | bad k}.Finite := by
+  sorry
+
+/-- There exists an "odd-part" measure t(k) (derived from |m_k - n_k|) which is positive,
+globally nonincreasing, and strictly decreases whenever the corresponding gcd is nontrivial.
+We keep this as an abstract existence lemma (proved below in the informal argument). -/
+/-
+Helper 1: decompose each nonzero integer difference into a power of 2 times an odd part.
+This is the usual 2-adic valuation decomposition: for every nonzero integer a there are u,r with
+|a| = 2^u * r and r odd and r > 0.
+-/
+lemma decomposition_of_diff
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0) :
+  ∀ k : ℕ, ∃ (u r : ℕ),
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+  sorry
+
+/-
+Helper 2: monotonicity of the odd part between successive indices.
+Given explicit decompositions for |m_k - n_k| = 2^{u1} r1 and |m_{k+1} - n_{k+1}| = 2^{u2} r2,
+this lemma asserts r2 ≤ r1. The proof uses the normalization of successive terms coming
+from the recurrence (one must use that (m_{k+1}, n_{k+1}) is the reduced pair coming from
+(2 m_k + 1, 2 n_k + 1)). We leave this as a helper (sorry).
+-/
+lemma odd_part_noninc_step
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∀ k u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 ≤ r1 := by
+  sorry
+
+/-
+Helper 3: strict decrease of the odd part when the gcd is nontrivial.
+If the gcd d = gcd(2 m_k + 1, 2 n_k + 1) is > 1 (equivalently not coprime), then the odd
+part at k+1 is strictly smaller than at k. This is stated in the decomposed form.
+-/
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by
+  sorry
+
+/-
+Revised existence lemma. We strengthen the hypotheses: we require the auxiliary coprimality
+normalization hypothesis h_coprime (present in the main theorem) so that one can produce the
+normalized successors and hence define the odd-part measure canonically. The body below is
+pure "glue": we use the decomposition helper to pick odd parts and then use the comparison
+helpers to establish positivity, nonincreasingness, and strict decrease on "bad" indices.
+All heavy arithmetic is delegated to the helper lemmas above (left as `sorry`).
+-/
+lemma exists_odd_measure
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∃ (t : ℕ → ℕ),
+    (∀ k : ℕ, 0 < t k) ∧
+    (∀ k : ℕ, t (k + 1) ≤ t k) ∧
+    (∀ k : ℕ, (¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) → t (k + 1) < t k) := by
+  -- decompose each difference into 2^u * r with r odd
+  have hdecomp : ∀ k, ∃ u r, Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+    exact decomposition_of_diff m n hΔ
+
+  -- choose concrete functions u,r giving the decomposition for every k
+  choose u r hu hr using hdecomp
+
+  -- define the measure t(k) to be the odd part r(k)
+  let t : ℕ → ℕ := fun k => r k
+
+  -- positivity: r(k) > 0 by the decomposition property
+  have htpos : ∀ k, 0 < t k := by
+    intro k
+    exact (hr k).2
+
+  -- nonincreasing property: compare odd parts using the decomposition equalities and helper
+  have hnoninc : ∀ k, t (k + 1) ≤ t k := by
+    intro k
+    have Hk := hu k
+    have Hk1 := hu (k + 1)
+    -- apply the stepwise nonincrease lemma using the equalities and oddness/positivity facts
+    exact odd_part_noninc_step m n h_recurrence h_coprime k (u k) (r k) (u (k + 1)) (r (k + 1))
+      (Hk) ((hr k).1) ((hr k).2) (Hk1) ((hr (k + 1)).1) ((hr (k + 1)).2)
+
+  -- strict decrease on "bad" indices: use the strict-decrease helper
+  have hdec : ∀ k, (¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) → t (k + 1) < t k := by
+    intro k hbad
+    have Hk := hu k
+    have Hk1 := hu (k + 1)
+    exact odd_part_strict_decrease_of_not_coprime' m n hΔ h_coprime h_recurrence k hbad
+      (u k) (r k) (u (k + 1)) (r (k + 1)) (Hk) ((hr k).1) ((hr k).2) (Hk1) ((hr (k + 1)).1) ((hr (k + 1)).2)
+
+  exact ⟨t, ⟨htpos, hnoninc, hdec⟩⟩
+
+theorem putnam_2025_a1
+  (m n : ℕ → ℕ)
+  (hm : ∀ k : ℕ, 0 < m k)
+  (hn : ∀ k : ℕ, 0 < n k)
+  (h_distinct : m 0 ≠ n 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  {k : ℕ | ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)}.Finite := by
+  classical
+
+  -- Step 2: differences never vanish
+  have hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0 := by
+    exact diff_ne_zero m n h_distinct h_recurrence
+
+  -- Step 4: obtain the decreasing odd-part measure abstractly
+  rcases exists_odd_measure m n hΔ h_recurrence h_coprime with ⟨t, ⟨htpos, hnoninc, hdec_step⟩⟩
+
+  -- Step 4/5: define the "bad" property
+  let bad : ℕ → Prop := fun k => ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)
+
+  -- Step 5: apply the abstract finiteness lemma using the properties of `t`
+  have hfinite : {k : ℕ | bad k}.Finite := by
+    exact finite_of_strict_decrease_on_bad t htpos bad hnoninc hdec_step
+
+  -- conclude in the required form
+  simpa [bad] using hfinite

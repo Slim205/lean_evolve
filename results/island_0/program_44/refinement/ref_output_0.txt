@@ -1,0 +1,8 @@
+>>>>SEARCH
+  have hterm2 : (d : ℤ) ∣ y * (2 : ℤ) * z := by
+    -- from hdiv : d ∣ 2*z, multiply that divisor-relation by y to get d ∣ y*(2*z)
+    exact int_mul_dvd_of_dvd (d : ℤ) hdiv (y : ℤ)
+>>>>REPLACE
+  have hterm2 : (d : ℤ) ∣ y * ((2 : ℤ) * z) := by
+    -- from hdiv : d ∣ 2*z, multiply that divisor-relation by y to get d ∣ y*(2*z)
+    exact int_mul_dvd_of_dvd (d : ℤ) hdiv (y : ℤ)

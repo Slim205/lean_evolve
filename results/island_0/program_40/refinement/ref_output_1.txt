@@ -1,0 +1,4 @@
+>>>>SEARCH
+    exact cross_mul_eq_nat m n h_recurrence (h_n_succ_nonzero k) h2n_nonzero k
+>>>>REPLACE
+    exact cross_mul_eq_nat m n h_recurrence k (h_n_succ_nonzero k) h2n_nonzero

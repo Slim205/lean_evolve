@@ -1,0 +1,35 @@
+>>>>SEARCH
+lemma gcd_odd_of_odds {a b : ℕ} (ha : a % 2 = 1) (hb : b % 2 = 1) :
+  (Nat.gcd a b) % 2 = 1 := by
+  -- gcd of two odd numbers is odd; proof omitted
+  sorry
+>>>>REPLACE
+/-- `x % 2 = 1 ↔ Nat.Odd x`. (Used to translate modulus statements to `Nat.Odd`.) -/
+lemma mod2_eq_one_iff_odd (x : ℕ) : x % 2 = 1 ↔ Nat.Odd x := by
+  -- proof omitted
+  sorry
+
+/-- If `a` and `b` are odd then `gcd a b` is odd. -/
+lemma odd_gcd {a b : ℕ} (ha : Nat.Odd a) (hb : Nat.Odd b) : Nat.Odd (Nat.gcd a b) := by
+  -- standard parity argument: if 2 divides gcd then it divides both a and b, contradiction.
+  sorry
+
+/-- `Nat.Odd x → x % 2 = 1`. (Return direction of `mod2_eq_one_iff_odd`.) -/
+lemma odd_iff_mod2_eq_one (x : ℕ) : Nat.Odd x → x % 2 = 1 := by
+  -- proof omitted
+  sorry
+
+lemma gcd_odd_of_odds {a b : ℕ} (ha : a % 2 = 1) (hb : b % 2 = 1) :
+  (Nat.gcd a b) % 2 = 1 := by
+  -- translate `% 2 = 1` hypotheses to `Nat.Odd`
+  have ha_odd : Nat.Odd a := by
+    exact (mod2_eq_one_iff_odd a).mp ha
+  have hb_odd : Nat.Odd b := by
+    exact (mod2_eq_one_iff_odd b).mp hb
+
+  -- apply oddness of gcd
+  have h_gcd_odd : Nat.Odd (Nat.gcd a b) := by
+    exact odd_gcd ha_odd hb_odd
+
+  -- translate back to `% 2 = 1`
+  exact odd_iff_mod2_eq_one (Nat.gcd a b) h_gcd_odd

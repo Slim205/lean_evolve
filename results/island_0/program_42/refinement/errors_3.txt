@@ -1,0 +1,171 @@
+ERROR from position {'line': 305, 'column': 30} to {'line': 305, 'column': 39}:
+unknown constant 'Nat.Odd'
+
+ERROR from position {'line': 305, 'column': 47} to {'line': 305, 'column': 56}:
+unknown constant 'Nat.Odd'
+
+ERROR from position {'line': 305, 'column': 60} to {'line': 305, 'column': 81}:
+unknown constant 'Nat.Odd'
+
+ERROR from position {'line': 310, 'column': 36} to {'line': 310, 'column': 45}:
+unknown constant 'Nat.Odd'
+
+ERROR from position {'line': 317, 'column': 16} to {'line': 317, 'column': 25}:
+unknown constant 'Nat.Odd'
+
+ERROR from position {'line': 319, 'column': 16} to {'line': 319, 'column': 25}:
+unknown constant 'Nat.Odd'
+
+ERROR from position {'line': 323, 'column': 19} to {'line': 323, 'column': 40}:
+unknown constant 'Nat.Odd'
+
+ERROR from position {'line': 324, 'column': 10} to {'line': 324, 'column': 17}:
+unknown identifier 'odd_gcd'
+
+ERROR from position {'line': 341, 'column': 0} to {'line': 384, 'column': 29}:
+invalid occurrence of universe level 'u_1' at 'gcd_odd_and_dvd_diff', it does not occur at the declaration type, nor it is explicit universe level provided by the user, occurring at expression
+  gcd_odd_of_odds.{u_1, u_2, u_3} ha hb
+at declaration body
+  fun (m n : ℕ → ℕ) (k : ℕ) =>
+    let a : ℕ := 2 * m k + 1;
+    let b : ℕ := 2 * n k + 1;
+    let d : ℕ := a.gcd b;
+    let_fun ha : a % 2 = 1 := odd_two_mul_add_one_nat (m k);
+    let_fun hb : b % 2 = 1 := odd_two_mul_add_one_nat (n k);
+    let_fun hd_odd : d % 2 = 1 := gcd_odd_of_odds ha hb;
+    let_fun hd_div_ab : ↑d ∣ ↑a - ↑b := gcd_cast_dvd_sub a b;
+    let_fun ab_eq_two_mul_diff : ↑a - ↑b = 2 * (↑(m k) - ↑(n k)) :=
+      Trans.trans
+        (Trans.trans (Eq.refl (↑a - ↑b))
+          (Eq.mpr
+            (id
+              (Eq.trans
+                (congrArg (Eq (↑(2 * m k + 1) - ↑(2 * n k + 1)))
+                  (congr (congrArg (fun (x : ℤ) => HSub.hSub (↑2 * ↑(m k) + x)) (Eq.symm Nat.cast_one))
+                    (congrArg (HAdd.hAdd (↑2 * ↑(n k))) (Eq.symm Nat.cast_one))))
+                (Eq.trans
+                  (congr (congrArg Eq (Mathlib.Data.Int.Cast.Basic._auxLemma.5 (2 * m k + 1) (2 * n k + 1)))
+                    (Eq.trans
+                      (congr
+                        (congrArg HSub.hSub
+                          (Eq.trans (congrArg (fun (x : ℤ) => x + ↑1) (Mathlib.Data.Nat.Cast.Basic._auxLemma.1 2 (m k)))
+                            (Mathlib.Data.Nat.Cast.Defs._auxLemma.3 (2 * m k) 1)))
+                        (Eq.trans (congrArg (fun (x : ℤ) => x + ↑1) (Mathlib.Data.Nat.Cast.Basic._auxLemma.1 2 (n k)))
+                          (Mathlib.Data.Nat.Cast.Defs._auxLemma.3 (2 * n k) 1)))
+                      (Mathlib.Data.Int.Cast.Basic._auxLemma.5 (2 * m k + 1) (2 * n k + 1))))
+                  Mathlib.Data.Int.Cast.Lemmas._auxLemma.3)))
+            (Eq.refl (Int.subNatNat (2 * m k + 1) (2 * n k + 1)))))
+        (Mathlib.Tactic.Ring.of_eq
+          (Mathlib.Tactic.Ring.sub_congr
+            (Mathlib.Tactic.Ring.add_congr
+              (Mathlib.Tactic.Ring.mul_congr
+                (Mathlib.Tactic.Ring.cast_pos (Mathlib.Meta.NormNum.isNat_ofNat ℤ (Eq.refl 2)))
+                (Mathlib.Tactic.Ring.atom_pf ↑(m k))
+                (Mathlib.Tactic.Ring.add_mul
+                  (Mathlib.Tactic.Ring.mul_add
+                    (Mathlib.Tactic.Ring.mul_pf_right (↑(m k)) (Nat.rawCast 1)
+                      (Mathlib.Tactic.Ring.mul_one (Nat.rawCast 2)))
+                    (Mathlib.Tactic.Ring.mul_zero (Nat.rawCast 2))
+                    (Mathlib.Tactic.Ring.add_pf_add_zero (↑(m k) ^ Nat.rawCast 1 * Nat.rawCast 2 + 0)))
+                  (Mathlib.Tactic.Ring.zero_mul (↑(m k) ^ Nat.rawCast 1 * Nat.rawCast 1 + 0))
+                  (Mathlib.Tactic.Ring.add_pf_add_zero (↑(m k) ^ Nat.rawCast 1 * Nat.rawCast 2 + 0))))
+              (Mathlib.Tactic.Ring.cast_pos (Mathlib.Meta.NormNum.isNat_ofNat ℤ (Eq.refl 1)))
+              (Mathlib.Tactic.Ring.add_pf_add_gt (Nat.rawCast 1)
+                (Mathlib.Tactic.Ring.add_pf_add_zero (↑(m k) ^ Nat.rawCast 1 * Nat.rawCast 2 + 0))))
+            (Mathlib.Tactic.Ring.add_congr
+              (Mathlib.Tactic.Ring.mul_congr
+                (Mathlib.Tactic.Ring.cast_pos (Mathlib.Meta.NormNum.isNat_ofNat ℤ (Eq.refl 2)))
+                (Mathlib.Tactic.Ring.atom_pf ↑(n k))
+                (Mathlib.Tactic.Ring.add_mul
+                  (Mathlib.Tactic.Ring.mul_add
+                    (Mathlib.Tactic.Ring.mul_pf_right (↑(n k)) (Nat.rawCast 1)
+                      (Mathlib.Tactic.Ring.mul_one (Nat.rawCast 2)))
+                    (Mathlib.Tactic.Ring.mul_zero (Nat.rawCast 2))
+                    (Mathlib.Tactic.Ring.add_pf_add_zero (↑(n k) ^ Nat.rawCast 1 * Nat.rawCast 2 + 0)))
+                  (Mathlib.Tactic.Ring.zero_mul (↑(n k) ^ Nat.rawCast 1 * Nat.rawCast 1 + 0))
+                  (Mathlib.Tactic.Ring.add_pf_add_zero (↑(n k) ^ Nat.rawCast 1 * Nat.rawCast 2 + 0))))
+              (Mathlib.Tactic.Ring.cast_pos (Mathlib.Meta.NormNum.isNat_ofNat ℤ (Eq.refl 1)))
+              (Mathlib.Tactic.Ring.add_pf_add_gt (Nat.rawCast 1)
+                (Mathlib.Tactic.Ring.add_pf_add_zero (↑(n k) ^ Nat.rawCast 1 * Nat.rawCast 2 + 0))))
+            (Mathlib.Tactic.Ring.sub_pf
+              (Mathlib.Tactic.Ring.neg_add
+                (Mathlib.Tactic.Ring.neg_one_mul
+                  (Mathlib.Meta.NormNum.IsInt.to_raw_eq
+                    (Mathlib.Meta.NormNum.isInt_mul (Eq.refl HMul.hMul)
+                      (Mathlib.Meta.NormNum.IsInt.of_raw ℤ (Int.negOfNat 1))
+                      (Mathlib.Meta.NormNum.IsNat.to_isInt (Mathlib.Meta.NormNum.IsNat.of_raw ℤ 1))
+                      (Eq.refl (Int.negOfNat 1)))))
+                (Mathlib.Tactic.Ring.neg_add
+                  (Mathlib.Tactic.Ring.neg_mul (↑(n k)) (Nat.rawCast 1)
+                    (Mathlib.Tactic.Ring.neg_one_mul
+                      (Mathlib.Meta.NormNum.IsInt.to_raw_eq
+                        (Mathlib.Meta.NormNum.isInt_mul (Eq.refl HMul.hMul)
+                          (Mathlib.Meta.NormNum.IsInt.of_raw ℤ (Int.negOfNat 1))
+                          (Mathlib.Meta.NormNum.IsNat.to_isInt (Mathlib.Meta.NormNum.IsNat.of_raw ℤ 2))
+                          (Eq.refl (Int.negOfNat 2))))))
+                  Mathlib.Tactic.Ring.neg_zero))
+              (Mathlib.Tactic.Ring.add_pf_add_overlap_zero
+                (Mathlib.Meta.NormNum.IsInt.to_isNat
+                  (Mathlib.Meta.NormNum.isInt_add (Eq.refl HAdd.hAdd)
+                    (Mathlib.Meta.NormNum.IsNat.to_isInt (Mathlib.Meta.NormNum.IsNat.of_raw ℤ 1))
+                    (Mathlib.Meta.NormNum.IsInt.of_raw ℤ (Int.negOfNat 1)) (Eq.refl (Int.ofNat 0))))
+                (Mathlib.Tactic.Ring.add_pf_add_lt (↑(m k) ^ Nat.rawCast 1 * Nat.rawCast 2)
+                  (Mathlib.Tactic.Ring.add_pf_zero_add (↑(n k) ^ Nat.rawCast 1 * (Int.negOfNat 2).rawCast + 0))))))
+          (Mathlib.Tactic.Ring.mul_congr (Mathlib.Tactic.Ring.cast_pos (Mathlib.Meta.NormNum.isNat_ofNat ℤ (Eq.refl 2)))
+            (Mathlib.Tactic.Ring.sub_congr (Mathlib.Tactic.Ring.atom_pf ↑(m k)) (Mathlib.Tactic.Ring.atom_pf ↑(n k))
+              (Mathlib.Tactic.Ring.sub_pf
+                (Mathlib.Tactic.Ring.neg_add
+                  (Mathlib.Tactic.Ring.neg_mul (↑(n k)) (Nat.rawCast 1)
+                    (Mathlib.Tactic.Ring.neg_one_mul
+                      (Mathlib.Meta.NormNum.IsInt.to_raw_eq
+                        (Mathlib.Meta.NormNum.isInt_mul (Eq.refl HMul.hMul)
+                          (Mathlib.Meta.NormNum.IsInt.of_raw ℤ (Int.negOfNat 1))
+                          (Mathlib.Meta.NormNum.IsNat.to_isInt (Mathlib.Meta.NormNum.IsNat.of_raw ℤ 1))
+                          (Eq.refl (Int.negOfNat 1))))))
+                  Mathlib.Tactic.Ring.neg_zero)
+                (Mathlib.Tactic.Ring.add_pf_add_lt (↑(m k) ^ Nat.rawCast 1 * Nat.rawCast 1)
+                  (Mathlib.Tactic.Ring.add_pf_zero_add (↑(n k) ^ Nat.rawCast 1 * (Int.negOfNat 1).rawCast + 0)))))
+            (Mathlib.Tactic.Ring.add_mul
+              (Mathlib.Tactic.Ring.mul_add
+                (Mathlib.Tactic.Ring.mul_pf_right (↑(m k)) (Nat.rawCast 1)
+                  (Mathlib.Tactic.Ring.mul_one (Nat.rawCast 2)))
+                (Mathlib.Tactic.Ring.mul_add
+                  (Mathlib.Tactic.Ring.mul_pf_right (↑(n k)) (Nat.rawCast 1)
+                    (Mathlib.Meta.NormNum.IsInt.to_raw_eq
+                      (Mathlib.Meta.NormNum.isInt_mul (Eq.refl HMul.hMul)
+                        (Mathlib.Meta.NormNum.IsNat.to_isInt (Mathlib.Meta.NormNum.IsNat.of_raw ℤ 2))
+                        (Mathlib.Meta.NormNum.IsInt.of_raw ℤ (Int.negOfNat 1)) (Eq.refl (Int.negOfNat 2)))))
+                  (Mathlib.Tactic.Ring.mul_zero (Nat.rawCast 2))
+                  (Mathlib.Tactic.Ring.add_pf_add_zero (↑(n k) ^ Nat.rawCast 1 * (Int.negOfNat 2).rawCast + 0)))
+                (Mathlib.Tactic.Ring.add_pf_add_lt (↑(m k) ^ Nat.rawCast 1 * Nat.rawCast 2)
+                  (Mathlib.Tactic.Ring.add_pf_zero_add (↑(n k) ^ Nat.rawCast 1 * (Int.negOfNat 2).rawCast + 0))))
+              (Mathlib.Tactic.Ring.zero_mul
+                (↑(m k) ^ Nat.rawCast 1 * Nat.rawCast 1 + (↑(n k) ^ Nat.rawCast 1 * (Int.negOfNat 1).rawCast + 0)))
+              (Mathlib.Tactic.Ring.add_pf_add_zero
+                (↑(m k) ^ Nat.rawCast 1 * Nat.rawCast 2 + (↑(n k) ^ Nat.rawCast 1 * (Int.negOfNat 2).rawCast + 0))))));
+    let_fun hd_div_two_diff : ↑d ∣ 2 * (↑(m k) - ↑(n k)) :=
+      Eq.mp (congrArg (fun (_a : ℤ) => ↑d ∣ _a) ab_eq_two_mul_diff) hd_div_ab;
+    let_fun hd_div_diff : ↑d ∣ ↑(m k) - ↑(n k) := odd_int_divides_cancel_two hd_odd hd_div_two_diff;
+    ⟨hd_odd, hd_div_diff⟩
+
+ERROR from position {'line': 861, 'column': 13} to {'line': 861, 'column': 33}:
+unknown identifier 'gcd_odd_and_dvd_diff'
+
+ERROR from position {'line': 851, 'column': 37} to {'line': 884, 'column': 12}:
+unsolved goals
+case intro
+m n : ℕ → ℕ
+h_recurrence : ∀ (k : ℕ), ↑(m (k + 1)) / ↑(n (k + 1)) = (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1)
+h_coprime : ∀ (k : ℕ), 0 < k → (m k).Coprime (n k)
+k u1 r1 u2 r2 : ℕ
+hA : (↑(m k) - ↑(n k)).natAbs = 2 ^ u1 * r1
+hA_odd : r1 % 2 = 1
+hA_pos : 0 < r1
+hB : (↑(m (k + 1)) - ↑(n (k + 1))).natAbs = 2 ^ u2 * r2
+hB_odd : r2 % 2 = 1
+hB_pos : 0 < r2
+d : ℕ := (2 * m k + 1).gcd (2 * n k + 1)
+hm_succ_eq : 2 * m k + 1 = (2 * m k + 1).gcd (2 * n k + 1) * m (k + 1)
+hn_succ_eq : 2 * n k + 1 = (2 * m k + 1).gcd (2 * n k + 1) * n (k + 1)
+⊢ r2 ≤ r1
+

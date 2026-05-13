@@ -1,0 +1,17 @@
+>>>>SEARCH
+  have hr1'_pos : 0 < r1' := by
+    by_contra h0
+    have r1'_zero : r1' = 0 := by
+      rw [hr1_eq, r1'_zero, mul_zero]
+    have : r1 = 0 := by
+      rw [hr1_eq, r1'_zero, mul_zero]
+    have : 0 < r1 := hr1_pos
+    contradiction
+>>>>REPLACE
+  have hr1'_pos : 0 < r1' := by
+    by_contra h0
+    have r1'_zero : r1' = 0 := Nat.eq_zero_of_not_pos h0
+    have : r1 = 0 := by
+      rw [hr1_eq, r1'_zero, mul_zero]
+    have : 0 < r1 := hr1_pos
+    contradiction

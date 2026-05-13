@@ -1,0 +1,8 @@
+>>>>SEARCH
+import Mathlib.All
+>>>>REPLACE
+import Mathlib
+>>>>SEARCH
+open BigOperators Real Nat Topology Rat
+>>>>REPLACE
+open BigOperators Real Nat Rat

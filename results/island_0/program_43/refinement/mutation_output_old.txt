@@ -1,0 +1,36 @@
+>>>>SEARCH
+/-- If `a` and `b` are odd then `gcd a b` is odd. -/
+lemma odd_gcd {a b : ℕ} (ha : Odd a) (hb : Odd b) : Odd (Nat.gcd a b) := by
+  -- standard parity argument: if 2 divides gcd then it divides both a and b, contradiction.
+  sorry
+>>>>REPLACE
+/-- p divides gcd a b implies p divides both a and b. -/
+lemma gcd_divides_both (p a b : ℕ) : p ∣ Nat.gcd a b → p ∣ a ∧ p ∣ b := by
+  -- standard property of `gcd` and divisibility; proof omitted
+  sorry
+
+/-- If a natural number is not odd then it is even, i.e. 2 divides it. -/
+lemma not_odd_imp_two_dvd {x : ℕ} : ¬ Odd x → 2 ∣ x := by
+  -- parity dichotomy; proof omitted
+  sorry
+
+/-- Odd numbers are not divisible by 2. -/
+lemma odd_implies_not_two_dvd {x : ℕ} (hx : Odd x) : ¬ (2 ∣ x) := by
+  -- trivial parity fact; proof omitted
+  sorry
+
+/-- If `a` and `b` are odd then `gcd a b` is odd. -/
+lemma odd_gcd {a b : ℕ} (ha : Odd a) (hb : Odd b) : Odd (Nat.gcd a b) := by
+  -- Proof by contradiction: if the gcd were not odd then 2 divides it, hence divides both a and b,
+  -- contradicting their oddness. We glue the argument using the helper lemmas above.
+  by_contra hneg
+  -- from ¬Odd (gcd a b) get 2 ∣ gcd a b
+  have h2 : 2 ∣ Nat.gcd a b := by
+    exact not_odd_imp_two_dvd hneg
+  -- hence 2 divides both a and b
+  have hdivs : 2 ∣ a ∧ 2 ∣ b := by
+    exact (gcd_divides_both 2 a b) h2
+  rcases hdivs with ⟨ha2, hb2⟩
+  -- but a is odd, so 2 ∤ a, contradiction
+  have na := odd_implies_not_two_dvd ha
+  exact na ha2

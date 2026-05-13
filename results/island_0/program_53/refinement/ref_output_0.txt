@@ -1,0 +1,18 @@
+>>>>SEARCH
+exact pow_coprime_helper p hx_odd
+>>>>REPLACE
+exact Nat.Coprime.symm (pow_coprime_helper p x hx_odd)
+>>>>SEARCH
+  have hdiv : ((2 : ℕ) ^ p) ∣ ((2 : ℕ) ^ q * y) := by
+    -- from the equality (2^p)*x = (2^q)*y we get ((2^p) ∣ ((2^q)*y))
+    use x
+    exact h
+>>>>REPLACE
+  have hdiv : ((2 : ℕ) ^ p) ∣ ((2 : ℕ) ^ q * y) := by
+    -- from the equality (2^p)*x = (2^q)*y we get ((2^p) ∣ ((2^q)*y))
+    use x
+    exact Eq.symm h
+>>>>SEARCH
+rw [heq_pq] at h
+>>>>REPLACE
+rw [← heq_pq] at h

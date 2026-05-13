@@ -1,0 +1,51 @@
+>>>>SEARCH
+/-- Summed budget bound on initial segments.
+    Intuitively, each strict drop in [0,K) consumes at least one unit from the initial
+    value `t 0`, so the number of drops up to K is bounded by `t 0`. We state the
+    resulting cardinality bound here (proof omitted). -/
+lemma sum_budget_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+  sorry
+>>>>REPLACE
+/-- If there is a strict drop at index `k` then `t (k+1) + 1 ≤ t k`. This is the basic
+discrete gap lemma used to account for one unit of "budget" consumed by a strict drop. -/
+lemma drop_consumes_one (t : ℕ → ℕ) (k : ℕ) :
+  t (k + 1) < t k → t (k + 1) + 1 ≤ t k := by
+  sorry
+
+/-- Budget inequality on an initial prefix [0,K): the number of strict drops in `[0,K)` plus
+`t K` is bounded by the initial value `t 0`. This is proved by iterating the
+one-step consumption inequality and using `hnoninc` when no strict drop occurs. -/
+lemma budget_inequality_on_prefix (t : ℕ → ℕ) (hnoninc : ∀ k, t (k + 1) ≤ t k) (K : ℕ) :
+  (t K) + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+  sorry
+
+/-- (Optional) Simple range/filter simplification: the conjunct `i < K` is redundant inside
+`Finset.range K`. We leave it as a separate helper (proof omitted). -/
+lemma range_filter_simplification (t : ℕ → ℕ) (K : ℕ) :
+  (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card =
+    (Finset.filter (fun i => t (i + 1) < t i) (Finset.range K)).card := by
+  sorry
+
+/-- Summed budget bound on initial segments.
+    Intuitively, each strict drop in [0,K) consumes at least one unit from the initial
+    value `t 0`, so the number of drops up to K is bounded by `t 0`. We implement the
+    finishing glue using the helper `budget_inequality_on_prefix`. -/
+lemma sum_budget_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+  intro K
+  -- use the prefix budget inequality: t K + D(K) ≤ t 0
+  have hprefix : (t K) + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card
+    ≤ t 0 := by
+    exact budget_inequality_on_prefix t hnoninc K
+
+  -- now D(K) ≤ t K + D(K) and by transitivity with the prefix bound we get D(K) ≤ t 0
+  calc
+    (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card
+        ≤ (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card + (t K) :=
+      Nat.le_add_right _ _
+    _ = (t K) + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card := by
+      rw [Nat.add_comm]
+    _ ≤ t 0 := hprefix

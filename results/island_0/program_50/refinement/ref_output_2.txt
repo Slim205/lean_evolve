@@ -1,0 +1,19 @@
+>>>>SEARCH
+  have hunique := uniqueness_of_odd_decomposition (u1 + 1) u2 r1' r2 heq_pow_parts hr1'_odd hr2_odd
+    by
+    have hmulpos : (d * r1' : ℕ) > 0 := by
+      rw [← hr1_eq]
+      exact hr1_pos
+    have hpair := (Nat.mul_pos_iff d r1').1 hmulpos
+    exact hpair.2) hr2_pos
+  rcases hunique with ⟨_, hr_eq_odd⟩
+<<<<REPLACE
+  have hunique := uniqueness_of_odd_decomposition (u1 + 1) u2 r1' r2 heq_pow_parts hr1'_odd hr2_odd
+    (by
+      have hmulpos : (d * r1' : ℕ) > 0 := by
+        rw [← hr1_eq]
+        exact hr1_pos
+      have hpair := (Nat.mul_pos_iff d r1').1 hmulpos
+      exact hpair.2)
+    hr2_pos
+  rcases hunique with ⟨_, hr_eq_odd⟩

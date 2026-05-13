@@ -1,0 +1,4 @@
+>>>>SEARCH
+rcases nat_dvd_exists_mul d hd_dvd_r1 with ⟨r1', hr1_eq⟩
+>>>>REPLACE
+rcases nat_dvd_exists_mul d r1 hd_dvd_r1 with ⟨r1', hr1_eq⟩

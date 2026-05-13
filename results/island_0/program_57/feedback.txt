@@ -1,0 +1,35 @@
+---------
+lemma odd_divides_odd_part (A d u r : ℕ)
+  (hA : A = (2 : ℕ) ^ u * r) (hr_odd : r % 2 = 1) (hd_odd : d % 2 = 1) (hdvd : d ∣ A) :
+  d ∣ r := by
+Failure mode: HARD
+Recommendation: Prove it by isolating the coprime-cancellation step.
+1) Lemma: `hd_odd : d % 2 = 1 → Nat.Coprime d ((2:ℕ)^u)` (odd implies coprime with any power of 2).
+2) Lemma: If `Nat.Coprime d ((2:ℕ)^u)` and `d ∣ (2:ℕ)^u * r`, then `d ∣ r` (Euclid lemma / coprime cancellation).
+3) Lemma: From `hA : A = (2:ℕ)^u * r` and `hdvd : d ∣ A`, deduce `d ∣ (2:ℕ)^u * r` by rewriting via `hA`.
+4) Conclude `d ∣ r` by applying (1)+(2) to the divisibility obtained in (3).
+---------
+
+---------
+lemma odd_part_next_eq_quotient
+  (A d u1 r1 u2 r2 r1' : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1)
+  (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hr1_eq : r1 = d * r1')
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2)
+  (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 = r1' := by
+Failure mode: HARD
+Recommendation: Reduce to uniqueness of the 2-adic decomposition of `B := 2*(A/d)`.
+1) Lemma: From `hd_odd : d % 2 = 1`, deduce `1 ≤ d` (in particular `d ≠ 0`).
+2) Lemma: From `hA : A = 2^u1 * r1` and `hr1_eq : r1 = d * r1'`, derive the regrouping
+   `A = d * (2^u1 * r1')`.
+3) Lemma: Using (1) and the equality from (2), prove exact division:
+   `A / d = 2^u1 * r1'`.
+4) Lemma: Substitute into `B := 2*(A/d)` to get the canonical form
+   `2 * (A / d) = 2^(u1+1) * r1'`.
+5) Lemma: From `hr1_odd : r1 % 2 = 1`, `hd_odd : d % 2 = 1`, and `hr1_eq : r1 = d * r1'`, deduce `r1' % 2 = 1` (odd divisor of an odd number yields odd quotient).
+6) Lemma (uniqueness): If `2^p * x = 2^q * y` with `x%2=1` and `y%2=1`, then `x = y`.
+   Apply it to the equality from (4) and `hB_eq`, using (5) and `hr2_odd`, to conclude `r2 = r1'`.
+---------

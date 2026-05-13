@@ -1,0 +1,111 @@
+---------
+lemma next_scaling_exists
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_n_succ_nonzero : ∀ k, (n (k + 1) : ℚ) ≠ 0)
+  (h_coprime_succ : ∀ k, Nat.Coprime (m (k + 1)) (n (k + 1)))
+  (k : ℕ) :
+  ∃ c : ℕ, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1)
+Failure mode: HARD
+Recommendation: Decompose the “common scaling factor” extraction from the rational equality into:
+1) Lemma: `((2 : ℚ) * (n k : ℚ) + 1) ≠ 0` and `((2 : ℚ) * (m k : ℚ) + 1) ≠ 0` for all `k` (positivity of coerced naturals).
+2) Lemma: From the recurrence and nonzeroness, derive the cross-multiplied identity in `ℤ`/`ℕ`:
+   `m (k+1) * (2 * n k + 1) = n (k+1) * (2 * m k + 1)`.
+3) Lemma (Euclid-style): If `Coprime a b` and `a ∣ b * x` then `a ∣ x`; apply to show
+   `m (k+1) ∣ (2 * m k + 1)` and `n (k+1) ∣ (2 * n k + 1)`.
+4) Lemma: Define `c := (2 * m k + 1) / m (k+1)` using exact divisibility, and prove simultaneously that
+   `(2 * m k + 1) = c * m (k+1)` and `(2 * n k + 1) = c * n (k+1)` (using the cross-multiplied identity to show the quotients match).
+5) Lemma: Show `c` is a natural (and positive) automatically since the left sides are positive.
+---------
+
+---------
+lemma odd_part_le_from_div_by_odd (A d : ℕ) (hdvd : d ∣ A) (u1 r1 u2 r2 : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 ≤ r1
+Failure mode: HARD
+Recommendation: This is a 2-adic-valuation/odd-part comparison; isolate the number theory:
+1) Lemma: If `A = 2^u1 * r1` with `r1` odd and `d` odd and `d ∣ A`, then `d ∣ r1`.
+2) Lemma: With `d ∣ r1`, show exact division: `A / d = 2^u1 * (r1 / d)`.
+3) Lemma: Rewrite `2 * (A / d)` as `2^(u1+1) * (r1 / d)`.
+4) Lemma (uniqueness of odd-part decomposition): If `X = 2^a * s = 2^b * t` with `s,t` odd and positive, then `s = t` and `a = b`.
+5) Lemma: Apply uniqueness to `X := 2 * (A / d)` comparing the decomposition from (3) with the given `(2^u2)*r2`, deducing `r2 = r1 / d`.
+6) Conclude `r2 ≤ r1` from `r1 / d ≤ r1` (using `d ≥ 1` from `d` odd).
+---------
+
+---------
+lemma gcd_odd_and_dvd_diff
+  (m n : ℕ → ℕ)
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  d % 2 = 1 ∧ ((d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ)))
+Failure mode: HARD
+Recommendation: Break into the standard “gcd of odds is odd” plus “odd divisor cancels a factor of 2”:
+1) Lemma: `2 * m k + 1` and `2 * n k + 1` are odd (hence their gcd is odd).
+2) Lemma: `d := gcd(2*m k + 1, 2*n k + 1)` divides their difference:
+   `d ∣ (2*m k + 1) - (2*n k + 1) = 2*(m k - n k)` (in `ℤ` after coercions).
+3) Lemma: If `d` is odd and `(d : ℤ) ∣ 2*z`, then `(d : ℤ) ∣ z` (cancellation of 2 using `gcd(d,2)=1`).
+4) Apply (3) to `z = (m k : ℤ) - (n k : ℤ)` to conclude the divisibility.
+---------
+
+---------
+lemma diff_evolution_natAbs
+  (m n : ℕ → ℕ) (k : ℕ) (d : ℕ)
+  (hm_mul : (2 * m k + 1) = d * m (k + 1))
+  (hn_mul : (2 * n k + 1) = d * n (k + 1))
+  (h_dvd : (d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    Int.natAbs (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ))
+Failure mode: HARD
+Recommendation: The goal mixes `ℕ` equalities, `ℤ` division, and `natAbs`; separate the algebraic identity from the `natAbs` wrapper:
+1) Lemma: From `hm_mul`, after coercing to `ℤ`, deduce `(2*m k + 1 : ℤ) = (d : ℤ) * (m (k+1) : ℤ)` and similarly for `n`.
+2) Lemma: Subtract the two identities in `ℤ` to get
+   `(d : ℤ) * ((m (k+1) : ℤ) - (n (k+1) : ℤ)) = (2 : ℤ) * ((m k : ℤ) - (n k : ℤ))`.
+3) Lemma: Using `h_dvd` (and `d ≠ 0` derivable from `hm_mul`), conclude
+   `((m (k+1) : ℤ) - (n (k+1) : ℤ)) = ((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)`.
+4) Lemma: Apply `Int.natAbs` to both sides and rewrite.
+(If you prefer to avoid step (3), prove instead that the RHS division is exact and equals the LHS by exhibiting the quotient from step (2).)
+---------
+
+---------
+lemma natAbs_two_mul_div_of_odd_divisor (z : ℤ) (d : ℕ)
+  (hd_odd : d % 2 = 1) (hdiv : (d : ℤ) ∣ z) :
+  Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = 2 * (Int.natAbs z / d)
+Failure mode: HARD
+Recommendation: Reduce to an explicit factorization `z = d*q` and then compute both sides:
+1) Lemma: From `hdiv`, choose `q : ℤ` with `z = (d : ℤ) * q`.
+2) Lemma: From `hd_odd`, derive `d ≠ 0` and `0 < d` (so division by `(d:ℤ)` behaves as exact division when divisible).
+3) Lemma: Compute `((2*z)/(d:ℤ)) = 2*q` using `z = d*q`.
+4) Lemma: `natAbs (2*q) = 2 * natAbs q`.
+5) Lemma: `Int.natAbs z = d * Int.natAbs q` (since `d ≥ 0`), hence `Int.natAbs z / d = Int.natAbs q` (exactness uses divisibility).
+6) Combine (3)–(5) to obtain the stated equality.
+(Note: oddness of `d` is not essential for the algebra once `d ∣ z`, but it helps guarantee `d>0` without extra hypotheses.)
+---------
+
+---------
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1
+Failure mode: HARD
+Recommendation: Prove strictness by isolating the nontrivial odd divisor removed at step `k`:
+1) Lemma: Let `d := gcd(2*m k + 1, 2*n k + 1)`. From `hbad`, show `1 < d`.
+2) Lemma: Show `d` is odd and `(d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))` (your earlier `gcd_odd_and_dvd_diff`).
+3) Lemma: Using the normalized successor form (via `next_eq_div_gcd`), prove the evolution formula
+   `natAbs(Δ_{k+1}) = natAbs((2*Δ_k)/d)` and then rewrite it as `natAbs(Δ_{k+1}) = 2 * (A / d)` with `A := natAbs(Δ_k)` (using the “odd divisor scaling” lemma).
+4) Lemma: From `A = 2^u1 * r1` with `r1` odd, and `d` odd dividing `A`, show `d ∣ r1` and hence `r1 / d < r1` (using `1 < d` and `0 < r1`).
+5) Lemma (odd-part identification): Show the odd part `r2` of `natAbs(Δ_{k+1})` equals `r1 / d` (or at least `r2 ≤ r1 / d`), using uniqueness of the `2^u * odd` decomposition.
+6) Conclude `r2 < r1`.
+---------

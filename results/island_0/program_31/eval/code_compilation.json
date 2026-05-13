@@ -1,0 +1,2582 @@
+[
+    {
+        "name": "diff_evolution_natAbs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_evolution_natAbs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_succ_eq : m (k + 1) = (2 * m k + 1) / d)\n  (hn_succ_eq : n (k + 1) = (2 * n k + 1) / d)\n  (h_dvd : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124))) :\n  Int.natAbs ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) =\n    Int.natAbs (((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124)) := by\n  have h\u2081 : (m (k + 1) : \u2124) - (n (k + 1) : \u2124) = ((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124) := by\n    have h\u2082 : (m (k + 1) : \u2124) = (2 * m k + 1) / d := by exact_mod_cast hm_succ_eq\n    have h\u2083 : (n (k + 1) : \u2124) = (2 * n k + 1) / d := by exact_mod_cast hn_succ_eq\n    simp only [h\u2082, h\u2083]\n    have h\u2084 : (d : \u2124) \u2223 (m k - n k) := by exact_mod_cast h_dvd\n    have h\u2085 : ((2 * m k + 1 : \u2124) / d - (2 * n k + 1 : \u2124) / d) = ((2 : \u2124) * (m k - n k)) / d := by\n      have h\u2086 : (d : \u2124) \u2223 (m k - n k) := h\u2084\n      have h\u2087 : (2 * m k + 1 : \u2124) = 2 * m k + 1 := by ring\n      have h\u2088 : (2 * n k + 1 : \u2124) = 2 * n k + 1 := by ring\n      rw [h\u2087, h\u2088]\n      have h\u2089 : ((2 * m k + 1 : \u2124) / d - (2 * n k + 1 : \u2124) / d) = ((2 * m k + 1 : \u2124) - (2 * n k + 1 : \u2124)) / d := by\n        apply Int.ediv_sub_ediv\n        <;> omega\n      rw [h\u2089]\n      have h\u2081\u2080 : ((2 * m k + 1 : \u2124) - (2 * n k + 1 : \u2124)) = 2 * (m k - n k) := by\n        ring\n      rw [h\u2081\u2080]\n      <;> simp [h\u2086]\n      <;> ring\n    simp_all\n  simp_all [Int.natAbs_eq_natAbs_iff]\n  <;> omega",
+        "custom_id": "diff_evolution_natAbs_0",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 24,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 31
+                    },
+                    "data": "unknown constant 'Int.ediv_sub_ediv'"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.156782865524292,
+            "custom_id": "diff_evolution_natAbs_0"
+        }
+    },
+    {
+        "name": "diff_evolution_natAbs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_evolution_natAbs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_succ_eq : m (k + 1) = (2 * m k + 1) / d)\n  (hn_succ_eq : n (k + 1) = (2 * n k + 1) / d)\n  (h_dvd : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124))) :\n  Int.natAbs ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) =\n    Int.natAbs (((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124)) := by\n  have h1 : (m (k + 1) : \u2124) = (2 * m k + 1) / d := by exact_mod_cast hm_succ_eq\n  have h2 : (n (k + 1) : \u2124) = (2 * n k + 1) / d := by exact_mod_cast hn_succ_eq\n  rw [h1, h2]\n  have h3 : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124)) := by exact_mod_cast h_dvd\n  simp_all [Int.natAbs_div, Int.natAbs_of_nonneg, Int.ofNat_dvd, Int.ofNat_sub]\n  <;>\n  omega",
+        "custom_id": "diff_evolution_natAbs_1",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c - e + f \u2265 1\n  c \u2265 0\n  e - f \u2265 0\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(2 * m k + 1) / \u2191d\n b := \u2191(2 * n k + 1) / \u2191d\n c := 2 * (\u2191(m k) - \u2191(n k)) / \u2191d\n e := (2 * \u2191(m k) + 1) / \u2191d\n f := (2 * \u2191(n k) + 1) / \u2191d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 66
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 7
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nhm_succ_eq : m (k + 1) = (2 * m k + 1) / d\nhn_succ_eq : n (k + 1) = (2 * n k + 1) / d\nh3 : \u2191d \u2223 \u2191(m k) - \u2191(n k)\n\u22a2 ((2 * \u2191(m k) + 1) / \u2191d - (2 * \u2191(n k) + 1) / \u2191d).natAbs = (2 * (\u2191(m k) - \u2191(n k)) / \u2191d).natAbs"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.818641185760498,
+            "custom_id": "diff_evolution_natAbs_1"
+        }
+    },
+    {
+        "name": "diff_evolution_natAbs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_evolution_natAbs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_succ_eq : m (k + 1) = (2 * m k + 1) / d)\n  (hn_succ_eq : n (k + 1) = (2 * n k + 1) / d)\n  (h_dvd : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124))) :\n  Int.natAbs ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) =\n    Int.natAbs (((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124)) := by\n  have h1 : (m (k + 1) : \u2124) = (2 * m k + 1) / d := by exact_mod_cast hm_succ_eq\n  have h2 : (n (k + 1) : \u2124) = (2 * n k + 1) / d := by exact_mod_cast hn_succ_eq\n  have h3 : (Int.natAbs ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) : \u2124) = Int.natAbs (((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124)) := by\n    rw [h1, h2]\n    have h4 : ((2 * m k + 1 : \u2124) / d - (2 * n k + 1 : \u2124) / d) = ((2 * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124)) := by\n      have h5 : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124)) := by exact_mod_cast h_dvd\n      have h6 : (2 * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124) = (2 * m k + 1 : \u2124) / d - (2 * n k + 1 : \u2124) / d := by\n        have h7 : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124)) := by exact_mod_cast h_dvd\n        exact by\n          rw [Int.ediv_eq_of_eq_mul_right (by\n            norm_cast\n            exact Nat.pos_of_ne_zero (by aesop))]\n          <;> ring_nf at * <;>\n          omega\n      linarith\n    simp_all [Int.natAbs_of_nonneg]\n    <;> norm_num\n    <;> omega\n  exact_mod_cast h3",
+        "custom_id": "diff_evolution_natAbs_2",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 24,
+                        "column": 38
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 46
+                    },
+                    "data": "unsolved goals\ncase h\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nhm_succ_eq : m (k + 1) = (2 * m k + 1) / d\nhn_succ_eq : n (k + 1) = (2 * n k + 1) / d\nh_dvd : \u2191d \u2223 \u2191(m k) - \u2191(n k)\nh1 : \u2191(m (k + 1)) = (2 * \u2191(m k) + 1) / \u2191d\nh2 : \u2191(n (k + 1)) = (2 * \u2191(n k) + 1) / \u2191d\nh5 h7 : \u2191d \u2223 \u2191(m k) - \u2191(n k)\na : ?m.6168 = 0\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 26,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  g \u2265 0\n  a \u2265 0\n  c - e - 2*f + 2*g \u2265 1\n  b \u2265 0\n  f \u2265 0\nwhere\n a := \u2191(1 + n k * 2) / \u2191d\n b := \u2191(1 + m k * 2) / \u2191d\n c := \u2191d * ((1 + \u2191(m k) * 2) / \u2191d)\n e := \u2191d * ((1 + \u2191(n k) * 2) / \u2191d)\n f := \u2191(m k)\n g := \u2191(n k)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 21,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 15
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nh_dvd h5 h7 : \u2191d \u2223 \u2191(m k) - \u2191(n k)\nh2 : \u2191(n (1 + k)) = (1 + \u2191(n k) * 2) / \u2191d\nh1 : \u2191(m (1 + k)) = (1 + \u2191(m k) * 2) / \u2191d\nhn_succ_eq : n (1 + k) = (1 + n k * 2) / d\nhm_succ_eq : m (1 + k) = (1 + m k * 2) / d\n\u22a2 \u2191(m k) * 2 - \u2191(n k) * 2 = \u2191d * ((1 + \u2191(m k) * 2) / \u2191d) - \u2191d * ((1 + \u2191(n k) * 2) / \u2191d)"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 24,
+                        "column": 41
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 46
+                    },
+                    "data": "aesop: failed to prove the goal after exhaustive search."
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.4426746368408203,
+            "custom_id": "diff_evolution_natAbs_2"
+        }
+    },
+    {
+        "name": "diff_evolution_natAbs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_evolution_natAbs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_succ_eq : m (k + 1) = (2 * m k + 1) / d)\n  (hn_succ_eq : n (k + 1) = (2 * n k + 1) / d)\n  (h_dvd : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124))) :\n  Int.natAbs ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) =\n    Int.natAbs (((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124)) := by\n  have h1 : (m (k + 1) : \u2124) - (n (k + 1) : \u2124) = ((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124) := by\n    have h2 : (m (k + 1) : \u2124) = (2 * m k + 1) / d := by exact_mod_cast hm_succ_eq\n    have h3 : (n (k + 1) : \u2124) = (2 * n k + 1) / d := by exact_mod_cast hn_succ_eq\n    simp only [h2, h3]\n    have h4 : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124)) := by exact_mod_cast h_dvd\n    have h5 : ((2 * m k + 1 : \u2124) / d : \u2124) - ((2 * n k + 1 : \u2124) / d : \u2124) = ((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124) := by\n      have h6 : (d : \u2124) \u2223 (2 * m k + 1 - (2 * n k + 1)) := by\n        simpa [mul_sub, sub_mul] using dvd_sub (by simpa [mul_sub, sub_mul] using h_dvd.mul_right 2) h_dvd\n      have h7 : (2 * m k + 1 : \u2124) / d - (2 * n k + 1 : \u2124) / d = ((2 * m k + 1 : \u2124) - (2 * n k + 1 : \u2124)) / d := by\n        rw [Int.ediv_sub_ediv] <;> simp_all [Int.emod_eq_emod_iff_emod_sub_eq_zero]\n        <;> omega\n      rw [h7]\n      have h8 : ((2 * m k + 1 : \u2124) - (2 * n k + 1 : \u2124)) / d = ((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124) := by\n        simp_all [mul_sub, sub_mul]\n        <;> ring_nf\n        <;> simp_all [Int.emod_eq_emod_iff_emod_sub_eq_zero]\n        <;> omega\n      simp_all\n    simp_all\n  simp_all [Int.natAbs_div]\n  <;> norm_cast\n  <;> simp_all [Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> omega",
+        "custom_id": "diff_evolution_natAbs_3",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 39
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 46
+                    },
+                    "data": "ambiguous, possible interpretations \n  _root_.dvd_sub ?m.10781 h_dvd : \u2191d \u2223 ?m.10779 - (\u2191(m k) - \u2191(n k))\n  \n  Nat.dvd_sub ?m.10866 ?m.10892 : ?m.10863 \u2223 ?m.10865 \u2192 ?m.10863 \u2223 ?m.10864 - ?m.10865"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 22,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 29
+                    },
+                    "data": "unknown constant 'Int.ediv_sub_ediv'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 22,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 29
+                    },
+                    "data": "tactic 'rewrite' failed, equality or iff proof expected\n  ?m.11999\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nhm_succ_eq : m (k + 1) = (2 * m k + 1) / d\nhn_succ_eq : n (k + 1) = (2 * n k + 1) / d\nh_dvd : \u2191d \u2223 \u2191(m k) - \u2191(n k)\nh2 : \u2191(m (k + 1)) = (2 * \u2191(m k) + 1) / \u2191d\nh3 : \u2191(n (k + 1)) = (2 * \u2191(n k) + 1) / \u2191d\nh4 : \u2191d \u2223 \u2191(m k) - \u2191(n k)\nh6 : \u2191d \u2223 2 * \u2191(m k) + 1 - (2 * \u2191(n k) + 1)\n\u22a2 (2 * \u2191(m k) + 1) / \u2191d - (2 * \u2191(n k) + 1) / \u2191d = (2 * \u2191(m k) + 1 - (2 * \u2191(n k) + 1)) / \u2191d"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 2.268944263458252,
+            "custom_id": "diff_evolution_natAbs_3"
+        }
+    },
+    {
+        "name": "diff_evolution_natAbs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_evolution_natAbs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_succ_eq : m (k + 1) = (2 * m k + 1) / d)\n  (hn_succ_eq : n (k + 1) = (2 * n k + 1) / d)\n  (h_dvd : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124))) :\n  Int.natAbs ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) =\n    Int.natAbs (((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124)) := by\n  simp only [hm_succ_eq, hn_succ_eq] at *\n  norm_cast at h_dvd \u22a2\n  <;>\n  rw [\u2190 Int.emod_add_ediv ((2 * m k + 1 : \u2124)) (d : \u2124),\n    \u2190 Int.emod_add_ediv ((2 * n k + 1 : \u2124)) (d : \u2124)]\n  <;>\n  simp_all [Int.natAbs_div, Int.natAbs_mul, Int.natAbs_ofNat]\n  <;>\n  omega",
+        "custom_id": "diff_evolution_natAbs_4",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 53
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  2 * \u2191(m k) + 1\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nhm_succ_eq hn_succ_eq : True\nh_dvd : \u2191d \u2223 Int.subNatNat (m k) (n k)\n\u22a2 (Int.subNatNat ((2 * m k + 1) / d) ((2 * n k + 1) / d)).natAbs = (2 * Int.subNatNat (m k) (n k) / \u2191d).natAbs"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 21,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 0\n  a \u2265 0\n  a - b \u2265 1\nwhere\n a := 2 * Int.subNatNat (m k) (n k) / \u2191d\n b := Int.subNatNat ((2 * m k + 1) / d) ((2 * n k + 1) / d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 66
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 7
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nh_dvd : \u2191d \u2223 Int.subNatNat (m k) (n k)\n\u22a2 (Int.subNatNat ((2 * m k + 1) / d) ((2 * n k + 1) / d)).natAbs = (2 * Int.subNatNat (m k) (n k) / \u2191d).natAbs"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.18416476249694824,
+            "custom_id": "diff_evolution_natAbs_4"
+        }
+    },
+    {
+        "name": "diff_evolution_natAbs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_evolution_natAbs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_succ_eq : m (k + 1) = (2 * m k + 1) / d)\n  (hn_succ_eq : n (k + 1) = (2 * n k + 1) / d)\n  (h_dvd : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124))) :\n  Int.natAbs ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) =\n    Int.natAbs (((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124)) := by\n  have h\u2081 : (m (k + 1) : \u2124) = (2 * m k + 1) / d := by exact_mod_cast hm_succ_eq\n  have h\u2082 : (n (k + 1) : \u2124) = (2 * n k + 1) / d := by exact_mod_cast hn_succ_eq\n  rw [h\u2081, h\u2082]\n  simp_all [Int.natAbs_div, Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> norm_cast\n  <;> simp_all [Int.natAbs_ofNat]\n  <;> norm_cast\n  <;> simp_all [Int.natAbs_ofNat]\n  <;> omega",
+        "custom_id": "diff_evolution_natAbs_5",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 33
+                    },
+                    "data": "simp_all made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 33
+                    },
+                    "data": "simp_all made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 21,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  c - e \u2265 1\n  b \u2265 0\n  a \u2265 0\n  e \u2265 0\nwhere\n a := \u2191(2 * m k + 1) / \u2191d\n b := \u2191(2 * n k + 1) / \u2191d\n c := 2 * Int.subNatNat (m k) (n k) / \u2191d\n e := Int.subNatNat ((2 * m k + 1) / d) ((2 * n k + 1) / d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 66
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nhm_succ_eq : m (k + 1) = (2 * m k + 1) / d\nhn_succ_eq : n (k + 1) = (2 * n k + 1) / d\nh_dvd : \u2191d \u2223 \u2191(m k) - \u2191(n k)\n\u22a2 (Int.subNatNat ((2 * m k + 1) / d) ((2 * n k + 1) / d)).natAbs = (2 * Int.subNatNat (m k) (n k) / \u2191d).natAbs"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.9060111045837402,
+            "custom_id": "diff_evolution_natAbs_5"
+        }
+    },
+    {
+        "name": "diff_evolution_natAbs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_evolution_natAbs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_succ_eq : m (k + 1) = (2 * m k + 1) / d)\n  (hn_succ_eq : n (k + 1) = (2 * n k + 1) / d)\n  (h_dvd : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124))) :\n  Int.natAbs ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) =\n    Int.natAbs (((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124)) := by\n  have h1 : (m (k + 1) : \u2124) = (2 * m k + 1) / d := by exact_mod_cast hm_succ_eq\n  have h2 : (n (k + 1) : \u2124) = (2 * n k + 1) / d := by exact_mod_cast hn_succ_eq\n  have h3 : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124)) := by exact_mod_cast h_dvd\n  rw [h1, h2]\n  simp_all [Int.natAbs_div, Int.natAbs_ofNat]\n  <;> norm_cast\n  <;> simp_all [mul_div_cancel_left]\n  <;> omega",
+        "custom_id": "diff_evolution_natAbs_6",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 36
+                    },
+                    "data": "simp_all made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  c - e \u2265 1\n  b \u2265 0\n  a \u2265 0\n  e \u2265 0\nwhere\n a := \u2191(2 * m k + 1) / \u2191d\n b := \u2191(2 * n k + 1) / \u2191d\n c := 2 * Int.subNatNat (m k) (n k) / \u2191d\n e := Int.subNatNat ((2 * m k + 1) / d) ((2 * n k + 1) / d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 66
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nhm_succ_eq : m (k + 1) = (2 * m k + 1) / d\nhn_succ_eq : n (k + 1) = (2 * n k + 1) / d\nh3 : \u2191d \u2223 \u2191(m k) - \u2191(n k)\n\u22a2 (Int.subNatNat ((2 * m k + 1) / d) ((2 * n k + 1) / d)).natAbs = (2 * Int.subNatNat (m k) (n k) / \u2191d).natAbs"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.9819462299346924,
+            "custom_id": "diff_evolution_natAbs_6"
+        }
+    },
+    {
+        "name": "diff_evolution_natAbs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_evolution_natAbs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_succ_eq : m (k + 1) = (2 * m k + 1) / d)\n  (hn_succ_eq : n (k + 1) = (2 * n k + 1) / d)\n  (h_dvd : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124))) :\n  Int.natAbs ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) =\n    Int.natAbs (((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124)) := by\n  have h1 : (m (k + 1) : \u2124) = (2 * m k + 1) / d := by exact_mod_cast hm_succ_eq\n  have h2 : (n (k + 1) : \u2124) = (2 * n k + 1) / d := by exact_mod_cast hn_succ_eq\n  have h3 : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124)) := by exact_mod_cast h_dvd\n  simp_all [Int.natAbs_div, Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> norm_cast\n  <;> field_simp [h_dvd]\n  <;> ring_nf\n  <;> norm_cast\n  <;> omega",
+        "custom_id": "diff_evolution_natAbs_7",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 24
+                    },
+                    "data": "simp made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 21,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  c - e \u2264 -1\n  b \u2265 0\n  a \u2265 0\n  e \u2265 0\nwhere\n a := \u2191(2 * m k + 1) / \u2191d\n b := \u2191(2 * n k + 1) / \u2191d\n c := Int.subNatNat ((1 + m k * 2) / d) ((1 + n k * 2) / d)\n e := Int.subNatNat (m k) (n k) * 2 / \u2191d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 66
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nhm_succ_eq : m (k + 1) = (2 * m k + 1) / d\nhn_succ_eq : n (k + 1) = (2 * n k + 1) / d\nh3 : \u2191d \u2223 \u2191(m k) - \u2191(n k)\n\u22a2 (Int.subNatNat ((1 + m k * 2) / d) ((1 + n k * 2) / d)).natAbs = (Int.subNatNat (m k) (n k) * 2 / \u2191d).natAbs"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.0354669094085693,
+            "custom_id": "diff_evolution_natAbs_7"
+        }
+    },
+    {
+        "name": "diff_evolution_natAbs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_evolution_natAbs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_succ_eq : m (k + 1) = (2 * m k + 1) / d)\n  (hn_succ_eq : n (k + 1) = (2 * n k + 1) / d)\n  (h_dvd : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124))) :\n  Int.natAbs ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) =\n    Int.natAbs (((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124)) := by\n  have h1 : (m (k + 1) : \u2124) = (2 * m k + 1) / d := by exact_mod_cast hm_succ_eq\n  have h2 : (n (k + 1) : \u2124) = (2 * n k + 1) / d := by exact_mod_cast hn_succ_eq\n  rw [h1, h2]\n  simp_all [Int.natAbs_div, Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> norm_cast\n  <;> simp_all [Nat.div_eq_of_lt]\n  <;> omega",
+        "custom_id": "diff_evolution_natAbs_8",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 33
+                    },
+                    "data": "simp_all made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  c - e \u2265 1\n  b \u2265 0\n  a \u2265 0\n  e \u2265 0\nwhere\n a := \u2191(2 * m k + 1) / \u2191d\n b := \u2191(2 * n k + 1) / \u2191d\n c := 2 * Int.subNatNat (m k) (n k) / \u2191d\n e := Int.subNatNat ((2 * m k + 1) / d) ((2 * n k + 1) / d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 66
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nhm_succ_eq : m (k + 1) = (2 * m k + 1) / d\nhn_succ_eq : n (k + 1) = (2 * n k + 1) / d\nh_dvd : \u2191d \u2223 \u2191(m k) - \u2191(n k)\n\u22a2 (Int.subNatNat ((2 * m k + 1) / d) ((2 * n k + 1) / d)).natAbs = (2 * Int.subNatNat (m k) (n k) / \u2191d).natAbs"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.8537025451660156,
+            "custom_id": "diff_evolution_natAbs_8"
+        }
+    },
+    {
+        "name": "diff_evolution_natAbs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_evolution_natAbs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_succ_eq : m (k + 1) = (2 * m k + 1) / d)\n  (hn_succ_eq : n (k + 1) = (2 * n k + 1) / d)\n  (h_dvd : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124))) :\n  Int.natAbs ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) =\n    Int.natAbs (((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124)) := by\n  simp_all [Int.natAbs_eq_zero]\n  <;> omega",
+        "custom_id": "diff_evolution_natAbs_9",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c - e + f \u2265 1\n  c \u2265 0\n  e - f \u2265 0\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(2 * m k + 1) / \u2191d\n b := \u2191(2 * n k + 1) / \u2191d\n c := 2 * (\u2191(m k) - \u2191(n k)) / \u2191d\n e := (2 * \u2191(m k) + 1) / \u2191d\n f := (2 * \u2191(n k) + 1) / \u2191d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 66
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nhm_succ_eq : m (k + 1) = (2 * m k + 1) / d\nhn_succ_eq : n (k + 1) = (2 * n k + 1) / d\nh_dvd : \u2191d \u2223 \u2191(m k) - \u2191(n k)\n\u22a2 ((2 * \u2191(m k) + 1) / \u2191d - (2 * \u2191(n k) + 1) / \u2191d).natAbs = (2 * (\u2191(m k) - \u2191(n k)) / \u2191d).natAbs"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.47328901290893555,
+            "custom_id": "diff_evolution_natAbs_9"
+        }
+    },
+    {
+        "name": "diff_evolution_natAbs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_evolution_natAbs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_succ_eq : m (k + 1) = (2 * m k + 1) / d)\n  (hn_succ_eq : n (k + 1) = (2 * n k + 1) / d)\n  (h_dvd : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124))) :\n  Int.natAbs ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) =\n    Int.natAbs (((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124)) := by\n  have h1 : (m (k + 1) : \u2124) = (2 * m k + 1) / d := by exact_mod_cast hm_succ_eq\n  have h2 : (n (k + 1) : \u2124) = (2 * n k + 1) / d := by exact_mod_cast hn_succ_eq\n  rw [h1, h2]\n  simp_all [Int.natAbs_div, Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> norm_cast\n  <;> simp_all [Nat.div_div_eq_div_mul, Nat.mul_div_cancel_left]\n  <;> omega",
+        "custom_id": "diff_evolution_natAbs_10",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 64
+                    },
+                    "data": "simp_all made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  c - e \u2265 1\n  b \u2265 0\n  a \u2265 0\n  e \u2265 0\nwhere\n a := \u2191(2 * m k + 1) / \u2191d\n b := \u2191(2 * n k + 1) / \u2191d\n c := 2 * Int.subNatNat (m k) (n k) / \u2191d\n e := Int.subNatNat ((2 * m k + 1) / d) ((2 * n k + 1) / d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 66
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nhm_succ_eq : m (k + 1) = (2 * m k + 1) / d\nhn_succ_eq : n (k + 1) = (2 * n k + 1) / d\nh_dvd : \u2191d \u2223 \u2191(m k) - \u2191(n k)\n\u22a2 (Int.subNatNat ((2 * m k + 1) / d) ((2 * n k + 1) / d)).natAbs = (2 * Int.subNatNat (m k) (n k) / \u2191d).natAbs"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.3914785385131836,
+            "custom_id": "diff_evolution_natAbs_10"
+        }
+    },
+    {
+        "name": "diff_evolution_natAbs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_evolution_natAbs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_succ_eq : m (k + 1) = (2 * m k + 1) / d)\n  (hn_succ_eq : n (k + 1) = (2 * n k + 1) / d)\n  (h_dvd : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124))) :\n  Int.natAbs ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) =\n    Int.natAbs (((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124)) := by\n  have h\u2081 : (m (k + 1) : \u2124) - (n (k + 1) : \u2124) = ((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124) := by\n    have h\u2081 : (m (k + 1) : \u2124) = (2 * m k + 1) / d := by exact_mod_cast hm_succ_eq\n    have h\u2082 : (n (k + 1) : \u2124) = (2 * n k + 1) / d := by exact_mod_cast hn_succ_eq\n    rw [h\u2081, h\u2082]\n    have h\u2083 : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124)) := by exact_mod_cast h_dvd\n    have h\u2084 : ((2 * m k + 1 : \u2124) / d : \u2124) - ((2 * n k + 1 : \u2124) / d : \u2124) = ((2 * ((m k : \u2124) - (n k : \u2124))) / d : \u2124) := by\n      have h\u2085 : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124)) := h_dvd\n      have h\u2086 : (2 * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124) = (2 * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124) := rfl\n      have h\u2087 : ((2 * m k + 1 : \u2124) / d : \u2124) - ((2 * n k + 1 : \u2124) / d : \u2124) = ((2 * ((m k : \u2124) - (n k : \u2124))) / d : \u2124) := by\n        have h\u2088 : (d : \u2124) \u2223 (2 * ((m k : \u2124) - (n k : \u2124))) := by\n          exact dvd_mul_of_dvd_right h_dvd 2\n        exact by\n          rw [Int.ediv_eq_of_eq_mul_right (by positivity)]\n          rw [Int.ediv_eq_of_eq_mul_right (by positivity)]\n          ring_nf at *\n          <;> omega\n      exact h\u2087\n    exact h\u2084\n  simp_all [Int.natAbs_div]\n  <;> norm_cast\n  <;> simp_all [Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> omega",
+        "custom_id": "diff_evolution_natAbs_11",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 25,
+                        "column": 46
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 56
+                    },
+                    "data": "failed to prove nonzeroness, but it would be possible to prove nonnegativity if desired"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 26,
+                        "column": 46
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 56
+                    },
+                    "data": "failed to prove nonzeroness, but it would be possible to prove nonnegativity if desired"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 28,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 28,
+                        "column": 19
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 0\n  a \u2265 0\n  c \u2265 1\nwhere\n a := \u2191(1 + n k * 2) / \u2191d\n b := \u2191(1 + m k * 2) / \u2191d\n c := (\u2191(m k) * 2 - \u2191(n k) * 2) / \u2191d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 24,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 28,
+                        "column": 19
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nh_dvd h\u2083 h\u2085 : \u2191d \u2223 \u2191(m k) - \u2191(n k)\nh\u2088 : \u2191d \u2223 \u2191(m k) * 2 - \u2191(n k) * 2\nh\u2086 : True\nh\u2082 : \u2191(n (1 + k)) = (1 + \u2191(n k) * 2) / \u2191d\nh\u2081 : \u2191(m (1 + k)) = (1 + \u2191(m k) * 2) / \u2191d\nhn_succ_eq : n (1 + k) = (1 + n k * 2) / d\nhm_succ_eq : m (1 + k) = (1 + m k * 2) / d\n\u22a2 0 = (\u2191(m k) * 2 - \u2191(n k) * 2) / \u2191d\n\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nhm_succ_eq : m (k + 1) = (2 * m k + 1) / d\nhn_succ_eq : n (k + 1) = (2 * n k + 1) / d\nh_dvd : \u2191d \u2223 \u2191(m k) - \u2191(n k)\nh\u2081 : \u2191(m (k + 1)) = (2 * \u2191(m k) + 1) / \u2191d\nh\u2082 : \u2191(n (k + 1)) = (2 * \u2191(n k) + 1) / \u2191d\nh\u2083 h\u2085 : \u2191d \u2223 \u2191(m k) - \u2191(n k)\nh\u2086 : 2 * (\u2191(m k) - \u2191(n k)) / \u2191d = 2 * (\u2191(m k) - \u2191(n k)) / \u2191d\nh\u2088 : \u2191d \u2223 2 * (\u2191(m k) - \u2191(n k))\n\u22a2 2 * \u2191(n k) + 1 = \u2191d * \u2191(m k)\n\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nhm_succ_eq : m (k + 1) = (2 * m k + 1) / d\nhn_succ_eq : n (k + 1) = (2 * n k + 1) / d\nh_dvd : \u2191d \u2223 \u2191(m k) - \u2191(n k)\nh\u2081 : \u2191(m (k + 1)) = (2 * \u2191(m k) + 1) / \u2191d\nh\u2082 : \u2191(n (k + 1)) = (2 * \u2191(n k) + 1) / \u2191d\nh\u2083 h\u2085 : \u2191d \u2223 \u2191(m k) - \u2191(n k)\nh\u2086 : 2 * (\u2191(m k) - \u2191(n k)) / \u2191d = 2 * (\u2191(m k) - \u2191(n k)) / \u2191d\nh\u2088 : \u2191d \u2223 2 * (\u2191(m k) - \u2191(n k))\n\u22a2 2 * \u2191(m k) + 1 = \u2191d * \u2191(m k)"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.0306897163391113,
+            "custom_id": "diff_evolution_natAbs_11"
+        }
+    },
+    {
+        "name": "diff_evolution_natAbs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_evolution_natAbs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_succ_eq : m (k + 1) = (2 * m k + 1) / d)\n  (hn_succ_eq : n (k + 1) = (2 * n k + 1) / d)\n  (h_dvd : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124))) :\n  Int.natAbs ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) =\n    Int.natAbs (((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124)) := by\n  have h1 : (m (k + 1) : \u2124) = (2 * m k + 1) / d := by exact_mod_cast hm_succ_eq\n  have h2 : (n (k + 1) : \u2124) = (2 * n k + 1) / d := by exact_mod_cast hn_succ_eq\n  rw [h1, h2]\n  simp_all [Int.natAbs_div]\n  <;> norm_cast\n  <;> simp_all [Nat.div_eq_of_lt]\n  <;> ring_nf\n  <;> omega",
+        "custom_id": "diff_evolution_natAbs_12",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 33
+                    },
+                    "data": "simp_all made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  c - e \u2264 -1\n  b \u2265 0\n  a \u2265 0\n  e \u2265 0\nwhere\n a := \u2191(2 * m k + 1) / \u2191d\n b := \u2191(2 * n k + 1) / \u2191d\n c := Int.subNatNat ((1 + m k * 2) / d) ((1 + n k * 2) / d)\n e := Int.subNatNat (m k) (n k) * 2 / \u2191d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 66
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nhm_succ_eq : m (k + 1) = (2 * m k + 1) / d\nhn_succ_eq : n (k + 1) = (2 * n k + 1) / d\nh_dvd : \u2191d \u2223 \u2191(m k) - \u2191(n k)\n\u22a2 (Int.subNatNat ((1 + m k * 2) / d) ((1 + n k * 2) / d)).natAbs = (Int.subNatNat (m k) (n k) * 2 / \u2191d).natAbs"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.8845083713531494,
+            "custom_id": "diff_evolution_natAbs_12"
+        }
+    },
+    {
+        "name": "diff_evolution_natAbs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_evolution_natAbs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_succ_eq : m (k + 1) = (2 * m k + 1) / d)\n  (hn_succ_eq : n (k + 1) = (2 * n k + 1) / d)\n  (h_dvd : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124))) :\n  Int.natAbs ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) =\n    Int.natAbs (((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124)) := by\n  have h1 : (m (k + 1) : \u2124) = (2 * m k + 1) / d := by exact_mod_cast hm_succ_eq\n  have h2 : (n (k + 1) : \u2124) = (2 * n k + 1) / d := by exact_mod_cast hn_succ_eq\n  have h3 : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124)) := by exact_mod_cast h_dvd\n  have h4 : ((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124) = (2 * ((m k : \u2124) - (n k : \u2124))) / d := by simp\n  rw [h1, h2, h4]\n  norm_cast\n  <;> simp_all [Int.natAbs_div, Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> omega",
+        "custom_id": "diff_evolution_natAbs_13",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  c - e \u2265 1\n  b \u2265 0\n  a \u2265 0\n  e \u2265 0\nwhere\n a := \u2191(2 * m k + 1) / \u2191d\n b := \u2191(2 * n k + 1) / \u2191d\n c := 2 * Int.subNatNat (m k) (n k) / \u2191d\n e := Int.subNatNat ((2 * m k + 1) / d) ((2 * n k + 1) / d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 66
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nhm_succ_eq : m (k + 1) = (2 * m k + 1) / d\nhn_succ_eq : n (k + 1) = (2 * n k + 1) / d\nh3 : \u2191d \u2223 \u2191(m k) - \u2191(n k)\n\u22a2 (Int.subNatNat ((2 * m k + 1) / d) ((2 * n k + 1) / d)).natAbs = (2 * Int.subNatNat (m k) (n k) / \u2191d).natAbs"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.7362215518951416,
+            "custom_id": "diff_evolution_natAbs_13"
+        }
+    },
+    {
+        "name": "diff_evolution_natAbs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_evolution_natAbs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_succ_eq : m (k + 1) = (2 * m k + 1) / d)\n  (hn_succ_eq : n (k + 1) = (2 * n k + 1) / d)\n  (h_dvd : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124))) :\n  Int.natAbs ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) =\n    Int.natAbs (((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124)) := by\n  have h1 : (m (k + 1) : \u2124) = (2 * m k + 1) / d := by exact_mod_cast hm_succ_eq\n  have h2 : (n (k + 1) : \u2124) = (2 * n k + 1) / d := by exact_mod_cast hn_succ_eq\n  have h3 : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124)) := by exact_mod_cast h_dvd\n  simp_all [Int.natAbs_div]\n  <;> norm_cast\n  <;> omega",
+        "custom_id": "diff_evolution_natAbs_14",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  c - e \u2265 1\n  b \u2265 0\n  a \u2265 0\n  e \u2265 0\nwhere\n a := \u2191(2 * m k + 1) / \u2191d\n b := \u2191(2 * n k + 1) / \u2191d\n c := 2 * Int.subNatNat (m k) (n k) / \u2191d\n e := Int.subNatNat ((2 * m k + 1) / d) ((2 * n k + 1) / d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 66
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nhm_succ_eq : m (k + 1) = (2 * m k + 1) / d\nhn_succ_eq : n (k + 1) = (2 * n k + 1) / d\nh3 : \u2191d \u2223 \u2191(m k) - \u2191(n k)\n\u22a2 (Int.subNatNat ((2 * m k + 1) / d) ((2 * n k + 1) / d)).natAbs = (2 * Int.subNatNat (m k) (n k) / \u2191d).natAbs"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.0400118827819824,
+            "custom_id": "diff_evolution_natAbs_14"
+        }
+    },
+    {
+        "name": "diff_evolution_natAbs",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_evolution_natAbs\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_succ_eq : m (k + 1) = (2 * m k + 1) / d)\n  (hn_succ_eq : n (k + 1) = (2 * n k + 1) / d)\n  (h_dvd : (d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124))) :\n  Int.natAbs ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) =\n    Int.natAbs (((2 : \u2124) * ((m k : \u2124) - (n k : \u2124))) / (d : \u2124)) := by\n  have h\u2081 : (m (k + 1) : \u2124) = (2 * m k + 1) / d := by exact_mod_cast hm_succ_eq\n  have h\u2082 : (n (k + 1) : \u2124) = (2 * n k + 1) / d := by exact_mod_cast hn_succ_eq\n  have h\u2083 : ((d : \u2124) \u2223 ((m k : \u2124) - (n k : \u2124))) := h_dvd\n  rw [h\u2081, h\u2082]\n  simp_all [Int.natAbs_div, Int.natAbs_mul, Int.natAbs_ofNat]\n  <;>\n  norm_cast\n  <;>\n  simp_all [Nat.div_eq_of_lt]\n  <;>\n  omega",
+        "custom_id": "diff_evolution_natAbs_15",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 21,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 29
+                    },
+                    "data": "simp_all made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  c - e \u2265 1\n  b \u2265 0\n  a \u2265 0\n  e \u2265 0\nwhere\n a := \u2191(2 * m k + 1) / \u2191d\n b := \u2191(2 * n k + 1) / \u2191d\n c := 2 * Int.subNatNat (m k) (n k) / \u2191d\n e := Int.subNatNat ((2 * m k + 1) / d) ((2 * n k + 1) / d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 66
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 7
+                    },
+                    "data": "unsolved goals\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nhm_succ_eq : m (k + 1) = (2 * m k + 1) / d\nhn_succ_eq : n (k + 1) = (2 * n k + 1) / d\nh\u2083 : \u2191d \u2223 \u2191(m k) - \u2191(n k)\n\u22a2 (Int.subNatNat ((2 * m k + 1) / d) ((2 * n k + 1) / d)).natAbs = (2 * Int.subNatNat (m k) (n k) / \u2191d).natAbs"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.877077579498291,
+            "custom_id": "diff_evolution_natAbs_15"
+        }
+    },
+    {
+        "name": "natAbs_two_mul_div_of_odd_divisor",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul_div_of_odd_divisor (z : \u2124) (d : \u2115)\n  (hd_odd : d % 2 = 1) (hdiv : (d : \u2124) \u2223 z) :\n  Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n  have h\u2081 : (d : \u2124) \u2223 z := hdiv\n  have h\u2082 : (d : \u2124) \u2260 0 := by\n    intro h\n    rw [h] at h\u2081\n    norm_num at h\u2081\n    <;> simp_all [Int.natAbs_zero]\n  have h\u2083 : (2 : \u2124) * z / (d : \u2124) = 2 * (z / (d : \u2124)) := by\n    rw [Int.mul_ediv_assoc] <;> omega\n  rw [h\u2083]\n  simp [Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> norm_cast\n  <;> simp_all [Nat.mul_div_assoc]\n  <;> omega",
+        "custom_id": "natAbs_two_mul_div_of_odd_divisor_16",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 21,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b - c \u2265 1\n  c \u2265 0\n  a \u2265 0\nwhere\n a := \u2191d / 2\n b := \u2191z.natAbs / \u2191d\n c := if 0 \u2264 z / \u2191d then z / \u2191d else -(z / \u2191d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 67
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nh\u2081 : \u2191d \u2223 z\nh\u2082 : \u00acd = 0\nh\u2083 : 2 * z / \u2191d = 2 * (z / \u2191d)\n\u22a2 (z / \u2191d).natAbs = z.natAbs / d"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.7165040969848633,
+            "custom_id": "natAbs_two_mul_div_of_odd_divisor_16"
+        }
+    },
+    {
+        "name": "natAbs_two_mul_div_of_odd_divisor",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul_div_of_odd_divisor (z : \u2124) (d : \u2115)\n  (hd_odd : d % 2 = 1) (hdiv : (d : \u2124) \u2223 z) :\n  Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n  have h1 : (d : \u2124) \u2223 z := hdiv\n  have h2 : (d : \u2124) \u2260 0 := by\n    intro h\n    simp_all\n  have h3 : Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n    rw [Int.natAbs_ediv] <;> simp_all [Int.natAbs_mul, Int.natAbs_ofNat] <;>\n    (try omega) <;>\n    (try ring_nf) <;>\n    (try omega) <;>\n    (try exact Int.ediv_mul_cancel h1) <;>\n    (try simp_all [Int.ediv_eq_zero_of_lt]) <;>\n    (try omega) <;>\n    (try exact Int.emod_add_ediv _ _) <;>\n    (try omega) <;>\n    (try omega)\n  exact h3",
+        "custom_id": "natAbs_two_mul_div_of_odd_divisor_17",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 77
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 15
+                    },
+                    "data": "unsolved goals\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nh1 : \u2191d \u2223 z\nh2 : \u00acd = 0\n\u22a2 z.natAbs * 2 / d = z.natAbs / d * 2\n\ncase H\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nh1 : \u2191d \u2223 z\nh2 : \u00acd = 0\n\u22a2 \u2191d \u2223 z * 2"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.1468229293823242,
+            "custom_id": "natAbs_two_mul_div_of_odd_divisor_17"
+        }
+    },
+    {
+        "name": "natAbs_two_mul_div_of_odd_divisor",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul_div_of_odd_divisor (z : \u2124) (d : \u2115)\n  (hd_odd : d % 2 = 1) (hdiv : (d : \u2124) \u2223 z) :\n  Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n  have h\u2081 : (d : \u2124) \u2223 z := hdiv\n  have h\u2082 : (d : \u2124) \u2260 0 := by\n    intro h\n    rw [h] at h\u2081\n    norm_num at h\u2081\n    <;> simp_all [Int.natAbs]\n  have h\u2083 : Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n    rw [Int.natAbs_ediv] <;> simp_all [Int.natAbs_mul, Int.natAbs_ofNat] <;>\n    ring_nf <;>\n    norm_cast at * <;>\n    omega\n  exact h\u2083",
+        "custom_id": "natAbs_two_mul_div_of_odd_divisor_18",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 9
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  2*b - c \u2265 1\n  a \u2265 0\nwhere\n a := \u2191d / 2\n b := \u2191z.natAbs / \u2191d\n c := \u2191(z.natAbs * 2) / \u2191d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 9
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  a \u2265 0\nwhere\n a := \u2191d / 2\n b := z * 2 % \u2191d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 77
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 9
+                    },
+                    "data": "unsolved goals\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nh\u2081 : \u2191d \u2223 z\nh\u2082 : \u00acd = 0\n\u22a2 z.natAbs * 2 / d = z.natAbs / d * 2\n\ncase H\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nh\u2081 : \u2191d \u2223 z\nh\u2082 : \u00acd = 0\n\u22a2 \u2191d \u2223 z * 2"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.577146053314209,
+            "custom_id": "natAbs_two_mul_div_of_odd_divisor_18"
+        }
+    },
+    {
+        "name": "natAbs_two_mul_div_of_odd_divisor",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul_div_of_odd_divisor (z : \u2124) (d : \u2115)\n  (hd_odd : d % 2 = 1) (hdiv : (d : \u2124) \u2223 z) :\n  Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n  have hdiv' : (d : \u2124) \u2223 z := by simpa using hdiv\n  rw [Int.natAbs_mul, Int.natAbs_ofNat]\n  have h\u2081 : (d : \u2124) \u2260 0 := by\n    intro h\n    simp_all [Int.emod_eq_of_lt]\n  have h\u2082 : (2 : \u2124) \u2260 0 := by norm_num\n  rw [Int.ediv_mul_cancel hdiv']\n  <;> simp_all [Int.natAbs_ofNat, Int.mul_ediv_cancel_left]\n  <;> norm_cast\n  <;> omega",
+        "custom_id": "natAbs_two_mul_div_of_odd_divisor_19",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 20
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  (?a * ?b).natAbs\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nhdiv hdiv' : \u2191d \u2223 z\n\u22a2 (2 * z / \u2191d).natAbs = 2 * (z.natAbs / d)"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.0589604377746582,
+            "custom_id": "natAbs_two_mul_div_of_odd_divisor_19"
+        }
+    },
+    {
+        "name": "natAbs_two_mul_div_of_odd_divisor",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul_div_of_odd_divisor (z : \u2124) (d : \u2115)\n  (hd_odd : d % 2 = 1) (hdiv : (d : \u2124) \u2223 z) :\n  Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n  have h\u2081 : (d : \u2124) \u2223 z := hdiv\n  have h\u2082 : (2 : \u2124) * z / (d : \u2124) = 2 * (z / (d : \u2124)) := by\n    rw [Int.mul_ediv_assoc] <;> simp_all [Int.emod_eq_of_lt] <;> omega\n  simp_all [Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> rfl",
+        "custom_id": "natAbs_two_mul_div_of_odd_divisor_20",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 9
+                    },
+                    "data": "The rfl tactic failed. Possible reasons:\n- The goal is not a reflexive relation (neither `=` nor a relation with a @[refl] lemma).\n- The arguments of the relation are not equal.\nTry using the reflexivitiy lemma for your relation explicitly, e.g. `exact Eq.rfl`.\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nh\u2081 : \u2191d \u2223 z\nh\u2082 : 2 * z / \u2191d = 2 * (z / \u2191d)\n\u22a2 (z / \u2191d).natAbs = z.natAbs / d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 67
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 9
+                    },
+                    "data": "unsolved goals\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nh\u2081 : \u2191d \u2223 z\nh\u2082 : 2 * z / \u2191d = 2 * (z / \u2191d)\n\u22a2 (z / \u2191d).natAbs = z.natAbs / d"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.44046664237976074,
+            "custom_id": "natAbs_two_mul_div_of_odd_divisor_20"
+        }
+    },
+    {
+        "name": "natAbs_two_mul_div_of_odd_divisor",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul_div_of_odd_divisor (z : \u2124) (d : \u2115)\n  (hd_odd : d % 2 = 1) (hdiv : (d : \u2124) \u2223 z) :\n  Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n  have h : (d : \u2124) \u2223 z := hdiv\n  have h\u2081 : (2 : \u2124) * z / (d : \u2124) = 2 * (z / (d : \u2124)) := by\n    rw [Int.mul_ediv_assoc] <;> simp_all [Int.emod_eq_of_lt]\n    <;> omega\n  rw [h\u2081]\n  simp [Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> rfl",
+        "custom_id": "natAbs_two_mul_div_of_odd_divisor_21",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 9
+                    },
+                    "data": "The rfl tactic failed. Possible reasons:\n- The goal is not a reflexive relation (neither `=` nor a relation with a @[refl] lemma).\n- The arguments of the relation are not equal.\nTry using the reflexivitiy lemma for your relation explicitly, e.g. `exact Eq.rfl`.\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nhdiv h : \u2191d \u2223 z\nh\u2081 : 2 * z / \u2191d = 2 * (z / \u2191d)\n\u22a2 (z / \u2191d).natAbs = z.natAbs / d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 67
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 9
+                    },
+                    "data": "unsolved goals\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nhdiv h : \u2191d \u2223 z\nh\u2081 : 2 * z / \u2191d = 2 * (z / \u2191d)\n\u22a2 (z / \u2191d).natAbs = z.natAbs / d"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.2773606777191162,
+            "custom_id": "natAbs_two_mul_div_of_odd_divisor_21"
+        }
+    },
+    {
+        "name": "natAbs_two_mul_div_of_odd_divisor",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul_div_of_odd_divisor (z : \u2124) (d : \u2115)\n  (hd_odd : d % 2 = 1) (hdiv : (d : \u2124) \u2223 z) :\n  Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n  have h\u2081 : (d : \u2124) \u2223 z := hdiv\n  have h\u2082 : (2 : \u2124) * z / (d : \u2124) = 2 * (z / (d : \u2124)) := by\n    rw [Int.mul_ediv_assoc] <;> simp_all [Int.emod_eq_of_lt]\n    <;> omega\n  rw [h\u2082]\n  simp [Int.natAbs_mul, Int.natAbs_ofNat, Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> norm_cast\n  <;> simp_all [Nat.div_eq_of_lt]\n  <;> omega",
+        "custom_id": "natAbs_two_mul_div_of_odd_divisor_22",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b - c \u2265 1\n  c \u2265 0\n  a \u2265 0\nwhere\n a := \u2191d / 2\n b := \u2191z.natAbs / \u2191d\n c := if 0 \u2264 z / \u2191d then z / \u2191d else -(z / \u2191d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 67
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nh\u2081 : \u2191d \u2223 z\nh\u2082 : 2 * z / \u2191d = 2 * (z / \u2191d)\n\u22a2 (z / \u2191d).natAbs = z.natAbs / d"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.377272367477417,
+            "custom_id": "natAbs_two_mul_div_of_odd_divisor_22"
+        }
+    },
+    {
+        "name": "natAbs_two_mul_div_of_odd_divisor",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul_div_of_odd_divisor (z : \u2124) (d : \u2115)\n  (hd_odd : d % 2 = 1) (hdiv : (d : \u2124) \u2223 z) :\n  Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n  have h := hdiv\n  rcases h with \u27e8k, hk\u27e9\n  rw [hk]\n  simp [Int.mul_ediv_cancel_left, hd_odd, mul_comm]\n  <;> induction k <;> simp_all [Int.natAbs_mul, Int.natAbs_ofNat, Nat.div_eq_of_lt]\n  <;> ring_nf\n  <;> omega",
+        "custom_id": "natAbs_two_mul_div_of_odd_divisor_23",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  2*b - c \u2265 1\n  c \u2265 0\n  a \u2265 0\nwhere\n a := \u2191d / 2\n b := \u2191(a\u271d\u00b9 * d) / \u2191d\n c := \u2191a\u271d\u00b9 * \u2191d * 2 / \u2191d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  2*b - c \u2265 1\n  c \u2265 0\n  a \u2265 0\nwhere\n a := \u2191d / 2\n b := \u2191((1 + \u2191a\u271d\u00b9).natAbs * d) / \u2191d\n c := (-(\u2191a\u271d\u00b9 * \u2191d * 2) - \u2191d * 2) / \u2191d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 67
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase intro.ofNat\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\na\u271d : \u2115\nhk : z = \u2191d * \u2191a\u271d\n\u22a2 (\u2191a\u271d * \u2191d * 2 / \u2191d).natAbs = a\u271d * d / d * 2\n\ncase intro.negSucc\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\na\u271d : \u2115\nhk : z = -(\u2191d * (\u2191a\u271d + 1))\n\u22a2 ((-(\u2191a\u271d * \u2191d * 2) - \u2191d * 2) / \u2191d).natAbs = (1 + \u2191a\u271d).natAbs * d / d * 2"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.9032986164093018,
+            "custom_id": "natAbs_two_mul_div_of_odd_divisor_23"
+        }
+    },
+    {
+        "name": "natAbs_two_mul_div_of_odd_divisor",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul_div_of_odd_divisor (z : \u2124) (d : \u2115)\n  (hd_odd : d % 2 = 1) (hdiv : (d : \u2124) \u2223 z) :\n  Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n  have h := hdiv\n  rw [Int.dvd_iff_emod_eq_zero] at hdiv\n  have h\u2081 : (d : \u2124) \u2260 0 := by\n    intro h\n    rw [h] at hd_odd\n    norm_num at hd_odd\n  have h\u2082 : (2 : \u2124) * z % (d : \u2124) = 2 * (z % (d : \u2124)) := by\n    simp [Int.mul_emod, Int.emod_emod]\n  have h\u2083 : Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n    rw [Int.natAbs_ediv] <;> simp_all [Int.emod_eq_of_lt]\n    <;> omega\n  exact h\u2083",
+        "custom_id": "natAbs_two_mul_div_of_odd_divisor_24",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 9
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  \u2191d\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nhdiv : z % \u2191d = 0\nh\u271d : \u2191d \u2223 z\nh : \u2191d = 0\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 57
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 38
+                    },
+                    "data": "unsolved goals\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nhdiv : z % \u2191d = 0\nh : \u2191d \u2223 z\nh\u2081 : \u2191d \u2260 0\n\u22a2 2 % \u2191d % \u2191d * (z % \u2191d % \u2191d) % \u2191d = 2 * (z % \u2191d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  2*b - c \u2265 1\n  a \u2265 0\nwhere\n a := \u2191d / 2\n b := \u2191z.natAbs / \u2191d\n c := \u2191(2 * z).natAbs / \u2191d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 77
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nh : \u2191d \u2223 z\nh\u2081 : \u00acd = 0\nh\u2082 : 2 * z % \u2191d = 2 * (z % \u2191d)\n\u22a2 (2 * z).natAbs / d = 2 * (z.natAbs / d)"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6485557556152344,
+            "custom_id": "natAbs_two_mul_div_of_odd_divisor_24"
+        }
+    },
+    {
+        "name": "natAbs_two_mul_div_of_odd_divisor",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul_div_of_odd_divisor (z : \u2124) (d : \u2115)\n  (hd_odd : d % 2 = 1) (hdiv : (d : \u2124) \u2223 z) :\n  Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n  have h : (d : \u2124) \u2223 z := hdiv\n  have h\u2081 : (d : \u2124) \u2260 0 := by\n    intro h\u2082\n    rw [h\u2082] at h\n    norm_num at h\n  have h\u2082 : (d : \u2124) \u2223 z := hdiv\n  have h\u2083 : Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n    rw [Int.natAbs_ediv] <;>\n    simp_all [Int.natAbs_mul, Int.natAbs_ofNat] <;>\n    norm_cast <;>\n    omega\n  exact h\u2083",
+        "custom_id": "natAbs_two_mul_div_of_odd_divisor_25",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 27
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 17
+                    },
+                    "data": "unsolved goals\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nhdiv : \u2191d \u2223 z\nh\u2082 : \u2191d = 0\nh : z = 0\n\u22a2 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 9
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  2*b - c \u2265 1\n  a \u2265 0\nwhere\n a := \u2191d / 2\n b := \u2191z.natAbs / \u2191d\n c := \u2191(2 * z.natAbs) / \u2191d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 9
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  a \u2265 0\nwhere\n a := \u2191d / 2\n b := 2 * z % \u2191d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 77
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 9
+                    },
+                    "data": "unsolved goals\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nh\u2081 : \u00acd = 0\nh\u2082 : \u2191d \u2223 z\n\u22a2 2 * z.natAbs / d = 2 * (z.natAbs / d)\n\ncase H\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nh\u2081 : \u00acd = 0\nh\u2082 : \u2191d \u2223 z\n\u22a2 \u2191d \u2223 2 * z"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6092357635498047,
+            "custom_id": "natAbs_two_mul_div_of_odd_divisor_25"
+        }
+    },
+    {
+        "name": "natAbs_two_mul_div_of_odd_divisor",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul_div_of_odd_divisor (z : \u2124) (d : \u2115)\n  (hd_odd : d % 2 = 1) (hdiv : (d : \u2124) \u2223 z) :\n  Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n  have h\u2080 : (d : \u2124) \u2223 z := hdiv\n  have h\u2081 : (2 : \u2124) * z / (d : \u2124) = 2 * (z / (d : \u2124)) := by\n    have h : (2 : \u2124) * z / (d : \u2124) = 2 * (z / (d : \u2124)) := by\n      rw [Int.mul_ediv_cancel_of_emod_eq_zero] <;>\n        simp_all [Int.emod_eq_of_lt] <;>\n        omega\n    exact h\n  have h\u2082 : Int.natAbs ((2 : \u2124) * z / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n    rw [h\u2081]\n    norm_cast\n    <;> simp_all [Int.natAbs_mul, Int.natAbs_ofNat]\n    <;> rfl\n  exact h\u2082",
+        "custom_id": "natAbs_two_mul_div_of_odd_divisor_26",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 45
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  ?m.749 * (?m.748 / ?m.749)\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nhdiv h\u2080 : \u2191d \u2223 z\n\u22a2 2 * z / \u2191d = 2 * (z / \u2191d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 11
+                    },
+                    "data": "The rfl tactic failed. Possible reasons:\n- The goal is not a reflexive relation (neither `=` nor a relation with a @[refl] lemma).\n- The arguments of the relation are not equal.\nTry using the reflexivitiy lemma for your relation explicitly, e.g. `exact Eq.rfl`.\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nh\u2080 : \u2191d \u2223 z\nh\u2081 : 2 * z / \u2191d = 2 * (z / \u2191d)\n\u22a2 (z / \u2191d).natAbs = z.natAbs / d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 75
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nh\u2080 : \u2191d \u2223 z\nh\u2081 : 2 * z / \u2191d = 2 * (z / \u2191d)\n\u22a2 (z / \u2191d).natAbs = z.natAbs / d"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.38663148880004883,
+            "custom_id": "natAbs_two_mul_div_of_odd_divisor_26"
+        }
+    },
+    {
+        "name": "natAbs_two_mul_div_of_odd_divisor",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul_div_of_odd_divisor (z : \u2124) (d : \u2115)\n  (hd_odd : d % 2 = 1) (hdiv : (d : \u2124) \u2223 z) :\n  Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n  have h := hdiv\n  rw [Int.dvd_iff_emod_eq_zero] at hdiv\n  have h\u2081 : (2 : \u2124) * z % (d : \u2124) = 2 * (z % (d : \u2124)) % (d : \u2124) := by\n    simp [Int.mul_emod]\n  have h\u2082 : Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n    rw [Int.natAbs_ediv] <;> simp_all [Int.emod_eq_of_lt, Int.ediv_eq_zero_of_lt]\n    <;> omega\n  exact h\u2082",
+        "custom_id": "natAbs_two_mul_div_of_odd_divisor_27",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 0\n  2*b - c \u2265 1\nwhere\n a := \u2191d / 2\n b := \u2191z.natAbs / \u2191d\n c := \u2191(2 * z).natAbs / \u2191d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  a \u2265 0\nwhere\n a := \u2191d / 2\n b := 2 * (z % \u2191d) % \u2191d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 77
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nh : \u2191d \u2223 z\nh\u2081 : 2 * z % \u2191d = 2 * (z % \u2191d) % \u2191d\n\u22a2 (2 * z).natAbs / d = 2 * (z.natAbs / d)\n\ncase H\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nh : \u2191d \u2223 z\nh\u2081 : 2 * z % \u2191d = 2 * (z % \u2191d) % \u2191d\n\u22a2 \u2191d \u2223 2 * z"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.8567309379577637,
+            "custom_id": "natAbs_two_mul_div_of_odd_divisor_27"
+        }
+    },
+    {
+        "name": "natAbs_two_mul_div_of_odd_divisor",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul_div_of_odd_divisor (z : \u2124) (d : \u2115)\n  (hd_odd : d % 2 = 1) (hdiv : (d : \u2124) \u2223 z) :\n  Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n  have hdiv' : (d : \u2124) \u2223 z := hdiv\n  have h\u2081 : (2 : \u2124) * z / (d : \u2124) = 2 * (z / (d : \u2124)) := by\n    rw [mul_comm]\n    rw [Int.mul_ediv_assoc] <;> simp_all [Int.emod_eq_of_lt]\n    <;> omega\n  rw [h\u2081]\n  simp [Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> rfl",
+        "custom_id": "natAbs_two_mul_div_of_odd_divisor_28",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  2*b - c \u2265 1\n  a \u2265 0\nwhere\n a := \u2191d / 2\n b := z / \u2191d\n c := z * (2 / \u2191d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  a \u2265 0\nwhere\n a := \u2191d / 2\n b := 2 % \u2191d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 57
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nhdiv' : \u2191d \u2223 z\n\u22a2 z * (2 / \u2191d) = 2 * (z / \u2191d)\n\ncase a\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nhdiv' : \u2191d \u2223 z\n\u22a2 \u2191d \u2223 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 9
+                    },
+                    "data": "The rfl tactic failed. Possible reasons:\n- The goal is not a reflexive relation (neither `=` nor a relation with a @[refl] lemma).\n- The arguments of the relation are not equal.\nTry using the reflexivitiy lemma for your relation explicitly, e.g. `exact Eq.rfl`.\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nhdiv hdiv' : \u2191d \u2223 z\nh\u2081 : 2 * z / \u2191d = 2 * (z / \u2191d)\n\u22a2 (z / \u2191d).natAbs = z.natAbs / d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 67
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 9
+                    },
+                    "data": "unsolved goals\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nhdiv hdiv' : \u2191d \u2223 z\nh\u2081 : 2 * z / \u2191d = 2 * (z / \u2191d)\n\u22a2 (z / \u2191d).natAbs = z.natAbs / d"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.5515391826629639,
+            "custom_id": "natAbs_two_mul_div_of_odd_divisor_28"
+        }
+    },
+    {
+        "name": "natAbs_two_mul_div_of_odd_divisor",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul_div_of_odd_divisor (z : \u2124) (d : \u2115)\n  (hd_odd : d % 2 = 1) (hdiv : (d : \u2124) \u2223 z) :\n  Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n  have h\u2081 : (d : \u2124) \u2223 z := hdiv\n  have h\u2082 : (d : \u2124) \u2260 0 := by\n    intro h\n    rw [h] at h\u2081\n    simp_all\n  have h\u2083 : (2 : \u2124) * z / (d : \u2124) = 2 * (z / (d : \u2124)) := by\n    rw [Int.mul_ediv_cancel' (Int.dvd_of_emod_eq_zero (by omega))]\n    <;> simp_all [Int.emod_eq_of_lt]\n    <;> omega\n  rw [h\u2083]\n  simp [Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> simp_all [Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> ring_nf\n  <;> norm_cast\n  <;> omega",
+        "custom_id": "natAbs_two_mul_div_of_odd_divisor_29",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 65
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  ?m.4483 * (?m.4484 / ?m.4483)\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nhdiv h\u2081 : \u2191d \u2223 z\nh\u2082 : \u2191d \u2260 0\n\u22a2 2 * z / \u2191d = 2 * (z / \u2191d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b - c \u2265 1\n  c \u2265 0\n  a \u2265 0\nwhere\n a := \u2191d / 2\n b := \u2191z.natAbs / \u2191d\n c := if 0 \u2264 z / \u2191d then z / \u2191d else -(z / \u2191d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 58
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 63
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2264 -1\n  a \u2265 0\nwhere\n a := \u2191d / 2\n b := ?m.4484 % ?m.4483"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 67
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nh\u2081 : \u2191d \u2223 z\nh\u2082 : \u00acd = 0\nh\u2083 : 2 * z / \u2191d = 2 * (z / \u2191d)\n\u22a2 (z / \u2191d).natAbs = z.natAbs / d"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.794180154800415,
+            "custom_id": "natAbs_two_mul_div_of_odd_divisor_29"
+        }
+    },
+    {
+        "name": "natAbs_two_mul_div_of_odd_divisor",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul_div_of_odd_divisor (z : \u2124) (d : \u2115)\n  (hd_odd : d % 2 = 1) (hdiv : (d : \u2124) \u2223 z) :\n  Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n  have h := hdiv\n  have h1 : (d : \u2124) \u2223 z := by assumption_mod_cast\n  have h2 : (d : \u2124) \u2223 z := by assumption_mod_cast\n  rw [Int.natAbs_ediv] <;> simp_all [Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> norm_cast\n  <;> omega",
+        "custom_id": "natAbs_two_mul_div_of_odd_divisor_30",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  2*b - c \u2265 1\n  a \u2265 0\nwhere\n a := \u2191d / 2\n b := \u2191z.natAbs / \u2191d\n c := \u2191(2 * z.natAbs) / \u2191d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  a \u2265 0\nwhere\n a := \u2191d / 2\n b := 2 * z % \u2191d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 67
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nh2 : \u2191d \u2223 z\n\u22a2 2 * z.natAbs / d = 2 * (z.natAbs / d)\n\ncase H\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nh2 : \u2191d \u2223 z\n\u22a2 \u2191d \u2223 2 * z"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.42969393730163574,
+            "custom_id": "natAbs_two_mul_div_of_odd_divisor_30"
+        }
+    },
+    {
+        "name": "natAbs_two_mul_div_of_odd_divisor",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul_div_of_odd_divisor (z : \u2124) (d : \u2115)\n  (hd_odd : d % 2 = 1) (hdiv : (d : \u2124) \u2223 z) :\n  Int.natAbs (((2 : \u2124) * z) / (d : \u2124)) = 2 * (Int.natAbs z / d) := by\n  have h := hdiv\n  cases' h with k hk\n  rw [hk]\n  simp [Int.natAbs_mul, Int.natAbs_ofNat, Nat.div_eq_of_lt, Nat.mul_div_assoc, hd_odd, Nat.mul_div_cancel_left]\n  <;> norm_cast\n  <;> ring_nf\n  <;> norm_cast\n  <;> omega",
+        "custom_id": "natAbs_two_mul_div_of_odd_divisor_31",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  2*b - c \u2265 1\n  a \u2265 0\nwhere\n a := \u2191d / 2\n b := \u2191(d * k.natAbs) / \u2191d\n c := \u2191d * k * 2 / \u2191d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 67
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase intro\nz : \u2124\nd : \u2115\nhd_odd : d % 2 = 1\nhdiv : \u2191d \u2223 z\nk : \u2124\nhk : z = \u2191d * k\n\u22a2 (\u2191d * k * 2 / \u2191d).natAbs = d * k.natAbs / d * 2"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.8442087173461914,
+            "custom_id": "natAbs_two_mul_div_of_odd_divisor_31"
+        }
+    },
+    {
+        "name": "odd_part_le_from_div_by_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_part_le_from_div_by_odd (A d : \u2115) (u1 r1 u2 r2 : \u2115)\n  (hA : A = (2 : \u2115) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)\n  (hB_eq : 2 * (A / d) = (2 : \u2115) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)\n  (hd_odd : d % 2 = 1) :\n  r2 \u2264 r1 := by\n  have h\u2081 : 0 < d := by\n    by_contra h\n    simp_all [Nat.div_eq_of_lt]\n    <;> omega\n  have h\u2082 : A / d \u2265 0 := Nat.zero_le _\n  have h\u2083 : 2 ^ u2 * r2 = 2 * (A / d) := by omega\n  have h\u2084 : r2 \u2264 r1 := by\n    have h\u2085 : r2 \u2223 2 * (A / d) := by\n      use 2 ^ (u1 - u2) * r1\n      rw [mul_comm]\n      simp_all [Nat.mul_assoc, Nat.mul_comm, Nat.mul_left_comm]\n      <;> induction u1 <;> induction u2 <;> simp_all [Nat.pow_succ, Nat.mul_assoc, Nat.mul_comm, Nat.mul_left_comm]\n      <;> ring_nf at * <;> omega\n    have h\u2086 : r1 \u2223 A := by\n      use 2 ^ u1\n      simp_all [Nat.mul_comm, Nat.mul_assoc, Nat.mul_left_comm]\n    have h\u2087 : r2 \u2264 r1 := by\n      have h\u2088 : r2 \u2223 2 * (A / d) := by assumption\n      have h\u2089 : r1 \u2223 A := by assumption\n      have h\u2081\u2080 : r2 \u2223 2 * (A / d) := by assumption\n      have h\u2081\u2081 : r1 \u2223 A := by assumption\n      have h\u2081\u2082 : r2 \u2264 r1 := by\n        have h\u2081\u2083 : r2 \u2223 2 * (A / d) := by assumption\n        have h\u2081\u2084 : r1 \u2223 A := by assumption\n        have h\u2081\u2085 : r2 \u2264 r1 := by\n          apply Nat.le_of_dvd\n          exact Nat.pos_of_ne_zero fun h => by simp_all\n          exact Nat.dvd_trans h\u2081\u2083 (by simp_all [Nat.dvd_mul_right])\n        exact h\u2081\u2085\n      exact h\u2081\u2082\n    exact h\u2087\n  exact h\u2084",
+        "custom_id": "odd_part_le_from_div_by_odd_32",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 27
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 32
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  2*e - f \u2264 -1\n  c \u2265 0\n  b \u2265 0\n  a \u2265 0\n  a \u2265 0\n  e \u2265 1\nwhere\n a := \u2191r1 / 2\n b := \u2191r2 / 2\n c := \u2191d / 2\n e := \u2191r1 / \u2191d\n f := \u2191r1 * \u2191r2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 27
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 32
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  e \u2265 1\n  c \u2265 0\n  b \u2265 0\n  a \u2265 0\n  f \u2265 0\n  2*e - g \u2264 -1\nwhere\n a := \u2191r1 / 2\n b := \u2191r2 / 2\n c := \u2191d / 2\n e := \u2191(r1 * 2 ^ n\u271d\u00b9 * 2) / \u2191d\n f := \u2191r1 * \u2191(2 ^ n\u271d\u00b9)\n g := \u2191(r1 * r2) * \u2191(2 ^ (n\u271d\u00b9 - n\u271d))"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 34
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 32
+                    },
+                    "data": "unsolved goals\ncase h.zero.succ\nA d r1 r2 : \u2115\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh\u2081 : 0 < d\nn\u271d : \u2115\nhA : A = r1\na\u271d : r2 * 2 ^ n\u271d = r1 / d * 2 \u2192 r1 / d * 2 = r1 * r2\nh\u2083 : r2 * 2 ^ n\u271d * 2 = r1 / d * 2\n\u22a2 r1 / d * 2 = r1 * r2\n\ncase h.succ.succ\nA d r1 r2 : \u2115\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh\u2081 : 0 < d\nn\u271d\u00b9 n\u271d : \u2115\nh\u2083 : r2 * 2 ^ n\u271d * 2 = r1 * 2 ^ n\u271d\u00b9 * 2 / d * 2\na\u271d : r2 * 2 ^ n\u271d = r1 * 2 ^ n\u271d\u00b9 * 2 / d * 2 \u2192 r1 * 2 ^ n\u271d\u00b9 * 2 / d * 2 = r1 * r2 * 2 ^ (1 + n\u271d\u00b9 - n\u271d)\nhA : A = r1 * 2 ^ n\u271d\u00b9 * 2\n\u22a2 r1 * 2 ^ n\u271d\u00b9 * 2 / d * 2 = r1 * r2 * 2 ^ (n\u271d\u00b9 - n\u271d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 38,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 38,
+                        "column": 66
+                    },
+                    "data": "unsolved goals\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh\u2081 : 0 < d\nh\u2083 : 2 ^ u2 * r2 = 2 * (2 ^ u1 * r1 / d)\nh\u2085 : r2 \u2223 2 * (2 ^ u1 * r1 / d)\n\u22a2 2 * (2 ^ u1 * r1 / d) \u2223 r1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 4.693925142288208,
+            "custom_id": "odd_part_le_from_div_by_odd_32"
+        }
+    },
+    {
+        "name": "odd_part_le_from_div_by_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_part_le_from_div_by_odd (A d : \u2115) (u1 r1 u2 r2 : \u2115)\n  (hA : A = (2 : \u2115) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)\n  (hB_eq : 2 * (A / d) = (2 : \u2115) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)\n  (hd_odd : d % 2 = 1) :\n  r2 \u2264 r1 := by\n  have h1 : r2 \u2264 r1 := by\n    have h1 : 2 * (A / d) = 2 ^ u2 * r2 := hB_eq\n    have h2 : A = 2 ^ u1 * r1 := hA\n    have h3 : d % 2 = 1 := hd_odd\n    have h4 : r1 % 2 = 1 := hr1_odd\n    have h5 : r2 % 2 = 1 := hr2_odd\n    have h6 : 0 < r1 := hr1_pos\n    have h7 : 0 < r2 := hr2_pos\n    have h8 : 0 < d := by\n      by_contra h\n      have h9 : d = 0 := by omega\n      simp_all\n    have h9 : A / d \u2265 0 := by positivity\n    have h10 : 2 ^ u2 * r2 \u2264 2 * (A / d) := by omega\n    have h11 : 2 ^ u1 * r1 = A := by omega\n    have h12 : r2 \u2264 r1 := by\n      by_contra h\n      have h13 : r1 < r2 := by omega\n      have h14 : 2 ^ u2 * r2 \u2264 2 * (A / d) := by omega\n      have h15 : 2 ^ u1 * r1 = A := by omega\n      have h16 : r2 \u2264 A := by\n        nlinarith [pow_pos (by norm_num : (0 : \u2115) < 2) u1, pow_pos (by norm_num : (0 : \u2115) < 2) u2]\n      have h17 : r1 < A := by\n        nlinarith [pow_pos (by norm_num : (0 : \u2115) < 2) u1, pow_pos (by norm_num : (0 : \u2115) < 2) u2]\n      have h18 : r2 \u2264 A := by\n        nlinarith [pow_pos (by norm_num : (0 : \u2115) < 2) u1, pow_pos (by norm_num : (0 : \u2115) < 2) u2]\n      have h19 : A / d \u2265 0 := by positivity\n      have h20 : 2 * (A / d) \u2265 0 := by positivity\n      nlinarith [Nat.div_mul_le_self A d, pow_pos (by norm_num : (0 : \u2115) < 2) u1, pow_pos (by norm_num : (0 : \u2115) < 2) u2]\n    exact h12\n  exact h1",
+        "custom_id": "odd_part_le_from_div_by_odd_33",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 32,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 32,
+                        "column": 98
+                    },
+                    "data": "linarith failed to find a contradiction\ncase a\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh1 : 2 * (A / d) = 2 ^ u2 * r2\nh2 : A = 2 ^ u1 * r1\nh3 : d % 2 = 1\nh4 : r1 % 2 = 1\nh5 : r2 % 2 = 1\nh6 : 0 < r1\nh7 : 0 < r2\nh8 : 0 < d\nh9 : A / d \u2265 0\nh10 : 2 ^ u2 * r2 \u2264 2 * (A / d)\nh11 : 2 ^ u1 * r1 = A\nh : \u00acr2 \u2264 r1\nh13 : r1 < r2\nh14 : 2 ^ u2 * r2 \u2264 2 * (A / d)\nh15 : 2 ^ u1 * r1 = A\na\u271d : r2 > A\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 39,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 39,
+                        "column": 121
+                    },
+                    "data": "linarith failed to find a contradiction\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh1 : 2 * (A / d) = 2 ^ u2 * r2\nh2 : A = 2 ^ u1 * r1\nh3 : d % 2 = 1\nh4 : r1 % 2 = 1\nh5 : r2 % 2 = 1\nh6 : 0 < r1\nh7 : 0 < r2\nh8 : 0 < d\nh9 : A / d \u2265 0\nh10 : 2 ^ u2 * r2 \u2264 2 * (A / d)\nh11 : 2 ^ u1 * r1 = A\nh : \u00acr2 \u2264 r1\nh13 : r1 < r2\nh14 : 2 ^ u2 * r2 \u2264 2 * (A / d)\nh15 : 2 ^ u1 * r1 = A\nh16 : r2 \u2264 A\nh17 : r1 < A\nh18 : r2 \u2264 A\nh19 : A / d \u2265 0\nh20 : 2 * (A / d) \u2265 0\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 35.06474852561951,
+            "custom_id": "odd_part_le_from_div_by_odd_33"
+        }
+    },
+    {
+        "name": "odd_part_le_from_div_by_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_part_le_from_div_by_odd (A d : \u2115) (u1 r1 u2 r2 : \u2115)\n  (hA : A = (2 : \u2115) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)\n  (hB_eq : 2 * (A / d) = (2 : \u2115) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)\n  (hd_odd : d % 2 = 1) :\n  r2 \u2264 r1 := by\n  have h1 : r2 \u2264 r1 := by\n    have h1 : 2 * (A / d) = (2 : \u2115) ^ u2 * r2 := hB_eq\n    have h2 : A = (2 : \u2115) ^ u1 * r1 := hA\n    have h3 : d % 2 = 1 := hd_odd\n    have h4 : r1 % 2 = 1 := hr1_odd\n    have h5 : r2 % 2 = 1 := hr2_odd\n    have h6 : 0 < r1 := hr1_pos\n    have h7 : 0 < r2 := hr2_pos\n    have h8 : 0 < d := by\n      by_contra h\n      simp_all [Nat.div_eq_of_lt, Nat.div_eq_of_lt]\n      <;> omega\n    have h9 : 2 * (A / d) = (2 : \u2115) ^ u2 * r2 := hB_eq\n    have h10 : A = (2 : \u2115) ^ u1 * r1 := hA\n    -- Use the fact that d is odd to simplify the division properties\n    have h11 : d % 2 = 1 := hd_odd\n    have h12 : 2 \u2223 A / d * d := by\n      apply Nat.dvd_of_mod_eq_zero\n      have : A / d * d = A := Nat.div_mul_cancel (by\n        apply Nat.dvd_of_mod_eq_zero\n        simp_all [Nat.mod_eq_of_lt]\n        <;> omega)\n      simp_all [Nat.mul_mod, Nat.pow_mod]\n      <;> omega\n    have h13 : 2 \u2223 A := by\n      rw [hA]\n      exact dvd_mul_right _ _\n    have h14 : 2 \u2223 (2 : \u2115) ^ u2 * r2 := by\n      simp_all [Nat.pow_mod, Nat.mul_mod]\n      <;> omega\n    have h15 : r2 \u2264 r1 := by\n      -- Use the fact that r1 and r2 are odd and positive to compare them\n      have h16 : r1 \u2265 1 := by linarith\n      have h17 : r2 \u2265 1 := by linarith\n      have h18 : (2 : \u2115) ^ u2 \u2265 1 := by\n        apply Nat.one_le_pow\n        omega\n      have h19 : (2 : \u2115) ^ u1 \u2265 1 := by\n        apply Nat.one_le_pow\n        omega\n      have h20 : 2 * (A / d) = (2 : \u2115) ^ u2 * r2 := hB_eq\n      have h21 : A = (2 : \u2115) ^ u1 * r1 := hA\n      have h22 : d % 2 = 1 := hd_odd\n      have h23 : r1 % 2 = 1 := hr1_odd\n      have h24 : r2 % 2 = 1 := hr2_odd\n      have h25 : 0 < r1 := hr1_pos\n      have h26 : 0 < r2 := hr2_pos\n      have h27 : 0 < d := by\n        by_contra h\n        simp_all [Nat.div_eq_of_lt, Nat.div_eq_of_lt]\n        <;> omega\n      -- Use the fact that r1 and r2 are odd and positive to compare them\n      have h28 : (2 : \u2115) ^ u2 * r2 \u2264 (2 : \u2115) ^ u1 * r1 := by\n        nlinarith [Nat.div_mul_le_self A d]\n      nlinarith\n    exact h15\n  exact h1",
+        "custom_id": "odd_part_le_from_div_by_odd_34",
+        "compilation_result": {
+            "pass": false,
+            "complete": false,
+            "system_errors": "Traceback (most recent call last):\n  File \"/juice5b/scr5b/slimbark/projects/evolutionary-lean/lean_evolve/utils.py\", line 127, in get_verification_results\n    \"sorries\": old_result.get(\"sorries\", []),\n               ^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'get'\n",
+            "system_messages": "Lean process timed out",
+            "tactics": [],
+            "custom_id": "odd_part_le_from_div_by_odd_34"
+        }
+    },
+    {
+        "name": "odd_part_le_from_div_by_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_part_le_from_div_by_odd (A d : \u2115) (u1 r1 u2 r2 : \u2115)\n  (hA : A = (2 : \u2115) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)\n  (hB_eq : 2 * (A / d) = (2 : \u2115) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)\n  (hd_odd : d % 2 = 1) :\n  r2 \u2264 r1 := by\n  have h1 : r2 \u2264 r1 := by\n    have h1 : 2 * (A / d) = (2 : \u2115) ^ u2 * r2 := hB_eq\n    have h2 : A = (2 : \u2115) ^ u1 * r1 := hA\n    have h3 : r1 % 2 = 1 := hr1_odd\n    have h4 : r2 % 2 = 1 := hr2_odd\n    have h5 : d % 2 = 1 := hd_odd\n    have h6 : 0 < r1 := hr1_pos\n    have h7 : 0 < r2 := hr2_pos\n    have h8 : 0 < d := by\n      by_contra h\n      simp_all [Nat.div_eq_of_lt]\n      <;> omega\n    have h9 : (2 : \u2115) ^ u2 \u2223 2 * (A / d) := by\n      use r2\n      <;> linarith\n    have h10 : (2 : \u2115) ^ u2 \u2223 2 * (A / d) := h9\n    have h11 : (2 : \u2115) ^ u2 \u2223 2 * ((2 ^ u1 * r1) / d) := by\n      simp_all [h2]\n    have h12 : (2 : \u2115) ^ u2 \u2223 2 * ((2 ^ u1 * r1) / d) := h11\n    have h13 : (2 : \u2115) ^ u2 \u2223 2 * ((2 ^ u1 * r1) / d) := h12\n    have h14 : r2 \u2264 r1 := by\n      have h15 : r2 \u2264 r1 := by\n        by_contra h\n        have h16 : r1 < r2 := by omega\n        have h17 : (2 : \u2115) ^ u2 \u2264 2 * ((2 ^ u1 * r1) / d) := by\n          have h18 : (2 : \u2115) ^ u2 \u2223 2 * ((2 ^ u1 * r1) / d) := h13\n          exact Nat.le_of_dvd (by positivity) h18\n        have h19 : (2 : \u2115) ^ u2 \u2264 2 * ((2 ^ u1 * r1) / d) := h17\n        have h20 : (2 : \u2115) ^ u2 \u2264 2 * ((2 ^ u1 * r1) / d) := h19\n        have h21 : (2 : \u2115) ^ u2 \u2264 2 * ((2 ^ u1 * r1) / d) := h20\n        have h22 : (2 : \u2115) ^ u2 \u2264 2 * ((2 ^ u1 * r1) / d) := h21\n        have h23 : r1 < r2 := by omega\n        have h24 : (2 : \u2115) ^ u2 \u2264 2 * ((2 ^ u1 * r1) / d) := by omega\n        have h25 : r1 < r2 := by omega\n        omega\n      exact h15\n    exact h14\n  exact h1",
+        "custom_id": "odd_part_le_from_div_by_odd_35",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 37,
+                        "column": 34
+                    },
+                    "endPos": {
+                        "line": 37,
+                        "column": 44
+                    },
+                    "data": "failed to prove strict positivity, but it would be possible to prove nonnegativity if desired"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 45,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 45,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  b - c \u2264 -1\n  f \u2265 1\n  f \u2265 1\n  b \u2265 0\n  f - 2*g \u2264 0\n  a \u2265 0\n  e \u2265 0\nwhere\n a := \u2191(2 ^ u1) * \u2191r1\n b := \u2191r1 / 2\n c := \u2191r2 / 2\n e := \u2191d / 2\n f := \u21912 ^ u2\n g := \u2191(2 ^ u1 * r1) / \u2191d"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.9950029850006104,
+            "custom_id": "odd_part_le_from_div_by_odd_35"
+        }
+    },
+    {
+        "name": "odd_part_le_from_div_by_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_part_le_from_div_by_odd (A d : \u2115) (u1 r1 u2 r2 : \u2115)\n  (hA : A = (2 : \u2115) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)\n  (hB_eq : 2 * (A / d) = (2 : \u2115) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)\n  (hd_odd : d % 2 = 1) :\n  r2 \u2264 r1 := by\n  have h\u2081 : 0 < d := by\n    by_contra h\n    simp_all [Nat.div_eq_of_lt]\n    <;> omega\n  have h\u2082 : 0 < r1 := by omega\n  have h\u2083 : 0 < r2 := by omega\n  have h\u2084 : 0 < 2 := by norm_num\n  have h\u2085 : 0 < 2 ^ u1 := by positivity\n  have h\u2086 : 0 < 2 ^ u2 := by positivity\n  have h\u2087 : A / d \u2265 0 := by positivity\n  have h\u2088 : 2 * (A / d) = (2 : \u2115) ^ u2 * r2 := by omega\n  have h\u2089 : r2 \u2264 r1 := by\n    have h\u2081\u2080 : r2 \u2264 r1 := by\n      apply le_of_not_gt\n      intro h\n      have h\u2081\u2081 : (2 : \u2115) ^ u2 * r2 > 2 * (A / d) := by\n        nlinarith\n      have h\u2081\u2082 : (2 : \u2115) ^ u2 * r2 \u2264 2 * (A / d) := by\n        nlinarith [Nat.div_mul_le_self A d]\n      nlinarith\n    exact h\u2081\u2080\n  exact h\u2089",
+        "custom_id": "odd_part_le_from_div_by_odd_36",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 27,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 27,
+                        "column": 17
+                    },
+                    "data": "linarith failed to find a contradiction\ncase h\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh\u2081 : 0 < d\nh\u2082 : 0 < r1\nh\u2083 : 0 < r2\nh\u2084 : 0 < 2\nh\u2085 : 0 < 2 ^ u1\nh\u2086 : 0 < 2 ^ u2\nh\u2087 : A / d \u2265 0\nh\u2088 : 2 * (A / d) = 2 ^ u2 * r2\nh : r2 > r1\na\u271d : 2 * (A / d) \u2265 2 ^ u2 * r2\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 10.158647537231445,
+            "custom_id": "odd_part_le_from_div_by_odd_36"
+        }
+    },
+    {
+        "name": "odd_part_le_from_div_by_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_part_le_from_div_by_odd (A d : \u2115) (u1 r1 u2 r2 : \u2115)\n  (hA : A = (2 : \u2115) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)\n  (hB_eq : 2 * (A / d) = (2 : \u2115) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)\n  (hd_odd : d % 2 = 1) :\n  r2 \u2264 r1 := by\n  have h\u2081 : r2 \u2264 r1 := by\n    have h\u2081 := hB_eq\n    have h\u2082 : 0 < d := by\n      by_contra h\n      simp_all\n      <;> omega\n    have h\u2083 : 0 < (2 : \u2115) ^ u1 := by positivity\n    have h\u2084 : 0 < (2 : \u2115) ^ u2 := by positivity\n    have h\u2085 : 0 < r1 := by assumption\n    have h\u2086 : 0 < r2 := by assumption\n    have h\u2087 : d \u2223 A := by\n      use (2 : \u2115) ^ u1 * r1 / d\n      rw [hA]\n      <;> simp_all [Nat.mul_div_cancel_left]\n      <;> omega\n    have h\u2088 : 2 * (A / d) = (2 : \u2115) ^ u2 * r2 := by assumption\n    have h\u2089 : r2 \u2264 r1 := by\n      apply Nat.le_of_not_gt\n      intro h\n      have h\u2081\u2080 : (2 : \u2115) ^ u2 * r2 > (2 : \u2115) ^ u1 * r1 := by\n        have h\u2081\u2081 : (2 : \u2115) ^ u2 > (2 : \u2115) ^ u1 := by\n          apply Nat.pow_lt_pow_of_lt_right\n          norm_num\n          omega\n        have h\u2081\u2082 : r2 > r1 := by omega\n        nlinarith\n      have h\u2081\u2083 : 2 * (A / d) \u2264 (2 : \u2115) ^ u1 * r1 := by\n        have h\u2081\u2084 : A / d \u2264 (2 : \u2115) ^ u1 * r1 / d := by\n          apply Nat.div_le_div_right\n          nlinarith\n        nlinarith\n      nlinarith\n    exact h\u2089\n  exact h\u2081",
+        "custom_id": "odd_part_le_from_div_by_odd_37",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 25,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  b \u2265 0\n  a \u2265 0\n  e \u2265 0\n  a - f \u2264 -1\nwhere\n a := \u2191(2 ^ u1) * \u2191r1\n b := \u2191r1 / 2\n c := \u2191r2 / 2\n e := \u2191d / 2\n f := \u2191d * \u2191(2 ^ u1 * r1 / d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 21,
+                        "column": 23
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 15
+                    },
+                    "data": "unsolved goals\ncase h\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhB_eq : 2 * (2 ^ u1 * r1 / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhd_odd : d % 2 = 1\nh\u2082 : 0 < d\nh\u2085 : 0 < r1\nh\u2086 : 0 < r2\n\u22a2 2 ^ u1 * r1 = d * (2 ^ u1 * r1 / d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 34,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 34,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  f \u2265 1\n  b - c \u2264 -1\n  i \u2265 0\n  i - j \u2265 0\n  g \u2265 1\n  b \u2265 0\n  j \u2265 0\n  e \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(2 ^ u1) * \u2191r1\n b := \u2191r1 / 2\n c := \u2191r2 / 2\n e := \u2191d / 2\n f := \u21912 ^ u1\n g := \u21912 ^ u2\n i := \u2191u1\n j := \u2191u2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 41,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 41,
+                        "column": 17
+                    },
+                    "data": "linarith failed to find a contradiction\ncase a\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh\u2081 : 2 * (A / d) = 2 ^ u2 * r2\nh\u2082 : 0 < d\nh\u2083 : 0 < 2 ^ u1\nh\u2084 : 0 < 2 ^ u2\nh\u2085 : 0 < r1\nh\u2086 : 0 < r2\nh\u2087 : d \u2223 A\nh\u2088 : 2 * (A / d) = 2 ^ u2 * r2\nh : r2 > r1\nh\u2081\u2080 : 2 ^ u2 * r2 > 2 ^ u1 * r1\nh\u2081\u2084 : A / d \u2264 2 ^ u1 * r1 / d\na\u271d : 2 * (A / d) > 2 ^ u1 * r1\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 32,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 32,
+                        "column": 42
+                    },
+                    "data": "`Nat.pow_lt_pow_of_lt_right` has been deprecated, use `pow_lt_pow_right` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 15.158605575561523,
+            "custom_id": "odd_part_le_from_div_by_odd_37"
+        }
+    },
+    {
+        "name": "odd_part_le_from_div_by_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_part_le_from_div_by_odd (A d : \u2115) (u1 r1 u2 r2 : \u2115)\n  (hA : A = (2 : \u2115) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)\n  (hB_eq : 2 * (A / d) = (2 : \u2115) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)\n  (hd_odd : d % 2 = 1) :\n  r2 \u2264 r1 := by\n  have h1 : r2 \u2264 r1 := by\n    have h\u2081 : 2 * (A / d) = (2 : \u2115) ^ u2 * r2 := hB_eq\n    have h\u2082 : A = (2 : \u2115) ^ u1 * r1 := hA\n    have h\u2083 : d % 2 = 1 := hd_odd\n    have h\u2084 : r1 % 2 = 1 := hr1_odd\n    have h\u2085 : r2 % 2 = 1 := hr2_odd\n    have h\u2086 : 0 < r1 := hr1_pos\n    have h\u2087 : 0 < r2 := hr2_pos\n    have h\u2088 : 0 < 2 := by decide\n    have h\u2089 : 0 < (2 : \u2115) ^ u1 := by positivity\n    have h\u2081\u2080 : 0 < (2 : \u2115) ^ u2 := by positivity\n    have h\u2081\u2081 : A / d \u2265 0 := by positivity\n    have h\u2081\u2082 : (2 : \u2115) ^ u2 * r2 = 2 * (A / d) := by omega\n    have h\u2081\u2083 : r2 \u2264 r1 := by\n      -- Use the fact that r1 and r2 are odd and A is expressed in terms of them\n      have h\u2081\u2084 : (2 : \u2115) ^ u2 \u2223 2 * (A / d) := by\n        use A / d\n        <;> linarith\n      have h\u2081\u2085 : (2 : \u2115) ^ u2 \u2223 2 * (A / d) := by assumption\n      have h\u2081\u2086 : (2 : \u2115) ^ u2 \u2223 2 * (A / d) := by assumption\n      have h\u2081\u2087 : (2 : \u2115) ^ u2 \u2223 2 * (A / d) := by assumption\n      have h\u2081\u2088 : r2 \u2264 r1 := by\n        -- Use the fact that r1 and r2 are odd and A is expressed in terms of them\n        have h\u2081\u2089 : r2 \u2264 r1 := by\n          -- Use the fact that r1 and r2 are odd and A is expressed in terms of them\n          apply Nat.le_of_not_gt\n          intro h\n          have h\u2082\u2080 : r2 > r1 := by assumption\n          have h\u2082\u2081 : (2 : \u2115) ^ u2 * r2 > 2 * (A / d) := by\n            nlinarith [Nat.pow_le_pow_of_le_right (by decide : 2 > 0) (Nat.le_of_lt_succ (by omega : u2 < u1 + 1))]\n          have h\u2082\u2082 : 2 * (A / d) = (2 : \u2115) ^ u2 * r2 := by omega\n          nlinarith\n        assumption\n      assumption\n    assumption\n  exact h1",
+        "custom_id": "odd_part_le_from_div_by_odd_38",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 28,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 28,
+                        "column": 20
+                    },
+                    "data": "linarith failed to find a contradiction\ncase h.h1.h\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh\u2081 : 2 * (A / d) = 2 ^ u2 * r2\nh\u2082 : A = 2 ^ u1 * r1\nh\u2083 : d % 2 = 1\nh\u2084 : r1 % 2 = 1\nh\u2085 : r2 % 2 = 1\nh\u2086 : 0 < r1\nh\u2087 : 0 < r2\nh\u2088 : 0 < 2\nh\u2089 : 0 < 2 ^ u1\nh\u2081\u2080 : 0 < 2 ^ u2\nh\u2081\u2081 : A / d \u2265 0\nh\u2081\u2082 : 2 ^ u2 * r2 = 2 * (A / d)\na\u271d : 2 * (A / d) < 2 ^ u2 * (A / d)\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 26,
+                        "column": 47
+                    },
+                    "endPos": {
+                        "line": 28,
+                        "column": 20
+                    },
+                    "data": "unsolved goals\ncase h\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh\u2081 : 2 * (A / d) = 2 ^ u2 * r2\nh\u2082 : A = 2 ^ u1 * r1\nh\u2083 : d % 2 = 1\nh\u2084 : r1 % 2 = 1\nh\u2085 : r2 % 2 = 1\nh\u2086 : 0 < r1\nh\u2087 : 0 < r2\nh\u2088 : 0 < 2\nh\u2089 : 0 < 2 ^ u1\nh\u2081\u2080 : 0 < 2 ^ u2\nh\u2081\u2081 : A / d \u2265 0\nh\u2081\u2082 : 2 ^ u2 * r2 = 2 * (A / d)\n\u22a2 2 * (A / d) = 2 ^ u2 * (A / d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 40,
+                        "column": 93
+                    },
+                    "endPos": {
+                        "line": 40,
+                        "column": 98
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  e \u2265 0\n  g \u2265 1\n  b - e \u2264 -1\n  j \u2265 0\n  c \u2265 0\n  i \u2265 1\n  j - k \u2265 1\n  i \u2265 1\n  b \u2265 0\n  k \u2265 0\n  f \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(2 ^ u1) * \u2191r1\n b := \u2191r1 / 2\n c := \u2191A / \u2191d\n e := \u2191r2 / 2\n f := \u2191d / 2\n g := \u21912 ^ u1\n i := \u21912 ^ u2\n j := \u2191u2\n k := \u2191u1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 3.8995893001556396,
+            "custom_id": "odd_part_le_from_div_by_odd_38"
+        }
+    },
+    {
+        "name": "odd_part_le_from_div_by_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_part_le_from_div_by_odd (A d : \u2115) (u1 r1 u2 r2 : \u2115)\n  (hA : A = (2 : \u2115) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)\n  (hB_eq : 2 * (A / d) = (2 : \u2115) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)\n  (hd_odd : d % 2 = 1) :\n  r2 \u2264 r1 := by\n  have h\u2081 : r2 \u2264 r1 := by\n    have h\u2081 := hB_eq\n    rw [hA] at h\u2081\n    have h\u2082 : d \u2223 (2 : \u2115) ^ u1 * r1 := by\n      use A / d\n      <;> simp_all [Nat.div_mul_cancel]\n    have h\u2083 : d \u2223 (2 : \u2115) ^ u1 * r1 := by assumption\n    have h\u2084 : r2 \u2264 r1 := by\n      have h\u2085 : r2 \u2223 (2 : \u2115) ^ u1 * r1 := by\n        rw [\u2190 h\u2081]\n        simp [Nat.dvd_mul_right]\n      have h\u2086 : r2 \u2264 (2 : \u2115) ^ u1 * r1 := Nat.le_of_dvd (by positivity) h\u2085\n      have h\u2087 : (2 : \u2115) ^ u1 * r1 \u2265 r1 := by\n        have h\u2088 : r1 > 0 := by linarith\n        have h\u2089 : (2 : \u2115) ^ u1 \u2265 1 := by\n          apply Nat.one_le_pow\n          <;> norm_num\n        nlinarith\n      have h\u2088 : r2 \u2264 r1 := by\n        nlinarith\n      exact h\u2088\n    exact h\u2084\n  exact h\u2081",
+        "custom_id": "odd_part_le_from_div_by_odd_39",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 39
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 39
+                    },
+                    "data": "unsolved goals\ncase h\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh\u2081 : 2 * (2 ^ u1 * r1 / d) = 2 ^ u2 * r2\n\u22a2 2 ^ u1 * r1 = d * (2 ^ u1 * r1 / d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 16
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  2 ^ u2 * r2\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh\u2081 : 2 * (2 ^ u1 * r1 / d) = 2 ^ u2 * r2\nh\u2082 h\u2083 : d \u2223 2 ^ u1 * r1\n\u22a2 r2 \u2223 2 ^ u1 * r1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 30,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 30,
+                        "column": 17
+                    },
+                    "data": "linarith failed to find a contradiction\ncase a\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh\u2081 : 2 * (2 ^ u1 * r1 / d) = 2 ^ u2 * r2\nh\u2082 h\u2083 : d \u2223 2 ^ u1 * r1\nh\u2085 : r2 \u2223 2 ^ u1 * r1\nh\u2086 : r2 \u2264 2 ^ u1 * r1\nh\u2087 : 2 ^ u1 * r1 \u2265 r1\na\u271d : r2 > r1\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 3.4505279064178467,
+            "custom_id": "odd_part_le_from_div_by_odd_39"
+        }
+    },
+    {
+        "name": "odd_part_le_from_div_by_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_part_le_from_div_by_odd (A d : \u2115) (u1 r1 u2 r2 : \u2115)\n  (hA : A = (2 : \u2115) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)\n  (hB_eq : 2 * (A / d) = (2 : \u2115) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)\n  (hd_odd : d % 2 = 1) :\n  r2 \u2264 r1 := by\n  have h1 : r2 \u2264 r1 := by\n    have h\u2081 : 2 * (A / d) = (2 : \u2115) ^ u2 * r2 := hB_eq\n    have h\u2082 : A = (2 : \u2115) ^ u1 * r1 := hA\n    have h\u2083 : d % 2 = 1 := hd_odd\n    have h\u2084 : r1 % 2 = 1 := hr1_odd\n    have h\u2085 : r2 % 2 = 1 := hr2_odd\n    have h\u2086 : 0 < r1 := hr1_pos\n    have h\u2087 : 0 < r2 := hr2_pos\n    have h\u2088 : 0 < 2 := by decide\n    have h\u2089 : 0 < A := by\n      rw [h\u2082]\n      exact mul_pos (pow_pos (by norm_num) u1) h\u2086\n    have h\u2081\u2080 : 0 < d := by\n      by_contra h\n      have h' : d = 0 := by omega\n      rw [h'] at h\u2083\n      norm_num at h\u2083\n    have h\u2081\u2081 : A / d \u2265 0 := by\n      apply Nat.zero_le\n    have h\u2081\u2082 : 2 * (A / d) = (2 : \u2115) ^ u2 * r2 := hB_eq\n    have h\u2081\u2083 : r2 \u2264 r1 := by\n      by_contra h\n      have h' : r1 < r2 := by omega\n      have h'' : (2 : \u2115) ^ u2 * r2 \u2264 (2 : \u2115) ^ u1 * r1 := by\n        have h''' : 2 * (A / d) = (2 : \u2115) ^ u2 * r2 := hB_eq\n        have h'''' : A = (2 : \u2115) ^ u1 * r1 := hA\n        have h''''' : 2 * (A / d) = (2 : \u2115) ^ u2 * r2 := hB_eq\n        nlinarith [pow_pos (by norm_num : (0 : \u2115) < 2) u1, pow_pos (by norm_num : (0 : \u2115) < 2) u2,\n          Nat.mul_div_le A d]\n      nlinarith [pow_pos (by norm_num : (0 : \u2115) < 2) u1, pow_pos (by norm_num : (0 : \u2115) < 2) u2,\n        Nat.mul_div_le A d]\n    exact h\u2081\u2083\n  exact h1",
+        "custom_id": "odd_part_le_from_div_by_odd_40",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 38,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 39,
+                        "column": 29
+                    },
+                    "data": "linarith failed to find a contradiction\ncase a\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh\u2081 : 2 * (A / d) = 2 ^ u2 * r2\nh\u2082 : A = 2 ^ u1 * r1\nh\u2083 : d % 2 = 1\nh\u2084 : r1 % 2 = 1\nh\u2085 : r2 % 2 = 1\nh\u2086 : 0 < r1\nh\u2087 : 0 < r2\nh\u2088 : 0 < 2\nh\u2089 : 0 < A\nh\u2081\u2080 : 0 < d\nh\u2081\u2081 : A / d \u2265 0\nh\u2081\u2082 : 2 * (A / d) = 2 ^ u2 * r2\nh : \u00acr2 \u2264 r1\nh' : r1 < r2\nh''' : 2 * (A / d) = 2 ^ u2 * r2\nh'''' : A = 2 ^ u1 * r1\nh''''' : 2 * (A / d) = 2 ^ u2 * r2\na\u271d : 2 ^ u2 * r2 > 2 ^ u1 * r1\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 40,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 41,
+                        "column": 27
+                    },
+                    "data": "linarith failed to find a contradiction\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh\u2081 : 2 * (A / d) = 2 ^ u2 * r2\nh\u2082 : A = 2 ^ u1 * r1\nh\u2083 : d % 2 = 1\nh\u2084 : r1 % 2 = 1\nh\u2085 : r2 % 2 = 1\nh\u2086 : 0 < r1\nh\u2087 : 0 < r2\nh\u2088 : 0 < 2\nh\u2089 : 0 < A\nh\u2081\u2080 : 0 < d\nh\u2081\u2081 : A / d \u2265 0\nh\u2081\u2082 : 2 * (A / d) = 2 ^ u2 * r2\nh : \u00acr2 \u2264 r1\nh' : r1 < r2\nh'' : 2 ^ u2 * r2 \u2264 2 ^ u1 * r1\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 27.379440546035767,
+            "custom_id": "odd_part_le_from_div_by_odd_40"
+        }
+    },
+    {
+        "name": "odd_part_le_from_div_by_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_part_le_from_div_by_odd (A d : \u2115) (u1 r1 u2 r2 : \u2115)\n  (hA : A = (2 : \u2115) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)\n  (hB_eq : 2 * (A / d) = (2 : \u2115) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)\n  (hd_odd : d % 2 = 1) :\n  r2 \u2264 r1 := by\n  have h\u2081 : r2 \u2264 r1 := by\n    have h\u2081 := hB_eq\n    rw [hA] at h\u2081\n    have h\u2082 : 2 * ((2 ^ u1 * r1) / d) = 2 ^ u2 * r2 := by simp_all\n    have h\u2083 : r2 \u2264 r1 := by\n      by_contra h\n      have h\u2084 : r1 < r2 := by omega\n      have h\u2085 : 2 ^ u2 * r2 \u2264 2 ^ u2 * r1 := by\n        exact Nat.mul_le_mul_left _ (by omega)\n      have h\u2086 : 2 * ((2 ^ u1 * r1) / d) < 2 ^ u2 * r1 := by\n        have h\u2087 : 2 * ((2 ^ u1 * r1) / d) < 2 ^ u2 * r1 := by\n          have h\u2088 : 2 * ((2 ^ u1 * r1) / d) \u2264 2 ^ u1 * r1 := by\n            have h\u2089 : 2 * ((2 ^ u1 * r1) / d) \u2264 2 ^ u1 * r1 := by\n              apply Nat.mul_le_of_le_div\n              <;> simp_all [Nat.mul_div_cancel_left]\n              <;> omega\n            exact h\u2089\n          have h\u2089 : 2 ^ u1 * r1 < 2 ^ u2 * r1 := by\n            have h\u2081\u2080 : u1 < u2 := by\n              by_contra h\u2081\u2080\n              have h\u2081\u2081 : u2 \u2264 u1 := by omega\n              have h\u2081\u2082 : 2 ^ u2 \u2264 2 ^ u1 := by\n                exact Nat.pow_le_pow_of_le_right (by norm_num) h\u2081\u2081\n              nlinarith\n            have h\u2081\u2081 : 2 ^ u1 * r1 < 2 ^ u2 * r1 := by\n              exact Nat.mul_lt_mul_of_pos_right (Nat.pow_lt_pow_of_lt_right (by norm_num) h\u2081\u2080) (by omega)\n            exact h\u2081\u2081\n          omega\n        exact h\u2087\n      omega\n    exact h\u2083\n  exact h\u2081",
+        "custom_id": "odd_part_le_from_div_by_odd_41",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 40
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 45
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  b - c \u2264 -1\n  b \u2265 0\n  e \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(2 ^ u1) * \u2191r1\n b := \u2191r1 / 2\n c := \u2191r2 / 2\n e := \u2191d / 2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 34,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 34,
+                        "column": 23
+                    },
+                    "data": "linarith failed to find a contradiction\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh\u2081 h\u2082 : 2 * (2 ^ u1 * r1 / d) = 2 ^ u2 * r2\nh : \u00acr2 \u2264 r1\nh\u2084 : r1 < r2\nh\u2085 : 2 ^ u2 * r2 \u2264 2 ^ u2 * r1\nh\u2088 : 2 * (2 ^ u1 * r1 / d) \u2264 2 ^ u1 * r1\nh\u2081\u2080 : \u00acu1 < u2\nh\u2081\u2081 : u2 \u2264 u1\nh\u2081\u2082 : 2 ^ u2 \u2264 2 ^ u1\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 40,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 40,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  b - c \u2264 -1\n  2*f - g \u2264 -1\n  b \u2265 0\n  e \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(2 ^ u1) * \u2191r1\n b := \u2191r1 / 2\n c := \u2191r2 / 2\n e := \u2191d / 2\n f := \u2191(2 ^ u1 * r1) / \u2191d\n g := \u2191(2 ^ u2) * \u2191r1"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 36,
+                        "column": 49
+                    },
+                    "endPos": {
+                        "line": 36,
+                        "column": 75
+                    },
+                    "data": "`Nat.pow_lt_pow_of_lt_right` has been deprecated, use `pow_lt_pow_right` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 3.9495489597320557,
+            "custom_id": "odd_part_le_from_div_by_odd_41"
+        }
+    },
+    {
+        "name": "odd_part_le_from_div_by_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_part_le_from_div_by_odd (A d : \u2115) (u1 r1 u2 r2 : \u2115)\n  (hA : A = (2 : \u2115) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)\n  (hB_eq : 2 * (A / d) = (2 : \u2115) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)\n  (hd_odd : d % 2 = 1) :\n  r2 \u2264 r1 := by\n  have h1 : r2 \u2264 r1 := by\n    have h1 := hB_eq\n    rw [hA] at h1\n    -- We need to show that r2 \u2264 r1\n    -- We know that 2 * ( (2 ^ u1 * r1) / d ) = 2 ^ u2 * r2\n    -- This implies that (2 ^ u1 * r1) / d = 2 ^ (u2 - 1) * (r2 / 2)\n    -- Given that r1 and r2 are odd, we can use properties of odd numbers and modular arithmetic to show this.\n    have h2 : r1 \u2265 1 := by linarith\n    have h3 : r2 \u2265 1 := by linarith\n    have h4 : d \u2265 1 := by\n      by_contra h\n      simp_all [Nat.div_eq_of_lt]\n      <;> omega\n    have h5 : (2 ^ u1 * r1) / d \u2265 0 := by positivity\n    have h6 : 2 ^ u2 * r2 \u2265 0 := by positivity\n    have h7 : 2 * ((2 ^ u1 * r1) / d) = 2 ^ u2 * r2 := by linarith\n    have h8 : r2 \u2264 r1 := by\n      by_contra h9\n      have h10 : r1 < r2 := by linarith\n      have h11 : 2 ^ u2 * r2 > 2 ^ u1 * r1 := by\n        have h12 : 2 ^ u2 > 0 := by positivity\n        have h13 : r2 > 0 := by linarith\n        have h14 : 2 ^ u1 > 0 := by positivity\n        have h15 : r1 > 0 := by linarith\n        nlinarith [pow_lt_pow_right (by norm_num : (1 : \u2115) < 2) (by omega : u2 > u1)]\n      have h16 : 2 * ((2 ^ u1 * r1) / d) \u2264 2 ^ u1 * r1 := by\n        apply Nat.mul_le_mul_left 2\n        apply Nat.div_le_self\n      nlinarith\n    exact h8\n  exact h1",
+        "custom_id": "odd_part_le_from_div_by_odd_42",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 35,
+                        "column": 68
+                    },
+                    "endPos": {
+                        "line": 35,
+                        "column": 73
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  f \u2265 0\n  b - c \u2264 -1\n  i \u2265 0\n  h \u2265 1\n  i - j \u2265 0\n  b \u2265 0\n  g \u2265 1\n  j \u2265 0\n  e \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(2 ^ u1) * \u2191r1\n b := \u2191r1 / 2\n c := \u2191r2 / 2\n e := \u2191d / 2\n f := \u2191(2 ^ u1 * r1) / \u2191d\n g := \u21912 ^ u2\n h := \u21912 ^ u1\n i := \u2191u1\n j := \u2191u2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 37,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 37,
+                        "column": 35
+                    },
+                    "data": "tactic 'apply' failed, failed to unify\n  2 * ?m.125567 \u2264 2 * ?m.125568\nwith\n  2 * (2 ^ u1 * r1 / d) \u2264 2 ^ u1 * r1\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh1 : 2 * (2 ^ u1 * r1 / d) = 2 ^ u2 * r2\nh2 : r1 \u2265 1\nh3 : r2 \u2265 1\nh4 : d \u2265 1\nh5 : 2 ^ u1 * r1 / d \u2265 0\nh6 : 2 ^ u2 * r2 \u2265 0\nh7 : 2 * (2 ^ u1 * r1 / d) = 2 ^ u2 * r2\nh9 : \u00acr2 \u2264 r1\nh10 : r1 < r2\nh11 : 2 ^ u2 * r2 > 2 ^ u1 * r1\n\u22a2 2 * (2 ^ u1 * r1 / d) \u2264 2 ^ u1 * r1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 5.496933937072754,
+            "custom_id": "odd_part_le_from_div_by_odd_42"
+        }
+    },
+    {
+        "name": "odd_part_le_from_div_by_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_part_le_from_div_by_odd (A d : \u2115) (u1 r1 u2 r2 : \u2115)\n  (hA : A = (2 : \u2115) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)\n  (hB_eq : 2 * (A / d) = (2 : \u2115) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)\n  (hd_odd : d % 2 = 1) :\n  r2 \u2264 r1 := by\n  have h\u2081 : r2 \u2264 r1 := by\n    have h\u2081 : 2 * (A / d) = (2 : \u2115) ^ u2 * r2 := hB_eq\n    have h\u2082 : A = (2 : \u2115) ^ u1 * r1 := hA\n    have h\u2083 : d % 2 = 1 := hd_odd\n    have h\u2084 : r1 % 2 = 1 := hr1_odd\n    have h\u2085 : r2 % 2 = 1 := hr2_odd\n    have h\u2086 : 0 < r1 := hr1_pos\n    have h\u2087 : 0 < r2 := hr2_pos\n    have h\u2088 : 0 < d := by\n      by_contra h\n      simp_all [Nat.div_eq_of_lt]\n      <;> omega\n    have h\u2089 : (2 : \u2115) ^ u2 * r2 = 2 * (A / d) := by omega\n    have h\u2081\u2080 : r2 \u2264 r1 := by\n      have h\u2081\u2081 : r1 \u2265 r2 := by\n        have h\u2081\u2082 : (2 : \u2115) ^ u1 * r1 = A := by omega\n        have h\u2081\u2083 : (2 : \u2115) ^ u2 * r2 = 2 * (A / d) := by omega\n        have h\u2081\u2084 : A / d \u2265 0 := by positivity\n        have h\u2081\u2085 : (2 : \u2115) ^ u2 * r2 = 2 * (A / d) := by omega\n        have h\u2081\u2086 : r2 \u2264 r1 := by\n          -- Use the fact that r1 and r2 are odd and the properties of the division\n          -- to show that r2 \u2264 r1\n          apply le_of_not_gt\n          intro h\u2081\u2087\n          have h\u2081\u2088 : (2 : \u2115) ^ u2 > 0 := by positivity\n          have h\u2081\u2089 : r2 > r1 := by omega\n          have h\u2082\u2080 : (2 : \u2115) ^ u2 * r2 > (2 : \u2115) ^ u2 * r1 := by\n            exact Nat.mul_lt_mul_of_pos_left h\u2081\u2089 (by positivity)\n          have h\u2082\u2081 : (2 : \u2115) ^ u2 * r1 \u2265 (2 : \u2115) ^ u2 * r1 := by omega\n          have h\u2082\u2082 : 2 * (A / d) < (2 : \u2115) ^ u2 * r1 := by\n            have h\u2082\u2083 : A / d \u2264 A / d := by omega\n            have h\u2082\u2084 : 2 * (A / d) \u2264 2 * (A / d) := by omega\n            have h\u2082\u2085 : 2 * (A / d) < (2 : \u2115) ^ u2 * r1 := by\n              have h\u2082\u2086 : 2 * (A / d) < (2 : \u2115) ^ u2 * r1 := by\n                calc\n                  2 * (A / d) \u2264 A := by\n                    apply Nat.le_of_lt_succ\n                    have h\u2082\u2087 : 2 * (A / d) < A + 1 := by omega\n                    omega\n                  _ < (2 : \u2115) ^ u2 * r1 := by\n                    have h\u2082\u2088 : A < (2 : \u2115) ^ u2 * r1 := by\n                      have h\u2082\u2089 : A = (2 : \u2115) ^ u1 * r1 := by omega\n                      have h\u2083\u2080 : (2 : \u2115) ^ u2 * r2 = 2 * (A / d) := by omega\n                      have h\u2083\u2081 : (2 : \u2115) ^ u2 * r2 \u2264 (2 : \u2115) ^ u2 * r1 := by\n                        have h\u2083\u2082 : r2 \u2264 r1 := by omega\n                        exact Nat.mul_le_mul_left _ h\u2083\u2082\n                      have h\u2083\u2083 : 2 * (A / d) \u2264 (2 : \u2115) ^ u2 * r1 := by omega\n                      nlinarith\n                    exact h\u2082\u2088\n              exact h\u2082\u2086\n            exact h\u2082\u2085\n          nlinarith\n        exact h\u2081\u2086\n      exact by omega\n    exact h\u2081\u2080\n  exact h\u2081",
+        "custom_id": "odd_part_le_from_div_by_odd_43",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 48,
+                        "column": 57
+                    },
+                    "endPos": {
+                        "line": 48,
+                        "column": 62
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  e \u2265 0\n  g \u2265 1\n  a - 2*c \u2264 -1\n  b - e \u2264 -1\n  c \u2265 0\n  b \u2265 0\n  a \u2265 0\n  f \u2265 0\n  2*c - h \u2265 1\nwhere\n a := \u2191(2 ^ u1) * \u2191r1\n b := \u2191r1 / 2\n c := \u2191A / \u2191d\n e := \u2191r2 / 2\n f := \u2191d / 2\n g := \u21912 ^ u2\n h := \u2191(2 ^ u2) * \u2191r1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 55,
+                        "column": 49
+                    },
+                    "endPos": {
+                        "line": 55,
+                        "column": 54
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  e \u2265 0\n  g \u2265 1\n  b - e \u2264 -1\n  c \u2265 0\n  b \u2265 0\n  a \u2265 0\n  f \u2265 0\n  2*c - h \u2265 1\nwhere\n a := \u2191(2 ^ u1) * \u2191r1\n b := \u2191r1 / 2\n c := \u2191A / \u2191d\n e := \u2191r2 / 2\n f := \u2191d / 2\n g := \u21912 ^ u2\n h := \u2191(2 ^ u2) * \u2191r1"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 13.391116857528687,
+            "custom_id": "odd_part_le_from_div_by_odd_43"
+        }
+    },
+    {
+        "name": "odd_part_le_from_div_by_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_part_le_from_div_by_odd (A d : \u2115) (u1 r1 u2 r2 : \u2115)\n  (hA : A = (2 : \u2115) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)\n  (hB_eq : 2 * (A / d) = (2 : \u2115) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)\n  (hd_odd : d % 2 = 1) :\n  r2 \u2264 r1 := by\n  have h\u2081 : r2 \u2264 r1 := by\n    have h\u2081 := hB_eq\n    have h\u2082 : 0 < 2 := by norm_num\n    have h\u2083 : 0 < 2 ^ u2 := by positivity\n    have h\u2084 : 0 < 2 ^ u1 := by positivity\n    have h\u2085 : 0 < r1 := hr1_pos\n    have h\u2086 : 0 < r2 := hr2_pos\n    have h\u2087 : d \u2223 A := by\n      use (A / d)\n      <;> simp_all [Nat.div_mul_cancel]\n    have h\u2088 : r1 % 2 = 1 := hr1_odd\n    have h\u2089 : r2 % 2 = 1 := hr2_odd\n    have h\u2081\u2080 : d % 2 = 1 := hd_odd\n    -- Use the fact that r1 and r2 are odd to derive the inequality\n    have h\u2081\u2081 : r2 \u2264 r1 := by\n      by_contra h\n      have h\u2081\u2082 : r1 < r2 := Nat.lt_of_not_ge h\n      have h\u2081\u2083 : (2 : \u2115) ^ u2 * r2 \u2264 (2 : \u2115) ^ u1 * r1 := by\n        have h\u2081\u2084 : 2 * (A / d) = (2 : \u2115) ^ u2 * r2 := hB_eq\n        have h\u2081\u2085 : A = (2 : \u2115) ^ u1 * r1 := hA\n        have h\u2081\u2086 : 2 * (A / d) = (2 : \u2115) ^ u2 * r2 := hB_eq\n        have h\u2081\u2087 : (2 : \u2115) ^ u2 * r2 \u2264 (2 : \u2115) ^ u1 * r1 := by\n          omega\n        exact h\u2081\u2087\n      have h\u2081\u2088 : (2 : \u2115) ^ u2 * r2 \u2264 (2 : \u2115) ^ u1 * r1 := h\u2081\u2083\n      have h\u2081\u2089 : r2 \u2264 r1 := by\n        by_contra h\u2082\u2080\n        have h\u2082\u2081 : r1 < r2 := Nat.lt_of_not_ge h\u2082\u2080\n        have h\u2082\u2082 : (2 : \u2115) ^ u2 > 0 := by positivity\n        have h\u2082\u2083 : (2 : \u2115) ^ u1 > 0 := by positivity\n        have h\u2082\u2084 : (2 : \u2115) ^ u2 \u2264 (2 : \u2115) ^ u1 := by\n          have h\u2082\u2085 : u2 \u2264 u1 := by\n            by_contra h\u2082\u2086\n            have h\u2082\u2087 : u1 < u2 := Nat.lt_of_not_ge h\u2082\u2086\n            have h\u2082\u2088 : (2 : \u2115) ^ u1 < (2 : \u2115) ^ u2 := Nat.pow_lt_pow_of_lt_right (by norm_num) h\u2082\u2087\n            have h\u2082\u2089 : (2 : \u2115) ^ u2 * r2 \u2264 (2 : \u2115) ^ u1 * r1 := h\u2081\u2088\n            nlinarith\n          exact pow_le_pow_of_le_right (by norm_num) h\u2082\u2085\n        nlinarith\n      exact h\u2081\u2089\n    exact h\u2081\u2081\n  exact h\u2081",
+        "custom_id": "odd_part_le_from_div_by_odd_44",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 23
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 39
+                    },
+                    "data": "unsolved goals\ncase h\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhB_eq : 2 * (2 ^ u1 * r1 / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhd_odd : d % 2 = 1\nh\u2085 : 0 < r1\nh\u2086 : 0 < r2\n\u22a2 2 ^ u1 * r1 = d * (2 ^ u1 * r1 / d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 33,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 33,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  e \u2265 0\n  g \u2265 1\n  b - e \u2264 -1\n  i \u2265 1\n  b \u2265 0\n  a - 2*c \u2264 -1\n  f \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(2 ^ u1) * \u2191r1\n b := \u2191r1 / 2\n c := \u2191A / \u2191d\n e := \u2191r2 / 2\n f := \u2191d / 2\n g := \u21912 ^ u2\n i := \u21912 ^ u1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 49,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 49,
+                        "column": 17
+                    },
+                    "data": "linarith failed to find a contradiction\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh\u2081 : 2 * (A / d) = 2 ^ u2 * r2\nh\u2082 : 0 < 2\nh\u2083 : 0 < 2 ^ u2\nh\u2084 : 0 < 2 ^ u1\nh\u2085 : 0 < r1\nh\u2086 : 0 < r2\nh\u2087 : d \u2223 A\nh\u2088 : r1 % 2 = 1\nh\u2089 : r2 % 2 = 1\nh\u2081\u2080 : d % 2 = 1\nh : \u00acr2 \u2264 r1\nh\u2081\u2082 : r1 < r2\nh\u2081\u2083 h\u2081\u2088 : 2 ^ u2 * r2 \u2264 2 ^ u1 * r1\nh\u2082\u2080 : \u00acr2 \u2264 r1\nh\u2082\u2081 : r1 < r2\nh\u2082\u2082 : 2 ^ u2 > 0\nh\u2082\u2083 : 2 ^ u1 > 0\nh\u2082\u2084 : 2 ^ u2 \u2264 2 ^ u1\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 50,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 50,
+                        "column": 15
+                    },
+                    "data": "type mismatch\n  h\u2081\u2089\nhas type\n  r2 \u2264 r1 : Prop\nbut is expected to have type\n  False : Prop"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 45,
+                        "column": 54
+                    },
+                    "endPos": {
+                        "line": 45,
+                        "column": 80
+                    },
+                    "data": "`Nat.pow_lt_pow_of_lt_right` has been deprecated, use `pow_lt_pow_right` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 17.731152296066284,
+            "custom_id": "odd_part_le_from_div_by_odd_44"
+        }
+    },
+    {
+        "name": "odd_part_le_from_div_by_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_part_le_from_div_by_odd (A d : \u2115) (u1 r1 u2 r2 : \u2115)\n  (hA : A = (2 : \u2115) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)\n  (hB_eq : 2 * (A / d) = (2 : \u2115) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)\n  (hd_odd : d % 2 = 1) :\n  r2 \u2264 r1 := by\n  have h1 : r2 \u2264 r1 := by\n    have h1 := hB_eq\n    have h2 : 0 < d := by\n      by_contra h\n      simp_all [Nat.div_eq_of_lt]\n      <;> omega\n    have h3 : 0 < (2 : \u2115) ^ u1 := by positivity\n    have h4 : 0 < (2 : \u2115) ^ u2 := by positivity\n    have h5 : 0 < r1 := hr1_pos\n    have h6 : 0 < r2 := hr2_pos\n    have h7 : d \u2264 A := by\n      nlinarith [Nat.div_mul_le_self A d]\n    have h8 : 2 * (A / d) = (2 : \u2115) ^ u2 * r2 := hB_eq\n    have h9 : A / d \u2265 0 := by\n      apply Nat.zero_le\n    have h10 : 2 * (A / d) \u2265 0 := by\n      linarith\n    have h11 : (2 : \u2115) ^ u2 * r2 \u2265 0 := by\n      positivity\n    have h12 : r2 \u2264 r1 := by\n      by_contra h\n      have h13 : r2 > r1 := by omega\n      have h14 : (2 : \u2115) ^ u2 * r2 > (2 : \u2115) ^ u1 * r1 := by\n        have h15 : (2 : \u2115) ^ u2 \u2265 (2 : \u2115) ^ u1 := by\n          have h16 : u2 \u2265 u1 := by\n            by_contra h17\n            have h18 : u1 > u2 := by omega\n            have h19 : (2 : \u2115) ^ u1 > (2 : \u2115) ^ u2 := by\n              apply Nat.pow_lt_pow_of_lt_right\n              linarith\n              linarith\n            have h20 : (2 : \u2115) ^ u2 * r2 \u2264 (2 : \u2115) ^ u1 * r1 := by\n              nlinarith [Nat.div_mul_le_self A d]\n            nlinarith [Nat.div_mul_le_self A d]\n          linarith\n        nlinarith [Nat.div_mul_le_self A d]\n      nlinarith [Nat.div_mul_le_self A d]\n    exact h12\n  exact h1",
+        "custom_id": "odd_part_le_from_div_by_odd_45",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 22,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 41
+                    },
+                    "data": "linarith failed to find a contradiction\ncase a\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh1 : 2 * (A / d) = 2 ^ u2 * r2\nh2 : 0 < d\nh3 : 0 < 2 ^ u1\nh4 : 0 < 2 ^ u2\nh5 : 0 < r1\nh6 : 0 < r2\na\u271d : d > A\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 43,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 43,
+                        "column": 49
+                    },
+                    "data": "linarith failed to find a contradiction\ncase a\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh1 : 2 * (A / d) = 2 ^ u2 * r2\nh2 : 0 < d\nh3 : 0 < 2 ^ u1\nh4 : 0 < 2 ^ u2\nh5 : 0 < r1\nh6 : 0 < r2\nh7 : d \u2264 A\nh8 : 2 * (A / d) = 2 ^ u2 * r2\nh9 : A / d \u2265 0\nh10 : 2 * (A / d) \u2265 0\nh11 : 2 ^ u2 * r2 \u2265 0\nh : \u00acr2 \u2264 r1\nh13 : r2 > r1\nh17 : \u00acu2 \u2265 u1\nh18 : u1 > u2\nh19 : 2 ^ u1 > 2 ^ u2\na\u271d : 2 ^ u2 * r2 > 2 ^ u1 * r1\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 44,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 44,
+                        "column": 47
+                    },
+                    "data": "linarith failed to find a contradiction\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh1 : 2 * (A / d) = 2 ^ u2 * r2\nh2 : 0 < d\nh3 : 0 < 2 ^ u1\nh4 : 0 < 2 ^ u2\nh5 : 0 < r1\nh6 : 0 < r2\nh7 : d \u2264 A\nh8 : 2 * (A / d) = 2 ^ u2 * r2\nh9 : A / d \u2265 0\nh10 : 2 * (A / d) \u2265 0\nh11 : 2 ^ u2 * r2 \u2265 0\nh : \u00acr2 \u2264 r1\nh13 : r2 > r1\nh17 : \u00acu2 \u2265 u1\nh18 : u1 > u2\nh19 : 2 ^ u1 > 2 ^ u2\nh20 : 2 ^ u2 * r2 \u2264 2 ^ u1 * r1\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 45,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 45,
+                        "column": 18
+                    },
+                    "data": "linarith failed to find a contradiction\ncase a\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh1 : 2 * (A / d) = 2 ^ u2 * r2\nh2 : 0 < d\nh3 : 0 < 2 ^ u1\nh4 : 0 < 2 ^ u2\nh5 : 0 < r1\nh6 : 0 < r2\nh7 : d \u2264 A\nh8 : 2 * (A / d) = 2 ^ u2 * r2\nh9 : A / d \u2265 0\nh10 : 2 * (A / d) \u2265 0\nh11 : 2 ^ u2 * r2 \u2265 0\nh : \u00acr2 \u2264 r1\nh13 : r2 > r1\nh16 : u2 \u2265 u1\na\u271d : 2 ^ u1 > 2 ^ u2\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 47,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 47,
+                        "column": 41
+                    },
+                    "data": "linarith failed to find a contradiction\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh1 : 2 * (A / d) = 2 ^ u2 * r2\nh2 : 0 < d\nh3 : 0 < 2 ^ u1\nh4 : 0 < 2 ^ u2\nh5 : 0 < r1\nh6 : 0 < r2\nh7 : d \u2264 A\nh8 : 2 * (A / d) = 2 ^ u2 * r2\nh9 : A / d \u2265 0\nh10 : 2 * (A / d) \u2265 0\nh11 : 2 ^ u2 * r2 \u2265 0\nh : \u00acr2 \u2264 r1\nh13 : r2 > r1\nh14 : 2 ^ u2 * r2 > 2 ^ u1 * r1\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 39,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 39,
+                        "column": 46
+                    },
+                    "data": "`Nat.pow_lt_pow_of_lt_right` has been deprecated, use `pow_lt_pow_right` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 59.738430976867676,
+            "custom_id": "odd_part_le_from_div_by_odd_45"
+        }
+    },
+    {
+        "name": "odd_part_le_from_div_by_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_part_le_from_div_by_odd (A d : \u2115) (u1 r1 u2 r2 : \u2115)\n  (hA : A = (2 : \u2115) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)\n  (hB_eq : 2 * (A / d) = (2 : \u2115) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)\n  (hd_odd : d % 2 = 1) :\n  r2 \u2264 r1 := by\n  have h\u2081 : r2 \u2264 r1 := by\n    have h\u2081 := hB_eq\n    rw [hA] at h\u2081\n    have h\u2082 : 0 < d := by\n      by_contra h\n      simp_all [Nat.div_eq_of_lt]\n      <;> omega\n    have h\u2083 : 0 < (2 : \u2115) ^ u1 := by positivity\n    have h\u2084 : 0 < (2 : \u2115) ^ u2 := by positivity\n    have h\u2085 : 0 < (2 : \u2115) ^ u1 * r1 := by positivity\n    have h\u2086 : 0 < (2 : \u2115) ^ u2 * r2 := by positivity\n    have h\u2087 : A / d \u2265 0 := by\n      apply Nat.zero_le\n    have h\u2088 : 2 * (A / d) = (2 : \u2115) ^ u2 * r2 := by assumption\n    have h\u2089 : A / d \u2265 0 := by\n      apply Nat.zero_le\n    have h\u2081\u2080 : r2 \u2264 r1 := by\n      have h\u2081\u2081 : 2 * (A / d) = (2 : \u2115) ^ u2 * r2 := by assumption\n      have h\u2081\u2082 : A / d \u2265 0 := by\n        apply Nat.zero_le\n      have h\u2081\u2083 : r2 \u2264 r1 := by\n        -- Use the fact that r1 and r2 are odd and positive to show that r2 \u2264 r1\n        by_contra h\n        have : r2 > r1 := by omega\n        have : (2 : \u2115) ^ u2 * r2 > (2 : \u2115) ^ u1 * r1 := by\n          have : (2 : \u2115) ^ u2 > (2 : \u2115) ^ u1 := by\n            apply Nat.pow_lt_pow_of_lt_right\n            \u00b7 norm_num\n            \u00b7 have : u2 > u1 := by\n                by_contra h\n                have : u2 \u2264 u1 := by omega\n                have : (2 : \u2115) ^ u2 \u2264 (2 : \u2115) ^ u1 := by\n                  apply Nat.pow_le_pow_of_le_right\n                  \u00b7 norm_num\n                  \u00b7 omega\n                nlinarith\n              omega\n          nlinarith\n        omega\n      exact h\u2081\u2083\n    exact h\u2081\u2080\n  exact h\u2081",
+        "custom_id": "odd_part_le_from_div_by_odd_46",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 46,
+                        "column": 16
+                    },
+                    "endPos": {
+                        "line": 46,
+                        "column": 25
+                    },
+                    "data": "linarith failed to find a contradiction\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh\u2081 : 2 * (2 ^ u1 * r1 / d) = 2 ^ u2 * r2\nh\u2082 : 0 < d\nh\u2083 : 0 < 2 ^ u1\nh\u2084 : 0 < 2 ^ u2\nh\u2085 : 0 < 2 ^ u1 * r1\nh\u2086 : 0 < 2 ^ u2 * r2\nh\u2087 : A / d \u2265 0\nh\u2088 : 2 * (A / d) = 2 ^ u2 * r2\nh\u2089 : A / d \u2265 0\nh\u2081\u2081 : 2 * (A / d) = 2 ^ u2 * r2\nh\u2081\u2082 : A / d \u2265 0\nh\u271d : \u00acr2 \u2264 r1\nthis\u271d\u00b9 : r2 > r1\nh : \u00acu2 > u1\nthis\u271d : u2 \u2264 u1\nthis : 2 ^ u2 \u2264 2 ^ u1\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 49,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 49,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  f \u2265 1\n  b - c \u2264 -1\n  i \u2265 1\n  a - 2*f \u2264 -1\n  b \u2265 0\n  g \u2265 1\n  e \u2265 0\n  a \u2265 1\nwhere\n a := \u2191(2 ^ u1) * \u2191r1\n b := \u2191r1 / 2\n c := \u2191r2 / 2\n e := \u2191d / 2\n f := \u2191(2 ^ u1 * r1) / \u2191d\n g := \u21912 ^ u1\n i := \u21912 ^ u2"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 37,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 37,
+                        "column": 44
+                    },
+                    "data": "`Nat.pow_lt_pow_of_lt_right` has been deprecated, use `pow_lt_pow_right` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 19.55724835395813,
+            "custom_id": "odd_part_le_from_div_by_odd_46"
+        }
+    },
+    {
+        "name": "odd_part_le_from_div_by_odd",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_part_le_from_div_by_odd (A d : \u2115) (u1 r1 u2 r2 : \u2115)\n  (hA : A = (2 : \u2115) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)\n  (hB_eq : 2 * (A / d) = (2 : \u2115) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)\n  (hd_odd : d % 2 = 1) :\n  r2 \u2264 r1 := by\n  have h1 : r2 \u2264 r1 := by\n    have h1 := hB_eq\n    have h2 : 0 < d := by\n      by_contra h\n      simp_all [Nat.div_eq_of_lt]\n      <;> omega\n    have h3 : 0 < 2 ^ u1 := by positivity\n    have h4 : 0 < 2 ^ u2 := by positivity\n    have h5 : 0 < r1 := hr1_pos\n    have h6 : 0 < r2 := hr2_pos\n    have h7 : 0 < 2 ^ u1 * r1 := by positivity\n    have h8 : 0 < 2 ^ u2 * r2 := by positivity\n    have h9 : d \u2264 A := by\n      have h10 : d \u2223 A := by\n        use (2 : \u2115) ^ u1\n        simp_all [Nat.mul_div_cancel_left]\n        <;> ring_nf\n        <;> omega\n      exact Nat.le_of_dvd (by positivity) h10\n    have h10 : 2 * (A / d) = 2 ^ u2 * r2 := hB_eq\n    have h11 : A / d \u2265 0 := by positivity\n    have h12 : 2 ^ u2 * r2 \u2264 2 * (A / d) := by\n      linarith\n    have h13 : r2 \u2264 r1 := by\n      have h14 : 2 ^ u2 * r2 \u2264 2 * (A / d) := by linarith\n      have h15 : 2 ^ u1 * r1 = A := by omega\n      have h16 : A / d \u2265 0 := by positivity\n      have h17 : 2 ^ u2 * r2 \u2264 2 * (A / d) := by linarith\n      have h18 : r2 \u2264 r1 := by\n        have h19 : 2 ^ u2 \u2264 2 := by\n          have h20 : u2 \u2264 1 := by\n            by_contra h\n            have h21 : u2 \u2265 2 := by linarith\n            have h22 : 2 ^ u2 \u2265 2 ^ 2 := by\n              exact Nat.pow_le_pow_of_le_right (by norm_num) h21\n            have h23 : 2 ^ u2 * r2 \u2265 2 ^ 2 * r2 := by\n              exact Nat.mul_le_mul_right r2 h22\n            have h24 : 2 ^ 2 * r2 > 2 * (A / d) := by\n              have h25 : 2 ^ 2 * r2 > 2 * (A / d) := by\n                have h26 : r2 \u2265 1 := by omega\n                have h27 : A / d \u2264 A := by\n                  apply Nat.div_le_self\n                have h28 : 2 ^ 2 * r2 > 2 * (A / d) := by\n                  nlinarith [Nat.mul_div_le A d, Nat.div_mul_le_self A d]\n                exact h28\n              exact h25\n            nlinarith\n          have h21 : u2 \u2264 1 := by omega\n          have h22 : u2 = 0 \u2228 u2 = 1 := by omega\n          omega\n        have h20 : r2 \u2264 r1 := by\n          have h21 : 2 ^ u2 * r2 \u2264 2 * (A / d) := by linarith\n          have h22 : 2 ^ u1 * r1 = A := by omega\n          have h23 : A / d \u2265 0 := by positivity\n          have h24 : 2 ^ u2 * r2 \u2264 2 * (A / d) := by linarith\n          have h25 : r2 \u2264 r1 := by\n            have h26 : 2 ^ u2 \u2264 2 := by omega\n            have h27 : r2 \u2264 r1 := by\n              have h28 : 2 ^ u2 * r2 \u2264 2 * (A / d) := by linarith\n              have h29 : 2 ^ u1 * r1 = A := by omega\n              have h30 : A / d \u2265 0 := by positivity\n              have h31 : 2 ^ u2 * r2 \u2264 2 * (A / d) := by linarith\n              have h32 : r2 \u2264 r1 := by\n                nlinarith [Nat.div_mul_le_self A d, Nat.mul_div_le A d]\n              exact h32\n            exact h27\n          exact h25\n        exact h20\n      exact h18\n    exact h13\n  exact h1",
+        "custom_id": "odd_part_le_from_div_by_odd_47",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 28,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 28,
+                        "column": 17
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  b \u2265 0\n  a \u2265 0\n  e \u2265 0\n  f - g \u2265 1\nwhere\n a := \u2191(2 ^ u1) * \u2191r1\n b := \u2191r1 / 2\n c := \u2191r2 / 2\n e := \u2191d / 2\n f := \u2191d * \u2191(2 ^ u1)\n g := \u2191r1 * \u2191(2 ^ u1)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 24,
+                        "column": 26
+                    },
+                    "endPos": {
+                        "line": 28,
+                        "column": 17
+                    },
+                    "data": "unsolved goals\ncase h\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhB_eq : 2 * (2 ^ u1 * r1 / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhd_odd : d % 2 = 1\nh2 : 0 < d\nh5 : 0 < r1\nh6 : 0 < r2\n\u22a2 r1 * 2 ^ u1 = d * 2 ^ u1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 29,
+                        "column": 30
+                    },
+                    "endPos": {
+                        "line": 29,
+                        "column": 40
+                    },
+                    "data": "failed to prove strict positivity, but it would be possible to prove nonnegativity if desired"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 54,
+                        "column": 18
+                    },
+                    "endPos": {
+                        "line": 54,
+                        "column": 73
+                    },
+                    "data": "linarith failed to find a contradiction\ncase h\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh1 : 2 * (A / d) = 2 ^ u2 * r2\nh2 : 0 < d\nh3 : 0 < 2 ^ u1\nh4 : 0 < 2 ^ u2\nh5 : 0 < r1\nh6 : 0 < r2\nh7 : 0 < 2 ^ u1 * r1\nh8 : 0 < 2 ^ u2 * r2\nh9 : d \u2264 A\nh10 : 2 * (A / d) = 2 ^ u2 * r2\nh11 : A / d \u2265 0\nh12 h14 : 2 ^ u2 * r2 \u2264 2 * (A / d)\nh15 : 2 ^ u1 * r1 = A\nh16 : A / d \u2265 0\nh17 : 2 ^ u2 * r2 \u2264 2 * (A / d)\nh : \u00acu2 \u2264 1\nh21 : u2 \u2265 2\nh22 : 2 ^ u2 \u2265 2 ^ 2\nh23 : 2 ^ u2 * r2 \u2265 2 ^ 2 * r2\nh26 : r2 \u2265 1\nh27 : A / d \u2264 A\na\u271d : 2 * (A / d) \u2265 2 ^ 2 * r2\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 60,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 60,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a - 2*f \u2265 1\n  e \u2265 0\n  g \u2265 1\n  c \u2265 1\n  c \u2265 0\n  i \u2265 3\n  b \u2265 0\n  f \u2265 0\n  a \u2265 1\nwhere\n a := \u2191(2 ^ u1) * \u2191r1\n b := \u2191r1 / 2\n c := \u2191A / \u2191d\n e := \u2191r2 / 2\n f := \u2191d / 2\n g := \u21912 ^ u1\n i := \u21912 ^ u2"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 74,
+                        "column": 16
+                    },
+                    "endPos": {
+                        "line": 74,
+                        "column": 71
+                    },
+                    "data": "linarith failed to find a contradiction\ncase a\nA d u1 r1 u2 r2 : \u2115\nhA : A = 2 ^ u1 * r1\nhr1_odd : r1 % 2 = 1\nhr1_pos : 0 < r1\nhB_eq : 2 * (A / d) = 2 ^ u2 * r2\nhr2_odd : r2 % 2 = 1\nhr2_pos : 0 < r2\nhd_odd : d % 2 = 1\nh1 : 2 * (A / d) = 2 ^ u2 * r2\nh2 : 0 < d\nh3 : 0 < 2 ^ u1\nh4 : 0 < 2 ^ u2\nh5 : 0 < r1\nh6 : 0 < r2\nh7 : 0 < 2 ^ u1 * r1\nh8 : 0 < 2 ^ u2 * r2\nh9 : d \u2264 A\nh10 : 2 * (A / d) = 2 ^ u2 * r2\nh11 : A / d \u2265 0\nh12 h14 : 2 ^ u2 * r2 \u2264 2 * (A / d)\nh15 : 2 ^ u1 * r1 = A\nh16 : A / d \u2265 0\nh17 : 2 ^ u2 * r2 \u2264 2 * (A / d)\nh19 : 2 ^ u2 \u2264 2\nh21 : 2 ^ u2 * r2 \u2264 2 * (A / d)\nh22 : 2 ^ u1 * r1 = A\nh23 : A / d \u2265 0\nh24 : 2 ^ u2 * r2 \u2264 2 * (A / d)\nh26 : 2 ^ u2 \u2264 2\nh28 : 2 ^ u2 * r2 \u2264 2 * (A / d)\nh29 : 2 ^ u1 * r1 = A\nh30 : A / d \u2265 0\nh31 : 2 ^ u2 * r2 \u2264 2 * (A / d)\na\u271d : r2 > r1\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 56.0636203289032,
+            "custom_id": "odd_part_le_from_div_by_odd_47"
+        }
+    }
+]

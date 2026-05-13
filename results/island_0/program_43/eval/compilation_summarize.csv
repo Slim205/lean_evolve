@@ -1,0 +1,4 @@
+"name"	"correct"
+"gcd_divides_both"	"16"
+"not_odd_imp_two_dvd"	"16"
+"odd_implies_not_two_dvd"	"16"

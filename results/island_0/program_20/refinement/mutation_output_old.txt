@@ -1,0 +1,92 @@
+>>>>SEARCH
+/-- Helper A: the successor pair is the reduction of (2*m_k+1,2*n_k+1) by their gcd `d`. -/
+lemma helper_next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+  sorry
+>>>>REPLACE
+/-- Helper A: the successor pair is the reduction of (2*m_k+1,2*n_k+1) by their gcd `d`.
+This strengthened version assumes that the successor pair is already reduced (coprime),
+so that the rational equality from the recurrence uniquely identifies the pair as the gcd-quotients.
+-/
+lemma helper_next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (h_coprime_succ : Nat.Coprime (m (k + 1)) (n (k + 1)))
+  (h_n_succ_pos : 0 < n (k + 1)) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+  -- With the extra hypothesis that (m (k+1), n (k+1)) is a coprime pair (and n (k+1) ≠ 0),
+  -- the rational equality from `h_recurrence` identifies the reduced numerator/denominator
+  -- of ((2*m_k+1)/(2*n_k+1)) as `(m (k+1), n (k+1))`. The detailed proof is omitted.
+  sorry
+>>>>SEARCH
+/-- Helper C: the recurrence yields the integer evolution
+    (m_{k+1} - n_{k+1}) = (2*(m_k - n_k)) / d in `ℤ`, with `d` as above. -/
+lemma helper_diff_evolution
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+  sorry
+>>>>REPLACE
+/-- Helper C: the recurrence yields the integer evolution
+    (m_{k+1} - n_{k+1}) = (2*(m_k - n_k)) / d in `ℤ`, with `d` as above.
+This version assumes the concrete gcd-quotient identification of the successor pair
+(as provided by `helper_next_eq_div_gcd`), so the integer identity is a direct algebraic rewrite.
+-/
+lemma helper_diff_evolution
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (h_next_div : let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1) in
+    (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d)) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+  -- Given the integer equalities m_{k+1} = (2*m_k+1)/d and n_{k+1} = (2*n_k+1)/d (in ℕ),
+  -- the stated integer evolution follows by straightforward algebra; proof omitted.
+  sorry
+>>>>SEARCH
+/-- Helper D: if `z` is a nonzero integer with Int.natAbs z = 2^u * r (r odd),
+    and `d` is odd and divides `z` (in `ℤ`), then Int.natAbs (2*z/d) =
+    2^u * (r / d) and `r / d` is a positive odd natural number. -/
+lemma helper_natabs_scaling_by_odd_div
+  (z : ℤ) (u r : ℕ) (d : ℕ)
+  (hA : Int.natAbs z = (2 : ℕ) ^ u * r)
+  (hrodd : r % 2 = 1) (hrpos : 0 < r)
+  (hdodd : d % 2 = 1) (hd_dvd : (d : ℤ) ∣ z) :
+  Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = (2 : ℕ) ^ u * (r / d) ∧ (r / d) % 2 = 1 ∧ 0 < (r / d) := by
+  sorry
+>>>>REPLACE
+/-- Helper D: if `z` is a nonzero integer with Int.natAbs z = 2^u * r (r odd),
+    and `d` is odd and divides `z` (in `ℤ`), then Int.natAbs (2*z/d) =
+    2^(u+1) * (r / d) and `r / d` is a positive odd natural number.
+
+Note: multiplication by 2 increases the 2-adic exponent by 1, and since `d` is odd,
+`d` divides the odd part `r`, so `r / d` is an exact natural quotient.
+-/
+lemma helper_natabs_scaling_by_odd_div
+  (z : ℤ) (u r : ℕ) (d : ℕ)
+  (hA : Int.natAbs z = (2 : ℕ) ^ u * r)
+  (hrodd : r % 2 = 1) (hrpos : 0 < r)
+  (hdodd : d % 2 = 1) (hd_dvd : (d : ℤ) ∣ z) :
+  Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = (2 : ℕ) ^ (u + 1) * (r / d) ∧ (r / d) % 2 = 1 ∧ 0 < (r / d) := by
+  -- The correct power is `u+1` because multiplying by 2 increases the 2-adic valuation by one.
+  -- One also needs to deduce `d ∣ r` from `(d : ℤ) ∣ z` and the form `|z| = 2^u * r` and the oddness of d.
+  -- The detailed derivation is omitted.
+  sorry

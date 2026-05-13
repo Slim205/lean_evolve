@@ -1,0 +1,39 @@
+ERROR from position {'line': 73, 'column': 25} to {'line': 73, 'column': 45}:
+application type mismatch
+  clear_denoms_Q h_n_succ_nonzero_k
+argument
+  h_n_succ_nonzero_k
+has type
+  ↑(n (k✝ + 1)) ≠ 0 : Prop
+but is expected to have type
+  2 * ↑(m k) + 1 ≠ 0 : Prop
+
+ERROR from position {'line': 83, 'column': 9} to {'line': 83, 'column': 16}:
+tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ↑(2 * n k + 1)
+k✝ : ℕ
+m n : ℕ → ℕ
+h_recurrence : ∀ (k : ℕ), ↑(m (k + 1)) / ↑(n (k + 1)) = (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1)
+h_n_succ_nonzero_k : ↑(n (k✝ + 1)) ≠ 0
+h_two_nk_nonzero : 2 * ↑(n k✝) + 1 ≠ 0
+k : ℕ
+hrat_prod : ↑(m (k + 1)) * (2 * ↑(n k) + 1) = ↑(n (k + 1)) * (2 * ↑(m k) + 1)
+hcast_n : ↑(2 * n k + 1) = 2 * ↑(n k) + 1
+hcast_m : ↑(2 * m k + 1) = 2 * ↑(m k) + 1
+⊢ ↑(m (k + 1)) * ↑(2 * n k + 1) = ↑(n (k + 1)) * ↑(2 * m k + 1)
+
+ERROR from position {'line': 88, 'column': 9} to {'line': 88, 'column': 49}:
+tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ↑(m (k + 1) * (2 * n k + 1))
+k✝ : ℕ
+m n : ℕ → ℕ
+h_recurrence : ∀ (k : ℕ), ↑(m (k + 1)) / ↑(n (k + 1)) = (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1)
+h_n_succ_nonzero_k : ↑(n (k✝ + 1)) ≠ 0
+h_two_nk_nonzero : 2 * ↑(n k✝) + 1 ≠ 0
+k : ℕ
+hrat_prod : ↑(m (k + 1)) * (2 * ↑(n k) + 1) = ↑(n (k + 1)) * (2 * ↑(m k) + 1)
+hcast_n : ↑(2 * n k + 1) = 2 * ↑(n k) + 1
+hcast_m : ↑(2 * m k + 1) = 2 * ↑(m k) + 1
+hrat_prod' : ↑(m (k + 1)) * ↑(2 * n k + 1) = ↑(n (k + 1)) * ↑(2 * m k + 1)
+⊢ ↑(m (k + 1) * (2 * n k + 1)) = ↑(n (k + 1) * (2 * m k + 1))
+

@@ -1,0 +1,4 @@
+>>>>SEARCH
+Nat.Odd
+>>>>REPLACE
+Odd

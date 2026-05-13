@@ -1,0 +1,74 @@
+---------
+<lemma finite_strict_drops_of_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N) :
+  {k : ℕ | t (k + 1) < t k}.Finite := by>
+Failure mode: INCORRECT
+Recommendation: As stated this is false: bounding only `t 0` does not restrict later values, so there can be infinitely many strict drops (e.g. `t k = if Even k then 1 else 0` has `t 0 = 1` but drops occur for all even `k`). Revise the statement by adding a global monotonicity (or “no-increase”) hypothesis such as `∀ k, t (k+1) ≤ t k`. With that, strict drops can occur at most `t 0` times (or at most `N` times if you also assume `t 0 ≤ N`), yielding finiteness.
+
+---------
+
+<lemma decomposition_of_diff
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0) :
+  ∀ k : ℕ, ∃ (u r : ℕ),
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by>
+Failure mode: HARD
+Recommendation: Decompose via the standard “power of two times odd” factorization for natural numbers, applied to `Int.natAbs`. Proof plan:
+1) Lemma: `hΔ k` implies `0 < Int.natAbs ((m k : ℤ) - (n k : ℤ))`.
+2) Lemma (factorization): For any `a : ℕ` with `0 < a`, there exist `u r : ℕ` such that `a = 2^u * r` and `Odd r`.
+3) Lemma: `Odd r` is equivalent to `r % 2 = 1`.
+4) Lemma: If `a = 2^u * r` and `0 < a`, then `0 < r`.
+5) Combine (1–4) with `a := Int.natAbs ((m k : ℤ) - (n k : ℤ))` to obtain the required `u, r` and the three conjuncts.
+
+---------
+
+<lemma odd_part_noninc_step
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∀ k u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 ≤ r1 := by>
+Failure mode: HARD
+Recommendation: The statement is plausible but too “compressed”: it mixes the recurrence normalization with an ad-hoc representation `(2^u)*r`. It will be much easier to prove by isolating the arithmetic relation between successive differences and then translating that into a statement about odd parts. Proof plan:
+1) Lemma (normalize successors): Define `d_k = gcd (2*m k + 1) (2*n k + 1)` and prove
+   `m (k+1) = (2*m k + 1)/d_k` and `n (k+1) = (2*n k + 1)/d_k`.
+2) Lemma (difference update): Using (1), show in `ℤ` that
+   `(m (k+1) : ℤ) - (n (k+1) : ℤ) = ((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / d_k`
+   (with a careful statement using divisibility so the division is exact).
+3) Lemma (oddness of the gcd): Show `d_k` is odd, and `d_k ∣ ((m k : ℤ) - (n k : ℤ))`.
+4) Lemma (odd-part monotonicity under dividing by an odd divisor): If `d` is odd and `d ∣ a` (in `ℤ`, transferred to `natAbs`), then the “odd part” of `natAbs (a / d)` is ≤ the odd part of `natAbs a`.
+5) Lemma (connect `r1,r2` to odd parts): If `X = 2^u * r` with `r` odd and positive, then `r` is exactly the odd part of `X`.
+6) Apply (2–5) with `a := (m k : ℤ) - (n k : ℤ)` and `d := d_k` to conclude `r2 ≤ r1`.
+
+(If you avoid explicit `r1,r2` altogether, an even cleaner strategy is to *define* `t k := Nat.oddPart (Int.natAbs ((m k : ℤ) - (n k : ℤ)))` and prove `t (k+1) ≤ t k` directly.)
+
+---------
+
+<lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by>
+Failure mode: HARD
+Recommendation: This needs the same decomposition as the nonincreasing lemma, plus an extra argument that the odd gcd removed at step `k` is > 1, so it removes a nontrivial odd factor from the odd part. Proof plan:
+1) Lemma: `hbad` implies `d_k := gcd(2*m k + 1, 2*n k + 1)` satisfies `1 < d_k`.
+2) Lemma: `d_k` is odd and `d_k ∣ ((m k : ℤ) - (n k : ℤ))` (as in the earlier gcd/difference lemma).
+3) Lemma (difference update): Express the exact relationship between successive differences in terms of dividing by `d_k` (same as in the previous plan).
+4) Lemma (odd-part strictly decreases when dividing by an odd factor > 1): If `d` is odd, `1 < d`, and `d` divides `a`, then the odd part of `natAbs (a / d)` is strictly less than the odd part of `natAbs a`.
+5) Lemma (identify `r` with odd part): If `X = 2^u * r` with `r` odd and positive, then `r` equals the odd part of `X`.
+6) Combine (1–5) to translate strict decrease of odd parts into `r2 < r1`.
+
+As with the previous lemma, consider reformulating the whole development using `Nat.oddPart (Int.natAbs (…))` as the measure, and prove the strict inequality at the level of that canonical function; the current quantified `(u1,r1,u2,r2)` form makes the algebra much harder than necessary.
+
+---------

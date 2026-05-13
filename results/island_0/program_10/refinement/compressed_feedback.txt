@@ -1,0 +1,10 @@
+<lemma sum_budget_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by>
+Failure mode: HARD
+Recommendation: The statement is true but the “budget/telescoping” argument is being asked for in one jump; break it into a discrete counting + monotone-sequence decomposition.
+1) Lemma (drop_consumes_one): For any index `i`, if `t (i+1) < t i` then `t (i+1) + 1 ≤ t i`.
+2) Lemma (budget_inequality_on_prefix): For any `K`, let `D(K)` be the number of indices `i < K` with `t (i+1) < t i`. Prove `t K + D(K) ≤ t 0` (by iterating the inequality from Lemma 1 along `0..K-1` and using `hnoninc` when there is no strict drop).
+3) Lemma (drops_bounded_by_initial): Deduce `D(K) ≤ t 0` from Lemma 2 using `t K ≥ 0`.
+4) Lemma (range_filter_simplification): Identify `D(K)` with the `Finset.filter ... (Finset.range K)).card` you use (the `i < K` conjunct is redundant inside `range K`, but you can keep it if you also prove it doesn’t change the filtered set).
+(Also note: `N` and `h0` are not needed for the bound `≤ t 0`; they only matter later when upgrading to `≤ N`.)

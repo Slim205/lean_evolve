@@ -1,0 +1,29 @@
+---------
+<lemma diff_ne_zero (m n : ℕ → ℕ) (h_distinct : m 0 ≠ n 0) (h_recurrence : ∀ k : ℕ, (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0 := by …>
+Failure mode: HARD
+Recommendation: Decompose into backward-propagation lemmas about equality and ratios, then finish by contradiction from the initial distinctness.
+
+A proof plan (as lemmas) could be:
+
+1) **RHS never zero**
+   - Lemma: For all `k`, `((2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) ≠ 0`.
+   - Rationale: a quotient in `ℚ` is `0` only if the numerator is `0`; but `2 * (m k : ℚ) + 1` can’t be `0` since it’s the image of a positive natural.
+
+2) **Denominators `n k` are never zero**
+   - Lemma: For all `k`, `(n (k+1) : ℚ) ≠ 0` (hence `n (k+1) ≠ 0`).
+   - Use Lemma 1 + `h_recurrence`: LHS equals a nonzero RHS; but if `n (k+1) = 0`, then `(m (k+1) : ℚ) / (n (k+1) : ℚ) = 0` in a field, contradiction.
+
+3) **Equality propagates backward**
+   - Lemma: For all `k`, if `m (k+1) = n (k+1)` then `m k = n k`.
+   - Proof idea: from `m (k+1) = n (k+1)` get `(m (k+1) : ℚ) / (n (k+1) : ℚ) = 1` (using Lemma 2 to justify division behaves as expected). Then by `h_recurrence`, RHS is `1`, so `(2*m k+1 : ℚ)/(2*n k+1 : ℚ)=1`, which implies `2*m k+1 = 2*n k+1`, hence `m k = n k`.
+
+4) **No index has equality**
+   - Lemma: For all `k`, `m k ≠ n k`.
+   - Proof idea: if `m k = n k` for some `k`, repeatedly apply Lemma 3 to push back to `m 0 = n 0`, contradicting `h_distinct`.
+
+5) **Convert to the desired `ℤ`-difference form**
+   - Lemma: For all `k`, `m k ≠ n k → (m k : ℤ) - (n k : ℤ) ≠ 0`.
+   - This is a standard fact about `ℤ`: subtraction equals `0` iff the terms are equal.
+
+Combining (4) and (5) yields the statement of `diff_ne_zero`.
+---------

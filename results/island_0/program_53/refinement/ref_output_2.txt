@@ -1,0 +1,4 @@
+>>>>SEARCH
+exact Nat.Coprime.symm (pow_coprime_helper p x hx_odd)
+>>>>REPLACE
+exact Nat.Coprime.symm (@pow_coprime_helper p x hx_odd)

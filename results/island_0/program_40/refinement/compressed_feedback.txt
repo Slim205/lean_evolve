@@ -1,0 +1,13 @@
+<lemma recurrence_cross_Q (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_n_succ_nonzero_k : (n (k + 1) : ℚ) ≠ 0)
+  (h_two_nk_nonzero : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0)
+  (k : ℕ) :
+  (m (k + 1) : ℚ) * ((2 : ℚ) * (n k : ℚ) + 1) = (n (k + 1) : ℚ) * ((2 : ℚ) * (m k : ℚ) + 1) := by>
+Failure mode: INCORRECT
+Recommendation: The statement is ill-scoped: the hypotheses `h_n_succ_nonzero_k` and `h_two_nk_nonzero` mention `k` before `k` is introduced, which is not allowed (earlier binders cannot depend on later ones). Revise by either:
+- moving `(k : ℕ)` before those hypotheses, or
+- changing them to uniform hypotheses `∀ k, (n (k+1) : ℚ) ≠ 0` and `∀ k, ((2:ℚ)*(n k:ℚ)+1) ≠ 0`.
+After fixing, the proof should be a direct “clear denominators” step from `h_recurrence k`.

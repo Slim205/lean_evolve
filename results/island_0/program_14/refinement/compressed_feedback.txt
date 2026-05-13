@@ -1,0 +1,10 @@
+lemma decomposition_of_diff
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0) :
+  ∀ k : ℕ, ∃ (u r : ℕ),
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+Failure mode: HARD
+Recommendation: Decompose the goal into a “2-adic factorization” pipeline on the natural number `A := Int.natAbs ((m k : ℤ) - (n k : ℤ))`.
+1) Lemma (natAbs_pos): If `z ≠ 0` then `0 < Int.natAbs z`.
+2) Lemma (exists_pow_two_mul_odd_for_pos_nat): For any `A : ℕ` with `0 < A`, there exist `u r : ℕ` such that `A = 2^u * r`, `r` is odd (`r % 2 = 1`), and `0 < r`.
+3) Lemma (specialize_to_diff): Apply (1) to `z = (m k : ℤ) - (n k : ℤ)` using `hΔ k`, then apply (2) to `A = Int.natAbs z`, producing the required `u r` and properties.

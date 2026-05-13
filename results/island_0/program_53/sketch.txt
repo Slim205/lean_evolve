@@ -1,0 +1,1299 @@
+import Mathlib
+import Aesop
+
+set_option maxHeartbeats 0
+
+open BigOperators Real Nat Topology Rat
+
+lemma nat_cast_nonneg (a : ℕ) : (a : ℚ) ≥ 0 := by
+  -- natural numbers cast to rationals are nonnegative; proof omitted
+  sorry
+
+lemma two_nonneg : (2 : ℚ) ≥ 0 := by
+  -- trivial: 2 ≥ 0
+  sorry
+
+lemma mul_nonneg_of_nonneg {x y : ℚ} (hx : x ≥ 0) (hy : y ≥ 0) : x * y ≥ 0 := by
+  -- product of nonnegatives is nonnegative; proof omitted
+  sorry
+
+lemma one_pos_q : (1 : ℚ) > 0 := by
+  -- 1 is positive in rationals; proof omitted
+  sorry
+
+lemma add_pos_of_nonneg_and_pos {x y : ℚ} (hx : x ≥ 0) (hy : y > 0) : x + y > 0 := by
+  -- nonnegative plus positive is positive; proof omitted
+  sorry
+
+lemma pos_ne_zero {x : ℚ} (h : x > 0) : x ≠ 0 := by
+  -- positive rationals are nonzero; proof omitted
+  sorry
+
+lemma two_mul_nat_plus_one_nonzero (a : ℕ) : ((2 : ℚ) * (a : ℚ) + 1) ≠ 0 := by
+  -- Use auxiliary lemmas to prove strict positivity, then nonzeroness
+  have ha_nonneg : (a : ℚ) ≥ 0 := by exact nat_cast_nonneg a
+  have h2_nonneg : (2 : ℚ) ≥ 0 := by exact two_nonneg
+  have hmul_nonneg : (2 : ℚ) * (a : ℚ) ≥ 0 := by exact mul_nonneg_of_nonneg h2_nonneg ha_nonneg
+  have hone_pos : (1 : ℚ) > 0 := by exact one_pos_q
+  have hsum_pos : (2 : ℚ) * (a : ℚ) + 1 > 0 := by exact add_pos_of_nonneg_and_pos hmul_nonneg hone_pos
+  exact pos_ne_zero hsum_pos
+
+-- From the recurrence and nonzeroness hypotheses one can cross-multiply to obtain the
+--     exact integer/nat equality
+--       m (k+1) * (2 * n k + 1) = n (k+1) * (2 * m k + 1).
+--     The required nonzeroness hypotheses are provided as arguments.
+/-- If a/b = c/d in ℚ (with b,d ≠ 0) then a*d = c*b in ℚ. -/
+lemma clear_denoms_Q {a b c d : ℚ} (hb : b ≠ 0) (hd : d ≠ 0) (h : a / b = c / d) :
+  a * d = c * b := by
+  -- proof omitted
+  sorry
+
+/-- Cast-numerical bookkeeping: ((2 : ℚ) * (x : ℚ) + 1) is the cast of (2*x+1 : ℕ). -/
+lemma cast_two_mul_nat_plus_one (x : ℕ) :
+  ((2 : ℚ) * (x : ℚ) + 1) = ((2 * x + 1 : ℕ) : ℚ) := by
+  -- trivial cast identity; proof omitted
+  sorry
+
+/-- From the rational recurrence and nonzero denominators obtain the product-equality in ℚ. -/
+lemma recurrence_cross_Q (m n : ℕ → ℕ) (k : ℕ)
+  (h_recurrence : ∀ j : ℕ,
+    (m (j + 1) : ℚ) / (n (j + 1) : ℚ) =
+      ((2 : ℚ) * (m j : ℚ) + 1) / ((2 : ℚ) * (n j : ℚ) + 1))
+  (h_n_succ_nonzero_k : (n (k + 1) : ℚ) ≠ 0)
+  (h_two_nk_nonzero : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0) :
+  (m (k + 1) : ℚ) * ((2 : ℚ) * (n k : ℚ) + 1) = (n (k + 1) : ℚ) * ((2 : ℚ) * (m k : ℚ) + 1) := by
+  -- clear denominators in ℚ; proof omitted
+  sorry
+
+/-- If two products of natural casts are equal in ℚ then the corresponding nat-products are equal. -/
+lemma nat_cast_inj_mul {a b c d : ℕ}
+  (h : ((a : ℚ) * (b : ℚ)) = ((c : ℚ) * (d : ℚ))) : a * b = c * d := by
+  -- injectivity of cast on ℕ and multiplicative cancellation; proof omitted
+  sorry
+
+lemma cross_mul_eq_nat
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (h_n_succ_nonzero_k : (n (k + 1) : ℚ) ≠ 0)
+  (h_two_nk_nonzero : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0) :
+  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by
+  -- obtain the product equality in ℚ from the recurrence (clearing denominators in ℚ)
+  have hq : (m (k + 1) : ℚ) * ((2 : ℚ) * (n k : ℚ) + 1) =
+            (n (k + 1) : ℚ) * ((2 : ℚ) * (m k : ℚ) + 1) := by
+    exact recurrence_cross_Q m n k h_recurrence h_n_succ_nonzero_k h_two_nk_nonzero
+
+  -- rewrite the numeric factors as casts of naturals so we have products of casts
+  have hleft_cast : ((2 : ℚ) * (n k : ℚ) + 1) = ((2 * n k + 1 : ℕ) : ℚ) := by
+    exact cast_two_mul_nat_plus_one (n k)
+  have hright_cast : ((2 : ℚ) * (m k : ℚ) + 1) = ((2 * m k + 1 : ℕ) : ℚ) := by
+    exact cast_two_mul_nat_plus_one (m k)
+
+  -- rewrite the ℚ-equality to an equality of products of natural casts
+  have hq_natcasts : (m (k + 1) : ℚ) * ((2 * n k + 1 : ℕ) : ℚ) =
+                     (n (k + 1) : ℚ) * ((2 * m k + 1 : ℕ) : ℚ) := by
+    rw [hleft_cast, hright_cast] at hq
+    exact hq
+
+  -- apply injection from rational casts to natural equality of products
+  have hnat : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by
+    apply nat_cast_inj_mul
+    exact hq_natcasts
+
+  exact hnat
+
+/-- Euclid-type divisibility lemma: if `a` is coprime to `b` and `a ∣ b * x` then `a ∣ x`. -/
+lemma coprime_dvd_of_dvd_mul_right {a b x : ℕ}
+  (hc : Nat.Coprime a b) (h : a ∣ b * x) : a ∣ x := by
+  -- standard number-theory lemma; proof omitted
+  sorry
+
+/-- Given the cross-multiplied equality and the individual divisibilities
+    `m_{k+1} ∣ (2*m_k+1)` and `n_{k+1} ∣ (2*n_k+1)`, one can show the two quotients
+    agree and therefore produce the common scaling factor `c`. -/
+lemma build_common_scaling_from_divs
+  (m n : ℕ → ℕ) (k : ℕ)
+  (cross_eq : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1))
+  (hm_div : m (k + 1) ∣ (2 * m k + 1))
+  (hn_div : n (k + 1) ∣ (2 * n k + 1)) :
+  ∃ c : ℕ, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+  -- construct c as the quotient and show the two quotients coincide using `cross_eq`;
+  -- proof omitted
+  sorry
+
+/-- Main lemma: extract a common natural scaling factor `c` from the rational recurrence. -/
+lemma next_scaling_exists
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_n_succ_nonzero : ∀ k, (n (k + 1) : ℚ) ≠ 0)
+  (h_coprime_succ : ∀ k, Nat.Coprime (m (k + 1)) (n (k + 1)))
+  (k : ℕ) :
+  ∃ c : ℕ, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+  -- nonzeroness of (2 * n_k + 1) as rationals
+  have h2n_nonzero : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0 := by
+    exact two_mul_nat_plus_one_nonzero (n k)
+
+  -- cross-multiply the rational equality to get the integral equality
+  have hcross : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by
+    exact cross_mul_eq_nat m n h_recurrence k (h_n_succ_nonzero k) h2n_nonzero
+
+  -- from the cross equality we see that `m_{k+1}` divides `n_{k+1}*(2*m_k+1)`; but the
+  -- left-hand side also equals `m_{k+1}*(2*n_k+1)`, hence `m_{k+1} ∣ n_{k+1}*(2*m_k+1)`.
+  have hm_div_mul : m (k + 1) ∣ n (k + 1) * (2 * m k + 1) := by
+    have : n (k + 1) * (2 * m k + 1) = m (k + 1) * (2 * n k + 1) := by
+      exact Eq.symm hcross
+    rw [this]
+    exact dvd_mul_right _ _
+
+  -- use coprimality to deduce `m_{k+1} ∣ (2*m_k+1)`
+  have hm_div : m (k + 1) ∣ (2 * m k + 1) := by
+    exact @coprime_dvd_of_dvd_mul_right (m (k + 1)) (n (k + 1)) (2 * m k + 1) (h_coprime_succ k) hm_div_mul
+
+  -- similarly for the n-side: `n_{k+1} ∣ (2*n_k+1)`
+  have hn_div_mul : n (k + 1) ∣ m (k + 1) * (2 * n k + 1) := by
+    have : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by
+      exact hcross
+    rw [this]
+    exact dvd_mul_right _ _
+  have hn_div : n (k + 1) ∣ (2 * n k + 1) := by
+    exact @coprime_dvd_of_dvd_mul_right (n (k + 1)) (m (k + 1)) (2 * n k + 1) (Nat.Coprime.symm (h_coprime_succ k)) hn_div_mul
+
+  -- finally build the common scaling factor `c` from these divisibilities and the cross equality
+  have hex : ∃ c, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+    exact build_common_scaling_from_divs m n k hcross hm_div hn_div
+
+  exact hex
+
+lemma scaling_factor_eq_gcd
+  (m n : ℕ → ℕ) (k c : ℕ)
+  (hc1 : (2 * m k + 1) = c * m (k + 1))
+  (hc2 : (2 * n k + 1) = c * n (k + 1))
+  (h_coprime_succ : Nat.Coprime (m (k + 1)) (n (k + 1))) :
+  c = Nat.gcd (2 * m k + 1) (2 * n k + 1) := by
+  -- if c scales both numerators and the scaling targets are coprime, then c must equal the gcd
+  -- of the two numerators. Proof omitted.
+  sorry
+
+/-- Helper: the successor denominator n_{k+1} is nonzero (so one can form ratios). -/
+lemma n_succ_nonzero
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k, (n (k + 1) : ℚ) ≠ 0 := by
+  sorry
+
+lemma next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  ((2 * m k + 1) = d * m (k + 1)) ∧ ((2 * n k + 1) = d * n (k + 1)) := by
+  -- obtain a scaling factor c making the two numerators multiples of the successors
+  have hscal : ∃ c, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+    -- supply the auxiliary nonzeroness and coprimality hypotheses required by
+    -- `next_scaling_exists`.
+    exact next_scaling_exists m n h_recurrence (n_succ_nonzero m n h_recurrence)
+      (fun i => h_coprime (i + 1) (Nat.succ_pos i)) k
+  rcases hscal with ⟨c, ⟨hc1, hc2⟩⟩
+
+  -- use coprimality of the successor pair (applied at k+1) to identify c with the gcd
+  have hc_gcd : c = Nat.gcd (2 * m k + 1) (2 * n k + 1) := by
+    have succ_copr : Nat.Coprime (m (k + 1)) (n (k + 1)) := h_coprime (k + 1) (Nat.succ_pos k)
+    exact scaling_factor_eq_gcd m n k c hc1 hc2 succ_copr
+
+  -- substitute c by the gcd and return the multiplicative equalities (exact divisibility form)
+  let d := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  have : (2 * m k + 1) = d * m (k + 1) := by
+    rw [hc_gcd] at hc1
+    exact hc1
+  have : (2 * n k + 1) = d * n (k + 1) := by
+    rw [hc_gcd] at hc2
+    exact hc2
+  -- assemble the conjunction
+  exact ⟨by assumption, by assumption⟩
+
+/-- Helper: denominators (2*n_k+1) and (2*m_k+1) are nonzero for all k (from the recurrence). -/
+lemma denom_nonzero_from_recurrence
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k, ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0 ∧ ((2 : ℚ) * (m k : ℚ) + 1) ≠ 0 := by
+  sorry
+
+/-- Helper: if m_{k+1} = n_{k+1} then the ratio (m_{k+1} : ℚ)/(n_{k+1} : ℚ) equals 1. -/
+lemma succ_equal_implies_ratio_one
+  (m n : ℕ → ℕ)
+  (h_n_succ_nonzero : ∀ k, (n (k + 1) : ℚ) ≠ 0)
+  (k : ℕ) :
+  m (k + 1) = n (k + 1) →
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = 1 := by
+  sorry
+
+/-- Helper: if ((2*m_k+1)/(2*n_k+1) = 1) then m_k = n_k (denominator nonzero required). -/
+lemma ratio_one_implies_eq_prev
+  (m n : ℕ → ℕ)
+  (h_denom_nonzero : ∀ k, ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0)
+  (k : ℕ) :
+  (((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1) = 1) → m k = n k := by
+  sorry
+
+/-- Helper: translate integer subtraction zero to nat equality. -/
+lemma int_sub_eq_zero_iff_eq_nat (a b : ℕ) : ((a : ℤ) - (b : ℤ) = 0) ↔ a = b := by
+  sorry
+
+/-- Step 2: the differences never become zero. -/
+lemma diff_ne_zero
+  (m n : ℕ → ℕ)
+  (h_distinct : m 0 ≠ n 0)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0 := by
+  -- instantiate helpers (all are `sorry` above)
+  have hden : ∀ k, ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0 ∧ ((2 : ℚ) * (m k : ℚ) + 1) ≠ 0 := by
+    exact denom_nonzero_from_recurrence m n h_recurrence
+  have hsucc_nonzero : ∀ k, (n (k + 1) : ℚ) ≠ 0 := by
+    exact n_succ_nonzero m n h_recurrence
+  have hsucc_one := by exact fun k => succ_equal_implies_ratio_one m n hsucc_nonzero k
+  have heq_prev := by exact fun k => ratio_one_implies_eq_prev m n (fun k => (hden k).1) k
+
+  -- prove by induction that m k ≠ n k for all k
+  have hmn : ∀ k, m k ≠ n k := by
+    intro k
+    induction k with
+    | zero => exact h_distinct
+    | succ k ih =>
+      by_contra h_eq_succ
+      -- if m_{k+1} = n_{k+1} then the left ratio is 1
+      have hL : (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = 1 := by
+        apply (hsucc_one k)
+        exact h_eq_succ
+      -- by recurrence the right-hand ratio equals the left, so the right is 1
+      have hR : ((2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1) = 1) := by
+        calc
+          (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1) = (m (k + 1) : ℚ) / (n (k + 1) : ℚ) := Eq.symm (h_recurrence k)
+          _ = 1 := hL
+      -- hence m_k = n_k, contradicting IH
+      have mk_eq_nk : m k = n k := by
+        apply (heq_prev k)
+        exact hR
+      exact ih mk_eq_nk
+
+  -- finish: translate nat-inequality to integer-subtraction nonzeroness using helper
+  intro k
+  intro hzero
+  have eq_nat : m k = n k := by
+    have : (m k : ℤ) - (n k : ℤ) = 0 := hzero
+    exact (int_sub_eq_zero_iff_eq_nat (m k) (n k)).1 this
+  exact (hmn k) eq_nat
+
+/-- Step 3: `d_k = gcd(2m_k+1,2n_k+1)` is odd and divides the difference. -/
+lemma odd_two_mul_add_one_nat (x : ℕ) : (2 * x + 1) % 2 = 1 := by
+  -- trivial parity fact: oddness of 2*x+1; proof omitted
+  sorry
+
+/-- `x % 2 = 1 ↔ Odd x`. (Used to translate modulus statements to `Odd`.) -/
+lemma mod2_eq_one_iff_odd (x : ℕ) : x % 2 = 1 ↔ Odd x := by
+  -- proof omitted
+  sorry
+
+/-- p divides gcd a b implies p divides both a and b. -/
+lemma gcd_divides_both (p a b : ℕ) : p ∣ Nat.gcd a b → p ∣ a ∧ p ∣ b := by
+  -- standard property of `gcd` and divisibility; proof omitted
+  sorry
+
+/-- If a natural number is not odd then it is even, i.e. 2 divides it. -/
+lemma not_odd_imp_two_dvd {x : ℕ} : ¬ Odd x → 2 ∣ x := by
+  -- parity dichotomy; proof omitted
+  sorry
+
+/-- Odd numbers are not divisible by 2. -/
+lemma odd_implies_not_two_dvd {x : ℕ} (hx : Odd x) : ¬ (2 ∣ x) := by
+  -- trivial parity fact; proof omitted
+  sorry
+
+/-- If `a` and `b` are odd then `gcd a b` is odd. -/
+lemma odd_gcd {a b : ℕ} (ha : Odd a) (hb : Odd b) : Odd (Nat.gcd a b) := by
+  -- Proof by contradiction: if the gcd were not odd then 2 divides it, hence divides both a and b,
+  -- contradicting their oddness. We glue the argument using the helper lemmas above.
+  by_contra hneg
+  -- from ¬Odd (gcd a b) get 2 ∣ gcd a b
+  have h2 : 2 ∣ Nat.gcd a b := by
+    exact not_odd_imp_two_dvd hneg
+  -- hence 2 divides both a and b
+  have hdivs : 2 ∣ a ∧ 2 ∣ b := by
+    exact (gcd_divides_both 2 a b) h2
+  rcases hdivs with ⟨ha2, hb2⟩
+  -- but a is odd, so 2 ∤ a, contradiction
+  have na := odd_implies_not_two_dvd ha
+  exact na ha2
+
+/-- `Nat.Odd x → x % 2 = 1`. (Return direction of `mod2_eq_one_iff_odd`.) -/
+lemma odd_iff_mod2_eq_one (x : ℕ) : Odd x → x % 2 = 1 := by
+  -- proof omitted
+  sorry
+
+lemma gcd_odd_of_odds {a b : ℕ} (ha : a % 2 = 1) (hb : b % 2 = 1) :
+  (Nat.gcd a b) % 2 = 1 := by
+  -- translate `% 2 = 1` hypotheses to `Nat.Odd`
+  have ha_odd : Odd a := by
+    exact (mod2_eq_one_iff_odd a).mp ha
+  have hb_odd : Odd b := by
+    exact (mod2_eq_one_iff_odd b).mp hb
+
+  -- apply oddness of gcd
+  have h_gcd_odd : Odd (Nat.gcd a b) := by
+    exact odd_gcd ha_odd hb_odd
+
+  -- translate back to `% 2 = 1`
+  exact odd_iff_mod2_eq_one (Nat.gcd a b) h_gcd_odd
+
+lemma gcd_cast_dvd_sub (a b : ℕ) :
+  let d := Nat.gcd a b
+  (d : ℤ) ∣ ((a : ℤ) - (b : ℤ)) := by
+  -- in ℤ the gcd divides a-b; proof omitted
+  sorry
+
+lemma nat_coprime_of_odd (d : ℕ) (hd_odd : d % 2 = 1) : Nat.Coprime d 2 := by
+  -- oddness implies not divisible by 2, hence coprime with 2; proof omitted
+  sorry
+
+lemma int_bezout_of_coprime (a b : ℕ) (hc : Nat.Coprime a b) : ∃ x y : ℤ, x * (a : ℤ) + y * (b : ℤ) = 1 := by
+  -- Bézout in ℤ for coprime naturals; proof omitted
+  sorry
+
+lemma int_mul_dvd_of_dvd (d : ℤ) {t : ℤ} (h : d ∣ t) (y : ℤ) : d ∣ y * t := by
+  -- divisibility is preserved under multiplication by arbitrary integer y; proof omitted
+  sorry
+
+lemma int_dvd_add_of_dvd (d : ℤ) {x y : ℤ} (hdx : d ∣ x) (hdy : d ∣ y) : d ∣ (x + y) := by
+  -- divisibility is preserved under addition; proof omitted
+  sorry
+
+lemma odd_int_divides_cancel_two {d : ℕ} {z : ℤ}
+  (hd_odd : d % 2 = 1) (hdiv : (d : ℤ) ∣ ((2 : ℤ) * z)) :
+  (d : ℤ) ∣ z := by
+  -- Strategy (glue): 1) get `Nat.Coprime d 2` from oddness; 2) get Bézout x,y with x*d + y*2 = 1;
+  -- 3) multiply that identity by z and use closure of divisibility under multiplication and addition.
+  have hc : Nat.Coprime d 2 := by
+    exact nat_coprime_of_odd d hd_odd
+  have hbez_ex : ∃ x y : ℤ, x * (d : ℤ) + y * (2 : ℤ) = 1 := by
+    exact int_bezout_of_coprime d 2 hc
+  rcases hbez_ex with ⟨x, y, hbez⟩
+
+  -- multiply the Bézout identity by z : z = x*d*z + y*2*z
+  have hz_eq : z = x * (d : ℤ) * z + y * (2 : ℤ) * z := by
+    calc
+      z = 1 * z := by simp
+      _ = (x * (d : ℤ) + y * (2 : ℤ)) * z := by rw [hbez]
+      _ = x * (d : ℤ) * z + y * (2 : ℤ) * z := by ring
+
+  -- show each summand on RHS is divisible by (d : ℤ)
+  have hterm1 : (d : ℤ) ∣ x * (d : ℤ) * z := by
+    use x * z
+    ring
+
+  have hterm2 : (d : ℤ) ∣ y * (2 : ℤ) * z := by
+    have h := int_mul_dvd_of_dvd (d : ℤ) hdiv (y : ℤ)
+    simpa [mul_assoc] using h
+
+  -- combine the two divisibilities to get d ∣ RHS, hence d ∣ z
+  have hsum : (d : ℤ) ∣ (x * (d : ℤ) * z + y * (2 : ℤ) * z) := by
+    exact int_dvd_add_of_dvd (d : ℤ) hterm1 hterm2
+
+  -- finish by rewriting z as that RHS
+  rwa [← hz_eq] at hsum
+
+lemma gcd_odd_and_dvd_diff
+  (m n : ℕ → ℕ)
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  d % 2 = 1 ∧ ((d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) := by
+  -- abbreviate the two relevant odd naturals
+  let a := 2 * m k + 1
+  let b := 2 * n k + 1
+  let d := Nat.gcd a b
+
+  -- each of a and b is odd
+  have ha : a % 2 = 1 := by
+    -- reduce to the simple lemma for 2*x+1
+    exact odd_two_mul_add_one_nat (m k)
+  have hb : b % 2 = 1 := by
+    exact odd_two_mul_add_one_nat (n k)
+
+  -- gcd of two odd numbers is odd
+  have hd_odd : d % 2 = 1 := by
+    exact gcd_odd_of_odds ha hb
+
+  -- gcd (cast to ℤ) divides a - b in ℤ
+  have hd_div_ab : (d : ℤ) ∣ ((a : ℤ) - (b : ℤ)) := by
+    exact (gcd_cast_dvd_sub a b)
+
+  -- rewrite a - b as 2 * (m k - n k) in ℤ
+  have ab_eq_two_mul_diff : ((a : ℤ) - (b : ℤ)) = ((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) := by
+    -- expand definitions and reduce casts, then finish by ring
+    calc
+      (a : ℤ) - (b : ℤ) = ((2 * m k + 1 : ℕ) : ℤ) - ((2 * n k + 1 : ℕ) : ℤ) := by rfl
+      _ = ((2 : ℤ) * (m k : ℤ) + 1) - ((2 : ℤ) * (n k : ℤ) + 1) := by norm_cast
+      _ = (2 : ℤ) * ((m k : ℤ) - (n k : ℤ)) := by ring
+
+  -- hence gcd divides 2 * (m k - n k)
+  have hd_div_two_diff : (d : ℤ) ∣ ((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) := by
+    rw [ab_eq_two_mul_diff] at hd_div_ab
+    exact hd_div_ab
+
+  -- cancel the factor 2 using oddness of d to deduce gcd divides (m k - n k)
+  have hd_div_diff : (d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ)) := by
+    exact odd_int_divides_cancel_two hd_odd hd_div_two_diff
+
+  -- assemble the conjunction: gcd is odd and divides the integer difference
+  exact ⟨hd_odd, hd_div_diff⟩
+
+/-- Step 4: define the "odd part" measure from the absolute difference. -/
+lemma oddPart_measure_pos
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0) :
+  ∀ k : ℕ,
+    0 < Int.natAbs ((m k : ℤ) - (n k : ℤ)) := by
+  sorry
+
+/-- Step 4/5: if `d_k > 1`, the odd-part measure strictly decreases. -/
+lemma oddPart_strict_decrease_of_not_coprime
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) <
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) := by
+  sorry
+
+/-- Helper 1: a strict decrease `t (k+1) < t k` yields the `nat`-inequality
+`t (k+1) ≤ t k - 1`. This is the usual discrete gap lemma. -/
+lemma strict_drop_gives_pred (t : ℕ → ℕ) (k : ℕ) :
+  t (k + 1) < t k → t (k + 1) ≤ t k - 1 := by
+  sorry
+
+/-- Helper 2: if t 0 ≤ N then the set of indices where `t` strictly drops is finite.
+We state this abstractly; the proof is left as `sorry`. -/
+lemma global_bound_from_h0 (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) : ∀ k, t k ≤ N := by
+  -- trivial monotone upper bound; proof omitted
+  sorry
+
+/-- If a strict drop occurs at index i then t (i+1) ≤ t i - 1. -/
+lemma strict_drop_gives_pred_aux (t : ℕ → ℕ) (k : ℕ) :
+  t (k + 1) < t k → t (k + 1) ≤ t k - 1 := by
+  -- detailed discrete-gap proof omitted
+  sorry
+
+
+/-- Helper: one step drop consumption: if `t (k+1) ≤ t k - 1` then
+    `t (k+1) + 1 ≤ t k`. This expresses the idea that a single strict drop
+    consumes at least one unit of the initial budget. -/
+lemma one_step_drop_consumes_budget (t : ℕ → ℕ) (k : ℕ) :
+  t (k + 1) ≤ t k - 1 → t (k + 1) + 1 ≤ t k := by
+  sorry
+
+/-- If there is a strict drop at index `k` then `t (k+1) + 1 ≤ t k`. This is the basic
+discrete gap lemma used to account for one unit of "budget" consumed by a strict drop. -/
+lemma drop_consumes_one (t : ℕ → ℕ) (k : ℕ) :
+  t (k + 1) < t k → t (k + 1) + 1 ≤ t k := by
+  sorry
+
+/-- If there is a strict drop at index `i` then `t (i+1) + 1 ≤ t i`. (Gap-at-least-one.) -/
+lemma gap_at_least_one (t : ℕ → ℕ) (i : ℕ) :
+  t (i + 1) < t i → t (i + 1) + 1 ≤ t i := by
+  sorry
+
+/-- If `t` is nonincreasing and there is no strict drop at `i` then `t (i+1) = t i`. -/
+lemma no_drop_step (t : ℕ → ℕ) (hnoninc : ∀ k, t (k + 1) ≤ t k) (i : ℕ) :
+  ¬ (t (i + 1) < t i) → t (i + 1) = t i := by
+  sorry
+
+/-- Helper: recursion for the drop-count on prefixes.
+    D(K) := card (filter (fun i => i < K ∧ t(i+1) < t i) (range K)).
+    Then D(K+1) = D(K) + (if t (K+1) < t K then 1 else 0). -/
+lemma D_succ_eq (t : ℕ → ℕ) (K : ℕ) :
+  (Finset.filter (fun i => i < (K + 1) ∧ t (i + 1) < t i) (Finset.range (K + 1))).card =
+    (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card +
+      (if t (K + 1) < t K then 1 else 0) := by
+  -- combinatorial decomposition of `range (K+1)` as `range K` ∪ {K}; proof omitted
+  sorry
+
+/-- Prefix budget induction:
+    for D(K) := #{i < K | t(i+1) < t i}, one has t K + D(K) ≤ t 0.
+    The proof proceeds by induction on K, using `gap_at_least_one` on drop steps and
+    `no_drop_step` on non-drop steps. The heavy combinatorial step is `D_succ_eq`. -/
+lemma prefix_budget_induction (t : ℕ → ℕ) (hnoninc : ∀ k, t (k + 1) ≤ t k) (K : ℕ) :
+  t K + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+  induction K with
+  | zero =>
+    -- D(0) = 0 because `range 0` is empty
+    have : (Finset.filter (fun i => i < 0 ∧ t (i + 1) < t i) (Finset.range 0)).card = 0 := by
+      simp [Finset.range_zero]
+    simp [this]
+  | succ K ih =>
+    -- rewrite the `K+1` case using the recursion for D
+    have Drec : (Finset.filter (fun i => i < (K + 1) ∧ t (i + 1) < t i) (Finset.range (K + 1))).card
+      = (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card +
+        (if t (K + 1) < t K then 1 else 0) := by
+      exact D_succ_eq t K
+
+    -- reduce the goal using the D recursion
+    rw [Drec]
+
+    -- case split on whether there is a strict drop at index K
+    by_cases hdrop : t (K + 1) < t K
+    · -- drop case: D(K+1) = D(K) + 1 and one-step gap gives t (K+1) + 1 ≤ t K
+      rw [if_pos hdrop]
+      -- let Dk denote the card for the prefix K
+      let Dk := (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card
+      -- rearrange the left-hand side: t (K+1) + (Dk + 1) = (t (K+1) + 1) + Dk
+      have : t (K + 1) + (Dk + 1) = (t (K + 1) + 1) + Dk := by
+        rw [add_comm Dk 1, ← add_assoc]
+      rw [this]
+      -- use the discrete gap lemma to consume one unit from t K
+      have gap := gap_at_least_one t K hdrop
+      have : (t (K + 1) + 1) + Dk ≤ t K + Dk := by
+        apply Nat.add_le_add_right (Nat.le_trans gap (le_refl _)) Dk -- (t (K+1)+1) ≤ t K
+      -- apply the inductive hypothesis on K: t K + Dk ≤ t 0
+      have ih' : t K + Dk ≤ t 0 := by
+        exact ih
+      exact Nat.le_trans this ih'
+    · -- no-drop case: D(K+1) = D(K) and t (K+1) = t K
+      rw [if_neg hdrop]
+      -- from nonincreasingness and ¬(t (K+1) < t K) we get equality
+      have eq := no_drop_step t hnoninc K hdrop
+      rw [eq]
+      -- now the goal is exactly the IH
+      exact ih
+
+/-- Budget inequality on an initial prefix [0,K): the number of strict drops in `[0,K)` plus
+`t K` is bounded by the initial value `t 0`. We glue the proof from the decomposition lemmas. -/
+lemma budget_inequality_on_prefix (t : ℕ → ℕ) (hnoninc : ∀ k, t (k + 1) ≤ t k) (K : ℕ) :
+  (t K) + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+  -- delegate the core induction to the helper lemma
+  have hpref : t K + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card
+    ≤ t 0 := by
+    exact prefix_budget_induction t hnoninc K
+  exact hpref
+
+/-- (Optional) Simple range/filter simplification: the conjunct `i < K` is redundant inside
+`Finset.range K`. We leave it as a separate helper (proof omitted). -/
+lemma range_filter_simplification (t : ℕ → ℕ) (K : ℕ) :
+  (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card =
+    (Finset.filter (fun i => t (i + 1) < t i) (Finset.range K)).card := by
+  sorry
+
+/-- Summed budget bound on initial segments.
+    Intuitively, each strict drop in [0,K) consumes at least one unit from the initial
+    value `t 0`, so the number of drops up to K is bounded by `t 0`. We implement the
+    finishing glue using the helper `budget_inequality_on_prefix`. -/
+lemma sum_budget_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+  intro K
+  -- use the prefix budget inequality: t K + D(K) ≤ t 0
+  have hprefix : (t K) + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card
+    ≤ t 0 := by
+    exact budget_inequality_on_prefix t hnoninc K
+
+  -- now D(K) ≤ t K + D(K) and by transitivity with the prefix bound we get D(K) ≤ t 0
+  calc
+    (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card
+        ≤ (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card + (t K) :=
+      Nat.le_add_right _ _
+    _ = (t K) + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card := by
+      rw [Nat.add_comm]
+    _ ≤ t 0 := hprefix
+
+/-- Cardinality bound for the number of strict drops in initial segments.
+    This is the wrapper glue-lemma that uses the more detailed `sum_budget_bound`
+    above to conclude the desired uniform cardinality bound by transitivity with
+    the global bound `t 0 ≤ N`. -/
+lemma fin_card_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ N := by
+  -- delegate the combinatorial/budget argument to the helper lemma
+  have hsum : ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+    exact sum_budget_bound t N h0 hnoninc
+  -- now finish by transitivity with the hypothesis t 0 ≤ N
+  intro K
+  exact Nat.le_trans (hsum K) h0
+
+-- Abstract finiteness lemma: if for every K the number of drops in [0,K) is ≤ N,
+-- then the full set of drops is finite. (Proof omitted.)
+/-- If a finite set `F` of naturals satisfies `P` pointwise then there is some prefix
+    `[0,K)` capturing `F`. We state this existentially (we do not prove it here). -/
+lemma prefix_captures_finite_set {P : ℕ → Prop} [DecidablePred P] (F : Finset ℕ)
+  (hF : ∀ x ∈ F, P x) :
+  ∃ K, F ⊆ (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)) := by
+  -- proof omitted
+  sorry
+
+/-- From the uniform prefix-cardinality bound `hcard` one gets that any finite set `F`
+    of `P`-witnesses also has cardinality `≤ N`. (Uses `prefix_captures_finite_set`.) -/
+lemma card_le_from_prefix_bound {P : ℕ → Prop} [DecidablePred P] (N : ℕ)
+  (hcard : ∀ K, (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)).card ≤ N)
+  (F : Finset ℕ) (hF : ∀ x ∈ F, P x) :
+  F.card ≤ N := by
+  -- reduce to the prefix-capture lemma (existence of some K with F ⊆ prefix)
+  have hcap : ∃ K, F ⊆ (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)) := by
+    exact prefix_captures_finite_set F hF
+  rcases hcap with ⟨K, hsub⟩
+  -- card monotonicity under inclusion, then use the uniform bound
+  have hle : F.card ≤ (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)).card := by
+    exact Finset.card_le_of_subset hsub
+  exact Nat.le_trans hle (hcard K)
+
+/-- If a set `{k | P k}` is infinite then for any `M` one can find a finite subset
+    `F` of cardinality `M` consisting entirely of `P`-witnesses. (Existence-only; proof omitted.) -/
+lemma infinite_gives_large_finite_subset {P : ℕ → Prop} [DecidablePred P]
+  (M : ℕ) (hinf : Set.Infinite {k | P k}) :
+  ∃ F : Finset ℕ, (∀ x ∈ F, P x) ∧ F.card = M := by
+  -- standard combinatorial extraction from infinitude; proof omitted
+  sorry
+
+/-- Convert the uniform bound on prefix-cardinality into finiteness of the full set.
+    The proof is by contradiction using the three helpers above. -/
+lemma finite_of_card_bounded {P : ℕ → Prop} (N : ℕ) [DecidablePred P]
+  (hcard : ∀ K, (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)).card ≤ N) :
+  {k : ℕ | P k}.Finite := by
+  by_contra hnot_fin
+  -- `hnot_fin` is exactly `Set.Infinite {k | P k}`
+  have hinf : Set.Infinite {k | P k} := hnot_fin
+  -- pick a finite subset of size N+1 from the infinite set
+  rcases infinite_gives_large_finite_subset (N + 1) hinf with ⟨F, hFprop, hFcard⟩
+  -- apply the prefix-card bound to get F.card ≤ N, contradicting F.card = N+1
+  have hFle : F.card ≤ N := by
+    exact card_le_from_prefix_bound N hcard F hFprop
+  -- rewrite the equality into the inequality and close by contradiction
+  have hbad : N + 1 ≤ N := by
+    rw [hFcard] at hFle
+    exact hFle
+  exact Nat.not_succ_le_self N hbad
+
+lemma finite_strict_drops_of_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  {k : ℕ | t (k + 1) < t k}.Finite := by
+  -- obtain the global bound t k ≤ N
+  have hglob : ∀ k, t k ≤ N := by
+    exact global_bound_from_h0 t N h0 hnoninc
+
+  -- bound the cardinality of the set of drops below any K
+  have hcard_bound : ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ N := by
+    exact fin_card_bound t N h0 hnoninc
+
+  -- apply the abstract conversion from uniform cardinal bounds to finiteness
+  have hfin : {k : ℕ | t (k + 1) < t k}.Finite := by
+    exact finite_of_card_bounded N hcard_bound
+
+  exact hfin
+
+/-- Step 5: if a positive-ℕ valued measure is globally nonincreasing and strictly decreases
+whenever `bad k`, then `{k | bad k}` is finite. The proof below is glue: we use the
+helpers above to reduce to the finiteness of the strict-drop set and then take the subset. -/
+lemma finite_of_strict_decrease_on_bad
+  (t : ℕ → ℕ)
+  (htpos : ∀ k : ℕ, 0 < t k)
+  (bad : ℕ → Prop)
+  (hnoninc : ∀ k : ℕ, t (k + 1) ≤ t k)
+  (hdec : ∀ k : ℕ, bad k → t (k + 1) < t k) :
+  {k : ℕ | bad k}.Finite := by
+  -- show bad ⊆ strict-drop set using hdec
+  have hsub : {k : ℕ | bad k} ⊆ {k : ℕ | t (k + 1) < t k} := by
+    intro k hk
+    exact hdec k hk
+
+  -- apply the bounded-number-of-strict-drops lemma with N := t 0 (trivial bound)
+  have hstr_drops_fin : {k : ℕ | t (k + 1) < t k}.Finite := by
+    exact finite_strict_drops_of_bound t (t 0) (by exact le_refl (t 0)) hnoninc
+
+  -- conclude finiteness of the bad set by subset-of-finite
+  exact Set.Finite.subset hstr_drops_fin hsub
+
+/-- There exists an "odd-part" measure t(k) (derived from |m_k - n_k|) which is positive,
+globally nonincreasing, and strictly decreases whenever the corresponding gcd is nontrivial.
+We keep this as an abstract existence lemma (proved below in the informal argument). -/
+/-
+Helper 1: decompose each nonzero integer difference into a power of 2 times an odd part.
+This is the usual 2-adic valuation decomposition: for every nonzero integer a there are u,r with
+|a| = 2^u * r and r odd and r > 0.
+-/
+lemma natAbs_pos (z : ℤ) (hz : z ≠ 0) : 0 < Int.natAbs z := by
+  sorry
+
+/-- Helper A: existence of a maximal 2-adic exponent dividing A. -/
+/- Helper (1): there exists some exponent u (take u = 0) with 2^u ∣ A. -/
+lemma exists_two_pow_divides (A : ℕ) (hpos : 0 < A) :
+  ∃ u, ((2 : ℕ) ^ u ∣ A) := by
+  -- trivial: 2^0 = 1 divides any A
+  use 0
+  simp
+
+/-- Helper (2): any exponent u with 2^u ∣ A is bounded by A (hence lies in `range (A+1)`). -/
+lemma pow_two_divides_bounded_by_A (A u : ℕ) (hpos : 0 < A) :
+  ((2 : ℕ) ^ u ∣ A) → u ≤ A := by
+  -- proof omitted
+  sorry
+
+/-- Helper (3): every nonempty finite `Finset ℕ` has a maximum element. -/
+lemma exists_max_in_finset (S : Finset ℕ) (hnon : S.Nonempty) :
+  ∃ u, u ∈ S ∧ ∀ v ∈ S, v ≤ u := by
+  -- standard finiteness/Max argument; proof omitted
+  sorry
+
+/-- Helper (4): if `S` is `filter (λ v, 2^v ∣ A) (range (A+1))`, `A > 0`, and `u` is a maximal
+    element of `S` then `2^(u+1)` does not divide `A`. The extra `0 < A` hypothesis rules
+    out the degenerate `A = 0` case (where every power of 2 divides `A`). -/
+lemma maximality_implies_no_next_divides (A : ℕ) (S : Finset ℕ) (u : ℕ)
+  (hpos : 0 < A)
+  (hS_def : S = Finset.filter (fun v => ((2 : ℕ) ^ v ∣ A)) (Finset.range (A + 1)))
+  (u_mem : u ∈ S) (u_max : ∀ v ∈ S, v ≤ u) :
+  ¬ ((2 : ℕ) ^ (u + 1) ∣ A) := by
+  -- assume contrary and derive that `u+1 ∈ S`, contradicting maximality
+  intro hdiv_next
+  -- use the bound lemma to see that (u+1) ≤ A, so u+1 ∈ range (A+1)
+  have hbound : (u + 1) ≤ A := by
+    exact pow_two_divides_bounded_by_A A (u + 1) hpos hdiv_next
+  have in_range : u + 1 ∈ Finset.range (A + 1) := by
+    exact Finset.mem_range.mpr (Nat.lt_succ_of_le hbound)
+  -- hence u+1 ∈ S by definition of S
+  have in_S : u + 1 ∈ S := by
+    rw [hS_def]
+    apply Finset.mem_filter.2
+    constructor
+    · exact in_range
+    · exact hdiv_next
+  -- maximality gives (u+1) ≤ u, contradiction
+  have le_contra : u + 1 ≤ u := u_max (u + 1) in_S
+  have : u < u := Nat.lt_of_succ_le le_contra
+  exact Nat.lt_irrefl u this
+
+/-- Construct the maximal exponent `u` with `2^u ∣ A` and `¬(2^(u+1) ∣ A)` by restricting to the
+    finite set `Finset.filter (λ v, 2^v ∣ A) (range (A+1))` and taking its maximum. -/
+lemma exists_max_pow_two_dividing (A : ℕ) (hpos : 0 < A) :
+  ∃ u, ((2 : ℕ) ^ u ∣ A) ∧ ¬ ((2 : ℕ) ^ (u + 1) ∣ A) := by
+  -- get some exponent u0 with 2^u0 ∣ A
+  have hex := exists_two_pow_divides A hpos
+  rcases hex with ⟨u0, hu0_div⟩
+
+  -- bound u0 by A so that u0 ∈ range (A+1)
+  have hub : u0 ≤ A := by
+    exact pow_two_divides_bounded_by_A A u0 hpos hu0_div
+
+  have u0_in_range : u0 ∈ Finset.range (A + 1) := by
+    exact Finset.mem_range.mpr (Nat.lt_succ_of_le hub)
+
+  -- consider the finite set of exponents ≤ A that divide A
+  let S : Finset ℕ := Finset.filter (fun v => ((2 : ℕ) ^ v ∣ A)) (Finset.range (A + 1))
+
+  -- S is nonempty because u0 ∈ S
+  have S_nonempty : S.Nonempty := by
+    use u0
+    simp [S, u0_in_range, hu0_div]
+
+  -- take a maximum element u of S
+  rcases exists_max_in_finset S S_nonempty with ⟨u, ⟨u_mem, u_max⟩⟩
+
+  -- u ∈ S gives the divisibility
+  have hu_div : ((2 : ℕ) ^ u ∣ A) := by
+    simp [S] at u_mem
+    exact u_mem.2
+
+  -- maximality in S yields ¬ 2^(u+1) ∣ A
+  have hnot_next : ¬ ((2 : ℕ) ^ (u + 1) ∣ A) := by
+    exact maximality_implies_no_next_divides A S u hpos rfl u_mem u_max
+
+  exact ⟨u, hu_div, hnot_next⟩
+
+/-- Helper B: given that 2^u divides A, define r := A / 2^u and record the factorization and positivity. -/
+lemma define_odd_part_by_division (A u : ℕ) (hdiv : ((2 : ℕ) ^ u ∣ A)) (hpos : 0 < A) :
+  ∃ r, A = (2 : ℕ) ^ u * r ∧ 0 < r := by
+  sorry
+
+/-- Helper C: if 2^u is the maximal power of 2 dividing A and A = 2^u * r, then r is odd. -/
+lemma oddness_of_quotient (A u r : ℕ)
+  (hA : A = (2 : ℕ) ^ u * r)
+  (hmax : ¬ ((2 : ℕ) ^ (u + 1) ∣ A)) :
+  r % 2 = 1 := by
+  sorry
+
+/-- Factor a positive natural A as 2^u * r with r odd and positive. Glue uses the three helpers above. -/
+lemma exists_pow_two_mul_odd_for_pos_nat (A : ℕ) (hpos : 0 < A) :
+  ∃ (u r : ℕ), A = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+  -- pick the maximal exponent u with 2^u ∣ A and ¬(2^(u+1) ∣ A)
+  have hmax := by exact exists_max_pow_two_dividing A hpos
+  rcases hmax with ⟨u, hdiv_u, hnot_next⟩
+
+  -- define the quotient r := A / 2^u and get the factorization and positivity
+  have hex_r : ∃ r, A = (2 : ℕ) ^ u * r ∧ 0 < r := by
+    exact define_odd_part_by_division A u hdiv_u hpos
+  rcases hex_r with ⟨r, ⟨hr_eq, hr_pos⟩⟩
+
+  -- deduce oddness of r from maximality of u
+  have hord : r % 2 = 1 := by
+    exact oddness_of_quotient A u r hr_eq hnot_next
+
+  -- assemble the existential
+  exact ⟨u, r, hr_eq, hord, hr_pos⟩
+
+lemma decomposition_of_diff
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0) :
+  ∀ k : ℕ, ∃ (u r : ℕ),
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+  intro k
+  -- use positivity of the absolute value of the nonzero integer difference
+  have hpos : 0 < Int.natAbs ((m k : ℤ) - (n k : ℤ)) := by
+    exact natAbs_pos ((m k : ℤ) - (n k : ℤ)) (hΔ k)
+  -- factor the positive natural number into a power of 2 times an odd part
+  rcases exists_pow_two_mul_odd_for_pos_nat (Int.natAbs ((m k : ℤ) - (n k : ℤ))) hpos
+    with ⟨u, r, h⟩
+  exact ⟨u, r, h⟩
+
+/-
+Helper 2: monotonicity of the odd part between successive indices.
+Given explicit decompositions for |m_k - n_k| = 2^{u1} r1 and |m_{k+1} - n_{k+1}| = 2^{u2} r2,
+this lemma asserts r2 ≤ r1. The proof uses the normalization of successive terms coming
+from the recurrence (one must use that (m_{k+1}, n_{k+1}) is the reduced pair coming from
+(2 m_k + 1, 2 n_k + 1)). We leave this as a helper (sorry).
+-/
+/-- From the multiplicative successor relations one can lift them to ℤ and obtain
+    (d : ℤ) * ((m (k+1) : ℤ) - (n (k+1) : ℤ)) = (2 : ℤ) * ((m k : ℤ) - (n k : ℤ)). -/
+lemma diff_mul_eq_two_mul_prev_int
+  (m n : ℕ → ℕ) (k : ℕ) (d : ℕ)
+  (hm_mul : (2 * m k + 1) = d * m (k + 1))
+  (hn_mul : (2 * n k + 1) = d * n (k + 1)) :
+  (d : ℤ) * ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℤ) * ((m k : ℤ) - (n k : ℤ)) := by
+  -- proof omitted
+  sorry
+
+/-- From the multiplicative identity (2*m_k + 1) = d * m_{k+1} we see that `d` is positive
+    (hence `(d : ℤ) ≠ 0`). -/
+lemma d_nat_nonzero_of_mul_eq
+  (m n : ℕ → ℕ) (k : ℕ) (d : ℕ)
+  (hm_mul : (2 * m k + 1) = d * m (k + 1)) :
+  (d : ℤ) ≠ 0 := by
+  -- trivial positivity/nonzeroness reasoning; proof omitted
+  sorry
+
+/-- If `d * x = y` in ℤ and `d ≠ 0` then `x = y / d`. (Exact division when divisor divides.) -/
+lemma int_div_eq_of_mul_eq (d : ℤ) {x y : ℤ} (hdnz : d ≠ 0) (h : d * x = y) :
+  x = y / d := by
+  -- division is exact in this situation; proof omitted
+  sorry
+
+/-- Helper: from the reduced successor multiplicative form
+    (2*m_k+1) = d * m_{k+1} and (2*n_k+1) = d * n_{k+1}, the absolute value of the
+    next difference equals the absolute value of (2 * previous difference) divided by d (in ℤ). -/
+lemma diff_evolution_natAbs
+  (m n : ℕ → ℕ) (k : ℕ) (d : ℕ)
+  (hm_mul : (2 * m k + 1) = d * m (k + 1))
+  (hn_mul : (2 * n k + 1) = d * n (k + 1))
+  (h_dvd : (d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    Int.natAbs (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+  -- 1) lift the multiplicative relations to the integer identity
+  have hmul_int : (d : ℤ) * ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    (2 : ℤ) * ((m k : ℤ) - (n k : ℤ)) := by
+    exact diff_mul_eq_two_mul_prev_int m n k d hm_mul hn_mul
+
+  -- 2) d is nonzero as an integer
+  have hd_ne : (d : ℤ) ≠ 0 := by
+    exact d_nat_nonzero_of_mul_eq m n k d hm_mul
+
+  -- 3) divide the integer equality by d to get the exact division identity
+  have hdiv_eq : ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    ((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ) := by
+    exact int_div_eq_of_mul_eq (d : ℤ) hd_ne hmul_int
+
+  -- 4) apply Int.natAbs to the equality to conclude the lemma
+  exact congrArg Int.natAbs hdiv_eq
+
+/-- Helper: if `d` is odd and divides the integer `z`, then
+    natAbs ((2*z)/d) = 2 * (natAbs z / d). -/
+lemma odd_implies_pos (d : ℕ) (hd_odd : d % 2 = 1) : 0 < d := by
+  -- odd natural numbers are positive; proof omitted
+  sorry
+
+lemma nat_pos_int_ne (d : ℕ) (hd_pos : 0 < d) : (d : ℤ) ≠ 0 := by
+  -- positive natural casts to a nonzero integer; proof omitted
+  sorry
+
+lemma int_dvd_exists_mul (d : ℕ) {z : ℤ} (h : (d : ℤ) ∣ z) : ∃ q : ℤ, z = (d : ℤ) * q := by
+  -- existential form of integer divisibility; proof omitted
+  sorry
+
+lemma div_mul_of_mul_eq {d : ℤ} {q z : ℤ} (hdnz : d ≠ 0) (hz : z = d * q) :
+  (((2 : ℤ) * z) / d) = (2 : ℤ) * q := by
+  -- exact division under a multiplication equality; proof omitted
+  sorry
+
+lemma natAbs_two_mul (q : ℤ) : Int.natAbs ((2 : ℤ) * q) = 2 * Int.natAbs q := by
+  -- natAbs is multiplicative for nonnegative integer factors like 2; proof omitted
+  sorry
+
+lemma natAbs_div_eq_natAbs_q (d : ℕ) (hd_pos : 0 < d) {z q : ℤ} (hz : z = (d : ℤ) * q) :
+  Int.natAbs z / d = Int.natAbs q := by
+  -- when z = d*q and d>0, the natAbs quotient equals natAbs q; proof omitted
+  sorry
+
+lemma natAbs_two_mul_div_of_odd_divisor (z : ℤ) (d : ℕ)
+  (hd_odd : d % 2 = 1) (hdiv : (d : ℤ) ∣ z) :
+  Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = 2 * (Int.natAbs z / d) := by
+  -- Decompose the argument following the suggested helper-lemma chain.
+
+  -- 1) oddness gives positivity of d (as a natural)
+  have hd_pos : 0 < d := by
+    exact odd_implies_pos d hd_odd
+
+  -- 2) positivity implies the integer cast is nonzero
+  have hd_int_ne : (d : ℤ) ≠ 0 := by
+    exact nat_pos_int_ne d hd_pos
+
+  -- 3) write z = (d : ℤ) * q from the divisibility hypothesis
+  rcases int_dvd_exists_mul d hdiv with ⟨q, hq⟩
+
+  -- 4) perform exact division: (((2:ℤ) * z) / (d : ℤ)) = (2:ℤ) * q
+  have hdiv_eq : (((2 : ℤ) * z) / (d : ℤ)) = (2 : ℤ) * q := by
+    apply div_mul_of_mul_eq hd_int_ne
+    exact hq
+
+  -- 5) take natAbs and use multiplicativity for 2
+  have h_left : Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = Int.natAbs ((2 : ℤ) * q) := by
+    rw [hdiv_eq]
+  have h_left' : Int.natAbs ((2 : ℤ) * q) = 2 * Int.natAbs q := by
+    exact natAbs_two_mul q
+
+  -- 6) relate Int.natAbs z / d to Int.natAbs q
+  have h_right : Int.natAbs z / d = Int.natAbs q := by
+    exact natAbs_div_eq_natAbs_q d hd_pos hq
+
+  -- 7) assemble the equalities
+  calc
+    Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = Int.natAbs ((2 : ℤ) * q) := by rw [hdiv_eq]
+    _ = 2 * Int.natAbs q := by exact h_left'
+    _ = 2 * (Int.natAbs z / d) := by rw [h_right]
+
+/-- Helper: if `(d : ℤ) ∣ z` then `d` divides `Int.natAbs z` as a natural number. -/
+lemma int_dvd_to_nat_dvd (z : ℤ) (d : ℕ) (hdiv : (d : ℤ) ∣ z) :
+  d ∣ Int.natAbs z := by
+  -- integer/nat bookkeeping: omitted
+  sorry
+
+/-- Odd `d` is coprime to any power of two. -/
+lemma odd_implies_coprime_pow_two (d u : ℕ) (hd_odd : d % 2 = 1) :
+  Nat.Coprime d ((2 : ℕ) ^ u) := by
+  -- proof omitted
+  sorry
+
+/-- From a divisibility `d ∣ r` one can produce the quotient: `∃ q, r = d * q`. -/
+lemma nat_dvd_exists_mul (d r : ℕ) (h : d ∣ r) : ∃ q, r = d * q := by
+  -- proof omitted
+  sorry
+
+/-- If n = d * m then n / d = m (exact division lemma for naturals). -/
+lemma nat_div_eq_of_mul_eq {d m n : ℕ} (hd_pos : 1 ≤ d) (h : n = d * m) : n / d = m := by
+  -- When the divisor `d` is at least 1 (hence nonzero), exact division `n = d * m`
+  -- implies the quotient `n / d` (the exact nat-division) equals `m`.
+  -- Detailed proof omitted.
+  sorry
+
+/-- If r = d * r' and r and d are odd, then r' is odd. -/
+lemma odd_quotient_of_odd_divisor (r d r' : ℕ)
+  (h : r = d * r') (hr_odd : r % 2 = 1) (hd_odd : d % 2 = 1) : r' % 2 = 1 := by
+  -- proof omitted
+  sorry
+
+/-- Uniqueness of the odd part in a 2-adic decomposition:
+    if (2^p) * x = (2^q) * y with x,y odd then p = q and x = y. -/
+lemma odd_not_two_dvd {x : ℕ} (hx : x % 2 = 1) : ¬ (2 ∣ x) := by
+  -- odd numbers are not divisible by 2; proof omitted
+  sorry
+
+lemma pow_coprime_helper {p x : ℕ} (hx : x % 2 = 1) : Nat.Coprime x ((2 : ℕ) ^ p) := by
+  -- oddness implies coprimality with any power of two; proof omitted
+  sorry
+
+lemma pow_divides_of_coprime_left {p q : ℕ} {x y : ℕ}
+  (hc : Nat.Coprime ((2 : ℕ) ^ p) x)
+  (hdiv : ((2 : ℕ) ^ p) ∣ ((2 : ℕ) ^ q * y)) : ((2 : ℕ) ^ p) ∣ ((2 : ℕ) ^ q) := by
+  -- if a coprime factor divides a product then it divides the other factor; proof omitted
+  sorry
+
+lemma le_of_mul_eq_left (p q x y : ℕ)
+  (h : (2 : ℕ) ^ p * x = (2 : ℕ) ^ q * y) (hx_odd : x % 2 = 1) :
+  p ≤ q := by
+  -- Outline (glue): from oddness get coprimality, then use divisibility to see 2^p ∣ 2^q,
+  -- hence p ≤ q by properties of powers of two. Proof omitted.
+  have hcop : Nat.Coprime ((2 : ℕ) ^ p) x := by
+    exact Nat.Coprime.symm (@pow_coprime_helper p x hx_odd)
+  have hdiv : ((2 : ℕ) ^ p) ∣ ((2 : ℕ) ^ q * y) := by
+    -- from the equality (2^p)*x = (2^q)*y we get ((2^p) ∣ ((2^q)*y))
+    use x
+    exact Eq.symm h
+  have hpow_div : ((2 : ℕ) ^ p) ∣ ((2 : ℕ) ^ q) := by
+    exact pow_divides_of_coprime_left hcop hdiv
+  -- deduce p ≤ q from divisibility of powers of 2 (proof omitted)
+  sorry
+
+lemma cancel_pow_mul_eq (p x y : ℕ) (h : (2 : ℕ) ^ p * x = (2 : ℕ) ^ p * y) : x = y := by
+  -- cancellation of a common factor 2^p on both sides when working in ℕ; proof omitted
+  sorry
+
+lemma pow_mul_odd_eq_pow_mul_odd (p q x y : ℕ)
+  (h : (2 : ℕ) ^ p * x = (2 : ℕ) ^ q * y) (hx_odd : x % 2 = 1) (hy_odd : y % 2 = 1) :
+  p = q ∧ x = y := by
+  -- Use the auxiliary lemmas to compare exponents and cancel.
+  have hle1 : p ≤ q := by
+    exact le_of_mul_eq_left p q x y h hx_odd
+  -- swap sides to get the reverse inequality
+  have hle2 : q ≤ p := by
+    -- apply the same lemma to the symmetric equality
+    exact le_of_mul_eq_left q p y x (Eq.symm h) hy_odd
+  have heq_pq : p = q := by
+    exact Nat.le_antisymm hle1 hle2
+  -- cancel the common power to obtain x = y
+  have hxy : x = y := by
+    have hpow : (2 : ℕ) ^ p * x = (2 : ℕ) ^ p * y := by
+      rw [← heq_pq] at h
+      exact h
+    exact cancel_pow_mul_eq p x y hpow
+  exact ⟨heq_pq, hxy⟩
+
+/-- From `d` odd we get `1 ≤ d`. -/
+lemma odd_implies_one_le (d : ℕ) (hd_odd : d % 2 = 1) : 1 ≤ d := by
+  -- proof omitted
+  sorry
+
+/-- If `1 ≤ d` then for any `r` we have `r ≤ d * r`. -/
+lemma mul_le_of_one_le (d r : ℕ) (h1 : 1 ≤ d) : r ≤ d * r := by
+  -- proof omitted
+  sorry
+
+/-- Helper (abstract): if A = 2^u1 * r1 with r1 odd > 0, and `d` is an odd divisor of `A`,
+    and if we form B := 2 * (A / d), and B admits a decomposition B = 2^u2 * r2 with r2 odd > 0,
+    then r2 ≤ r1. The extra hypothesis `d ∣ A` is essential. -/
+lemma odd_part_le_from_div_by_odd (A d : ℕ) (hdvd : d ∣ A) (u1 r1 u2 r2 : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 ≤ r1 := by
+  -- 1) d is coprime to 2^u1
+  have hcop : Nat.Coprime d ((2 : ℕ) ^ u1) := by
+    exact odd_implies_coprime_pow_two d u1 hd_odd
+
+  -- 2) from A = 2^u1 * r1 and d ∣ A we get d ∣ (2^u1 * r1); apply coprime cancellation to deduce d ∣ r1
+  have hd_dvd_r1 : d ∣ r1 := by
+    have : d ∣ ( (2 : ℕ) ^ u1 * r1 ) := by
+      rw [← hA]
+      exact hdvd
+    exact coprime_dvd_of_dvd_mul_right hcop this
+
+  -- 3) witness the quotient r1' with r1 = d * r1'
+  rcases nat_dvd_exists_mul d r1 hd_dvd_r1 with ⟨r1', hr1_eq⟩
+
+  -- 4) rewrite A = d * (2^u1 * r1') and use exact division to get A / d = 2^u1 * r1'
+  have hA_mul : A = d * ((2 : ℕ) ^ u1 * r1') := by
+    calc
+      A = (2 : ℕ) ^ u1 * r1 := hA
+      _ = (2 : ℕ) ^ u1 * (d * r1') := by rw [hr1_eq]
+      _ = d * ((2 : ℕ) ^ u1 * r1') := by ring
+  -- `d` is odd, so in particular `1 ≤ d`; use this to apply exact division lemma.
+  have h1_le_d : 1 ≤ d := by
+    exact odd_implies_one_le d hd_odd
+  have h_divA : A / d = (2 : ℕ) ^ u1 * r1' := by
+    exact nat_div_eq_of_mul_eq h1_le_d hA_mul
+
+  -- 5) rewrite 2 * (A / d) as 2^(u1+1) * r1'
+  have h_left : (2 : ℕ) ^ (u1 + 1) * r1' = 2 * (A / d) := by
+    calc
+      (2 : ℕ) ^ (u1 + 1) * r1' = 2 * ((2 : ℕ) ^ u1 * r1') := by ring
+      _ = 2 * (A / d) := by rw [h_divA]
+
+  -- 6) combine with the given decomposition of B to get equality of two 2-adic decompositions
+  have h_comb : (2 : ℕ) ^ (u1 + 1) * r1' = (2 : ℕ) ^ u2 * r2 := by
+    calc
+      (2 : ℕ) ^ (u1 + 1) * r1' = 2 * (A / d) := by exact h_left
+      _ = (2 : ℕ) ^ u2 * r2 := by exact hB_eq
+
+  -- 7) show r1' is odd from r1 = d * r1' and oddness of r1 and d
+  have hr1'_odd : r1' % 2 = 1 := by
+    exact odd_quotient_of_odd_divisor r1 d r1' hr1_eq hr1_odd hd_odd
+
+  -- 8) uniqueness of odd part gives r1' = r2
+  have huniq := pow_mul_odd_eq_pow_mul_odd (u1 + 1) u2 r1' r2 h_comb hr1'_odd hr2_odd
+  have _ := huniq
+  rcases huniq with ⟨_heq_pow, heq_oddpart⟩
+
+  -- 9) conclude r2 = r1' and therefore r2 ≤ r1 because r1 = d * r1' and d ≥ 1
+  have heq_r2_r1' : r2 = r1' := by
+    exact Eq.symm heq_oddpart
+  have hr1_def : r1 = d * r1' := hr1_eq
+  have h1_le_d : 1 ≤ d := by
+    exact odd_implies_one_le d hd_odd
+  have : r2 ≤ r1 := by
+    calc
+      r2 = r1' := by exact heq_r2_r1'
+      _ ≤ d * r1' := by exact mul_le_of_one_le d r1' h1_le_d
+      _ = r1 := by rw [hr1_def]
+  exact this
+
+/-
+Using the decomposition helpers above (left as `sorry`) we now glue them to prove the
+nonincrease of the odd part from step k to k+1. The proof below merely arranges the
+helpers' conclusions and performs trivial transitivity/rewriting steps.
+-/
+lemma odd_part_noninc_step
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∀ k u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 ≤ r1 := by
+  intro k u1 r1 u2 r2 hA hA_odd hA_pos hB hB_odd hB_pos
+  -- define the relevant gcd
+  let d := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+
+  -- obtain the reduced-form equalities m_{k+1} = (2*m_k+1)/d, n_{k+1} = (2*n_k+1)/d
+  have hnext := next_eq_div_gcd m n h_coprime h_recurrence k
+  rcases hnext with ⟨hm_succ_eq, hn_succ_eq⟩
+
+  -- obtain that d is odd and divides the previous difference
+  have hg := gcd_odd_and_dvd_diff m n k
+  rcases hg with ⟨hd_odd, h_dvd⟩
+
+  -- relate the natAbs of the next difference to natAbs(((2*z)/d))
+  have h_step_natabs := diff_evolution_natAbs m n k d hm_succ_eq hn_succ_eq h_dvd
+
+  -- apply the odd-divisor natAbs scaling lemma to rewrite natAbs(((2*z)/d))
+  let z : ℤ := (m k : ℤ) - (n k : ℤ)
+  have h_scale := natAbs_two_mul_div_of_odd_divisor z d hd_odd h_dvd
+
+  -- combine equalities to get the numeric equality 2 * (A / d) = 2^u2 * r2
+  -- where A = Int.natAbs z
+  have h_combo : 2 * (Int.natAbs z / d) = (2 : ℕ) ^ u2 * r2 := by
+    calc
+      2 * (Int.natAbs z / d) = Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) := Eq.symm h_scale
+      _ = Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) := Eq.symm h_step_natabs
+      _ = (2 : ℕ) ^ u2 * r2 := hB
+
+  -- now invoke the abstract odd-part comparison lemma on A := Int.natAbs z
+  have hdvd_nat : d ∣ Int.natAbs z := by
+    exact int_dvd_to_nat_dvd z d h_dvd
+  have hres := odd_part_le_from_div_by_odd (Int.natAbs z) d hdvd_nat u1 r1 u2 r2
+    hA hA_odd hA_pos h_combo hB_odd hB_pos hd_odd
+  exact hres
+
+/-
+Helper 3: strict decrease of the odd part when the gcd is nontrivial.
+If the gcd d = gcd(2 m_k + 1, 2 n_k + 1) is > 1 (equivalently not coprime), then the odd
+part at k+1 is strictly smaller than at k. This is stated in the decomposed form.
+-/
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by
+  sorry
+
+/-
+Revised existence lemma. We strengthen the hypotheses: we require the auxiliary coprimality
+normalization hypothesis h_coprime (present in the main theorem) so that one can produce the
+normalized successors and hence define the odd-part measure canonically. The body below is
+pure "glue": we use the decomposition helper to pick odd parts and then use the comparison
+helpers to establish positivity, nonincreasingness, and strict decrease on "bad" indices.
+All heavy arithmetic is delegated to the helper lemmas above (left as `sorry`).
+-/
+lemma exists_odd_measure
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∃ (t : ℕ → ℕ),
+    (∀ k : ℕ, 0 < t k) ∧
+    (∀ k : ℕ, t (k + 1) ≤ t k) ∧
+    (∀ k : ℕ, (¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) → t (k + 1) < t k) := by
+  -- decompose each difference into 2^u * r with r odd
+  have hdecomp : ∀ k, ∃ u r, Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+    exact decomposition_of_diff m n hΔ
+
+  -- choose concrete functions u,r giving the decomposition for every k
+  choose u r hu hr using hdecomp
+
+  -- define the measure t(k) to be the odd part r(k)
+  let t : ℕ → ℕ := fun k => r k
+
+  -- positivity: r(k) > 0 by the decomposition property
+  have htpos : ∀ k, 0 < t k := by
+    intro k
+    exact (hr k).2
+
+  -- nonincreasing property: compare odd parts using the decomposition equalities and helper
+  have hnoninc : ∀ k, t (k + 1) ≤ t k := by
+    intro k
+    have Hk := hu k
+    have Hk1 := hu (k + 1)
+    -- apply the stepwise nonincrease lemma using the equalities and oddness/positivity facts
+    exact odd_part_noninc_step m n h_recurrence h_coprime k (u k) (r k) (u (k + 1)) (r (k + 1))
+      (Hk) ((hr k).1) ((hr k).2) (Hk1) ((hr (k + 1)).1) ((hr (k + 1)).2)
+
+  -- strict decrease on "bad" indices: use the strict-decrease helper
+  have hdec : ∀ k, (¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) → t (k + 1) < t k := by
+    intro k hbad
+    have Hk := hu k
+    have Hk1 := hu (k + 1)
+    exact odd_part_strict_decrease_of_not_coprime' m n hΔ h_coprime h_recurrence k hbad
+      (u k) (r k) (u (k + 1)) (r (k + 1)) (Hk) ((hr k).1) ((hr k).2) (Hk1) ((hr (k + 1)).1) ((hr (k + 1)).2)
+
+  exact ⟨t, ⟨htpos, hnoninc, hdec⟩⟩
+
+theorem putnam_2025_a1
+  (m n : ℕ → ℕ)
+  (hm : ∀ k : ℕ, 0 < m k)
+  (hn : ∀ k : ℕ, 0 < n k)
+  (h_distinct : m 0 ≠ n 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  {k : ℕ | ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)}.Finite := by
+  classical
+
+  -- Step 2: differences never vanish
+  have hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0 := by
+    exact diff_ne_zero m n h_distinct h_recurrence
+
+  -- Step 4: obtain the decreasing odd-part measure abstractly
+  rcases exists_odd_measure m n hΔ h_recurrence h_coprime with ⟨t, ⟨htpos, hnoninc, hdec_step⟩⟩
+
+  -- Step 4/5: define the "bad" property
+  let bad : ℕ → Prop := fun k => ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)
+
+  -- Step 5: apply the abstract finiteness lemma using the properties of `t`
+  have hfinite : {k : ℕ | bad k}.Finite := by
+    exact finite_of_strict_decrease_on_bad t htpos bad hnoninc hdec_step
+
+  -- conclude in the required form
+  simpa [bad] using hfinite

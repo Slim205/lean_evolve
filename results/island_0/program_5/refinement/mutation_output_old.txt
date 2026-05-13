@@ -1,0 +1,91 @@
+>>>>SEARCH
+/-- Step 2: the differences never become zero. -/
+lemma diff_ne_zero
+  (m n : ℕ → ℕ)
+  (h_distinct : m 0 ≠ n 0)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0 := by
+  sorry
+>>>>REPLACE
+/-- Helper: denominators (2*n_k+1) and (2*m_k+1) are nonzero for all k (from the recurrence). -/
+lemma denom_nonzero_from_recurrence
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k, ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0 ∧ ((2 : ℚ) * (m k : ℚ) + 1) ≠ 0 := by
+  sorry
+
+/-- Helper: the successor denominator n_{k+1} is nonzero (so one can form ratios). -/
+lemma n_succ_nonzero
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k, (n (k + 1) : ℚ) ≠ 0 := by
+  sorry
+
+/-- Helper: if m_{k+1} = n_{k+1} then the ratio (m_{k+1} : ℚ)/(n_{k+1} : ℚ) equals 1. -/
+lemma succ_equal_implies_ratio_one
+  (m n : ℕ → ℕ)
+  (h_n_succ_nonzero : ∀ k, (n (k + 1) : ℚ) ≠ 0)
+  (k : ℕ) :
+  m (k + 1) = n (k + 1) →
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = 1 := by
+  sorry
+
+/-- Helper: if ((2*m_k+1)/(2*n_k+1) = 1) then m_k = n_k (denominator nonzero required). -/
+lemma ratio_one_implies_eq_prev
+  (m n : ℕ → ℕ)
+  (h_denom_nonzero : ∀ k, ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0)
+  (k : ℕ) :
+  (((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1) = 1) → m k = n k := by
+  sorry
+
+/-- Helper: translate integer subtraction zero to nat equality. -/
+lemma int_sub_eq_zero_iff_eq_nat (a b : ℕ) : ((a : ℤ) - (b : ℤ) = 0) ↔ a = b := by
+  sorry
+
+/-- Step 2: the differences never become zero. -/
+lemma diff_ne_zero
+  (m n : ℕ → ℕ)
+  (h_distinct : m 0 ≠ n 0)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0 := by
+  -- instantiate helpers (all are `sorry` above)
+  have hden : ∀ k, ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0 ∧ ((2 : ℚ) * (m k : ℚ) + 1) ≠ 0 := by
+    exact denom_nonzero_from_recurrence m n h_recurrence
+  have hsucc_nonzero : ∀ k, (n (k + 1) : ℚ) ≠ 0 := by
+    exact n_succ_nonzero m n h_recurrence
+  have hsucc_one := by exact fun k => succ_equal_implies_ratio_one m n hsucc_nonzero k
+  have heq_prev := by exact fun k => ratio_one_implies_eq_prev m n (fun k => (hden k).1) k
+
+  -- prove by induction that m k ≠ n k for all k
+  have hmn : ∀ k, m k ≠ n k := by
+    intro k
+    induction k with
+    | zero => exact h_distinct
+    | succ k ih =>
+      by_contra h_eq_succ
+      -- if m_{k+1} = n_{k+1} then the left ratio is 1
+      have hL : (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = 1 := by
+        apply (hsucc_one k)
+        exact h_eq_succ
+      -- by recurrence the right-hand ratio equals the left, so the right is 1
+      have hR : ((2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1) = 1) := by
+        calc
+          (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1) := h_recurrence k
+          _ = 1 := hL
+      -- hence m_k = n_k, contradicting IH
+      have mk_eq_nk : m k = n k := by
+        apply (heq_prev k)
+        exact hR
+      exact ih mk_eq_nk
+
+  -- finish: translate nat-inequality to integer-subtraction nonzeroness using helper
+  intro k
+  intro hzero
+  have eq_nat : m k = n k := by
+    have : (m k : ℤ) - (n k : ℤ) = 0 := hzero
+    exact (int_sub_eq_zero_iff_eq_nat (m k) (n k)).1 this
+  exact (hmn k) eq_nat

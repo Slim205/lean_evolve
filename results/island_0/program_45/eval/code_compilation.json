@@ -1,0 +1,2041 @@
+[
+    {
+        "name": "diff_mul_eq_two_mul_prev_int",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_mul_eq_two_mul_prev_int\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1))\n  (hn_mul : (2 * n k + 1) = d * n (k + 1)) :\n  (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n  have h1 : (d : \u2124) * (m (k + 1) : \u2124) = 2 * m k + 1 := by\n    norm_cast at hm_mul \u22a2\n    linarith\n  have h2 : (d : \u2124) * (n (k + 1) : \u2124) = 2 * n k + 1 := by\n    norm_cast at hn_mul \u22a2\n    linarith\n  have h3 : (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n    linarith\n  exact h3",
+        "custom_id": "diff_mul_eq_two_mul_prev_int_0",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 9
+                    },
+                    "data": "unused variable `h1`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 9
+                    },
+                    "data": "unused variable `h2`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.9142327308654785,
+            "custom_id": "diff_mul_eq_two_mul_prev_int_0"
+        }
+    },
+    {
+        "name": "diff_mul_eq_two_mul_prev_int",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_mul_eq_two_mul_prev_int\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1))\n  (hn_mul : (2 * n k + 1) = d * n (k + 1)) :\n  (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n  have hm := hm_mul\n  have hn := hn_mul\n  have hm' : (d : \u2124) * m (k + 1) = 2 * m k + 1 := by\n    norm_cast at hm_mul \u22a2\n    linarith\n  have hn' : (d : \u2124) * n (k + 1) = 2 * n k + 1 := by\n    norm_cast at hn_mul \u22a2\n    linarith\n  have h : (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n    linarith\n  exact_mod_cast h",
+        "custom_id": "diff_mul_eq_two_mul_prev_int_1",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 9
+                    },
+                    "data": "unused variable `hm`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 9
+                    },
+                    "data": "unused variable `hn`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 10
+                    },
+                    "data": "unused variable `hm'`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 10
+                    },
+                    "data": "unused variable `hn'`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 1.2577741146087646,
+            "custom_id": "diff_mul_eq_two_mul_prev_int_1"
+        }
+    },
+    {
+        "name": "diff_mul_eq_two_mul_prev_int",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_mul_eq_two_mul_prev_int\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1))\n  (hn_mul : (2 * n k + 1) = d * n (k + 1)) :\n  (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n  have h1 : (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n    have h1 : (d : \u2124) * (m (k + 1) : \u2124) = 2 * m k + 1 := by\n      norm_cast at hm_mul \u22a2\n      linarith\n    have h2 : (d : \u2124) * (n (k + 1) : \u2124) = 2 * n k + 1 := by\n      norm_cast at hn_mul \u22a2\n      linarith\n    have h3 : (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 * m k + 1) - (2 * n k + 1) := by\n      linarith\n    linarith\n  \n  simpa using h1",
+        "custom_id": "diff_mul_eq_two_mul_prev_int_2",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "unused variable `h1`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 11
+                    },
+                    "data": "unused variable `h2`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 11
+                    },
+                    "data": "unused variable `h3`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 1.3606252670288086,
+            "custom_id": "diff_mul_eq_two_mul_prev_int_2"
+        }
+    },
+    {
+        "name": "diff_mul_eq_two_mul_prev_int",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_mul_eq_two_mul_prev_int\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1))\n  (hn_mul : (2 * n k + 1) = d * n (k + 1)) :\n  (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n  have h1 : (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n    have h1 : (2 * m k + 1 : \u2124) = d * m (k + 1) := by exact_mod_cast hm_mul\n    have h2 : (2 * n k + 1 : \u2124) = d * n (k + 1) := by exact_mod_cast hn_mul\n    linarith\n  exact_mod_cast h1",
+        "custom_id": "diff_mul_eq_two_mul_prev_int_3",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "unused variable `h1`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "unused variable `h2`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.3957035541534424,
+            "custom_id": "diff_mul_eq_two_mul_prev_int_3"
+        }
+    },
+    {
+        "name": "diff_mul_eq_two_mul_prev_int",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_mul_eq_two_mul_prev_int\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1))\n  (hn_mul : (2 * n k + 1) = d * n (k + 1)) :\n  (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n  have h1 : (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n    have h1 : (2 * m k + 1 : \u2124) = d * m (k + 1) := by exact_mod_cast hm_mul\n    have h2 : (2 * n k + 1 : \u2124) = d * n (k + 1) := by exact_mod_cast hn_mul\n    linarith\n  exact_mod_cast h1",
+        "custom_id": "diff_mul_eq_two_mul_prev_int_4",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "unused variable `h1`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "unused variable `h2`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.3966035842895508,
+            "custom_id": "diff_mul_eq_two_mul_prev_int_4"
+        }
+    },
+    {
+        "name": "diff_mul_eq_two_mul_prev_int",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_mul_eq_two_mul_prev_int\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1))\n  (hn_mul : (2 * n k + 1) = d * n (k + 1)) :\n  (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n  have h1 : (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n    have h1 : (2 * m k + 1 : \u2124) = d * m (k + 1) := by exact_mod_cast hm_mul\n    have h2 : (2 * n k + 1 : \u2124) = d * n (k + 1) := by exact_mod_cast hn_mul\n    linarith\n  simpa [sub_eq_add_neg] using h1",
+        "custom_id": "diff_mul_eq_two_mul_prev_int_5",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "unused variable `h1`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "unused variable `h2`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.6850132942199707,
+            "custom_id": "diff_mul_eq_two_mul_prev_int_5"
+        }
+    },
+    {
+        "name": "diff_mul_eq_two_mul_prev_int",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_mul_eq_two_mul_prev_int\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1))\n  (hn_mul : (2 * n k + 1) = d * n (k + 1)) :\n  (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n  have h1 : (d : \u2124) * (m (k + 1) : \u2124) = 2 * m k + 1 := by\n    norm_cast at hm_mul \u22a2\n    linarith\n  have h2 : (d : \u2124) * (n (k + 1) : \u2124) = 2 * n k + 1 := by\n    norm_cast at hn_mul \u22a2\n    linarith\n  have h3 : (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n    linarith\n  exact h3",
+        "custom_id": "diff_mul_eq_two_mul_prev_int_6",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 9
+                    },
+                    "data": "unused variable `h1`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 9
+                    },
+                    "data": "unused variable `h2`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.9402804374694824,
+            "custom_id": "diff_mul_eq_two_mul_prev_int_6"
+        }
+    },
+    {
+        "name": "diff_mul_eq_two_mul_prev_int",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_mul_eq_two_mul_prev_int\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1))\n  (hn_mul : (2 * n k + 1) = d * n (k + 1)) :\n  (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n  have h1 : (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n    have h1 : (2 * m k + 1 : \u2124) = d * m (k + 1) := by exact_mod_cast hm_mul\n    have h2 : (2 * n k + 1 : \u2124) = d * n (k + 1) := by exact_mod_cast hn_mul\n    have h3 : (d : \u2124) * (m (k + 1) - n (k + 1)) = (2 : \u2124) * (m k - n k) := by\n      linarith\n    exact_mod_cast h3\n  exact h1",
+        "custom_id": "diff_mul_eq_two_mul_prev_int_7",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "unused variable `h1`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "unused variable `h2`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.6260073184967041,
+            "custom_id": "diff_mul_eq_two_mul_prev_int_7"
+        }
+    },
+    {
+        "name": "diff_mul_eq_two_mul_prev_int",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_mul_eq_two_mul_prev_int\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1))\n  (hn_mul : (2 * n k + 1) = d * n (k + 1)) :\n  (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n  have h1 : (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n    have h1 : (2 * m k + 1 : \u2124) = d * m (k + 1) := by exact_mod_cast hm_mul\n    have h2 : (2 * n k + 1 : \u2124) = d * n (k + 1) := by exact_mod_cast hn_mul\n    have h3 : (d : \u2124) * (m (k + 1) : \u2124) - (d : \u2124) * (n (k + 1) : \u2124) = (2 * m k + 1 : \u2124) - (2 * n k + 1 : \u2124) := by\n      linarith\n    have h4 : (d : \u2124) * (m (k + 1) - n (k + 1)) = 2 * (m k - n k) := by\n      linarith\n    exact h4\n  \n  exact h1",
+        "custom_id": "diff_mul_eq_two_mul_prev_int_8",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "unused variable `h1`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "unused variable `h2`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "unused variable `h3`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.7396414279937744,
+            "custom_id": "diff_mul_eq_two_mul_prev_int_8"
+        }
+    },
+    {
+        "name": "diff_mul_eq_two_mul_prev_int",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_mul_eq_two_mul_prev_int\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1))\n  (hn_mul : (2 * n k + 1) = d * n (k + 1)) :\n  (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n  have h1 : (d : \u2124) * (m (k + 1) : \u2124) = 2 * m k + 1 := by\n    norm_cast at *\n    linarith\n  have h2 : (d : \u2124) * (n (k + 1) : \u2124) = 2 * n k + 1 := by\n    norm_cast at *\n    linarith\n  have h3 : (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n    linarith\n  exact h3",
+        "custom_id": "diff_mul_eq_two_mul_prev_int_9",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 9
+                    },
+                    "data": "unused variable `h2`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.9359652996063232,
+            "custom_id": "diff_mul_eq_two_mul_prev_int_9"
+        }
+    },
+    {
+        "name": "diff_mul_eq_two_mul_prev_int",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_mul_eq_two_mul_prev_int\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1))\n  (hn_mul : (2 * n k + 1) = d * n (k + 1)) :\n  (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n  have h1 : (d : \u2124) * (m (k + 1) : \u2124) = 2 * m k + 1 := by\n    norm_cast at hm_mul \u22a2\n    linarith\n  have h2 : (d : \u2124) * (n (k + 1) : \u2124) = 2 * n k + 1 := by\n    norm_cast at hn_mul \u22a2\n    linarith\n  have h3 : (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n    linarith\n  exact h3",
+        "custom_id": "diff_mul_eq_two_mul_prev_int_10",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 9
+                    },
+                    "data": "unused variable `h1`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 9
+                    },
+                    "data": "unused variable `h2`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.95672607421875,
+            "custom_id": "diff_mul_eq_two_mul_prev_int_10"
+        }
+    },
+    {
+        "name": "diff_mul_eq_two_mul_prev_int",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_mul_eq_two_mul_prev_int\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1))\n  (hn_mul : (2 * n k + 1) = d * n (k + 1)) :\n  (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n  have h1 : (d : \u2124) * (m (k + 1) : \u2124) = 2 * m k + 1 := by\n    norm_cast at hm_mul \u22a2\n    linarith\n  have h2 : (d : \u2124) * (n (k + 1) : \u2124) = 2 * n k + 1 := by\n    norm_cast at hn_mul \u22a2\n    linarith\n  have h3 : (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n    linarith\n  exact h3",
+        "custom_id": "diff_mul_eq_two_mul_prev_int_11",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 9
+                    },
+                    "data": "unused variable `h1`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 9
+                    },
+                    "data": "unused variable `h2`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.9096488952636719,
+            "custom_id": "diff_mul_eq_two_mul_prev_int_11"
+        }
+    },
+    {
+        "name": "diff_mul_eq_two_mul_prev_int",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_mul_eq_two_mul_prev_int\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1))\n  (hn_mul : (2 * n k + 1) = d * n (k + 1)) :\n  (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n  have h1 : (d : \u2124) * (m (k + 1) : \u2124) = 2 * m k + 1 := by\n    norm_cast at hm_mul \u22a2\n    linarith\n  have h2 : (d : \u2124) * (n (k + 1) : \u2124) = 2 * n k + 1 := by\n    norm_cast at hn_mul \u22a2\n    linarith\n  have h3 : (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n    linarith\n  exact_mod_cast h3",
+        "custom_id": "diff_mul_eq_two_mul_prev_int_12",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 9
+                    },
+                    "data": "unused variable `h1`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 9
+                    },
+                    "data": "unused variable `h2`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 1.0166525840759277,
+            "custom_id": "diff_mul_eq_two_mul_prev_int_12"
+        }
+    },
+    {
+        "name": "diff_mul_eq_two_mul_prev_int",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_mul_eq_two_mul_prev_int\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1))\n  (hn_mul : (2 * n k + 1) = d * n (k + 1)) :\n  (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n  have h1 : (d : \u2124) * (m (k + 1) : \u2124) = 2 * m k + 1 := by\n    exact_mod_cast hm_mul\n  have h2 : (d : \u2124) * (n (k + 1) : \u2124) = 2 * n k + 1 := by\n    exact_mod_cast hn_mul\n  have h3 : (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n    linarith\n  exact_mod_cast h3",
+        "custom_id": "diff_mul_eq_two_mul_prev_int_13",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 25
+                    },
+                    "data": "mod_cast has type\n  2 * m k + 1 = d * m (k + 1) : Prop\nbut is expected to have type\n  d * m (k + 1) = 2 * m k + 1 : Prop"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 25
+                    },
+                    "data": "mod_cast has type\n  2 * n k + 1 = d * n (k + 1) : Prop\nbut is expected to have type\n  d * n (k + 1) = 2 * n k + 1 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.375593900680542,
+            "custom_id": "diff_mul_eq_two_mul_prev_int_13"
+        }
+    },
+    {
+        "name": "diff_mul_eq_two_mul_prev_int",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_mul_eq_two_mul_prev_int\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1))\n  (hn_mul : (2 * n k + 1) = d * n (k + 1)) :\n  (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n  have h1 : (d : \u2124) * (m (k + 1) : \u2124) = 2 * m k + 1 := by\n    norm_cast at hm_mul \u22a2\n    linarith\n  have h2 : (d : \u2124) * (n (k + 1) : \u2124) = 2 * n k + 1 := by\n    norm_cast at hn_mul \u22a2\n    linarith\n  have h3 : (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n    linarith\n  exact_mod_cast h3",
+        "custom_id": "diff_mul_eq_two_mul_prev_int_14",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 9
+                    },
+                    "data": "unused variable `h1`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 9
+                    },
+                    "data": "unused variable `h2`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.9234247207641602,
+            "custom_id": "diff_mul_eq_two_mul_prev_int_14"
+        }
+    },
+    {
+        "name": "diff_mul_eq_two_mul_prev_int",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem diff_mul_eq_two_mul_prev_int\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1))\n  (hn_mul : (2 * n k + 1) = d * n (k + 1)) :\n  (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n  have h1 : (d : \u2124) * (m (k + 1) : \u2124) = 2 * m k + 1 := by\n    norm_cast at hm_mul \u22a2\n    linarith\n  have h2 : (d : \u2124) * (n (k + 1) : \u2124) = 2 * n k + 1 := by\n    norm_cast at hn_mul \u22a2\n    linarith\n  have h3 : (d : \u2124) * ((m (k + 1) : \u2124) - (n (k + 1) : \u2124)) = (2 : \u2124) * ((m k : \u2124) - (n k : \u2124)) := by\n    linarith\n  exact h3",
+        "custom_id": "diff_mul_eq_two_mul_prev_int_15",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 9
+                    },
+                    "data": "unused variable `h1`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 9
+                    },
+                    "data": "unused variable `h2`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.9012727737426758,
+            "custom_id": "diff_mul_eq_two_mul_prev_int_15"
+        }
+    },
+    {
+        "name": "d_nat_nonzero_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem d_nat_nonzero_of_mul_eq\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1)) :\n  (d : \u2124) \u2260 0 := by\n  intro h\n  have h\u2081 : (2 * m k + 1 : \u2124) = d * m (k + 1) := by exact_mod_cast hm_mul\n  have h\u2082 : (d : \u2124) = 0 := by simpa using h\n  have h\u2083 : (2 * m k + 1 : \u2124) = 0 * m (k + 1) := by simp [h\u2082] at h\u2081 \u22a2; exact_mod_cast h\u2081\n  have h\u2084 : (2 * m k + 1 : \u2124) = 0 := by simp at h\u2083 \u22a2; exact_mod_cast h\u2083\n  omega",
+        "custom_id": "d_nat_nonzero_of_mul_eq_16",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 7,
+                        "column": 5
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 6
+                    },
+                    "data": "unused variable `n`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2084`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.32002997398376465,
+            "custom_id": "d_nat_nonzero_of_mul_eq_16"
+        }
+    },
+    {
+        "name": "d_nat_nonzero_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem d_nat_nonzero_of_mul_eq\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1)) :\n  (d : \u2124) \u2260 0 := by\n  intro h\n  have h\u2081 : d = 0 := by exact_mod_cast h\n  have h\u2082 : (2 * m k + 1) = d * m (k + 1) := hm_mul\n  rw [h\u2081] at h\u2082\n  norm_num at h\u2082\n  <;> omega",
+        "custom_id": "d_nat_nonzero_of_mul_eq_17",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 7,
+                        "column": 5
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 6
+                    },
+                    "data": "unused variable `n`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.10868000984191895,
+            "custom_id": "d_nat_nonzero_of_mul_eq_17"
+        }
+    },
+    {
+        "name": "d_nat_nonzero_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem d_nat_nonzero_of_mul_eq\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1)) :\n  (d : \u2124) \u2260 0 := by\n  by_contra! h\n  have h\u2081 : d = 0 := by exact_mod_cast h\n  rw [h\u2081] at hm_mul\n  have h\u2082 : 2 * m k + 1 = 0 := by simpa using hm_mul\n  have h\u2083 : m k = 0 := by omega\n  have h\u2084 : 2 * 0 + 1 = 0 := by simpa [h\u2083] using h\u2082\n  omega",
+        "custom_id": "d_nat_nonzero_of_mul_eq_18",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 34
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 52
+                    },
+                    "data": "try 'simp at hm_mul' instead of 'simpa using hm_mul'\nnote: this linter can be disabled with `set_option linter.unnecessarySimpa false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 32
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 51
+                    },
+                    "data": "try 'simp at h\u2082' instead of 'simpa using h\u2082'\nnote: this linter can be disabled with `set_option linter.unnecessarySimpa false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 7,
+                        "column": 5
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 6
+                    },
+                    "data": "unused variable `n`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2084`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.24180030822753906,
+            "custom_id": "d_nat_nonzero_of_mul_eq_18"
+        }
+    },
+    {
+        "name": "d_nat_nonzero_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem d_nat_nonzero_of_mul_eq\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1)) :\n  (d : \u2124) \u2260 0 := by\n  by_contra! h\n  have h\u2081 : m k = 0 := by\n    have h\u2082 : d = 0 := by simpa using h\n    simp_all\n  have h\u2082 : m (k + 1) = 0 := by\n    have h\u2083 : d = 0 := by simpa using h\n    simp_all\n  simp_all",
+        "custom_id": "d_nat_nonzero_of_mul_eq_19",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 7,
+                        "column": 5
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 6
+                    },
+                    "data": "unused variable `n`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.1533064842224121,
+            "custom_id": "d_nat_nonzero_of_mul_eq_19"
+        }
+    },
+    {
+        "name": "d_nat_nonzero_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem d_nat_nonzero_of_mul_eq\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1)) :\n  (d : \u2124) \u2260 0 := by\n  intro h\n  have h1 : (d : \u2124) = 0 := by exact_mod_cast h\n  have h2 : (m (k + 1) : \u2124) \u2260 0 := by\n    intro h3\n    have h4 : (m (k + 1) : \u2124) = 0 := by exact_mod_cast h3\n    have h5 : (2 * m k + 1 : \u2124) = d * m (k + 1) := by exact_mod_cast hm_mul\n    rw [h1] at h5\n    norm_num at h5\n    <;> simp_all [Int.ofNat_eq_coe]\n    <;> omega\n  have h3 : (d : \u2124) \u2260 0 := by simp_all\n  simp_all",
+        "custom_id": "d_nat_nonzero_of_mul_eq_20",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 7,
+                        "column": 5
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 6
+                    },
+                    "data": "unused variable `n`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 9
+                    },
+                    "data": "unused variable `h2`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 19,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 13
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 7
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.3731374740600586,
+            "custom_id": "d_nat_nonzero_of_mul_eq_20"
+        }
+    },
+    {
+        "name": "d_nat_nonzero_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem d_nat_nonzero_of_mul_eq\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1)) :\n  (d : \u2124) \u2260 0 := by\n  intro h\n  have h\u2081 : d = 0 := by simpa using h\n  have h\u2082 : (2 * m k + 1) = 0 := by simpa [h\u2081] using hm_mul\n  omega",
+        "custom_id": "d_nat_nonzero_of_mul_eq_21",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 36
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 59
+                    },
+                    "data": "try 'simp at hm_mul' instead of 'simpa using hm_mul'\nnote: this linter can be disabled with `set_option linter.unnecessarySimpa false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 7,
+                        "column": 5
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 6
+                    },
+                    "data": "unused variable `n`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.15740537643432617,
+            "custom_id": "d_nat_nonzero_of_mul_eq_21"
+        }
+    },
+    {
+        "name": "d_nat_nonzero_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem d_nat_nonzero_of_mul_eq\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1)) :\n  (d : \u2124) \u2260 0 := by\n  intro h\n  have h1 : (2 * m k + 1) = d * m (k + 1) := by assumption\n  have h2 : d = 0 := by simpa [h] using h\n  rw [h2] at h1\n  norm_num at h1\n  <;> omega",
+        "custom_id": "d_nat_nonzero_of_mul_eq_22",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 24
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 41
+                    },
+                    "data": "type mismatch\n  h\u271d\nhas type\n  True : Prop\nbut is expected to have type\n  d = 0 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.10165762901306152,
+            "custom_id": "d_nat_nonzero_of_mul_eq_22"
+        }
+    },
+    {
+        "name": "d_nat_nonzero_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem d_nat_nonzero_of_mul_eq\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1)) :\n  (d : \u2124) \u2260 0 := by\n  intro h\n  have h2 : (2 * m k + 1 : \u2124) = d * m (k + 1) := by exact_mod_cast hm_mul\n  rw [h] at h2\n  norm_num at h2\n  <;> omega",
+        "custom_id": "d_nat_nonzero_of_mul_eq_23",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 7,
+                        "column": 5
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 6
+                    },
+                    "data": "unused variable `n`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.1389920711517334,
+            "custom_id": "d_nat_nonzero_of_mul_eq_23"
+        }
+    },
+    {
+        "name": "d_nat_nonzero_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem d_nat_nonzero_of_mul_eq\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1)) :\n  (d : \u2124) \u2260 0 := by\n  intro h\n  have h1 : d = 0 := by exact_mod_cast h\n  rw [h1] at hm_mul\n  norm_num at hm_mul\n  <;> omega",
+        "custom_id": "d_nat_nonzero_of_mul_eq_24",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 7,
+                        "column": 5
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 6
+                    },
+                    "data": "unused variable `n`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.09470224380493164,
+            "custom_id": "d_nat_nonzero_of_mul_eq_24"
+        }
+    },
+    {
+        "name": "d_nat_nonzero_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem d_nat_nonzero_of_mul_eq\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1)) :\n  (d : \u2124) \u2260 0 := by\n  intro h\n  have h1 : (2 * m k + 1) = d * m (k + 1) := by assumption\n  rw [h] at h1\n  norm_cast at h1\n  <;> omega",
+        "custom_id": "d_nat_nonzero_of_mul_eq_25",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 7
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  \u2191d\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nhm_mul : 2 * m k + 1 = d * m (k + 1)\nh : \u2191d = 0\nh1 : 2 * m k + 1 = d * m (k + 1)\n\u22a2 False"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.030056238174438477,
+            "custom_id": "d_nat_nonzero_of_mul_eq_25"
+        }
+    },
+    {
+        "name": "d_nat_nonzero_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem d_nat_nonzero_of_mul_eq\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1)) :\n  (d : \u2124) \u2260 0 := by\n  intro h\n  have h1 : (2 * m k + 1 : \u2124) = d * m (k + 1) := by exact_mod_cast hm_mul\n  have h2 : d = 0 := by exact_mod_cast h\n  rw [h2] at h1\n  norm_num at h1\n  <;> omega",
+        "custom_id": "d_nat_nonzero_of_mul_eq_26",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 7,
+                        "column": 5
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 6
+                    },
+                    "data": "unused variable `n`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.14745569229125977,
+            "custom_id": "d_nat_nonzero_of_mul_eq_26"
+        }
+    },
+    {
+        "name": "d_nat_nonzero_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem d_nat_nonzero_of_mul_eq\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1)) :\n  (d : \u2124) \u2260 0 := by\n  intro h\n  have h2 : (d : \u2124) = 0 := by exact_mod_cast h\n  have h3 : (2 * m k + 1 : \u2124) = 0 := by\n    linarith [h2, hm_mul]\n  have h4 : (2 * m k + 1 : \u2115) = 0 := by\n    exact_mod_cast h3\n  have h5 : (m k : \u2115) = 0 := by omega\n  have h6 : (2 * m k : \u2115) = 0 := by omega\n  omega",
+        "custom_id": "d_nat_nonzero_of_mul_eq_27",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 25
+                    },
+                    "data": "linarith failed to find a contradiction\ncase h2.h\nm n : \u2115 \u2192 \u2115\nk d : \u2115\nhm_mul : 2 * m k + 1 = d * m (k + 1)\nh h2 : \u2191d = 0\na\u271d : 0 < 2 * \u2191(m k) + 1\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.2808666229248047,
+            "custom_id": "d_nat_nonzero_of_mul_eq_27"
+        }
+    },
+    {
+        "name": "d_nat_nonzero_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem d_nat_nonzero_of_mul_eq\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1)) :\n  (d : \u2124) \u2260 0 := by\n  intro h\n  have h\u2081 : d = 0 := by exact_mod_cast h\n  have h\u2082 : m (k + 1) = 0 := by\n    rw [h\u2081] at hm_mul\n    omega\n  simp_all\n  <;> linarith",
+        "custom_id": "d_nat_nonzero_of_mul_eq_28",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 7,
+                        "column": 5
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 6
+                    },
+                    "data": "unused variable `n`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.17672061920166016,
+            "custom_id": "d_nat_nonzero_of_mul_eq_28"
+        }
+    },
+    {
+        "name": "d_nat_nonzero_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem d_nat_nonzero_of_mul_eq\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1)) :\n  (d : \u2124) \u2260 0 := by\n  intro h\n  have h1 : (d : \u2124) = 0 := by assumption\n  have h2 : (m (k + 1) : \u2124) \u2260 0 := by\n    intro h3\n    have h4 : (m (k + 1) : \u2124) = 0 := by assumption\n    have h5 : (m k : \u2124) = 0 := by\n      nlinarith\n    have h6 : (2 * m k + 1 : \u2124) = 0 := by\n      nlinarith\n    omega\n  have h3 : (2 * m k + 1 : \u2124) = d * m (k + 1) := by\n    exact_mod_cast hm_mul\n  nlinarith",
+        "custom_id": "d_nat_nonzero_of_mul_eq_29",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 7,
+                        "column": 5
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 6
+                    },
+                    "data": "unused variable `n`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 9
+                    },
+                    "data": "unused variable `h1`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 9
+                    },
+                    "data": "unused variable `h2`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "unused variable `h4`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 20,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 9
+                    },
+                    "data": "unused variable `h3`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 1.4724912643432617,
+            "custom_id": "d_nat_nonzero_of_mul_eq_29"
+        }
+    },
+    {
+        "name": "d_nat_nonzero_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem d_nat_nonzero_of_mul_eq\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1)) :\n  (d : \u2124) \u2260 0 := by\n  intro h\n  have h1 : d = 0 := by simpa using h\n  rw [h1] at hm_mul\n  norm_num at hm_mul\n  <;> omega",
+        "custom_id": "d_nat_nonzero_of_mul_eq_30",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 7,
+                        "column": 5
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 6
+                    },
+                    "data": "unused variable `n`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.15139198303222656,
+            "custom_id": "d_nat_nonzero_of_mul_eq_30"
+        }
+    },
+    {
+        "name": "d_nat_nonzero_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem d_nat_nonzero_of_mul_eq\n  (m n : \u2115 \u2192 \u2115) (k : \u2115) (d : \u2115)\n  (hm_mul : (2 * m k + 1) = d * m (k + 1)) :\n  (d : \u2124) \u2260 0 := by\n  intro h\n  have h\u2081 : d = 0 := by exact_mod_cast h\n  rw [h\u2081] at hm_mul\n  have h\u2082 : 2 * m k + 1 = 0 := by omega\n  have h\u2083 : m k = 0 := by omega\n  have h\u2084 : 2 * m k \u2265 2 * m k := by omega\n  omega",
+        "custom_id": "d_nat_nonzero_of_mul_eq_31",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 7,
+                        "column": 5
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 6
+                    },
+                    "data": "unused variable `n`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2082`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2083`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2084`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.09887242317199707,
+            "custom_id": "d_nat_nonzero_of_mul_eq_31"
+        }
+    },
+    {
+        "name": "int_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_div_eq_of_mul_eq (d : \u2124) {x y : \u2124} (hdnz : d \u2260 0) (h : d * x = y) :\n  x = y / d := by\n  have h\u2081 : d * x = y := h\n  rw [\u2190 h\u2081]\n  <;> field_simp [hdnz]\n  <;> ring\n  <;> simp_all [Int.mul_emod]\n  <;> omega",
+        "custom_id": "int_div_eq_of_mul_eq_32",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 10
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.04329061508178711,
+            "custom_id": "int_div_eq_of_mul_eq_32"
+        }
+    },
+    {
+        "name": "int_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_div_eq_of_mul_eq (d : \u2124) {x y : \u2124} (hdnz : d \u2260 0) (h : d * x = y) :\n  x = y / d := by\n  have h\u2081 : d * x = y := h\n  have h\u2082 : x = y / d := by\n    apply Eq.symm\n    apply Int.ediv_eq_of_eq_mul_right (by assumption)\n    linarith\n  exact h\u2082",
+        "custom_id": "int_div_eq_of_mul_eq_33",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.10994815826416016,
+            "custom_id": "int_div_eq_of_mul_eq_33"
+        }
+    },
+    {
+        "name": "int_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_div_eq_of_mul_eq (d : \u2124) {x y : \u2124} (hdnz : d \u2260 0) (h : d * x = y) :\n  x = y / d := by\n  have h\u2081 : d * x = y := h\n  have h\u2082 : x = y / d := by\n    apply Eq.symm\n    apply Int.ediv_eq_of_eq_mul_right (show d \u2260 0 by exact hdnz)\n    linarith\n  exact h\u2082",
+        "custom_id": "int_div_eq_of_mul_eq_34",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.13647770881652832,
+            "custom_id": "int_div_eq_of_mul_eq_34"
+        }
+    },
+    {
+        "name": "int_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_div_eq_of_mul_eq (d : \u2124) {x y : \u2124} (hdnz : d \u2260 0) (h : d * x = y) :\n  x = y / d := by\n  have h\u2081 : d * x = y := h\n  have h\u2082 : d \u2223 y := by\n    use x\n    linarith\n  have h\u2083 : x = y / d := by\n    apply Eq.symm\n    apply Int.ediv_mul_cancel h\u2082\n  exact h\u2083",
+        "custom_id": "int_div_eq_of_mul_eq_35",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 32
+                    },
+                    "data": "tactic 'apply' failed, failed to unify\n  y / d * d = y\nwith\n  y / d = x\ncase h\nd x y : \u2124\nhdnz : d \u2260 0\nh h\u2081 : d * x = y\nh\u2082 : d \u2223 y\n\u22a2 y / d = x"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.11362171173095703,
+            "custom_id": "int_div_eq_of_mul_eq_35"
+        }
+    },
+    {
+        "name": "int_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_div_eq_of_mul_eq (d : \u2124) {x y : \u2124} (hdnz : d \u2260 0) (h : d * x = y) :\n  x = y / d := by\n  have h1 : d * x = y := h\n  have h2 : x = y / d := by\n    apply Eq.symm\n    apply Int.ediv_eq_of_eq_mul_right (show d \u2260 0 by exact hdnz)\n    linarith\n  exact h2",
+        "custom_id": "int_div_eq_of_mul_eq_36",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 9
+                    },
+                    "data": "unused variable `h1`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.09974551200866699,
+            "custom_id": "int_div_eq_of_mul_eq_36"
+        }
+    },
+    {
+        "name": "int_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_div_eq_of_mul_eq (d : \u2124) {x y : \u2124} (hdnz : d \u2260 0) (h : d * x = y) :\n  x = y / d := by\n  have h\u2081 : x = y / d := by\n    apply Eq.symm\n    rw [Int.ediv_eq_of_eq_mul_right (by assumption)]\n    linarith\n  exact h\u2081",
+        "custom_id": "int_div_eq_of_mul_eq_37",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.10064530372619629,
+            "custom_id": "int_div_eq_of_mul_eq_37"
+        }
+    },
+    {
+        "name": "int_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_div_eq_of_mul_eq (d : \u2124) {x y : \u2124} (hdnz : d \u2260 0) (h : d * x = y) :\n  x = y / d := by\n  have h1 : d * x = y := h\n  have h2 : x = y / d := by\n    apply Eq.symm\n    apply Int.ediv_eq_of_eq_mul_right (by simp [hdnz])\n    linarith\n  exact h2",
+        "custom_id": "int_div_eq_of_mul_eq_38",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 9
+                    },
+                    "data": "unused variable `h1`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.11368489265441895,
+            "custom_id": "int_div_eq_of_mul_eq_38"
+        }
+    },
+    {
+        "name": "int_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_div_eq_of_mul_eq (d : \u2124) {x y : \u2124} (hdnz : d \u2260 0) (h : d * x = y) :\n  x = y / d := by\n  have h\u2081 : d * x = y := h\n  have h\u2082 : d \u2223 y := by\n    use x\n    linarith\n  have h\u2083 : x = y / d := by\n    apply Eq.symm\n    apply Int.ediv_eq_of_eq_mul_right (by simp [hdnz])\n    linarith\n  exact h\u2083",
+        "custom_id": "int_div_eq_of_mul_eq_39",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2082`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.16989707946777344,
+            "custom_id": "int_div_eq_of_mul_eq_39"
+        }
+    },
+    {
+        "name": "int_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_div_eq_of_mul_eq (d : \u2124) {x y : \u2124} (hdnz : d \u2260 0) (h : d * x = y) :\n  x = y / d := by\n  have h\u2081 : d \u2223 y := by\n    use x\n    linarith\n  have h\u2082 : x = y / d := by\n    rw [Int.ediv_eq_of_eq_mul_right (by assumption)]\n    linarith\n  exact h\u2082",
+        "custom_id": "int_div_eq_of_mul_eq_40",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.14187169075012207,
+            "custom_id": "int_div_eq_of_mul_eq_40"
+        }
+    },
+    {
+        "name": "int_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_div_eq_of_mul_eq (d : \u2124) {x y : \u2124} (hdnz : d \u2260 0) (h : d * x = y) :\n  x = y / d := by\n  have h1 : d * x = y := h\n  have h2 : x = y / d := by\n    apply Eq.symm\n    rw [Int.ediv_eq_of_eq_mul_right hdnz]\n    linarith\n  exact h2",
+        "custom_id": "int_div_eq_of_mul_eq_41",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 9
+                    },
+                    "data": "unused variable `h1`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.11924409866333008,
+            "custom_id": "int_div_eq_of_mul_eq_41"
+        }
+    },
+    {
+        "name": "int_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_div_eq_of_mul_eq (d : \u2124) {x y : \u2124} (hdnz : d \u2260 0) (h : d * x = y) :\n  x = y / d := by\n  have h\u2081 : d \u2223 y := by\n    use x\n    linarith\n  have h\u2082 : x = y / d := by\n    rw [Int.ediv_eq_of_eq_mul_right (show d \u2260 0 by exact hdnz)]\n    <;> simp_all\n  exact h\u2082",
+        "custom_id": "int_div_eq_of_mul_eq_42",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 7
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.16625070571899414,
+            "custom_id": "int_div_eq_of_mul_eq_42"
+        }
+    },
+    {
+        "name": "int_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_div_eq_of_mul_eq (d : \u2124) {x y : \u2124} (hdnz : d \u2260 0) (h : d * x = y) :\n  x = y / d := by\n  have h\u2081 : d \u2223 y := by\n    use x\n    linarith\n  have h\u2082 : x = y / d := by\n    rw [Int.ediv_eq_of_eq_mul_right hdnz]\n    linarith\n  exact h\u2082",
+        "custom_id": "int_div_eq_of_mul_eq_43",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.14829492568969727,
+            "custom_id": "int_div_eq_of_mul_eq_43"
+        }
+    },
+    {
+        "name": "int_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_div_eq_of_mul_eq (d : \u2124) {x y : \u2124} (hdnz : d \u2260 0) (h : d * x = y) :\n  x = y / d := by\n  have h1 : d * x = y := h\n  have h2 : d \u2223 y := by\n    use x\n    linarith\n  have h3 : x = y / d := by\n    rw [Int.ediv_eq_of_eq_mul_right hdz]\n    linarith\n  exact h3",
+        "custom_id": "int_div_eq_of_mul_eq_44",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 36
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 39
+                    },
+                    "data": "unknown identifier 'hdz'"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.15100765228271484,
+            "custom_id": "int_div_eq_of_mul_eq_44"
+        }
+    },
+    {
+        "name": "int_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_div_eq_of_mul_eq (d : \u2124) {x y : \u2124} (hdnz : d \u2260 0) (h : d * x = y) :\n  x = y / d := by\n  have h1 : d * x = y := h\n  have h2 : x = y / d := by\n    apply Eq.symm\n    apply Int.ediv_eq_of_eq_mul_right (by simp [hdnz])\n    linarith\n  exact h2",
+        "custom_id": "int_div_eq_of_mul_eq_45",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 9
+                    },
+                    "data": "unused variable `h1`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.1092977523803711,
+            "custom_id": "int_div_eq_of_mul_eq_45"
+        }
+    },
+    {
+        "name": "int_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_div_eq_of_mul_eq (d : \u2124) {x y : \u2124} (hdnz : d \u2260 0) (h : d * x = y) :\n  x = y / d := by\n  have h\u2081 : d \u2223 y := by\n    use x\n    linarith\n  rw [Int.ediv_eq_of_eq_mul_left hdnz] <;> simp_all\n  <;> omega",
+        "custom_id": "int_div_eq_of_mul_eq_46",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2264 -1\n  a - b \u2264 -1\nwhere\n a := y\n b := x * d\n c := d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 15
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nd x y : \u2124\nhdnz : \u00acd = 0\nh : d * x = y\nh\u2081 : d \u2223 y\n\u22a2 y = x * d"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.17699432373046875,
+            "custom_id": "int_div_eq_of_mul_eq_46"
+        }
+    },
+    {
+        "name": "int_div_eq_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_div_eq_of_mul_eq (d : \u2124) {x y : \u2124} (hdnz : d \u2260 0) (h : d * x = y) :\n  x = y / d := by\n  have h\u2081 : d * x = y := h\n  have h\u2082 : d \u2223 y := by\n    use x\n    linarith\n  have h\u2083 : x = y / d := by\n    rw [Int.ediv_eq_of_eq_mul_right hdnz]\n    linarith\n  exact h\u2083",
+        "custom_id": "int_div_eq_of_mul_eq_47",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2082`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.15291643142700195,
+            "custom_id": "int_div_eq_of_mul_eq_47"
+        }
+    }
+]

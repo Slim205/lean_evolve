@@ -1,0 +1,10 @@
+ERROR from position {'line': 82, 'column': 39} to {'line': 82, 'column': 57}:
+application type mismatch
+  coprime_dvd_of_dvd_mul_right (h_coprime_succ k)
+argument
+  h_coprime_succ k
+has type
+  (m (k + 1)).Coprime (n (k + 1)) : Prop
+but is expected to have type
+  (n (k + 1)).Coprime ?m.6641 : Prop
+

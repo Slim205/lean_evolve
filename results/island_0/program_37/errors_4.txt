@@ -1,0 +1,20 @@
+ERROR from position {'line': 73, 'column': 25} to {'line': 73, 'column': 41}:
+application type mismatch
+  clear_denoms_Q h_two_nk_nonzero
+argument
+  h_two_nk_nonzero
+has type
+  2 * ↑(n k✝) + 1 ≠ 0 : Prop
+but is expected to have type
+  2 * ↑(m k) + 1 ≠ 0 : Prop
+
+ERROR from position {'line': 73, 'column': 70} to {'line': 73, 'column': 86}:
+application type mismatch
+  Eq.symm (h_recurrence k)
+argument
+  h_recurrence k
+has type
+  ↑(m (k + 1)) / ↑(n (k + 1)) = (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1) : Prop
+but is expected to have type
+  ↑(n (k + 1)) / (2 * ↑(n k) + 1) = ↑(m (k + 1)) / (2 * ↑(m k) + 1) : Prop
+

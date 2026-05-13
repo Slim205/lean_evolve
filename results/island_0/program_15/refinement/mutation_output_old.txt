@@ -1,0 +1,40 @@
+>>>>SEARCH
+lemma exists_pow_two_mul_odd_for_pos_nat (A : ℕ) (hpos : 0 < A) :
+  ∃ (u r : ℕ), A = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+  sorry
+>>>>REPLACE
+/-- Helper A: existence of a maximal 2-adic exponent dividing A. -/
+lemma exists_max_pow_two_dividing (A : ℕ) (hpos : 0 < A) :
+  ∃ u, ((2 : ℕ) ^ u ∣ A) ∧ ¬ ((2 : ℕ) ^ (u + 1) ∣ A) := by
+  sorry
+
+/-- Helper B: given that 2^u divides A, define r := A / 2^u and record the factorization and positivity. -/
+lemma define_odd_part_by_division (A u : ℕ) (hdiv : ((2 : ℕ) ^ u ∣ A)) (hpos : 0 < A) :
+  ∃ r, A = (2 : ℕ) ^ u * r ∧ 0 < r := by
+  sorry
+
+/-- Helper C: if 2^u is the maximal power of 2 dividing A and A = 2^u * r, then r is odd. -/
+lemma oddness_of_quotient (A u r : ℕ)
+  (hA : A = (2 : ℕ) ^ u * r)
+  (hmax : ¬ ((2 : ℕ) ^ (u + 1) ∣ A)) :
+  r % 2 = 1 := by
+  sorry
+
+/-- Factor a positive natural A as 2^u * r with r odd and positive. Glue uses the three helpers above. -/
+lemma exists_pow_two_mul_odd_for_pos_nat (A : ℕ) (hpos : 0 < A) :
+  ∃ (u r : ℕ), A = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+  -- pick the maximal exponent u with 2^u ∣ A and ¬(2^(u+1) ∣ A)
+  have hmax := by exact exists_max_pow_two_dividing A hpos
+  rcases hmax with ⟨u, hdiv_u, hnot_next⟩
+
+  -- define the quotient r := A / 2^u and get the factorization and positivity
+  have hex_r : ∃ r, A = (2 : ℕ) ^ u * r ∧ 0 < r := by
+    exact define_odd_part_by_division A u hdiv_u hpos
+  rcases hex_r with ⟨r, ⟨hr_eq, hr_pos⟩⟩
+
+  -- deduce oddness of r from maximality of u
+  have hord : r % 2 = 1 := by
+    exact oddness_of_quotient A u r hr_eq hnot_next
+
+  -- assemble the existential
+  exact ⟨u, r, hr_eq, hord, hr_pos⟩

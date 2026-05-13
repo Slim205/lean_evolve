@@ -1,0 +1,16 @@
+>>>>SEARCH
+      calc
+        (2 : ℕ) ^ u2 * r2 = Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) := by
+          exact hA2
+        _ = Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) := by
+          rw [hdiff]
+        _ = (2 : ℕ) ^ u1 * (r1 / d) := by
+          exact h_scaled_eq
+>>>>REPLACE
+      calc
+        (2 : ℕ) ^ u2 * r2 = Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) := by
+          exact Eq.symm hA2
+        _ = Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) := by
+          rw [hdiff]
+        _ = (2 : ℕ) ^ u1 * (r1 / d) := by
+          exact h_scaled_eq

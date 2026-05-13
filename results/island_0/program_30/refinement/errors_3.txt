@@ -1,0 +1,38 @@
+ERROR from position {'line': 12, 'column': 47} to None:
+expected ';' or line break
+
+ERROR from position {'line': 102, 'column': 47} to None:
+expected ';' or line break
+
+ERROR from position {'line': 537, 'column': 47} to None:
+expected ';' or line break
+
+ERROR from position {'line': 547, 'column': 47} to None:
+expected ';' or line break
+
+ERROR from position {'line': 559, 'column': 65} to None:
+expected ';' or line break
+
+ERROR from position {'line': 611, 'column': 4} to {'line': 611, 'column': 26}:
+unknown identifier 'helper_next_eq_div_gcd'
+
+ERROR from position {'line': 614, 'column': 13} to {'line': 614, 'column': 40}:
+unknown identifier 'helper_gcd_odd_and_dvd_diff'
+
+ERROR from position {'line': 604, 'column': 37} to {'line': 644, 'column': 33}:
+unsolved goals
+m n : ℕ → ℕ
+h_recurrence : ∀ (k : ℕ), ↑(m (k + 1)) / ↑(n (k + 1)) = (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1)
+h_nsucc_nonzero : ∀ (k : ℕ), ↑(n (k + 1)) ≠ 0
+h_coprime : ∀ (k : ℕ), 0 < k → (m k).Coprime (n k)
+k u1 r1 u2 r2 : ℕ
+hA1 : (↑(m k) - ↑(n k)).natAbs = 2 ^ u1 * r1
+hodd1 : r1 % 2 = 1
+hpos1 : 0 < r1
+hA2 : (↑(m (k + 1)) - ↑(n (k + 1))).natAbs = 2 ^ u2 * r2
+hodd2 : r2 % 2 = 1
+hpos2 : 0 < r2
+d : ℕ := (2 * m k + 1).gcd (2 * n k + 1)
+hnext : m (k + 1) = (2 * m k + 1) / d ∧ n (k + 1) = (2 * n k + 1) / d
+⊢ r2 ≤ r1
+

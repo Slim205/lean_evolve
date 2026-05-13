@@ -1,0 +1,11 @@
+ERROR from position {'line': 55, 'column': 53} to {'line': 55, 'column': 82}:
+unknown identifier 'denom_nonzero_from_recurrence'
+
+ERROR from position {'line': 55, 'column': 124} to {'line': 55, 'column': 146}:
+type mismatch
+  h_recurrence k
+has type
+  ↑(m (k + 1)) / ↑(n (k + 1)) = (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1) : Prop
+but is expected to have type
+  ↑(m (k + 1)) / ↑(n (k + 1)) = ↑(2 * m k + 1) / ↑(2 * n k + 1) : Prop
+

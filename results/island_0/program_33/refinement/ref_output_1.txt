@@ -1,0 +1,82 @@
+>>>>SEARCH
+lemma next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  ((2 * m k + 1) = d * m (k + 1)) ∧ ((2 * n k + 1) = d * n (k + 1)) := by
+  -- obtain a scaling factor c making the two numerators multiples of the successors
+  -- we need the coprimality of the successor pair and the nonzeroness of n_{k+1}
+  have hns := n_succ_nonzero m n h_recurrence
+  have succ_copr : Nat.Coprime (m (k + 1)) (n (k + 1)) := h_coprime (k + 1) (Nat.succ_pos k)
+  have hscal : ∃ c, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+    exact next_scaling_exists m n h_recurrence k succ_copr (hns k)
+  rcases hscal with ⟨c, ⟨hc1, hc2⟩⟩
+
+  -- use coprimality of the successor pair (applied at k+1) to identify c with the gcd
+  have hc_gcd : c = Nat.gcd (2 * m k + 1) (2 * n k + 1) := by
+    exact scaling_factor_eq_gcd m n k c hc1 hc2 succ_copr
+
+  -- substitute c by the gcd and return the multiplicative equalities (exact divisibility form)
+  let d := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  have h1 : (2 * m k + 1) = d * m (k + 1) := by
+    rw [hc_gcd] at hc1
+    exact hc1
+  have h2 : (2 * n k + 1) = d * n (k + 1) := by
+    rw [hc_gcd] at hc2
+    exact hc2
+  -- assemble the conjunction
+  exact ⟨h1, h2⟩
+>>>>REPLACE
+/-- Helper: the successor denominator n_{k+1} is nonzero (so one can form ratios). -/
+lemma n_succ_nonzero
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k, (n (k + 1) : ℚ) ≠ 0 := by
+  sorry
+
+lemma next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  ((2 * m k + 1) = d * m (k + 1)) ∧ ((2 * n k + 1) = d * n (k + 1)) := by
+  -- obtain a scaling factor c making the two numerators multiples of the successors
+  -- we need the coprimality of the successor pair and the nonzeroness of n_{k+1}
+  have hns := n_succ_nonzero m n h_recurrence
+  have succ_copr : Nat.Coprime (m (k + 1)) (n (k + 1)) := h_coprime (k + 1) (Nat.succ_pos k)
+  have hscal : ∃ c, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+    exact next_scaling_exists m n h_recurrence k succ_copr (hns k)
+  rcases hscal with ⟨c, ⟨hc1, hc2⟩⟩
+
+  -- use coprimality of the successor pair (applied at k+1) to identify c with the gcd
+  have hc_gcd : c = Nat.gcd (2 * m k + 1) (2 * n k + 1) := by
+    exact scaling_factor_eq_gcd m n k c hc1 hc2 succ_copr
+
+  -- substitute c by the gcd and return the multiplicative equalities (exact divisibility form)
+  let d := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  have h1 : (2 * m k + 1) = d * m (k + 1) := by
+    rw [hc_gcd] at hc1
+    exact hc1
+  have h2 : (2 * n k + 1) = d * n (k + 1) := by
+    rw [hc_gcd] at hc2
+    exact hc2
+  -- assemble the conjunction
+  exact ⟨h1, h2⟩
+>>>>SEARCH
+/-- Helper: the successor denominator n_{k+1} is nonzero (so one can form ratios). -/
+lemma n_succ_nonzero
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k, (n (k + 1) : ℚ) ≠ 0 := by
+  sorry
+>>>>REPLACE
+/- n_succ_nonzero moved -/

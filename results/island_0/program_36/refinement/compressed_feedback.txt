@@ -1,0 +1,7 @@
+lemma two_mul_nat_plus_one_nonzero (a : ℕ) : ((2 : ℚ) * (a : ℚ) + 1) ≠ 0 := by
+Failure mode: HARD
+Recommendation:
+1) Prove `0 ≤ (a : ℚ)`.
+2) Deduce `0 ≤ (2 : ℚ) * (a : ℚ)`.
+3) Deduce `0 < (2 : ℚ) * (a : ℚ) + 1` from `0 ≤ (2 : ℚ) * (a : ℚ)` and `0 < (1 : ℚ)`.
+4) Conclude `((2 : ℚ) * (a : ℚ) + 1) ≠ 0` from strict positivity.

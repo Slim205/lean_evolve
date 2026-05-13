@@ -1,0 +1,4 @@
+>>>>SEARCH
+        exact hA2
+>>>>REPLACE
+        exact Eq.symm hA2

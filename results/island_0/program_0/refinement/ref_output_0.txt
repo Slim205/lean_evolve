@@ -1,0 +1,22 @@
+>>>>SEARCH
+  Nat.Odd d ∧ ((d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) := by
+>>>>REPLACE
+  d % 2 = 1 ∧ ((d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) := by
+>>>>SEARCH
+  ∀ k : ℕ,
+    0 < Nat.oddPart (Int.natAbs ((m k : ℤ) - (n k : ℤ))) := by
+>>>>REPLACE
+  ∀ k : ℕ,
+    0 < Int.natAbs ((m k : ℤ) - (n k : ℤ)) := by
+>>>>SEARCH
+  Nat.oddPart (Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ))) <
+    Nat.oddPart (Int.natAbs ((m k : ℤ) - (n k : ℤ))) := by
+>>>>REPLACE
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) <
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) := by
+>>>>SEARCH
+  let t : ℕ → ℕ := fun k =>
+    Nat.oddPart (Int.natAbs ((m k : ℤ) - (n k : ℤ)))
+>>>>REPLACE
+  let t : ℕ → ℕ := fun k =>
+    Int.natAbs ((m k : ℤ) - (n k : ℤ))

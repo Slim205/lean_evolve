@@ -1,0 +1,204 @@
+>>>>SEARCH
+lemma next_scaling_exists
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  ∃ c : ℕ, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+  -- existence of an integer scaling factor c coming from cross-multiplication of the rational
+  -- equality. Proof omitted here; we keep it as a helper.
+  sorry
+>>>>REPLACE
+lemma next_scaling_exists
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (h_succ_coprime : Nat.Coprime (m (k + 1)) (n (k + 1)))
+  (h_n_succ_nonzero : (n (k + 1) : ℚ) ≠ 0) :
+  ∃ c : ℕ, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+  -- Under the additional hypothesis that the successor pair (m_{k+1}, n_{k+1}) is coprime
+  -- and n_{k+1} ≠ 0, cross-multiplication of the rational equality forces that
+  -- m_{k+1} ∣ (2*m_k+1) and n_{k+1} ∣ (2*n_k+1) and the two quotients coincide.
+  -- The arithmetic details are omitted here and left as a helper.
+  sorry
+>>>>SEARCH
+lemma next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  ((2 * m k + 1) = d * m (k + 1)) ∧ ((2 * n k + 1) = d * n (k + 1)) := by
+  -- obtain a scaling factor c making the two numerators multiples of the successors
+  have hscal : ∃ c, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+    exact next_scaling_exists m n h_recurrence k
+  rcases hscal with ⟨c, ⟨hc1, hc2⟩⟩
+
+  -- use coprimality of the successor pair (applied at k+1) to identify c with the gcd
+  have hc_gcd : c = Nat.gcd (2 * m k + 1) (2 * n k + 1) := by
+    have succ_copr : Nat.Coprime (m (k + 1)) (n (k + 1)) := h_coprime (k + 1) (Nat.succ_pos k)
+    exact scaling_factor_eq_gcd m n k c hc1 hc2 succ_copr
+
+  -- substitute c by the gcd and return the multiplicative equalities (exact divisibility form)
+  let d := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  have : (2 * m k + 1) = d * m (k + 1) := by
+    rw [hc_gcd] at hc1
+    exact hc1
+  have : (2 * n k + 1) = d * n (k + 1) := by
+    rw [hc_gcd] at hc2
+    exact hc2
+  -- assemble the conjunction
+  exact ⟨by assumption, by assumption⟩
+>>>>REPLACE
+lemma next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  ((2 * m k + 1) = d * m (k + 1)) ∧ ((2 * n k + 1) = d * n (k + 1)) := by
+  -- obtain a scaling factor c making the two numerators multiples of the successors
+  -- we need the coprimality of the successor pair and the nonzeroness of n_{k+1}
+  have hns := n_succ_nonzero m n h_recurrence
+  have succ_copr : Nat.Coprime (m (k + 1)) (n (k + 1)) := h_coprime (k + 1) (Nat.succ_pos k)
+  have hscal : ∃ c, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+    exact next_scaling_exists m n h_recurrence k succ_copr (hns k)
+  rcases hscal with ⟨c, ⟨hc1, hc2⟩⟩
+
+  -- use coprimality of the successor pair (applied at k+1) to identify c with the gcd
+  have hc_gcd : c = Nat.gcd (2 * m k + 1) (2 * n k + 1) := by
+    exact scaling_factor_eq_gcd m n k c hc1 hc2 succ_copr
+
+  -- substitute c by the gcd and return the multiplicative equalities (exact divisibility form)
+  let d := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  have : (2 * m k + 1) = d * m (k + 1) := by
+    rw [hc_gcd] at hc1
+    exact hc1
+  have : (2 * n k + 1) = d * n (k + 1) := by
+    rw [hc_gcd] at hc2
+    exact hc2
+  -- assemble the conjunction
+  exact ⟨by assumption, by assumption⟩
+>>>>SEARCH
+/-- Helper (abstract): if A = 2^u1 * r1 with r1 odd > 0, and if for an odd d we form
+    B := 2 * (A / d), and B admits a decomposition B = 2^u2 * r2 with r2 odd > 0,
+    then r2 ≤ r1. This isolates the odd-part comparison after dividing by an odd factor. -/
+lemma odd_part_le_from_div_by_odd (A d : ℕ) (u1 r1 u2 r2 : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 ≤ r1 := by
+  -- arithmetic/combinatorial reasoning on 2-adic valuations; omitted
+  sorry
+>>>>REPLACE
+/-- Convert integer divisibility to natural divisibility on absolute values. -/
+lemma int_dvd_to_nat_dvd (d : ℕ) (z : ℤ) (hd : (d : ℤ) ∣ z) :
+  d ∣ Int.natAbs z := by
+  -- bookkeeping between integer divisibility and nat divisibility; omitted
+  sorry
+
+/-- Helper (abstract): if A = 2^u1 * r1 with r1 odd > 0 and d ∣ A and d is odd, and if we form
+    B := 2 * (A / d), and B admits a decomposition B = 2^u2 * r2 with r2 odd > 0,
+    then r2 ≤ r1. This isolates the odd-part comparison after dividing by an odd factor. -/
+lemma odd_part_le_from_div_by_odd (A d : ℕ) (u1 r1 u2 r2 : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) (hd_dvd : d ∣ A) :
+  r2 ≤ r1 := by
+  -- Under the extra exact divisibility hypothesis `d ∣ A` one can write A = d * A' and
+  -- trace the 2-adic valuations to see that the odd part after dividing by the odd d
+  -- cannot increase. The detailed arithmetic is omitted here and left to a helper.
+  sorry
+>>>>SEARCH
+lemma odd_part_noninc_step
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∀ k u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 ≤ r1 := by
+  intro k u1 r1 u2 r2 hA hA_odd hA_pos hB hB_odd hB_pos
+  -- define the relevant gcd
+  let d := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+
+  -- obtain the reduced-form equalities m_{k+1} = (2*m_k+1)/d, n_{k+1} = (2*n_k+1)/d
+  have hnext := next_eq_div_gcd m n h_coprime h_recurrence k
+  rcases hnext with ⟨hm_succ_eq, hn_succ_eq⟩
+
+  -- obtain that d is odd and divides the previous difference
+  have hg := gcd_odd_and_dvd_diff m n k
+  rcases hg with ⟨hd_odd, h_dvd⟩
+
+  -- relate the natAbs of the next difference to natAbs(((2*z)/d))
+  have h_step_natabs := diff_evolution_natAbs m n k d hm_succ_eq hn_succ_eq h_dvd
+
+  -- apply the odd-divisor natAbs scaling lemma to rewrite natAbs(((2*z)/d))
+  let z : ℤ := (m k : ℤ) - (n k : ℤ)
+  have h_scale := natAbs_two_mul_div_of_odd_divisor z d hd_odd h_dvd
+
+  -- combine equalities to get the numeric equality 2 * (A / d) = 2^u2 * r2
+  -- where A = Int.natAbs z
+  have h_combo : 2 * (Int.natAbs z / d) = (2 : ℕ) ^ u2 * r2 := by
+    calc
+      2 * (Int.natAbs z / d) = Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) := Eq.symm h_scale
+      _ = Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) := Eq.symm h_step_natabs
+      _ = (2 : ℕ) ^ u2 * r2 := hB
+
+  -- now invoke the abstract odd-part comparison lemma on A := Int.natAbs z
+  have hres := odd_part_le_from_div_by_odd (Int.natAbs z) d u1 r1 u2 r2 hA hA_odd hA_pos h_combo hB_odd hB_pos hd_odd
+  exact hres
+>>>>REPLACE
+lemma odd_part_noninc_step
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∀ k u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 ≤ r1 := by
+  intro k u1 r1 u2 r2 hA hA_odd hA_pos hB hB_odd hB_pos
+  -- define the relevant gcd
+  let d := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+
+  -- obtain the reduced-form equalities m_{k+1} = (2*m_k+1)/d, n_{k+1} = (2*n_k+1)/d
+  have hnext := next_eq_div_gcd m n h_coprime h_recurrence k
+  rcases hnext with ⟨hm_succ_eq, hn_succ_eq⟩
+
+  -- obtain that d is odd and divides the previous difference (as an integer)
+  have hg := gcd_odd_and_dvd_diff m n k
+  rcases hg with ⟨hd_odd, h_dvd_int⟩
+
+  -- relate the natAbs of the next difference to natAbs(((2*z)/d))
+  have h_step_natabs := diff_evolution_natAbs m n k d hm_succ_eq hn_succ_eq h_dvd_int
+
+  -- apply the odd-divisor natAbs scaling lemma to rewrite natAbs(((2*z)/d))
+  let z : ℤ := (m k : ℤ) - (n k : ℤ)
+  have h_scale := natAbs_two_mul_div_of_odd_divisor z d hd_odd h_dvd_int
+
+  -- combine equalities to get the numeric equality 2 * (A / d) = 2^u2 * r2
+  -- where A = Int.natAbs z
+  have h_combo : 2 * (Int.natAbs z / d) = (2 : ℕ) ^ u2 * r2 := by
+    calc
+      2 * (Int.natAbs z / d) = Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) := Eq.symm h_scale
+      _ = Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) := Eq.symm h_step_natabs
+      _ = (2 : ℕ) ^ u2 * r2 := hB
+
+  -- convert integer divisibility to natural divisibility: d ∣ Int.natAbs z
+  have hd_nat : d ∣ Int.natAbs z := by
+    exact int_dvd_to_nat_dvd d z h_dvd_int
+
+  -- now invoke the abstract odd-part comparison lemma on A := Int.natAbs z
+  have hres := odd_part_le_from_div_by_odd (Int.natAbs z) d u1 r1 u2 r2 hA hA_odd hA_pos h_combo hB_odd hB_pos hd_odd hd_nat
+  exact hres

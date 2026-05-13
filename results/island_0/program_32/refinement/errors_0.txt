@@ -1,0 +1,45 @@
+ERROR from position {'line': 49, 'column': 8} to {'line': 49, 'column': 15}:
+tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  (2 * m k + 1).gcd (2 * n k + 1)
+m n : ℕ → ℕ
+h_coprime : ∀ (k : ℕ), 0 < k → (m k).Coprime (n k)
+h_recurrence : ∀ (k : ℕ), ↑(m (k + 1)) / ↑(n (k + 1)) = (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1)
+k c : ℕ
+hc1 : 2 * m k + 1 = c * m (k + 1)
+hc2 : 2 * n k + 1 = c * n (k + 1)
+hc_gcd : c = (2 * m k + 1).gcd (2 * n k + 1)
+d : ℕ := (2 * m k + 1).gcd (2 * n k + 1)
+⊢ 2 * m k + 1 = d * m (k + 1)
+
+ERROR from position {'line': 52, 'column': 8} to {'line': 52, 'column': 15}:
+tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  (2 * m k + 1).gcd (2 * n k + 1)
+m n : ℕ → ℕ
+h_coprime : ∀ (k : ℕ), 0 < k → (m k).Coprime (n k)
+h_recurrence : ∀ (k : ℕ), ↑(m (k + 1)) / ↑(n (k + 1)) = (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1)
+k c : ℕ
+hc1 : 2 * m k + 1 = c * m (k + 1)
+hc2 : 2 * n k + 1 = c * n (k + 1)
+hc_gcd : c = (2 * m k + 1).gcd (2 * n k + 1)
+d : ℕ := (2 * m k + 1).gcd (2 * n k + 1)
+this : 2 * m k + 1 = d * m (k + 1)
+⊢ 2 * n k + 1 = d * n (k + 1)
+
+ERROR from position {'line': 35, 'column': 71} to {'line': 55, 'column': 72}:
+unsolved goals
+case intro.intro
+m n : ℕ → ℕ
+h_coprime : ∀ (k : ℕ), 0 < k → (m k).Coprime (n k)
+h_recurrence : ∀ (k : ℕ), ↑(m (k + 1)) / ↑(n (k + 1)) = (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1)
+k c : ℕ
+hc1 : 2 * m k + 1 = c * m (k + 1)
+hc2 : 2 * n k + 1 = c * n (k + 1)
+hc_gcd : c = (2 * m k + 1).gcd (2 * n k + 1)
+d : ℕ := (2 * m k + 1).gcd (2 * n k + 1)
+this✝ : 2 * m k + 1 = d * m (k + 1)
+this : 2 * n k + 1 = d * n (k + 1)
+⊢ 2 * m k + 1 = d * m (k + 1) ∧ 2 * n k + 1 = d * n (k + 1)
+
+ERROR from position {'line': 56, 'column': 2} to {'line': 56, 'column': 6}:
+unexpected token 'from'; expected command
+

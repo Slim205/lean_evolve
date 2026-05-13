@@ -1,0 +1,14 @@
+ERROR from position {'line': 83, 'column': 19} to {'line': 83, 'column': 21}:
+type mismatch
+  hL
+has type
+  ↑(m (k + 1)) / ↑(n (k + 1)) = 1 : Prop
+but is expected to have type
+  (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1) = 1 : Prop
+
+ERROR from position {'line': 81, 'column': 8} to {'line': 83, 'column': 21}:
+'calc' tactic failed, has type
+  ↑(m (k + 1)) / ↑(n (k + 1)) = 1
+but it is expected to have type
+  (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1) = 1
+

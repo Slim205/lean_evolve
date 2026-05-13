@@ -1,0 +1,40 @@
+>>>>SEARCH
+have n_succ_nz : n (k + 1) ≠ 0 := by
+    simpa using n_succ_nonzero m n h_recurrence k
+>>>>REPLACE
+have n_succ_nz : n (k + 1) ≠ 0 := by
+    simpa using (h_recurrence k)
+>>>>SEARCH
+hsucc_copr (by exact (n_succ_nz).ne') denom_nonzero (by simpa using (h_recurrence k))
+>>>>REPLACE
+hsucc_copr (by exact n_succ_nz) denom_nonzero (by simpa using (h_recurrence k))
+>>>>SEARCH
+  have hL : (2 : ℕ) ^ u2 * r2 = (2 : ℕ) ^ (u1 + 1) * (r1 / d) := by
+    let q := ((m (k + 1) : ℤ) - (n (k + 1) : ℤ))
+    -- `hdiff_mult` is `q * (d : ℤ) = (2 : ℤ) * z`; rewrite to the form `(d : ℤ) * q = 2*z`
+    have hmul_comm : (d : ℤ) * q = (2 : ℤ) * z := by
+      rw [mul_comm] at hdiff_mult
+      exact hdiff_mult
+    -- apply the generic property from `helper_natabs_scaling_by_odd_div`
+    have hq_prop := h_for_q q hmul_comm
+    rcases hq_prop with ⟨h_scaled_eq, h_rdiv_odd, h_rdiv_pos⟩
+    calc
+      (2 : ℕ) ^ u2 * r2 = Int.natAbs q := by
+        exact Eq.symm hA2
+      _ = (2 : ℕ) ^ (u1 + 1) * (r1 / d) := by
+        exact h_scaled_eq
+>>>>REPLACE
+  let q := ((m (k + 1) : ℤ) - (n (k + 1) : ℤ))
+  -- `hdiff_mult` is `q * (d : ℤ) = (2 : ℤ) * z`; rewrite to the form `(d : ℤ) * q = 2*z`
+  have hmul_comm : (d : ℤ) * q = (2 : ℤ) * z := by
+    rw [mul_comm] at hdiff_mult
+    exact hdiff_mult
+  -- apply the generic property from `helper_natabs_scaling_by_odd_div`
+  have hq_prop := h_for_q q hmul_comm
+  rcases hq_prop with ⟨h_scaled_eq, h_rdiv_odd, h_rdiv_pos⟩
+  have hL : (2 : ℕ) ^ u2 * r2 = (2 : ℕ) ^ (u1 + 1) * (r1 / d) := by
+    calc
+      (2 : ℕ) ^ u2 * r2 = Int.natAbs q := by
+        exact Eq.symm hA2
+      _ = (2 : ℕ) ^ (u1 + 1) * (r1 / d) := by
+        exact h_scaled_eq

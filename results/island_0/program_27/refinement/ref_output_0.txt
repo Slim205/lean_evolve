@@ -1,0 +1,24 @@
+>>>>SEARCH
+  -- also the successor denominator n (k+1) is nonzero so we can apply reduced_fraction_unique
+  have n_succ_nz : (n (k + 1) : ℚ) ≠ 0 := by
+    exact n_succ_nonzero m n h_recurrence (k)
+>>>>REPLACE
+  -- also the successor denominator n (k+1) is nonzero so we can apply reduced_fraction_unique
+  have n_succ_nz : n (k + 1) ≠ 0 := by
+    simpa using n_succ_nonzero m n h_recurrence k
+>>>>SEARCH
+    have hq_prop := h_for_q q hmul_comm
+    have h_scaled_eq := (hq_prop).1
+    calc
+      (2 : ℕ) ^ u2 * r2 = Int.natAbs q := by
+        exact Eq.symm hA2
+      _ = (2 : ℕ) ^ (u1 + 1) * (r1 / d) := by
+        exact h_scaled_eq
+>>>>REPLACE
+    have hq_prop := h_for_q q hmul_comm
+    rcases hq_prop with ⟨h_scaled_eq, h_rdiv_odd, h_rdiv_pos⟩
+    calc
+      (2 : ℕ) ^ u2 * r2 = Int.natAbs q := by
+        exact Eq.symm hA2
+      _ = (2 : ℕ) ^ (u1 + 1) * (r1 / d) := by
+        exact h_scaled_eq

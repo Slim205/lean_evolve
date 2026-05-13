@@ -1,0 +1,138 @@
+ERROR from position {'line': 4, 'column': 5} to {'line': 4, 'column': 17}:
+unknown namespace 'BigOperators'
+
+ERROR from position {'line': 6, 'column': 0} to {'line': 6, 'column': 5}:
+unexpected identifier; expected command
+
+ERROR from position {'line': 17, 'column': 23} to {'line': 18, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 26, 'column': 74} to {'line': 27, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 68, 'column': 96} to {'line': 69, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 76, 'column': 85} to {'line': 77, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 84, 'column': 88} to {'line': 85, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 93, 'column': 90} to {'line': 94, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 101, 'column': 66} to {'line': 102, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 105, 'column': 49} to {'line': 106, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 150, 'column': 76} to {'line': 151, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 158, 'column': 74} to {'line': 159, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 166, 'column': 71} to {'line': 167, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 180, 'column': 61} to {'line': 181, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 186, 'column': 58} to {'line': 187, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 192, 'column': 65} to {'line': 193, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 201, 'column': 56} to {'line': 202, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 207, 'column': 89} to {'line': 208, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 212, 'column': 91} to {'line': 213, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 217, 'column': 87} to {'line': 218, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 224, 'column': 61} to {'line': 225, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 235, 'column': 85} to {'line': 236, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 281, 'column': 96} to {'line': 282, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 291, 'column': 70} to {'line': 292, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 300, 'column': 69} to {'line': 301, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 322, 'column': 34} to {'line': 323, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 336, 'column': 84} to {'line': 337, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 344, 'column': 88} to {'line': 345, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 359, 'column': 100} to {'line': 360, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 367, 'column': 67} to {'line': 368, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 404, 'column': 93} to {'line': 405, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 426, 'column': 87} to {'line': 432, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 435, 'column': 67} to {'line': 437, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 443, 'column': 93} to {'line': 444, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 449, 'column': 74} to {'line': 450, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 457, 'column': 76} to {'line': 458, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 483, 'column': 86} to {'line': 484, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 519, 'column': 107} to {'line': 520, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 524, 'column': 92} to {'line': 525, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 531, 'column': 105} to {'line': 532, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 580, 'column': 46} to {'line': 581, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 594, 'column': 86} to {'line': 595, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 603, 'column': 87} to {'line': 604, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 621, 'column': 2} to {'line': 622, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 633, 'column': 71} to {'line': 634, 'column': 5}:
+unexpected identifier; expected 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_initialize', 'class', 'declare_syntax_cat', 'def', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'structure', 'syntax' or 'theorem'
+
+ERROR from position {'line': 773, 'column': 19} to None:
+expected token
+

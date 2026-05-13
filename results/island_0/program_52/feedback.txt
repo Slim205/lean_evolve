@@ -1,0 +1,61 @@
+---------
+lemma pow_mul_odd_eq_pow_mul_odd (p q x y : ℕ)
+  (h : (2 : ℕ) ^ p * x = (2 : ℕ) ^ q * y) (hx_odd : x % 2 = 1) (hy_odd : y % 2 = 1) :
+  p = q ∧ x = y := by
+Failure mode: HARD
+Recommendation: Prove uniqueness of the “2-adic exponent + odd part” decomposition via a chain of smaller lemmas:
+
+1) **Lemma (odd ↔ no factor 2):** If `x % 2 = 1` then `¬ (2 ∣ x)`.  
+2) **Lemma (power divides product implies power divides other factor when coprime):** If `Nat.Coprime ((2:ℕ)^p) x` and `((2:ℕ)^p) ∣ ((2:ℕ)^q * y)`, then `((2:ℕ)^p) ∣ ((2:ℕ)^q)`.  
+3) **Lemma (coprime odd with power of two):** If `x % 2 = 1` then `Nat.Coprime x ((2:ℕ)^p)`.  
+4) **Lemma (compare exponents):** From `(2^p)*x = (2^q)*y` with `x` odd, deduce `p ≤ q`; symmetrically with `y` odd deduce `q ≤ p`; hence `p = q`.  
+5) **Lemma (cancel equal powers):** If `p = q` and `(2^p)*x = (2^p)*y`, then `x = y` (cancellation in ℕ).  
+6) Combine 4–5 to conclude `p = q ∧ x = y`.
+
+(Alternatively, replace steps 2–5 by a lemma about `Nat.factorization`/`Nat.valuation` at the prime `2`, but the above avoids introducing those notions explicitly.)
+
+---------
+
+---------
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by
+Failure mode: HARD
+Recommendation: The statement is plausible but bundles several nontrivial arithmetic transitions; decompose it into a proof pipeline that isolates the “divide by an odd gcd > 1 shrinks the odd part” argument:
+
+1) **Lemma (define d and its properties):** Let `d := Nat.gcd (2*m k + 1) (2*n k + 1)`. From `hbad`, prove `1 < d`.  
+2) **Lemma (d is odd):** Prove `d % 2 = 1` (since both inputs are odd).  
+3) **Lemma (next terms are normalized by d):** Using the recurrence and coprimality at `k+1`, prove
+   - `(2*m k + 1) = d * m (k+1)` and `(2*n k + 1) = d * n (k+1)`
+   - equivalently `m (k+1) = (2*m k + 1)/d`, `n (k+1) = (2*n k + 1)/d`.
+4) **Lemma (integer difference evolution):** From the equalities in (3), derive in ℤ:
+   \[
+   (d:ℤ)\cdot((m_{k+1}:ℤ)-(n_{k+1}:ℤ)) = (2:ℤ)\cdot((m_k:ℤ)-(n_k:ℤ)).
+   \]
+5) **Lemma (d divides previous difference):** Prove `(d:ℤ) ∣ ((m k:ℤ)-(n k:ℤ))` (your earlier `gcd_odd_and_dvd_diff` essentially supplies this).  
+6) **Lemma (natAbs formula):** Using (4–5), rewrite
+   \[
+   \operatorname{natAbs}(m_{k+1}-n_{k+1}) = \operatorname{natAbs}\Big(\frac{2\cdot(m_k-n_k)}{d}\Big).
+   \]
+   and then convert this to a natural-number identity of the shape
+   \[
+   \operatorname{natAbs}(m_{k+1}-n_{k+1}) = 2 \cdot \big(\operatorname{natAbs}(m_k-n_k)/d\big).
+   \]
+7) **Lemma (odd-part identification via uniqueness):** Using the decompositions
+   - `natAbs(m_k-n_k) = 2^u1 * r1` with `r1` odd,
+   - `natAbs(m_{k+1}-n_{k+1}) = 2^u2 * r2` with `r2` odd,
+   plus the identity from (6), prove that `r2 = r1 / d` (or equivalently `r1 = d * r2`) by invoking a uniqueness lemma like `pow_mul_odd_eq_pow_mul_odd`.  
+8) **Lemma (strictness from d>1):** From `1 < d` and `0 < r1`, prove `r1 / d < r1`, hence with step (7) conclude `r2 < r1`.
+
+This decomposition also clarifies dependencies: step (7) needs the fixed uniqueness lemma for “power of two times odd part”, and step (8) needs a clean lemma relating division by a natural `d > 1` to strict decrease on positive naturals.
+---------

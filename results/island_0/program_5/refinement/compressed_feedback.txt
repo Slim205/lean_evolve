@@ -1,0 +1,14 @@
+<lemma diff_ne_zero
+  (m n : ℕ → ℕ)
+  (h_distinct : m 0 ≠ n 0)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0 := by>
+Failure mode: HARD
+Recommendation: Reduce it to “no equality ever occurs” and isolate the rational-division corner cases.
+1) Lemma: For all k, \((2 * (n k : ℚ) + 1) ≠ 0\) and \((2 * (m k : ℚ) + 1) ≠ 0\), hence the RHS of the recurrence is nonzero.
+2) Lemma: For all k, \((n (k+1) : ℚ) ≠ 0\). (Otherwise the LHS would be 0, contradicting Lemma 1.)
+3) Lemma: For all k, \(m (k+1) = n (k+1) \to (m (k+1) : ℚ) / (n (k+1) : ℚ) = 1\). (Uses Lemma 2.)
+4) Lemma: For all k, \((2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1) = 1 \to m k = n k\). (Cross-multiply; denominator ≠ 0 from Lemma 1.)
+5) Lemma (induction step): If \(m k ≠ n k\) then \(m (k+1) ≠ n (k+1)\) by contradiction using Lemmas 3–4 and the recurrence.
+6) Conclude \(m k ≠ n k\) for all k by induction from \(m 0 ≠ n 0\), then translate to \((m k : ℤ) - (n k : ℤ) ≠ 0\) via injectivity of coercions.

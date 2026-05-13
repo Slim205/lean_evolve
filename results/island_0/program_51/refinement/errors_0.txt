@@ -1,0 +1,24 @@
+ERROR from position {'line': 1047, 'column': 10} to {'line': 1047, 'column': 12}:
+tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  A
+A d : ℕ
+hdvd : d ∣ A
+u1 r1 u2 r2 : ℕ
+hA : A = 2 ^ u1 * r1
+hr1_odd : r1 % 2 = 1
+hr1_pos : 0 < r1
+hB_eq : 2 * (A / d) = 2 ^ u2 * r2
+hr2_odd : r2 % 2 = 1
+hr2_pos : 0 < r2
+hd_odd : d % 2 = 1
+hcop : d.Coprime (2 ^ u1)
+⊢ d ∣ 2 ^ u1 * r1
+
+ERROR from position {'line': 1086, 'column': 4} to {'line': 1086, 'column': 21}:
+type mismatch
+  heq_oddpart
+has type
+  r1' = r2 : Prop
+but is expected to have type
+  r2 = r1' : Prop
+

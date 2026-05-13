@@ -1,0 +1,103 @@
+>>>>SEARCH
+lemma reduced_fraction_unique (a b c d : ℕ)
+  (hcop : Nat.Coprime a b)
+  (hd : d ≠ 0)
+  (h : (a : ℚ) / (b : ℚ) = (c : ℚ) / (d : ℚ)) :
+  a = c / Nat.gcd c d ∧ b = d / Nat.gcd c d := by
+  -- standard reduction/uniqueness argument (cross-multiplication + Euclid); omitted
+  sorry
+>>>>REPLACE
+lemma reduced_fraction_unique (a b c d : ℕ)
+  (hcop : Nat.Coprime a b)
+  (hb : b ≠ 0)
+  (hd : d ≠ 0)
+  (h : (a : ℚ) / (b : ℚ) = (c : ℚ) / (d : ℚ)) :
+  a = c / Nat.gcd c d ∧ b = d / Nat.gcd c d := by
+  -- standard reduction/uniqueness argument (cross-multiplication + Euclid); omitted
+  sorry
+>>>>SEARCH
+/-- Helper C: given the explicit identification of the successors as the gcd-quotients,
+    the integer evolution of the difference is a straightforward integer arithmetic rewrite.
+    We therefore require the `hnext` hypothesis asserting those quotient equalities. -/
+lemma helper_diff_evolution
+  (m n : ℕ → ℕ)
+  (k : ℕ)
+  (d : ℕ)
+  (h_d_def : d = Nat.gcd (2 * m k + 1) (2 * n k + 1))
+  (hnext : (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d)) :
+  ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+  -- the statement is a direct consequence of the assumed quotient equalities;
+  -- leave the detailed integer arithmetic proof as `sorry`.
+  sorry
+>>>>REPLACE
+/-- Helper C: given the explicit identification of the successors as the gcd-quotients,
+    the integer evolution of the difference holds multiplicatively:
+    (m_{k+1}-n_{k+1}) * d = 2 * (m_k - n_k) as integers. This avoids relying on
+    truncated integer division. -/
+lemma helper_diff_evolution
+  (m n : ℕ → ℕ)
+  (k : ℕ)
+  (d : ℕ)
+  (h_d_def : d = Nat.gcd (2 * m k + 1) (2 * n k + 1))
+  (hnext : (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d)) :
+  ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) * (d : ℤ) =
+    (2 : ℤ) * ((m k : ℤ) - (n k : ℤ)) := by
+  -- the statement is a direct consequence of the assumed quotient equalities;
+  -- leave the detailed integer arithmetic proof as `sorry`.
+  sorry
+
+/-- Auxiliary helper: combine the multiplicative evolution of the integer difference
+    with the scaled natAbs identity coming from dividing by the odd gcd to produce
+    the equality between the odd-part products required by the cancellation step
+    in the main glue. All arithmetic details are deferred (`sorry`). -/
+lemma helper_combine_mul_and_scaled_to_lhs_eq
+  (a : ℤ) (d : ℕ) (z : ℤ)
+  (u2 r2 u1 r1 : ℕ)
+  (hdiff_mul : a * (d : ℤ) = (2 : ℤ) * z)
+  (hA2 : Int.natAbs a = (2 : ℕ) ^ u2 * r2)
+  (h_scaled_eq : Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = (2 : ℕ) ^ (u1 + 1) * (r1 / d))
+  (hd_div_r : d ∣ r1) :
+  (2 : ℕ) ^ u2 * r2 = (2 : ℕ) ^ (u1 + 1) * (r1 / d) := by
+  -- a routine combination of natAbs multiplicativity, exact-division algebra,
+  -- and cancellation of the factor `d`. Proof omitted.
+  sorry
+>>>>SEARCH
+-- relation giving exact integer evolution of the difference (requires hnext)
+  have hdiff : ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+    exact helper_diff_evolution m n k d rfl hnext
+
+  -- apply the scaling lemma to the integer `z = m_k - n_k`
+  let z : ℤ := (m k : ℤ) - (n k : ℤ)
+  have hscale := by
+    exact helper_natabs_scaling_by_odd_div z u1 r1 d hA1 hodd1 hpos1 hd_odd hd_dvd
+
+  rcases hscale with ⟨hd_div_r, h_scaled_eq, h_rdiv_odd, h_rdiv_pos⟩
+
+  -- now relate the k+1 decomposition to the scaled expression: both are the natAbs of the same integer
+  have hL : (2 : ℕ) ^ u2 * r2 = (2 : ℕ) ^ (u1 + 1) * (r1 / d) := by
+    calc
+      (2 : ℕ) ^ u2 * r2 = Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) := by
+        exact Eq.symm hA2
+      _ = Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) := by
+        rw [hdiff]
+      _ = (2 : ℕ) ^ (u1 + 1) * (r1 / d) := by
+        exact h_scaled_eq
+>>>>REPLACE
+-- multiplicative relation giving integer evolution of the difference (requires hnext)
+  have hdiff_mul : ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) * (d : ℤ) =
+    (2 : ℤ) * ((m k : ℤ) - (n k : ℤ)) := by
+    exact helper_diff_evolution m n k d rfl hnext
+
+  -- apply the scaling lemma to the integer `z = m_k - n_k`
+  let z : ℤ := (m k : ℤ) - (n k : ℤ)
+  have hscale := helper_natabs_scaling_by_odd_div z u1 r1 d hA1 hodd1 hpos1 hd_odd hd_dvd
+  rcases hscale with ⟨hd_div_r, h_scaled_eq, h_rdiv_odd, h_rdiv_pos⟩
+
+  -- combine the multiplicative evolution and the scaled natAbs identity to obtain the
+  -- desired equality between the odd-part products (this heavy arithmetic is delegated).
+  have hL : (2 : ℕ) ^ u2 * r2 = (2 : ℕ) ^ (u1 + 1) * (r1 / d) := by
+    exact helper_combine_mul_and_scaled_to_lhs_eq
+      ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) d z (u2) (r2) (u1) (r1)
+      hdiff_mul (Eq.symm hA2) h_scaled_eq hd_div_r

@@ -1,0 +1,20 @@
+>>>>SEARCH
+  let d := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  have : (2 * m k + 1) = d * m (k + 1) := by
+    rw [hc_gcd] at hc1
+    exact hc1
+  have : (2 * n k + 1) = d * n (k + 1) := by
+    rw [hc_gcd] at hc2
+    exact hc2
+  -- assemble the conjunction
+  exact ⟨by assumption, by assumption⟩
+>>>>REPLACE
+  let d := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  have h1 : (2 * m k + 1) = d * m (k + 1) := by
+    rw [hc_gcd] at hc1
+    exact hc1
+  have h2 : (2 * n k + 1) = d * n (k + 1) := by
+    rw [hc_gcd] at hc2
+    exact hc2
+  -- assemble the conjunction
+  exact ⟨h1, h2⟩

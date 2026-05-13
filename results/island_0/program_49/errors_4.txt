@@ -1,0 +1,40 @@
+ERROR from position {'line': 1084, 'column': 56} to {'line': 1084, 'column': 59}:
+application type mismatch
+  Nat.eq_zero_of_not_pos r1'
+argument
+  r1'
+has type
+  ℕ : Type
+but is expected to have type
+  ¬0 < ?m.83762 : Prop
+
+ERROR from position {'line': 1088, 'column': 6} to {'line': 1088, 'column': 19}:
+tactic 'contradiction' failed
+A d : ℕ
+hdvd : d ∣ A
+u1 r1 u2 r2 : ℕ
+hA : A = 2 ^ u1 * r1
+hr1_odd : r1 % 2 = 1
+hr1_pos : 0 < r1
+hB_eq : 2 * (A / d) = 2 ^ u2 * r2
+hr2_odd : r2 % 2 = 1
+hr2_pos : 0 < r2
+hd_odd : d % 2 = 1
+hcop : d.Coprime (2 ^ u1)
+hdvd_mul : d ∣ 2 ^ u1 * r1
+hd_div_r1 : d ∣ r1
+r1' : ℕ
+hr1_eq : r1 = d * r1'
+hA_div : A / d = 2 ^ u1 * r1'
+hr1'_odd : r1' % 2 = 1
+h_left : 2 * (A / d) = 2 ^ (u1 + 1) * r1'
+heq_pow : 2 ^ (u1 + 1) * r1' = 2 ^ u2 * r2
+h0 : ¬0 < r1'
+r1'_zero : r1' = 0
+this✝ : r1 = 0
+this : 0 < r1
+⊢ False
+
+ERROR from position {'line': 1094, 'column': 24} to {'line': 1094, 'column': 37}:
+no goals to be solved
+

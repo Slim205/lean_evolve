@@ -1,0 +1,12 @@
+{
+  "program_id": 44,
+  "parent": 43,
+  "inspiration": null,
+  "island_id": 0,
+  "num_refinements": 2,
+  "max_refinements": 4,
+  "n_iter": 0,
+  "n_lean_errors": 0,
+  "succeeded_subgoals": 40,
+  "total_subgoals": 44
+}

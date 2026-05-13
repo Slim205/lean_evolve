@@ -1,0 +1,107 @@
+---------
+lemma next_scaling_exists
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  ∃ c : ℕ, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+Failure mode: INCORRECT
+Recommendation: As stated, this is false: equality of rationals only gives cross-multiplication
+\[
+m_{k+1}(2n_k+1)=n_{k+1}(2m_k+1),
+\]
+but does not force \((2m_k+1,2n_k+1)\) to be a common multiple of \((m_{k+1},n_{k+1})\) by the *same* factor. Counterexample: take \((m_{k+1},n_{k+1})=(2,6)\) and \((m_k,n_k)=(0,1)\). Then ratios match \(2/6=1/3\), but there is no \(c\) with \(1=c\cdot 2\) and \(3=c\cdot 6\).
+Revise by adding a “reducedness” hypothesis such as `Nat.Coprime (m (k+1)) (n (k+1))` (and also ensure `n (k+1) ≠ 0` to avoid the `/0` artifact in `ℚ`). Under coprimality, cross-multiplication implies `m (k+1) ∣ (2*m k+1)` and `n (k+1) ∣ (2*n k+1)` with the same quotient, giving the desired `c`.
+---------
+
+---------
+lemma diff_evolution_natAbs
+  (m n : ℕ → ℕ) (k : ℕ) (d : ℕ)
+  (hm_mul : (2 * m k + 1) = d * m (k + 1))
+  (hn_mul : (2 * n k + 1) = d * n (k + 1))
+  (h_dvd : (d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    Int.natAbs (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+Failure mode: HARD
+Recommendation: Decompose into explicit integer equalities before taking `natAbs`:
+
+1) Lemma `d_pos_of_hm_mul`: from `hm_mul` infer `0 < d` (since `2*m k + 1 > 0` in `ℕ`).
+2) Lemma `succ_as_exact_quotient`: from `hm_mul` and `hn_mul` derive in `ℤ` that  
+   `(m (k+1) : ℤ) = ((2*m k + 1 : ℕ) : ℤ) / (d : ℤ)` and similarly for `n`, using the fact the division is exact because of the multiplication equations.
+3) Lemma `diff_as_exact_quotient`: subtract the two identities to get  
+   `(m(k+1):ℤ) - (n(k+1):ℤ) = (((2:ℤ)*((m k:ℤ)-(n k:ℤ))) / (d:ℤ))`.  
+   (Here use that `hm_mul` and `hn_mul` imply `(d:ℤ) ∣ (2:ℤ)*((m k:ℤ)-(n k:ℤ))`; `h_dvd` can supply this too.)
+4) Lemma `natAbs_congr`: if `x=y` in `ℤ` then `Int.natAbs x = Int.natAbs y`.
+5) Conclude by applying `natAbs_congr` to the equality from (3).
+---------
+
+---------
+lemma gcd_odd_and_dvd_diff
+  (m n : ℕ → ℕ)
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  d % 2 = 1 ∧ ((d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) := by
+Failure mode: HARD
+Recommendation: Split into “oddness” and “divides difference” components:
+
+1) Lemma `two_mul_add_one_odd`: for any `a : ℕ`, `(2*a+1) % 2 = 1`.
+2) Lemma `gcd_of_odds_odd`: if `a%2=1` and `b%2=1`, then `(Nat.gcd a b)%2=1`.
+3) Lemma `gcd_dvd_linear_comb`: with `d = gcd a b`, show `(d:ℤ) ∣ ((a:ℤ) - (b:ℤ))`.
+4) Lemma `odd_dvd_two_mul_implies_dvd`: if `d%2=1` and `(d:ℤ) ∣ (2:ℤ)*z` then `(d:ℤ) ∣ z`.
+5) Apply (3) to `a=2*m k+1`, `b=2*n k+1` to get `d ∣ 2*(m k - n k)` in `ℤ`, then use (4) plus oddness from (2) to deduce `d ∣ (m k - n k)`.
+---------
+
+---------
+lemma natAbs_two_mul_div_of_odd_divisor (z : ℤ) (d : ℕ)
+  (hd_odd : d % 2 = 1) (hdiv : (d : ℤ) ∣ z) :
+  Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = 2 * (Int.natAbs z / d) := by
+Failure mode: HARD
+Recommendation: Reduce to an explicit quotient and use multiplicativity of `natAbs`:
+
+1) Lemma `exists_quotient_of_dvd`: from `hdiv` obtain `q : ℤ` with `z = q * (d : ℤ)`.
+2) Lemma `div_exact_of_mul`: for `d ≠ 0`, show `((2*z) / (d:ℤ)) = 2*q` after substituting `z = q*d`.
+3) Lemma `natAbs_mul_nat`: for `d : ℕ`, `Int.natAbs (q * (d:ℤ)) = Int.natAbs q * d`.
+4) Lemma `natAbs_div_exact`: if `z = q*(d:ℤ)` then `(Int.natAbs z) / d = Int.natAbs q`.
+5) Lemma `natAbs_two_mul`: `Int.natAbs (2*q) = 2 * Int.natAbs q`.
+6) Combine (2),(4),(5) to rewrite both sides to the same normal form `2 * Int.natAbs q`.  
+(Use `hd_odd` only to ensure `d ≠ 0` and to avoid degenerate cases.)
+---------
+
+---------
+lemma odd_part_le_from_div_by_odd (A d : ℕ) (u1 r1 u2 r2 : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 ≤ r1 := by
+Failure mode: INCORRECT
+Recommendation: This is false because `A / d` is *truncated* division; dividing by an odd `d` can increase the odd part dramatically when `d ∤ A`. Counterexample: `A=1024=2^10*1` (so `r1=1` odd), `d=3` odd. Then `A/d=341`, so `B=2*(A/d)=682=2^1*341` with `r2=341`, and `341 ≤ 1` fails.
+Fix: add the missing exactness hypothesis `d ∣ A` (equivalently, in the intended application, derive it from `(d:ℤ) ∣ z` with `A = Int.natAbs z`). Under `d ∣ A` and `d` odd, one gets `d ∣ r1` (since `r1` is the odd part), hence `A/d = 2^u1*(r1/d)` and so the odd part after forming `B=2*(A/d)` is `r1/d ≤ r1`.
+A stronger (and cleaner) revision is to state the lemma in terms of exact division: assume `A = d * A'` with `d` odd, and compare odd parts of `2*A'` vs `A`.
+---------
+
+---------
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by
+Failure mode: HARD
+Recommendation: Prove strict decrease via the gcd-factor `d` and exact odd-division on the odd part:
+
+1) Lemma `d_gt_one_of_not_coprime`: with `d = gcd(2*m k+1, 2*n k+1)`, show `1 < d` from `hbad`.
+2) Lemma `next_mul_eqs_with_d`: derive `(2*m k+1)=d*m(k+1)` and `(2*n k+1)=d*n(k+1)` using the “successor is reduced” property (this relies on a corrected version of the scaling existence + the coprimality of `(m(k+1),n(k+1))`).
+3) Lemma `d_odd_and_dvd_diff`: show `d` is odd and `(d:ℤ) ∣ ((m k:ℤ)-(n k:ℤ))` (your `gcd_odd_and_dvd_diff`).
+4) Lemma `natAbs_next_diff_formula`: show  
+   `Int.natAbs(Δ_{k+1}) = 2 * (Int.natAbs(Δ_k) / d)` using `diff_evolution_natAbs` + `natAbs_two_mul_div_of_odd_divisor`.
+5) Lemma `odd_part_divides`: if `A = 2^u * r` with `r` odd and `d` odd with `d ∣ A`, then `d ∣ r` and `A/d = 2^u*(r/d)`.
+6) Lemma `odd_part_strictly_decreases`: combine (1),(4),(5) to identify the next odd part as `r1 / d` and use `1 < d` and `0 < r1` to conclude `r1/d < r1`; then conclude `r2 < r1` by uniqueness of “odd-part” in a decomposition with odd remainder.
+---------

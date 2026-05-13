@@ -1,0 +1,386 @@
+[
+    {
+        "name": "nat_cast_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_nonneg (a : \u2115) : (a : \u211a) \u2265 0 := by\n  exact_mod_cast Nat.zero_le a"
+    },
+    {
+        "name": "nat_cast_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_nonneg (a : \u2115) : (a : \u211a) \u2265 0 := by\n  norm_cast\n  exact Nat.cast_nonneg a"
+    },
+    {
+        "name": "nat_cast_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_nonneg (a : \u2115) : (a : \u211a) \u2265 0 := by\n  norm_cast\n  <;> simp [Nat.cast_nonneg]\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a"
+    },
+    {
+        "name": "nat_cast_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_nonneg (a : \u2115) : (a : \u211a) \u2265 0 := by\n  exact_mod_cast Nat.zero_le a\n  <;> simp [Nat.cast_nonneg]\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop\n  <;> simp_all\n  <;> aesop"
+    },
+    {
+        "name": "nat_cast_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_nonneg (a : \u2115) : (a : \u211a) \u2265 0 := by\n  exact_mod_cast Nat.zero_le a\n  <;> simp_all\n  <;> norm_cast\n  <;> linarith"
+    },
+    {
+        "name": "nat_cast_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_nonneg (a : \u2115) : (a : \u211a) \u2265 0 := by\n  exact_mod_cast Nat.zero_le a"
+    },
+    {
+        "name": "nat_cast_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_nonneg (a : \u2115) : (a : \u211a) \u2265 0 := by\n  exact_mod_cast Nat.zero_le a"
+    },
+    {
+        "name": "nat_cast_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_nonneg (a : \u2115) : (a : \u211a) \u2265 0 := by\n  exact_mod_cast Nat.zero_le a"
+    },
+    {
+        "name": "nat_cast_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_nonneg (a : \u2115) : (a : \u211a) \u2265 0 := by\n  simp [Nat.cast_nonneg]\n  <;> exact le_of_lt (Nat.cast_pos.mpr (Nat.pos_of_ne_zero (by simp)))"
+    },
+    {
+        "name": "nat_cast_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_nonneg (a : \u2115) : (a : \u211a) \u2265 0 := by\n  norm_cast\n  <;> simp\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a\n  <;> exact Nat.zero_le a"
+    },
+    {
+        "name": "nat_cast_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_nonneg (a : \u2115) : (a : \u211a) \u2265 0 := by\n  norm_cast\n  exact Nat.zero_le a"
+    },
+    {
+        "name": "nat_cast_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_nonneg (a : \u2115) : (a : \u211a) \u2265 0 := by\n  exact_mod_cast Nat.zero_le a"
+    },
+    {
+        "name": "nat_cast_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_nonneg (a : \u2115) : (a : \u211a) \u2265 0 := by\n  exact_mod_cast Nat.zero_le a"
+    },
+    {
+        "name": "nat_cast_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_nonneg (a : \u2115) : (a : \u211a) \u2265 0 := by\n  norm_cast\n  <;> simp [Nat.cast_nonneg]\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a\n  <;> exact Nat.cast_nonneg a"
+    },
+    {
+        "name": "nat_cast_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_nonneg (a : \u2115) : (a : \u211a) \u2265 0 := by\n  exact_mod_cast Nat.zero_le a"
+    },
+    {
+        "name": "nat_cast_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_cast_nonneg (a : \u2115) : (a : \u211a) \u2265 0 := by\n  simp [Nat.cast_nonneg]\n  <;> norm_num\n  <;> linarith"
+    },
+    {
+        "name": "two_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_nonneg : (2 : \u211a) \u2265 0 := by\n  exact (by norm_num)"
+    },
+    {
+        "name": "two_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_nonneg : (2 : \u211a) \u2265 0 := by norm_num\n\ntheorem three_nonneg : (3 : \u211a) \u2265 0 := by norm_num\n\ntheorem five_nonneg : (5 : \u211a) \u2265 0 := by norm_num\n\ntheorem neg_two_nonneg : (-2 : \u211a) \u2265 0 := by norm_num\n\ntheorem neg_three_nonneg : (-3 : \u211a) \u2265 0 := by norm_num\n\ntheorem neg_five_nonneg : (-5 : \u211a) \u2265 0 := by norm_num\n\ntheorem zero_lt_three : (0 : \u211a) < 3 := by norm_num\n\ntheorem zero_lt_two : (0 : \u211a) < 2 := by norm_num\n\ntheorem zero_lt_five : (0 : \u211a) < 5 := by norm_num\n\ntheorem zero_lt_four : (0 : \u211a) < 4 := by norm_num\n\ntheorem zero_lt_one : (0 : \u211a) < 1 := by norm_num\n\ntheorem zero_lt_succ (n : \u2115) : 0 < n.succ := by\n  exact Nat.succ_pos n"
+    },
+    {
+        "name": "two_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_nonneg : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg' : (2 : \u211d) \u2265 0 := by norm_num\n\ntheorem nonneg_of_mul_nonneg_right (ha : (0 : \u211d) \u2264 a) (h : (0 : \u211d) \u2264 b * a) : (0 : \u211d) \u2264 b := by\n  by_contra hb\n  have h\u2081 : b < 0 := lt_of_not_ge hb\n  have h\u2082 : a \u2260 0 := by\n    rintro rfl\n    simp_all\n  have h\u2083 : b * a \u2264 0 := by\n    apply mul_nonpos_of_nonpos_of_nonneg\n    linarith\n    linarith\n  nlinarith\n\ntheorem nonneg_of_mul_nonneg_left (ha : (0 : \u211d) \u2264 a) (h : (0 : \u211d) \u2264 b * a) : (0 : \u211d) \u2264 b := by\n  by_contra hb\n  have h\u2081 : b < 0 := lt_of_not_ge hb\n  have h\u2082 : a \u2260 0 := by\n    rintro rfl\n    simp_all\n  have h\u2083 : b * a \u2264 0 := by\n    apply mul_nonpos_of_nonpos_of_nonneg\n    linarith\n    linarith\n  nlinarith"
+    },
+    {
+        "name": "two_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_nonneg : (2 : \u211a) \u2265 0 := by norm_num\n\ntheorem two_pos : (2 : \u211a) > 0 := by norm_num\n\ntheorem inv_two_pos : (0 : \u211a) < 1 / 2 := by norm_num\n\ntheorem inv_two_nonneg : (0 : \u211a) \u2264 1 / 2 := by norm_num\n\ntheorem inv_two_lt_one : (1 / 2 : \u211a) < 1 := by norm_num\n\ntheorem inv_two_le_one : (1 / 2 : \u211a) \u2264 1 := by norm_num\n\ntheorem mul_by_inv_two_eq (x : \u211a) : x * (1 / 2) = x / 2 := by\n  ring\n  <;> simp_all [div_eq_mul_inv]\n  <;> norm_num\n  <;> linarith"
+    },
+    {
+        "name": "two_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_nonneg : (2 : \u211a) \u2265 0 := by\n  norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> linarith"
+    },
+    {
+        "name": "two_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_nonneg : (2 : \u211a) \u2265 0 := by\n  norm_num\n  <;> apply le_of_lt\n  <;> norm_num\n  <;> linarith"
+    },
+    {
+        "name": "two_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_nonneg : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg' : (2 : \u211a) \u2265 0 := by norm_num"
+    },
+    {
+        "name": "two_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_nonneg : (2 : \u211a) \u2265 0 := by norm_num"
+    },
+    {
+        "name": "two_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_nonneg : (2 : \u211a) \u2265 0 := by norm_num"
+    },
+    {
+        "name": "two_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_nonneg : (2 : \u211a) \u2265 0 := by norm_num\n\ntheorem two_nonneg' : (2 : \u211a) \u2265 0 := by norm_num\n\ntheorem two_nonneg'' : (2 : \u211a) \u2265 0 := by norm_num\n\ntheorem two_nonneg''' : (2 : \u211a) \u2265 0 := by norm_num\n\ntheorem two_nonneg'''' : (2 : \u211a) \u2265 0 := by norm_num\n\ntheorem two_nonneg''''' : (2 : \u211a) \u2265 0 := by norm_num"
+    },
+    {
+        "name": "two_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_nonneg : (2 : \u211a) \u2265 0 := by norm_num\n\ntheorem four_nonneg : (4 : \u211a) \u2265 0 := by norm_num\n\ntheorem two_nonneg' : (2 : \u211d) \u2265 0 := by norm_num\n\ntheorem four_nonneg' : (4 : \u211d) \u2265 0 := by norm_num\n\ntheorem two_nonneg'' : (2 : \u211d) \u2265 0 := by norm_num\n\ntheorem four_nonneg'' : (4 : \u211d) \u2265 0 := by norm_num\n\ntheorem M_test (x : \u2115 \u2192 \u211d) (hx : \u2200 n, x n = 2^n) (n : \u2115) : x (n + 1) = 2 * x n := by\n  simp_all [pow_succ]\n  <;> ring\n  <;> simp_all [pow_succ]\n  <;> ring\n  <;> simp_all [pow_succ]\n  <;> ring"
+    },
+    {
+        "name": "two_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_nonneg : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_pos : (2 : \u211a) > 0 := by norm_num\n\ntheorem main_proof (n : \u2115) (hn : n \u2265 2) : \u2203 k : \u2115, k \u2265 n \u2227 (\u2200 m : \u2115, m \u2265 n \u2192 (m : \u211a) \u2265 k \u2192 (m : \u211a) \u2265 2 * n)) := by\n  use n\n  constructor\n  \u00b7 linarith\n  \u00b7 intro m hm hmn\n    have h : (m : \u211a) \u2265 n := by exact_mod_cast hm\n    have h' : (m : \u211a) \u2265 2 * n := by\n      nlinarith\n    exact_mod_cast h'"
+    },
+    {
+        "name": "two_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_nonneg : (2 : \u211a) \u2265 0 := by\n  norm_num"
+    },
+    {
+        "name": "two_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_nonneg : (2 : \u211a) \u2265 0 := by\n  norm_num\n  <;> simp [mul_comm]\n  <;> norm_num\n  <;> linarith"
+    },
+    {
+        "name": "two_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_nonneg : (2 : \u211a) \u2265 0 := by\n  norm_num\n  <;> simp_all\n  <;> linarith"
+    },
+    {
+        "name": "two_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem two_nonneg : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'''''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg''''''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'''''''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'''''''''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg''''''''''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'''''''''''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'''''''''''''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg''''''''''''''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'''''''''''''''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'''''''''''''''''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg''''''''''''''''''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'''''''''''''''''''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'''''''''''''''''''''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg''''''''''''''''''''''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'''''''''''''''''''''''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'''''''''''''''''''''''''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg''''''''''''''''''''''''''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'''''''''''''''''''''''''''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num\ntheorem two_nonneg'''''''''''''''''''''''''''''''''''''''''' : (2 : \u211a) \u2265 0 := by norm_num"
+    },
+    {
+        "name": "mul_nonneg_of_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem mul_nonneg_of_nonneg {x y : \u211a} (hx : x \u2265 0) (hy : y \u2265 0) : x * y \u2265 0 := by\n  have h : x * y \u2265 0 := by\n    exact mul_nonneg hx hy\n  exact h"
+    },
+    {
+        "name": "mul_nonneg_of_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem mul_nonneg_of_nonneg {x y : \u211a} (hx : x \u2265 0) (hy : y \u2265 0) : x * y \u2265 0 := by\n  have h : x * y \u2265 0 := mul_nonneg hx hy\n  simpa using h"
+    },
+    {
+        "name": "mul_nonneg_of_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem mul_nonneg_of_nonneg {x y : \u211a} (hx : x \u2265 0) (hy : y \u2265 0) : x * y \u2265 0 := by\n  apply mul_nonneg hx hy"
+    },
+    {
+        "name": "mul_nonneg_of_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem mul_nonneg_of_nonneg {x y : \u211a} (hx : x \u2265 0) (hy : y \u2265 0) : x * y \u2265 0 := by\n  have h : x * y \u2265 0 := by\n    apply mul_nonneg hx hy\n  exact h"
+    },
+    {
+        "name": "mul_nonneg_of_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem mul_nonneg_of_nonneg {x y : \u211a} (hx : x \u2265 0) (hy : y \u2265 0) : x * y \u2265 0 := by\n  cases' le_total x 0 with hx' hx' <;> cases' le_total y 0 with hy' hy' <;> simp_all [mul_nonneg]\n  <;> nlinarith"
+    },
+    {
+        "name": "mul_nonneg_of_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem mul_nonneg_of_nonneg {x y : \u211a} (hx : x \u2265 0) (hy : y \u2265 0) : x * y \u2265 0 := by\n  apply mul_nonneg\n  assumption\n  assumption"
+    },
+    {
+        "name": "mul_nonneg_of_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem mul_nonneg_of_nonneg {x y : \u211a} (hx : x \u2265 0) (hy : y \u2265 0) : x * y \u2265 0 := by\n  have h : x * y \u2265 0 := by\n    apply mul_nonneg\n    assumption\n    assumption\n  simpa using h"
+    },
+    {
+        "name": "mul_nonneg_of_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem mul_nonneg_of_nonneg {x y : \u211a} (hx : x \u2265 0) (hy : y \u2265 0) : x * y \u2265 0 := by\n  exact mul_nonneg hx hy"
+    },
+    {
+        "name": "mul_nonneg_of_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem mul_nonneg_of_nonneg {x y : \u211a} (hx : x \u2265 0) (hy : y \u2265 0) : x * y \u2265 0 := by\n  cases' le_total x 0 with hx' hx' <;> cases' le_total y 0 with hy' hy' <;> simp_all\n  <;> nlinarith"
+    },
+    {
+        "name": "mul_nonneg_of_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem mul_nonneg_of_nonneg {x y : \u211a} (hx : x \u2265 0) (hy : y \u2265 0) : x * y \u2265 0 := by\n  cases' le_total x 0 with hx' hx' <;>\n    cases' le_total y 0 with hy' hy' <;>\n    simp_all [mul_nonneg, mul_nonpos_of_nonpos_of_nonneg, mul_nonpos_of_nonneg_of_nonpos]\n  <;>\n    nlinarith"
+    },
+    {
+        "name": "mul_nonneg_of_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem mul_nonneg_of_nonneg {x y : \u211a} (hx : x \u2265 0) (hy : y \u2265 0) : x * y \u2265 0 := by\n  apply mul_nonneg hx hy"
+    },
+    {
+        "name": "mul_nonneg_of_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem mul_nonneg_of_nonneg {x y : \u211a} (hx : x \u2265 0) (hy : y \u2265 0) : x * y \u2265 0 := by\n  exact mul_nonneg hx hy"
+    },
+    {
+        "name": "mul_nonneg_of_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem mul_nonneg_of_nonneg {x y : \u211a} (hx : x \u2265 0) (hy : y \u2265 0) : x * y \u2265 0 := by\n  exact mul_nonneg hx hy"
+    },
+    {
+        "name": "mul_nonneg_of_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem mul_nonneg_of_nonneg {x y : \u211a} (hx : x \u2265 0) (hy : y \u2265 0) : x * y \u2265 0 := by\n  have h : x * y \u2265 0 := by\n    cases' le_total x 0 with hx' hx' <;> cases' le_total y 0 with hy' hy' <;>\n      simp_all [mul_nonneg, mul_nonpos_of_nonneg_of_nonpos, mul_nonpos_of_nonpos_of_nonneg]\n  exact h"
+    },
+    {
+        "name": "mul_nonneg_of_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem mul_nonneg_of_nonneg {x y : \u211a} (hx : x \u2265 0) (hy : y \u2265 0) : x * y \u2265 0 := by\n  apply mul_nonneg hx hy"
+    },
+    {
+        "name": "mul_nonneg_of_nonneg",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem mul_nonneg_of_nonneg {x y : \u211a} (hx : x \u2265 0) (hy : y \u2265 0) : x * y \u2265 0 := by\n  have h : 0 \u2264 x * y := by\n    exact mul_nonneg hx hy\n  exact h"
+    },
+    {
+        "name": "one_pos_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem one_pos_q : (1 : \u211a) > 0 := by norm_num"
+    },
+    {
+        "name": "one_pos_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem one_pos_q : (1 : \u211a) > 0 := by\n  norm_num\n  <;> rfl\n  <;> simp\n  <;> norm_num\n  <;> rfl"
+    },
+    {
+        "name": "one_pos_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem one_pos_q : (1 : \u211a) > 0 := by\n  norm_num\n  <;> simp_all\n  <;> linarith"
+    },
+    {
+        "name": "one_pos_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem one_pos_q : (1 : \u211a) > 0 := by\n  norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all\n  <;> norm_num\n  <;> simp_all"
+    },
+    {
+        "name": "one_pos_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem one_pos_q : (1 : \u211a) > 0 := by\n  norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith\n  <;> norm_num\n  <;> simp_all [Nat.cast_ofNat]\n  <;> linarith"
+    },
+    {
+        "name": "one_pos_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem one_pos_q : (1 : \u211a) > 0 := by\n  apply_rules [zero_lt_one, one_pos]\n  <;> simp\n  <;> norm_num\n  <;> linarith"
+    },
+    {
+        "name": "one_pos_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem one_pos_q : (1 : \u211a) > 0 := by norm_num"
+    },
+    {
+        "name": "one_pos_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem one_pos_q : (1 : \u211a) > 0 := by norm_num"
+    },
+    {
+        "name": "one_pos_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem one_pos_q : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_q2 : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_q3 : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_q4 : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_q5 : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_q6 : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_q7 : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_q8 : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_q9 : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_q10 : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_q11 : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_q12 : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_q13 : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_q14 : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_q15 : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_q16 : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_q17 : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_q18 : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_q19 : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_q20 : (1 : \u211a) > 0 := by norm_num"
+    },
+    {
+        "name": "one_pos_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem one_pos_q : (1 : \u211a) > 0 := by\n  norm_num\n  <;> rfl\n  <;> norm_num\n  <;> rfl\n  <;> norm_num\n  <;> rfl\n  <;> norm_num\n  <;> rfl\n  <;> norm_num\n  <;> rfl\n  <;> norm_num\n  <;> rfl"
+    },
+    {
+        "name": "one_pos_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem one_pos_q : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_q2 : (1 : \u211a) > 0 := by norm_num"
+    },
+    {
+        "name": "one_pos_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem one_pos_q : (1 : \u211a) > 0 := by\n  exact one_pos\n  <;> simp_all [Nat.cast_pos]\n  <;> norm_num\n  <;> linarith\n  <;> norm_num\n  <;> linarith"
+    },
+    {
+        "name": "one_pos_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem one_pos_q : (1 : \u211a) > 0 := by norm_num\ntheorem one_pos_n : (1 : \u2115) > 0 := by norm_num\n\ntheorem main_theorem (N : \u2115) (h : N > 0) :\n  \u2203 n : \u2115, n > 0 \u2227 \u2203 k : \u2115, k > 0 \u2227 \u2203 m : \u2115, m > 0 \u2227 N = n ^ k + m := by\n  use N\n  exact \u27e8by linarith, 1, by linarith, 0, by linarith, by simp [pow_one]\u27e9"
+    },
+    {
+        "name": "one_pos_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem one_pos_q : (1 : \u211a) > 0 := by\n  norm_num\n  <;> rfl\n  <;> simp\n  <;> linarith"
+    },
+    {
+        "name": "one_pos_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem one_pos_q : (1 : \u211a) > 0 := by\n  norm_num\n  <;> norm_num\n  <;> norm_num\n  <;> norm_num\n  <;> norm_num"
+    },
+    {
+        "name": "one_pos_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem one_pos_q : (1 : \u211a) > 0 := by norm_num"
+    },
+    {
+        "name": "add_pos_of_nonneg_and_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem add_pos_of_nonneg_and_pos {x y : \u211a} (hx : x \u2265 0) (hy : y > 0) : x + y > 0 := by\n  have h : x + y > 0 := by\n    cases' le_or_lt x 0 with hx' hx' <;> cases' le_or_lt y 0 with hy' hy' <;>\n      simp_all [le_of_lt, add_comm, add_left_comm, add_assoc]\n    <;> nlinarith\n  exact h"
+    },
+    {
+        "name": "add_pos_of_nonneg_and_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem add_pos_of_nonneg_and_pos {x y : \u211a} (hx : x \u2265 0) (hy : y > 0) : x + y > 0 := by\n  cases' le_or_lt x 0 with h h <;> cases' le_or_lt y 0 with h' h' <;>\n    simp_all [add_comm, add_left_comm, add_assoc, add_right_comm]\n  <;> nlinarith\n  <;> nlinarith\n  <;> nlinarith\n  <;> nlinarith"
+    },
+    {
+        "name": "add_pos_of_nonneg_and_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem add_pos_of_nonneg_and_pos {x y : \u211a} (hx : x \u2265 0) (hy : y > 0) : x + y > 0 := by\n  by_cases hx' : x = 0\n  -- If x = 0, then x + y = 0 + y = y, and since y > 0, x + y > 0.\n  \u00b7 rw [hx']\n    linarith\n  -- If x \u2260 0, then x > 0 because x \u2265 0 and x \u2260 0.\n  \u00b7 apply lt_of_le_of_lt\n    -- Since x \u2265 0 and x \u2260 0, x > 0.\n    exact le_of_lt (lt_of_le_of_ne hx (Ne.symm hx'))\n    -- Since y > 0, x + y > 0 + 0 = 0.\n    linarith"
+    },
+    {
+        "name": "add_pos_of_nonneg_and_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem add_pos_of_nonneg_and_pos {x y : \u211a} (hx : x \u2265 0) (hy : y > 0) : x + y > 0 := by\n  norm_cast at hx\n  norm_cast at hy\n  norm_cast\n  <;> simp_all [add_pos]\n  <;> linarith"
+    },
+    {
+        "name": "add_pos_of_nonneg_and_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem add_pos_of_nonneg_and_pos {x y : \u211a} (hx : x \u2265 0) (hy : y > 0) : x + y > 0 := by\n  have : x + y > 0 := by linarith\n  exact this"
+    },
+    {
+        "name": "add_pos_of_nonneg_and_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem add_pos_of_nonneg_and_pos {x y : \u211a} (hx : x \u2265 0) (hy : y > 0) : x + y > 0 := by\n  have h : x + y > 0 := by\n    cases' le_or_lt x 0 with hx' hx' <;>\n    cases' le_or_lt y 0 with hy' hy' <;>\n    simp_all [add_comm, add_left_comm, add_assoc] <;>\n    linarith\n  exact h"
+    },
+    {
+        "name": "add_pos_of_nonneg_and_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem add_pos_of_nonneg_and_pos {x y : \u211a} (hx : x \u2265 0) (hy : y > 0) : x + y > 0 := by\n  apply lt_of_le_of_lt\n  exact add_le_add_left hx _\n  exact lt_add_of_pos_right x hy"
+    },
+    {
+        "name": "add_pos_of_nonneg_and_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem add_pos_of_nonneg_and_pos {x y : \u211a} (hx : x \u2265 0) (hy : y > 0) : x + y > 0 := by\n  cases' eq_or_ne x 0 with h h <;> simp_all\n  <;> linarith\n  <;> norm_num\n  <;> linarith"
+    },
+    {
+        "name": "add_pos_of_nonneg_and_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem add_pos_of_nonneg_and_pos {x y : \u211a} (hx : x \u2265 0) (hy : y > 0) : x + y > 0 := by\n  -- Use the fact that the sum of a non-negative number and a positive number is positive.\n  apply lt_of_sub_pos\n  -- Simplify the expression to show that the difference is positive.\n  simp [sub_pos, hx, hy]\n  -- Use linear arithmetic to conclude the proof.\n  <;> nlinarith"
+    },
+    {
+        "name": "add_pos_of_nonneg_and_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem add_pos_of_nonneg_and_pos {x y : \u211a} (hx : x \u2265 0) (hy : y > 0) : x + y > 0 := by\n  by_cases hx' : x = 0\n  -- If x = 0, then x + y = y > 0\n  \u00b7 simp_all\n  -- If x \u2260 0, then x > 0, and since y > 0, x + y > 0\n  \u00b7 exact lt_of_lt_of_le hy (by simp_all [lt_irrefl])"
+    },
+    {
+        "name": "add_pos_of_nonneg_and_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem add_pos_of_nonneg_and_pos {x y : \u211a} (hx : x \u2265 0) (hy : y > 0) : x + y > 0 := by\n  have h : x + y > 0 := by\n    -- Use the fact that x \u2265 0 and y > 0 to show that their sum is positive.\n    apply lt_of_le_of_lt hx\n    -- Since y > 0, adding x (which is \u2265 0) will only increase the sum.\n    linarith [hy]\n  -- The final result follows from the established inequality.\n  exact h"
+    },
+    {
+        "name": "add_pos_of_nonneg_and_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem add_pos_of_nonneg_and_pos {x y : \u211a} (hx : x \u2265 0) (hy : y > 0) : x + y > 0 := by\n  have h : x + y > 0 := by\n    -- Use the fact that if x is non-negative and y is positive, then x + y is positive.\n    nlinarith\n  -- Use the fact that if x is non-negative and y is positive, then x + y is positive.\n  exact h"
+    },
+    {
+        "name": "add_pos_of_nonneg_and_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem add_pos_of_nonneg_and_pos {x y : \u211a} (hx : x \u2265 0) (hy : y > 0) : x + y > 0 := by\n  have h : 0 < x + y := by\n    -- Use the fact that y is positive and x is non-negative to show that their sum is positive.\n    apply lt_of_sub_pos\n    -- We need to show that there exists a positive number z such that x + y - z = 0.\n    -- Given y > 0, we can choose z = y, then x + y - z = x, which is non-negative.\n    nlinarith\n  -- Conclude the proof by stating the result.\n  exact h"
+    },
+    {
+        "name": "add_pos_of_nonneg_and_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem add_pos_of_nonneg_and_pos {x y : \u211a} (hx : x \u2265 0) (hy : y > 0) : x + y > 0 := by\n  have : x + y > 0 := by\n    -- Use the fact that the sum of a non-negative number and a positive number is positive.\n    apply lt_of_sub_pos\n    ring_nf\n    nlinarith [hx, hy]\n  exact this"
+    },
+    {
+        "name": "add_pos_of_nonneg_and_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem add_pos_of_nonneg_and_pos {x y : \u211a} (hx : x \u2265 0) (hy : y > 0) : x + y > 0 := by\n  have : x + y > 0 := by\n    apply lt_of_le_of_lt hx\n    exact by linarith\n  exact this"
+    },
+    {
+        "name": "add_pos_of_nonneg_and_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem add_pos_of_nonneg_and_pos {x y : \u211a} (hx : x \u2265 0) (hy : y > 0) : x + y > 0 := by\n  rw [add_comm]\n  apply add_pos_of_pos_of_nonneg\n  exact hy\n  exact hx"
+    },
+    {
+        "name": "pos_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pos_ne_zero {x : \u211a} (h : x > 0) : x \u2260 0 := by\n  exact ne_of_gt h"
+    },
+    {
+        "name": "pos_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pos_ne_zero {x : \u211a} (h : x > 0) : x \u2260 0 := by\n  intro h'\n  linarith"
+    },
+    {
+        "name": "pos_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pos_ne_zero {x : \u211a} (h : x > 0) : x \u2260 0 := by\n  exact ne_of_gt h"
+    },
+    {
+        "name": "pos_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pos_ne_zero {x : \u211a} (h : x > 0) : x \u2260 0 := by\n  exact (ne_of_gt h)"
+    },
+    {
+        "name": "pos_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pos_ne_zero {x : \u211a} (h : x > 0) : x \u2260 0 := by\n  exact ne_of_gt h"
+    },
+    {
+        "name": "pos_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pos_ne_zero {x : \u211a} (h : x > 0) : x \u2260 0 := by\n  -- Use the fact that a positive number is not zero.\n  exact ne_of_gt h"
+    },
+    {
+        "name": "pos_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pos_ne_zero {x : \u211a} (h : x > 0) : x \u2260 0 := by\n  exact ne_of_gt h"
+    },
+    {
+        "name": "pos_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pos_ne_zero {x : \u211a} (h : x > 0) : x \u2260 0 := by\n  intro h'\n  rw [h'] at h\n  linarith"
+    },
+    {
+        "name": "pos_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pos_ne_zero {x : \u211a} (h : x > 0) : x \u2260 0 := by\n  intro h'\n  -- Assume x = 0, and derive a contradiction.\n  have h\u2081 : x \u2264 0 := by simpa [h'] using h.le\n  have h\u2082 : x \u2265 0 := by simpa [h'] using h.le\n  -- Since x > 0, x \u2264 0 and x \u2265 0 cannot both be true.\n  linarith"
+    },
+    {
+        "name": "pos_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pos_ne_zero {x : \u211a} (h : x > 0) : x \u2260 0 := by\n  intro H\n  have h1 := h\n  rw [H] at h1\n  norm_num at h1\n  <;> linarith"
+    },
+    {
+        "name": "pos_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pos_ne_zero {x : \u211a} (h : x > 0) : x \u2260 0 := by\n  intro H\n  have h' := h\n  simp_all\n  <;> norm_num\n  <;> linarith"
+    },
+    {
+        "name": "pos_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pos_ne_zero {x : \u211a} (h : x > 0) : x \u2260 0 := by\n  intro hx\n  -- We use the fact that if x > 0, then x cannot be equal to 0.\n  linarith"
+    },
+    {
+        "name": "pos_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pos_ne_zero {x : \u211a} (h : x > 0) : x \u2260 0 := by\n  intro h\u2081\n  linarith"
+    },
+    {
+        "name": "pos_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pos_ne_zero {x : \u211a} (h : x > 0) : x \u2260 0 := by\n  intro H\n  have h\u2081 := h\n  rw [H] at h\u2081\n  norm_num at h\u2081\n  <;> simp_all"
+    },
+    {
+        "name": "pos_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pos_ne_zero {x : \u211a} (h : x > 0) : x \u2260 0 := by\n  intro h'\n  linarith"
+    },
+    {
+        "name": "pos_ne_zero",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem pos_ne_zero {x : \u211a} (h : x > 0) : x \u2260 0 := by\n  exact ne_of_gt h"
+    }
+]

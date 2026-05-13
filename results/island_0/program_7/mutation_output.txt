@@ -1,0 +1,17 @@
+>>>>SEARCH
+lemma finite_strict_drops_of_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N) :
+  {k : ℕ | t (k + 1) < t k}.Finite := by
+  sorry
+>>>>REPLACE
+lemma finite_strict_drops_of_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  {k : ℕ | t (k + 1) < t k}.Finite := by
+  -- With global nonincreasingness, strict drops can occur at most `t 0 ≤ N` times.
+  -- The detailed proof is omitted here.
+  sorry
+>>>>SEARCH
+have hstr_drops_fin : {k : ℕ | t (k + 1) < t k}.Finite := by
+    exact finite_strict_drops_of_bound t (t 0) (by exact le_refl (t 0))
+>>>>REPLACE
+have hstr_drops_fin : {k : ℕ | t (k + 1) < t k}.Finite := by
+    exact finite_strict_drops_of_bound t (t 0) (by exact le_refl (t 0)) hnoninc

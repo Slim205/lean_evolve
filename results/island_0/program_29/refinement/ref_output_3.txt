@@ -1,0 +1,52 @@
+>>>>SEARCH
+  have hden : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0 ∧ ((2 : ℚ) * (m k : ℚ) + 1) ≠ 0 := by
+    exact (denom_nonzero_from_recurrence m n h_recurrence k)
+>>>>REPLACE
+  have hden := denom_nonzero_from_recurrence m n h_recurrence k
+>>>>SEARCH
+  have hsucc_nz : (n (k + 1) : ℚ) ≠ 0 := by
+    exact n_succ_nonzero m n h_recurrence k
+>>>>REPLACE
+  have hsucc_nz := n_succ_nonzero m n h_recurrence k
+>>>>SEARCH
+  have hcop_succ : Nat.Coprime (m (k + 1)) (n (k + 1)) := by
+    exact helper_succ_coprime m n h_coprime k
+>>>>REPLACE
+  have hcop_succ := helper_succ_coprime m n h_coprime k
+>>>>SEARCH
+    have hres : let d := Nat.gcd (2 * m k + 1) (2 * n k + 1) in
+    (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+    exact helper_reduced_form_uniqueness (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1)
+      (by exact hsucc_nz) (by exact hden.1) hcop_succ (h_recurrence k)
+>>>>REPLACE
+    have hres := helper_reduced_form_uniqueness (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1)
+      (by exact hsucc_nz) (by exact hden.1) hcop_succ (h_recurrence k)
+>>>>SEARCH
+  have hden : ∀ k, ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0 ∧ ((2 : ℚ) * (m k : ℚ) + 1) ≠ 0 := by
+    exact denom_nonzero_from_recurrence m n h_recurrence
+>>>>REPLACE
+  have hden := denom_nonzero_from_recurrence m n h_recurrence
+>>>>SEARCH
+  have hsucc_nonzero : ∀ k, (n (k + 1) : ℚ) ≠ 0 := by
+    exact n_succ_nonzero m n h_recurrence
+>>>>REPLACE
+  have hsucc_nonzero := n_succ_nonzero m n h_recurrence
+>>>>SEARCH
+  have hsucc_one := by exact fun k => succ_equal_implies_ratio_one m n hsucc_nonzero k
+>>>>REPLACE
+  have hsucc_one := fun k => succ_equal_implies_ratio_one m n hsucc_nonzero k
+>>>>SEARCH
+  have heq_prev := by exact fun k => ratio_one_implies_eq_prev m n (fun k => (hden k).1) k
+>>>>REPLACE
+  have heq_prev := fun k => ratio_one_implies_eq_prev m n (fun k => (hden k).1) k
+>>>>SEARCH
+  have hnext : (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+    exact next_eq_div_gcd m n h_coprime h_recurrence k
+>>>>REPLACE
+  have hnext : (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := next_eq_div_gcd m n h_coprime h_recurrence k
+>>>>SEARCH
+  have hg := by exact gcd_odd_and_dvd_diff m n k
+  rcases hg with ⟨hd_odd, hd_dvd⟩
+>>>>REPLACE
+  have hg := gcd_odd_and_dvd_diff m n k
+  rcases hg with ⟨hd_odd, hd_dvd⟩

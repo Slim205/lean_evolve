@@ -1,0 +1,26 @@
+ERROR from position {'line': 1038, 'column': 29} to {'line': 1038, 'column': 30}:
+application type mismatch
+  pow_coprime_helper p
+argument
+  p
+has type
+  ℕ : Type
+but is expected to have type
+  ?m.80887 % 2 = 1 : Prop
+
+ERROR from position {'line': 1042, 'column': 4} to {'line': 1042, 'column': 11}:
+type mismatch
+  h
+has type
+  2 ^ p * x = 2 ^ q * y : Prop
+but is expected to have type
+  2 ^ q * y = 2 ^ p * x : Prop
+
+ERROR from position {'line': 1068, 'column': 6} to {'line': 1068, 'column': 13}:
+type mismatch
+  h
+has type
+  2 ^ q * x = 2 ^ q * y : Prop
+but is expected to have type
+  2 ^ p * x = 2 ^ p * y : Prop
+

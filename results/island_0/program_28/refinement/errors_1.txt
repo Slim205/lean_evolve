@@ -1,0 +1,28 @@
+ERROR from position {'line': 55, 'column': 17} to {'line': 55, 'column': 31}:
+unknown identifier 'n_succ_nonzero'
+
+ERROR from position {'line': 683, 'column': 12} to {'line': 683, 'column': 17}:
+tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  (↑(m (k + 1)) - ↑(n (k + 1))) * ↑d
+m n : ℕ → ℕ
+h_recurrence : ∀ (k : ℕ), ↑(m (k + 1)) / ↑(n (k + 1)) = (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1)
+h_coprime : ∀ (k : ℕ), 0 < k → (m k).Coprime (n k)
+k u1 r1 u2 r2 : ℕ
+hA1 : (↑(m k) - ↑(n k)).natAbs = 2 ^ u1 * r1
+hodd1 : r1 % 2 = 1
+hpos1 : 0 < r1
+hA2 : (↑(m (k + 1)) - ↑(n (k + 1))).natAbs = 2 ^ u2 * r2
+hodd2 : r2 % 2 = 1
+hpos2 : 0 < r2
+d : ℕ := (2 * m k + 1).gcd (2 * n k + 1)
+hnext : m (k + 1) = (2 * m k + 1) / d ∧ n (k + 1) = (2 * n k + 1) / d
+hd_odd : (2 * m k + 1).gcd (2 * n k + 1) % 2 = 1
+hd_dvd : ↑((2 * m k + 1).gcd (2 * n k + 1)) ∣ ↑(m k) - ↑(n k)
+hdiff : (↑(m (k + 1)) - ↑(n (k + 1))) * ↑d = 2 * (↑(m k) - ↑(n k))
+z : ℤ := ↑(m k) - ↑(n k)
+hd_div_r : d ∣ r1
+h_scaled_eq : (2 * z / ↑d).natAbs = 2 ^ (u1 + 1) * (r1 / d)
+h_rdiv_odd : r1 / d % 2 = 1
+h_rdiv_pos : 0 < r1 / d
+⊢ (↑(m (k + 1)) - ↑(n (k + 1))).natAbs = (2 * z / ↑d).natAbs
+

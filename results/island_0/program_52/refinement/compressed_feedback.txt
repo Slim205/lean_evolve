@@ -1,0 +1,3 @@
+lemma nat_div_eq_of_mul_eq {d m n : ℕ} (h : n = d * m) : n / d = m := by
+Failure mode: INCORRECT
+Recommendation: The statement is false in `ℕ` because division is truncated and, crucially, division by zero is defined (so `0 / 0 = 0`). Counterexample: take `d = 0`, `m = 1`, `n = 0`; then `h : n = d*m` holds, but `n/d = 0/0 = 0 ≠ 1 = m`. Revise the lemma by adding a positivity/nonzeroness hypothesis on the divisor, e.g. `0 < d` (or `d ≠ 0`), and then prove `n / d = m` from `n = d*m` using exactness of division when the divisor is positive.

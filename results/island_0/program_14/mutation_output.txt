@@ -1,0 +1,28 @@
+>>>>SEARCH
+lemma decomposition_of_diff
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0) :
+  ∀ k : ℕ, ∃ (u r : ℕ),
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+  sorry
+>>>>REPLACE
+lemma natAbs_pos (z : ℤ) (hz : z ≠ 0) : 0 < Int.natAbs z := by
+  sorry
+
+lemma exists_pow_two_mul_odd_for_pos_nat (A : ℕ) (hpos : 0 < A) :
+  ∃ (u r : ℕ), A = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+  sorry
+
+lemma decomposition_of_diff
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0) :
+  ∀ k : ℕ, ∃ (u r : ℕ),
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+  intro k
+  -- use positivity of the absolute value of the nonzero integer difference
+  have hpos : 0 < Int.natAbs ((m k : ℤ) - (n k : ℤ)) := by
+    exact natAbs_pos ((m k : ℤ) - (n k : ℤ)) (hΔ k)
+  -- factor the positive natural number into a power of 2 times an odd part
+  rcases exists_pow_two_mul_odd_for_pos_nat (Int.natAbs ((m k : ℤ) - (n k : ℤ))) hpos
+    with ⟨u, r, h⟩
+  exact ⟨u, r, h⟩

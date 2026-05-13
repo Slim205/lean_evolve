@@ -1,0 +1,75 @@
+>>>>SEARCH
+lemma cross_mul_eq_nat
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_n_succ_nonzero_k : (n (k + 1) : ℚ) ≠ 0)
+  (h_two_nk_nonzero : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0)
+  (k : ℕ) :
+  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by
+  -- cross-multiplication of rationals after clearing denominators; proof omitted
+  sorry
+>>>>REPLACE
+/-- If a/b = c/d in ℚ (with b,d ≠ 0) then a*d = c*b in ℚ. -/
+lemma clear_denoms_Q {a b c d : ℚ} (hb : b ≠ 0) (hd : d ≠ 0) (h : a / b = c / d) :
+  a * d = c * b := by
+  -- proof omitted
+  sorry
+
+/-- Cast-numerical bookkeeping: ((2 : ℚ) * (x : ℚ) + 1) is the cast of (2*x+1 : ℕ). -/
+lemma cast_two_mul_nat_plus_one (x : ℕ) :
+  ((2 : ℚ) * (x : ℚ) + 1) = ((2 * x + 1 : ℕ) : ℚ) := by
+  -- trivial cast identity; proof omitted
+  sorry
+
+/-- From the rational recurrence and nonzero denominators obtain the product-equality in ℚ. -/
+lemma recurrence_cross_Q (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_n_succ_nonzero_k : (n (k + 1) : ℚ) ≠ 0)
+  (h_two_nk_nonzero : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0)
+  (k : ℕ) :
+  (m (k + 1) : ℚ) * ((2 : ℚ) * (n k : ℚ) + 1) = (n (k + 1) : ℚ) * ((2 : ℚ) * (m k : ℚ) + 1) := by
+  -- clear denominators in ℚ; proof omitted
+  sorry
+
+/-- If two products of natural casts are equal in ℚ then the corresponding nat-products are equal. -/
+lemma nat_cast_inj_mul {a b c d : ℕ}
+  (h : ((a : ℚ) * (b : ℚ)) = ((c : ℚ) * (d : ℚ))) : a * b = c * d := by
+  -- injectivity of cast on ℕ and multiplicative cancellation; proof omitted
+  sorry
+
+lemma cross_mul_eq_nat
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_n_succ_nonzero_k : (n (k + 1) : ℚ) ≠ 0)
+  (h_two_nk_nonzero : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0)
+  (k : ℕ) :
+  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by
+  -- obtain the product equality in ℚ from the recurrence (clearing denominators in ℚ)
+  have hq : (m (k + 1) : ℚ) * ((2 : ℚ) * (n k : ℚ) + 1) =
+            (n (k + 1) : ℚ) * ((2 : ℚ) * (m k : ℚ) + 1) := by
+    exact recurrence_cross_Q m n h_recurrence h_n_succ_nonzero_k h_two_nk_nonzero k
+
+  -- rewrite the numeric factors as casts of naturals so we have products of casts
+  have hleft_cast : ((2 : ℚ) * (n k : ℚ) + 1) = ((2 * n k + 1 : ℕ) : ℚ) := by
+    exact cast_two_mul_nat_plus_one (n k)
+  have hright_cast : ((2 : ℚ) * (m k : ℚ) + 1) = ((2 * m k + 1 : ℕ) : ℚ) := by
+    exact cast_two_mul_nat_plus_one (m k)
+
+  -- rewrite the ℚ-equality to an equality of products of natural casts
+  have hq_natcasts : (m (k + 1) : ℚ) * ((2 * n k + 1 : ℕ) : ℚ) =
+                     (n (k + 1) : ℚ) * ((2 * m k + 1 : ℕ) : ℚ) := by
+    rw [← hleft_cast, ← hright_cast] at hq
+    exact hq
+
+  -- apply injection from rational casts to natural equality of products
+  have hnat : m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by
+    apply nat_cast_inj_mul
+    exact hq_natcasts
+
+  exact hnat

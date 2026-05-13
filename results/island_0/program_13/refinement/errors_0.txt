@@ -1,0 +1,18 @@
+ERROR from position {'line': 282, 'column': 61} to {'line': 283, 'column': 3}:
+unexpected token '/--'; expected '#guard_msgs', 'abbrev', 'add_decl_doc', 'add_tactic_doc', 'alias', 'axiom', 'binder_predicate', 'builtin_dsimproc', 'builtin_dsimproc_decl', 'builtin_initialize', 'builtin_simproc', 'builtin_simproc_decl', 'class', 'declare_config_elab', 'declare_opaque_type', 'declare_simp_like_tactic', 'declare_syntax_cat', 'def', 'dsimproc', 'dsimproc_decl', 'elab', 'elab_rules', 'example', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'irreducible_def', 'lemma', 'macro', 'macro_rules', 'notation', 'notation3', 'opaque', 'postfix', 'prefix', 'proof_wanted', 'register_builtin_option', 'register_label_attr', 'register_option', 'register_simp_attr', 'scoped', 'simproc', 'simproc_decl', 'structure', 'syntax', 'theorem' or 'unif_hint'
+
+ERROR from position {'line': 329, 'column': 9} to {'line': 329, 'column': 17}:
+tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  N + 1
+P : ℕ → Prop
+N : ℕ
+inst✝ : DecidablePred P
+hcard : ∀ (K : ℕ), (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)).card ≤ N
+hnot_fin : ¬{k | P k}.Finite
+hinf : {k | P k}.Infinite
+F : Finset ℕ
+hFprop : ∀ x ∈ F, P x
+hFcard : F.card = N + 1
+hFle : F.card ≤ N
+⊢ N + 1 ≤ N
+

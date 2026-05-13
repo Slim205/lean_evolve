@@ -1,0 +1,82 @@
+---------
+lemma budget_inequality_on_prefix (t : ℕ → ℕ) (hnoninc : ∀ k, t (k + 1) ≤ t k) (K : ℕ) :
+  (t K) + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+Failure mode: HARD
+Recommendation: Decompose into a “telescoping budget” argument for ℕ-valued nonincreasing sequences.
+1) Lemma (gap-at-least-one): for any i, if t (i+1) < t i then t (i+1) + 1 ≤ t i.
+2) Lemma (no-drop-step): for any i, if ¬(t (i+1) < t i) and hnoninc i then t (i+1) = t i.
+3) Lemma (prefix-budget-induction): define D(K) = #{i < K | t(i+1) < t i}. Prove by induction on K that t K + D(K) ≤ t 0, using (1) on drop steps and (2) on non-drop steps.
+4) Lemma (card-filter-identification): show D(K) equals the card of the given `Finset.filter` over `Finset.range K` (the extra conjunct `i < K` is redundant but can be handled as a separate equality).
+5) Conclude the stated inequality by rewriting with (4) and applying (3).
+---------
+
+---------
+lemma finite_of_card_bounded {P : ℕ → Prop} (N : ℕ) [DecidablePred P]
+  (hcard : ∀ K, (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)).card ≤ N) :
+  {k : ℕ | P k}.Finite := by
+Failure mode: HARD
+Recommendation: Reduce finiteness to “cannot have N+1 distinct witnesses” using a maximal element argument.
+1) Lemma (bounded-witnesses-on-initial-segment): for any K, the set {i | i < K ∧ P i} is finite and its cardinal is exactly the `Finset.filter … (Finset.range K)` card.
+2) Lemma (N+1-witnesses-give-large-card): if there exist distinct k₀,…,k_N with P k_j, then letting K = (max of {k₀,…,k_N}) + 1 yields card {i | i < K ∧ P i} ≥ N+1.
+3) Lemma (contradiction-with-hcard): combine (2) with hcard K to rule out N+1 distinct witnesses.
+4) Lemma (finite-from-no-N+1-distinct): if a set has no N+1 distinct elements for some N, then it is finite.
+5) Apply (4) to {k | P k} using (3).
+---------
+
+---------
+lemma decomposition_of_diff
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0) :
+  ∀ k : ℕ, ∃ (u r : ℕ),
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+Failure mode: HARD
+Recommendation: Factor the positive natural number `Int.natAbs ((m k : ℤ) - (n k : ℤ))` into a power of 2 times an odd part.
+1) Lemma (natAbs_pos_of_ne_zero): if z ≠ 0 then 0 < Int.natAbs z.
+2) Lemma (two_adic_decomposition_nat): for any positive natural a, ∃ u r, a = 2^u * r ∧ r is odd. (Use the standard “extract factors of 2” existence lemma for ℕ.)
+3) Lemma (odd_to_mod_two): “r is odd” implies r % 2 = 1.
+4) Lemma (odd_part_pos): if a = 2^u * r and a > 0 then r > 0 (or directly: odd r implies r > 0).
+5) Combine (1)-(4) with a := Int.natAbs ((m k : ℤ) - (n k : ℤ)).
+---------
+
+---------
+lemma odd_part_noninc_step
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∀ k u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 ≤ r1 := by
+Failure mode: HARD
+Recommendation: This is the key arithmetic step and needs explicit intermediate structure connecting successive differences via the gcd-normalization.
+1) Lemma (successor_is_gcd_quotient): letting dₖ = gcd(2 m k + 1, 2 n k + 1), show m(k+1) = (2 m k + 1)/dₖ and n(k+1) = (2 n k + 1)/dₖ (derived from the ℚ recurrence plus coprimality of m(k+1),n(k+1)).
+2) Lemma (d_odd_and_divides_diff): show dₖ is odd and dₖ ∣ (m k - n k) (in ℤ or ℕ form). (This is essentially your `gcd_odd_and_dvd_diff`.)
+3) Lemma (difference_relation): deduce (in ℤ) m(k+1) - n(k+1) = 2 * (m k - n k) / dₖ, and hence `Int.natAbs` satisfies natAbs(Δ_{k+1}) = 2 * natAbs(Δ_k) / dₖ.
+4) Lemma (odd_part_monotone_under_division_by_odd): if a ≠ 0 and d is odd with d ∣ a, then the odd part of a/d is ≤ the odd part of a. (Formulate using your decompositions `a = 2^u*r` with r odd.)
+5) Apply (4) to a := (m k : ℤ) - (n k : ℤ) and d := dₖ, then transfer the resulting comparison to the particular r1,r2 coming from the given decompositions (uniqueness of odd part among “odd factors” gives the inequality r2 ≤ r1).
+---------
+
+---------
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by
+Failure mode: HARD
+Recommendation: Prove strictness by showing the “odd divisor” removed at step k is > 1, hence the odd part strictly shrinks.
+1) Lemma (not_coprime_iff_gcd_gt_one): from hbad, get dₖ = gcd(2 m k + 1, 2 n k + 1) satisfies 1 < dₖ.
+2) Lemma (successor_is_gcd_quotient): same as in the nonincreasing step, express m(k+1), n(k+1) by dividing by dₖ.
+3) Lemma (d_odd_and_divides_diff): show dₖ is odd and divides (m k - n k).
+4) Lemma (odd_part_strict_under_division_by_odd_gt_one): if a ≠ 0 and d is odd with d ∣ a and d > 1, then the odd part of a/d is strictly smaller than the odd part of a. (Use decompositions a = 2^u*r with r odd: division by d reduces r by a factor ≥ d.)
+5) Combine (2)-(4) with the difference relation to obtain r2 < r1 for the decomposed odd parts at k+1 vs k (again relying on uniqueness of the odd part).
+---------

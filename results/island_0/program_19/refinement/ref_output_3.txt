@@ -1,0 +1,6 @@
+>>>>SEARCH
+  have hg := by exact helper_gcd_odd_and_dvd_diff m n k
+  rcases hg with ⟨hd_odd, hd_dvd⟩
+>>>>REPLACE
+  have hg := helper_gcd_odd_and_dvd_diff m n k
+  rcases hg with ⟨hd_odd, hd_dvd⟩

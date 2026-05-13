@@ -1,0 +1,8 @@
+>>>>SEARCH
+      have : d ∣ ( (2 : ℕ) ^ u1 * r1 ) := by
+      rw [← hA]
+      exact hddvd
+>>>>REPLACE
+      have : d ∣ ( (2 : ℕ) ^ u1 * r1 ) := by
+      rw [← hA]
+      exact hdvd

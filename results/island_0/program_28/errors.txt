@@ -1,0 +1,6 @@
+ERROR from position {'line': 55, 'column': 12} to {'line': 55, 'column': 26}:
+unknown identifier 'n_succ_nonzero'
+
+ERROR from position {'line': 685, 'column': 8} to {'line': 685, 'column': 20}:
+simp made no progress
+

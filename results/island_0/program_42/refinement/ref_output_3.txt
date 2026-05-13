@@ -1,0 +1,26 @@
+>>>>SEARCH
+lemma odd_gcd {a b : ℕ} (ha : Nat.Odd a) (hb : Nat.Odd b) : Nat.Odd (Nat.gcd a b) := by
+>>>>REPLACE
+lemma odd_gcd {a b : ℕ} (ha : Odd a) (hb : Odd b) : Odd (Nat.gcd a b) := by
+>>>>SEARCH
+lemma odd_iff_mod2_eq_one (x : ℕ) : Nat.Odd x → x % 2 = 1 := by
+>>>>REPLACE
+lemma odd_iff_mod2_eq_one (x : ℕ) : Odd x → x % 2 = 1 := by
+>>>>SEARCH
+  have ha_odd : Nat.Odd a := by
+    exact (mod2_eq_one_iff_odd a).mp ha
+  have hb_odd : Nat.Odd b := by
+    exact (mod2_eq_one_iff_odd b).mp hb
+>>>>REPLACE
+  have ha_odd : Odd a := by
+    exact (mod2_eq_one_iff_odd a).mp ha
+  have hb_odd : Odd b := by
+    exact (mod2_eq_one_iff_odd b).mp hb
+>>>>SEARCH
+  -- apply oddness of gcd
+  have h_gcd_odd : Nat.Odd (Nat.gcd a b) := by
+    exact odd_gcd ha_odd hb_odd
+>>>>REPLACE
+  -- apply oddness of gcd
+  have h_gcd_odd : Odd (Nat.gcd a b) := by
+    exact odd_gcd ha_odd hb_odd

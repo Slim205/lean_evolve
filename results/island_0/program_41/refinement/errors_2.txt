@@ -1,0 +1,13 @@
+ERROR from position {'line': 342, 'column': 89} to {'line': 345, 'column': 8}:
+unsolved goals
+m n : ℕ → ℕ
+k : ℕ
+a : ℕ := 2 * m k + 1
+b : ℕ := 2 * n k + 1
+d : ℕ := a.gcd b
+ha : a % 2 = 1
+hb : b % 2 = 1
+hd_odd : d % 2 = 1
+hd_div_ab : ↑d ∣ ↑a - ↑b
+⊢ Int.subNatNat (1 + m k * 2) (1 + n k * 2) = Int.subNatNat (m k) (n k) * 2
+

@@ -1,0 +1,69 @@
+>>>>SEARCH
+lemma natAbs_two_mul_div_of_odd_divisor (z : ℤ) (d : ℕ)
+  (hd_odd : d % 2 = 1) (hdiv : (d : ℤ) ∣ z) :
+  Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = 2 * (Int.natAbs z / d) := by
+  -- integer/nat bookkeeping: omitted
+  sorry
+>>>>REPLACE
+lemma odd_implies_pos (d : ℕ) (hd_odd : d % 2 = 1) : 0 < d := by
+  -- odd natural numbers are positive; proof omitted
+  sorry
+
+lemma nat_pos_int_ne (d : ℕ) (hd_pos : 0 < d) : (d : ℤ) ≠ 0 := by
+  -- positive natural casts to a nonzero integer; proof omitted
+  sorry
+
+lemma int_dvd_exists_mul (d : ℕ) {z : ℤ} (h : (d : ℤ) ∣ z) : ∃ q : ℤ, z = (d : ℤ) * q := by
+  -- existential form of integer divisibility; proof omitted
+  sorry
+
+lemma div_mul_of_mul_eq {d : ℤ} {q z : ℤ} (hdnz : d ≠ 0) (hz : z = d * q) :
+  (((2 : ℤ) * z) / d) = (2 : ℤ) * q := by
+  -- exact division under a multiplication equality; proof omitted
+  sorry
+
+lemma natAbs_two_mul (q : ℤ) : Int.natAbs ((2 : ℤ) * q) = 2 * Int.natAbs q := by
+  -- natAbs is multiplicative for nonnegative integer factors like 2; proof omitted
+  sorry
+
+lemma natAbs_div_eq_natAbs_q (d : ℕ) (hd_pos : 0 < d) {z q : ℤ} (hz : z = (d : ℤ) * q) :
+  Int.natAbs z / d = Int.natAbs q := by
+  -- when z = d*q and d>0, the natAbs quotient equals natAbs q; proof omitted
+  sorry
+
+lemma natAbs_two_mul_div_of_odd_divisor (z : ℤ) (d : ℕ)
+  (hd_odd : d % 2 = 1) (hdiv : (d : ℤ) ∣ z) :
+  Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = 2 * (Int.natAbs z / d) := by
+  -- Decompose the argument following the suggested helper-lemma chain.
+
+  -- 1) oddness gives positivity of d (as a natural)
+  have hd_pos : 0 < d := by
+    exact odd_implies_pos d hd_odd
+
+  -- 2) positivity implies the integer cast is nonzero
+  have hd_int_ne : (d : ℤ) ≠ 0 := by
+    exact nat_pos_int_ne d hd_pos
+
+  -- 3) write z = (d : ℤ) * q from the divisibility hypothesis
+  rcases int_dvd_exists_mul d hdiv with ⟨q, hq⟩
+
+  -- 4) perform exact division: (((2:ℤ) * z) / (d : ℤ)) = (2:ℤ) * q
+  have hdiv_eq : (((2 : ℤ) * z) / (d : ℤ)) = (2 : ℤ) * q := by
+    apply div_mul_of_mul_eq hd_int_ne
+    exact hq
+
+  -- 5) take natAbs and use multiplicativity for 2
+  have h_left : Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = Int.natAbs ((2 : ℤ) * q) := by
+    rw [hdiv_eq]
+  have h_left' : Int.natAbs ((2 : ℤ) * q) = 2 * Int.natAbs q := by
+    exact natAbs_two_mul q
+
+  -- 6) relate Int.natAbs z / d to Int.natAbs q
+  have h_right : Int.natAbs z / d = Int.natAbs q := by
+    exact natAbs_div_eq_natAbs_q d hd_pos hq
+
+  -- 7) assemble the equalities
+  calc
+    Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = Int.natAbs ((2 : ℤ) * q) := by rw [hdiv_eq]
+    _ = 2 * Int.natAbs q := by exact h_left'
+    _ = 2 * (Int.natAbs z / d) := by rw [h_right]

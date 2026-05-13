@@ -1,0 +1,93 @@
+---------
+<lemma reduced_fraction_unique (a b c d : ℕ)
+  (hcop : Nat.Coprime a b)
+  (hd : d ≠ 0)
+  (h : (a : ℚ) / (b : ℚ) = (c : ℚ) / (d : ℚ)) :
+  a = c / Nat.gcd c d ∧ b = d / Nat.gcd c d := by>
+Failure mode: INCORRECT
+Recommendation: The statement is false without assuming `b ≠ 0`. In `ℚ`, division by `0` is defined (as `x / 0 = 0`), so the equality of fractions does not force a reduced-form uniqueness conclusion. Counterexample: `a = 1, b = 0` (still coprime), `c = 0, d = 1` gives `1/0 = 0/1`, but the conclusion forces `1 = 0`. Revise the lemma by adding `hb : b ≠ 0` (and typically also rewrite the equality as a cross-multiplication statement), then prove uniqueness of reduced forms under `Nat.Coprime a b` and `b ≠ 0`.
+---------
+
+---------
+<lemma helper_gcd_odd_and_dvd_diff
+  (m n : ℕ → ℕ) (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  d % 2 = 1 ∧ ((d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) := by>
+Failure mode: HARD
+Recommendation: Decompose into standard gcd/oddness/cancellation facts:
+1) Lemma: `Nat.gcd (2*m+1) (2*n+1)` is odd (gcd of two odd numbers is odd).
+2) Lemma: Let `d = gcd(2*m+1, 2*n+1)`. Then `(d : ℤ) ∣ ((2*m+1 : ℤ) - (2*n+1 : ℤ))`.
+3) Lemma: `(2*m+1 : ℤ) - (2*n+1 : ℤ) = (2 : ℤ) * ((m : ℤ) - (n : ℤ))`.
+4) Lemma (cancellation by coprimality): If `d` is odd, then `Int.gcd (d:ℤ) 2 = 1`, hence from `(d:ℤ) ∣ 2*z` infer `(d:ℤ) ∣ z`.
+5) Combine (2–4) with `z = (m:ℤ)-(n:ℤ)` to obtain the desired divisibility.
+---------
+
+---------
+<lemma helper_diff_evolution
+  (m n : ℕ → ℕ)
+  (k : ℕ)
+  (d : ℕ)
+  (h_d_def : d = Nat.gcd (2 * m k + 1) (2 * n k + 1))
+  (hnext : (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d)) :
+  ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by>
+Failure mode: INCORRECT
+Recommendation: The right-hand side uses `Int` division `/`, which is *truncated Euclidean division*, so the displayed equality is not justified unless you additionally prove the division is exact and you use an “exact-division” lemma. As stated, it is too strong/fragile because `/` does not mean “the unique integer quotient when divisible”. A robust replacement is:
+- either the multiplicative form:  
+  `((m (k+1) : ℤ) - (n (k+1) : ℤ)) * (d : ℤ) = (2 : ℤ) * ((m k : ℤ) - (n k : ℤ))`,
+- or an existential/“there exists q” quotient form,
+and then separately show `(d:ℤ) ∣ (2:ℤ) * ((m k:ℤ)-(n k:ℤ))` (using the gcd lemma) to recover an exact quotient statement if needed.
+---------
+
+---------
+<lemma helper_natabs_scaling_by_odd_div
+  (z : ℤ) (u r : ℕ) (d : ℕ)
+  (hA : Int.natAbs z = (2 : ℕ) ^ u * r)
+  (hrodd : r % 2 = 1) (hrpos : 0 < r)
+  (hdodd : d % 2 = 1) (hd_dvd : (d : ℤ) ∣ z) :
+  d ∣ r ∧ Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = (2 : ℕ) ^ (u + 1) * (r / d) ∧ (r / d) % 2 = 1 ∧ 0 < (r / d) := by>
+Failure mode: HARD
+Recommendation: Break into divisibility transfer + exact-division + odd-part bookkeeping:
+1) Lemma: From `(d:ℤ) ∣ z` infer `d ∣ Int.natAbs z` (convert `ℤ`-divisibility to `ℕ`-divisibility on `natAbs`).
+2) Lemma: If `Int.natAbs z = 2^u * r` and `d` is odd and `d ∣ Int.natAbs z`, then `d ∣ r` (use `Nat.Coprime d (2^u)` from oddness of `d`, then Euclid-style cancellation).
+3) Lemma: If `(d:ℤ) ∣ z` and `d ≠ 0`, then `((2*z)/d)` is an exact quotient of `2*z` by `d` (so later rewriting does not rely on truncation artifacts).
+4) Lemma: With `Int.natAbs z = 2^u * r` and `d ∣ r`, prove `Int.natAbs ((2*z)/d) = 2^(u+1) * (r/d)` (push `natAbs` through multiplication by `2` and exact division by odd `d`).
+5) Lemma: If `r` is odd and `d` is odd and `d ∣ r`, then `r/d` is odd and positive (oddness preserved under division by an odd divisor; positivity from `hrpos` and `d ≥ 1`).
+---------
+
+---------
+<lemma helper_pow_two_mul_eq_of_odds
+  (u v a b : ℕ) (ha_pos : 0 < a) (hb_pos : 0 < b)
+  (ha_odd : a % 2 = 1) (hb_odd : b % 2 = 1) :
+  ( (2 : ℕ) ^ u * a = (2 : ℕ) ^ v * b ) → u = v ∧ a = b := by>
+Failure mode: HARD
+Recommendation: Prove by isolating the 2-adic valuation:
+1) Lemma: If `a` is odd then the maximal exponent of `2` dividing `2^u * a` is exactly `u` (i.e., `v₂(2^u*a)=u`).
+2) Lemma: If `2^u * a = 2^v * b` and `a,b` are odd and positive, then `u = v` by comparing the maximal powers of `2` dividing both sides.
+3) Lemma: Substitute `u=v` back into `2^u*a=2^u*b` and cancel the common factor `2^u` to get `a=b`.
+(Alternative plan: use divisibility: show `2^u ∣ 2^v*b` implies `u ≤ v` since `b` odd; symmetrically get `v ≤ u`; then cancel.)
+---------
+
+---------
+<lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by>
+Failure mode: HARD
+Recommendation: Reduce strict decrease to “division by a nontrivial odd gcd”:
+1) Lemma: Let `d = gcd(2*m_k+1, 2*n_k+1)`. From `¬Coprime` derive `1 < d`.
+2) Lemma: Using recurrence + coprimality normalization, identify successors as `(2*m_k+1)/d` and `(2*n_k+1)/d`.
+3) Lemma: Show `d` is odd and `(d:ℤ) ∣ ((m_k:ℤ)-(n_k:ℤ))` (your gcd/divisibility lemma).
+4) Lemma: With decomposition `natAbs(m_k-n_k)=2^u1*r1` (r1 odd), show `d ∣ r1` and compute the next odd part as `r1/d` (the scaling lemma plus uniqueness of odd-part decomposition).
+5) Lemma: From `1 < d` and `0 < r1` and `d ∣ r1`, deduce `r1/d < r1`.
+6) Lemma: Conclude `r2 = r1/d` (via the power-of-two cancellation lemma) and hence `r2 < r1`.
+---------

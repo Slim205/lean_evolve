@@ -1,0 +1,4 @@
+>>>>SEARCH
+exact clear_denoms_Q h_n_succ_nonzero_k h_two_nk_nonzero (h_recurrence k)
+>>>>REPLACE
+exact clear_denoms_Q h_two_nk_nonzero h_n_succ_nonzero_k (Eq.symm (h_recurrence k))

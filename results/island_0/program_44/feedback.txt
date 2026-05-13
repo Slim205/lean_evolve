@@ -1,0 +1,77 @@
+---------
+<lemma diff_evolution_natAbs
+  (m n : ℕ → ℕ) (k : ℕ) (d : ℕ)
+  (hm_mul : (2 * m k + 1) = d * m (k + 1))
+  (hn_mul : (2 * n k + 1) = d * n (k + 1))
+  (h_dvd : (d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    Int.natAbs (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by>
+Failure mode: HARD
+Recommendation: Prove it by first establishing an exact integer-division identity, then taking `natAbs`.
+1) Lemma: from `hm_mul` and `hn_mul`, after casting to ℤ and subtracting, derive  
+   `(d : ℤ) * ((m (k+1) : ℤ) - (n (k+1) : ℤ)) = (2 : ℤ) * ((m k : ℤ) - (n k : ℤ))`.
+2) Lemma: deduce `d ≠ 0` (already forced by `hm_mul` since `2*m k + 1 > 0`) and hence `(d : ℤ) ≠ 0`.
+3) Lemma: use (1) and `d ≠ 0` to conclude  
+   `((m (k+1) : ℤ) - (n (k+1) : ℤ)) = ((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)`  
+   by “division is exact when the divisor divides the numerator”.
+4) Lemma: apply `Int.natAbs` to the equality in (3) to get the desired result.
+
+---------
+
+<lemma natAbs_two_mul_div_of_odd_divisor (z : ℤ) (d : ℕ)
+  (hd_odd : d % 2 = 1) (hdiv : (d : ℤ) ∣ z) :
+  Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = 2 * (Int.natAbs z / d) := by>
+Failure mode: HARD
+Recommendation: Reduce to exact division (since `d ∣ z`) and then separate the factor `2` at the `natAbs` level.
+1) Lemma: from `hd_odd`, deduce `d ≠ 0` and hence `(d : ℤ) ≠ 0`.
+2) Lemma: from `hdiv`, obtain exactness: `z / (d : ℤ)` is the integer `q` with `z = (d : ℤ) * q`.
+3) Lemma: conclude `((2 : ℤ) * z) / (d : ℤ) = (2 : ℤ) * (z / (d : ℤ))` using exact division.
+4) Lemma: show `Int.natAbs ((2 : ℤ) * w) = 2 * Int.natAbs w` for all integers `w`.
+5) Lemma: relate `Int.natAbs (z / (d : ℤ))` to the natural quotient `Int.natAbs z / d` using that `(d : ℤ) ∣ z` implies `d ∣ Int.natAbs z` (so the nat-division is exact).
+6) Combine (3)–(5).
+
+(Observation: the “odd” hypothesis is mainly used to guarantee `d ≠ 0`; the core equality really uses divisibility, not oddness.)
+
+---------
+
+<lemma odd_part_le_from_div_by_odd (A d : ℕ) (hdvd : d ∣ A) (u1 r1 u2 r2 : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 ≤ r1 := by>
+Failure mode: HARD
+Recommendation: Make the 2-adic/odd-part reasoning explicit: an odd divisor only affects the odd part.
+1) Lemma: from `hA` and `hd_odd` and `hdvd : d ∣ A`, show `d ∣ r1`.  
+   (Reason: `A = 2^u1 * r1` with `d` odd implies `Nat.Coprime d (2^u1)`, so divisibility transfers to `r1`.)
+2) Lemma: from `d ∣ r1`, show `A / d = (2^u1) * (r1 / d)` (exact division in ℕ).
+3) Lemma: deduce `2 * (A / d) = 2^(u1+1) * (r1 / d)` and show `(r1 / d) % 2 = 1`.
+4) Lemma (odd-decomposition uniqueness): if `X = 2^u * r` with `r` odd, then `r` is the odd part of `X` (uniqueness up to equality of `r` when both are odd). Apply this to identify `r2 = r1 / d` from `hB_eq` and step (3).
+5) Conclude `r2 ≤ r1` from `r2 = r1 / d` (since `/` is ≤ the numerator).
+
+---------
+
+<lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by>
+Failure mode: HARD
+Recommendation: Reduce strict decrease to dividing the previous odd part by a nontrivial odd gcd.
+1) Lemma: let `d := gcd(2*m k + 1, 2*n k + 1)`. From `hbad`, show `1 < d`. Also show `d` is odd.
+2) Lemma: show `(d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))` (your earlier `gcd_odd_and_dvd_diff` is aimed at this).
+3) Lemma: from (2), get `d ∣ Int.natAbs ((m k : ℤ) - (n k : ℤ))`. Combine with `hA : A = 2^u1 * r1` and oddness to deduce `d ∣ r1`.
+4) Lemma: express the next absolute difference as `2 * (A / d)` (via your `next_eq_div_gcd` + a cleaned-up version of `diff_evolution_natAbs` + `natAbs_two_mul_div_of_odd_divisor`), and then identify the next odd part as `r1 / d`.
+5) Lemma: if `1 < d` and `0 < r1` and `d ∣ r1`, then `r1 / d < r1`.
+6) Conclude `r2 < r1` using `r2 = r1 / d` from (4) and the strict inequality from (5).
+
+(Conceptually: “bad” means the odd gcd `d` is > 1, so dividing by `d` strictly shrinks the odd part.)
+
+---------

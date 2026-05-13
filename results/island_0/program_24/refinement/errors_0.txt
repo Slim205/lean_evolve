@@ -1,0 +1,10 @@
+ERROR from position {'line': 54, 'column': 31} to {'line': 54, 'column': 47}:
+application type mismatch
+  reduced_fraction_unique (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1) hsucc_copr denom_nonzero (h_recurrence k)
+argument
+  h_recurrence k
+has type
+  ↑(m (k + 1)) / ↑(n (k + 1)) = (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1) : Prop
+but is expected to have type
+  ↑(m (k + 1)) / ↑(n (k + 1)) = ↑(2 * m k + 1) / ↑(2 * n k + 1) : Prop
+

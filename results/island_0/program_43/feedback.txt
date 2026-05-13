@@ -1,0 +1,96 @@
+---------
+lemma odd_int_divides_cancel_two {d : ℕ} {z : ℤ}
+  (hd_odd : d % 2 = 1) (hdiv : (d : ℤ) ∣ ((2 : ℤ) * z)) :
+  (d : ℤ) ∣ z := by
+Failure mode: HARD
+Recommendation:
+1) Prove `Nat.Coprime d 2` from `d % 2 = 1` (equivalently, show `¬ (2 ∣ d)` and use the parity characterization of coprimality with 2).
+2) Convert `Nat.Coprime d 2` into an integer Bézout identity: ∃ x y : ℤ, x*(d:ℤ) + y*2 = 1.
+3) Multiply the Bézout identity by `z` to obtain `z = x*(d:ℤ)*z + y*(2*z)`.
+4) Use closure of divisibility under addition and multiplication to show `(d:ℤ)` divides the right-hand side (the first term trivially, the second term by `hdiv`), hence divides `z`.
+
+---------
+
+---------
+lemma diff_evolution_natAbs
+  (m n : ℕ → ℕ) (k : ℕ) (d : ℕ)
+  (hm_mul : (2 * m k + 1) = d * m (k + 1))
+  (hn_mul : (2 * n k + 1) = d * n (k + 1))
+  (h_dvd : (d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    Int.natAbs (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+Failure mode: HARD
+Recommendation:
+1) Derive the “scaled difference” identity in ℤ:
+   \[
+   (d:ℤ)\big((m(k+1):ℤ)-(n(k+1):ℤ)\big)= (2:ℤ)\big((m k:ℤ)-(n k:ℤ)\big)
+   \]
+   using `hm_mul` and `hn_mul` (after casting to ℤ and subtracting).
+2) From `h_dvd`, deduce `(d:ℤ)` divides the right-hand side `(2:ℤ) * ((m k:ℤ)-(n k:ℤ))`.
+3) Use exactness of integer division when the divisor divides the numerator to conclude:
+   \[
+   ((2:ℤ)*((m k:ℤ)-(n k:ℤ)))/(d:ℤ)= (m(k+1):ℤ)-(n(k+1):ℤ).
+   \]
+4) Apply `Int.natAbs` to the equality from step 3 and rewrite to match the goal.
+
+---------
+
+---------
+lemma natAbs_two_mul_div_of_odd_divisor (z : ℤ) (d : ℕ)
+  (hd_odd : d % 2 = 1) (hdiv : (d : ℤ) ∣ z) :
+  Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = 2 * (Int.natAbs z / d) := by
+Failure mode: HARD
+Recommendation:
+1) From `hdiv`, choose `q : ℤ` with `z = (d:ℤ) * q`.
+2) Rewrite the left side using step 1:
+   \[
+   ((2:ℤ)*z)/(d:ℤ) = ((2:ℤ)*(d:ℤ)*q)/(d:ℤ) = (2:ℤ)*q
+   \]
+   (using exact division by a nonzero divisor; `hd_odd` should be used to infer `d ≠ 0`).
+3) Conclude `Int.natAbs(((2:ℤ)*z)/(d:ℤ)) = Int.natAbs((2:ℤ)*q) = 2 * Int.natAbs q`.
+4) Show `Int.natAbs z = d * Int.natAbs q` from `z = (d:ℤ)*q` and `d ≥ 0`, and deduce the exact natural division identity `Int.natAbs z / d = Int.natAbs q`.
+5) Substitute step 4 into step 3 to obtain the desired formula.
+
+(Observation: the “odd” hypothesis is mainly a route to `d ≠ 0`; the core equality relies on exact divisibility and compatibility of `natAbs` with multiplication.)
+
+---------
+
+---------
+lemma odd_part_le_from_div_by_odd (A d : ℕ) (hdvd : d ∣ A) (u1 r1 u2 r2 : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 ≤ r1 := by
+Failure mode: HARD
+Recommendation:
+1) Prove a 2-adic factorization uniqueness lemma: if `A = 2^u * r` with `r` odd, then `u` is the exact 2-adic valuation of `A` and `r` is the “odd part” of `A`.
+2) Prove that dividing by an odd `d` does not change the 2-adic valuation: if `d ∣ A` and `d` is odd, then `v₂(A/d) = v₂(A)` (equivalently, the odd part of `A/d` is the odd part of `A` divided by `d` up to exactness).
+3) Show that for `B := 2 * (A/d)`, the odd part of `B` is exactly the odd part of `A/d` (multiplying by 2 increases only the 2-adic exponent by 1).
+4) Use `hB_eq` together with `hr2_odd` to identify `r2` as the odd part of `B`.
+5) Conclude that `r2` is an odd divisor of `r1` (or at least `r2 ≤ r1`) by translating “odd part” into a divisibility statement and using monotonicity of divisors (`x ∣ y → x ≤ y` when `0 < x`).
+
+---------
+
+---------
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by
+Failure mode: HARD
+Recommendation:
+1) Let `d := gcd(2*m k + 1, 2*n k + 1)` and prove `1 < d` from `¬Coprime(...)`.
+2) Prove `d` is odd and `(d:ℤ) ∣ ((m k:ℤ) - (n k:ℤ))` (your lemma `gcd_odd_and_dvd_diff` is designed for this).
+3) Deduce `d ∣ Int.natAbs((m k:ℤ)-(n k:ℤ))` and combine with the decomposition `A = 2^u1 * r1` (with `r1` odd) to show `d ∣ r1` (since `d` is odd, it cannot divide the `2^u1` part).
+4) Relate the next absolute difference to `2*(A/d)` (via the “evolution” lemma) and use an “odd part under division by odd” lemma to show the next odd part `r2 ≤ r1 / d`.
+5) Use `1 < d` and `0 < r1` to conclude `r1 / d < r1`, hence `r2 < r1`.
+
+(Conceptual punchline: non-coprime ⇒ common odd divisor `d>1` divides the odd part of the previous difference, and the update replaces that odd part by something no larger than `r1/d`, yielding strict decrease.)

@@ -1,0 +1,25 @@
+---------
+lemma odd_part_next_eq_quotient
+  (A d u1 r1 u2 r2 r1' : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1)
+  (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hr1_eq : r1 = d * r1')
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2)
+  (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 = r1' := by
+Failure mode: HARD
+Recommendation: Decompose the goal into a “rewrite-to-two-adic-uniqueness” chain; the statement is plausible but needs several intermediate facts about exact division and oddness.
+
+1) **Odd divisor is nonzero/positive**: from `hd_odd : d % 2 = 1`, prove `1 ≤ d` (hence `d ≠ 0`).
+2) **Factor `A` with an explicit `d`-multiple**: using `hA` and `hr1_eq`, prove  
+   `A = d * ((2^u1) * r1')`.
+3) **Exact division of `A` by `d`**: from Lemma 2 and `1 ≤ d`, deduce  
+   `A / d = (2^u1) * r1'`.
+4) **Rewrite the “next” expression**: deduce  
+   `2 * (A / d) = (2^(u1+1)) * r1'`.
+5) **Oddness of the quotient**: from `hr1_eq`, `hr1_odd`, and `hd_odd`, prove `r1' % 2 = 1` (so `r1'` is odd).
+6) **Uniqueness of odd-part decomposition**: combine Lemma 4 with `hB_eq` to get  
+   `(2^(u1+1)) * r1' = (2^u2) * r2`, with both `r1'` and `r2` odd (Lemmas 5 and `hr2_odd`). Apply your uniqueness lemma `pow_mul_odd_eq_pow_mul_odd` to conclude `r2 = r1'` (and also `u2 = u1+1`, though the latter isn’t needed for this lemma).
+
+This is exactly the kind of lemma that becomes manageable once the division rewrite (Lemma 3) and “oddness passes to quotient” (Lemma 5) are isolated.

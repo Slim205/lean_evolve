@@ -1,0 +1,62 @@
+Failed Lemmas : 
+
+lemma euclid_coprime_mul_eq {a b x y : ℕ} (hcop : Nat.Coprime a b)
+  (h : (a * x : ℕ) = b * y) :
+  a ∣ y ∧ b ∣ x := by
+lemma reduced_fraction_unique (a b c d : ℕ)
+  (hcop : Nat.Coprime a b)
+  (hd : d ≠ 0)
+  (h : (a : ℚ) / (b : ℚ) = (c : ℚ) / (d : ℚ)) :
+  a = c / Nat.gcd c d ∧ b = d / Nat.gcd c d := by
+lemma gcd_odd_and_dvd_diff
+  (m n : ℕ → ℕ)
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  d % 2 = 1 ∧ ((d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) := by
+lemma oddPart_strict_decrease_of_not_coprime
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) <
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) := by
+lemma one_step_drop_consumes_budget (t : ℕ → ℕ) (k : ℕ) :
+  t (k + 1) ≤ t k - 1 → t (k + 1) + 1 ≤ t k := by
+lemma helper_gcd_odd_and_dvd_diff
+  (m n : ℕ → ℕ) (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  d % 2 = 1 ∧ ((d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) := by
+lemma helper_diff_evolution
+  (m n : ℕ → ℕ)
+  (k : ℕ)
+  (d : ℕ)
+  (h_d_def : d = Nat.gcd (2 * m k + 1) (2 * n k + 1))
+  (hnext : (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d)) :
+  ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+lemma helper_natabs_scaling_by_odd_div
+  (z : ℤ) (u r : ℕ) (d : ℕ)
+  (hA : Int.natAbs z = (2 : ℕ) ^ u * r)
+  (hrodd : r % 2 = 1) (hrpos : 0 < r)
+  (hdodd : d % 2 = 1) (hd_dvd : (d : ℤ) ∣ z) :
+  d ∣ r ∧ Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = (2 : ℕ) ^ (u + 1) * (r / d) ∧ (r / d) % 2 = 1 ∧ 0 < (r / d) := by
+lemma helper_pow_two_mul_eq_of_odds
+  (u v a b : ℕ) (ha_pos : 0 < a) (hb_pos : 0 < b)
+  (ha_odd : a % 2 = 1) (hb_odd : b % 2 = 1) :
+  ( (2 : ℕ) ^ u * a = (2 : ℕ) ^ v * b ) → u = v ∧ a = b := by
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by

@@ -1,0 +1,9 @@
+lemma odd_divides_odd_part (A d u r : ℕ)
+  (hA : A = (2 : ℕ) ^ u * r) (hr_odd : r % 2 = 1) (hd_odd : d % 2 = 1) (hdvd : d ∣ A) :
+  d ∣ r := by
+Failure mode: HARD
+Recommendation: Prove it by isolating the coprime-cancellation step.
+1) Lemma: `hd_odd : d % 2 = 1 → Nat.Coprime d ((2:ℕ)^u)` (odd implies coprime with any power of 2).
+2) Lemma: If `Nat.Coprime d ((2:ℕ)^u)` and `d ∣ (2:ℕ)^u * r`, then `d ∣ r` (Euclid lemma / coprime cancellation).
+3) Lemma: From `hA : A = (2:ℕ)^u * r` and `hdvd : d ∣ A`, deduce `d ∣ (2:ℕ)^u * r` by rewriting via `hA`.
+4) Conclude `d ∣ r` by applying (1)+(2) to the divisibility obtained in (3).

@@ -1,0 +1,11 @@
+lemma le_of_mul_eq_left (p q x y : ℕ)
+  (h : (2 : ℕ) ^ p * x = (2 : ℕ) ^ q * y) (hx_odd : x % 2 = 1) :
+  q ≤ p := by
+Failure mode: HARD
+Recommendation:
+1) Lemma (odd_pos): If `x % 2 = 1` then `0 < x`.
+2) Lemma (pow_succ_dvd_pow_mul): If `p < q` then `(2:ℕ)^(p+1) ∣ (2:ℕ)^q * y`.
+3) Lemma (dvd_of_eq): If `A = B` and `d ∣ B` then `d ∣ A`.
+4) Lemma (pow_succ_dvd_pow_mul_iff): `(2:ℕ)^(p+1) ∣ (2:ℕ)^p * x` implies `2 ∣ x` (equivalently, from `2^(p+1) ∣ 2^p*x` derive `2 ∣ x` by canceling `2^p`).
+5) Lemma (odd_not_two_dvd): If `x % 2 = 1` then `¬ (2 ∣ x)`.
+6) Main conclusion: prove `q ≤ p` by contradiction: assume `p < q`, use (2)(3) to get `2^(p+1) ∣ 2^p*x`, then (4) gives `2 ∣ x`, contradict (5).

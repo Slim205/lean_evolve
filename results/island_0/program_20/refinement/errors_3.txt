@@ -1,0 +1,6 @@
+ERROR from position {'line': 560, 'column': 65} to None:
+expected ';' or line break
+
+ERROR from position {'line': 625, 'column': 10} to {'line': 625, 'column': 31}:
+unknown identifier 'helper_diff_evolution'
+

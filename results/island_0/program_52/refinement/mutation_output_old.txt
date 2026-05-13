@@ -1,0 +1,29 @@
+>>>>SEARCH
+lemma nat_div_eq_of_mul_eq {d m n : ℕ} (h : n = d * m) : n / d = m := by
+  -- proof omitted
+  sorry
+>>>>REPLACE
+lemma nat_div_eq_of_mul_eq {d m n : ℕ} (hd_pos : 1 ≤ d) (h : n = d * m) : n / d = m := by
+  -- When the divisor `d` is at least 1 (hence nonzero), exact division `n = d * m`
+  -- implies the quotient `n / d` (the exact nat-division) equals `m`.
+  -- Detailed proof omitted.
+  sorry
+>>>>SEARCH
+  have hA_mul : A = d * ((2 : ℕ) ^ u1 * r1') := by
+    calc
+      A = (2 : ℕ) ^ u1 * r1 := hA
+      _ = (2 : ℕ) ^ u1 * (d * r1') := by rw [hr1_eq]
+      _ = d * ((2 : ℕ) ^ u1 * r1') := by ring
+  have h_divA : A / d = (2 : ℕ) ^ u1 * r1' := by
+    exact nat_div_eq_of_mul_eq hA_mul
+>>>>REPLACE
+  have hA_mul : A = d * ((2 : ℕ) ^ u1 * r1') := by
+    calc
+      A = (2 : ℕ) ^ u1 * r1 := hA
+      _ = (2 : ℕ) ^ u1 * (d * r1') := by rw [hr1_eq]
+      _ = d * ((2 : ℕ) ^ u1 * r1') := by ring
+  -- `d` is odd, so in particular `1 ≤ d`; use this to apply exact division lemma.
+  have h1_le_d : 1 ≤ d := by
+    exact odd_implies_one_le d hd_odd
+  have h_divA : A / d = (2 : ℕ) ^ u1 * r1' := by
+    exact nat_div_eq_of_mul_eq h1_le_d hA_mul

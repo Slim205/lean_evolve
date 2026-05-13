@@ -1,0 +1,17 @@
+<lemma cross_mul_eq_nat
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_n_succ_nonzero_k : (n (k + 1) : ℚ) ≠ 0)
+  (h_two_nk_nonzero : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0)
+  (k : ℕ) :
+  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by>
+Failure mode: HARD
+Recommendation: Decompose “clear denominators in ℚ and return to ℕ” into small bridging lemmas.
+1) Lemma (clear_denoms_Q): If `a/b = c/d` in `ℚ` with `b ≠ 0` and `d ≠ 0`, then `a*d = c*b` in `ℚ`.
+2) Lemma (cast_num): `(2 * n k + 1 : ℚ) = (2 : ℚ) * (n k : ℚ) + 1` and similarly for `m`.
+3) Lemma (recurrence_cross_Q): From `h_recurrence k` and the two nonzero hypotheses, derive  
+   `(m (k+1) : ℚ) * (2 * n k + 1 : ℚ) = (n (k+1) : ℚ) * (2 * m k + 1 : ℚ)`.
+4) Lemma (nat_cast_inj_mul): If `(x : ℚ) = (y : ℚ)` for `x y : ℕ`, then `x = y` (apply to the products).
+5) Conclude the target ℕ-equality by applying (4) to the equality produced in (3).

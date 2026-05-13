@@ -1,0 +1,6 @@
+>>>>SEARCH
+    exact reduced_fraction_unique (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1)
+      hsucc_copr hb denom_nonzero (h_recurrence k)
+>>>>REPLACE
+    exact reduced_fraction_unique (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1)
+      hsucc_copr hb denom_nonzero (by simpa using (h_recurrence k))

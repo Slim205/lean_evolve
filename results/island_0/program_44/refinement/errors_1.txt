@@ -1,0 +1,10 @@
+ERROR from position {'line': 406, 'column': 44} to {'line': 406, 'column': 50}:
+application type mismatch
+  int_dvd_add_of_dvd (↑d) hterm1 hterm2
+argument
+  hterm2
+has type
+  ↑d ∣ y * (2 * z) : Prop
+but is expected to have type
+  ↑d ∣ y * 2 * z : Prop
+

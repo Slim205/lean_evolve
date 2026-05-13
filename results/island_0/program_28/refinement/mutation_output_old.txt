@@ -1,0 +1,74 @@
+>>>>SEARCH
+/-- Helper: uniqueness of reduced form. If a/b = c/d as rationals and `Coprime a b`,
+    then a = c / gcd(c,d) and b = d / gcd(c,d). -/
+lemma reduced_fraction_unique (a b c d : ℕ)
+  (hcop : Nat.Coprime a b)
+  (hd : d ≠ 0)
+  (h : (a : ℚ) / (b : ℚ) = (c : ℚ) / (d : ℚ)) :
+  a = c / Nat.gcd c d ∧ b = d / Nat.gcd c d := by
+  -- standard reduction/uniqueness argument (cross-multiplication + Euclid); omitted
+  sorry
+>>>>REPLACE
+/-- Helper: uniqueness of reduced form. If a/b = c/d as rationals and `Coprime a b`,
+    and both denominators are nonzero, then the reduced forms agree: a = c/gcd(c,d) and
+    b = d/gcd(c,d). Note we require `b ≠ 0` to avoid the `1/0` pathologies in `ℚ`. -/
+lemma reduced_fraction_unique (a b c d : ℕ)
+  (hcop : Nat.Coprime a b)
+  (hb : b ≠ 0)
+  (hd : d ≠ 0)
+  (h : (a : ℚ) / (b : ℚ) = (c : ℚ) / (d : ℚ)) :
+  a = c / Nat.gcd c d ∧ b = d / Nat.gcd c d := by
+  -- standard reduction/uniqueness argument (cross-multiplication + Euclid); omitted
+  sorry
+>>>>SEARCH
+  -- apply the reduced-fraction uniqueness lemma to the equality of rationals
+  have hpair : (m (k + 1) = (2 * m k + 1) / Nat.gcd (2 * m k + 1) (2 * n k + 1)) ∧
+               (n (k + 1) = (2 * n k + 1) / Nat.gcd (2 * m k + 1) (2 * n k + 1)) := by
+    exact reduced_fraction_unique (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1)
+      hsucc_copr denom_nonzero (by simpa using (h_recurrence k))
+
+  exact hpair
+>>>>REPLACE
+  -- obtain a nat-nonzero witness for the successor denominator `n (k+1) ≠ 0`
+  have hb_nonzero : n (k + 1) ≠ 0 := by
+    -- `n_succ_nonzero` provides `(n (k+1) : ℚ) ≠ 0`; this easily implies `n (k+1) ≠ 0` as a nat
+    simpa using (n_succ_nonzero m n h_recurrence k)
+
+  -- apply the reduced-fraction uniqueness lemma to the equality of rationals
+  have hpair : (m (k + 1) = (2 * m k + 1) / Nat.gcd (2 * m k + 1) (2 * n k + 1)) ∧
+               (n (k + 1) = (2 * n k + 1) / Nat.gcd (2 * m k + 1) (2 * n k + 1)) := by
+    exact reduced_fraction_unique (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1)
+      hsucc_copr hb_nonzero denom_nonzero (by simpa using (h_recurrence k))
+
+  exact hpair
+>>>>SEARCH
+/-- Helper C: given the explicit identification of the successors as the gcd-quotients,
+    the integer evolution of the difference is a straightforward integer arithmetic rewrite.
+    We therefore require the `hnext` hypothesis asserting those quotient equalities. -/
+lemma helper_diff_evolution
+  (m n : ℕ → ℕ)
+  (k : ℕ)
+  (d : ℕ)
+  (h_d_def : d = Nat.gcd (2 * m k + 1) (2 * n k + 1))
+  (hnext : (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d)) :
+  ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+  -- the statement is a direct consequence of the assumed quotient equalities;
+  -- leave the detailed integer arithmetic proof as `sorry`.
+  sorry
+>>>>REPLACE
+/-- Helper C: given the explicit identification of the successors as the gcd-quotients,
+    the integer evolution of the difference can be stated multiplicatively to avoid fragile
+    truncated integer division. Concretely we have
+      ((m_{k+1} - n_{k+1}) * d) = 2 * (m_k - n_k),
+    where `d = gcd(2*m_k+1,2*n_k+1)`. -/
+lemma helper_diff_evolution
+  (m n : ℕ → ℕ)
+  (k : ℕ)
+  (d : ℕ)
+  (h_d_def : d = Nat.gcd (2 * m k + 1) (2 * n k + 1))
+  (hnext : (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d)) :
+  ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) * (d : ℤ) =
+    (2 : ℤ) * ((m k : ℤ) - (n k : ℤ)) := by
+  -- multiplicative form avoids non-exact integer division; leave arithmetic proof as `sorry`
+  sorry

@@ -1,0 +1,78 @@
+ERROR from position {'line': 1073, 'column': 23} to {'line': 1073, 'column': 26}:
+The rfl tactic failed. Possible reasons:
+- The goal is not a reflexive relation (neither `=` nor a relation with a @[refl] lemma).
+- The arguments of the relation are not equal.
+Try using the reflexivitiy lemma for your relation explicitly, e.g. `exact Eq.rfl`.
+A d : ℕ
+hdvd : d ∣ A
+u1 r1 u2 r2 : ℕ
+hA : A = 2 ^ u1 * r1
+hr1_odd : r1 % 2 = 1
+hr1_pos : 0 < r1
+hB_eq : 2 * (A / d) = 2 ^ u2 * r2
+hr2_odd : r2 % 2 = 1
+hr2_pos : 0 < r2
+hd_odd : d % 2 = 1
+hcop : d.Coprime (2 ^ u1)
+hdvd_mul : d ∣ 2 ^ u1 * r1
+hd_div_r1 : d ∣ r1
+r1' : ℕ
+hr1_eq : r1 = d * r1'
+hA_div : A / d = 2 ^ u1 * r1'
+hr1'_odd : r1' % 2 = 1
+⊢ 2 * 2 ^ u1 * r1' = 2 ^ u1 * 2 * r1'
+
+ERROR from position {'line': 1085, 'column': 20} to {'line': 1085, 'column': 22}:
+tactic 'rewrite' failed, equality or iff proof expected
+  False
+A d : ℕ
+hdvd : d ∣ A
+u1 r1 u2 r2 : ℕ
+hA : A = 2 ^ u1 * r1
+hr1_odd : r1 % 2 = 1
+hr1_pos : 0 < r1
+hB_eq : 2 * (A / d) = 2 ^ u2 * r2
+hr2_odd : r2 % 2 = 1
+hr2_pos : 0 < r2
+hd_odd : d % 2 = 1
+hcop : d.Coprime (2 ^ u1)
+hdvd_mul : d ∣ 2 ^ u1 * r1
+hd_div_r1 : d ∣ r1
+r1' : ℕ
+hr1_eq : r1 = d * r1'
+hA_div : A / d = 2 ^ u1 * r1'
+hr1'_odd : r1' % 2 = 1
+h_left : 2 * (A / d) = 2 ^ (u1 + 1) * r1'
+heq_pow : 2 ^ (u1 + 1) * r1' = 2 ^ u2 * r2
+h0 : ¬0 < r1'
+⊢ d * r1' = 0
+
+ERROR from position {'line': 1087, 'column': 6} to {'line': 1087, 'column': 19}:
+tactic 'contradiction' failed
+A d : ℕ
+hdvd : d ∣ A
+u1 r1 u2 r2 : ℕ
+hA : A = 2 ^ u1 * r1
+hr1_odd : r1 % 2 = 1
+hr1_pos : 0 < r1
+hB_eq : 2 * (A / d) = 2 ^ u2 * r2
+hr2_odd : r2 % 2 = 1
+hr2_pos : 0 < r2
+hd_odd : d % 2 = 1
+hcop : d.Coprime (2 ^ u1)
+hdvd_mul : d ∣ 2 ^ u1 * r1
+hd_div_r1 : d ∣ r1
+r1' : ℕ
+hr1_eq : r1 = d * r1'
+hA_div : A / d = 2 ^ u1 * r1'
+hr1'_odd : r1' % 2 = 1
+h_left : 2 * (A / d) = 2 ^ (u1 + 1) * r1'
+heq_pow : 2 ^ (u1 + 1) * r1' = 2 ^ u2 * r2
+h0 : ¬0 < r1'
+this✝ : r1 = 0
+this : 0 < r1
+⊢ False
+
+ERROR from position {'line': 1093, 'column': 24} to {'line': 1093, 'column': 37}:
+no goals to be solved
+

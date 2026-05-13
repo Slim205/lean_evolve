@@ -1,0 +1,9 @@
+>>>>SEARCH
+  -- apply the reduced-fraction uniqueness helper to the given rational equality
+  have hred := reduced_fraction_gcd_quotients hsucc_copr (h_recurrence k)
+
+  -- the `g` in the helper is definitionally the same as our `d`, so we can close the goal
+  exact hred
+>>>>REPLACE
+  -- apply the reduced-fraction uniqueness helper to the given rational equality and close
+  exact reduced_fraction_gcd_quotients hsucc_copr (h_recurrence k)

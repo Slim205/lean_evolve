@@ -1,0 +1,119 @@
+---------
+<lemma helper_next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by>
+Failure mode: INCORRECT
+Recommendation: The recurrence only fixes the *value in* ℚ of the ratio; it does not imply that `(m (k+1), n (k+1))` is the reduced pair obtained by dividing `(2*m k+1, 2*n k+1)` by their gcd. Many different natural pairs can represent the same rational number. To make this provable, strengthen the statement/hypotheses to include a normalization/uniqueness condition, e.g.
+- assume `Nat.Coprime (m (k+1)) (n (k+1))` (and positivity/nonzero of `n (k+1)`), or
+- directly use your earlier lemma `next_eq_div_gcd` which already assumes a coprimality hypothesis.
+Then prove “uniqueness of reduced fraction in ℚ” to identify the pair with the gcd-quotient.
+---------
+
+---------
+<lemma helper_gcd_odd_and_dvd_diff
+  (m n : ℕ → ℕ) (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  d % 2 = 1 ∧ ((d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) := by>
+Failure mode: HARD
+Recommendation: Decompose into small arithmetic facts about gcd/parity/divisibility and then bridge ℕ→ℤ.
+
+Proof plan (lemmas to prove):
+1. **Oddness of inputs**: For all `x : ℕ`, `(2*x+1) % 2 = 1`.
+2. **gcd of odd numbers is odd**: If `a % 2 = 1` and `b % 2 = 1` then `Nat.gcd a b % 2 = 1`.
+3. **gcd divides the difference**: Let `d = Nat.gcd a b`. Then `d ∣ (a - b)` in ℕ and hence `(d:ℤ) ∣ ((a:ℤ) - (b:ℤ))`.
+4. **Specialize to your `a,b`**: With `a = 2*m k + 1`, `b = 2*n k + 1`, deduce `(d:ℤ) ∣ ((2:ℤ)*((m k : ℤ)-(n k : ℤ)))`.
+5. **Cancel the factor 2 using oddness**: If `d` is odd and `(d:ℤ) ∣ (2*z)` then `(d:ℤ) ∣ z`. Apply with `z = (m k : ℤ)-(n k : ℤ)`.
+This yields both `d % 2 = 1` and `(d:ℤ) ∣ (m k - n k)`.
+---------
+
+---------
+<lemma helper_diff_evolution
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by>
+Failure mode: INCORRECT
+Recommendation: This “difference evolution” identity is not derivable from the ℚ-ratio recurrence alone; it implicitly assumes the much stronger fact that
+`m(k+1) = (2*m k+1)/d` and `n(k+1) = (2*n k+1)/d`.
+Without such an identification, the left-hand side is unconstrained except via the rational equality.
+
+Revise by either:
+- adding as a hypothesis the pair-equality conclusion from a corrected `helper_next_eq_div_gcd`, or
+- changing the lemma to *assume* `m(k+1), n(k+1)` are those gcd-quotients, then the evolution is a straightforward algebraic rewrite.
+(Also be careful: the statement uses ℤ-division; you will need that `(d:ℤ)` divides the numerator to avoid truncation issues.)
+---------
+
+---------
+<lemma helper_natabs_scaling_by_odd_div
+  (z : ℤ) (u r : ℕ) (d : ℕ)
+  (hA : Int.natAbs z = (2 : ℕ) ^ u * r)
+  (hrodd : r % 2 = 1) (hrpos : 0 < r)
+  (hdodd : d % 2 = 1) (hd_dvd : (d : ℤ) ∣ z) :
+  Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = (2 : ℕ) ^ u * (r / d) ∧ (r / d) % 2 = 1 ∧ 0 < (r / d) := by>
+Failure mode: INCORRECT
+Recommendation: The main equality has the wrong power of 2. From `|z| = 2^u * r`, one has
+`|2z/d| = 2^(u+1) * (r/d)` (since dividing by odd `d` does not change the 2-adic exponent, but multiplying by 2 increases it by 1). So the conclusion should use `2^(u+1)` rather than `2^u`.
+
+Also, as stated it silently treats `r/d` as an exact quotient in ℕ, but `Nat.div` is truncated unless you also ensure `d ∣ r` (which you *can* derive from `hd_dvd` + oddness, but it must be an intermediate lemma in the proof).
+
+Fix the lemma by:
+- replacing `(2 : ℕ) ^ u * (r / d)` with `(2 : ℕ) ^ (u+1) * (r / d)`, and
+- adding or proving internally the fact `d ∣ r` and “ℤ-division agrees with exact ℕ-division on natAbs” for this situation.
+---------
+
+---------
+<lemma helper_pow_two_mul_eq_of_odds
+  (u v a b : ℕ) (ha_pos : 0 < a) (hb_pos : 0 < b)
+  (ha_odd : a % 2 = 1) (hb_odd : b % 2 = 1) :
+  ( (2 : ℕ) ^ u * a = (2 : ℕ) ^ v * b ) → u = v ∧ a = b := by>
+Failure mode: HARD
+Recommendation: This is true (uniqueness of the “odd part” decomposition) but needs a careful valuation/cancellation argument.
+
+Proof plan (lemmas to prove):
+1. **Odd means no factor 2**: If `a % 2 = 1` then `¬ (2 ∣ a)`.
+2. **Compare exponents via divisibility**: From `2^u * a = 2^v * b`, if `u ≤ v` then `2^(v-u) ∣ a`.
+3. **Odd forces exponent gap to be zero**: If `a` is odd and `2^t ∣ a` then `t = 0`.
+4. **Conclude exponent equality**: Apply (2) and (3) to show `u ≤ v → u = v`, and symmetrically `v ≤ u → v = u`.
+5. **Cancel common power**: With `u = v`, deduce `a = b` by cancellation in ℕ.
+This yields `u = v ∧ a = b`.
+---------
+
+---------
+<lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by>
+Failure mode: HARD
+Recommendation: The statement is plausible but needs many intermediate facts: you must connect “not coprime” to a nontrivial odd gcd `d`, express the next difference as `2*z/d`, and then compare odd parts via uniqueness.
+
+Proof plan (lemmas to prove):
+1. **Nontrivial gcd from not-coprime**: If `¬Nat.Coprime A B` then with `d = gcd A B` we have `1 < d`.
+2. **Oddness of d**: For `A=2*m k+1`, `B=2*n k+1`, show `d % 2 = 1`.
+3. **Normalized successor**: Using `h_recurrence` plus `Nat.Coprime (m (k+1)) (n (k+1))` (from `h_coprime`), prove `(m (k+1), n (k+1))` equals `((2*m k+1)/d, (2*n k+1)/d)`.
+4. **Difference evolution**: Deduce `z_{k+1} = (2*z_k)/(d:ℤ)` where `z_i = (m i:ℤ)-(n i:ℤ)`, and show `(d:ℤ) ∣ z_k`.
+5. **Odd divisor hits the odd part**: From `Int.natAbs z_k = 2^u1 * r1` with `r1` odd, and `d` odd dividing `z_k`, prove `d ∣ r1` in ℕ and `Int.natAbs z_{k+1} = 2^(u1+1) * (r1/d)`.
+6. **Identify odd parts uniquely**: Combine the computed decomposition of `Int.natAbs z_{k+1}` with the given one `= 2^u2 * r2` (both odd/positive) and use a uniqueness lemma (like your `helper_pow_two_mul_eq_of_odds`) to get `r2 = r1/d`.
+7. **Strict inequality**: From `1 < d` and `0 < r1`, conclude `r1/d < r1`, hence `r2 < r1`.
+This decomposition makes the strictness come entirely from `d > 1`.
+---------
+
+
+Hint: When you need auxiliary names in a statement, either write the let-binding with "in" (let d := … in …) or introduce the helper definition inside the proof; avoid bare "let …" in the type to prevent parser errors.

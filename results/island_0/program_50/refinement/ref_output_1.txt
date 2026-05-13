@@ -1,0 +1,14 @@
+>>>>SEARCH
+(by
+      by_contra h
+      have this := hr1_eq
+      rw [h] at this
+      rw [mul_zero] at this
+      linarith [hr1_pos, this]) hr2_pos
+>>>>REPLACE
+by
+    have hmulpos : (d * r1' : ℕ) > 0 := by
+      rw [← hr1_eq]
+      exact hr1_pos
+    have hpair := (Nat.mul_pos_iff d r1').1 hmulpos
+    exact hpair.2) hr2_pos

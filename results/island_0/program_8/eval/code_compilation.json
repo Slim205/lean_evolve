@@ -1,0 +1,714 @@
+[
+    {
+        "name": "fin_card_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem fin_card_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  \u2200 K, (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n  intro K\n  have h1 : (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n    calc\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264\n          (Finset.range K).card := by\n        apply Finset.card_le_of_subset\n        intro i hi\n        simp_all [Finset.mem_filter, Finset.mem_range]\n        <;> omega\n      _ = K := by simp\n      _ \u2264 N := by\n        have h2 : K \u2264 N := by\n          have h3 : \u2200 k, t k \u2264 t 0 := by\n            intro k\n            induction k with\n            | zero => simp\n            | succ k ih =>\n              exact le_trans (hnoninc k) ih\n          have h4 : t 0 \u2264 N := h0\n          have h5 : t K \u2264 t 0 := h3 K\n          have h6 : t K \u2264 N := le_trans h5 h4\n          omega\n        exact h2\n  exact h1",
+        "custom_id": "fin_card_bound_0",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 30,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 30,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  a - d \u2264 -1\n  a \u2265 0\n  b - c \u2265 0\n  a - c \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t K)\n d := \u2191K"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 38
+                    },
+                    "data": "`Finset.card_le_of_subset` has been deprecated, use `Finset.card_le_card` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.08930778503417969,
+            "custom_id": "fin_card_bound_0"
+        }
+    },
+    {
+        "name": "fin_card_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem fin_card_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  \u2200 K, (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n  intro K\n  have h\u2081 : (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n    calc\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264\n          (Finset.range K).card := by\n        apply Finset.card_le_of_subset\n        apply Finset.filter_subset\n      _ = K := by\n        simp\n      _ \u2264 N := by\n        have h\u2082 : K \u2264 N := by\n          have h\u2083 : \u2200 k, t k \u2264 N := by\n            intro k\n            induction k with\n            | zero => simp_all\n            | succ k ih =>\n              specialize hnoninc k\n              omega\n          have h\u2084 : t K \u2264 N := h\u2083 K\n          have h\u2085 : t 0 \u2264 N := h0\n          have h\u2086 : \u2200 k, t k \u2264 N := h\u2083\n          omega\n        omega\n  exact h\u2081",
+        "custom_id": "fin_card_bound_1",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 30,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 30,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  a - d \u2264 -1\n  a \u2265 0\n  a - c \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t K)\n d := \u2191K"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 38
+                    },
+                    "data": "`Finset.card_le_of_subset` has been deprecated, use `Finset.card_le_card` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.07104945182800293,
+            "custom_id": "fin_card_bound_1"
+        }
+    },
+    {
+        "name": "fin_card_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem fin_card_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  \u2200 K, (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n  intro K\n  have h\u2081 : (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n    have h\u2082 : (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264\n      (Finset.range K).card := by\n      apply Finset.card_le_of_subset\n      apply Finset.filter_subset\n    have h\u2083 : (Finset.range K).card = K := by\n      simp\n    have h\u2084 : K \u2264 N := by\n      have h\u2085 : \u2200 k, t k \u2264 N := by\n        intro k\n        induction k with\n        | zero => simp_all\n        | succ k ih =>\n          specialize hnoninc k\n          omega\n      have h\u2086 : t K \u2264 N := h\u2085 K\n      omega\n    omega\n  exact h\u2081",
+        "custom_id": "fin_card_bound_2",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 26,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a - e \u2265 0\n  e \u2265 0\n  d \u2265 0\n  c \u2265 0\n  a - b \u2265 0\n  c - d \u2264 0\n  a - d \u2264 -1\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card\n d := \u2191K\n e := \u2191(t K)"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 36
+                    },
+                    "data": "`Finset.card_le_of_subset` has been deprecated, use `Finset.card_le_card` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.09670519828796387,
+            "custom_id": "fin_card_bound_2"
+        }
+    },
+    {
+        "name": "fin_card_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem fin_card_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  \u2200 K, (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n  intro K\n  have h\u2081 : (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n    calc\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264\n          (Finset.Iio K).card := by\n        apply Finset.card_le_card\n        apply Finset.filter_subset\n      _ = K := by simp\n      _ \u2264 N := by\n        have h\u2082 : K \u2264 N := by\n          have h\u2083 : \u2200 k, t k \u2264 N := by\n            intro k\n            induction k with\n            | zero => exact h0\n            | succ k ih =>\n              have : t (k + 1) \u2264 t k := hnoninc k\n              have : t (k + 1) \u2264 N := by linarith\n              linarith\n          exact by\n            have : t K \u2264 N := h\u2083 K\n            omega\n        exact h\u2082\n  exact h\u2081",
+        "custom_id": "fin_card_bound_3",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 34
+                    },
+                    "data": "tactic 'apply' failed, failed to unify\n  Finset.filter ?p ?s \u2286 ?s\nwith\n  Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K) \u2286 Finset.Iio K\ncase a\nt : \u2115 \u2192 \u2115\nN : \u2115\nh0 : t 0 \u2264 N\nhnoninc : \u2200 (k : \u2115), t (k + 1) \u2264 t k\nK : \u2115\n\u22a2 Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K) \u2286 Finset.Iio K"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 29,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 29,
+                        "column": 17
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  a - d \u2264 -1\n  a \u2265 0\n  a - c \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t K)\n d := \u2191K"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.2648739814758301,
+            "custom_id": "fin_card_bound_3"
+        }
+    },
+    {
+        "name": "fin_card_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem fin_card_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  \u2200 K, (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n  intro K\n  have h\u2081 : (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n    have h\u2082 : (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 (Finset.range K).card :=\n      Finset.card_le_of_subset (Finset.filter_subset (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K))\n    have h\u2083 : (Finset.range K).card = K := by simp\n    have h\u2084 : K \u2264 N := by\n      have h\u2085 : \u2200 k, t k \u2264 N := by\n        intro k\n        induction k with\n        | zero => simp_all\n        | succ k ih =>\n          specialize hnoninc k\n          omega\n      have h\u2086 := h\u2085 K\n      simp at h\u2086\n      omega\n    omega\n  exact h\u2081",
+        "custom_id": "fin_card_bound_4",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 24,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a - e \u2265 0\n  e \u2265 0\n  d \u2265 0\n  c \u2265 0\n  a - b \u2265 0\n  c - d \u2264 0\n  a - d \u2264 -1\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card\n d := \u2191K\n e := \u2191(t K)"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 30
+                    },
+                    "data": "`Finset.card_le_of_subset` has been deprecated, use `Finset.card_le_card` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.16558122634887695,
+            "custom_id": "fin_card_bound_4"
+        }
+    },
+    {
+        "name": "fin_card_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem fin_card_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  \u2200 K, (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n  intro K\n  have h\u2081 : (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n    calc\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264\n          (Finset.range K).card := by\n        apply Finset.card_le_card\n        apply Finset.filter_subset\n      _ = K := by\n        simp\n      _ \u2264 N := by\n        have h\u2082 : K \u2264 N := by\n          have h\u2083 : \u2200 k, t k \u2264 N := by\n            intro k\n            induction k with\n            | zero => simp_all\n            | succ k ih =>\n              specialize hnoninc k\n              omega\n          have h\u2084 : t K \u2264 N := h\u2083 K\n          omega\n        omega\n  exact h\u2081",
+        "custom_id": "fin_card_bound_5",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 28,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 28,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  a - d \u2264 -1\n  a \u2265 0\n  a - c \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t K)\n d := \u2191K"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.06942009925842285,
+            "custom_id": "fin_card_bound_5"
+        }
+    },
+    {
+        "name": "fin_card_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem fin_card_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  \u2200 K, (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n  intro K\n  have h\u2081 : (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n    calc\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264\n          (Finset.range K).card := by\n        apply Finset.card_le_of_subset\n        intro i h\n        simp_all [Finset.mem_filter, Finset.mem_range]\n        <;> omega\n      _ = K := by simp\n      _ \u2264 N := by\n        have h\u2082 : K \u2264 N := by\n          have h\u2083 : \u2200 k, t k \u2265 k := by\n            intro k\n            induction k with\n            | zero => simp_all\n            | succ k ih =>\n              have h\u2084 : t (k + 1) \u2264 t k := hnoninc k\n              have h\u2085 : t k \u2265 k := ih\n              omega\n          have h\u2084 : t K \u2265 K := h\u2083 K\n          have h\u2085 : t 0 \u2264 N := h0\n          have h\u2086 : \u2200 k, t k \u2265 k := h\u2083\n          have h\u2087 : K \u2264 N := by\n            nlinarith [h\u2086 0, h\u2086 K, h\u2086 N]\n          exact h\u2087\n        exact h\u2082\n  exact h\u2081",
+        "custom_id": "fin_card_bound_6",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 28,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 28,
+                        "column": 19
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  e \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  c - e \u2265 0\n  d - e \u2265 0\n  b \u2265 0\n  c - d \u2265 0\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t k)\n d := \u2191k\n e := \u2191(t (k + 1))"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 33,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 33,
+                        "column": 40
+                    },
+                    "data": "linarith failed to find a contradiction\ncase a\nt : \u2115 \u2192 \u2115\nN : \u2115\nh0 : t 0 \u2264 N\nhnoninc : \u2200 (k : \u2115), t (k + 1) \u2264 t k\nK : \u2115\nh\u2083 : \u2200 (k : \u2115), t k \u2265 k\nh\u2084 : t K \u2265 K\nh\u2085 : t 0 \u2264 N\nh\u2086 : \u2200 (k : \u2115), t k \u2265 k\na\u271d : K > N\n\u22a2 False\nfailed"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 38
+                    },
+                    "data": "`Finset.card_le_of_subset` has been deprecated, use `Finset.card_le_card` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.609515905380249,
+            "custom_id": "fin_card_bound_6"
+        }
+    },
+    {
+        "name": "fin_card_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem fin_card_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  \u2200 K, (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n  intro K\n  have h\u2081 : (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n    calc\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264\n          (Finset.range K).card := by apply Finset.card_le_of_subset; intro x hx; simp_all [Finset.mem_filter, Finset.mem_range]\n      _ = K := by simp\n      _ \u2264 N := by\n        have h\u2081 : K \u2264 N := by\n          have h\u2081 : \u2200 k, t k \u2264 N := by\n            intro k\n            induction k with\n            | zero => simp_all\n            | succ k ih =>\n              specialize hnoninc k\n              omega\n          omega\n        omega\n  exact h\u2081",
+        "custom_id": "fin_card_bound_7",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 24,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  b \u2265 0\n  a \u2265 0\n  a - c \u2264 -1\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191K"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 38
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 68
+                    },
+                    "data": "`Finset.card_le_of_subset` has been deprecated, use `Finset.card_le_card` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.15610027313232422,
+            "custom_id": "fin_card_bound_7"
+        }
+    },
+    {
+        "name": "fin_card_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem fin_card_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  \u2200 K, (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n  intro K\n  have h\u2081 : (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n    calc\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card\n        \u2264 (Finset.range K).card := by apply Finset.card_le_of_subset; apply Finset.filter_subset\n      _ = K := by simp\n      _ \u2264 N := by\n        have h\u2082 : K \u2264 N := by\n          have h\u2083 : \u2200 k, t k \u2265 0 := by intro k; exact Nat.zero_le _\n          have h\u2084 : t 0 \u2264 N := h0\n          have h\u2085 : \u2200 k, t k \u2264 N := by\n            intro k\n            induction k with\n            | zero => exact h0\n            | succ k ih =>\n              specialize hnoninc k\n              omega\n          specialize h\u2085 0\n          omega\n        exact h\u2082\n  exact h\u2081",
+        "custom_id": "fin_card_bound_8",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 27,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 27,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  b \u2265 0\n  a \u2265 0\n  a - c \u2264 -1\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191K"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 38
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 68
+                    },
+                    "data": "`Finset.card_le_of_subset` has been deprecated, use `Finset.card_le_card` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.04701685905456543,
+            "custom_id": "fin_card_bound_8"
+        }
+    },
+    {
+        "name": "fin_card_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem fin_card_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  \u2200 K, (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n  intro K\n  have h\u2081 : (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n    calc\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card\n          \u2264 (Finset.range K).card := by\n        apply Finset.card_le_of_subset\n        apply Finset.filter_subset\n      _ = K := by\n        simp\n      _ \u2264 N := by\n        have h\u2082 : K \u2264 N := by\n          have h\u2083 : \u2200 k, t k \u2264 N := by\n            intro k\n            induction k with\n            | zero => simp_all\n            | succ k ih =>\n              specialize hnoninc k\n              omega\n          have h\u2084 : t K \u2264 N := h\u2083 K\n          have h\u2085 : t 0 \u2264 N := h0\n          have h\u2086 : \u2200 k, t k \u2264 N := h\u2083\n          omega\n        exact h\u2082\n  exact h\u2081",
+        "custom_id": "fin_card_bound_9",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 30,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 30,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  a - d \u2264 -1\n  a \u2265 0\n  a - c \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t K)\n d := \u2191K"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 38
+                    },
+                    "data": "`Finset.card_le_of_subset` has been deprecated, use `Finset.card_le_card` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.06389546394348145,
+            "custom_id": "fin_card_bound_9"
+        }
+    },
+    {
+        "name": "fin_card_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem fin_card_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  \u2200 K, (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n  intro K\n  have h\u2081 : (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n    calc\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card\n        \u2264 (Finset.range K).card := by\n          apply Finset.card_le_card\n          apply Finset.filter_subset\n      _ = K := by\n        simp\n      _ \u2264 N := by\n        have h\u2082 : K \u2264 N := by\n          have h\u2083 : K \u2264 N := by\n            have h\u2084 : \u2200 k, t k \u2264 N := by\n              intro k\n              induction k with\n              | zero => simp_all\n              | succ k ih =>\n                have h\u2085 : t (k + 1) \u2264 t k := hnoninc k\n                have h\u2086 : t k \u2264 N := ih\n                omega\n            have h\u2085 : t K \u2264 N := h\u2084 K\n            have h\u2086 : t 0 \u2264 N := h0\n            have h\u2087 : K \u2264 N := by\n              by_contra h\n              have h\u2088 : K > N := by omega\n              have h\u2089 : t K \u2264 N := h\u2084 K\n              have h\u2081\u2080 : t 0 \u2264 N := h0\n              have h\u2081\u2081 : t K < t 0 := by\n                have h\u2081\u2082 : t K \u2264 t 0 := by\n                  have h\u2081\u2083 : K \u2265 0 := by omega\n                  have h\u2081\u2084 : t K \u2264 t 0 := by\n                    have h\u2081\u2085 : \u2200 k, t k \u2264 t 0 := by\n                      intro k\n                      induction k with\n                      | zero => simp_all\n                      | succ k ih =>\n                        have h\u2081\u2086 : t (k + 1) \u2264 t k := hnoninc k\n                        have h\u2081\u2087 : t k \u2264 t 0 := ih\n                        omega\n                    exact h\u2081\u2085 K\n                  omega\n                omega\n              omega\n            omega\n          omega\n        omega\n      _ = N := by simp\n  exact h\u2081",
+        "custom_id": "fin_card_bound_10",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 50,
+                        "column": 16
+                    },
+                    "endPos": {
+                        "line": 50,
+                        "column": 21
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 0\n  c \u2265 0\n  a - c \u2264 -1\n  a - b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t K)\n c := \u2191K"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 51,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 51,
+                        "column": 19
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  a - d \u2264 -1\n  a \u2265 0\n  a - c \u2265 0\n  b - c \u2265 1\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t K)\n d := \u2191K"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.19902753829956055,
+            "custom_id": "fin_card_bound_10"
+        }
+    },
+    {
+        "name": "fin_card_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem fin_card_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  \u2200 K, (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n  intro K\n  have h\u2081 : (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n    calc\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card\n        \u2264 (Finset.range K).card := Finset.card_le_of_subset (Finset.filter_subset _ _)\n      _ = K := by simp\n      _ \u2264 N := by\n        have h\u2081 : t 0 \u2264 N := h0\n        have h\u2082 : \u2200 k, t k \u2264 t 0 := by\n          intro k\n          induction k with\n          | zero => simp\n          | succ k ih =>\n            have h\u2083 : t (k + 1) \u2264 t k := hnoninc k\n            have h\u2084 : t k \u2264 t 0 := ih\n            omega\n        have h\u2083 : t K \u2264 t 0 := h\u2082 K\n        have h\u2084 : t 0 \u2264 N := h0\n        omega\n  exact h\u2081",
+        "custom_id": "fin_card_bound_11",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 27,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 27,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  a - d \u2264 -1\n  a \u2265 0\n  b - c \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t K)\n d := \u2191K"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 35
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 59
+                    },
+                    "data": "`Finset.card_le_of_subset` has been deprecated, use `Finset.card_le_card` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.06416726112365723,
+            "custom_id": "fin_card_bound_11"
+        }
+    },
+    {
+        "name": "fin_card_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem fin_card_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  \u2200 K, (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n  intro K\n  have h\u2081 : (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n    calc\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card\n        \u2264 (Finset.range K).card := by\n          apply Finset.card_le_of_subset\n          intro x hx\n          simp_all [Finset.mem_filter, Finset.mem_range]\n          <;> omega\n      _ = K := by simp\n      _ \u2264 N := by\n        have h\u2082 : K \u2264 N := by\n          have h\u2083 : \u2200 k, t k \u2265 k := by\n            intro k\n            induction k with\n            | zero => simp_all\n            | succ k ih =>\n              have : t (k + 1) \u2264 t k := hnoninc k\n              omega\n          have h\u2084 : t K \u2265 K := h\u2083 K\n          have h\u2085 : t 0 \u2264 N := h0\n          have h\u2086 : \u2200 k, t k \u2265 k := by\n            intro k\n            induction k with\n            | zero => simp_all\n            | succ k ih =>\n              have : t (k + 1) \u2264 t k := hnoninc k\n              omega\n          omega\n        omega\n  exact h\u2081",
+        "custom_id": "fin_card_bound_12",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 27,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 27,
+                        "column": 19
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  e \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  c - e \u2265 0\n  d - e \u2265 0\n  b \u2265 0\n  c - d \u2265 0\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t k)\n d := \u2191k\n e := \u2191(t (k + 1))"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 36,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 36,
+                        "column": 19
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  e - f \u2265 0\n  c \u2265 0\n  f \u2265 0\n  e \u2265 0\n  e - g \u2265 0\n  f - g \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  g \u2265 0\n  b \u2265 0\n  c - d \u2265 0\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t K)\n d := \u2191K\n e := \u2191(t k)\n f := \u2191k\n g := \u2191(t (k + 1))"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 37,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 37,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 0\n  a - d \u2264 -1\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t K)\n d := \u2191K"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 40
+                    },
+                    "data": "`Finset.card_le_of_subset` has been deprecated, use `Finset.card_le_card` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.15546917915344238,
+            "custom_id": "fin_card_bound_12"
+        }
+    },
+    {
+        "name": "fin_card_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem fin_card_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  \u2200 K, (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n  intro K\n  have h\u2081 : (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n    calc\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card\n          \u2264 (Finset.range K).card := Finset.card_le_of_subset (Finset.filter_subset _ _)\n      _ = K := by simp\n      _ \u2264 N := by\n        have h\u2082 : K \u2264 N := by\n          have h\u2083 : \u2200 k, t k \u2264 N := by\n            intro k\n            induction k with\n            | zero => simp_all\n            | succ k ih =>\n              specialize hnoninc k\n              omega\n          have h\u2084 : t K \u2264 N := h\u2083 K\n          omega\n        omega\n  exact h\u2081",
+        "custom_id": "fin_card_bound_13",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 25,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  a - d \u2264 -1\n  a \u2265 0\n  a - c \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t K)\n d := \u2191K"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 37
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 61
+                    },
+                    "data": "`Finset.card_le_of_subset` has been deprecated, use `Finset.card_le_card` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.0739586353302002,
+            "custom_id": "fin_card_bound_13"
+        }
+    },
+    {
+        "name": "fin_card_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem fin_card_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  \u2200 K, (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n  intro K\n  have h\u2081 : (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n    calc\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264\n          (Finset.range K).card := by\n        apply Finset.card_le_of_subset\n        intro i hi\n        simp_all\n      _ = K := by simp\n      _ \u2264 N := by\n        have h\u2082 : K \u2264 N := by\n          have h\u2083 : \u2200 k, t k \u2264 N := by\n            intro k\n            induction k with\n            | zero => simp_all\n            | succ k ih =>\n              have : t (k + 1) \u2264 t k := hnoninc k\n              have : t k \u2264 N := ih\n              omega\n          have h\u2084 : t K \u2264 N := h\u2083 K\n          have h\u2085 : t 0 \u2264 N := h0\n          omega\n        omega\n  exact h\u2081",
+        "custom_id": "fin_card_bound_14",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 30,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 30,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  a - d \u2264 -1\n  a \u2265 0\n  a - c \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(t K)\n d := \u2191K"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 38
+                    },
+                    "data": "`Finset.card_le_of_subset` has been deprecated, use `Finset.card_le_card` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.1611948013305664,
+            "custom_id": "fin_card_bound_14"
+        }
+    },
+    {
+        "name": "fin_card_bound",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem fin_card_bound (t : \u2115 \u2192 \u2115) (N : \u2115) (h0 : t 0 \u2264 N)\n  (hnoninc : \u2200 k, t (k + 1) \u2264 t k) :\n  \u2200 K, (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n  intro K\n  have h\u2081 : (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264 N := by\n    have h\u2081 : (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card \u2264\n        (Finset.range K).card := by\n      apply Finset.card_le_card\n      apply Finset.filter_subset\n    have h\u2082 : (Finset.range K).card = K := by\n      simp\n    have h\u2083 : K \u2264 N := by\n      have h\u2083 : K \u2264 N := by\n        have h\u2084 : \u2200 k, t k \u2265 0 := by\n          intro k\n          induction k with\n          | zero => simp_all\n          | succ k ih =>\n            have h\u2085 : t (k + 1) \u2264 t k := hnoninc k\n            omega\n        have h\u2085 : t K \u2265 0 := h\u2084 K\n        have h\u2086 : t 0 \u2264 N := h0\n        have h\u2087 : \u2200 k, t k \u2264 N := by\n          intro k\n          induction k with\n          | zero => simp_all\n          | succ k ih =>\n            have h\u2088 : t (k + 1) \u2264 t k := hnoninc k\n            omega\n        omega\n      omega\n    omega\n  exact h\u2081",
+        "custom_id": "fin_card_bound_15",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 35,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 35,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  e \u2265 0\n  d \u2265 0\n  c \u2265 0\n  a - b \u2265 0\n  c - d \u2264 0\n  a - d \u2264 -1\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191N\n b := \u2191(t 0)\n c := \u2191(Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card\n d := \u2191K\n e := \u2191(t K)"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.1745438575744629,
+            "custom_id": "fin_card_bound_15"
+        }
+    }
+]

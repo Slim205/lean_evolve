@@ -1,0 +1,75 @@
+>>>>SEARCH
+lemma pow_divides_of_coprime_left {p q : ℕ} {x y : ℕ}
+  (hc : Nat.Coprime ((2 : ℕ) ^ p) x)
+  (hdiv : ((2 : ℕ) ^ p) ∣ ((2 : ℕ) ^ q * y)) : ((2 : ℕ) ^ p) ∣ ((2 : ℕ) ^ q) := by
+  -- if a coprime factor divides a product then it divides the other factor; proof omitted
+  sorry
+>>>>REPLACE
+lemma pow_divides_of_coprime_left {p q : ℕ} {x y : ℕ}
+  (hc : Nat.Coprime ((2 : ℕ) ^ p) y)
+  (hdiv : ((2 : ℕ) ^ p) ∣ ((2 : ℕ) ^ q * y)) : ((2 : ℕ) ^ p) ∣ ((2 : ℕ) ^ q) := by
+  -- Corrected statement:
+  -- If 2^p is coprime to y and 2^p divides 2^q * y, then 2^p divides 2^q.
+  -- Proof omitted.
+  sorry
+>>>>SEARCH
+lemma le_of_mul_eq_left (p q x y : ℕ)
+  (h : (2 : ℕ) ^ p * x = (2 : ℕ) ^ q * y) (hx_odd : x % 2 = 1) :
+  p ≤ q := by
+  -- Outline (glue): from oddness get coprimality, then use divisibility to see 2^p ∣ 2^q,
+  -- hence p ≤ q by properties of powers of two. Proof omitted.
+  have hcop : Nat.Coprime ((2 : ℕ) ^ p) x := by
+    exact Nat.Coprime.symm (@pow_coprime_helper p x hx_odd)
+  have hdiv : ((2 : ℕ) ^ p) ∣ ((2 : ℕ) ^ q * y) := by
+    -- from the equality (2^p)*x = (2^q)*y we get ((2^p) ∣ ((2^q)*y))
+    use x
+    exact Eq.symm h
+  have hpow_div : ((2 : ℕ) ^ p) ∣ ((2 : ℕ) ^ q) := by
+    exact pow_divides_of_coprime_left hcop hdiv
+  -- deduce p ≤ q from divisibility of powers of 2 (proof omitted)
+  sorry
+>>>>REPLACE
+lemma le_of_mul_eq_left (p q x y : ℕ)
+  (h : (2 : ℕ) ^ p * x = (2 : ℕ) ^ q * y) (hx_odd : x % 2 = 1) :
+  q ≤ p := by
+  -- With x odd, the 2-adic valuation of the LHS is exactly p, while the RHS has valuation
+  -- q + v2(y); hence p = q + v2(y) and in particular q ≤ p. Proof omitted.
+  sorry
+>>>>SEARCH
+lemma pow_mul_odd_eq_pow_mul_odd (p q x y : ℕ)
+  (h : (2 : ℕ) ^ p * x = (2 : ℕ) ^ q * y) (hx_odd : x % 2 = 1) (hy_odd : y % 2 = 1) :
+  p = q ∧ x = y := by
+  -- Use the auxiliary lemmas to compare exponents and cancel.
+  have hle1 : p ≤ q := by
+    exact le_of_mul_eq_left p q x y h hx_odd
+  -- swap sides to get the reverse inequality
+  have hle2 : q ≤ p := by
+    -- apply the same lemma to the symmetric equality
+    exact le_of_mul_eq_left q p y x (Eq.symm h) hy_odd
+  have heq_pq : p = q := by
+    exact Nat.le_antisymm hle1 hle2
+  -- cancel the common power to obtain x = y
+  have hxy : x = y := by
+    have hpow : (2 : ℕ) ^ p * x = (2 : ℕ) ^ p * y := by
+      rw [← heq_pq] at h
+      exact h
+    exact cancel_pow_mul_eq p x y hpow
+  exact ⟨heq_pq, hxy⟩
+>>>>REPLACE
+lemma pow_mul_odd_eq_pow_mul_odd (p q x y : ℕ)
+  (h : (2 : ℕ) ^ p * x = (2 : ℕ) ^ q * y) (hx_odd : x % 2 = 1) (hy_odd : y % 2 = 1) :
+  p = q ∧ x = y := by
+  -- Use the auxiliary lemmas to compare exponents and cancel.
+  -- Note: `le_of_mul_eq_left` returns `q ≤ p` when `x` is odd, so the two applications
+  -- below give the two opposing inequalities needed for antisymmetry.
+  have hle1 := le_of_mul_eq_left p q x y h hx_odd   -- yields q ≤ p
+  have hle2 := le_of_mul_eq_left q p y x (Eq.symm h) hy_odd -- yields p ≤ q
+  have heq_pq : p = q := by
+    exact Nat.le_antisymm hle2 hle1
+  -- cancel the common power to obtain x = y
+  have hxy : x = y := by
+    have hpow : (2 : ℕ) ^ p * x = (2 : ℕ) ^ p * y := by
+      rw [← heq_pq] at h
+      exact h
+    exact cancel_pow_mul_eq p x y hpow
+  exact ⟨heq_pq, hxy⟩

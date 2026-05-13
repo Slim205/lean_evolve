@@ -1,0 +1,9 @@
+lemma maximality_implies_no_next_divides (A : ℕ) (S : Finset ℕ) (u : ℕ)
+  (hS_def : S = Finset.filter (fun v => ((2 : ℕ) ^ v ∣ A)) (Finset.range (A + 1)))
+  (u_mem : u ∈ S) (u_max : ∀ v ∈ S, v ≤ u) :
+  ¬ ((2 : ℕ) ^ (u + 1) ∣ A) := by
+Failure mode: INCORRECT
+Recommendation: As stated it is false (counterexample: `A = 0`. Then `S = {0}`, `u = 0` is maximal, but `2^(u+1)=2 ∣ 0`). To make it true, strengthen the hypotheses so the “otherwise `u+1 ∈ S`” argument works:
+1) Add `hpos : 0 < A` (or at least `A ≠ 0`), and
+2) Add (or derive) a bound lemma `((2 : ℕ)^(u+1) ∣ A) → u+1 ≤ A`, so that `u+1 ∈ range (A+1)` and hence `u+1 ∈ S`, contradicting maximality.
+(Alternatively, redefine `S` using `range (A+2)` and keep `0 < A`.)

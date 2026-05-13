@@ -1,0 +1,95 @@
+---------
+lemma fin_card_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ N := by
+Failure mode: HARD
+Recommendation: Prove a “budget of strict drops” bound by decomposing into the following lemmas.
+1) **Discrete gap lemma**: for all `i`, if `t (i+1) < t i` then `t (i+1) ≤ t i - 1`.
+2) **One-step drop consumes 1 budget**: for all `i`, if `t (i+1) ≤ t i - 1` then `t (i+1) + 1 ≤ t i`.
+3) **Summed budget bound on initial segments**: for all `K`, `t K + (number of strict drops in [0,K)) ≤ t 0`.
+4) **Cardinality reformulation**: identify “number of strict drops in [0,K)” with the card of the given filtered `Finset.range K`.
+5) Conclude `card ≤ t 0 ≤ N` using `h0`.
+
+---------
+
+---------
+lemma finite_of_card_bounded {P : ℕ → Prop} (N : ℕ) [DecidablePred P]
+  (hcard : ∀ K, (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)).card ≤ N) :
+  {k : ℕ | P k}.Finite := by
+Failure mode: HARD
+Recommendation: Reduce finiteness to a contradiction with “infinite subsets of ℕ have arbitrarily large finite initial segments”.
+1) **Unboundedness of infinite subsets of ℕ**: if `S ⊆ ℕ` is infinite, then for every `K` there exists `k ∈ S` with `K ≤ k`.
+2) **Many elements below a bound from infinitude**: if `S` is infinite, then for every `M` there exists `K` such that `{k ∈ S | k < K}` has at least `M` elements.
+3) **Relate set-cardinality to the finset filter**: show `{k | P k ∧ k < K}` corresponds to `Finset.filter (fun i => i < K ∧ P i) (Finset.range K)` and has the same cardinality.
+4) Apply (2) with `M := N+1` to contradict `hcard K ≤ N`.
+5) Conclude `¬Infinite {k | P k}`, hence `{k | P k}.Finite`.
+
+---------
+
+---------
+lemma decomposition_of_diff
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0) :
+  ∀ k : ℕ, ∃ (u r : ℕ),
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+Failure mode: HARD
+Recommendation: Factor this through the standard “oddPart / two-adic valuation” decomposition of a positive natural number.
+1) **Positivity of natAbs**: for each `k`, let `a := Int.natAbs ((m k : ℤ) - (n k : ℤ))`; prove `0 < a` using `hΔ`.
+2) **Canonical decomposition**: for any `a : ℕ` with `0 < a`, there exist `u r` such that `a = 2^u * r` and `r` is odd (i.e. `r % 2 = 1`).
+   (This should be expressed via `Nat.ord`, `Nat.factorization`, `Nat.valuation`, or `Nat.oddPart` depending on what you use later.)
+3) **Odd part is positive**: if `0 < a`, then the resulting `r` satisfies `0 < r`.
+4) Instantiate (2)(3) with `a := Int.natAbs(...)` to obtain the required `u r` for each `k`.
+
+---------
+
+---------
+lemma odd_part_noninc_step
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∀ k u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 ≤ r1 := by
+Failure mode: HARD
+Recommendation: The statement is doable but needs a structural route: identify `r1,r2` as the *unique* odd parts, then compare odd parts via the gcd-update formula.
+1) **Normalization lemma for successors**: from `h_recurrence` plus the “reduced fraction” property (using `h_coprime`), derive
+   `m (k+1) = (2*m k + 1)/d` and `n (k+1) = (2*n k + 1)/d` where `d = gcd(2*m k + 1, 2*n k + 1)`.
+2) **Difference update formula**: prove
+   `(m (k+1) : ℤ) - (n (k+1) : ℤ) = (2 * ((m k : ℤ) - (n k : ℤ))) / d`
+   (in a form appropriate for natAbs; crucially use that `d` divides the difference term).
+3) **Odd gcd divides the old difference**: show `d` is odd and `d ∣ ((m k : ℤ) - (n k : ℤ))`, hence `d` divides `Int.natAbs` of the old difference.
+4) **OddPart behavior under division by an odd**: for naturals `A` and odd `d` with `d ∣ A`, prove `oddPart (A / d) ≤ oddPart A`.
+5) **Uniqueness of odd part from a decomposition**: show that if `A = 2^u * r` with `r` odd and positive, then `r = oddPart A`.
+6) Apply (5) to rewrite both `r1` and `r2` as odd parts of the corresponding `natAbs` values; then apply (4) instantiated with the `A` and `d` coming from (2)(3).
+
+(If you want to simplify: restate the lemma directly as `oddPart (natAbs Δ_{k+1}) ≤ oddPart (natAbs Δ_k)` instead of quantifying over arbitrary `u1 r1 u2 r2`.)
+
+---------
+
+---------
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by
+Failure mode: HARD
+Recommendation: This should be proved by the same pipeline as the nonincreasing lemma, plus the fact that “not coprime” forces a nontrivial odd divisor.
+1) **Define the gcd**: let `d = gcd(2*m k + 1, 2*n k + 1)`.
+2) **Nontriviality from not-coprime**: from `hbad`, derive `1 < d`.
+3) **Oddness and divisibility**: prove `d` is odd and `d ∣ ((m k : ℤ) - (n k : ℤ))`, hence `d ∣ Int.natAbs((m k : ℤ) - (n k : ℤ))`.
+4) **Successor difference update** (as in the previous recommendation): express `natAbs Δ_{k+1}` as `2 * natAbs Δ_k / d` (up to the standard bookkeeping about natAbs and signs).
+5) **OddPart strictly decreases when dividing by an odd > 1**: for `A > 0`, odd `d`, `1 < d`, and `d ∣ A`, prove `oddPart (A / d) < oddPart A`.
+6) **Uniqueness of the odd part in a 2^u*r decomposition**: conclude the quantified `r1,r2` coincide with those odd parts, reducing the goal to (5).
+
+(Again, this becomes much cleaner if you restate the lemma directly using `Nat.oddPart` and the gcd `d`, instead of quantifying over arbitrary decompositions.)

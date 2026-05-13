@@ -1,0 +1,9 @@
+lemma budget_inequality_on_prefix (t : ℕ → ℕ) (hnoninc : ∀ k, t (k + 1) ≤ t k) (K : ℕ) :
+  (t K) + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+Failure mode: HARD
+Recommendation: Decompose into a “telescoping budget” argument for ℕ-valued nonincreasing sequences.
+1) Lemma (gap-at-least-one): for any i, if t (i+1) < t i then t (i+1) + 1 ≤ t i.
+2) Lemma (no-drop-step): for any i, if ¬(t (i+1) < t i) and hnoninc i then t (i+1) = t i.
+3) Lemma (prefix-budget-induction): define D(K) = #{i < K | t(i+1) < t i}. Prove by induction on K that t K + D(K) ≤ t 0, using (1) on drop steps and (2) on non-drop steps.
+4) Lemma (card-filter-identification): show D(K) equals the card of the given `Finset.filter` over `Finset.range K` (the extra conjunct `i < K` is redundant but can be handled as a separate equality).
+5) Conclude the stated inequality by rewriting with (4) and applying (3).

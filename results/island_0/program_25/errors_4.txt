@@ -1,0 +1,10 @@
+ERROR from position {'line': 61, 'column': 37} to {'line': 61, 'column': 43}:
+application type mismatch
+  Int.mul_eq_zero.mp hcross
+argument
+  hcross
+has type
+  m (k + 1) = 0 ∨ 2 * ↑(n k) + 1 = 0 : Prop
+but is expected to have type
+  ?m.9723 * ?m.9724 = 0 : Prop
+

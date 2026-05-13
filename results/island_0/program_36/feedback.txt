@@ -1,0 +1,120 @@
+---------
+<lemma cross_mul_eq_nat
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_n_succ_nonzero_k : (n (k + 1) : ℚ) ≠ 0)
+  (h_two_nk_nonzero : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0)
+  (k : ℕ) :
+  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by>
+Failure mode: HARD
+Recommendation: Decompose “clear denominators in ℚ and return to ℕ” into small bridging lemmas.
+1) Lemma (clear_denoms_Q): If `a/b = c/d` in `ℚ` with `b ≠ 0` and `d ≠ 0`, then `a*d = c*b` in `ℚ`.
+2) Lemma (cast_num): `(2 * n k + 1 : ℚ) = (2 : ℚ) * (n k : ℚ) + 1` and similarly for `m`.
+3) Lemma (recurrence_cross_Q): From `h_recurrence k` and the two nonzero hypotheses, derive  
+   `(m (k+1) : ℚ) * (2 * n k + 1 : ℚ) = (n (k+1) : ℚ) * (2 * m k + 1 : ℚ)`.
+4) Lemma (nat_cast_inj_mul): If `(x : ℚ) = (y : ℚ)` for `x y : ℕ`, then `x = y` (apply to the products).
+5) Conclude the target ℕ-equality by applying (4) to the equality produced in (3).
+---------
+
+---------
+<lemma gcd_odd_and_dvd_diff
+  (m n : ℕ → ℕ)
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  d % 2 = 1 ∧ ((d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) := by>
+Failure mode: HARD
+Recommendation: Split into (i) “gcd of odd numbers is odd” and (ii) “odd gcd dividing 2⋅(diff) implies divides diff”.
+1) Lemma (odd_2mul_add1): `((2 * x + 1) % 2 = 1)` for all `x : ℕ` (so both arguments to `gcd` are odd).
+2) Lemma (gcd_odd_of_odd_left_right): If `a % 2 = 1` and `b % 2 = 1`, then `Nat.gcd a b % 2 = 1`.
+3) Lemma (gcd_dvd_sub): Let `d = Nat.gcd a b`. Then `(d : ℤ) ∣ ((a : ℤ) - (b : ℤ))`.
+4) Lemma (specialize_to_2m1_2n1): Apply (3) to `a = 2*m k + 1`, `b = 2*n k + 1`, and simplify the subtraction to get  
+   `(d : ℤ) ∣ (2 * ((m k : ℤ) - (n k : ℤ)))`.
+5) Lemma (odd_dvd_of_dvd_two_mul): If `d % 2 = 1` and `(d : ℤ) ∣ (2*z)`, then `(d : ℤ) ∣ z`.
+6) Combine (2), (4), and (5) to obtain `(d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))` and return the conjunction with (2).
+---------
+
+---------
+<lemma diff_evolution_natAbs
+  (m n : ℕ → ℕ) (k : ℕ) (d : ℕ)
+  (hm_mul : (2 * m k + 1) = d * m (k + 1))
+  (hn_mul : (2 * n k + 1) = d * n (k + 1))
+  (h_dvd : (d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    Int.natAbs (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by>
+Failure mode: HARD
+Recommendation: First prove the exact ℤ-identity relating the differences, then rewrite the quotient using exact divisibility.
+1) Lemma (d_pos_from_factorization): From `2*m k + 1 = d * m(k+1)` deduce `0 < d` (hence `(d:ℤ) ≠ 0`).
+2) Lemma (diff_identity_Z): From `hm_mul` and `hn_mul`, deduce in `ℤ` that  
+   `(d : ℤ) * ((m (k+1) : ℤ) - (n (k+1) : ℤ)) = (2 : ℤ) * ((m k : ℤ) - (n k : ℤ))`.
+3) Lemma (ediv_eq_of_mul_eq): If `d ≠ 0` and `d * x = y` in `ℤ`, then `y / d = x`.
+4) Apply (3) to (2) to conclude  
+   `((2:ℤ) * ((m k:ℤ) - (n k:ℤ))) / (d:ℤ) = ((m (k+1):ℤ) - (n (k+1):ℤ))`.
+5) Lemma (natAbs_congr): If `x = y` in `ℤ`, then `Int.natAbs x = Int.natAbs y`.
+6) Use (5) on the equality from (4) to get the desired natAbs equality.
+(Notice `h_dvd` is not needed for the exact-division step if you use (2)+(3); alternatively you can use `h_dvd` to show the numerator is divisible by `d` and then justify division that way.)
+---------
+
+---------
+<lemma natAbs_two_mul_div_of_odd_divisor (z : ℤ) (d : ℕ)
+  (hd_odd : d % 2 = 1) (hdiv : (d : ℤ) ∣ z) :
+  Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = 2 * (Int.natAbs z / d) := by>
+Failure mode: HARD
+Recommendation: Reduce to a “z = d*q” normal form and compute both sides via that quotient.
+1) Lemma (odd_pos): If `d % 2 = 1` then `0 < d`, hence `(d : ℤ) ≠ 0`.
+2) Lemma (exists_int_quot): From `(d : ℤ) ∣ z`, obtain `q : ℤ` with `z = (d : ℤ) * q`.
+3) Lemma (ediv_mul_cancel): If `(d:ℤ) ≠ 0`, then `((2:ℤ)*((d:ℤ)*q)) / (d:ℤ) = (2:ℤ)*q`.
+4) Lemma (natAbs_mul_two): `Int.natAbs ((2:ℤ) * q) = 2 * Int.natAbs q`.
+5) Lemma (natAbs_of_mul_nat): If `z = (d:ℤ) * q` with `0 < d`, then `Int.natAbs z = d * Int.natAbs q` (as naturals).
+6) Lemma (exact_nat_div): From `Int.natAbs z = d * Int.natAbs q` deduce `Int.natAbs z / d = Int.natAbs q`.
+7) Combine (2)-(6) to rewrite LHS to `2 * Int.natAbs q` and RHS to `2 * Int.natAbs q`.
+---------
+
+---------
+<lemma odd_part_le_from_div_by_odd (A d : ℕ) (hdvd : d ∣ A) (u1 r1 u2 r2 : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 ≤ r1 := by>
+Failure mode: HARD
+Recommendation: Prove the structural fact “odd divisor divides the odd part”, then identify the odd part after dividing by `d`.
+1) Lemma (odd_pos): From `hd_odd` get `0 < d`.
+2) Lemma (d_div_r1): If `A = 2^u1 * r1` with `r1` odd and `d` odd and `d ∣ A`, then `d ∣ r1`.
+   (Key idea: `gcd(d,2^u1)=1` because `d` is odd; hence `d ∣ r1`.)
+3) Lemma (A_div_d_factor): Using (2), rewrite `A / d = 2^u1 * (r1 / d)` with exact division.
+4) Lemma (B_factor): Deduce `B := 2*(A/d) = 2^(u1+1) * (r1/d)`.
+5) Lemma (odd_part_unique): If `B = 2^u * r` with `r` odd, then `r` is the odd part of `B` (uniqueness of removing all factors of 2).
+6) Lemma (odd_part_of_B): Apply (5) to both decompositions of `B`:
+   - the explicit one from (4) giving odd part `r1/d`
+   - the assumed one `B = 2^u2 * r2` giving odd part `r2`
+   Conclude `r2 = r1/d`.
+7) Finish: from `r2 = r1/d` and `d ≥ 1` infer `r2 ≤ r1`.
+---------
+
+---------
+<lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by>
+Failure mode: HARD
+Recommendation: Reduce strict decrease to “divide by an odd d > 1”, then use positivity to get `<`.
+1) Lemma (d_def): Let `d = gcd(2*m k + 1, 2*n k + 1)`. From `hbad`, prove `1 < d`.
+2) Lemma (next_eq_div_gcd): Use your existing normalization result to get  
+   `2*m k + 1 = d * m(k+1)` and `2*n k + 1 = d * n(k+1)`.
+3) Lemma (d_odd_and_dvd_diff): Use `gcd_odd_and_dvd_diff` to get `d` odd and `(d:ℤ) ∣ (m k - n k)`.
+4) Lemma (odd_part_noninc_identification): Strengthen the comparison so it gives the *exact* relation  
+   `r2 = r1 / d` (not just `≤`), using the same “odd divisor divides odd part” idea as in `odd_part_le_from_div_by_odd`.
+5) Lemma (div_lt_of_lt_mul): If `1 < d` and `0 < r1`, then `r1 / d < r1`.
+6) Conclude `r2 < r1` from (4) and (5).
+(If exact identification (4) is too strong, an alternative is: show `r2 ≤ r1/d` and then use `r1/d < r1`.)
+---------

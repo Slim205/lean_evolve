@@ -1,0 +1,52 @@
+>>>>SEARCH
+lemma finite_strict_drops_of_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  {k : ℕ | t (k + 1) < t k}.Finite := by
+  -- With global nonincreasingness, strict drops can occur at most `t 0 ≤ N` times.
+  -- The detailed proof is omitted here.
+  sorry
+>>>>REPLACE
+lemma global_bound_from_h0 (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) : ∀ k, t k ≤ N := by
+  -- trivial monotone upper bound; proof omitted
+  sorry
+
+/-- If a strict drop occurs at index i then t (i+1) ≤ t i - 1. -/
+lemma strict_drop_gives_pred (t : ℕ → ℕ) (k : ℕ) :
+  t (k + 1) < t k → t (k + 1) ≤ t k - 1 := by
+  -- detailed discrete-gap proof omitted
+  sorry
+
+/-- Iterated decrease bound: the number of strict drops below K forces a decrease in t K.
+    We state this as a finitary cardinality bound on the set of drops below any K.
+    The detailed combinatorial induction is omitted here. -/
+lemma fin_card_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ N := by
+  -- omitted
+  sorry
+
+/-- Abstract finiteness lemma: if for every K the number of drops in [0,K) is ≤ N,
+    then the full set of drops is finite. (Proof omitted.) -/
+lemma finite_of_card_bounded {P : ℕ → Prop} (N : ℕ)
+  (hcard : ∀ K, (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)).card ≤ N) :
+  {k : ℕ | P k}.Finite := by
+  -- omitted
+  sorry
+
+lemma finite_strict_drops_of_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  {k : ℕ | t (k + 1) < t k}.Finite := by
+  -- obtain the global bound t k ≤ N
+  have hglob : ∀ k, t k ≤ N := by
+    exact global_bound_from_h0 t N h0 hnoninc
+
+  -- bound the cardinality of the set of drops below any K
+  have hcard_bound : ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ N := by
+    exact fin_card_bound t N h0 hnoninc
+
+  -- apply the abstract conversion from uniform cardinal bounds to finiteness
+  have hfin : {k : ℕ | t (k + 1) < t k}.Finite := by
+    exact finite_of_card_bounded N hcard_bound
+
+  exact hfin

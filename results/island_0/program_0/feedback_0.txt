@@ -1,0 +1,28 @@
+---------
+lemma diff_ne_zero
+  (m n : ℕ → ℕ)
+  (h_distinct : m 0 ≠ n 0)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0 := by
+Failure mode: HARD
+Recommendation: The statement is plausible, but proving it requires isolating several algebraic facts about division in ℚ and then running an induction/contrapositive argument. Decompose into lemmas like:
+
+1) **Nonzero RHS denominator**: For all k, \((2 * (n k : ℚ) + 1) ≠ 0\). (This uses that \(2*n k + 1\) is a positive natural, hence its ℚ-cast is nonzero.)
+
+2) **Nonzero of \(n(k+1)\)**: For all k, \((n (k+1) : ℚ) ≠ 0\).  
+   Proof plan: from `h_recurrence k`, the RHS is nonzero (by Lemma 1 and positivity of the numerator), hence the LHS is nonzero; conclude the denominator \((n (k+1) : ℚ)\) is nonzero.
+
+3) **Equality implies ratio is 1**: For all k, if \(m(k+1)=n(k+1)\) then \((m(k+1):ℚ)/(n(k+1):ℚ)=1\).  
+   Use Lemma 2 to ensure you’re not dividing by zero.
+
+4) **Ratio 1 forces previous equality**: For all k, if \((m(k+1):ℚ)/(n(k+1):ℚ)=1\) then \(m k = n k\).  
+   Proof plan: combine with `h_recurrence k` to get \((2*m k+1)/(2*n k+1)=1\), then clear denominators (using Lemma 1 to justify this), yielding \(2*m k+1=2*n k+1\), hence \(m k=n k\).
+
+5) **No equality ever occurs**: Prove by induction on k that \(m k ≠ n k\).  
+   Base case is `h_distinct`. Inductive step: prove the contrapositive “if \(m(k+1)=n(k+1)\) then \(m k=n k\)” by chaining Lemma 3 then Lemma 4.
+
+6) **Translate to ℤ-difference**: Show \(m k ≠ n k \Rightarrow (m k : ℤ) - (n k : ℤ) ≠ 0\).  
+   This is a standard cast/subtraction fact: \((a:ℤ)-(b:ℤ)=0\) implies \(a=b\).
+
+This decomposition localizes the tricky parts: (i) proving denominators are nonzero in ℚ, and (ii) extracting \(m k = n k\) from an equality of fractions.

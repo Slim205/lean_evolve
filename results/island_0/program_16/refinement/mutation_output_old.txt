@@ -1,0 +1,69 @@
+>>>>SEARCH
+lemma exists_max_pow_two_dividing (A : ℕ) (hpos : 0 < A) :
+  ∃ u, ((2 : ℕ) ^ u ∣ A) ∧ ¬ ((2 : ℕ) ^ (u + 1) ∣ A) := by
+  sorry
+>>>>REPLACE
+/-- Helper (1): there exists some exponent u (take u = 0) with 2^u ∣ A. -/
+lemma exists_two_pow_divides (A : ℕ) (hpos : 0 < A) :
+  ∃ u, ((2 : ℕ) ^ u ∣ A) := by
+  -- trivial: 2^0 = 1 divides any A
+  use 0
+  simp
+
+/-- Helper (2): any exponent u with 2^u ∣ A is bounded by A (hence lies in `range (A+1)`). -/
+lemma pow_two_divides_bounded_by_A (A u : ℕ) (hpos : 0 < A) :
+  ((2 : ℕ) ^ u ∣ A) → u ≤ A := by
+  -- proof omitted
+  sorry
+
+/-- Helper (3): every nonempty finite `Finset ℕ` has a maximum element. -/
+lemma exists_max_in_finset (S : Finset ℕ) (hnon : S.Nonempty) :
+  ∃ u, u ∈ S ∧ ∀ v ∈ S, v ≤ u := by
+  -- standard finiteness/Max argument; proof omitted
+  sorry
+
+/-- Helper (4): if `S` is `filter (λ v, 2^v ∣ A) (range (A+1))` and `u` is a maximal element
+    of `S` then `2^(u+1)` does not divide `A`. -/
+lemma maximality_implies_no_next_divides (A : ℕ) (S : Finset ℕ) (u : ℕ)
+  (hS_def : S = Finset.filter (fun v => ((2 : ℕ) ^ v ∣ A)) (Finset.range (A + 1)))
+  (u_mem : u ∈ S) (u_max : ∀ v ∈ S, v ≤ u) :
+  ¬ ((2 : ℕ) ^ (u + 1) ∣ A) := by
+  -- proof omitted: otherwise `u+1 ∈ S` contradicts maximality
+  sorry
+
+/-- Construct the maximal exponent `u` with `2^u ∣ A` and `¬(2^(u+1) ∣ A)` by restricting to the
+    finite set `Finset.filter (λ v, 2^v ∣ A) (range (A+1))` and taking its maximum. -/
+lemma exists_max_pow_two_dividing (A : ℕ) (hpos : 0 < A) :
+  ∃ u, ((2 : ℕ) ^ u ∣ A) ∧ ¬ ((2 : ℕ) ^ (u + 1) ∣ A) := by
+  -- get some exponent u0 with 2^u0 ∣ A
+  have hex := exists_two_pow_divides A hpos
+  rcases hex with ⟨u0, hu0_div⟩
+
+  -- bound u0 by A so that u0 ∈ range (A+1)
+  have hub : u0 ≤ A := by
+    exact pow_two_divides_bounded_by_A A u0 hpos hu0_div
+
+  have u0_in_range : u0 ∈ Finset.range (A + 1) := by
+    exact Finset.mem_range.mpr (Nat.lt_succ_of_le hub)
+
+  -- consider the finite set of exponents ≤ A that divide A
+  let S : Finset ℕ := Finset.filter (fun v => ((2 : ℕ) ^ v ∣ A)) (Finset.range (A + 1))
+
+  -- S is nonempty because u0 ∈ S
+  have S_nonempty : S.Nonempty := by
+    use u0
+    simp [S, u0_in_range, hu0_div]
+
+  -- take a maximum element u of S
+  rcases exists_max_in_finset S S_nonempty with ⟨u, ⟨u_mem, u_max⟩⟩
+
+  -- u ∈ S gives the divisibility
+  have hu_div : ((2 : ℕ) ^ u ∣ A) := by
+    simp [S] at u_mem
+    exact u_mem.2
+
+  -- maximality in S yields ¬ 2^(u+1) ∣ A
+  have hnot_next : ¬ ((2 : ℕ) ^ (u + 1) ∣ A) := by
+    exact maximality_implies_no_next_divides A S u rfl u_mem u_max
+
+  exact ⟨u, hu_div, hnot_next⟩

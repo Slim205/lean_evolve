@@ -1,0 +1,10 @@
+ERROR from position {'line': 140, 'column': 44} to {'line': 140, 'column': 64}:
+application type mismatch
+  cross_mul_eq_nat m n h_recurrence (h_n_succ_nonzero k)
+argument
+  h_n_succ_nonzero k
+has type
+  ↑(n (k + 1)) ≠ 0 : Prop
+but is expected to have type
+  ℕ : Type
+

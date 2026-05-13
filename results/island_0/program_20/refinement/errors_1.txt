@@ -1,0 +1,30 @@
+ERROR from position {'line': 560, 'column': 65} to None:
+expected ';' or line break
+
+ERROR from position {'line': 625, 'column': 10} to {'line': 625, 'column': 31}:
+unknown identifier 'helper_diff_evolution'
+
+ERROR from position {'line': 635, 'column': 59} to {'line': 642, 'column': 25}:
+unsolved goals
+case calc.step
+m n : ℕ → ℕ
+h_recurrence : ∀ (k : ℕ), ↑(m (k + 1)) / ↑(n (k + 1)) = (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1)
+h_coprime : ∀ (k : ℕ), 0 < k → (m k).Coprime (n k)
+k u1 r1 u2 r2 : ℕ
+hA1 : (↑(m k) - ↑(n k)).natAbs = 2 ^ u1 * r1
+hodd1 : r1 % 2 = 1
+hpos1 : 0 < r1
+hA2 : (↑(m (k + 1)) - ↑(n (k + 1))).natAbs = 2 ^ u2 * r2
+hodd2 : r2 % 2 = 1
+hpos2 : 0 < r2
+d : ℕ := (2 * m k + 1).gcd (2 * n k + 1)
+hnext : m (k + 1) = (2 * m k + 1) / d ∧ n (k + 1) = (2 * n k + 1) / d
+hd_odd : (2 * m k + 1).gcd (2 * n k + 1) % 2 = 1
+hd_dvd : ↑((2 * m k + 1).gcd (2 * n k + 1)) ∣ ↑(m k) - ↑(n k)
+hdiff : ↑(m (k + 1)) - ↑(n (k + 1)) = 2 * (↑(m k) - ↑(n k)) / ↑d
+z : ℤ := ↑(m k) - ↑(n k)
+h_scaled_eq : (2 * z / ↑d).natAbs = 2 ^ (u1 + 1) * (r1 / d)
+h_rdiv_odd : r1 / d % 2 = 1
+h_rdiv_pos : 0 < r1 / d
+⊢ 2 ^ (u1 + 1) * (r1 / d) = 2 ^ u1 * (r1 / d)
+

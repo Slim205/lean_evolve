@@ -1,0 +1,28 @@
+>>>>SEARCH
+  (h_recurrence : ∀ k : ℕ,
+    ((m (k + 1) : ℚ) / (n (k + 1) : ℚ)) = ((2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)))
+  (k : ℕ) :
+>>>>REPLACE
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ) :
+>>>>SEARCH
+  (h_recurrence : ∀ k : ℕ,
+    ((m (k + 1) : ℚ) / (n (k + 1) : ℚ)) = ((2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))) :
+>>>>REPLACE
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+>>>>SEARCH
+  (h_recurrence : ∀ k : ℕ,
+    ((m (k + 1) : ℚ) / (n (k + 1) : ℚ)) = ((2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)))
+  (k : ℕ)
+>>>>REPLACE
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ)
+>>>>SEARCH
+  (h_recurrence : ∀ k : ℕ,
+    ((m (k + 1) : ℚ) / (n (k + 1) : ℚ)) = ((2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))) :
+>>>>REPLACE
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :

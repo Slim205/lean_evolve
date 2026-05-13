@@ -1,0 +1,391 @@
+import Mathlib
+import Aesop
+
+set_option maxHeartbeats 0
+
+open BigOperators Real Nat Topology Rat
+
+lemma next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+  sorry
+
+/-- Helper: denominators (2*n_k+1) and (2*m_k+1) are nonzero for all k (from the recurrence). -/
+lemma denom_nonzero_from_recurrence
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k, ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0 ∧ ((2 : ℚ) * (m k : ℚ) + 1) ≠ 0 := by
+  sorry
+
+/-- Helper: the successor denominator n_{k+1} is nonzero (so one can form ratios). -/
+lemma n_succ_nonzero
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k, (n (k + 1) : ℚ) ≠ 0 := by
+  sorry
+
+/-- Helper: if m_{k+1} = n_{k+1} then the ratio (m_{k+1} : ℚ)/(n_{k+1} : ℚ) equals 1. -/
+lemma succ_equal_implies_ratio_one
+  (m n : ℕ → ℕ)
+  (h_n_succ_nonzero : ∀ k, (n (k + 1) : ℚ) ≠ 0)
+  (k : ℕ) :
+  m (k + 1) = n (k + 1) →
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = 1 := by
+  sorry
+
+/-- Helper: if ((2*m_k+1)/(2*n_k+1) = 1) then m_k = n_k (denominator nonzero required). -/
+lemma ratio_one_implies_eq_prev
+  (m n : ℕ → ℕ)
+  (h_denom_nonzero : ∀ k, ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0)
+  (k : ℕ) :
+  (((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1) = 1) → m k = n k := by
+  sorry
+
+/-- Helper: translate integer subtraction zero to nat equality. -/
+lemma int_sub_eq_zero_iff_eq_nat (a b : ℕ) : ((a : ℤ) - (b : ℤ) = 0) ↔ a = b := by
+  sorry
+
+/-- Step 2: the differences never become zero. -/
+lemma diff_ne_zero
+  (m n : ℕ → ℕ)
+  (h_distinct : m 0 ≠ n 0)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0 := by
+  -- instantiate helpers (all are `sorry` above)
+  have hden : ∀ k, ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0 ∧ ((2 : ℚ) * (m k : ℚ) + 1) ≠ 0 := by
+    exact denom_nonzero_from_recurrence m n h_recurrence
+  have hsucc_nonzero : ∀ k, (n (k + 1) : ℚ) ≠ 0 := by
+    exact n_succ_nonzero m n h_recurrence
+  have hsucc_one := by exact fun k => succ_equal_implies_ratio_one m n hsucc_nonzero k
+  have heq_prev := by exact fun k => ratio_one_implies_eq_prev m n (fun k => (hden k).1) k
+
+  -- prove by induction that m k ≠ n k for all k
+  have hmn : ∀ k, m k ≠ n k := by
+    intro k
+    induction k with
+    | zero => exact h_distinct
+    | succ k ih =>
+      by_contra h_eq_succ
+      -- if m_{k+1} = n_{k+1} then the left ratio is 1
+      have hL : (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = 1 := by
+        apply (hsucc_one k)
+        exact h_eq_succ
+      -- by recurrence the right-hand ratio equals the left, so the right is 1
+      have hR : ((2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1) = 1) := by
+        calc
+          (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1) = (m (k + 1) : ℚ) / (n (k + 1) : ℚ) := Eq.symm (h_recurrence k)
+          _ = 1 := hL
+      -- hence m_k = n_k, contradicting IH
+      have mk_eq_nk : m k = n k := by
+        apply (heq_prev k)
+        exact hR
+      exact ih mk_eq_nk
+
+  -- finish: translate nat-inequality to integer-subtraction nonzeroness using helper
+  intro k
+  intro hzero
+  have eq_nat : m k = n k := by
+    have : (m k : ℤ) - (n k : ℤ) = 0 := hzero
+    exact (int_sub_eq_zero_iff_eq_nat (m k) (n k)).1 this
+  exact (hmn k) eq_nat
+
+/-- Step 3: `d_k = gcd(2m_k+1,2n_k+1)` is odd and divides the difference. -/
+lemma gcd_odd_and_dvd_diff
+  (m n : ℕ → ℕ)
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  d % 2 = 1 ∧ ((d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) := by
+  sorry
+
+/-- Step 4: define the "odd part" measure from the absolute difference. -/
+lemma oddPart_measure_pos
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0) :
+  ∀ k : ℕ,
+    0 < Int.natAbs ((m k : ℤ) - (n k : ℤ)) := by
+  sorry
+
+/-- Step 4/5: if `d_k > 1`, the odd-part measure strictly decreases. -/
+lemma oddPart_strict_decrease_of_not_coprime
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) <
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) := by
+  sorry
+
+/-- Helper 1: a strict decrease `t (k+1) < t k` yields the `nat`-inequality
+`t (k+1) ≤ t k - 1`. This is the usual discrete gap lemma. -/
+lemma strict_drop_gives_pred (t : ℕ → ℕ) (k : ℕ) :
+  t (k + 1) < t k → t (k + 1) ≤ t k - 1 := by
+  sorry
+
+/-- Helper 2: if t 0 ≤ N then the set of indices where `t` strictly drops is finite.
+We state this abstractly; the proof is left as `sorry`. -/
+lemma global_bound_from_h0 (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) : ∀ k, t k ≤ N := by
+  -- trivial monotone upper bound; proof omitted
+  sorry
+
+/-- If a strict drop occurs at index i then t (i+1) ≤ t i - 1. -/
+lemma strict_drop_gives_pred_aux (t : ℕ → ℕ) (k : ℕ) :
+  t (k + 1) < t k → t (k + 1) ≤ t k - 1 := by
+  -- detailed discrete-gap proof omitted
+  sorry
+
+
+/-- Helper: one step drop consumption: if `t (k+1) ≤ t k - 1` then
+    `t (k+1) + 1 ≤ t k`. This expresses the idea that a single strict drop
+    consumes at least one unit of the initial budget. -/
+lemma one_step_drop_consumes_budget (t : ℕ → ℕ) (k : ℕ) :
+  t (k + 1) ≤ t k - 1 → t (k + 1) + 1 ≤ t k := by
+  sorry
+
+/-- If there is a strict drop at index `k` then `t (k+1) + 1 ≤ t k`. This is the basic
+discrete gap lemma used to account for one unit of "budget" consumed by a strict drop. -/
+lemma drop_consumes_one (t : ℕ → ℕ) (k : ℕ) :
+  t (k + 1) < t k → t (k + 1) + 1 ≤ t k := by
+  sorry
+
+/-- Budget inequality on an initial prefix [0,K): the number of strict drops in `[0,K)` plus
+`t K` is bounded by the initial value `t 0`. This is proved by iterating the
+one-step consumption inequality and using `hnoninc` when no strict drop occurs. -/
+lemma budget_inequality_on_prefix (t : ℕ → ℕ) (hnoninc : ∀ k, t (k + 1) ≤ t k) (K : ℕ) :
+  (t K) + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+  sorry
+
+/-- (Optional) Simple range/filter simplification: the conjunct `i < K` is redundant inside
+`Finset.range K`. We leave it as a separate helper (proof omitted). -/
+lemma range_filter_simplification (t : ℕ → ℕ) (K : ℕ) :
+  (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card =
+    (Finset.filter (fun i => t (i + 1) < t i) (Finset.range K)).card := by
+  sorry
+
+/-- Summed budget bound on initial segments.
+    Intuitively, each strict drop in [0,K) consumes at least one unit from the initial
+    value `t 0`, so the number of drops up to K is bounded by `t 0`. We implement the
+    finishing glue using the helper `budget_inequality_on_prefix`. -/
+lemma sum_budget_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+  intro K
+  -- use the prefix budget inequality: t K + D(K) ≤ t 0
+  have hprefix : (t K) + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card
+    ≤ t 0 := by
+    exact budget_inequality_on_prefix t hnoninc K
+
+  -- now D(K) ≤ t K + D(K) and by transitivity with the prefix bound we get D(K) ≤ t 0
+  calc
+    (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card
+        ≤ (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card + (t K) :=
+      Nat.le_add_right _ _
+    _ = (t K) + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card := by
+      rw [Nat.add_comm]
+    _ ≤ t 0 := hprefix
+
+/-- Cardinality bound for the number of strict drops in initial segments.
+    This is the wrapper glue-lemma that uses the more detailed `sum_budget_bound`
+    above to conclude the desired uniform cardinality bound by transitivity with
+    the global bound `t 0 ≤ N`. -/
+lemma fin_card_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ N := by
+  -- delegate the combinatorial/budget argument to the helper lemma
+  have hsum : ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+    exact sum_budget_bound t N h0 hnoninc
+  -- now finish by transitivity with the hypothesis t 0 ≤ N
+  intro K
+  exact Nat.le_trans (hsum K) h0
+
+/-- Abstract finiteness lemma: if for every K the number of drops in [0,K) is ≤ N,
+    then the full set of drops is finite. (Proof omitted.) -/
+lemma finite_of_card_bounded {P : ℕ → Prop} (N : ℕ) [DecidablePred P]
+  (hcard : ∀ K, (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)).card ≤ N) :
+  {k : ℕ | P k}.Finite := by
+  -- omitted
+  sorry
+
+lemma finite_strict_drops_of_bound (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) :
+  {k : ℕ | t (k + 1) < t k}.Finite := by
+  -- obtain the global bound t k ≤ N
+  have hglob : ∀ k, t k ≤ N := by
+    exact global_bound_from_h0 t N h0 hnoninc
+
+  -- bound the cardinality of the set of drops below any K
+  have hcard_bound : ∀ K, (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ N := by
+    exact fin_card_bound t N h0 hnoninc
+
+  -- apply the abstract conversion from uniform cardinal bounds to finiteness
+  have hfin : {k : ℕ | t (k + 1) < t k}.Finite := by
+    exact finite_of_card_bounded N hcard_bound
+
+  exact hfin
+
+/-- Step 5: if a positive-ℕ valued measure is globally nonincreasing and strictly decreases
+whenever `bad k`, then `{k | bad k}` is finite. The proof below is glue: we use the
+helpers above to reduce to the finiteness of the strict-drop set and then take the subset. -/
+lemma finite_of_strict_decrease_on_bad
+  (t : ℕ → ℕ)
+  (htpos : ∀ k : ℕ, 0 < t k)
+  (bad : ℕ → Prop)
+  (hnoninc : ∀ k : ℕ, t (k + 1) ≤ t k)
+  (hdec : ∀ k : ℕ, bad k → t (k + 1) < t k) :
+  {k : ℕ | bad k}.Finite := by
+  -- show bad ⊆ strict-drop set using hdec
+  have hsub : {k : ℕ | bad k} ⊆ {k : ℕ | t (k + 1) < t k} := by
+    intro k hk
+    exact hdec k hk
+
+  -- apply the bounded-number-of-strict-drops lemma with N := t 0 (trivial bound)
+  have hstr_drops_fin : {k : ℕ | t (k + 1) < t k}.Finite := by
+    exact finite_strict_drops_of_bound t (t 0) (by exact le_refl (t 0)) hnoninc
+
+  -- conclude finiteness of the bad set by subset-of-finite
+  exact Set.Finite.subset hstr_drops_fin hsub
+
+/-- There exists an "odd-part" measure t(k) (derived from |m_k - n_k|) which is positive,
+globally nonincreasing, and strictly decreases whenever the corresponding gcd is nontrivial.
+We keep this as an abstract existence lemma (proved below in the informal argument). -/
+/-
+Helper 1: decompose each nonzero integer difference into a power of 2 times an odd part.
+This is the usual 2-adic valuation decomposition: for every nonzero integer a there are u,r with
+|a| = 2^u * r and r odd and r > 0.
+-/
+lemma decomposition_of_diff
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0) :
+  ∀ k : ℕ, ∃ (u r : ℕ),
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+  sorry
+
+/-
+Helper 2: monotonicity of the odd part between successive indices.
+Given explicit decompositions for |m_k - n_k| = 2^{u1} r1 and |m_{k+1} - n_{k+1}| = 2^{u2} r2,
+this lemma asserts r2 ≤ r1. The proof uses the normalization of successive terms coming
+from the recurrence (one must use that (m_{k+1}, n_{k+1}) is the reduced pair coming from
+(2 m_k + 1, 2 n_k + 1)). We leave this as a helper (sorry).
+-/
+lemma odd_part_noninc_step
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∀ k u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 ≤ r1 := by
+  sorry
+
+/-
+Helper 3: strict decrease of the odd part when the gcd is nontrivial.
+If the gcd d = gcd(2 m_k + 1, 2 n_k + 1) is > 1 (equivalently not coprime), then the odd
+part at k+1 is strictly smaller than at k. This is stated in the decomposed form.
+-/
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by
+  sorry
+
+/-
+Revised existence lemma. We strengthen the hypotheses: we require the auxiliary coprimality
+normalization hypothesis h_coprime (present in the main theorem) so that one can produce the
+normalized successors and hence define the odd-part measure canonically. The body below is
+pure "glue": we use the decomposition helper to pick odd parts and then use the comparison
+helpers to establish positivity, nonincreasingness, and strict decrease on "bad" indices.
+All heavy arithmetic is delegated to the helper lemmas above (left as `sorry`).
+-/
+lemma exists_odd_measure
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∃ (t : ℕ → ℕ),
+    (∀ k : ℕ, 0 < t k) ∧
+    (∀ k : ℕ, t (k + 1) ≤ t k) ∧
+    (∀ k : ℕ, (¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) → t (k + 1) < t k) := by
+  -- decompose each difference into 2^u * r with r odd
+  have hdecomp : ∀ k, ∃ u r, Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by
+    exact decomposition_of_diff m n hΔ
+
+  -- choose concrete functions u,r giving the decomposition for every k
+  choose u r hu hr using hdecomp
+
+  -- define the measure t(k) to be the odd part r(k)
+  let t : ℕ → ℕ := fun k => r k
+
+  -- positivity: r(k) > 0 by the decomposition property
+  have htpos : ∀ k, 0 < t k := by
+    intro k
+    exact (hr k).2
+
+  -- nonincreasing property: compare odd parts using the decomposition equalities and helper
+  have hnoninc : ∀ k, t (k + 1) ≤ t k := by
+    intro k
+    have Hk := hu k
+    have Hk1 := hu (k + 1)
+    -- apply the stepwise nonincrease lemma using the equalities and oddness/positivity facts
+    exact odd_part_noninc_step m n h_recurrence h_coprime k (u k) (r k) (u (k + 1)) (r (k + 1))
+      (Hk) ((hr k).1) ((hr k).2) (Hk1) ((hr (k + 1)).1) ((hr (k + 1)).2)
+
+  -- strict decrease on "bad" indices: use the strict-decrease helper
+  have hdec : ∀ k, (¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) → t (k + 1) < t k := by
+    intro k hbad
+    have Hk := hu k
+    have Hk1 := hu (k + 1)
+    exact odd_part_strict_decrease_of_not_coprime' m n hΔ h_coprime h_recurrence k hbad
+      (u k) (r k) (u (k + 1)) (r (k + 1)) (Hk) ((hr k).1) ((hr k).2) (Hk1) ((hr (k + 1)).1) ((hr (k + 1)).2)
+
+  exact ⟨t, ⟨htpos, hnoninc, hdec⟩⟩
+
+theorem putnam_2025_a1
+  (m n : ℕ → ℕ)
+  (hm : ∀ k : ℕ, 0 < m k)
+  (hn : ∀ k : ℕ, 0 < n k)
+  (h_distinct : m 0 ≠ n 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  {k : ℕ | ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)}.Finite := by
+  classical
+
+  -- Step 2: differences never vanish
+  have hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0 := by
+    exact diff_ne_zero m n h_distinct h_recurrence
+
+  -- Step 4: obtain the decreasing odd-part measure abstractly
+  rcases exists_odd_measure m n hΔ h_recurrence h_coprime with ⟨t, ⟨htpos, hnoninc, hdec_step⟩⟩
+
+  -- Step 4/5: define the "bad" property
+  let bad : ℕ → Prop := fun k => ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)
+
+  -- Step 5: apply the abstract finiteness lemma using the properties of `t`
+  have hfinite : {k : ℕ | bad k}.Finite := by
+    exact finite_of_strict_decrease_on_bad t htpos bad hnoninc hdec_step
+
+  -- conclude in the required form
+  simpa [bad] using hfinite

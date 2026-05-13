@@ -1,0 +1,30 @@
+>>>>SEARCH
+  -- gcd oddness and divisibility of the integer difference
+  have hg := by exact helper_gcd_odd_and_dvd_diff m n k
+  rcases hg with ⟨hd_odd, hd_dvd⟩
+>>>>REPLACE
+  -- gcd oddness and divisibility of the integer difference
+  have hg := helper_gcd_odd_and_dvd_diff m n k
+  rcases hg with ⟨hd_odd, hd_dvd⟩
+>>>>SEARCH
+  -- relation giving exact integer evolution of the difference (uses the equalities above)
+  have hdiff := by
+    exact helper_diff_evolution m n k hnext
+>>>>REPLACE
+  -- relation giving exact integer evolution of the difference (uses the equalities above)
+  have hdiff := helper_diff_evolution m n k hnext
+>>>>SEARCH
+  -- apply the scaling lemma to the integer `z = m_k - n_k`
+  let z : ℤ := (m k : ℤ) - (n k : ℤ)
+  have hscale := by
+    exact helper_natabs_scaling_by_odd_div z u1 r1 d hA1 hodd1 hpos1 hd_odd hd_dvd
+>>>>REPLACE
+  -- apply the scaling lemma to the integer `z = m_k - n_k`
+  let z : ℤ := (m k : ℤ) - (n k : ℤ)
+  have hscale := helper_natabs_scaling_by_odd_div z u1 r1 d hA1 hodd1 hpos1 hd_odd hd_dvd
+>>>>SEARCH
+  have hnext : (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+    exact helper_next_eq_div_gcd m n h_recurrence h_nsucc_nonzero h_coprime k
+>>>>REPLACE
+  have hnext : (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) :=
+    helper_next_eq_div_gcd m n h_recurrence h_nsucc_nonzero h_coprime k

@@ -1,0 +1,6 @@
+>>>>SEARCH
+  -- conclude in the required form
+  simpa [bad] using hfinite
+>>>>REPLACE
+  -- conclude in the required form
+  exact hfinite

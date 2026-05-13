@@ -1,0 +1,110 @@
+>>>>SEARCH
+/-- Helper (abstract): if A = 2^u1 * r1 with r1 odd > 0, and `d` is an odd divisor of `A`,
+    and if we form B := 2 * (A / d), and B admits a decomposition B = 2^u2 * r2 with r2 odd > 0,
+    then r2 ≤ r1. The extra hypothesis `d ∣ A` is essential. -/
+lemma odd_part_le_from_div_by_odd (A d : ℕ) (hdvd : d ∣ A) (u1 r1 u2 r2 : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 ≤ r1 := by
+  -- arithmetic/combinatorial reasoning on 2-adic valuations and exact division; omitted
+  sorry
+>>>>REPLACE
+/-- If `d` is odd then it is coprime to any power of two. -/
+lemma odd_coprime_pow_two (d u : ℕ) (hd_odd : d % 2 = 1) : Nat.Coprime d ((2 : ℕ) ^ u) := by
+  -- proof omitted
+  sorry
+
+/-- Cancellation lemma for coprime divisors: if `gcd a b = 1` and `a ∣ b * x` then `a ∣ x`. -/
+lemma coprime_dvd_cancel {a b x : ℕ} (hc : Nat.Coprime a b) (h : a ∣ b * x) : a ∣ x := by
+  -- proof omitted (delegates to `coprime_dvd_of_dvd_mul_right` above in a full development)
+  sorry
+
+/-- From A = 2^u1 * r1 and `d ∣ A`, if `d` is coprime to 2^u1 then `d ∣ r1`. -/
+lemma d_divides_r1
+  (A d u1 r1 : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1)
+  (hdvd : d ∣ A)
+  (hc : Nat.Coprime d ((2 : ℕ) ^ u1)) :
+  d ∣ r1 := by
+  -- use gcd-coprime cancellation: from d ∣ 2^u1 * r1 and gcd(d,2^u1)=1 conclude d ∣ r1
+  exact coprime_dvd_cancel hc hdvd
+
+/-- If `d ∣ r1` and r1 > 0 then we can define r1' with r1 = d * r1' and record that
+    A / d = 2^u1 * r1'. We also record that r1' is odd when both `r1` and `d` are odd. -/
+lemma exists_r1_division
+  (A d u1 r1 : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1)
+  (hdvd : d ∣ A)
+  (hd_div_r1 : d ∣ r1)
+  (hr1_odd : r1 % 2 = 1)
+  (hd_odd : d % 2 = 1)
+  (hr1_pos : 0 < r1) :
+  ∃ r1', r1 = d * r1' ∧ (A / d) = (2 : ℕ) ^ u1 * r1' ∧ r1' % 2 = 1 := by
+  -- produce the quotient r1' := r1 / d and assemble the required equalities/oddness.
+  -- proof omitted
+  sorry
+
+/-- Uniqueness of the odd factor in a 2-adic factorization:
+    if 2^a * x = 2^b * y with x,y odd and positive, then a = b and x = y. -/
+lemma uniqueness_of_odd_decomposition
+  (a b x y : ℕ)
+  (h : (2 : ℕ) ^ a * x = (2 : ℕ) ^ b * y)
+  (hx_odd : x % 2 = 1) (hy_odd : y % 2 = 1)
+  (hx_pos : 0 < x) (hy_pos : 0 < y) :
+  a = b ∧ x = y := by
+  -- standard uniqueness of 2-adic valuation and odd part; proof omitted
+  sorry
+
+/-- If r1 = d * r1' then r1' ≤ r1 (when r1 > 0). -/
+lemma nat_le_of_mul_eq (d r1' r1 : ℕ) (hr : r1 = d * r1') (hr_pos : 0 < r1) : r1' ≤ r1 := by
+  -- simple monotonicity/positivity argument; proof omitted
+  sorry
+
+/-- Helper (abstract): if A = 2^u1 * r1 with r1 odd > 0, and `d` is an odd divisor of `A`,
+    and if we form B := 2 * (A / d), and B admits a decomposition B = 2^u2 * r2 with r2 odd > 0,
+    then r2 ≤ r1. The extra hypothesis `d ∣ A` is essential. -/
+lemma odd_part_le_from_div_by_odd (A d : ℕ) (hdvd : d ∣ A) (u1 r1 u2 r2 : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 ≤ r1 := by
+  -- 1) d is coprime to 2^u1 since d is odd
+  have hcopr := odd_coprime_pow_two d u1 hd_odd
+
+  -- 2) from A = 2^u1 * r1 and d ∣ A deduce d ∣ r1
+  have hd_div_r1 : d ∣ r1 := by
+    exact d_divides_r1 A d u1 r1 hA hdvd hcopr
+
+  -- 3) produce r1' with r1 = d * r1' and A / d = 2^u1 * r1', also r1' is odd
+  have hex_r1' : ∃ r1', r1 = d * r1' ∧ (A / d) = (2 : ℕ) ^ u1 * r1' ∧ r1' % 2 = 1 := by
+    exact exists_r1_division A d u1 r1 hA hdvd hd_div_r1 hr1_odd hd_odd hr1_pos
+  rcases hex_r1' with ⟨r1', ⟨hr1_eq, hAdiv, hr1'_odd⟩⟩
+
+  -- 4) rewrite 2 * (A / d) as 2^(u1+1) * r1'
+  have h2_expr : 2 * (A / d) = (2 : ℕ) ^ (u1 + 1) * r1' := by
+    calc
+      2 * (A / d) = 2 * ((2 : ℕ) ^ u1 * r1') := by rw [hAdiv]
+      _ = (2 : ℕ) ^ (u1 + 1) * r1' := by
+        -- use pow_succ: (2 : ℕ) ^ (u1 + 1) = 2 * (2 : ℕ) ^ u1
+        simp [pow_succ]
+
+  -- 5) combine equalities to get 2^(u1+1) * r1' = 2^u2 * r2
+  have heq_pow_parts : (2 : ℕ) ^ (u1 + 1) * r1' = (2 : ℕ) ^ u2 * r2 := by
+    calc
+      (2 : ℕ) ^ (u1 + 1) * r1' = 2 * (A / d) := Eq.symm h2_expr
+      _ = (2 : ℕ) ^ u2 * r2 := hB_eq
+
+  -- 6) apply uniqueness of odd decomposition to conclude r2 = r1' (and exponents equal)
+  have hunique := uniqueness_of_odd_decomposition (u1 + 1) u2 r1' r2 heq_pow_parts hr1'_odd hr2_odd
+    (by linarith [hr1_pos]) hr2_pos
+  rcases hunique with ⟨_, hr_eq_odd⟩
+
+  -- 7) from r1 = d * r1' deduce r1' ≤ r1
+  have hr1'_le_r1 : r1' ≤ r1 := by
+    exact nat_le_of_mul_eq d r1' r1 hr1_eq hr1_pos
+
+  -- 8) assemble final inequality r2 ≤ r1
+  calc
+    r2 = r1' := hr_eq_odd.symm
+    _ ≤ r1 := hr1'_le_r1

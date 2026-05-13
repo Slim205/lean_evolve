@@ -1,0 +1,1489 @@
+[
+    {
+        "name": "prefix_captures_finite_set",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem prefix_captures_finite_set {P : \u2115 \u2192 Prop} [DecidablePred P] (F : Finset \u2115)\n  (hF : \u2200 x \u2208 F, P x) :\n  \u2203 K, F \u2286 (Finset.filter (fun i => i < K \u2227 P i) (Finset.range K)) := by\n  use F.sup (fun x => x + 1)\n  intro x hx\n  have h\u2081 : x < F.sup (fun x => x + 1) := by\n    have h\u2082 : x \u2208 F := hx\n    have h\u2083 : x \u2264 F.sup (fun x => x + 1) := Finset.le_sup h\u2082 (by simp)\n    have h\u2084 : x < F.sup (fun x => x + 1) := by\n      by_contra h\n      have h\u2085 : F.sup (fun x => x + 1) \u2264 x := by linarith\n      have h\u2086 : F.sup (fun x => x + 1) \u2264 x := by linarith\n      have h\u2087 : F.sup (fun x => x + 1) \u2264 x := by linarith\n      have h\u2088 : x \u2208 F := hx\n      have h\u2089 : x + 1 \u2264 F.sup (fun x => x + 1) := by\n        apply Finset.le_sup h\u2088\n        <;> simp\n      omega\n    exact h\u2084\n  have h\u2082 : P x := hF x hx\n  simp_all [Finset.mem_filter, Finset.mem_range]\n  <;> omega",
+        "custom_id": "prefix_captures_finite_set_0",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 44
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 70
+                    },
+                    "data": "function expected at\n  Finset.le_sup h\u2082\nterm has type\n  ?m.835 x \u2264 F.sup ?m.835"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.4725525379180908,
+            "custom_id": "prefix_captures_finite_set_0"
+        }
+    },
+    {
+        "name": "prefix_captures_finite_set",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem prefix_captures_finite_set {P : \u2115 \u2192 Prop} [DecidablePred P] (F : Finset \u2115)\n  (hF : \u2200 x \u2208 F, P x) :\n  \u2203 K, F \u2286 (Finset.filter (fun i => i < K \u2227 P i) (Finset.range K)) := by\n  refine' \u27e8F.sup (fun x => x + 1), _\u27e9\n  intro x hx\n  have h := hF x hx\n  have h2 : x < F.sup (fun x => x + 1) := by\n    apply lt_of_lt_of_le (Finset.lt_sup_of_mem hx)\n    simp [Nat.lt_succ_iff]\n  simp_all [Finset.mem_filter, Finset.mem_range]\n  <;> omega",
+        "custom_id": "prefix_captures_finite_set_1",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 26
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 49
+                    },
+                    "data": "unknown constant 'Finset.lt_sup_of_mem'"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.13403987884521484,
+            "custom_id": "prefix_captures_finite_set_1"
+        }
+    },
+    {
+        "name": "prefix_captures_finite_set",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem prefix_captures_finite_set {P : \u2115 \u2192 Prop} [DecidablePred P] (F : Finset \u2115)\n  (hF : \u2200 x \u2208 F, P x) :\n  \u2203 K, F \u2286 (Finset.filter (fun i => i < K \u2227 P i) (Finset.range K)) := by\n  use F.sup (fun x => x + 1)\n  intro x hx\n  simp only [Finset.mem_filter, Finset.mem_range, Finset.mem_coe, Finset.mem_Iio]\n  have h := hF x hx\n  have h' : x < F.sup (fun x => x + 1) := by\n    apply lt_of_lt_of_le\n    \u00b7 exact Finset.lt_sup_of_mem hx (by simp)\n    \u00b7 simp\n  exact \u27e8h', h\u27e9",
+        "custom_id": "prefix_captures_finite_set_2",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 45
+                    },
+                    "data": "unknown constant 'Finset.lt_sup_of_mem'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 10
+                    },
+                    "data": "simp made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 42
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 10
+                    },
+                    "data": "unsolved goals\ncase b\nP : \u2115 \u2192 Prop\ninst\u271d : DecidablePred P\nF : Finset \u2115\nhF : \u2200 x \u2208 F, P x\nx : \u2115\nhx : x \u2208 F\nh : P x\n\u22a2 \u2115"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 13
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 14
+                    },
+                    "data": "application type mismatch\n  \u27e8h', h\u27e9\nargument\n  h\nhas type\n  P x : Prop\nbut is expected to have type\n  (x < F.sup fun x => x + 1) \u2227 P x : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.0743858814239502,
+            "custom_id": "prefix_captures_finite_set_2"
+        }
+    },
+    {
+        "name": "prefix_captures_finite_set",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem prefix_captures_finite_set {P : \u2115 \u2192 Prop} [DecidablePred P] (F : Finset \u2115)\n  (hF : \u2200 x \u2208 F, P x) :\n  \u2203 K, F \u2286 (Finset.filter (fun i => i < K \u2227 P i) (Finset.range K)) := by\n  use F.sup (fun x => x + 1)\n  intro x hx\n  simp only [Finset.mem_filter, Finset.mem_range, Finset.mem_coe, Finset.mem_Iio]\n  have hx' : x \u2208 F := hx\n  have hx'' : P x := hF x hx'\n  have hx''' : x < F.sup (fun x => x + 1) := by\n    have hx'''' : x \u2208 F := hx'\n    have hx''''' : x \u2264 F.sup (fun x => x + 1) - 1 := by\n      apply Finset.le_sup hx''''\n      <;> simp\n    omega\n  exact \u27e8hx''', hx''\u27e9",
+        "custom_id": "prefix_captures_finite_set_3",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 32
+                    },
+                    "data": "tactic 'apply' failed, failed to unify\n  ?m.1352 x \u2264 F.sup ?m.1352\nwith\n  x \u2264 (F.sup fun x => x + 1) - 1\nP : \u2115 \u2192 Prop\ninst\u271d : DecidablePred P\nF : Finset \u2115\nhF : \u2200 x \u2208 F, P x\nx : \u2115\nhx hx' : x \u2208 F\nhx'' : P x\nhx'''' : x \u2208 F\n\u22a2 x \u2264 (F.sup fun x => x + 1) - 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 9
+                    },
+                    "data": "omega could not prove the goal:\nNo usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants."
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 16
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 20
+                    },
+                    "data": "application type mismatch\n  \u27e8hx''', hx''\u27e9\nargument\n  hx''\nhas type\n  P x : Prop\nbut is expected to have type\n  (x < F.sup fun x => x + 1) \u2227 P x : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.07455253601074219,
+            "custom_id": "prefix_captures_finite_set_3"
+        }
+    },
+    {
+        "name": "prefix_captures_finite_set",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem prefix_captures_finite_set {P : \u2115 \u2192 Prop} [DecidablePred P] (F : Finset \u2115)\n  (hF : \u2200 x \u2208 F, P x) :\n  \u2203 K, F \u2286 (Finset.filter (fun i => i < K \u2227 P i) (Finset.range K)) := by\n  use F.sup (fun x => x + 1)\n  intro x hx\n  simp only [Finset.mem_filter, Finset.mem_range, Finset.mem_coe, Finset.mem_Iio]\n  have h1 : x < F.sup (fun x => x + 1) := by\n    have h2 : x \u2208 F := hx\n    have h3 : x \u2264 F.sup (fun x => x + 1) := Finset.le_sup h2 (by simp)\n    have h4 : x < F.sup (fun x => x + 1) := by\n      by_contra h5\n      have h6 : F.sup (fun x => x + 1) \u2264 x := by linarith\n      have h7 : F.sup (fun x => x + 1) \u2264 x := by linarith\n      have h8 : F.sup (fun x => x + 1) \u2264 x := by linarith\n      have h9 : x \u2208 F := hx\n      have h10 : x < F.sup (fun x => x + 1) := by\n        apply lt_of_not_ge\n        intro h11\n        have h12 : F.sup (fun x => x + 1) \u2264 x := by linarith\n        have h13 : x \u2208 F := hx\n        have h14 : F.sup (fun x => x + 1) \u2264 x := by linarith\n        have h15 : F.sup (fun x => x + 1) \u2264 x := by linarith\n        linarith\n      linarith\n    exact h4\n  have h2 : P x := hF x hx\n  exact \u27e8h1, h2\u27e9",
+        "custom_id": "prefix_captures_finite_set_4",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 44
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 70
+                    },
+                    "data": "function expected at\n  Finset.le_sup h2\nterm has type\n  ?m.1207 x \u2264 F.sup ?m.1207"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 28,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 28,
+                        "column": 16
+                    },
+                    "data": "linarith failed to find a contradiction\ncase h\nP : \u2115 \u2192 Prop\ninst\u271d : DecidablePred P\nF : Finset \u2115\nhF : \u2200 x \u2208 F, P x\nx : \u2115\nhx h2 : x \u2208 F\nh3 : x \u2264 F.sup fun x => x + 1\nh5 : \u00acx < F.sup fun x => x + 1\nh6 h7 h8 : (F.sup fun x => x + 1) \u2264 x\nh9 : x \u2208 F\nh11 : x \u2265 F.sup fun x => x + 1\nh12 : (F.sup fun x => x + 1) \u2264 x\nh13 : x \u2208 F\nh14 h15 : (F.sup fun x => x + 1) \u2264 x\n\u22a2 False\nfailed"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 32,
+                        "column": 13
+                    },
+                    "endPos": {
+                        "line": 32,
+                        "column": 15
+                    },
+                    "data": "application type mismatch\n  \u27e8h1, h2\u27e9\nargument\n  h2\nhas type\n  P x : Prop\nbut is expected to have type\n  (x < F.sup fun x => x + 1) \u2227 P x : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.9451949596405029,
+            "custom_id": "prefix_captures_finite_set_4"
+        }
+    },
+    {
+        "name": "prefix_captures_finite_set",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem prefix_captures_finite_set {P : \u2115 \u2192 Prop} [DecidablePred P] (F : Finset \u2115)\n  (hF : \u2200 x \u2208 F, P x) :\n  \u2203 K, F \u2286 (Finset.filter (fun i => i < K \u2227 P i) (Finset.range K)) := by\n  use F.sup (fun x => x + 1)\n  intro x hx\n  simp only [Finset.mem_filter, Finset.mem_range, Finset.mem_coe, Finset.mem_Iio]\n  have h\u2081 : x \u2208 F := hx\n  have h\u2082 : x < F.sup (fun x => x + 1) := by\n    apply lt_of_lt_of_le\n    \u00b7 exact Finset.lt_sup_of_mem_of_lt h\u2081 (by simp)\n    \u00b7 simp\n  exact \u27e8h\u2082, hF x h\u2081\u27e9",
+        "custom_id": "prefix_captures_finite_set_5",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 51
+                    },
+                    "data": "unknown constant 'Finset.lt_sup_of_mem_of_lt'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 10
+                    },
+                    "data": "simp made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 42
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 10
+                    },
+                    "data": "unsolved goals\ncase b\nP : \u2115 \u2192 Prop\ninst\u271d : DecidablePred P\nF : Finset \u2115\nhF : \u2200 x \u2208 F, P x\nx : \u2115\nhx h\u2081 : x \u2208 F\n\u22a2 \u2115"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 13
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 20
+                    },
+                    "data": "application type mismatch\n  \u27e8h\u2082, hF x h\u2081\u27e9\nargument\n  hF x h\u2081\nhas type\n  P x : Prop\nbut is expected to have type\n  (x < F.sup fun x => x + 1) \u2227 P x : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.07745599746704102,
+            "custom_id": "prefix_captures_finite_set_5"
+        }
+    },
+    {
+        "name": "prefix_captures_finite_set",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem prefix_captures_finite_set {P : \u2115 \u2192 Prop} [DecidablePred P] (F : Finset \u2115)\n  (hF : \u2200 x \u2208 F, P x) :\n  \u2203 K, F \u2286 (Finset.filter (fun i => i < K \u2227 P i) (Finset.range K)) := by\n  use F.sup (fun i => i + 1)\n  intro x hx\n  have h\u2081 : x \u2208 F := hx\n  have h\u2082 : x < F.sup (fun i => i + 1) := by\n    apply lt_of_lt_of_le\n    \u00b7 exact Finset.lt_sup_of_mem h\u2081 (by simp)\n    \u00b7 simp [Nat.succ_le_iff]\n  have h\u2083 : P x := hF x h\u2081\n  simp_all [Finset.mem_filter, Finset.mem_range]\n  <;> omega",
+        "custom_id": "prefix_captures_finite_set_6",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 45
+                    },
+                    "data": "unknown constant 'Finset.lt_sup_of_mem'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 28
+                    },
+                    "data": "simp made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 42
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 28
+                    },
+                    "data": "unsolved goals\ncase b\nP : \u2115 \u2192 Prop\ninst\u271d : DecidablePred P\nF : Finset \u2115\nhF : \u2200 x \u2208 F, P x\nx : \u2115\nhx h\u2081 : x \u2208 F\n\u22a2 \u2115"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.20982742309570312,
+            "custom_id": "prefix_captures_finite_set_6"
+        }
+    },
+    {
+        "name": "prefix_captures_finite_set",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem prefix_captures_finite_set {P : \u2115 \u2192 Prop} [DecidablePred P] (F : Finset \u2115)\n  (hF : \u2200 x \u2208 F, P x) :\n  \u2203 K, F \u2286 (Finset.filter (fun i => i < K \u2227 P i) (Finset.range K)) := by\n  refine \u27e8F.sup (fun x => x) + 1, ?_\u27e9\n  intro x hx\n  simp only [Finset.mem_filter, Finset.mem_range, Finset.mem_coe, Finset.mem_Iio] at *\n  have hx' : x \u2208 F := hx\n  have hx'' : P x := hF x hx'\n  have hx''' : x < F.sup (fun x => x) + 1 := by\n    have h : x \u2264 F.sup (fun x => x) := by\n      apply Finset.le_sup hx'\n    omega\n  exact \u27e8hx'' , hx'''\u27e9",
+        "custom_id": "prefix_captures_finite_set_7",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 13
+                    },
+                    "data": "application type mismatch\n  And.intro hx''\nargument\n  hx''\nhas type\n  P x : Prop\nbut is expected to have type\n  x < (F.sup fun x => x) + 1 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.044962167739868164,
+            "custom_id": "prefix_captures_finite_set_7"
+        }
+    },
+    {
+        "name": "prefix_captures_finite_set",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem prefix_captures_finite_set {P : \u2115 \u2192 Prop} [DecidablePred P] (F : Finset \u2115)\n  (hF : \u2200 x \u2208 F, P x) :\n  \u2203 K, F \u2286 (Finset.filter (fun i => i < K \u2227 P i) (Finset.range K)) := by\n  use F.sup (fun x => x + 1)\n  intro x hx\n  simp only [Finset.mem_filter, Finset.mem_range, Finset.mem_coe, Finset.mem_Iio]\n  have h\u2081 : x < F.sup (fun x => x + 1) := by\n    apply lt_of_lt_of_le (Finset.lt_sup_of_mem hx (by simp))\n    simp\n  have h\u2082 : P x := hF x hx\n  exact \u27e8h\u2081, h\u2082\u27e9",
+        "custom_id": "prefix_captures_finite_set_8",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 26
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 59
+                    },
+                    "data": "unknown constant 'Finset.lt_sup_of_mem'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 13
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 15
+                    },
+                    "data": "application type mismatch\n  \u27e8h\u2081, h\u2082\u27e9\nargument\n  h\u2082\nhas type\n  P x : Prop\nbut is expected to have type\n  (x < F.sup fun x => x + 1) \u2227 P x : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.03201866149902344,
+            "custom_id": "prefix_captures_finite_set_8"
+        }
+    },
+    {
+        "name": "prefix_captures_finite_set",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem prefix_captures_finite_set {P : \u2115 \u2192 Prop} [DecidablePred P] (F : Finset \u2115)\n  (hF : \u2200 x \u2208 F, P x) :\n  \u2203 K, F \u2286 (Finset.filter (fun i => i < K \u2227 P i) (Finset.range K)) := by\n  use F.sup (fun x => x + 1)\n  intro x hx\n  simp only [Finset.mem_filter, Finset.mem_range, Finset.mem_coe, Finset.mem_Iio]\n  have h1 : x \u2208 F := hx\n  have h2 : P x := hF x h1\n  have h3 : x < F.sup (fun x => x + 1) := by\n    apply Finset.lt_sup_of_mem h1\n    simp\n  exact \u27e8h3, h2\u27e9",
+        "custom_id": "prefix_captures_finite_set_9",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 33
+                    },
+                    "data": "unknown constant 'Finset.lt_sup_of_mem'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 13
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 15
+                    },
+                    "data": "application type mismatch\n  \u27e8h3, h2\u27e9\nargument\n  h2\nhas type\n  P x : Prop\nbut is expected to have type\n  (x < F.sup fun x => x + 1) \u2227 P x : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.037148475646972656,
+            "custom_id": "prefix_captures_finite_set_9"
+        }
+    },
+    {
+        "name": "prefix_captures_finite_set",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem prefix_captures_finite_set {P : \u2115 \u2192 Prop} [DecidablePred P] (F : Finset \u2115)\n  (hF : \u2200 x \u2208 F, P x) :\n  \u2203 K, F \u2286 (Finset.filter (fun i => i < K \u2227 P i) (Finset.range K)) := by\n  use F.sup (fun x => x + 1)\n  intro x hx\n  have h\u2081 : x \u2208 F := hx\n  have h\u2082 : x < F.sup (fun x => x + 1) := by\n    have h\u2083 : x \u2208 F := h\u2081\n    have h\u2084 : x \u2264 F.sup (fun x => x + 1) - 1 := by\n      apply Finset.le_sup h\u2083\n      <;> simp [Nat.lt_succ_iff]\n    omega\n  have h\u2083 : P x := hF x h\u2081\n  simp_all [Finset.mem_filter, Finset.mem_range]\n  <;> omega",
+        "custom_id": "prefix_captures_finite_set_10",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 28
+                    },
+                    "data": "tactic 'apply' failed, failed to unify\n  ?m.976 x \u2264 F.sup ?m.976\nwith\n  x \u2264 (F.sup fun x => x + 1) - 1\nP : \u2115 \u2192 Prop\ninst\u271d : DecidablePred P\nF : Finset \u2115\nhF : \u2200 x \u2208 F, P x\nx : \u2115\nhx h\u2081 h\u2083 : x \u2208 F\n\u22a2 x \u2264 (F.sup fun x => x + 1) - 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 9
+                    },
+                    "data": "omega could not prove the goal:\nNo usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants."
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.17994332313537598,
+            "custom_id": "prefix_captures_finite_set_10"
+        }
+    },
+    {
+        "name": "prefix_captures_finite_set",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem prefix_captures_finite_set {P : \u2115 \u2192 Prop} [DecidablePred P] (F : Finset \u2115)\n  (hF : \u2200 x \u2208 F, P x) :\n  \u2203 K, F \u2286 (Finset.filter (fun i => i < K \u2227 P i) (Finset.range K)) := by\n  use F.sup (fun x => x + 1)\n  intro x hx\n  have h\u2081 : x < F.sup (fun x => x + 1) := by\n    apply lt_of_lt_of_le\n    \u00b7 have h\u2082 : x \u2208 F := hx\n      have h\u2083 : x < F.sup (fun x => x + 1) := by\n        apply Finset.lt_sup_of_mem h\u2082\n        <;> simp_all\n      exact h\u2083\n    \u00b7 exact Finset.le_sup hx\n  have h\u2082 : P x := hF x hx\n  simp_all [Finset.mem_filter, Finset.mem_range]\n  <;> omega",
+        "custom_id": "prefix_captures_finite_set_11",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 37
+                    },
+                    "data": "unknown constant 'Finset.lt_sup_of_mem'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 28
+                    },
+                    "data": "type mismatch\n  Finset.le_sup hx\nhas type\n  ?m.1105 x \u2264 F.sup ?m.1105 : Prop\nbut is expected to have type\n  (F.sup fun x => x + 1) \u2264 F.sup fun x => x + 1 : Prop"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.16237545013427734,
+            "custom_id": "prefix_captures_finite_set_11"
+        }
+    },
+    {
+        "name": "prefix_captures_finite_set",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem prefix_captures_finite_set {P : \u2115 \u2192 Prop} [DecidablePred P] (F : Finset \u2115)\n  (hF : \u2200 x \u2208 F, P x) :\n  \u2203 K, F \u2286 (Finset.filter (fun i => i < K \u2227 P i) (Finset.range K)) := by\n  use F.sup (fun x => x + 1)\n  intro x hx\n  have h\u2081 : x \u2208 F := hx\n  have h\u2082 : P x := hF x h\u2081\n  have h\u2083 : x < F.sup (fun x => x + 1) := by\n    have h\u2084 : x \u2208 F := h\u2081\n    have h\u2085 : x < F.sup (fun x => x + 1) := by\n      apply lt_of_lt_of_le\n      \u00b7 exact Finset.lt_sup_of_mem h\u2084 (by simp)\n      \u00b7 simp [Finset.sup_le_iff]\n        <;> aesop\n    exact h\u2085\n  have h\u2084 : x < F.sup (fun x => x + 1) \u2227 P x := \u27e8h\u2083, h\u2082\u27e9\n  simp_all [Finset.mem_filter, Finset.mem_range]\n  <;> aesop",
+        "custom_id": "prefix_captures_finite_set_12",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 47
+                    },
+                    "data": "unknown constant 'Finset.lt_sup_of_mem'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 32
+                    },
+                    "data": "simp made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 44
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 17
+                    },
+                    "data": "unsolved goals\ncase b\nP : \u2115 \u2192 Prop\ninst\u271d : DecidablePred P\nF : Finset \u2115\nhF : \u2200 x \u2208 F, P x\nx : \u2115\nhx h\u2081 : x \u2208 F\nh\u2082 : P x\nh\u2084 : x \u2208 F\n\u22a2 \u2115"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.21046948432922363,
+            "custom_id": "prefix_captures_finite_set_12"
+        }
+    },
+    {
+        "name": "prefix_captures_finite_set",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem prefix_captures_finite_set {P : \u2115 \u2192 Prop} [DecidablePred P] (F : Finset \u2115)\n  (hF : \u2200 x \u2208 F, P x) :\n  \u2203 K, F \u2286 (Finset.filter (fun i => i < K \u2227 P i) (Finset.range K)) := by\n  use F.sup (fun i => i + 1)\n  intro x hx\n  have h\u2081 : x < F.sup (fun i => i + 1) := by\n    apply lt_of_lt_of_le\n    \u00b7 have h\u2082 : x \u2208 F := hx\n      have h\u2083 : x \u2264 F.sup (fun i => i + 1) := by\n        apply Finset.le_sup h\u2082\n        <;> simp_all\n      omega\n    \u00b7 have h\u2082 : F.sup (fun i => i + 1) \u2265 F.sup (fun i => i + 1) := by linarith\n      have h\u2083 : F.sup (fun i => i + 1) \u2265 F.sup (fun i => i + 1) := by linarith\n      simp_all\n  have h\u2082 : P x := hF x hx\n  simp_all [Finset.mem_filter, Finset.mem_range]\n  <;> omega",
+        "custom_id": "prefix_captures_finite_set_13",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 30
+                    },
+                    "data": "tactic 'apply' failed, failed to unify\n  ?m.1103 x \u2264 F.sup ?m.1103\nwith\n  x \u2264 F.sup fun i => i + 1\nP : \u2115 \u2192 Prop\ninst\u271d : DecidablePred P\nF : Finset \u2115\nhF : \u2200 x \u2208 F, P x\nx : \u2115\nhx h\u2082 : x \u2208 F\n\u22a2 x \u2264 F.sup fun i => i + 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  b \u2265 0\n  a \u2265 0\n  b - c \u2265 0\nwhere\n a := \u2191(F.sup fun i => i + 1)\n b := \u2191x\n c := \u2191?b"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 5
+                    },
+                    "data": "unsolved goals\ncase a\nP : \u2115 \u2192 Prop\ninst\u271d : DecidablePred P\nF : Finset \u2115\nhF : \u2200 x \u2208 F, P x\nx : \u2115\nhx : x \u2208 F\n\u22a2 ?b \u2264 F.sup fun i => i + 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 42
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 14
+                    },
+                    "data": "unsolved goals\ncase b\nP : \u2115 \u2192 Prop\ninst\u271d : DecidablePred P\nF : Finset \u2115\nhF : \u2200 x \u2208 F, P x\nx : \u2115\nhx : x \u2208 F\n\u22a2 \u2115"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.4326021671295166,
+            "custom_id": "prefix_captures_finite_set_13"
+        }
+    },
+    {
+        "name": "prefix_captures_finite_set",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem prefix_captures_finite_set {P : \u2115 \u2192 Prop} [DecidablePred P] (F : Finset \u2115)\n  (hF : \u2200 x \u2208 F, P x) :\n  \u2203 K, F \u2286 (Finset.filter (fun i => i < K \u2227 P i) (Finset.range K)) := by\n  use F.sup (fun i => i) + 1\n  intro x hx\n  have h1 : x \u2208 F := hx\n  have h2 : x < F.sup (fun i => i) + 1 := by\n    have h3 : x \u2264 F.sup (fun i => i) := by\n      apply Finset.le_sup h1\n    omega\n  simp_all [Finset.mem_filter, Finset.mem_range]\n  <;> aesop",
+        "custom_id": "prefix_captures_finite_set_14",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 17,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.09579968452453613,
+            "custom_id": "prefix_captures_finite_set_14"
+        }
+    },
+    {
+        "name": "prefix_captures_finite_set",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem prefix_captures_finite_set {P : \u2115 \u2192 Prop} [DecidablePred P] (F : Finset \u2115)\n  (hF : \u2200 x \u2208 F, P x) :\n  \u2203 K, F \u2286 (Finset.filter (fun i => i < K \u2227 P i) (Finset.range K)) := by\n  classical\n  use F.sup (fun i => i + 1)\n  intro x hx\n  have h\u2081 : x < F.sup (fun i => i + 1) := by\n    have h\u2082 : x \u2208 F := hx\n    have h\u2083 : x \u2264 F.sup (fun i => i + 1) - 1 := by\n      apply Nat.le_sub_one_of_lt\n      apply Finset.le_sup h\u2082\n      <;> simp\n    omega\n  have h\u2082 : P x := hF x hx\n  simp_all\n  <;> omega",
+        "custom_id": "prefix_captures_finite_set_15",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 28
+                    },
+                    "data": "tactic 'apply' failed, failed to unify\n  ?m.932 x \u2264 F.sup ?m.932\nwith\n  x < F.sup fun i => i + 1\ncase a\nP : \u2115 \u2192 Prop\ninst\u271d : DecidablePred P\nF : Finset \u2115\nhF : \u2200 x \u2208 F, P x\nx : \u2115\nhx h\u2082 : x \u2208 F\n\u22a2 x < F.sup fun i => i + 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 9
+                    },
+                    "data": "omega could not prove the goal:\nNo usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants."
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.15133190155029297,
+            "custom_id": "prefix_captures_finite_set_15"
+        }
+    },
+    {
+        "name": "infinite_gives_large_finite_subset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem infinite_gives_large_finite_subset {P : \u2115 \u2192 Prop} [DecidablePred P]\n  (M : \u2115) (hinf : Set.Infinite {k | P k}) :\n  \u2203 F : Finset \u2115, (\u2200 x \u2208 F, P x) \u2227 F.card = M := by\n  classical\n  have h\u2081 := hinf.nonempty\n  have h\u2082 := hinf.exists_gt (0 : \u2115)\n  have h\u2083 := hinf.exists_gt (M : \u2115)\n  obtain \u27e8n, hn\u27e9 := h\u2081\n  obtain \u27e8k, hk\u27e9 := h\u2082\n  obtain \u27e8m, hm\u27e9 := h\u2083\n  have h\u2084 := hinf.exists_gt (max k m)\n  obtain \u27e8l, hl\u27e9 := h\u2084\n  use Finset.image (fun x => x) (Finset.Icc k l)\n  constructor\n  \u00b7 intro x hx\n    simp_all [Finset.mem_image]\n    <;> aesop\n  \u00b7 simp_all [Finset.card_image_of_injective, Function.Injective]\n    <;> omega",
+        "custom_id": "infinite_gives_large_finite_subset_16",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 3
+                    },
+                    "data": "unsolved goals\nP : \u2115 \u2192 Prop\ninst : DecidablePred P\nM : \u2115\nhinf : {k | P k}.Infinite\nn k m l x : \u2115\nhn : P n\nleft : P k\nright : 0 < k\nleft_1 : P m\nright_1 : M < m\nleft_2 : P l\nleft_3 : k \u2264 x\nright_3 : x \u2264 l\nleft_4 : k < l\nright_2 : m < l\n\u22a2 P x"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 24,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 0\n  d \u2265 2\n  c \u2265 0\n  c - d \u2265 0\n  b - d \u2265 1\n  a - c \u2264 -1\n  a \u2265 0\n  a - b \u2265 1\nwhere\n a := \u2191m\n b := \u2191M\n c := \u2191l\n d := \u2191(l + 1 - k)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 3
+                    },
+                    "data": "unsolved goals\ncase h.right\nP : \u2115 \u2192 Prop\ninst\u271d : DecidablePred P\nM : \u2115\nhinf : {k | P k}.Infinite\nn k m l : \u2115\nhn : P n\nhk : P k \u2227 0 < k\nhm : P m \u2227 M < m\nhl : P l \u2227 k < l \u2227 m < l\n\u22a2 l + 1 - k = M"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 22,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 13
+                    },
+                    "data": "aesop: failed to prove the goal after exhaustive search."
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.4021782875061035,
+            "custom_id": "infinite_gives_large_finite_subset_16"
+        }
+    },
+    {
+        "name": "infinite_gives_large_finite_subset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem infinite_gives_large_finite_subset {P : \u2115 \u2192 Prop} [DecidablePred P]\n  (M : \u2115) (hinf : Set.Infinite {k | P k}) :\n  \u2203 F : Finset \u2115, (\u2200 x \u2208 F, P x) \u2227 F.card = M := by\n  classical\n  obtain \u27e8s, hs, hs'\u27e9 := hinf.exists_subset_card_eq M\n  use s.toFinset\n  simp_all [Set.Finite]\n  <;> aesop",
+        "custom_id": "infinite_gives_large_finite_subset_17",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 16
+                    },
+                    "data": "invalid field 'toFinset', the environment does not contain 'Finset.toFinset'\n  s\nhas type\n  Finset \u2115"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 23
+                    },
+                    "data": "simp_all made no progress"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.0431971549987793,
+            "custom_id": "infinite_gives_large_finite_subset_17"
+        }
+    },
+    {
+        "name": "infinite_gives_large_finite_subset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem infinite_gives_large_finite_subset {P : \u2115 \u2192 Prop} [DecidablePred P]\n  (M : \u2115) (hinf : Set.Infinite {k | P k}) :\n  \u2203 F : Finset \u2115, (\u2200 x \u2208 F, P x) \u2227 F.card = M := by\n  classical\n  have h := hinf.nonempty\n  obtain \u27e8m, hm\u27e9 := h\n  have h\u2081 := hinf.exists_subset_card_eq (n := M)\n  obtain \u27e8s, hs, hsc\u27e9 := h\u2081\n  refine' \u27e8s, _, hsc\u27e9\n  aesop",
+        "custom_id": "infinite_gives_large_finite_subset_18",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "unused variable `m`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 13
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 15
+                    },
+                    "data": "unused variable `hm`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.05964779853820801,
+            "custom_id": "infinite_gives_large_finite_subset_18"
+        }
+    },
+    {
+        "name": "infinite_gives_large_finite_subset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem infinite_gives_large_finite_subset {P : \u2115 \u2192 Prop} [DecidablePred P]\n  (M : \u2115) (hinf : Set.Infinite {k | P k}) :\n  \u2203 F : Finset \u2115, (\u2200 x \u2208 F, P x) \u2227 F.card = M := by\n  classical\n  have h\u2081 : Set.Infinite {k | P k} := hinf\n  have h\u2082 : {k | P k}.Infinite := h\u2081\n  have h\u2083 : \u2203 (f : \u2115 \u2192 \u2115), (\u2200 n, P (f n)) \u2227 (\u2200 n m, n < m \u2192 f n < f m) := by\n    classical\n    exact h\u2082.exists_strictMono (P := fun k => k)\n  obtain \u27e8f, hf_prop, hf_strict\u27e9 := h\u2083\n  use Finset.image f (Finset.range M)\n  constructor\n  \u00b7 intro x hx\n    simp only [Finset.mem_image, Finset.mem_range] at hx\n    obtain \u27e8k, hk_in, rfl\u27e9 := hx\n    exact hf_prop k\n  simp [Finset.card_image_of_injective, Function.Injective]\n  <;> aesop",
+        "custom_id": "infinite_gives_large_finite_subset_19",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 48
+                    },
+                    "data": "invalid field 'exists_strictMono', the environment does not contain 'Set.Infinite.exists_strictMono'\n  h\u2082\nhas type\n  {k | P k}.Infinite"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 48
+                    },
+                    "data": "invalid field 'exists_strictMono', the environment does not contain 'Not.exists_strictMono'\n  h\u2082\nhas type\n  \u00ac{k | P k}.Finite"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 48
+                    },
+                    "data": "invalid field notation, type is not of the form (C ...) where C is a constant\n  h\u2082\nhas type\n  {k | P k}.Finite \u2192 False"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 22,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 59
+                    },
+                    "data": "simp made no progress"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.10433316230773926,
+            "custom_id": "infinite_gives_large_finite_subset_19"
+        }
+    },
+    {
+        "name": "infinite_gives_large_finite_subset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem infinite_gives_large_finite_subset {P : \u2115 \u2192 Prop} [DecidablePred P]\n  (M : \u2115) (hinf : Set.Infinite {k | P k}) :\n  \u2203 F : Finset \u2115, (\u2200 x \u2208 F, P x) \u2227 F.card = M := by\n  classical\n  have h2 := hinf.nonempty\n  have h3 := hinf.exists_gt\n  obtain \u27e8n, hn\u27e9 := h2\n  obtain \u27e8k, hk, hk'\u27e9 := h3 n\n  have h4 := hinf.exists_gt k\n  obtain \u27e8l, hl, hl'\u27e9 := h4\n  have h5 := hinf.exists_gt l\n  obtain \u27e8m, hm, hm'\u27e9 := h5\n  use Finset.range M |>.map \u27e8fun x => x + n, fun x y h => by simp_all\u27e9\n  constructor\n  intro x hx\n  simp_all [Finset.mem_map, Finset.mem_range]\n  <;> aesop\n  simp [Finset.card_map]\n  <;> rfl\n  <;> omega",
+        "custom_id": "infinite_gives_large_finite_subset_20",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 24
+                    },
+                    "data": "simp made no progress"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 22,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 11
+                    },
+                    "data": "aesop: failed to prove the goal after exhaustive search."
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.4066190719604492,
+            "custom_id": "infinite_gives_large_finite_subset_20"
+        }
+    },
+    {
+        "name": "infinite_gives_large_finite_subset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem infinite_gives_large_finite_subset {P : \u2115 \u2192 Prop} [DecidablePred P]\n  (M : \u2115) (hinf : Set.Infinite {k | P k}) :\n  \u2203 F : Finset \u2115, (\u2200 x \u2208 F, P x) \u2227 F.card = M := by\n  classical\n  -- Use the fact that the set of P k is infinite to find a subset of cardinality M\n  obtain \u27e8s, hs\u27e9 := hinf.exists_subset_card_eq M\n  use s.toFinset\n  <;> simp_all\n  <;> aesop",
+        "custom_id": "infinite_gives_large_finite_subset_21",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 16
+                    },
+                    "data": "invalid field 'toFinset', the environment does not contain 'Finset.toFinset'\n  s\nhas type\n  Finset \u2115"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 14
+                    },
+                    "data": "simp_all made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 49
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase left\nP : \u2115 \u2192 Prop\ninst : DecidablePred P\nhinf : {k | P k}.Infinite\ns : Finset \u2115\nleft : \u2191s \u2286 {k | P k}\nx : \u2115\na : x \u2208 sorryAx (Finset \u2115) true\n\u22a2 P x\n\ncase right\nP : \u2115 \u2192 Prop\ninst : DecidablePred P\nhinf : {k | P k}.Infinite\ns : Finset \u2115\nleft : \u2191s \u2286 {k | P k}\n\u22a2 (sorryAx (Finset \u2115) true).card = s.card"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "aesop: failed to prove the goal after exhaustive search."
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.11063385009765625,
+            "custom_id": "infinite_gives_large_finite_subset_21"
+        }
+    },
+    {
+        "name": "infinite_gives_large_finite_subset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem infinite_gives_large_finite_subset {P : \u2115 \u2192 Prop} [DecidablePred P]\n  (M : \u2115) (hinf : Set.Infinite {k | P k}) :\n  \u2203 F : Finset \u2115, (\u2200 x \u2208 F, P x) \u2227 F.card = M := by\n  classical\n  -- Use the fact that the set is infinite to find a subset of cardinality M\n  obtain \u27e8s, hs\u27e9 := hinf.exists_subset_card_eq M\n  use s.toFinset\n  <;> simp_all\n  <;> aesop",
+        "custom_id": "infinite_gives_large_finite_subset_22",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 16
+                    },
+                    "data": "invalid field 'toFinset', the environment does not contain 'Finset.toFinset'\n  s\nhas type\n  Finset \u2115"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 14
+                    },
+                    "data": "simp_all made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 49
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase left\nP : \u2115 \u2192 Prop\ninst : DecidablePred P\nhinf : {k | P k}.Infinite\ns : Finset \u2115\nleft : \u2191s \u2286 {k | P k}\nx : \u2115\na : x \u2208 sorryAx (Finset \u2115) true\n\u22a2 P x\n\ncase right\nP : \u2115 \u2192 Prop\ninst : DecidablePred P\nhinf : {k | P k}.Infinite\ns : Finset \u2115\nleft : \u2191s \u2286 {k | P k}\n\u22a2 (sorryAx (Finset \u2115) true).card = s.card"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "aesop: failed to prove the goal after exhaustive search."
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.12406373023986816,
+            "custom_id": "infinite_gives_large_finite_subset_22"
+        }
+    },
+    {
+        "name": "infinite_gives_large_finite_subset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem infinite_gives_large_finite_subset {P : \u2115 \u2192 Prop} [DecidablePred P]\n  (M : \u2115) (hinf : Set.Infinite {k | P k}) :\n  \u2203 F : Finset \u2115, (\u2200 x \u2208 F, P x) \u2227 F.card = M := by\n  classical\n  have h\u2081 := hinf.nonempty\n  have h\u2082 := hinf.not_bddAbove\n  exfalso\n  apply h\u2082\n  use 0\n  intro x hx\n  <;> simp_all\n  <;> aesop",
+        "custom_id": "infinite_gives_large_finite_subset_23",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 11
+                    },
+                    "data": "tactic 'aesop' failed, made no progress\nInitial goal:\n  case h\n  P : \u2115 \u2192 Prop\n  inst\u271d : DecidablePred P\n  M : \u2115\n  hinf : {k | P k}.Infinite\n  h\u2081 : {k | P k}.Nonempty\n  h\u2082 : \u00acBddAbove {k | P k}\n  x : \u2115\n  hx : P x\n  \u22a2 x = 0"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 49
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase h\nP : \u2115 \u2192 Prop\ninst\u271d : DecidablePred P\nM : \u2115\nhinf : {k | P k}.Infinite\nh\u2081 : {k | P k}.Nonempty\nh\u2082 : \u00acBddAbove {k | P k}\nx : \u2115\nhx : P x\n\u22a2 x = 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.10166764259338379,
+            "custom_id": "infinite_gives_large_finite_subset_23"
+        }
+    },
+    {
+        "name": "infinite_gives_large_finite_subset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem infinite_gives_large_finite_subset {P : \u2115 \u2192 Prop} [DecidablePred P]\n  (M : \u2115) (hinf : Set.Infinite {k | P k}) :\n  \u2203 F : Finset \u2115, (\u2200 x \u2208 F, P x) \u2227 F.card = M := by\n  classical\n  have h\u2081 := hinf.nonempty\n  have h\u2082 : Set.Infinite {k | P k} := hinf\n  have h\u2083 : \u2203 (F : Finset \u2115), (\u2200 x \u2208 F, P x) \u2227 F.card = M := by\n    classical\n    exact\n     \u27e8Finset.range M |>.map \u27e8fun x : \u2115 => x, fun x y h => by simpa using h\u27e9,\n       fun x hx => by\n         simp_all [Finset.mem_map, Finset.mem_range]\n         <;> aesop,\n       by simp [Finset.card_map]\u27e9\n  exact h\u2083",
+        "custom_id": "infinite_gives_large_finite_subset_24",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 13
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 18
+                    },
+                    "data": "tactic 'aesop' failed, made no progress\nInitial goal:\n  P : \u2115 \u2192 Prop\n  inst\u271d : DecidablePred P\n  M : \u2115\n  h\u2081 : {k | P k}.Nonempty\n  h\u2082 : {k | P k}.Infinite\n  x : \u2115\n  hx : x < M\n  \u22a2 P x"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 19
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 18
+                    },
+                    "data": "unsolved goals\nP : \u2115 \u2192 Prop\ninst\u271d : DecidablePred P\nM : \u2115\nh\u2081 : {k | P k}.Nonempty\nh\u2082 : {k | P k}.Infinite\nx : \u2115\nhx : x < M\n\u22a2 P x"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.10078597068786621,
+            "custom_id": "infinite_gives_large_finite_subset_24"
+        }
+    },
+    {
+        "name": "infinite_gives_large_finite_subset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem infinite_gives_large_finite_subset {P : \u2115 \u2192 Prop} [DecidablePred P]\n  (M : \u2115) (hinf : Set.Infinite {k | P k}) :\n  \u2203 F : Finset \u2115, (\u2200 x \u2208 F, P x) \u2227 F.card = M := by\n  classical\n  have h\u2081 := hinf.nonempty\n  obtain \u27e8m, hm\u27e9 := h\u2081\n  have h\u2082 : \u2203 F : Finset \u2115, (\u2200 x \u2208 F, P x) \u2227 F.card = M := by\n    classical\n    exact \u27e8Finset.range M |>.map \u27e8fun a : \u2115 => m + a, fun a b h => by simpa using h\u27e9, by\n      constructor\n      \u00b7 intro x hx\n        simp_all [Finset.mem_map, Finset.mem_range]\n        <;> aesop\n      \u00b7 simp [Finset.card_map]\u27e9\n  exact h\u2082",
+        "custom_id": "infinite_gives_large_finite_subset_25",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 7
+                    },
+                    "data": "unsolved goals\nP : \u2115 \u2192 Prop\ninst : DecidablePred P\nM : \u2115\nhinf : {k | P k}.Infinite\nm : \u2115\nhm : P m\nw : \u2115\nleft : w < M\n\u22a2 P (m + w)"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 17
+                    },
+                    "data": "aesop: failed to prove the goal after exhaustive search."
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.18115568161010742,
+            "custom_id": "infinite_gives_large_finite_subset_25"
+        }
+    },
+    {
+        "name": "infinite_gives_large_finite_subset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem infinite_gives_large_finite_subset {P : \u2115 \u2192 Prop} [DecidablePred P]\n  (M : \u2115) (hinf : Set.Infinite {k | P k}) :\n  \u2203 F : Finset \u2115, (\u2200 x \u2208 F, P x) \u2227 F.card = M := by\n  classical\n  -- Use the infinite set of natural numbers satisfying P to find a finite subset with cardinality M\n  have h\u2081 := hinf.nonempty\n  have h\u2082 := hinf.exists_subset_card_eq M\n  aesop",
+        "custom_id": "infinite_gives_large_finite_subset_26",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.19922971725463867,
+            "custom_id": "infinite_gives_large_finite_subset_26"
+        }
+    },
+    {
+        "name": "infinite_gives_large_finite_subset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem infinite_gives_large_finite_subset {P : \u2115 \u2192 Prop} [DecidablePred P]\n  (M : \u2115) (hinf : Set.Infinite {k | P k}) :\n  \u2203 F : Finset \u2115, (\u2200 x \u2208 F, P x) \u2227 F.card = M := by\n  classical\n  obtain \u27e8s, hs\u27e9 := hinf.exists_subset_card_eq M\n  exact \u27e8s, hs.1, hs.2\u27e9",
+        "custom_id": "infinite_gives_large_finite_subset_27",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.013196706771850586,
+            "custom_id": "infinite_gives_large_finite_subset_27"
+        }
+    },
+    {
+        "name": "infinite_gives_large_finite_subset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem infinite_gives_large_finite_subset {P : \u2115 \u2192 Prop} [DecidablePred P]\n  (M : \u2115) (hinf : Set.Infinite {k | P k}) :\n  \u2203 F : Finset \u2115, (\u2200 x \u2208 F, P x) \u2227 F.card = M := by\n  classical\n  have h2 := hinf.nonempty\n  have h3 := hinf.exists_gt\n  have h4 := hinf.exists_gt\n  exact \u27e8(Finset.range M).filter P, by\n    simp_all [Finset.card_filter, Finset.card_range]\n    <;> aesop\u27e9",
+        "custom_id": "infinite_gives_large_finite_subset_28",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 52
+                    },
+                    "data": "tactic 'simp' failed, nested error:\nmaximum recursion depth has been reached\nuse `set_option maxRecDepth <num>` to increase limit\nuse `set_option diagnostics true` to get diagnostic information"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.9928028583526611,
+            "custom_id": "infinite_gives_large_finite_subset_28"
+        }
+    },
+    {
+        "name": "infinite_gives_large_finite_subset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem infinite_gives_large_finite_subset {P : \u2115 \u2192 Prop} [DecidablePred P]\n  (M : \u2115) (hinf : Set.Infinite {k | P k}) :\n  \u2203 F : Finset \u2115, (\u2200 x \u2208 F, P x) \u2227 F.card = M := by\n  classical\n  obtain \u27e8s, hs\u27e9 := hinf.exists_subset_card_eq M\n  exact \u27e8s, hs.1, hs.2\u27e9",
+        "custom_id": "infinite_gives_large_finite_subset_29",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.014392375946044922,
+            "custom_id": "infinite_gives_large_finite_subset_29"
+        }
+    },
+    {
+        "name": "infinite_gives_large_finite_subset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem infinite_gives_large_finite_subset {P : \u2115 \u2192 Prop} [DecidablePred P]\n  (M : \u2115) (hinf : Set.Infinite {k | P k}) :\n  \u2203 F : Finset \u2115, (\u2200 x \u2208 F, P x) \u2227 F.card = M := by\n  classical\n  have h : Set.Infinite {k | P k} := hinf\n  have h\u2081 : Set.Infinite {k | P k} := hinf\n  have h\u2082 : Set.Infinite {k | P k} := hinf\n  use (Set.toFinset {k | P k}).filter fun x => x < M)\n  simp_all [Set.Infinite]\n  <;>\n    exact?",
+        "custom_id": "infinite_gives_large_finite_subset_30",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 29
+                    },
+                    "data": "failed to synthesize\n  Fintype \u2191{k | P k}\nuse `set_option diagnostics true` to get diagnostic information"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 8,
+                        "column": 49
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 52
+                    },
+                    "data": "unsolved goals\ncase h\nP : \u2115 \u2192 Prop\ninst\u271d : DecidablePred P\nM : \u2115\nhinf h h\u2081 h\u2082 : {k | P k}.Infinite\n\u22a2 (\u2200 x \u2208 sorryAx (Finset \u2115) true, P x) \u2227 (sorryAx (Finset \u2115) true).card = M"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 52
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 53
+                    },
+                    "data": "unexpected token ')'; expected command"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.08937478065490723,
+            "custom_id": "infinite_gives_large_finite_subset_30"
+        }
+    },
+    {
+        "name": "infinite_gives_large_finite_subset",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem infinite_gives_large_finite_subset {P : \u2115 \u2192 Prop} [DecidablePred P]\n  (M : \u2115) (hinf : Set.Infinite {k | P k}) :\n  \u2203 F : Finset \u2115, (\u2200 x \u2208 F, P x) \u2227 F.card = M := by\n  classical\n  obtain \u27e8s, hs, hs'\u27e9 := Infinite.exists_subset_card_eq hinf M\n  exact \u27e8s, fun x hx => by aesop, hs'\u27e9",
+        "custom_id": "infinite_gives_large_finite_subset_31",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 56
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 60
+                    },
+                    "data": "application type mismatch\n  @Infinite.exists_subset_card_eq hinf\nargument\n  hinf\nhas type\n  {k | P k}.Infinite : Prop\nbut is expected to have type\n  Type ?u.147 : Type (?u.147 + 1)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 21
+                    },
+                    "data": "rcases tactic failed: x\u271d : ?m.1992 is not an inductive datatype"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.04526925086975098,
+            "custom_id": "infinite_gives_large_finite_subset_31"
+        }
+    }
+]

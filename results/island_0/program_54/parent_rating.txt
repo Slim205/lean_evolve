@@ -1,0 +1,65 @@
+---------
+lemma pow_divides_of_coprime_left {p q : ℕ} {x y : ℕ}
+  (hc : Nat.Coprime ((2 : ℕ) ^ p) x)
+  (hdiv : ((2 : ℕ) ^ p) ∣ ((2 : ℕ) ^ q * y)) : ((2 : ℕ) ^ p) ∣ ((2 : ℕ) ^ q) := by
+Failure mode: INCORRECT
+Recommendation: This statement is false: take `p=1, q=0, x=1, y=2`. Then `Coprime (2^1) 1` holds and `2 ∣ 1*2` holds, but `2 ∣ 1` is false. The “coprime cancellation from a product” lemma applies when the coprime factor is coprime to the *other* multiplicand. Revise to something like:
+1) if `Nat.Coprime ((2^p)) y` and `(2^p) ∣ (2^q * y)` then `(2^p) ∣ (2^q)`;
+or alternatively keep `Coprime ((2^p)) x` but change the divisibility hypothesis to `(2^p) ∣ (2^q * x)` (so you can cancel `x`).
+---------
+
+---------
+lemma le_of_mul_eq_left (p q x y : ℕ)
+  (h : (2 : ℕ) ^ p * x = (2 : ℕ) ^ q * y) (hx_odd : x % 2 = 1) :
+  p ≤ q := by
+Failure mode: INCORRECT
+Recommendation: The direction is wrong (and it’s also missing hypotheses). Counterexample: `p=1, q=0, x=1` (odd), `y=2` satisfies `2^1*1 = 2^0*2`, but `1 ≤ 0` is false. From “`x` is odd” you can only conclude `q ≤ p` (since `v₂(2^p*x)=p` while `v₂(2^q*y)=q+v₂(y) ≥ q`). To get `p ≤ q` you’d need `y` odd instead. Fix by changing the statement to either:
+- `hx_odd : x % 2 = 1 → q ≤ p`, or
+- add `hy_odd : y % 2 = 1` and conclude `p = q` (or conclude `p ≤ q` from `hy_odd`).
+This will align with the later use in `pow_mul_odd_eq_pow_mul_odd`, where both sides are intended to be odd parts.
+---------
+
+---------
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by
+Failure mode: HARD
+Recommendation: This lemma is plausible but too “monolithic”: it mixes (i) normalization via the recurrence/gcd, (ii) 2-adic decomposition uniqueness, and (iii) the strictness coming from `gcd > 1`. Decompose into intermediate lemmas and then assemble:
+
+1) **Nontrivial gcd from non-coprime**  
+   Let `d := gcd (2*m k + 1) (2*n k + 1)`. Prove: from `¬Coprime (2*m k + 1) (2*n k + 1)` one gets `2 ≤ d` (equivalently `d > 1`). Also record `d ≠ 0`.
+
+2) **Oddness of the gcd**  
+   Prove `d % 2 = 1` (you already have the ingredients via “gcd of odds is odd”).
+
+3) **Divisibility of the old difference by d**  
+   Prove `(d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))` (you already have `gcd_odd_and_dvd_diff`).
+
+4) **Pass divisibility to the odd part**  
+   From `A = natAbs((m k : ℤ) - (n k : ℤ)) = 2^u1 * r1` with `r1` odd, and from `d ∣ A`, prove `d ∣ r1`. (Key point: `Coprime d (2^u1)` since `d` is odd.)
+
+5) **Define the reduced odd part and prove it is strictly smaller**  
+   Let `r1 = d * r1'` with `0 < r1'`. Using `d > 1`, prove `r1' < r1`.
+
+6) **Relate the next difference to division by d**  
+   Prove a clean evolution identity:  
+   `natAbs(nextDiff) = natAbs(((2:ℤ) * oldDiff) / (d:ℤ))` and then rewrite the RHS as `2 * (A / d)` at the ℕ-level (this is essentially what your `diff_evolution_natAbs` + `natAbs_two_mul_div_of_odd_divisor` are setting up).
+
+7) **Identify r2 with r1' by uniqueness of odd part decomposition**  
+   Show `2 * (A / d) = 2^(u1+1) * r1'` and combine with `natAbs(nextDiff) = 2^u2 * r2` (with `r2` odd) to conclude `r2 = r1'` (using the “odd part uniqueness” lemma, once corrected).
+
+8) **Conclude strict inequality**  
+   From steps (5) and (7), conclude `r2 < r1`.
+
+This isolates the only genuinely “strict” step (5) from the bookkeeping/uniqueness steps, making the overall proof robust.
+---------

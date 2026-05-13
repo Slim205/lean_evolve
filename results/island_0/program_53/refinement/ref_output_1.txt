@@ -1,0 +1,6 @@
+>>>>SEARCH
+    have hcop : Nat.Coprime ((2 : ℕ) ^ p) x := by
+      exact Nat.Coprime.symm (pow_coprime_helper p x hx_odd)
+>>>>REPLACE
+    have hcop : Nat.Coprime ((2 : ℕ) ^ p) x := by
+      exact Nat.Coprime.symm (pow_coprime_helper hx_odd)

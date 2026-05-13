@@ -1,0 +1,20 @@
+ERROR from position {'line': 72, 'column': 23} to {'line': 72, 'column': 25}:
+application type mismatch
+  clear_denoms_Q hd
+argument
+  hd
+has type
+  2 * ↑(n k) + 1 ≠ 0 : Prop
+but is expected to have type
+  2 * ↑(m k) + 1 ≠ 0 : Prop
+
+ERROR from position {'line': 92, 'column': 25} to {'line': 92, 'column': 43}:
+application type mismatch
+  clear_denoms_Q h_two_nk_nonzero
+argument
+  h_two_nk_nonzero
+has type
+  2 * ↑(n k✝) + 1 ≠ 0 : Prop
+but is expected to have type
+  2 * ↑(m k) + 1 ≠ 0 : Prop
+

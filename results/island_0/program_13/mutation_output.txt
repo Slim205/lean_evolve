@@ -1,0 +1,55 @@
+>>>>SEARCH
+lemma finite_of_card_bounded {P : ℕ → Prop} (N : ℕ) [DecidablePred P]
+  (hcard : ∀ K, (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)).card ≤ N) :
+  {k : ℕ | P k}.Finite := by
+  -- omitted
+  sorry
+>>>>REPLACE
+/-- If a finite set `F` of naturals satisfies `P` pointwise then there is some prefix
+    `[0,K)` capturing `F`. We state this existentially (we do not prove it here). -/
+lemma prefix_captures_finite_set {P : ℕ → Prop} [DecidablePred P] (F : Finset ℕ)
+  (hF : ∀ x ∈ F, P x) :
+  ∃ K, F ⊆ (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)) := by
+  -- proof omitted
+  sorry
+
+/-- From the uniform prefix-cardinality bound `hcard` one gets that any finite set `F`
+    of `P`-witnesses also has cardinality `≤ N`. (Uses `prefix_captures_finite_set`.) -/
+lemma card_le_from_prefix_bound {P : ℕ → Prop} [DecidablePred P] (N : ℕ)
+  (hcard : ∀ K, (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)).card ≤ N)
+  (F : Finset ℕ) (hF : ∀ x ∈ F, P x) :
+  F.card ≤ N := by
+  -- reduce to the prefix-capture lemma (existence of some K with F ⊆ prefix)
+  have hcap : ∃ K, F ⊆ (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)) := by
+    exact prefix_captures_finite_set F hF
+  rcases hcap with ⟨K, hsub⟩
+  -- card monotonicity under inclusion, then use the uniform bound
+  have hle : F.card ≤ (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)).card := by
+    exact Finset.card_le_of_subset hsub
+  exact Nat.le_trans hle (hcard K)
+
+/-- If a set `{k | P k}` is infinite then for any `M` one can find a finite subset
+    `F` of cardinality `M` consisting entirely of `P`-witnesses. (Existence-only; proof omitted.) -/
+lemma infinite_gives_large_finite_subset {P : ℕ → Prop} [DecidablePred P]
+  (M : ℕ) (hinf : Set.Infinite {k | P k}) :
+  ∃ F : Finset ℕ, (∀ x ∈ F, P x) ∧ F.card = M := by
+  -- standard combinatorial extraction from infinitude; proof omitted
+  sorry
+
+/-- Convert the uniform bound on prefix-cardinality into finiteness of the full set.
+    The proof is by contradiction using the three helpers above. -/
+lemma finite_of_card_bounded {P : ℕ → Prop} (N : ℕ) [DecidablePred P]
+  (hcard : ∀ K, (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)).card ≤ N) :
+  {k : ℕ | P k}.Finite := by
+  by_contra hnot_fin
+  -- `hnot_fin` is exactly `Set.Infinite {k | P k}`
+  have hinf : Set.Infinite {k | P k} := hnot_fin
+  -- pick a finite subset of size N+1 from the infinite set
+  rcases infinite_gives_large_finite_subset (N + 1) hinf with ⟨F, hFprop, hFcard⟩
+  -- apply the prefix-card bound to get F.card ≤ N, contradicting F.card = N+1
+  have hFle : F.card ≤ N := by
+    exact card_le_from_prefix_bound N hcard F hFprop
+  -- rewrite the equality into the inequality and close by contradiction
+  have hbad : N + 1 ≤ N := by
+    rwa [← hFcard] at hFle
+  exact Nat.not_succ_le_self N hbad

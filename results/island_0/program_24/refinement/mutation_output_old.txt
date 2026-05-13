@@ -1,0 +1,63 @@
+>>>>SEARCH
+lemma next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+  sorry
+>>>>REPLACE
+/-- Helper: cross-multiplication form of the recurrence (integer form). -/
+lemma cross_mul_of_recurrence
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  (m (k + 1) * (2 * n k + 1) : ℤ) = (n (k + 1) * (2 * m k + 1) : ℤ) := by
+  -- arithmetic justification is routine; leave as `sorry`
+  sorry
+
+/-- Helper: Euclid-style divisibility transfer for coprime factors. If `a * x = b * y`
+    and `a` and `b` are coprime then `a ∣ y` and `b ∣ x`. -/
+lemma euclid_coprime_mul_eq {a b x y : ℕ} (hcop : Nat.Coprime a b)
+  (h : (a * x : ℕ) = b * y) :
+  a ∣ y ∧ b ∣ x := by
+  -- standard number-theory lemma; proof omitted
+  sorry
+
+/-- Helper: uniqueness of reduced form. If a/b = c/d as rationals and `Coprime a b`,
+    then a = c / gcd(c,d) and b = d / gcd(c,d). -/
+lemma reduced_fraction_unique (a b c d : ℕ)
+  (hcop : Nat.Coprime a b)
+  (hd : d ≠ 0)
+  (h : (a : ℚ) / (b : ℚ) = (c : ℚ) / (d : ℚ)) :
+  a = c / Nat.gcd c d ∧ b = d / Nat.gcd c d := by
+  -- standard reduction/uniqueness argument (cross-multiplication + Euclid); omitted
+  sorry
+
+lemma next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+  -- obtain the successor coprimality hypothesis for index `k+1`
+  have hsucc_copr : Nat.Coprime (m (k + 1)) (n (k + 1)) := by
+    exact h_coprime (k + 1) (Nat.succ_pos k)
+
+  -- the right-hand denominator (2 * n k + 1) is a nonzero natural number
+  have denom_nonzero : (2 * n k + 1) ≠ 0 := by
+    simp [Nat.succ_ne_zero]
+
+  -- apply the reduced-fraction uniqueness lemma to the equality of rationals
+  have hpair : (m (k + 1) = (2 * m k + 1) / Nat.gcd (2 * m k + 1) (2 * n k + 1)) ∧
+               (n (k + 1) = (2 * n k + 1) / Nat.gcd (2 * m k + 1) (2 * n k + 1)) := by
+    exact reduced_fraction_unique (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1)
+      hsucc_copr denom_nonzero (h_recurrence k)
+
+  exact hpair

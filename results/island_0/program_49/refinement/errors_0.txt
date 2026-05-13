@@ -1,0 +1,34 @@
+ERROR from position {'line': 1071, 'column': 38} to {'line': 1073, 'column': 21}:
+unsolved goals
+A d : ℕ
+hdvd : d ∣ A
+u1 r1 u2 r2 : ℕ
+hA : A = 2 ^ u1 * r1
+hr1_odd : r1 % 2 = 1
+hr1_pos : 0 < r1
+hB_eq : 2 * (A / d) = 2 ^ u2 * r2
+hr2_odd : r2 % 2 = 1
+hr2_pos : 0 < r2
+hd_odd : d % 2 = 1
+hcop : d.Coprime (2 ^ u1)
+hdvd_mul : d ∣ 2 ^ u1 * r1
+hd_div_r1 : d ∣ r1
+r1' : ℕ
+hr1_eq : r1 = d * r1'
+hA_div : A / d = 2 ^ u1 * r1'
+hr1'_odd : r1' % 2 = 1
+⊢ 2 * 2 ^ u1 * r1' = 2 ^ u1 * 2 * r1'
+
+ERROR from position {'line': 1081, 'column': 52} to {'line': 1081, 'column': 59}:
+application type mismatch
+  uniqueness_of_odd_decomp hr1'_odd hr2_odd hr1_pos
+argument
+  hr1_pos
+has type
+  0 < r1 : Prop
+but is expected to have type
+  0 < r1' : Prop
+
+ERROR from position {'line': 1086, 'column': 24} to {'line': 1086, 'column': 37}:
+no goals to be solved
+

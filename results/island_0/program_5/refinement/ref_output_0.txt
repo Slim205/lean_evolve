@@ -1,0 +1,10 @@
+>>>>SEARCH
+      have hR : ((2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1) = 1) := by
+        calc
+          (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1) := h_recurrence k
+          _ = 1 := hL
+>>>>REPLACE
+      have hR : ((2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1) = 1) := by
+        calc
+          (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1) = (m (k + 1) : ℚ) / (n (k + 1) : ℚ) := Eq.symm (h_recurrence k)
+          _ = 1 := hL

@@ -1,0 +1,75 @@
+>>>>SEARCH
+lemma gcd_odd_and_dvd_diff
+  (m n : ℕ → ℕ)
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  d % 2 = 1 ∧ ((d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) := by
+  sorry
+>>>>REPLACE
+lemma odd_two_mul_add_one (x : ℕ) : (2 * x + 1) % 2 = 1 := by
+  -- trivial parity fact: oddness of 2*x+1; proof omitted
+  sorry
+
+lemma gcd_odd_of_odds {a b : ℕ} (ha : a % 2 = 1) (hb : b % 2 = 1) :
+  (Nat.gcd a b) % 2 = 1 := by
+  -- gcd of two odd numbers is odd; proof omitted
+  sorry
+
+lemma gcd_cast_dvd_sub (a b : ℕ) :
+  let d := Nat.gcd a b
+  (d : ℤ) ∣ ((a : ℤ) - (b : ℤ)) := by
+  -- in ℤ the gcd divides a-b; proof omitted
+  sorry
+
+lemma odd_int_divides_cancel_two {d : ℕ} {z : ℤ}
+  (hd_odd : d % 2 = 1) (hdiv : (d : ℤ) ∣ ((2 : ℤ) * z)) :
+  (d : ℤ) ∣ z := by
+  -- if d is odd and divides 2*z in ℤ then d divides z; proof omitted
+  sorry
+
+lemma gcd_odd_and_dvd_diff
+  (m n : ℕ → ℕ)
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  d % 2 = 1 ∧ ((d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) := by
+  -- abbreviate the two relevant odd naturals
+  let a := 2 * m k + 1
+  let b := 2 * n k + 1
+  let d := Nat.gcd a b
+
+  -- each of a and b is odd
+  have ha : a % 2 = 1 := by
+    -- reduce to the simple lemma for 2*x+1
+    exact odd_two_mul_add_one (m k)
+  have hb : b % 2 = 1 := by
+    exact odd_two_mul_add_one (n k)
+
+  -- gcd of two odd numbers is odd
+  have hd_odd : d % 2 = 1 := by
+    exact gcd_odd_of_odds ha hb
+
+  -- gcd (cast to ℤ) divides a - b in ℤ
+  have hd_div_ab : (d : ℤ) ∣ ((a : ℤ) - (b : ℤ)) := by
+    exact (gcd_cast_dvd_sub a b)
+
+  -- rewrite a - b as 2 * (m k - n k) in ℤ
+  have ab_eq_two_mul_diff : ((a : ℤ) - (b : ℤ)) = ((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) := by
+    calc
+      ((a : ℤ) - (b : ℤ)) = (((2 * m k + 1) : ℤ) - ((2 * n k + 1) : ℤ)) := rfl
+      _ = ((2 : ℤ) * (m k : ℤ) + 1 - (2 : ℤ) * (n k : ℤ) - 1) := by
+        -- `norm_cast` turns the nat-casts into integer arithmetic; then `ring` finishes.
+        norm_cast
+      _ = ((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) := by
+        ring
+
+  -- hence gcd divides 2 * (m k - n k)
+  have hd_div_two_diff : (d : ℤ) ∣ ((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) := by
+    rw [← ab_eq_two_mul_diff] at hd_div_ab
+    exact hd_div_ab
+
+  -- cancel the factor 2 using oddness of d to deduce gcd divides (m k - n k)
+  have hd_div_diff : (d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ)) := by
+    exact odd_int_divides_cancel_two hd_odd hd_div_two_diff
+
+  -- assemble the conjunction: gcd is odd and divides the integer difference
+  exact ⟨hd_odd, hd_div_diff⟩

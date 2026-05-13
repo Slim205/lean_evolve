@@ -1,0 +1,63 @@
+>>>>SEARCH
+lemma cross_mul_eq_nat
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_n_succ_nonzero_k : (n (k + 1) : ℚ) ≠ 0)
+  (h_two_nk_nonzero : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0)
+  (k : ℕ) :
+  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by
+  -- cross-multiplication of rationals after clearing denominators; proof omitted
+  sorry
+>>>>REPLACE
+lemma clear_denoms_Q {a b c d : ℚ} (hb : b ≠ 0) (hd : d ≠ 0) (h : a / b = c / d) :
+  a * d = c * b := by
+  -- clear denominators in ℚ: (a / b = c / d) → a * d = c * b
+  sorry
+
+lemma rat_nat_cast_two_mul_add_one (x : ℕ) :
+  ((2 * x + 1 : ℕ) : ℚ) = (2 : ℚ) * (x : ℚ) + 1 := by
+  -- numeric-coercion lemma: view the nat `2*x+1` as the rational expression
+  sorry
+
+lemma nat_cast_mul_q (a b : ℕ) : ((a * b : ℕ) : ℚ) = (a : ℚ) * (b : ℚ) := by
+  -- compatibility of Nat.cast with multiplication; proof omitted
+  sorry
+
+lemma nat_cast_inj (x y : ℕ) : (x : ℚ) = (y : ℚ) → x = y := by
+  -- injectivity of the cast ℕ → ℚ; proof omitted
+  sorry
+
+lemma cross_mul_eq_nat
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_n_succ_nonzero_k : (n (k + 1) : ℚ) ≠ 0)
+  (h_two_nk_nonzero : ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0)
+  (k : ℕ) :
+  m (k + 1) * (2 * n k + 1) = n (k + 1) * (2 * m k + 1) := by
+  -- Step 1: clear denominators in the rational equality to get a product equality in ℚ
+  have hrat_prod : (m (k + 1) : ℚ) * ((2 : ℚ) * (n k : ℚ) + 1) =
+    (n (k + 1) : ℚ) * ((2 : ℚ) * (m k : ℚ) + 1) := by
+    exact clear_denoms_Q (h_n_succ_nonzero_k) (h_two_nk_nonzero) (h_recurrence k)
+
+  -- Step 2: rewrite the `(2 : ℚ) * (x : ℚ) + 1` forms as casts of the natural `2*x+1`
+  have hcast_n : ((2 * n k + 1 : ℕ) : ℚ) = (2 : ℚ) * (n k : ℚ) + 1 := by
+    exact rat_nat_cast_two_mul_add_one (n k)
+  have hcast_m : ((2 * m k + 1 : ℕ) : ℚ) = (2 : ℚ) * (m k : ℚ) + 1 := by
+    exact rat_nat_cast_two_mul_add_one (m k)
+
+  have hrat_prod' : (m (k + 1) : ℚ) * ((2 * n k + 1 : ℕ) : ℚ) =
+    (n (k + 1) : ℚ) * ((2 * m k + 1 : ℕ) : ℚ) := by
+    rwa [hcast_n, hcast_m] at hrat_prod
+
+  -- Step 3: view both sides as casts of natural products
+  have hnatcasts :
+    (((m (k + 1) * (2 * n k + 1) : ℕ) : ℚ) = ((n (k + 1) * (2 * m k + 1) : ℕ) : ℚ)) := by
+    rwa [nat_cast_mul_q (m (k + 1)) (2 * n k + 1),
+         nat_cast_mul_q (n (k + 1)) (2 * m k + 1)] at hrat_prod'
+
+  -- Step 4: conclude by injectivity of the natural-to-rational cast
+  exact nat_cast_inj _ _ hnatcasts

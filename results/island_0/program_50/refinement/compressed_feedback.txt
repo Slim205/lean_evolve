@@ -1,0 +1,15 @@
+lemma odd_part_le_from_div_by_odd (A d : ℕ) (hdvd : d ∣ A) (u1 r1 u2 r2 : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 ≤ r1 := by
+Failure mode: HARD
+Recommendation:
+1) Prove `Nat.Coprime d (2^u1)` from `d % 2 = 1` (odd `d` implies coprime with `2`, hence with any power of `2`).
+2) Prove the cancellation lemma: if `Nat.Coprime d x` and `d ∣ x*y` then `d ∣ y`.
+3) Apply (2) to `x = 2^u1`, `y = r1`, using `hdvd` and `hA`, to obtain `d ∣ r1`.
+4) Define `r1' := r1 / d` and prove the exact factorization `r1 = d * r1'` and hence `A / d = 2^u1 * r1'` (using `d ∣ r1`).
+5) Rewrite `2 * (A / d)` as `2^(u1+1) * r1'`.
+6) Prove a “uniqueness of odd part” lemma: if `2^a * x = 2^b * y` with `x,y` odd, then `x = y` (equivalently: the odd factor in a `2^a * (odd)` decomposition is uniquely determined).
+7) Apply (6) to the two expressions for `2 * (A/d)` (one from step 5, one from `hB_eq`) to deduce `r2 = r1'`.
+8) Conclude `r2 ≤ r1` from `r2 = r1'` and `r1 = d * r1'` with `d ≥ 1`.

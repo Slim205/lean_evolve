@@ -1,0 +1,35 @@
+lemma prefix_budget_induction (t : ℕ → ℕ) (hnoninc : ∀ k, t (k + 1) ≤ t k) (K : ℕ) :
+  t K + (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card ≤ t 0 := by
+Failure mode: HARD
+Recommendation: Break the statement into a clean “drop counter” recursion and a one-step budget inequality, then prove by induction on `K`. A workable decomposition plan is:
+
+1) **Redundancy of `i < K` inside `range K`**  
+   Lemma:  
+   `card (filter (fun i => i < K ∧ P i) (range K)) = card (filter P (range K))`.  
+   (This lets you eliminate the `i < K` conjunct and simplifies later algebra.)
+
+2) **Define the drop count on prefixes**  
+   Let `D(K) := card (filter (fun i => t (i+1) < t i) (range K))`.  
+   Lemma: the goal is equivalent to `t K + D(K) ≤ t 0`.
+
+3) **One-step strict drop consumes ≥ 1**  
+   Lemma: if `t (k+1) < t k` then `t (k+1) + 1 ≤ t k`.  
+   (This is the key “discrete gap” fact over `ℕ`.)
+
+4) **No-drop step gives equality under nonincreasingness**  
+   Lemma: if `hnoninc k` and `¬(t (k+1) < t k)` then `t (k+1) = t k`.  
+   (Uses the total order trichotomy for naturals.)
+
+5) **Recursion for the prefix drop count**  
+   Lemma: `D(K+1) = D(K) + (if t (K+1) < t K then 1 else 0)`.  
+   (This is a purely combinatorial fact about `range (K+1)` as `range K` plus the new index `K`.)
+
+6) **Induction step for the budget inequality**  
+   Lemma: assuming `t K + D(K) ≤ t 0`, prove `t (K+1) + D(K+1) ≤ t 0` by splitting on whether `t (K+1) < t K`.  
+   - In the “drop” case, use (3) and (5).  
+   - In the “no drop” case, use (4) and (5).
+
+7) **Base case**  
+   Lemma: `t 0 + D(0) ≤ t 0` (with `D(0)=0`).
+
+This turns the original lemma into a standard prefix-sum induction with two local steps (drop vs no-drop), avoiding any need for global finiteness reasoning at this stage.

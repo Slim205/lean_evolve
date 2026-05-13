@@ -1,0 +1,4 @@
+>>>>SEARCH
+  have hns := n_succ_nonzero m n h_recurrence
+>>>>REPLACE
+  have hns := n_succ_nonzero m n h_recurrence k

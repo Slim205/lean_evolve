@@ -1,0 +1,10 @@
+>>>>SEARCH
+    exact reduced_fraction_unique (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1)
+      hsucc_copr denom_nonzero (by simpa using (h_recurrence k))
+>>>>REPLACE
+    exact reduced_fraction_unique (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1)
+      hsucc_copr (by simpa using (h_recurrence k)) denom_nonzero
+>>>>SEARCH
+      hdiff_mul (Eq.symm hA2) h_scaled_eq hd_div_r
+>>>>REPLACE
+      hdiff_mul hA2 h_scaled_eq hd_div_r

@@ -1,0 +1,4192 @@
+[
+    {
+        "name": "odd_implies_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_pos (d : \u2115) (hd_odd : d % 2 = 1) : 0 < d := by\n  by_contra h\n  -- If d were 0, then d % 2 would also be 0, which contradicts the given oddness.\n  have h' : d = 0 := by omega\n  rw [h'] at hd_odd\n  norm_num at hd_odd",
+        "custom_id": "odd_implies_pos_0",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.0664975643157959,
+            "custom_id": "odd_implies_pos_0"
+        }
+    },
+    {
+        "name": "odd_implies_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_pos (d : \u2115) (hd_odd : d % 2 = 1) : 0 < d := by\n  by_contra h\n  have h\u2081 : d = 0 := by omega\n  rw [h\u2081] at hd_odd\n  omega",
+        "custom_id": "odd_implies_pos_1",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.06625056266784668,
+            "custom_id": "odd_implies_pos_1"
+        }
+    },
+    {
+        "name": "odd_implies_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_pos (d : \u2115) (hd_odd : d % 2 = 1) : 0 < d := by\n  have h : 0 < d := by\n    by_contra h\n    have h' : d = 0 := by omega\n    rw [h'] at hd_odd\n    norm_num at hd_odd\n  exact h",
+        "custom_id": "odd_implies_pos_2",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.09230566024780273,
+            "custom_id": "odd_implies_pos_2"
+        }
+    },
+    {
+        "name": "odd_implies_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_pos (d : \u2115) (hd_odd : d % 2 = 1) : 0 < d := by\n  have h : 0 < d := by\n    by_contra h\n    have h' : d = 0 := by omega\n    rw [h'] at hd_odd\n    norm_num at hd_odd\n  exact h",
+        "custom_id": "odd_implies_pos_3",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.10516095161437988,
+            "custom_id": "odd_implies_pos_3"
+        }
+    },
+    {
+        "name": "odd_implies_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_pos (d : \u2115) (hd_odd : d % 2 = 1) : 0 < d := by\n  match d with\n  | 0 =>\n    -- If d were 0, then d % 2 would also be 0, which contradicts the given condition hd_odd.\n    contradiction\n  | 1 =>\n    -- If d were 1, then d % 2 would be 1, which is consistent with the given condition hd_odd.\n    simp\n  | (n + 2) =>\n    -- For any n, if d were n + 2, then d % 2 would be 0, which contradicts the given condition hd_odd.\n    omega",
+        "custom_id": "odd_implies_pos_4",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.12615442276000977,
+            "custom_id": "odd_implies_pos_4"
+        }
+    },
+    {
+        "name": "odd_implies_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_pos (d : \u2115) (hd_odd : d % 2 = 1) : 0 < d := by\n  have h := Nat.mod_lt d (by norm_num : 0 < 2)\n  rw [hd_odd] at h\n  omega",
+        "custom_id": "odd_implies_pos_5",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07889986038208008,
+            "custom_id": "odd_implies_pos_5"
+        }
+    },
+    {
+        "name": "odd_implies_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_pos (d : \u2115) (hd_odd : d % 2 = 1) : 0 < d := by\n  have h : 0 < d := by\n    by_contra h\n    have h' : d = 0 := by omega\n    rw [h'] at hd_odd\n    norm_num at hd_odd\n  exact h",
+        "custom_id": "odd_implies_pos_6",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07120561599731445,
+            "custom_id": "odd_implies_pos_6"
+        }
+    },
+    {
+        "name": "odd_implies_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_pos (d : \u2115) (hd_odd : d % 2 = 1) : 0 < d := by\n  by_contra h\n  -- We will show that if d is not positive, then d % 2 cannot be 1.\n  have h' : d = 0 := by omega\n  -- Since d is non-positive, it must be 0.\n  rw [h'] at hd_odd\n  -- Substitute d = 0 into the equation d % 2 = 1.\n  norm_num at hd_odd\n  -- Simplify the equation to show that 0 % 2 = 1, which is a contradiction.\n  <;> omega",
+        "custom_id": "odd_implies_pos_7",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.08738994598388672,
+            "custom_id": "odd_implies_pos_7"
+        }
+    },
+    {
+        "name": "odd_implies_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_pos (d : \u2115) (hd_odd : d % 2 = 1) : 0 < d := by\n  have h : 0 < d := by\n    by_contra h\n    have h' : d = 0 := by omega\n    rw [h'] at hd_odd\n    norm_num at hd_odd\n  exact h",
+        "custom_id": "odd_implies_pos_8",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07450222969055176,
+            "custom_id": "odd_implies_pos_8"
+        }
+    },
+    {
+        "name": "odd_implies_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_pos (d : \u2115) (hd_odd : d % 2 = 1) : 0 < d := by\n  have h : 0 < d := by\n    by_contra h\n    have h' : d = 0 := by omega\n    rw [h'] at hd_odd\n    omega\n  exact h",
+        "custom_id": "odd_implies_pos_9",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.08086657524108887,
+            "custom_id": "odd_implies_pos_9"
+        }
+    },
+    {
+        "name": "odd_implies_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_pos (d : \u2115) (hd_odd : d % 2 = 1) : 0 < d := by\n  by_contra h\n  have h' : d = 0 := by omega\n  rw [h'] at hd_odd\n  norm_num at hd_odd\n  <;> omega",
+        "custom_id": "odd_implies_pos_10",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.0820457935333252,
+            "custom_id": "odd_implies_pos_10"
+        }
+    },
+    {
+        "name": "odd_implies_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_pos (d : \u2115) (hd_odd : d % 2 = 1) : 0 < d := by\n  have : 0 < d := by\n    -- Use the fact that if d is odd, then d is not 0, and if d is not 0, then d is positive.\n    cases d with\n    | zero =>\n      -- If d is 0, then d % 2 = 0, which contradicts the given condition that d % 2 = 1.\n      simp_all\n    | succ d =>\n      -- If d is a successor of some natural number, then d is positive.\n      simp_all [Nat.succ_pos]\n  exact this",
+        "custom_id": "odd_implies_pos_11",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.11920619010925293,
+            "custom_id": "odd_implies_pos_11"
+        }
+    },
+    {
+        "name": "odd_implies_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_pos (d : \u2115) (hd_odd : d % 2 = 1) : 0 < d := by\n  by_contra h\n  have h\u2080 : d = 0 := by omega\n  have h\u2081 : d % 2 = 0 := by simp [h\u2080]\n  omega",
+        "custom_id": "odd_implies_pos_12",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07630276679992676,
+            "custom_id": "odd_implies_pos_12"
+        }
+    },
+    {
+        "name": "odd_implies_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_pos (d : \u2115) (hd_odd : d % 2 = 1) : 0 < d := by\n  by_contra h\n  have h' : d = 0 := by\n    omega\n  rw [h'] at hd_odd\n  norm_num at hd_odd\n  <;> omega",
+        "custom_id": "odd_implies_pos_13",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.06549930572509766,
+            "custom_id": "odd_implies_pos_13"
+        }
+    },
+    {
+        "name": "odd_implies_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_pos (d : \u2115) (hd_odd : d % 2 = 1) : 0 < d := by\n  have h := Nat.mod_lt d (by norm_num : 0 < 2)\n  have h\u2081 := Nat.mod_lt d (by norm_num : 0 < 2)\n  rw [hd_odd] at h h\u2081\n  omega",
+        "custom_id": "odd_implies_pos_14",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.06713438034057617,
+            "custom_id": "odd_implies_pos_14"
+        }
+    },
+    {
+        "name": "odd_implies_pos",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem odd_implies_pos (d : \u2115) (hd_odd : d % 2 = 1) : 0 < d := by\n  have h : 0 < d := by\n    by_contra h\n    have h' : d = 0 := by omega\n    rw [h'] at hd_odd\n    norm_num at hd_odd\n  exact h",
+        "custom_id": "odd_implies_pos_15",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07622075080871582,
+            "custom_id": "odd_implies_pos_15"
+        }
+    },
+    {
+        "name": "nat_pos_int_ne",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_pos_int_ne (d : \u2115) (hd_pos : 0 < d) : (d : \u2124) \u2260 0 := by\n  exact_mod_cast hd_pos.ne'",
+        "custom_id": "nat_pos_int_ne_16",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.02201557159423828,
+            "custom_id": "nat_pos_int_ne_16"
+        }
+    },
+    {
+        "name": "nat_pos_int_ne",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_pos_int_ne (d : \u2115) (hd_pos : 0 < d) : (d : \u2124) \u2260 0 := by\n  intro h\n  have h\u2081 : (d : \u2124) = 0 := by assumption\n  have h\u2082 : (d : \u2124) > 0 := by exact_mod_cast hd_pos\n  linarith",
+        "custom_id": "nat_pos_int_ne_17",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2082`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.13762140274047852,
+            "custom_id": "nat_pos_int_ne_17"
+        }
+    },
+    {
+        "name": "nat_pos_int_ne",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_pos_int_ne (d : \u2115) (hd_pos : 0 < d) : (d : \u2124) \u2260 0 := by\n  simp_all [Nat.cast_eq_zero]\n  <;> omega",
+        "custom_id": "nat_pos_int_ne_18",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.0643312931060791,
+            "custom_id": "nat_pos_int_ne_18"
+        }
+    },
+    {
+        "name": "nat_pos_int_ne",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_pos_int_ne (d : \u2115) (hd_pos : 0 < d) : (d : \u2124) \u2260 0 := by\n  intro h\n  have h' : (d : \u2124) = 0 := by simpa using h\n  have h\u2081 : d = 0 := by simpa using h'\n  omega",
+        "custom_id": "nat_pos_int_ne_19",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.06520819664001465,
+            "custom_id": "nat_pos_int_ne_19"
+        }
+    },
+    {
+        "name": "nat_pos_int_ne",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_pos_int_ne (d : \u2115) (hd_pos : 0 < d) : (d : \u2124) \u2260 0 := by\n  exact_mod_cast hd_pos.ne'",
+        "custom_id": "nat_pos_int_ne_20",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.020541906356811523,
+            "custom_id": "nat_pos_int_ne_20"
+        }
+    },
+    {
+        "name": "nat_pos_int_ne",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_pos_int_ne (d : \u2115) (hd_pos : 0 < d) : (d : \u2124) \u2260 0 := by\n  exact_mod_cast ne_of_gt hd_pos",
+        "custom_id": "nat_pos_int_ne_21",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 17
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 25
+                    },
+                    "data": "ambiguous, possible interpretations \n  _root_.ne_of_gt hd_pos : d \u2260 0\n  \n  Nat.ne_of_gt hd_pos : d \u2260 0"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.05531716346740723,
+            "custom_id": "nat_pos_int_ne_21"
+        }
+    },
+    {
+        "name": "nat_pos_int_ne",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_pos_int_ne (d : \u2115) (hd_pos : 0 < d) : (d : \u2124) \u2260 0 := by\n  exact_mod_cast hd_pos.ne'",
+        "custom_id": "nat_pos_int_ne_22",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03185534477233887,
+            "custom_id": "nat_pos_int_ne_22"
+        }
+    },
+    {
+        "name": "nat_pos_int_ne",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_pos_int_ne (d : \u2115) (hd_pos : 0 < d) : (d : \u2124) \u2260 0 := by\n  exact_mod_cast hd_pos.ne'",
+        "custom_id": "nat_pos_int_ne_23",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.020068645477294922,
+            "custom_id": "nat_pos_int_ne_23"
+        }
+    },
+    {
+        "name": "nat_pos_int_ne",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_pos_int_ne (d : \u2115) (hd_pos : 0 < d) : (d : \u2124) \u2260 0 := by\n  norm_cast\n  <;> omega",
+        "custom_id": "nat_pos_int_ne_24",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.025257110595703125,
+            "custom_id": "nat_pos_int_ne_24"
+        }
+    },
+    {
+        "name": "nat_pos_int_ne",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_pos_int_ne (d : \u2115) (hd_pos : 0 < d) : (d : \u2124) \u2260 0 := by\n  intro h\n  have : (d : \u2124) = 0 := by assumption\n  have : (d : \u2124) > 0 := by\n    norm_cast\n    linarith\n  linarith",
+        "custom_id": "nat_pos_int_ne_25",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 12
+                    },
+                    "data": "no goals to be solved"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.11147022247314453,
+            "custom_id": "nat_pos_int_ne_25"
+        }
+    },
+    {
+        "name": "nat_pos_int_ne",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_pos_int_ne (d : \u2115) (hd_pos : 0 < d) : (d : \u2124) \u2260 0 := by\n  intro h\n  have h\u2081 := h\n  simp at h\u2081\n  -- Since d is a positive integer, its integer representation is non-zero.\n  <;> linarith",
+        "custom_id": "nat_pos_int_ne_26",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.12083673477172852,
+            "custom_id": "nat_pos_int_ne_26"
+        }
+    },
+    {
+        "name": "nat_pos_int_ne",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_pos_int_ne (d : \u2115) (hd_pos : 0 < d) : (d : \u2124) \u2260 0 := by\n  intro h\n  have h\u2081 : (d : \u2124) = 0 := h\n  have h\u2082 : (d : \u2124) > 0 := by exact_mod_cast hd_pos\n  linarith",
+        "custom_id": "nat_pos_int_ne_27",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2082`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.10604524612426758,
+            "custom_id": "nat_pos_int_ne_27"
+        }
+    },
+    {
+        "name": "nat_pos_int_ne",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_pos_int_ne (d : \u2115) (hd_pos : 0 < d) : (d : \u2124) \u2260 0 := by\n  norm_cast\n  exact Nat.pos_iff_ne_zero.1 hd_pos",
+        "custom_id": "nat_pos_int_ne_28",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.032189130783081055,
+            "custom_id": "nat_pos_int_ne_28"
+        }
+    },
+    {
+        "name": "nat_pos_int_ne",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_pos_int_ne (d : \u2115) (hd_pos : 0 < d) : (d : \u2124) \u2260 0 := by\n  norm_cast\n  -- We need to show that the natural number d is not equal to 0 when d is positive.\n  -- This is a straightforward implication of the given condition that d > 0.\n  exact Nat.pos_iff_ne_zero.mp hd_pos",
+        "custom_id": "nat_pos_int_ne_29",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.023615598678588867,
+            "custom_id": "nat_pos_int_ne_29"
+        }
+    },
+    {
+        "name": "nat_pos_int_ne",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_pos_int_ne (d : \u2115) (hd_pos : 0 < d) : (d : \u2124) \u2260 0 := by\n  intro h\n  have h\u2081 : (d : \u2124) = 0 := h\n  have h\u2082 : d = 0 := by exact_mod_cast h\u2081\n  linarith",
+        "custom_id": "nat_pos_int_ne_30",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2082`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.0933070182800293,
+            "custom_id": "nat_pos_int_ne_30"
+        }
+    },
+    {
+        "name": "nat_pos_int_ne",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem nat_pos_int_ne (d : \u2115) (hd_pos : 0 < d) : (d : \u2124) \u2260 0 := by\n  intro h\n  cases d with\n  | zero => contradiction\n  | succ d' =>\n    simp_all\n  <;> omega",
+        "custom_id": "nat_pos_int_ne_31",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.1755216121673584,
+            "custom_id": "nat_pos_int_ne_31"
+        }
+    },
+    {
+        "name": "int_dvd_exists_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_exists_mul (d : \u2115) {z : \u2124} (h : (d : \u2124) \u2223 z) : \u2203 q : \u2124, z = (d : \u2124) * q := by\n  obtain \u27e8m, hm\u27e9 := h\n  exact \u27e8m, by linarith\u27e9",
+        "custom_id": "int_dvd_exists_mul_32",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.12436032295227051,
+            "custom_id": "int_dvd_exists_mul_32"
+        }
+    },
+    {
+        "name": "int_dvd_exists_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_exists_mul (d : \u2115) {z : \u2124} (h : (d : \u2124) \u2223 z) : \u2203 q : \u2124, z = (d : \u2124) * q := by\n  obtain \u27e8c, rfl\u27e9 := h\n  exact \u27e8c, by simp [mul_comm]\u27e9",
+        "custom_id": "int_dvd_exists_mul_33",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.024553775787353516,
+            "custom_id": "int_dvd_exists_mul_33"
+        }
+    },
+    {
+        "name": "int_dvd_exists_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_exists_mul (d : \u2115) {z : \u2124} (h : (d : \u2124) \u2223 z) : \u2203 q : \u2124, z = (d : \u2124) * q := by\n  obtain \u27e8q, hq\u27e9 := h\n  exact \u27e8q, by linarith\u27e9",
+        "custom_id": "int_dvd_exists_mul_34",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.10716104507446289,
+            "custom_id": "int_dvd_exists_mul_34"
+        }
+    },
+    {
+        "name": "int_dvd_exists_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_exists_mul (d : \u2115) {z : \u2124} (h : (d : \u2124) \u2223 z) : \u2203 q : \u2124, z = (d : \u2124) * q := by\n  obtain \u27e8m, hm\u27e9 := h\n  exact \u27e8m, by linarith\u27e9",
+        "custom_id": "int_dvd_exists_mul_35",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.10938167572021484,
+            "custom_id": "int_dvd_exists_mul_35"
+        }
+    },
+    {
+        "name": "int_dvd_exists_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_exists_mul (d : \u2115) {z : \u2124} (h : (d : \u2124) \u2223 z) : \u2203 q : \u2124, z = (d : \u2124) * q := by\n  obtain \u27e8q, hq\u27e9 := h\n  exact \u27e8q, by linarith\u27e9",
+        "custom_id": "int_dvd_exists_mul_36",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.12396669387817383,
+            "custom_id": "int_dvd_exists_mul_36"
+        }
+    },
+    {
+        "name": "int_dvd_exists_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_exists_mul (d : \u2115) {z : \u2124} (h : (d : \u2124) \u2223 z) : \u2203 q : \u2124, z = (d : \u2124) * q := by\n  obtain \u27e8q, hq\u27e9 := h\n  refine' \u27e8q, _\u27e9\n  linarith",
+        "custom_id": "int_dvd_exists_mul_37",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.1369163990020752,
+            "custom_id": "int_dvd_exists_mul_37"
+        }
+    },
+    {
+        "name": "int_dvd_exists_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_exists_mul (d : \u2115) {z : \u2124} (h : (d : \u2124) \u2223 z) : \u2203 q : \u2124, z = (d : \u2124) * q := by\n  obtain \u27e8q, hq\u27e9 := h\n  exact \u27e8q, by linarith\u27e9",
+        "custom_id": "int_dvd_exists_mul_38",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.14152979850769043,
+            "custom_id": "int_dvd_exists_mul_38"
+        }
+    },
+    {
+        "name": "int_dvd_exists_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_exists_mul (d : \u2115) {z : \u2124} (h : (d : \u2124) \u2223 z) : \u2203 q : \u2124, z = (d : \u2124) * q := by\n  obtain \u27e8k, hk\u27e9 := h\n  exact \u27e8k, by linarith\u27e9",
+        "custom_id": "int_dvd_exists_mul_39",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.14129161834716797,
+            "custom_id": "int_dvd_exists_mul_39"
+        }
+    },
+    {
+        "name": "int_dvd_exists_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_exists_mul (d : \u2115) {z : \u2124} (h : (d : \u2124) \u2223 z) : \u2203 q : \u2124, z = (d : \u2124) * q := by\n  obtain \u27e8q, hq\u27e9 := h\n  exact \u27e8q, by linarith\u27e9",
+        "custom_id": "int_dvd_exists_mul_40",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.13298535346984863,
+            "custom_id": "int_dvd_exists_mul_40"
+        }
+    },
+    {
+        "name": "int_dvd_exists_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_exists_mul (d : \u2115) {z : \u2124} (h : (d : \u2124) \u2223 z) : \u2203 q : \u2124, z = (d : \u2124) * q := by\n  obtain \u27e8q, hq\u27e9 := h\n  exact \u27e8q, by linarith\u27e9",
+        "custom_id": "int_dvd_exists_mul_41",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.1409132480621338,
+            "custom_id": "int_dvd_exists_mul_41"
+        }
+    },
+    {
+        "name": "int_dvd_exists_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_exists_mul (d : \u2115) {z : \u2124} (h : (d : \u2124) \u2223 z) : \u2203 q : \u2124, z = (d : \u2124) * q := by\n  obtain \u27e8q, hq\u27e9 := h\n  exact \u27e8q, by linarith\u27e9",
+        "custom_id": "int_dvd_exists_mul_42",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.10193395614624023,
+            "custom_id": "int_dvd_exists_mul_42"
+        }
+    },
+    {
+        "name": "int_dvd_exists_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_exists_mul (d : \u2115) {z : \u2124} (h : (d : \u2124) \u2223 z) : \u2203 q : \u2124, z = (d : \u2124) * q := by\n  obtain \u27e8q, hq\u27e9 := h\n  refine' \u27e8q, _\u27e9\n  linarith",
+        "custom_id": "int_dvd_exists_mul_43",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.11347651481628418,
+            "custom_id": "int_dvd_exists_mul_43"
+        }
+    },
+    {
+        "name": "int_dvd_exists_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_exists_mul (d : \u2115) {z : \u2124} (h : (d : \u2124) \u2223 z) : \u2203 q : \u2124, z = (d : \u2124) * q := by\n  obtain \u27e8q, hq\u27e9 := h\n  exact \u27e8q, by linarith\u27e9",
+        "custom_id": "int_dvd_exists_mul_44",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.11126017570495605,
+            "custom_id": "int_dvd_exists_mul_44"
+        }
+    },
+    {
+        "name": "int_dvd_exists_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_exists_mul (d : \u2115) {z : \u2124} (h : (d : \u2124) \u2223 z) : \u2203 q : \u2124, z = (d : \u2124) * q := by\n  obtain \u27e8q, hq\u27e9 := h\n  exact \u27e8q, by linarith\u27e9",
+        "custom_id": "int_dvd_exists_mul_45",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.177473783493042,
+            "custom_id": "int_dvd_exists_mul_45"
+        }
+    },
+    {
+        "name": "int_dvd_exists_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_exists_mul (d : \u2115) {z : \u2124} (h : (d : \u2124) \u2223 z) : \u2203 q : \u2124, z = (d : \u2124) * q := by\n  obtain \u27e8q, hq\u27e9 := h\n  exact \u27e8q, by linarith\u27e9",
+        "custom_id": "int_dvd_exists_mul_46",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.11090087890625,
+            "custom_id": "int_dvd_exists_mul_46"
+        }
+    },
+    {
+        "name": "int_dvd_exists_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem int_dvd_exists_mul (d : \u2115) {z : \u2124} (h : (d : \u2124) \u2223 z) : \u2203 q : \u2124, z = (d : \u2124) * q := by\n  obtain \u27e8x, hx\u27e9 := h\n  exact \u27e8x, by linarith\u27e9",
+        "custom_id": "int_dvd_exists_mul_47",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.1027534008026123,
+            "custom_id": "int_dvd_exists_mul_47"
+        }
+    },
+    {
+        "name": "div_mul_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem div_mul_of_mul_eq {d : \u2124} {q z : \u2124} (hdnz : d \u2260 0) (hz : z = d * q) :\n  (((2 : \u2124) * z) / d) = (2 : \u2124) * q := by\n  rw [hz]\n  by_cases h : d = 1\n  \u00b7 simp [h]\n  \u00b7 by_cases h' : d = -1\n    \u00b7 simp [h']\n    \u00b7 simp_all [Int.mul_ediv_cancel_left, mul_comm, mul_assoc, mul_left_comm]\n      <;> omega",
+        "custom_id": "div_mul_of_mul_eq_48",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.34700465202331543,
+            "custom_id": "div_mul_of_mul_eq_48"
+        }
+    },
+    {
+        "name": "div_mul_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem div_mul_of_mul_eq {d : \u2124} {q z : \u2124} (hdnz : d \u2260 0) (hz : z = d * q) :\n  (((2 : \u2124) * z) / d) = (2 : \u2124) * q := by\n  rw [hz]\n  simp [hdnz, mul_comm, mul_assoc, mul_left_comm]\n  <;>\n  exact?",
+        "custom_id": "div_mul_of_mul_eq_49",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 8
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.08370232582092285,
+            "custom_id": "div_mul_of_mul_eq_49"
+        }
+    },
+    {
+        "name": "div_mul_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem div_mul_of_mul_eq {d : \u2124} {q z : \u2124} (hdnz : d \u2260 0) (hz : z = d * q) :\n  (((2 : \u2124) * z) / d) = (2 : \u2124) * q := by\n  rw [hz]\n  simp_all [mul_comm, mul_assoc, mul_left_comm, Int.mul_ediv_cancel_left]\n  <;> simp_all [Int.mul_ediv_cancel_left]\n  <;> norm_num\n  <;> linarith",
+        "custom_id": "div_mul_of_mul_eq_50",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 41
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.10017180442810059,
+            "custom_id": "div_mul_of_mul_eq_50"
+        }
+    },
+    {
+        "name": "div_mul_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem div_mul_of_mul_eq {d : \u2124} {q z : \u2124} (hdnz : d \u2260 0) (hz : z = d * q) :\n  (((2 : \u2124) * z) / d) = (2 : \u2124) * q := by\n  rw [hz]\n  simp [Int.mul_ediv_cancel_left, hdnz, mul_assoc, mul_comm, mul_left_comm]\n  <;> simp_all [Int.mul_ediv_cancel_left]\n  <;> norm_num\n  <;> omega",
+        "custom_id": "div_mul_of_mul_eq_51",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 41
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07053112983703613,
+            "custom_id": "div_mul_of_mul_eq_51"
+        }
+    },
+    {
+        "name": "div_mul_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem div_mul_of_mul_eq {d : \u2124} {q z : \u2124} (hdnz : d \u2260 0) (hz : z = d * q) :\n  (((2 : \u2124) * z) / d) = (2 : \u2124) * q := by\n  rw [hz]\n  have h\u2081 : d \u2223 d * q := by\n    apply dvd_mul_right\n  have h\u2082 : ((2 : \u2124) * (d * q)) / d = (2 : \u2124) * q := by\n    apply Int.ediv_eq_of_eq_mul_right (by simp [hdnz])\n    <;> ring_nf\n    <;> simp_all [mul_comm, mul_assoc, mul_left_comm]\n    <;> omega\n  simp_all",
+        "custom_id": "div_mul_of_mul_eq_52",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2081`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 53
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 13
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 7
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.12633371353149414,
+            "custom_id": "div_mul_of_mul_eq_52"
+        }
+    },
+    {
+        "name": "div_mul_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem div_mul_of_mul_eq {d : \u2124} {q z : \u2124} (hdnz : d \u2260 0) (hz : z = d * q) :\n  (((2 : \u2124) * z) / d) = (2 : \u2124) * q := by\n  rw [hz]\n  simp [Int.mul_ediv_cancel_left, hdndz]\n  <;> omega",
+        "custom_id": "div_mul_of_mul_eq_53",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 34
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 39
+                    },
+                    "data": "unknown identifier 'hdndz'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 40
+                    },
+                    "data": "simp made no progress"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.06874918937683105,
+            "custom_id": "div_mul_of_mul_eq_53"
+        }
+    },
+    {
+        "name": "div_mul_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem div_mul_of_mul_eq {d : \u2124} {q z : \u2124} (hdnz : d \u2260 0) (hz : z = d * q) :\n  (((2 : \u2124) * z) / d) = (2 : \u2124) * q := by\n  rw [hz]\n  simp_all [Int.mul_ediv_cancel_left, mul_assoc]\n  <;> norm_cast\n  <;> simp_all\n  <;> omega",
+        "custom_id": "div_mul_of_mul_eq_54",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 14
+                    },
+                    "data": "simp_all made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  2*a - b \u2265 1\n  c \u2264 -1\nwhere\n a := q\n b := 2 * (d * q) / d\n c := d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 39
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nd q z : \u2124\nhdnz : \u00acd = 0\nhz : z = d * q\n\u22a2 2 * (d * q) / d = 2 * q"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.12633919715881348,
+            "custom_id": "div_mul_of_mul_eq_54"
+        }
+    },
+    {
+        "name": "div_mul_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem div_mul_of_mul_eq {d : \u2124} {q z : \u2124} (hdnz : d \u2260 0) (hz : z = d * q) :\n  (((2 : \u2124) * z) / d) = (2 : \u2124) * q := by\n  rw [hz]\n  simp [Int.mul_ediv_cancel_left, hdnz, mul_assoc]\n  <;> norm_cast\n  <;> simp_all\n  <;> omega",
+        "custom_id": "div_mul_of_mul_eq_55",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 50
+                    },
+                    "data": "simp made no progress"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.07158088684082031,
+            "custom_id": "div_mul_of_mul_eq_55"
+        }
+    },
+    {
+        "name": "div_mul_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem div_mul_of_mul_eq {d : \u2124} {q z : \u2124} (hdnz : d \u2260 0) (hz : z = d * q) :\n  (((2 : \u2124) * z) / d) = (2 : \u2124) * q := by\n  rw [hz]\n  by_cases h : d > 0 <;> by_cases h' : d < 0 <;> simp_all [Int.mul_emod, Int.ediv_eq_zero_of_lt,\n    Int.mul_emod, Int.ediv_eq_zero_of_lt]\n  <;> norm_num\n  <;> omega",
+        "custom_id": "div_mul_of_mul_eq_56",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  2*b - c \u2265 1\n  a \u2265 1\nwhere\n a := d\n b := q\n c := 2 * (d * q) / d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  2*b - c \u2265 1\n  a \u2264 -1\nwhere\n a := d\n b := q\n c := 2 * (d * q) / d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 39
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase neg\nd q z : \u2124\nhdnz : \u00acd = 0\nhz : z = d * q\nh : 0 < d\nh' : 0 \u2264 d\n\u22a2 2 * (d * q) / d = 2 * q\n\ncase pos\nd q z : \u2124\nhdnz : \u00acd = 0\nhz : z = d * q\nh : d \u2264 0\nh' : d < 0\n\u22a2 2 * (d * q) / d = 2 * q"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.8634297847747803,
+            "custom_id": "div_mul_of_mul_eq_56"
+        }
+    },
+    {
+        "name": "div_mul_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem div_mul_of_mul_eq {d : \u2124} {q z : \u2124} (hdnz : d \u2260 0) (hz : z = d * q) :\n  (((2 : \u2124) * z) / d) = (2 : \u2124) * q := by\n  rw [hz]\n  simp [hdnz, mul_assoc, mul_comm, mul_left_comm]\n  <;> rw [Int.mul_ediv_cancel_left] <;> simp [hdnz]\n  <;> omega",
+        "custom_id": "div_mul_of_mul_eq_57",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 35
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 40
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 51
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07869219779968262,
+            "custom_id": "div_mul_of_mul_eq_57"
+        }
+    },
+    {
+        "name": "div_mul_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem div_mul_of_mul_eq {d : \u2124} {q z : \u2124} (hdnz : d \u2260 0) (hz : z = d * q) :\n  (((2 : \u2124) * z) / d) = (2 : \u2124) * q := by\n  rw [hz]\n  apply Eq.symm\n  rw [mul_comm]\n  -- We need to show that 2 * (d * q) / d = 2 * q\n  apply Int.ediv_eq_of_eq_mul_right (by simp [hdnz])\n  -- Since d \u2260 0, we can safely multiply both sides by d\n  ring",
+        "custom_id": "div_mul_of_mul_eq_58",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 52
+                    },
+                    "data": "tactic 'apply' failed, failed to unify\n  ?m.349 / ?m.350 = ?m.351\nwith\n  q * 2 = 2 * (d * q) / d\ncase h\nd q z : \u2124\nhdnz : d \u2260 0\nhz : z = d * q\n\u22a2 q * 2 = 2 * (d * q) / d"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.019774436950683594,
+            "custom_id": "div_mul_of_mul_eq_58"
+        }
+    },
+    {
+        "name": "div_mul_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem div_mul_of_mul_eq {d : \u2124} {q z : \u2124} (hdnz : d \u2260 0) (hz : z = d * q) :\n  (((2 : \u2124) * z) / d) = (2 : \u2124) * q := by\n  rw [hz]\n  by_cases h : d = 1 <;> by_cases h' : d = -1 <;> simp_all [mul_comm, mul_assoc, mul_left_comm, Int.mul_ediv_cancel_left]\n  <;> norm_num <;> omega\n  <;> omega\n  <;> omega\n  <;> omega\n  <;> omega\n  <;> omega\n  <;> omega\n  <;> omega",
+        "custom_id": "div_mul_of_mul_eq_59",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 14
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 19
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 24
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 17,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.6913156509399414,
+            "custom_id": "div_mul_of_mul_eq_59"
+        }
+    },
+    {
+        "name": "div_mul_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem div_mul_of_mul_eq {d : \u2124} {q z : \u2124} (hdnz : d \u2260 0) (hz : z = d * q) :\n  (((2 : \u2124) * z) / d) = (2 : \u2124) * q := by\n  have h\u2081 : (2 : \u2124) * z = 2 * (d * q) := by rw [hz]\n  have h\u2082 : d \u2223 2 * z := by\n    rw [h\u2081]\n    exact \u27e82 * q, by ring\u27e9\n  have h\u2083 : ((2 : \u2124) * z) / d = (2 : \u2124) * q := by\n    rw [Int.ediv_eq_of_eq_mul_right (by simp [hdnz])]\n    <;> simp_all [mul_assoc, mul_comm, mul_left_comm]\n    <;> ring\n  exact h\u2083",
+        "custom_id": "div_mul_of_mul_eq_60",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 7
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 9
+                    },
+                    "data": "unused variable `h\u2082`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 12
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 7
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.10612177848815918,
+            "custom_id": "div_mul_of_mul_eq_60"
+        }
+    },
+    {
+        "name": "div_mul_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem div_mul_of_mul_eq {d : \u2124} {q z : \u2124} (hdnz : d \u2260 0) (hz : z = d * q) :\n  (((2 : \u2124) * z) / d) = (2 : \u2124) * q := by\n  rw [hz]\n  simp [Int.mul_ediv_cancel_left, hdndz]\n  <;> simp_all [Int.mul_ediv_cancel_left]\n  <;> norm_cast\n  <;> linarith",
+        "custom_id": "div_mul_of_mul_eq_61",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 34
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 39
+                    },
+                    "data": "unknown identifier 'hdndz'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 40
+                    },
+                    "data": "simp made no progress"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.04381752014160156,
+            "custom_id": "div_mul_of_mul_eq_61"
+        }
+    },
+    {
+        "name": "div_mul_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem div_mul_of_mul_eq {d : \u2124} {q z : \u2124} (hdnz : d \u2260 0) (hz : z = d * q) :\n  (((2 : \u2124) * z) / d) = (2 : \u2124) * q := by\n  rw [hz]\n  by_cases h : d = 1 <;> by_cases h' : d = -1 <;> simp_all [mul_comm, mul_left_comm, mul_assoc, Int.mul_ediv_cancel_left]\n  <;> omega",
+        "custom_id": "div_mul_of_mul_eq_62",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.6603107452392578,
+            "custom_id": "div_mul_of_mul_eq_62"
+        }
+    },
+    {
+        "name": "div_mul_of_mul_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem div_mul_of_mul_eq {d : \u2124} {q z : \u2124} (hdnz : d \u2260 0) (hz : z = d * q) :\n  (((2 : \u2124) * z) / d) = (2 : \u2124) * q := by\n  rw [hz]\n  have h : d \u2223 d * q := \u27e8q, by simp [mul_comm]\u27e9\n  simp_all [Int.mul_ediv_cancel_left]\n  <;> omega",
+        "custom_id": "div_mul_of_mul_eq_63",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  2*a - b \u2265 1\n  c \u2264 -1\nwhere\n a := q\n b := 2 * (d * q) / d\n c := d"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 39
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\nd q z : \u2124\nhdnz : \u00acd = 0\nhz : z = d * q\n\u22a2 2 * (d * q) / d = 2 * q"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.12367868423461914,
+            "custom_id": "div_mul_of_mul_eq_63"
+        }
+    },
+    {
+        "name": "natAbs_two_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul (q : \u2124) : Int.natAbs ((2 : \u2124) * q) = 2 * Int.natAbs q := by\n  simp [Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> norm_cast\n  <;> simp [mul_comm]\n  <;> omega",
+        "custom_id": "natAbs_two_mul_64",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 21
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.05197453498840332,
+            "custom_id": "natAbs_two_mul_64"
+        }
+    },
+    {
+        "name": "natAbs_two_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul (q : \u2124) : Int.natAbs ((2 : \u2124) * q) = 2 * Int.natAbs q := by\n  rw [Int.natAbs_mul]\n  <;> simp [Int.natAbs_ofNat]\n  <;> rfl",
+        "custom_id": "natAbs_two_mul_65",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 9
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.03678083419799805,
+            "custom_id": "natAbs_two_mul_65"
+        }
+    },
+    {
+        "name": "natAbs_two_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul (q : \u2124) : Int.natAbs ((2 : \u2124) * q) = 2 * Int.natAbs q := by\n  simp [Int.natAbs_mul, Int.ofNat_mul]\n  <;> cases' le_total 0 (2 * q) with h h <;>\n    cases' le_total 0 q with h\u2081 h\u2081 <;>\n    simp_all [abs_of_nonneg, abs_of_nonpos, mul_comm, mul_assoc, mul_left_comm] <;>\n    omega",
+        "custom_id": "natAbs_two_mul_66",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 40
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 34
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 79
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 9
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.06260037422180176,
+            "custom_id": "natAbs_two_mul_66"
+        }
+    },
+    {
+        "name": "natAbs_two_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul (q : \u2124) : Int.natAbs ((2 : \u2124) * q) = 2 * Int.natAbs q := by\n  simp [Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> omega",
+        "custom_id": "natAbs_two_mul_67",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.04780244827270508,
+            "custom_id": "natAbs_two_mul_67"
+        }
+    },
+    {
+        "name": "natAbs_two_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul (q : \u2124) : Int.natAbs ((2 : \u2124) * q) = 2 * Int.natAbs q := by\n  simp [Int.natAbs_mul, mul_comm]\n  <;> omega",
+        "custom_id": "natAbs_two_mul_68",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07921409606933594,
+            "custom_id": "natAbs_two_mul_68"
+        }
+    },
+    {
+        "name": "natAbs_two_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul (q : \u2124) : Int.natAbs ((2 : \u2124) * q) = 2 * Int.natAbs q := by\n  simp [Int.natAbs_mul, Int.natAbs_ofNat]\n  -- Use the property of absolute value for multiplication and the fact that the absolute value of a natural number is itself.\n  <;> cases' le_total 0 q with hq hq <;> simp_all [abs_of_nonneg, abs_of_nonpos, mul_comm]\n  -- Consider the cases where q is non-negative or non-positive, and simplify the expression accordingly.\n  <;> omega",
+        "custom_id": "natAbs_two_mul_69",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 36
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 41
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 90
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.0829312801361084,
+            "custom_id": "natAbs_two_mul_69"
+        }
+    },
+    {
+        "name": "natAbs_two_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul (q : \u2124) : Int.natAbs ((2 : \u2124) * q) = 2 * Int.natAbs q := by\n  simp [Int.natAbs_mul, Int.ofNat_mul]\n  <;> cases' Int.emod_two_eq_zero_or_one q with h h <;> simp [h, Int.mul_emod, Int.add_emod]\n  <;> omega",
+        "custom_id": "natAbs_two_mul_70",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 51
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 56
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 92
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.055797576904296875,
+            "custom_id": "natAbs_two_mul_70"
+        }
+    },
+    {
+        "name": "natAbs_two_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul (q : \u2124) : Int.natAbs ((2 : \u2124) * q) = 2 * Int.natAbs q := by\n  simp [Int.natAbs_mul, Int.ofNat_mul]\n  -- Use the property of absolute value for multiplication and the fact that the absolute value of an integer is the same as the absolute value of its opposite.\n  <;> cases' le_total 0 q with h h <;> cases' le_total 0 (2 * q) with h\u2081 h\u2081 <;> simp_all [abs_of_nonneg, abs_of_nonpos, mul_comm]\n  -- Consider the cases where q is non-negative or non-positive, and similarly for 2q. Simplify the expressions using the properties of absolute value and multiplication.\n  <;> omega",
+        "custom_id": "natAbs_two_mul_71",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 34
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 39
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 75
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 80
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 129
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.05554628372192383,
+            "custom_id": "natAbs_two_mul_71"
+        }
+    },
+    {
+        "name": "natAbs_two_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul (q : \u2124) : Int.natAbs ((2 : \u2124) * q) = 2 * Int.natAbs q := by\n  simp [Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> omega",
+        "custom_id": "natAbs_two_mul_72",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.05271148681640625,
+            "custom_id": "natAbs_two_mul_72"
+        }
+    },
+    {
+        "name": "natAbs_two_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul (q : \u2124) : Int.natAbs ((2 : \u2124) * q) = 2 * Int.natAbs q := by\n  simp [Int.natAbs_mul, Int.natAbs_ofNat, mul_comm]\n  <;> cases' le_total 0 (2 * q) with h h <;> cases' le_total 0 q with h\u2081 h\u2081 <;>\n    simp_all [Int.natAbs_of_nonneg, Int.natAbs_of_nonpos, mul_comm, mul_assoc, mul_left_comm]\n  <;> omega",
+        "custom_id": "natAbs_two_mul_73",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 40
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 45
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 75
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 93
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.07769083976745605,
+            "custom_id": "natAbs_two_mul_73"
+        }
+    },
+    {
+        "name": "natAbs_two_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul (q : \u2124) : Int.natAbs ((2 : \u2124) * q) = 2 * Int.natAbs q := by\n  simp [Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> cases' le_total 0 (2 * q) with h h <;>\n    cases' le_total 0 q with h\u2081 h\u2081 <;>\n    simp_all [Int.natAbs_of_nonneg, Int.natAbs_of_nonpos, mul_comm] <;>\n    omega",
+        "custom_id": "natAbs_two_mul_74",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 40
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 34
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 67
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 9
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.08054637908935547,
+            "custom_id": "natAbs_two_mul_74"
+        }
+    },
+    {
+        "name": "natAbs_two_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul (q : \u2124) : Int.natAbs ((2 : \u2124) * q) = 2 * Int.natAbs q := by\n  cases' abs_cases q with h h <;>\n    cases' abs_cases (2 * q) with h\u2081 h\u2081 <;>\n    cases' abs_cases (q) with h\u2082 h\u2082 <;>\n    simp_all [Int.natAbs_mul, Int.natAbs_ofNat, Int.natAbs_neg] <;>\n    omega",
+        "custom_id": "natAbs_two_mul_75",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 9
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.924858570098877,
+            "custom_id": "natAbs_two_mul_75"
+        }
+    },
+    {
+        "name": "natAbs_two_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul (q : \u2124) : Int.natAbs ((2 : \u2124) * q) = 2 * Int.natAbs q := by\n  rw [Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> rfl",
+        "custom_id": "natAbs_two_mul_76",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 7,
+                        "column": 22
+                    },
+                    "endPos": {
+                        "line": 7,
+                        "column": 38
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  (\u2191?n).natAbs\nq : \u2124\n\u22a2 Int.natAbs 2 * q.natAbs = 2 * q.natAbs"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.012974739074707031,
+            "custom_id": "natAbs_two_mul_76"
+        }
+    },
+    {
+        "name": "natAbs_two_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul (q : \u2124) : Int.natAbs ((2 : \u2124) * q) = 2 * Int.natAbs q := by\n  simp [Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> omega",
+        "custom_id": "natAbs_two_mul_77",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.050955772399902344,
+            "custom_id": "natAbs_two_mul_77"
+        }
+    },
+    {
+        "name": "natAbs_two_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul (q : \u2124) : Int.natAbs ((2 : \u2124) * q) = 2 * Int.natAbs q := by\n  simp [Int.natAbs_mul, Int.ofNat_mul]\n  <;> rfl",
+        "custom_id": "natAbs_two_mul_78",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 9
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.049642086029052734,
+            "custom_id": "natAbs_two_mul_78"
+        }
+    },
+    {
+        "name": "natAbs_two_mul",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_two_mul (q : \u2124) : Int.natAbs ((2 : \u2124) * q) = 2 * Int.natAbs q := by\n  rw [Int.natAbs_mul]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]\n  <;> simp [Int.natAbs_ofNat]",
+        "custom_id": "natAbs_two_mul_79",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 9,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 9,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 17,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 18,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 19,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 20,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 21,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 22,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 23,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 24,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 24,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 25,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 26,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 27,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 27,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 28,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 28,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 29,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 29,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 30,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 30,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 31,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 31,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 32,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 32,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 33,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 33,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 34,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 34,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 35,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 35,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 36,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 36,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 37,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 37,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 38,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 38,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 39,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 39,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 40,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 40,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 41,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 41,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 42,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 42,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 43,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 43,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 44,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 44,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 45,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 45,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 46,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 46,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 47,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 47,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 48,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 48,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 49,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 49,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 50,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 50,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 51,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 51,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 52,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 52,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 53,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 53,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 54,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 54,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 55,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 55,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 56,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 56,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 57,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 57,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 58,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 58,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 59,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 59,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 60,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 60,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 61,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 61,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 62,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 62,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 63,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 63,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 64,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 64,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 65,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 65,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 66,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 66,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 67,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 67,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 68,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 68,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 69,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 69,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 70,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 70,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 71,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 71,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 72,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 72,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 73,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 73,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 74,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 74,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 75,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 75,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 76,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 76,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 77,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 77,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 78,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 78,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 79,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 79,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 80,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 80,
+                        "column": 29
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 8,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 8,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.20776629447937012,
+            "custom_id": "natAbs_two_mul_79"
+        }
+    },
+    {
+        "name": "natAbs_div_eq_natAbs_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_div_eq_natAbs_q (d : \u2115) (hd_pos : 0 < d) {z q : \u2124} (hz : z = (d : \u2124) * q) :\n  Int.natAbs z / d = Int.natAbs q := by\n  rw [hz]\n  simp [Int.natAbs_mul, Int.natAbs_ofNat, Int.natAbs_ofNat]\n  <;> induction q <;> simp_all [Nat.div_eq_of_lt]\n  <;> omega",
+        "custom_id": "natAbs_div_eq_natAbs_q_80",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.43158459663391113,
+            "custom_id": "natAbs_div_eq_natAbs_q_80"
+        }
+    },
+    {
+        "name": "natAbs_div_eq_natAbs_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_div_eq_natAbs_q (d : \u2115) (hd_pos : 0 < d) {z q : \u2124} (hz : z = (d : \u2124) * q) :\n  Int.natAbs z / d = Int.natAbs q := by\n  rw [hz]\n  simp [Int.natAbs_mul, Int.natAbs_ofNat, Int.ofNat_mul, Int.ofNat_succ, Int.emod_eq_of_lt]\n  <;> induction q <;> simp_all [mul_add, mul_one, mul_comm, mul_left_comm, mul_assoc, Nat.div_eq_of_lt]\n  <;> norm_cast\n  <;> omega",
+        "custom_id": "natAbs_div_eq_natAbs_q_81",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 15
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.5053913593292236,
+            "custom_id": "natAbs_div_eq_natAbs_q_81"
+        }
+    },
+    {
+        "name": "natAbs_div_eq_natAbs_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_div_eq_natAbs_q (d : \u2115) (hd_pos : 0 < d) {z q : \u2124} (hz : z = (d : \u2124) * q) :\n  Int.natAbs z / d = Int.natAbs q := by\n  rw [hz]\n  simp [Int.natAbs_mul, Int.natAbs_ofNat, mul_comm]\n  <;>\n  rw [Nat.div_eq_of_eq_mul_left] <;>\n  norm_cast <;>\n  linarith",
+        "custom_id": "natAbs_div_eq_natAbs_q_82",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 15
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.3479161262512207,
+            "custom_id": "natAbs_div_eq_natAbs_q_82"
+        }
+    },
+    {
+        "name": "natAbs_div_eq_natAbs_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_div_eq_natAbs_q (d : \u2115) (hd_pos : 0 < d) {z q : \u2124} (hz : z = (d : \u2124) * q) :\n  Int.natAbs z / d = Int.natAbs q := by\n  rw [hz]\n  simp [Int.natAbs_mul, Int.natAbs_ofNat, mul_comm]\n  <;> rw [Int.natAbs_mul]\n  <;> simp [Int.natAbs_ofNat, mul_comm]\n  <;> rw [Nat.div_eq_of_eq_mul_left] <;> simp [hd_pos.ne']\n  <;> ring_nf\n  <;> omega",
+        "custom_id": "natAbs_div_eq_natAbs_q_83",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 24
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  (?a * ?b).natAbs\nd : \u2115\nhd_pos : 0 < d\nz q : \u2124\nhz : z = \u2191d * q\n\u22a2 d * q.natAbs / d = q.natAbs"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 39
+                    },
+                    "data": "simp made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 41
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 58
+                    },
+                    "data": "simp made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 41
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 58
+                    },
+                    "data": "simp made no progress"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.2950763702392578,
+            "custom_id": "natAbs_div_eq_natAbs_q_83"
+        }
+    },
+    {
+        "name": "natAbs_div_eq_natAbs_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_div_eq_natAbs_q (d : \u2115) (hd_pos : 0 < d) {z q : \u2124} (hz : z = (d : \u2124) * q) :\n  Int.natAbs z / d = Int.natAbs q := by\n  rw [hz]\n  simp [Int.natAbs_mul, Int.natAbs_ofNat, mul_comm]\n  <;>\n  rw [Nat.div_eq_of_eq_mul_left] <;>\n  norm_cast <;>\n  linarith",
+        "custom_id": "natAbs_div_eq_natAbs_q_84",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 15
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.3579442501068115,
+            "custom_id": "natAbs_div_eq_natAbs_q_84"
+        }
+    },
+    {
+        "name": "natAbs_div_eq_natAbs_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_div_eq_natAbs_q (d : \u2115) (hd_pos : 0 < d) {z q : \u2124} (hz : z = (d : \u2124) * q) :\n  Int.natAbs z / d = Int.natAbs q := by\n  rw [hz]\n  simp [Int.natAbs_mul, Int.natAbs_ofNat, Int.natAbs_ofNat]\n  <;>\n  apply Nat.div_eq_of_eq_mul_left <;>\n  try simp_all [mul_comm, mul_assoc, mul_left_comm] <;>\n  omega",
+        "custom_id": "natAbs_div_eq_natAbs_q_85",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 7
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.1735682487487793,
+            "custom_id": "natAbs_div_eq_natAbs_q_85"
+        }
+    },
+    {
+        "name": "natAbs_div_eq_natAbs_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_div_eq_natAbs_q (d : \u2115) (hd_pos : 0 < d) {z q : \u2124} (hz : z = (d : \u2124) * q) :\n  Int.natAbs z / d = Int.natAbs q := by\n  have h\u2081 : z = d * q := by assumption\n  have h\u2082 : Int.natAbs z = Int.natAbs (d * q) := by rw [h\u2081]\n  rw [h\u2082]\n  simp_all [Int.natAbs_mul, Int.natAbs_ofNat]\n  <;> omega",
+        "custom_id": "natAbs_div_eq_natAbs_q_86",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.17041826248168945,
+            "custom_id": "natAbs_div_eq_natAbs_q_86"
+        }
+    },
+    {
+        "name": "natAbs_div_eq_natAbs_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_div_eq_natAbs_q (d : \u2115) (hd_pos : 0 < d) {z q : \u2124} (hz : z = (d : \u2124) * q) :\n  Int.natAbs z / d = Int.natAbs q := by\n  rw [hz]\n  simp [Int.natAbs_mul, Int.natAbs_ofNat, mul_comm]\n  <;>\n  rw [Int.natAbs_mul] <;>\n  simp [Int.natAbs_ofNat, mul_comm] <;>\n  rw [Nat.div_eq_of_eq_mul_left] <;>\n  try {linarith} <;>\n  simp_all [Int.natAbs_ofNat] <;>\n  ring_nf <;>\n  omega",
+        "custom_id": "natAbs_div_eq_natAbs_q_87",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 20
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  (?a * ?b).natAbs\nd : \u2115\nhd_pos : 0 < d\nz q : \u2124\nhz : z = \u2191d * q\n\u22a2 d * q.natAbs / d = q.natAbs"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 12,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 35
+                    },
+                    "data": "simp made no progress"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.4738798141479492,
+            "custom_id": "natAbs_div_eq_natAbs_q_87"
+        }
+    },
+    {
+        "name": "natAbs_div_eq_natAbs_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_div_eq_natAbs_q (d : \u2115) (hd_pos : 0 < d) {z q : \u2124} (hz : z = (d : \u2124) * q) :\n  Int.natAbs z / d = Int.natAbs q := by\n  rw [hz]\n  simp [Int.natAbs_mul, Int.natAbs_ofNat, Nat.div_eq_of_eq_mul_left hd_pos]\n  -- We use the fact that the absolute value of a product is the product of the absolute values.\n  -- Since d is positive, we can use the property of division and absolute values to simplify the expression.\n  <;> ring_nf\n  <;> norm_cast\n  <;> simp [hd_pos.ne', mul_comm]\n  -- We simplify the expression by casting it to natural numbers and using the properties of multiplication and division.\n  <;> omega",
+        "custom_id": "natAbs_div_eq_natAbs_q_88",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 16,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 13,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.276963472366333,
+            "custom_id": "natAbs_div_eq_natAbs_q_88"
+        }
+    },
+    {
+        "name": "natAbs_div_eq_natAbs_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_div_eq_natAbs_q (d : \u2115) (hd_pos : 0 < d) {z q : \u2124} (hz : z = (d : \u2124) * q) :\n  Int.natAbs z / d = Int.natAbs q := by\n  rw [hz]\n  simp [Int.natAbs_mul, Int.natAbs_ofNat, mul_comm]\n  <;> rw [Int.natAbs_mul]\n  <;> simp [hd_pos.ne', Int.natAbs_ofNat, mul_comm]\n  <;> rw [Nat.div_eq_of_eq_mul_left] <;> simp [hd_pos.ne', mul_comm]\n  <;> omega",
+        "custom_id": "natAbs_div_eq_natAbs_q_89",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 24
+                    },
+                    "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  (?a * ?b).natAbs\nd : \u2115\nhd_pos : 0 < d\nz q : \u2124\nhz : z = \u2191d * q\n\u22a2 d * q.natAbs / d = q.natAbs"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.23321795463562012,
+            "custom_id": "natAbs_div_eq_natAbs_q_89"
+        }
+    },
+    {
+        "name": "natAbs_div_eq_natAbs_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_div_eq_natAbs_q (d : \u2115) (hd_pos : 0 < d) {z q : \u2124} (hz : z = (d : \u2124) * q) :\n  Int.natAbs z / d = Int.natAbs q := by\n  rw [hz]\n  simp [Int.natAbs_mul, Int.natAbs_ofNat, mul_comm]\n  <;> cases' d with d\n  <;> simp_all [Nat.div_eq_of_lt]\n  <;> omega",
+        "custom_id": "natAbs_div_eq_natAbs_q_90",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.33141613006591797,
+            "custom_id": "natAbs_div_eq_natAbs_q_90"
+        }
+    },
+    {
+        "name": "natAbs_div_eq_natAbs_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_div_eq_natAbs_q (d : \u2115) (hd_pos : 0 < d) {z q : \u2124} (hz : z = (d : \u2124) * q) :\n  Int.natAbs z / d = Int.natAbs q := by\n  rw [hz]\n  simp [Int.natAbs_mul, Int.natAbs_ofNat]\n  <;>\n  rw [Nat.div_eq_of_eq_mul_left] <;>\n  norm_cast <;>\n  simp_all [mul_comm, mul_assoc, mul_left_comm]\n  <;>\n  omega",
+        "custom_id": "natAbs_div_eq_natAbs_q_91",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 15,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 7
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 12,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 12,
+                        "column": 15
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.17677807807922363,
+            "custom_id": "natAbs_div_eq_natAbs_q_91"
+        }
+    },
+    {
+        "name": "natAbs_div_eq_natAbs_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_div_eq_natAbs_q (d : \u2115) (hd_pos : 0 < d) {z q : \u2124} (hz : z = (d : \u2124) * q) :\n  Int.natAbs z / d = Int.natAbs q := by\n  rw [hz]\n  simp [Int.natAbs_mul, Int.natAbs_ofNat, Nat.div_eq_of_eq_mul_left hd_pos]\n  <;> simp_all [Int.natAbs_mul, Int.natAbs_ofNat, Nat.div_eq_of_eq_mul_left]\n  <;> omega",
+        "custom_id": "natAbs_div_eq_natAbs_q_92",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.24248266220092773,
+            "custom_id": "natAbs_div_eq_natAbs_q_92"
+        }
+    },
+    {
+        "name": "natAbs_div_eq_natAbs_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_div_eq_natAbs_q (d : \u2115) (hd_pos : 0 < d) {z q : \u2124} (hz : z = (d : \u2124) * q) :\n  Int.natAbs z / d = Int.natAbs q := by\n  rw [hz]\n  simp [Int.natAbs_mul, Int.natAbs_ofNat, Int.natAbs_ofNat]\n  <;> cases' d with d <;> simp_all [Nat.div_eq_of_lt]\n  <;> omega",
+        "custom_id": "natAbs_div_eq_natAbs_q_93",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 11,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.26457738876342773,
+            "custom_id": "natAbs_div_eq_natAbs_q_93"
+        }
+    },
+    {
+        "name": "natAbs_div_eq_natAbs_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_div_eq_natAbs_q (d : \u2115) (hd_pos : 0 < d) {z q : \u2124} (hz : z = (d : \u2124) * q) :\n  Int.natAbs z / d = Int.natAbs q := by\n  rw [hz]\n  simp [Int.natAbs_mul, Int.ofNat_mul, Int.natAbs_ofNat, mul_comm]\n  <;> cases' Int.natAbs_pos_iff.mpr (by aesop : (0 : \u2115) < d) with h <;> simp_all [Int.ediv_eq_zero_of_lt]\n  <;> norm_cast\n  <;> omega",
+        "custom_id": "natAbs_div_eq_natAbs_q_94",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 10,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 67
+                    },
+                    "data": "tactic 'induction' failed, major premise type is not an inductive type \n  ?m.9172\nd : \u2115\nhd_pos : 0 < d\nz q : \u2124\nhz : z = \u2191d * q\nx\u271d : ?m.9172\n\u22a2 d * q.natAbs / d = q.natAbs"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.2603754997253418,
+            "custom_id": "natAbs_div_eq_natAbs_q_94"
+        }
+    },
+    {
+        "name": "natAbs_div_eq_natAbs_q",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem natAbs_div_eq_natAbs_q (d : \u2115) (hd_pos : 0 < d) {z q : \u2124} (hz : z = (d : \u2124) * q) :\n  Int.natAbs z / d = Int.natAbs q := by\n  rw [hz]\n  simp [Int.natAbs_mul, Int.natAbs_ofNat, Int.emod_eq_of_lt]\n  <;>\n  cases' d with d <;>\n  simp_all [Nat.div_eq_of_lt]\n  <;>\n  omega",
+        "custom_id": "natAbs_div_eq_natAbs_q_95",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 14,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 7
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 10,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 10,
+                        "column": 5
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 0.2758915424346924,
+            "custom_id": "natAbs_div_eq_natAbs_q_95"
+        }
+    }
+]

@@ -1,0 +1,1449 @@
+[
+    {
+        "name": "D_succ_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem D_succ_eq (t : \u2115 \u2192 \u2115) (K : \u2115) :\n  (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card +\n      (if t (K + 1) < t K then 1 else 0) := by\n  split_ifs with h\n  all_goals\n    -- We need to show that the cardinality of the filtered set for K+1 is equal to the cardinality of the filtered set for K plus 1 if t (K + 1) < t K, and 0 otherwise.\n    cases' K with K\n    all_goals simp_all [Finset.filter_insert, Finset.mem_range, Nat.lt_succ_iff]\n    all_goals\n      try decide\n      try\n        {\n          have h\u2081 := h\n          simp_all [Finset.filter_insert, Finset.mem_range, Nat.lt_succ_iff]\n          <;> omega\n        }\n  <;> omega",
+        "custom_id": "D_succ_eq_0",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a - b \u2265 1\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(t 0)\n b := \u2191(t 1)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 1\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(t (K + 1))\n b := \u2191(t (K + 1 + 1))\n c := \u2191(Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card\n d := \u2191(Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a - b \u2265 0\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(t 1)\n b := \u2191(t 0)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191(t (K + 1 + 1))\n b := \u2191(t (K + 1))\n c := \u2191(Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card\n d := \u2191(Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 44
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase pos.zero\nt : \u2115 \u2192 \u2115\nh : t 1 < t 0\n\u22a2 (Finset.filter (fun i => i = 0 \u2227 t (i + 1) < t i) {0}).card = 1\n\ncase pos.succ\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t (K + 1 + 1) < t (K + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card =\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card + 1\n\ncase neg.zero\nt : \u2115 \u2192 \u2115\nh : t 0 \u2264 t 1\n\u22a2 Finset.filter (fun i => i = 0 \u2227 t (i + 1) < t i) {0} = \u2205\n\ncase neg.succ\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t (K + 1) \u2264 t (K + 1 + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card =\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.7596604824066162,
+            "custom_id": "D_succ_eq_0"
+        }
+    },
+    {
+        "name": "D_succ_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem D_succ_eq (t : \u2115 \u2192 \u2115) (K : \u2115) :\n  (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card +\n      (if t (K + 1) < t K then 1 else 0) := by\n  split_ifs with h\n  all_goals\n    -- We consider two cases based on the value of the condition `t (K + 1) < t K`\n    cases' K with K\n    <;> simp_all [Finset.filter_insert, Finset.filter_range, Nat.lt_succ_iff]\n    <;> try decide\n    <;> try (simp_all [Finset.filter_insert, Finset.filter_range, Nat.lt_succ_iff])\n    <;> try decide\n    <;> try (simp_all [Finset.filter_insert, Finset.filter_range, Nat.lt_succ_iff])\n    <;> try decide\n    <;> try (simp_all [Finset.filter_insert, Finset.filter_range, Nat.lt_succ_iff])\n    <;> try decide\n  <;> omega",
+        "custom_id": "D_succ_eq_1",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 40
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 59
+                    },
+                    "data": "unknown constant 'Finset.filter_range'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 40
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 59
+                    },
+                    "data": "unknown constant 'Finset.filter_range'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 40
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 59
+                    },
+                    "data": "unknown constant 'Finset.filter_range'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 40
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 59
+                    },
+                    "data": "unknown constant 'Finset.filter_range'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 44
+                    },
+                    "endPos": {
+                        "line": 22,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase pos.zero\nt : \u2115 \u2192 \u2115\nh : t 1 < t 0\n\u22a2 (Finset.filter (fun i => i = 0 \u2227 t (i + 1) < t i) {0}).card = 1\n\ncase pos.succ\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t (K + 1 + 1) < t (K + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card =\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card + 1\n\ncase neg.zero\nt : \u2115 \u2192 \u2115\nh : t 0 \u2264 t 1\n\u22a2 Finset.filter (fun i => i = 0 \u2227 t (i + 1) < t i) {0} = \u2205\n\ncase neg.succ\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t (K + 1) \u2264 t (K + 1 + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card =\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.4812648296356201,
+            "custom_id": "D_succ_eq_1"
+        }
+    },
+    {
+        "name": "D_succ_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem D_succ_eq (t : \u2115 \u2192 \u2115) (K : \u2115) :\n  (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card +\n      (if t (K + 1) < t K then 1 else 0) := by\n  split_ifs with h\n  all_goals\n    -- We need to show that the cardinality of the filtered set is as specified.\n    -- This involves simplifying the conditions and using the given hypothesis.\n    simp_all [Finset.filter_insert, Finset.mem_range, Nat.lt_succ_iff]\n    <;>\n    (try decide) <;>\n    (try omega) <;>\n    (try\n      {\n        -- Use a case analysis on the value of t(K+1) < t(K)\n        cases' lt_or_le (t (K + 1)) (t K) with h' h' <;>\n        simp_all [Finset.filter_insert, Finset.mem_range, Nat.lt_succ_iff] <;>\n        (try decide) <;>\n        (try omega) <;>\n        (try\n          {\n            -- Use a case analysis on the value of t(K+1) < t(K)\n            cases' lt_or_le (t K) (t (K + 1)) with h'' h'' <;>\n            simp_all [Finset.filter_insert, Finset.mem_range, Nat.lt_succ_iff] <;>\n            (try decide) <;>\n            (try omega)\n          })\n      })\n    <;>\n    (try\n      {\n        -- Use a case analysis on the value of t(K+1) < t(K)\n        cases' lt_or_le (t (K + 1)) (t K) with h' h' <;>\n        simp_all [Finset.filter_insert, Finset.mem_range, Nat.lt_succ_iff] <;>\n        (try decide) <;>\n        (try omega)\n      })\n  <;>\n  (try\n    {\n      -- Use a case analysis on the value of t(K+1) < t(K)\n      cases' lt_or_le (t (K + 1)) (t K) with h' h' <;>\n      simp_all [Finset.filter_insert, Finset.mem_range, Nat.lt_succ_iff] <;>\n      (try decide) <;>\n      (try omega)\n    })",
+        "custom_id": "D_succ_eq_2",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 44
+                    },
+                    "endPos": {
+                        "line": 51,
+                        "column": 6
+                    },
+                    "data": "unsolved goals\ncase pos\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t (K + 1) < t K\n\u22a2 (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card + 1\n\ncase neg\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t K \u2264 t (K + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.7073876857757568,
+            "custom_id": "D_succ_eq_2"
+        }
+    },
+    {
+        "name": "D_succ_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem D_succ_eq (t : \u2115 \u2192 \u2115) (K : \u2115) :\n  (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card +\n      (if t (K + 1) < t K then 1 else 0) := by\n  split_ifs with h\n  <;> simp_all [Finset.filter_range, Nat.lt_succ_iff, Nat.lt_succ_iff]\n  <;> induction K with\n  | zero =>\n    -- Base case: K = 0\n    simp_all [Finset.filter_range, Nat.lt_succ_iff, Nat.lt_succ_iff]\n  | succ K ih =>\n    -- Inductive step: use the induction hypothesis and simplify\n    simp_all [Finset.filter_range, Nat.lt_succ_iff, Nat.lt_succ_iff]\n    <;> split_ifs <;> simp_all [Finset.filter_range, Nat.lt_succ_iff, Nat.lt_succ_iff]\n    <;> omega",
+        "custom_id": "D_succ_eq_3",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 16
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 35
+                    },
+                    "data": "unknown constant 'Finset.filter_range'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 16
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 35
+                    },
+                    "data": "unknown constant 'Finset.filter_range'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 33
+                    },
+                    "data": "unknown constant 'Finset.filter_range'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 68
+                    },
+                    "data": "unsolved goals\ncase pos.zero\nt : \u2115 \u2192 \u2115\nh : t 1 < t 0\n\u22a2 (Finset.filter (fun i => i = 0 \u2227 t (i + 1) < t i) {0}).card = 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 33
+                    },
+                    "data": "unknown constant 'Finset.filter_range'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 17
+                    },
+                    "data": "tactic 'split_ifs' failed, no if-then-else conditions to split\ncase pos.succ\nt : \u2115 \u2192 \u2115\nK : \u2115\nih :\n  t (K + 1) < t K \u2192\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card + 1\nh : t (K + 1 + 1) < t (K + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card =\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card + 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 22
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 86
+                    },
+                    "data": "simp_all made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  e \u2265 0\n  a - b \u2265 1\n  d \u2265 0\n  a - e \u2265 0\n  b \u2265 0\n  c - d \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(t (K + 1))\n b := \u2191(t (K + 1 + 1))\n c := \u2191(Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card\n d := \u2191(Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card\n e := \u2191(t K)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\ncase pos.succ\nt : \u2115 \u2192 \u2115\nK : \u2115\nih :\n  t (K + 1) < t K \u2192\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card + 1\nh : t (K + 1 + 1) < t (K + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card =\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card + 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 33
+                    },
+                    "data": "unknown constant 'Finset.filter_range'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 9
+                    },
+                    "endPos": {
+                        "line": 15,
+                        "column": 68
+                    },
+                    "data": "unsolved goals\ncase neg.zero\nt : \u2115 \u2192 \u2115\nh : t 0 \u2264 t 1\n\u22a2 Finset.filter (fun i => i = 0 \u2227 t (i + 1) < t i) {0} = \u2205"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 33
+                    },
+                    "data": "unknown constant 'Finset.filter_range'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 17
+                    },
+                    "data": "tactic 'split_ifs' failed, no if-then-else conditions to split\ncase neg.succ\nt : \u2115 \u2192 \u2115\nK : \u2115\nih :\n  t K \u2264 t (K + 1) \u2192\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card\nh : t (K + 1) \u2264 t (K + 1 + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card =\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 22
+                    },
+                    "endPos": {
+                        "line": 19,
+                        "column": 86
+                    },
+                    "data": "simp_all made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 13
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  e \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b - e \u2264 -1\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191(t (K + 1 + 1))\n b := \u2191(t (K + 1))\n c := \u2191(Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card\n d := \u2191(Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card\n e := \u2191(t K)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 13
+                    },
+                    "data": "unsolved goals\ncase neg.succ\nt : \u2115 \u2192 \u2115\nK : \u2115\nih :\n  t K \u2264 t (K + 1) \u2192\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card\nh : t (K + 1) \u2264 t (K + 1 + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card =\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.9676365852355957,
+            "custom_id": "D_succ_eq_3"
+        }
+    },
+    {
+        "name": "D_succ_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem D_succ_eq (t : \u2115 \u2192 \u2115) (K : \u2115) :\n  (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card +\n      (if t (K + 1) < t K then 1 else 0) := by\n  split_ifs with h\n  all_goals\n    cases K with\n    | zero =>\n      simp_all [Finset.filter_eq']\n    | succ K' =>\n      simp_all [Finset.filter_eq', Finset.range_succ, Nat.lt_succ_iff]\n      <;>\n      omega",
+        "custom_id": "D_succ_eq_4",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 34
+                    },
+                    "data": "unsolved goals\ncase pos.zero\nt : \u2115 \u2192 \u2115\nh : t 1 < t 0\n\u22a2 (Finset.filter (fun i => i = 0 \u2227 t (i + 1) < t i) {0}).card = 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 1\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(t (K' + 1))\n b := \u2191(t (K' + 1 + 1))\n c := \u2191(Finset.filter (fun i => i \u2264 K' \u2227 t (i + 1) < t i) (insert K' (Finset.range K'))).card\n d := \u2191(Finset.filter (fun i => i \u2264 K' + 1 \u2227 t (i + 1) < t i) (insert (K' + 1) (insert K' (Finset.range K')))).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase pos.succ\nt : \u2115 \u2192 \u2115\nK' : \u2115\nh : t (K' + 1 + 1) < t (K' + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K' + 1 \u2227 t (i + 1) < t i) (insert (K' + 1) (insert K' (Finset.range K')))).card =\n    (Finset.filter (fun i => i \u2264 K' \u2227 t (i + 1) < t i) (insert K' (Finset.range K'))).card + 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 34
+                    },
+                    "data": "unsolved goals\ncase neg.zero\nt : \u2115 \u2192 \u2115\nh : t 0 \u2264 t 1\n\u22a2 Finset.filter (fun i => i = 0 \u2227 t (i + 1) < t i) {0} = \u2205"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191(t (K' + 1 + 1))\n b := \u2191(t (K' + 1))\n c := \u2191(Finset.filter (fun i => i \u2264 K' \u2227 t (i + 1) < t i) (insert K' (Finset.range K'))).card\n d := \u2191(Finset.filter (fun i => i \u2264 K' + 1 \u2227 t (i + 1) < t i) (insert (K' + 1) (insert K' (Finset.range K')))).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase neg.succ\nt : \u2115 \u2192 \u2115\nK' : \u2115\nh : t (K' + 1) \u2264 t (K' + 1 + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K' + 1 \u2227 t (i + 1) < t i) (insert (K' + 1) (insert K' (Finset.range K')))).card =\n    (Finset.filter (fun i => i \u2264 K' \u2227 t (i + 1) < t i) (insert K' (Finset.range K'))).card"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6495199203491211,
+            "custom_id": "D_succ_eq_4"
+        }
+    },
+    {
+        "name": "D_succ_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem D_succ_eq (t : \u2115 \u2192 \u2115) (K : \u2115) :\n  (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card +\n      (if t (K + 1) < t K then 1 else 0) := by\n  split_ifs with h\n  all_goals\n    have h\u2081 : (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card + 1 := by\n      have h\u2082 : (Finset.range (K + 1)) = Finset.range K \u222a {K} := by\n        ext x\n        simp [Nat.lt_succ_iff]\n        <;> omega\n      rw [h\u2082]\n      simp [Finset.filter_union, Finset.filter_singleton, h]\n      <;> aesop\n    simp_all",
+        "custom_id": "D_succ_eq_5",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 15
+                    },
+                    "data": "tactic 'aesop' failed, made no progress\nInitial goal:\n  t : \u2115 \u2192 \u2115\n  K : \u2115\n  h : t (K + 1) < t K\n  h\u2082 : Finset.range (K + 1) = Finset.range K \u222a {K}\n  \u22a2 (Finset.filter (fun i => i < K + 1 \u2227 t (i + 1) < t i) (Finset.range K)).card =\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 86
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 15
+                    },
+                    "data": "unsolved goals\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t (K + 1) < t K\nh\u2082 : Finset.range (K + 1) = Finset.range K \u222a {K}\n\u22a2 (Finset.filter (fun i => i < K + 1 \u2227 t (i + 1) < t i) (Finset.range K)).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 86
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 15
+                    },
+                    "data": "unsolved goals\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t K \u2264 t (K + 1)\nh\u2082 : Finset.range (K + 1) = Finset.range K \u222a {K}\n\u22a2 (Finset.filter (fun i => i < K + 1 \u2227 t (i + 1) < t i) (Finset.range K)).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card + 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 44
+                    },
+                    "endPos": {
+                        "line": 21,
+                        "column": 12
+                    },
+                    "data": "unsolved goals\ncase neg\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t K \u2264 t (K + 1)\nh\u2081 :\n  (Finset.filter (fun i => i < K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card + 1\n\u22a2 False"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 20,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 20,
+                        "column": 15
+                    },
+                    "data": "aesop: failed to prove the goal after exhaustive search."
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.834836483001709,
+            "custom_id": "D_succ_eq_5"
+        }
+    },
+    {
+        "name": "D_succ_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem D_succ_eq (t : \u2115 \u2192 \u2115) (K : \u2115) :\n  (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card +\n      (if t (K + 1) < t K then 1 else 0) := by\n  split_ifs with h <;>\n  simp_all [Finset.filter_insert, Finset.mem_range, Nat.lt_succ_iff, Nat.succ_le_iff,\n    Nat.lt_succ_iff]\n  <;>\n  induction K <;>\n  simp_all [Finset.filter_insert, Finset.mem_range, Nat.lt_succ_iff, Nat.succ_le_iff,\n    Nat.lt_succ_iff]\n  <;>\n  omega",
+        "custom_id": "D_succ_eq_6",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a - b \u2265 1\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(t 0)\n b := \u2191(t 1)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  e \u2265 0\n  a - b \u2265 1\n  d \u2265 0\n  a - e \u2265 0\n  b \u2265 0\n  c - d \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(t (n\u271d + 1))\n b := \u2191(t (n\u271d + 1 + 1))\n c := \u2191(Finset.filter (fun i => i \u2264 n\u271d \u2227 t (i + 1) < t i) (Finset.range (n\u271d + 1))).card\n d := \u2191(Finset.filter (fun i => i \u2264 n\u271d + 1 \u2227 t (i + 1) < t i) (Finset.range (n\u271d + 1 + 1))).card\n e := \u2191(t n\u271d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a - b \u2265 0\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(t 1)\n b := \u2191(t 0)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 2
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 7
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  e \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b - e \u2264 -1\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191(t (n\u271d + 1 + 1))\n b := \u2191(t (n\u271d + 1))\n c := \u2191(Finset.filter (fun i => i \u2264 n\u271d \u2227 t (i + 1) < t i) (Finset.range (n\u271d + 1))).card\n d := \u2191(Finset.filter (fun i => i \u2264 n\u271d + 1 \u2227 t (i + 1) < t i) (Finset.range (n\u271d + 1 + 1))).card\n e := \u2191(t n\u271d)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 44
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 7
+                    },
+                    "data": "unsolved goals\ncase pos.zero\nt : \u2115 \u2192 \u2115\nh : t 1 < t 0\n\u22a2 (Finset.filter (fun i => i = 0 \u2227 t (i + 1) < t i) {0}).card = 1\n\ncase pos.succ\nt : \u2115 \u2192 \u2115\nn\u271d : \u2115\na\u271d :\n  t (n\u271d + 1) < t n\u271d \u2192\n    (Finset.filter (fun i => i \u2264 n\u271d \u2227 t (i + 1) < t i) (Finset.range (n\u271d + 1))).card =\n      (Finset.filter (fun i => i < n\u271d \u2227 t (i + 1) < t i) (Finset.range n\u271d)).card + 1\nh : t (n\u271d + 1 + 1) < t (n\u271d + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 n\u271d + 1 \u2227 t (i + 1) < t i) (Finset.range (n\u271d + 1 + 1))).card =\n    (Finset.filter (fun i => i \u2264 n\u271d \u2227 t (i + 1) < t i) (Finset.range (n\u271d + 1))).card + 1\n\ncase neg.zero\nt : \u2115 \u2192 \u2115\nh : t 0 \u2264 t 1\n\u22a2 Finset.filter (fun i => i = 0 \u2227 t (i + 1) < t i) {0} = \u2205\n\ncase neg.succ\nt : \u2115 \u2192 \u2115\nn\u271d : \u2115\na\u271d :\n  t n\u271d \u2264 t (n\u271d + 1) \u2192\n    (Finset.filter (fun i => i \u2264 n\u271d \u2227 t (i + 1) < t i) (Finset.range (n\u271d + 1))).card =\n      (Finset.filter (fun i => i < n\u271d \u2227 t (i + 1) < t i) (Finset.range n\u271d)).card\nh : t (n\u271d + 1) \u2264 t (n\u271d + 1 + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 n\u271d + 1 \u2227 t (i + 1) < t i) (Finset.range (n\u271d + 1 + 1))).card =\n    (Finset.filter (fun i => i \u2264 n\u271d \u2227 t (i + 1) < t i) (Finset.range (n\u271d + 1))).card"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.7827053070068359,
+            "custom_id": "D_succ_eq_6"
+        }
+    },
+    {
+        "name": "D_succ_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem D_succ_eq (t : \u2115 \u2192 \u2115) (K : \u2115) :\n  (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card +\n      (if t (K + 1) < t K then 1 else 0) := by\n  split_ifs with h\n  all_goals\n    cases K with\n    | zero => simp_all\n    | succ K =>\n      simp_all [Finset.filter_insert, Finset.mem_range, Nat.lt_succ_iff]\n      <;> split_ifs <;> simp_all [Finset.filter_insert, Finset.mem_range, Nat.lt_succ_iff]\n      <;> norm_num <;> omega",
+        "custom_id": "D_succ_eq_7",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 22
+                    },
+                    "data": "unsolved goals\ncase pos.zero\nt : \u2115 \u2192 \u2115\nh : t 1 < t 0\n\u22a2 (Finset.filter (fun i => i = 0 \u2227 t (i + 1) < t i) {0}).card = 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 19
+                    },
+                    "data": "tactic 'split_ifs' failed, no if-then-else conditions to split\ncase pos.succ\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t (K + 1 + 1) < t (K + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card =\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card + 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 24
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 90
+                    },
+                    "data": "simp_all made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 23
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 28
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 1\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(t (K + 1))\n b := \u2191(t (K + 1 + 1))\n c := \u2191(Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card\n d := \u2191(Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 13
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 28
+                    },
+                    "data": "unsolved goals\ncase pos.succ\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t (K + 1 + 1) < t (K + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card =\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card + 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 22
+                    },
+                    "data": "unsolved goals\ncase neg.zero\nt : \u2115 \u2192 \u2115\nh : t 0 \u2264 t 1\n\u22a2 Finset.filter (fun i => i = 0 \u2227 t (i + 1) < t i) {0} = \u2205"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 19
+                    },
+                    "data": "tactic 'split_ifs' failed, no if-then-else conditions to split\ncase neg.succ\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t (K + 1) \u2264 t (K + 1 + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card =\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 24
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 90
+                    },
+                    "data": "simp_all made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 23
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 28
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191(t (K + 1 + 1))\n b := \u2191(t (K + 1))\n c := \u2191(Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card\n d := \u2191(Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 14,
+                        "column": 13
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 28
+                    },
+                    "data": "unsolved goals\ncase neg.succ\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t (K + 1) \u2264 t (K + 1 + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card =\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.6124961376190186,
+            "custom_id": "D_succ_eq_7"
+        }
+    },
+    {
+        "name": "D_succ_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem D_succ_eq (t : \u2115 \u2192 \u2115) (K : \u2115) :\n  (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card +\n      (if t (K + 1) < t K then 1 else 0) := by\n  split_ifs with h\n  all_goals\n    cases K with\n    | zero =>\n      simp_all [Finset.filter_eq']\n    | succ K =>\n      simp_all [Finset.filter_eq', Finset.range_succ, Nat.lt_succ_iff]\n      <;> split_ifs <;> simp_all [Finset.card_range, Nat.lt_succ_iff]\n      <;> omega",
+        "custom_id": "D_succ_eq_8",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 34
+                    },
+                    "data": "unsolved goals\ncase pos.zero\nt : \u2115 \u2192 \u2115\nh : t 1 < t 0\n\u22a2 (Finset.filter (fun i => i = 0 \u2227 t (i + 1) < t i) {0}).card = 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 19
+                    },
+                    "data": "tactic 'split_ifs' failed, no if-then-else conditions to split\ncase pos.succ\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t (K + 1 + 1) < t (K + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (insert (K + 1) (insert K (Finset.range K)))).card =\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (insert K (Finset.range K))).card + 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 24
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 69
+                    },
+                    "data": "simp_all made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 1\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(t (K + 1))\n b := \u2191(t (K + 1 + 1))\n c := \u2191(Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (insert K (Finset.range K))).card\n d := \u2191(Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (insert (K + 1) (insert K (Finset.range K)))).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 13
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 15
+                    },
+                    "data": "unsolved goals\ncase pos.succ\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t (K + 1 + 1) < t (K + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (insert (K + 1) (insert K (Finset.range K)))).card =\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (insert K (Finset.range K))).card + 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "endPos": {
+                        "line": 14,
+                        "column": 34
+                    },
+                    "data": "unsolved goals\ncase neg.zero\nt : \u2115 \u2192 \u2115\nh : t 0 \u2264 t 1\n\u22a2 Finset.filter (fun i => i = 0 \u2227 t (i + 1) < t i) {0} = \u2205"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 19
+                    },
+                    "data": "tactic 'split_ifs' failed, no if-then-else conditions to split\ncase neg.succ\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t (K + 1) \u2264 t (K + 1 + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (insert (K + 1) (insert K (Finset.range K)))).card =\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (insert K (Finset.range K))).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 24
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 69
+                    },
+                    "data": "simp_all made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191(t (K + 1 + 1))\n b := \u2191(t (K + 1))\n c := \u2191(Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (insert K (Finset.range K))).card\n d := \u2191(Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (insert (K + 1) (insert K (Finset.range K)))).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 15,
+                        "column": 13
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 15
+                    },
+                    "data": "unsolved goals\ncase neg.succ\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t (K + 1) \u2264 t (K + 1 + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (insert (K + 1) (insert K (Finset.range K)))).card =\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (insert K (Finset.range K))).card"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.7605011463165283,
+            "custom_id": "D_succ_eq_8"
+        }
+    },
+    {
+        "name": "D_succ_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem D_succ_eq (t : \u2115 \u2192 \u2115) (K : \u2115) :\n  (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card +\n      (if t (K + 1) < t K then 1 else 0) := by\n  split_ifs with h\n  case pos =>\n    -- Case: t (K + 1) < t K\n    -- We need to show that the number of inversions involving K + 1 is 1\n    have h\u2081 : (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card + 1 := by\n      -- We need to show that the number of inversions involving K + 1 is 1\n      have h\u2082 : (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n        (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card + 1 := by\n        -- We need to show that the number of inversions involving K + 1 is 1\n        rw [Finset.card_filter]\n        rw [Finset.card_filter]\n        simp [Finset.sum_range_succ, Nat.lt_succ_iff, Nat.lt_succ_iff]\n        <;> aesop\n      exact h\u2082\n    simp_all\n  case neg =>\n    -- Case: t (K + 1) \u2265 t K\n    -- We need to show that the number of inversions involving K + 1 is 0\n    have h\u2081 : (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card := by\n      -- We need to show that the number of inversions involving K + 1 is 0\n      have h\u2082 : (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n        (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card := by\n        -- We need to show that the number of inversions involving K + 1 is 0\n        rw [Finset.card_filter]\n        rw [Finset.card_filter]\n        simp [Finset.sum_range_succ, Nat.lt_succ_iff, Nat.lt_succ_iff]\n        <;> aesop\n      exact h\u2082\n    simp_all",
+        "custom_id": "D_succ_eq_9",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 23,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 17
+                    },
+                    "data": "tactic 'aesop' failed, made no progress\nInitial goal:\n  t : \u2115 \u2192 \u2115\n  K : \u2115\n  h : t (K + 1) < t K\n  \u22a2 (Finset.filter (fun x => x \u2264 K \u2227 t (x + 1) < t x) (Finset.range (K + 1))).card =\n      (Finset.filter (fun x => x < K \u2227 t (x + 1) < t x) (Finset.range K)).card + 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 88
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 17
+                    },
+                    "data": "unsolved goals\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t (K + 1) < t K\n\u22a2 (Finset.filter (fun x => x \u2264 K \u2227 t (x + 1) < t x) (Finset.range (K + 1))).card =\n    (Finset.filter (fun x => x < K \u2227 t (x + 1) < t x) (Finset.range K)).card + 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 33,
+                        "column": 84
+                    },
+                    "endPos": {
+                        "line": 38,
+                        "column": 17
+                    },
+                    "data": "unsolved goals\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t K \u2264 t (K + 1)\n\u22a2 (Finset.filter (fun x => x \u2264 K \u2227 t (x + 1) < t x) (Finset.range (K + 1))).card =\n    (Finset.filter (fun x => x < K \u2227 t (x + 1) < t x) (Finset.range K)).card"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 38,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 38,
+                        "column": 17
+                    },
+                    "data": "aesop: failed to prove the goal after exhaustive search."
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.5679771900177002,
+            "custom_id": "D_succ_eq_9"
+        }
+    },
+    {
+        "name": "D_succ_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem D_succ_eq (t : \u2115 \u2192 \u2115) (K : \u2115) :\n  (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card +\n      (if t (K + 1) < t K then 1 else 0) := by\n  split_ifs with h\n  all_goals\n    -- We handle the two cases based on the condition `t (K + 1) < t K`\n    cases' K with K\n    all_goals simp_all [Finset.sum_range_succ', Nat.lt_succ_iff]\n    all_goals\n      -- We simplify the expressions and use the given condition to update the count\n      try decide\n      try {\n        induction K with\n        | zero => simp_all [Finset.sum_range_succ', Nat.lt_succ_iff]\n        | succ K ih =>\n          simp_all [Finset.sum_range_succ', Nat.lt_succ_iff]\n          <;> omega\n      }\n      <;> omega",
+        "custom_id": "D_succ_eq_10",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 25,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a - b \u2265 1\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(t 0)\n b := \u2191(t 1)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 25,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 1\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(t (K + 1))\n b := \u2191(t (K + 1 + 1))\n c := \u2191(Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card\n d := \u2191(Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 25,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a - b \u2265 0\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(t 1)\n b := \u2191(t 0)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 25,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191(t (K + 1 + 1))\n b := \u2191(t (K + 1))\n c := \u2191(Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card\n d := \u2191(Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 44
+                    },
+                    "endPos": {
+                        "line": 25,
+                        "column": 15
+                    },
+                    "data": "unsolved goals\ncase pos.zero\nt : \u2115 \u2192 \u2115\nh : t 1 < t 0\n\u22a2 (Finset.filter (fun i => i = 0 \u2227 t (i + 1) < t i) {0}).card = 1\n\ncase pos.succ\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t (K + 1 + 1) < t (K + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card =\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card + 1\n\ncase neg.zero\nt : \u2115 \u2192 \u2115\nh : t 0 \u2264 t 1\n\u22a2 Finset.filter (fun i => i = 0 \u2227 t (i + 1) < t i) {0} = \u2205\n\ncase neg.succ\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t (K + 1) \u2264 t (K + 1 + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K + 1 \u2227 t (i + 1) < t i) (Finset.range (K + 1 + 1))).card =\n    (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.7276906967163086,
+            "custom_id": "D_succ_eq_10"
+        }
+    },
+    {
+        "name": "D_succ_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem D_succ_eq (t : \u2115 \u2192 \u2115) (K : \u2115) :\n  (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card +\n      (if t (K + 1) < t K then 1 else 0) := by\n  split_ifs with h\n  case pos =>\n    -- Case: t (K + 1) < t K\n    have : (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card + 1 := by\n      -- We need to show that the number of elements in the first set is the number in the second set plus one\n      have h\u2081 : (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n        (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card + 1 := by\n        -- We consider the cases for the elements in the first set\n        have h\u2082 : Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1)) =\n          Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K) \u222a {K} := by\n          ext x\n          simp [Nat.lt_succ_iff]\n          <;>\n            by_cases hx : x < K <;>\n            by_cases hx' : t (x + 1) < t x <;>\n            simp_all [Finset.mem_filter, Finset.mem_range, Nat.lt_succ_iff] <;>\n            omega\n        rw [h\u2082]\n        simp [Finset.card_union_eq]\n        <;>\n          aesop\n      exact h\u2081\n    exact this\n  case neg =>\n    -- Case: t (K + 1) \u2265 t K\n    have : (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card := by\n      -- We need to show that the number of elements in the first set is the number in the second set\n      have h\u2081 : Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1)) =\n        Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K) := by\n        ext x\n        simp [Nat.lt_succ_iff]\n        <;>\n          by_cases hx : x < K <;>\n          by_cases hx' : t (x + 1) < t x <;>\n          simp_all [Finset.mem_filter, Finset.mem_range, Nat.lt_succ_iff] <;>\n          omega\n      rw [h\u2081]\n    exact this",
+        "custom_id": "D_succ_eq_11",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 27,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 27,
+                        "column": 17
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  d - e \u2265 0\n  e \u2265 0\n  d \u2265 0\n  c \u2265 0\n  a - b \u2265 1\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(t K)\n b := \u2191(t (K + 1))\n c := \u2191K\n d := \u2191(t (x + 1))\n e := \u2191(t x)"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 20,
+                        "column": 85
+                    },
+                    "endPos": {
+                        "line": 27,
+                        "column": 17
+                    },
+                    "data": "unsolved goals\ncase neg\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t (K + 1) < t K\nx : \u2115\nhx : K \u2264 x\nhx' : t x \u2264 t (x + 1)\n\u22a2 x \u2264 K \u2227 t (x + 1) < t x \u2194 x < K \u2227 t (x + 1) < t x \u2228 x = K"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 47,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 47,
+                        "column": 15
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  d - e \u2265 1\n  e \u2265 0\n  d \u2265 0\n  c \u2265 0\n  a - b \u2265 0\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(t (K + 1))\n b := \u2191(t K)\n c := \u2191K\n d := \u2191(t x)\n e := \u2191(t (x + 1))"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 40,
+                        "column": 77
+                    },
+                    "endPos": {
+                        "line": 47,
+                        "column": 15
+                    },
+                    "data": "unsolved goals\ncase pos\nt : \u2115 \u2192 \u2115\nK x : \u2115\nh : t K \u2264 t (K + 1)\nhx : K \u2264 x\nhx' : t (x + 1) < t x\n\u22a2 x \u2264 K \u2194 x < K"
+                }
+            ],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 29,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 29,
+                        "column": 35
+                    },
+                    "data": "`Finset.card_union_eq` has been deprecated, use `Finset.card_union_of_disjoint` instead"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.8048572540283203,
+            "custom_id": "D_succ_eq_11"
+        }
+    },
+    {
+        "name": "D_succ_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem D_succ_eq (t : \u2115 \u2192 \u2115) (K : \u2115) :\n  (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card +\n      (if t (K + 1) < t K then 1 else 0) := by\n  split_ifs with h\n  <;> simp_all [Finset.filter_range_succ, Nat.lt_succ_iff, Nat.lt_succ_iff]\n  <;> norm_num\n  <;> omega",
+        "custom_id": "D_succ_eq_12",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 16
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 40
+                    },
+                    "data": "unknown constant 'Finset.filter_range_succ'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 16
+                    },
+                    "endPos": {
+                        "line": 11,
+                        "column": 40
+                    },
+                    "data": "unknown constant 'Finset.filter_range_succ'"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 1\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(t K)\n b := \u2191(t (K + 1))\n c := \u2191(Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card\n d := \u2191(Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 13,
+                        "column": 6
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191(t (K + 1))\n b := \u2191(t K)\n c := \u2191(Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card\n d := \u2191(Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 9,
+                        "column": 44
+                    },
+                    "endPos": {
+                        "line": 13,
+                        "column": 11
+                    },
+                    "data": "unsolved goals\ncase pos\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t (K + 1) < t K\n\u22a2 (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card + 1\n\ncase neg\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t K \u2264 t (K + 1)\n\u22a2 (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.29816150665283203,
+            "custom_id": "D_succ_eq_12"
+        }
+    },
+    {
+        "name": "D_succ_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem D_succ_eq (t : \u2115 \u2192 \u2115) (K : \u2115) :\n  (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card +\n      (if t (K + 1) < t K then 1 else 0) := by\n  split_ifs with h\n  case pos =>\n    -- Case: t (K + 1) < t K is true\n    have h\u2081 : (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card + 1 := by\n      -- We need to show that the number of inversions involving K+1 is 1 more than the number of inversions not involving K+1\n      have h\u2082 : (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n        (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card + 1 := by\n        -- We need to show that the number of inversions involving K+1 is 1 more than the number of inversions not involving K+1\n        have h\u2083 : (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))) =\n          (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)) \u222a {K} := by\n          ext x\n          simp [Finset.mem_filter, Finset.mem_range, Nat.lt_succ_iff]\n          <;>\n          by_cases h\u2084 : x < K <;>\n          by_cases h\u2085 : t (x + 1) < t x <;>\n          by_cases h\u2086 : x = K <;>\n          simp_all [Nat.lt_succ_iff] <;>\n          omega\n        rw [h\u2083]\n        simp [Finset.card_range]\n        <;>\n        omega\n      exact h\u2082\n    simp_all\n  case neg =>\n    -- Case: t (K + 1) < t K is false\n    have h\u2081 : (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n      (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card := by\n      -- We need to show that the number of inversions involving K+1 is the same as the number of inversions not involving K+1\n      have h\u2082 : (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))) =\n        (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)) := by\n        ext x\n        simp [Finset.mem_filter, Finset.mem_range, Nat.lt_succ_iff]\n        <;>\n        by_cases h\u2083 : x < K <;>\n        by_cases h\u2084 : t (x + 1) < t x <;>\n        by_cases h\u2085 : x = K <;>\n        simp_all [Nat.lt_succ_iff] <;>\n        omega\n      rw [h\u2082]\n    simp_all",
+        "custom_id": "D_succ_eq_13",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [],
+            "warnings": [
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 32,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 32,
+                        "column": 13
+                    },
+                    "data": "this tactic is never executed\nnote: this linter can be disabled with `set_option linter.unreachableTactic false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 23,
+                        "column": 10
+                    },
+                    "endPos": {
+                        "line": 23,
+                        "column": 13
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                },
+                {
+                    "severity": "warning",
+                    "pos": {
+                        "line": 44,
+                        "column": 8
+                    },
+                    "endPos": {
+                        "line": 44,
+                        "column": 11
+                    },
+                    "data": "Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\nnote: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`"
+                }
+            ],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": true,
+            "complete": true,
+            "verify_time": 1.1305122375488281,
+            "custom_id": "D_succ_eq_13"
+        }
+    },
+    {
+        "name": "D_succ_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem D_succ_eq (t : \u2115 \u2192 \u2115) (K : \u2115) :\n  (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card +\n      (if t (K + 1) < t K then 1 else 0) := by\n  have step1 : (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card +\n      (if t (K + 1) < t K then 1 else 0) := by\n    have h\u2081 : (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n        (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card +\n          (if t (K + 1) < t K then 1 else 0) := by\n      split_ifs with h\n      -- Case: t (K + 1) < t K is true\n      \u00b7 -- We need to show that the cardinality of the filter is increased by 1\n        have h2 : (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n            (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card + 1 := by\n          -- Use the fact that t (K + 1) < t K to show the cardinality increase\n          have h3 : (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n              (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card + 1 := by\n            -- Use the fact that t (K + 1) < t K to show the cardinality increase\n            have h4 : (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n                (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card + 1 := by\n              -- Use the fact that t (K + 1) < t K to show the cardinality increase\n              have h5 : Finset.range (K + 1) = Finset.range K \u222a {K} := by\n                ext x\n                simp [Finset.mem_range]\n                <;> omega\n              rw [h5]\n              simp [Finset.filter_union, Finset.filter_singleton]\n              <;>\n              split_ifs <;>\n              simp_all (config := {decide := true}) [Finset.filter_filter, Finset.filter_insert, Finset.filter_empty]\n              <;>\n              omega\n            exact h4\n          exact h3\n        simp_all\n      -- Case: t (K + 1) < t K is false\n      \u00b7 -- We need to show that the cardinality remains the same\n        have h2 : (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n            (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card := by\n          -- Use the fact that t (K + 1) \u2265 t K to show the cardinality remains the same\n          have h3 : (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n              (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card := by\n            -- Use the fact that t (K + 1) \u2265 t K to show the cardinality remains the same\n            have h4 : Finset.range (K + 1) = Finset.range K \u222a {K} := by\n              ext x\n              simp [Finset.mem_range]\n              <;> omega\n            rw [h4]\n            simp [Finset.filter_union, Finset.filter_singleton]\n            <;>\n            split_ifs <;>\n            simp_all (config := {decide := true}) [Finset.filter_filter, Finset.filter_insert, Finset.filter_empty]\n            <;>\n            omega\n          exact h3\n        simp_all\n    exact h\u2081\n  apply step1",
+        "custom_id": "D_succ_eq_14",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 38,
+                        "column": 14
+                    },
+                    "endPos": {
+                        "line": 38,
+                        "column": 19
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 1\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191(t K)\n b := \u2191(t (K + 1))\n c := \u2191(Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card\n d := \u2191(Finset.filter (fun i => i < K + 1 \u2227 t (i + 1) < t i) (Finset.range K)).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 26,
+                        "column": 96
+                    },
+                    "endPos": {
+                        "line": 38,
+                        "column": 19
+                    },
+                    "data": "unsolved goals\ncase pos\nt : \u2115 \u2192 \u2115\nK : \u2115\nh5 : Finset.range (K + 1) = Finset.range K \u222a {K}\nh\u271d : t (K + 1) < t K\n\u22a2 (Finset.filter (fun i => i < K + 1 \u2227 t (i + 1) < t i) (Finset.range K)).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 60,
+                        "column": 12
+                    },
+                    "endPos": {
+                        "line": 60,
+                        "column": 17
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 0\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 1\n  a \u2265 0\nwhere\n a := \u2191(t (K + 1))\n b := \u2191(t K)\n c := \u2191(Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card\n d := \u2191(Finset.filter (fun i => i < K + 1 \u2227 t (i + 1) < t i) (Finset.range K)).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 48,
+                        "column": 90
+                    },
+                    "endPos": {
+                        "line": 60,
+                        "column": 17
+                    },
+                    "data": "unsolved goals\ncase neg\nt : \u2115 \u2192 \u2115\nK : \u2115\nh4 : Finset.range (K + 1) = Finset.range K \u222a {K}\nh\u271d : t K \u2264 t (K + 1)\n\u22a2 (Finset.filter (fun i => i < K + 1 \u2227 t (i + 1) < t i) (Finset.range K)).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 1.2891948223114014,
+            "custom_id": "D_succ_eq_14"
+        }
+    },
+    {
+        "name": "D_succ_eq",
+        "code": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat\n\ntheorem D_succ_eq (t : \u2115 \u2192 \u2115) (K : \u2115) :\n  (Finset.filter (fun i => i < (K + 1) \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card +\n      (if t (K + 1) < t K then 1 else 0) := by\n  split_ifs with h\n  case pos =>\n    -- If t (K + 1) < t K, then the number of violations in [1, K + 1] is the number in [1, K] plus 1.\n    simp_all [Finset.sum_range_succ, Nat.lt_succ_iff]\n    <;>\n    congr 1 <;>\n    ext i <;>\n    simp_all [Finset.mem_filter, Finset.mem_range] <;>\n    omega\n  case neg =>\n    -- If t (K + 1) \u2265 t K, then the number of violations in [1, K + 1] is the same as in [1, K].\n    simp_all [Finset.sum_range_succ, Nat.lt_succ_iff]\n    <;>\n    congr 1 <;>\n    ext i <;>\n    simp_all [Finset.mem_filter, Finset.mem_range] <;>\n    omega",
+        "custom_id": "D_succ_eq_15",
+        "compilation_result": {
+            "sorries": [],
+            "tactics": [],
+            "errors": [
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 16,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 16,
+                        "column": 9
+                    },
+                    "data": "no applicable extensionality theorem found for\n  \u2115"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 17,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 17,
+                        "column": 50
+                    },
+                    "data": "simp_all made no progress"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 18,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 9
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  c \u2265 0\n  a - b \u2265 1\n  d \u2265 0\n  b \u2265 0\n  c - d \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(t K)\n b := \u2191(t (K + 1))\n c := \u2191(Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card\n d := \u2191(Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 11,
+                        "column": 11
+                    },
+                    "endPos": {
+                        "line": 18,
+                        "column": 9
+                    },
+                    "data": "unsolved goals\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t (K + 1) < t K\n\u22a2 (Finset.filter (fun i => i \u2264 K \u2227 t (i + 1) < t i) (Finset.range (K + 1))).card =\n    (Finset.filter (fun i => i < K \u2227 t (i + 1) < t i) (Finset.range K)).card + 1"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 26,
+                        "column": 4
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 9
+                    },
+                    "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  d - e \u2265 1\n  e \u2265 0\n  d \u2265 0\n  c \u2265 0\n  a - b \u2265 0\n  b \u2265 0\n  a \u2265 0\nwhere\n a := \u2191(t (K + 1))\n b := \u2191(t K)\n c := \u2191i\n d := \u2191(t i)\n e := \u2191(t (i + 1))"
+                },
+                {
+                    "severity": "error",
+                    "pos": {
+                        "line": 19,
+                        "column": 11
+                    },
+                    "endPos": {
+                        "line": 26,
+                        "column": 9
+                    },
+                    "data": "unsolved goals\ncase e_s.a\nt : \u2115 \u2192 \u2115\nK : \u2115\nh : t K \u2264 t (K + 1)\ni : \u2115\n\u22a2 i < K + 1 \u2227 i \u2264 K \u2227 t (i + 1) < t i \u2194 i < K \u2227 t (i + 1) < t i"
+                }
+            ],
+            "warnings": [],
+            "infos": [],
+            "system_messages": null,
+            "system_errors": null,
+            "pass": false,
+            "complete": false,
+            "verify_time": 0.3675808906555176,
+            "custom_id": "D_succ_eq_15"
+        }
+    }
+]

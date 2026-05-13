@@ -1,0 +1,20 @@
+ERROR from position {'line': 55, 'column': 17} to {'line': 55, 'column': 30}:
+application type mismatch
+  reduced_fraction_unique (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1) hsucc_copr denom_nonzero
+argument
+  denom_nonzero
+has type
+  2 * n k + 1 ≠ 0 : Prop
+but is expected to have type
+  n (k + 1) ≠ 0 : Prop
+
+ERROR from position {'line': 690, 'column': 25} to {'line': 690, 'column': 28}:
+application type mismatch
+  Eq.symm hA2
+argument
+  hA2
+has type
+  (↑(m (k + 1)) - ↑(n (k + 1))).natAbs = 2 ^ u2 * r2 : Prop
+but is expected to have type
+  2 ^ u2 * r2 = (↑(m (k + 1)) - ↑(n (k + 1))).natAbs : Prop
+

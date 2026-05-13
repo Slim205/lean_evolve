@@ -1,0 +1,8 @@
+ERROR from position {'line': 402, 'column': 4} to {'line': 402, 'column': 49}:
+type mismatch
+  int_mul_dvd_of_dvd (↑d) hdiv y
+has type
+  ↑d ∣ y * (2 * z) : Prop
+but is expected to have type
+  ↑d ∣ y * 2 * z : Prop
+

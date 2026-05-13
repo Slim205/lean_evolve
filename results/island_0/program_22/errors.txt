@@ -1,0 +1,9 @@
+ERROR from position {'line': 37, 'column': 23} to None:
+expected ';' or line break
+
+ERROR from position {'line': 47, 'column': 51} to None:
+expected ';' or line break
+
+ERROR from position {'line': 582, 'column': 8} to {'line': 582, 'column': 23}:
+unknown identifier 'next_eq_div_gcd'
+

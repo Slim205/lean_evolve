@@ -1,0 +1,9 @@
+lemma finite_of_card_bounded {P : ℕ → Prop} (N : ℕ) [DecidablePred P]
+  (hcard : ∀ K, (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)).card ≤ N) :
+  {k : ℕ | P k}.Finite := by
+Failure mode: HARD
+Recommendation: Prove finiteness by turning “uniform bounded prefix-cardinality” into “cannot pick N+1 distinct witnesses”.
+1) Lemma (prefix-captures-finite-set): For any finite set `F : Finset ℕ`, if `∀ x ∈ F, P x`, then with `K := (F.max' ?) + 1` one has `F ⊆ (Finset.filter (fun i => i < K ∧ P i) (Finset.range K))`.
+2) Lemma (card_le_from_prefix_bound): Under `hcard`, any finite set `F` of pairwise distinct `P`-witnesses has `F.card ≤ N` (combine (1) with monotonicity of `card` under inclusion).
+3) Lemma (infinite_gives_large_finite_subset): If `{k | P k}` is infinite, then for any `M` there exists a finite subset `F ⊆ {k | P k}` with `F.card = M`.
+4) Conclude by contradiction with `M := N+1`: (2) says `F.card ≤ N` but (3) gives `F.card = N+1`.

@@ -1,0 +1,30 @@
+>>>>SEARCH
+/-- Helper: non-coprime naturals have gcd > 1. -/
+lemma noncoprime_gcd_gt_one {a b : ℕ} (h : ¬ Nat.Coprime a b) : 1 < Nat.gcd a b := by
+  -- proof omitted
+  sorry
+>>>>REPLACE
+/-- Helper: non-coprime positive naturals have gcd > 1.  Note the positivity hypotheses;
+    the earlier (incorrect) version failed for `a = b = 0`. In our applications `a` and `b`
+    are of the form `2*m_k+1` and `2*n_k+1` and hence positive, so this strengthened lemma
+    suffices. -/
+lemma noncoprime_gcd_gt_one {a b : ℕ} (h : ¬ Nat.Coprime a b) (ha : 0 < a) (hb : 0 < b) :
+  1 < Nat.gcd a b := by
+  -- proof omitted
+  sorry
+>>>>SEARCH
+-- 1) from non-coprimality get gcd > 1
+  have hd_gt1 : 1 < d := by
+    apply noncoprime_gcd_gt_one
+    -- instantiate with ¬Coprime a b using hbad
+    exact hbad
+>>>>REPLACE
+-- 1) from non-coprimality get gcd > 1 (both a and b are manifestly positive)
+  have ha_pos : 0 < a := by
+    dsimp [a]
+    apply Nat.zero_lt_succ (2 * m k)
+  have hb_pos : 0 < b := by
+    dsimp [b]
+    apply Nat.zero_lt_succ (2 * n k)
+  have hd_gt1 : 1 < d := by
+    exact noncoprime_gcd_gt_one hbad ha_pos hb_pos

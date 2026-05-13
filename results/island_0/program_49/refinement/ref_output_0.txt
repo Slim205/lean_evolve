@@ -1,0 +1,31 @@
+>>>>SEARCH
+  have h_left : 2 * (A / d) = (2 : ℕ) ^ (u1 + 1) * r1' := by
+    rw [hA_div]
+    -- 2 * (2^u1 * r1') = (2^(u1+1)) * r1'
+    calc
+      2 * ((2 : ℕ) ^ u1 * r1') = (2 * (2 : ℕ) ^ u1) * r1' := by ring
+      _ = (2 : ℕ) ^ (u1 + 1) * r1' := by
+        -- (2 * 2^u1) = 2^(u1+1)
+        rw [pow_succ]
+>>>>REPLACE
+  have h_left : 2 * (A / d) = (2 : ℕ) ^ (u1 + 1) * r1' := by
+    rw [hA_div]
+    -- 2 * (2^u1 * r1') = (2^(u1+1)) * r1'
+    calc
+      2 * ((2 : ℕ) ^ u1 * r1') = (2 * (2 : ℕ) ^ u1) * r1' := by ring
+      _ = (2 : ℕ) ^ (u1 + 1) * r1' := by
+        -- (2 * 2^u1) = 2^(u1+1)
+        rw [pow_succ]; rfl
+>>>>SEARCH
+  have hr_eq : r1' = r2 := by
+    exact uniqueness_of_odd_decomp hr1'_odd hr2_odd hr1_pos hr2_pos heq_pow
+>>>>REPLACE
+  have hr_eq : r1' = r2 := by
+    -- r1 = d * r1' and r1 > 0 imply r1' > 0
+    have hr1'_pos : 0 < r1' := by
+      by_contra h0
+      have : r1 = 0 := by
+        rw [hr1_eq, h0, mul_zero]
+      have : 0 < r1 := hr1_pos
+      contradiction
+    exact uniqueness_of_odd_decomp hr1'_odd hr2_odd hr1'_pos hr2_pos heq_pow

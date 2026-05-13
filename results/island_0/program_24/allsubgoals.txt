@@ -1,0 +1,89 @@
+lemma reduced_fraction_unique (a b c d : ℕ)
+  (hcop : Nat.Coprime a b)
+  (hd : d ≠ 0)
+  (h : (a : ℚ) / (b : ℚ) = (c : ℚ) / (d : ℚ)) :
+  a = c / Nat.gcd c d ∧ b = d / Nat.gcd c d := by
+lemma denom_nonzero_from_recurrence
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k, ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0 ∧ ((2 : ℚ) * (m k : ℚ) + 1) ≠ 0 := by
+lemma n_succ_nonzero
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1)) :
+  ∀ k, (n (k + 1) : ℚ) ≠ 0 := by
+lemma succ_equal_implies_ratio_one
+  (m n : ℕ → ℕ)
+  (h_n_succ_nonzero : ∀ k, (n (k + 1) : ℚ) ≠ 0)
+  (k : ℕ) :
+  m (k + 1) = n (k + 1) →
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = 1 := by
+lemma ratio_one_implies_eq_prev
+  (m n : ℕ → ℕ)
+  (h_denom_nonzero : ∀ k, ((2 : ℚ) * (n k : ℚ) + 1) ≠ 0)
+  (k : ℕ) :
+  (((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1) = 1) → m k = n k := by
+lemma int_sub_eq_zero_iff_eq_nat (a b : ℕ) : ((a : ℤ) - (b : ℤ) = 0) ↔ a = b := by
+lemma global_bound_from_h0 (t : ℕ → ℕ) (N : ℕ) (h0 : t 0 ≤ N)
+  (hnoninc : ∀ k, t (k + 1) ≤ t k) : ∀ k, t k ≤ N := by
+lemma gap_at_least_one (t : ℕ → ℕ) (i : ℕ) :
+  t (i + 1) < t i → t (i + 1) + 1 ≤ t i := by
+lemma no_drop_step (t : ℕ → ℕ) (hnoninc : ∀ k, t (k + 1) ≤ t k) (i : ℕ) :
+  ¬ (t (i + 1) < t i) → t (i + 1) = t i := by
+lemma D_succ_eq (t : ℕ → ℕ) (K : ℕ) :
+  (Finset.filter (fun i => i < (K + 1) ∧ t (i + 1) < t i) (Finset.range (K + 1))).card =
+    (Finset.filter (fun i => i < K ∧ t (i + 1) < t i) (Finset.range K)).card +
+      (if t (K + 1) < t K then 1 else 0) := by
+lemma prefix_captures_finite_set {P : ℕ → Prop} [DecidablePred P] (F : Finset ℕ)
+  (hF : ∀ x ∈ F, P x) :
+  ∃ K, F ⊆ (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)) := by
+lemma infinite_gives_large_finite_subset {P : ℕ → Prop} [DecidablePred P]
+  (M : ℕ) (hinf : Set.Infinite {k | P k}) :
+  ∃ F : Finset ℕ, (∀ x ∈ F, P x) ∧ F.card = M := by
+lemma natAbs_pos (z : ℤ) (hz : z ≠ 0) : 0 < Int.natAbs z := by
+lemma pow_two_divides_bounded_by_A (A u : ℕ) (hpos : 0 < A) :
+  ((2 : ℕ) ^ u ∣ A) → u ≤ A := by
+lemma exists_max_in_finset (S : Finset ℕ) (hnon : S.Nonempty) :
+  ∃ u, u ∈ S ∧ ∀ v ∈ S, v ≤ u := by
+lemma define_odd_part_by_division (A u : ℕ) (hdiv : ((2 : ℕ) ^ u ∣ A)) (hpos : 0 < A) :
+  ∃ r, A = (2 : ℕ) ^ u * r ∧ 0 < r := by
+lemma oddness_of_quotient (A u r : ℕ)
+  (hA : A = (2 : ℕ) ^ u * r)
+  (hmax : ¬ ((2 : ℕ) ^ (u + 1) ∣ A)) :
+  r % 2 = 1 := by
+lemma helper_gcd_odd_and_dvd_diff
+  (m n : ℕ → ℕ) (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  d % 2 = 1 ∧ ((d : ℤ) ∣ ((m k : ℤ) - (n k : ℤ))) := by
+lemma helper_diff_evolution
+  (m n : ℕ → ℕ)
+  (k : ℕ)
+  (d : ℕ)
+  (h_d_def : d = Nat.gcd (2 * m k + 1) (2 * n k + 1))
+  (hnext : (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d)) :
+  ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+lemma helper_natabs_scaling_by_odd_div
+  (z : ℤ) (u r : ℕ) (d : ℕ)
+  (hA : Int.natAbs z = (2 : ℕ) ^ u * r)
+  (hrodd : r % 2 = 1) (hrpos : 0 < r)
+  (hdodd : d % 2 = 1) (hd_dvd : (d : ℤ) ∣ z) :
+  d ∣ r ∧ Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = (2 : ℕ) ^ (u + 1) * (r / d) ∧ (r / d) % 2 = 1 ∧ 0 < (r / d) := by
+lemma helper_pow_two_mul_eq_of_odds
+  (u v a b : ℕ) (ha_pos : 0 < a) (hb_pos : 0 < b)
+  (ha_odd : a % 2 = 1) (hb_odd : b % 2 = 1) :
+  ( (2 : ℕ) ^ u * a = (2 : ℕ) ^ v * b ) → u = v ∧ a = b := by
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by

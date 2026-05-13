@@ -1,0 +1,8 @@
+ERROR from position {'line': 55, 'column': 4} to {'line': 55, 'column': 32}:
+type mismatch
+  h✝
+has type
+  ↑(m (k + 1)) / ↑(n (k + 1)) = (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1) : Prop
+but is expected to have type
+  ¬n (k + 1) = 0 : Prop
+

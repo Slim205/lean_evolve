@@ -1,0 +1,25 @@
+ERROR from position {'line': 1082, 'column': 10} to {'line': 1082, 'column': 11}:
+tactic 'rewrite' failed, equality or iff proof expected
+  False
+A d : ℕ
+hdvd : d ∣ A
+u1 r1 u2 r2 : ℕ
+hA : A = 2 ^ u1 * r1
+hr1_odd : r1 % 2 = 1
+hr1_pos : 0 < r1
+hB_eq : 2 * (A / d) = 2 ^ u2 * r2
+hr2_odd : r2 % 2 = 1
+hr2_pos : 0 < r2
+hd_odd : d % 2 = 1
+hcopr : d.Coprime (2 ^ u1)
+hd_div_r1 : d ∣ r1
+r1' : ℕ
+hr1_eq : r1 = d * r1'
+hAdiv : A / d = 2 ^ u1 * r1'
+hr1'_odd : r1' % 2 = 1
+h2_expr : 2 * (A / d) = 2 ^ (u1 + 1) * r1'
+heq_pow_parts : 2 ^ (u1 + 1) * r1' = 2 ^ u2 * r2
+h : ¬0 < r1'
+this : r1 = d * r1'
+⊢ False
+

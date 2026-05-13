@@ -1,0 +1,10 @@
+ERROR from position {'line': 463, 'column': 51} to {'line': 463, 'column': 54}:
+application type mismatch
+  maximality_implies_no_next_divides A S u rfl
+argument
+  rfl
+has type
+  ?m.33341 = ?m.33341 : Prop
+but is expected to have type
+  0 < A : Prop
+

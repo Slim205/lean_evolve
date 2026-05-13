@@ -1,0 +1,184 @@
+>>>>SEARCH
+/-- Helper: uniqueness of reduced form. If a/b = c/d as rationals and `Coprime a b`,
+    then a = c / gcd(c,d) and b = d / gcd(c,d). -/
+lemma reduced_fraction_unique (a b c d : ℕ)
+  (hcop : Nat.Coprime a b)
+  (hd : d ≠ 0)
+  (h : (a : ℚ) / (b : ℚ) = (c : ℚ) / (d : ℚ)) :
+  a = c / Nat.gcd c d ∧ b = d / Nat.gcd c d := by
+  -- standard reduction/uniqueness argument (cross-multiplication + Euclid); omitted
+  sorry
+>>>>REPLACE
+/-- Helper: uniqueness of reduced form. If a/b = c/d as rationals and `Coprime a b`,
+    and both denominators are nonzero, then the reduced numerator/denominator pair is
+    unique up to dividing by gcd(c,d). Note we require `b ≠ 0` and `d ≠ 0` to avoid
+    the degenerate `x / 0` identifications in `ℚ`. -/
+lemma reduced_fraction_unique (a b c d : ℕ)
+  (hcop : Nat.Coprime a b)
+  (hb : b ≠ 0)
+  (hd : d ≠ 0)
+  (h : (a : ℚ) / (b : ℚ) = (c : ℚ) / (d : ℚ)) :
+  a = c / Nat.gcd c d ∧ b = d / Nat.gcd c d := by
+  -- standard reduction/uniqueness argument (cross-multiplication + Euclid); omitted
+  sorry
+>>>>SEARCH
+lemma next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+  -- obtain the successor coprimality hypothesis for index `k+1`
+  have hsucc_copr : Nat.Coprime (m (k + 1)) (n (k + 1)) := by
+    exact h_coprime (k + 1) (Nat.succ_pos k)
+
+  -- the right-hand denominator (2 * n k + 1) is a nonzero natural number
+  have denom_nonzero : (2 * n k + 1) ≠ 0 := by
+    simp [Nat.succ_ne_zero]
+
+  -- apply the reduced-fraction uniqueness lemma to the equality of rationals
+  have hpair : (m (k + 1) = (2 * m k + 1) / Nat.gcd (2 * m k + 1) (2 * n k + 1)) ∧
+               (n (k + 1) = (2 * n k + 1) / Nat.gcd (2 * m k + 1) (2 * n k + 1)) := by
+    exact reduced_fraction_unique (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1)
+      hsucc_copr denom_nonzero (by simpa using (h_recurrence k))
+
+  exact hpair
+>>>>REPLACE
+lemma next_eq_div_gcd
+  (m n : ℕ → ℕ)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = (2 * (m k : ℚ) + 1) / (2 * (n k : ℚ) + 1))
+  (k : ℕ) :
+  let d : ℕ := Nat.gcd (2 * m k + 1) (2 * n k + 1)
+  (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d) := by
+  -- obtain the successor coprimality hypothesis for index `k+1`
+  have hsucc_copr : Nat.Coprime (m (k + 1)) (n (k + 1)) := by
+    exact h_coprime (k + 1) (Nat.succ_pos k)
+
+  -- the right-hand denominator (2 * n k + 1) is a nonzero natural number
+  have denom_nonzero : (2 * n k + 1) ≠ 0 := by
+    simp [Nat.succ_ne_zero]
+
+  -- also the successor denominator n (k+1) is nonzero so we can apply reduced_fraction_unique
+  have n_succ_nz : (n (k + 1) : ℚ) ≠ 0 := by
+    exact n_succ_nonzero m n h_recurrence (k)
+
+  -- apply the reduced-fraction uniqueness lemma to the equality of rationals
+  have hpair : (m (k + 1) = (2 * m k + 1) / Nat.gcd (2 * m k + 1) (2 * n k + 1)) ∧
+               (n (k + 1) = (2 * n k + 1) / Nat.gcd (2 * m k + 1) (2 * n k + 1)) := by
+    exact reduced_fraction_unique (m (k + 1)) (n (k + 1)) (2 * m k + 1) (2 * n k + 1)
+      hsucc_copr (by exact (n_succ_nz).ne') denom_nonzero (by simpa using (h_recurrence k))
+
+  exact hpair
+>>>>SEARCH
+/-- Helper C: given the explicit identification of the successors as the gcd-quotients,
+    the integer evolution of the difference is a straightforward integer arithmetic rewrite.
+    We therefore require the `hnext` hypothesis asserting those quotient equalities. -/
+lemma helper_diff_evolution
+  (m n : ℕ → ℕ)
+  (k : ℕ)
+  (d : ℕ)
+  (h_d_def : d = Nat.gcd (2 * m k + 1) (2 * n k + 1))
+  (hnext : (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d)) :
+  ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+  -- the statement is a direct consequence of the assumed quotient equalities;
+  -- leave the detailed integer arithmetic proof as `sorry`.
+  sorry
+>>>>REPLACE
+/-- Helper C: given the explicit identification of the successors as the gcd-quotients,
+    the integer evolution of the difference can be expressed multiplicatively. Concretely,
+    (m_{k+1} - n_{k+1}) * d = 2 * (m_k - n_k). This avoids using truncated integer
+    division and records the exact divisibility relation which is robust. -/
+lemma helper_diff_evolution
+  (m n : ℕ → ℕ)
+  (k : ℕ)
+  (d : ℕ)
+  (h_d_def : d = Nat.gcd (2 * m k + 1) (2 * n k + 1))
+  (hnext : (m (k + 1) = (2 * m k + 1) / d) ∧ (n (k + 1) = (2 * n k + 1) / d)) :
+  ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) * (d : ℤ) = (2 : ℤ) * ((m k : ℤ) - (n k : ℤ)) := by
+  -- the multiplicative exact identity follows from the quotient equalities; omitted
+  sorry
+>>>>SEARCH
+/-- Helper D: if `z` is a nonzero integer with Int.natAbs z = 2^u * r (r odd),
+    and `d` is odd and divides `z` (in `ℤ`), then `d` actually divides `r` and
+    Int.natAbs (2*z/d) = 2^(u+1) * (r / d); moreover `r / d` is positive and odd.
+    (The factor `2` increases the 2-adic exponent by one; dividing by odd `d`
+    does not change it, so the exponent becomes `u+1`.)
+-/
+lemma helper_natabs_scaling_by_odd_div
+  (z : ℤ) (u r : ℕ) (d : ℕ)
+  (hA : Int.natAbs z = (2 : ℕ) ^ u * r)
+  (hrodd : r % 2 = 1) (hrpos : 0 < r)
+  (hdodd : d % 2 = 1) (hd_dvd : (d : ℤ) ∣ z) :
+  d ∣ r ∧ Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = (2 : ℕ) ^ (u + 1) * (r / d) ∧ (r / d) % 2 = 1 ∧ 0 < (r / d) := by
+  -- the detailed proof that `d ∣ r` follows from `hd_dvd` together with the oddness of `d`
+  -- and `r`, and the arithmetic identity for Int.natAbs is routine; leave as `sorry`.
+  sorry
+>>>>REPLACE
+/-- Helper D: if `z` is an integer with Int.natAbs z = 2^u * r (r odd),
+    and `d` is odd and divides `z` (in `ℤ`), then `d` divides `r`, and moreover
+    for any integer `q` satisfying `(d : ℤ) * q = (2 : ℤ) * z` one has
+    Int.natAbs q = 2^(u+1) * (r / d) and `(r / d)` is odd and positive. This version
+    avoids using truncated integer division by phrasing the conclusion for a generic
+    exact quotient `q`. -/
+lemma helper_natabs_scaling_by_odd_div
+  (z : ℤ) (u r : ℕ) (d : ℕ)
+  (hA : Int.natAbs z = (2 : ℕ) ^ u * r)
+  (hrodd : r % 2 = 1) (hrpos : 0 < r)
+  (hdodd : d % 2 = 1) (hd_dvd : (d : ℤ) ∣ z) :
+  d ∣ r ∧ (∀ q : ℤ, (d : ℤ) * q = (2 : ℤ) * z → Int.natAbs q = (2 : ℕ) ^ (u + 1) * (r / d) ∧ (r / d) % 2 = 1 ∧ 0 < (r / d)) := by
+  -- the detailed number-theoretic manipulation is routine: `d ∣ r` follows from `hd_dvd`
+  -- and oddness, and the stated identity for any exact quotient `q` is an exercise in
+  -- passing the 2-adic factors through the equality; omitted here.
+  sorry
+>>>>SEARCH
+-- relation giving exact integer evolution of the difference (requires hnext)
+  have hdiff : ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) =
+    (((2 : ℤ) * ((m k : ℤ) - (n k : ℤ))) / (d : ℤ)) := by
+    exact helper_diff_evolution m n k d rfl hnext
+
+  -- apply the scaling lemma to the integer `z = m_k - n_k`
+  let z : ℤ := (m k : ℤ) - (n k : ℤ)
+  have hscale := by
+    exact helper_natabs_scaling_by_odd_div z u1 r1 d hA1 hodd1 hpos1 hd_odd hd_dvd
+
+  rcases hscale with ⟨hd_div_r, h_scaled_eq, h_rdiv_odd, h_rdiv_pos⟩
+
+  -- now relate the k+1 decomposition to the scaled expression: both are the natAbs of the same integer
+  have hL : (2 : ℕ) ^ u2 * r2 = (2 : ℕ) ^ (u1 + 1) * (r1 / d) := by
+    calc
+      (2 : ℕ) ^ u2 * r2 = Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) := by
+        exact Eq.symm hA2
+      _ = Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) := by
+        rw [hdiff]
+      _ = (2 : ℕ) ^ (u1 + 1) * (r1 / d) := by
+        exact h_scaled_eq
+>>>>REPLACE
+-- relation giving exact integer evolution of the difference (multiplicative form)
+  have hdiff_mult := helper_diff_evolution m n k d rfl hnext
+
+  -- apply the scaling lemma to the integer `z = m_k - n_k`
+  let z : ℤ := (m k : ℤ) - (n k : ℤ)
+  have hscale := helper_natabs_scaling_by_odd_div z u1 r1 d hA1 hodd1 hpos1 hd_odd hd_dvd
+
+  rcases hscale with ⟨hd_div_r, h_for_q⟩
+
+  -- use the multiplicative relation to obtain the exact natAbs identity for q := m_{k+1}-n_{k+1}
+  have hL : (2 : ℕ) ^ u2 * r2 = (2 : ℕ) ^ (u1 + 1) * (r1 / d) := by
+    let q := ((m (k + 1) : ℤ) - (n (k + 1) : ℤ))
+    -- `hdiff_mult` is `q * (d : ℤ) = (2 : ℤ) * z`; rewrite to the form `(d : ℤ) * q = 2*z`
+    have hmul_comm : (d : ℤ) * q = (2 : ℤ) * z := by
+      rw [mul_comm] at hdiff_mult
+      exact hdiff_mult
+    -- apply the generic property from `helper_natabs_scaling_by_odd_div`
+    have hq_prop := h_for_q q hmul_comm
+    have h_scaled_eq := (hq_prop).1
+    calc
+      (2 : ℕ) ^ u2 * r2 = Int.natAbs q := by
+        exact Eq.symm hA2
+      _ = (2 : ℕ) ^ (u1 + 1) * (r1 / d) := by
+        exact h_scaled_eq

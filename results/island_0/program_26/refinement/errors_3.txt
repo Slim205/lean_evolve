@@ -1,0 +1,11 @@
+ERROR from position {'line': 55, 'column': 53} to {'line': 55, 'column': 67}:
+unknown identifier 'n_succ_nonzero'
+
+ERROR from position {'line': 55, 'column': 107} to {'line': 55, 'column': 166}:
+type mismatch
+  h✝
+has type
+  ↑(m (k + 1)) / ↑(n (k + 1)) = (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1) : Prop
+but is expected to have type
+  ↑(m (k + 1)) / ↑(n (k + 1)) = ↑(2 * m k + 1) / ↑(2 * n k + 1) : Prop
+

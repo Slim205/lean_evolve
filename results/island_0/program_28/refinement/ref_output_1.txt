@@ -1,0 +1,12 @@
+>>>>SEARCH
+    simpa using (n_succ_nonzero m n h_recurrence k)
+>>>>REPLACE
+    have hb_nonzero_q : (n (k + 1) : ℚ) ≠ 0 := by
+      by_contra h; simpa [h] using (h_recurrence k)
+    simpa using hb_nonzero_q
+>>>>SEARCH
+        _ = Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) := by
+        rw [hdiff]
+>>>>REPLACE
+        _ = Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) := by
+        simpa [hdiff] using hdiff

@@ -1,0 +1,47 @@
+ERROR from position {'line': 295, 'column': 6} to {'line': 295, 'column': 25}:
+'odd_two_mul_add_one' has already been declared
+
+ERROR from position {'line': 329, 'column': 4} to {'line': 329, 'column': 35}:
+type mismatch
+  odd_two_mul_add_one (m k)
+has type
+  Odd (2 * m k + 1) : Prop
+but is expected to have type
+  a % 2 = 1 : Prop
+
+ERROR from position {'line': 331, 'column': 4} to {'line': 331, 'column': 35}:
+type mismatch
+  odd_two_mul_add_one (n k)
+has type
+  Odd (2 * n k + 1) : Prop
+but is expected to have type
+  b % 2 = 1 : Prop
+
+ERROR from position {'line': 345, 'column': 65} to {'line': 347, 'column': 17}:
+unsolved goals
+m n : ℕ → ℕ
+k : ℕ
+a : ℕ := 2 * m k + 1
+b : ℕ := 2 * n k + 1
+d : ℕ := a.gcd b
+ha : a % 2 = 1
+hb : b % 2 = 1
+hd_odd : d % 2 = 1
+hd_div_ab : ↑d ∣ ↑a - ↑b
+⊢ Int.subNatNat (2 * m k + 1) (2 * n k + 1) = Int.subNatNat (2 * m k + 1) (2 * n k) - 1
+
+ERROR from position {'line': 353, 'column': 8} to {'line': 353, 'column': 28}:
+tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  2 * (↑(m k) - ↑(n k))
+m n : ℕ → ℕ
+k : ℕ
+a : ℕ := 2 * m k + 1
+b : ℕ := 2 * n k + 1
+d : ℕ := a.gcd b
+ha : a % 2 = 1
+hb : b % 2 = 1
+hd_odd : d % 2 = 1
+hd_div_ab : ↑d ∣ ↑a - ↑b
+ab_eq_two_mul_diff : ↑a - ↑b = 2 * (↑(m k) - ↑(n k))
+⊢ ↑d ∣ 2 * (↑(m k) - ↑(n k))
+

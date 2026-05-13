@@ -1,0 +1,34 @@
+>>>>SEARCH
+lemma odd_two_mul_add_one (x : ℕ) : (2 * x + 1) % 2 = 1 := by
+  -- trivial parity fact: oddness of 2*x+1; proof omitted
+  sorry
+>>>>REPLACE
+lemma odd_two_mul_add_one_nat (x : ℕ) : (2 * x + 1) % 2 = 1 := by
+  -- trivial parity fact: oddness of 2*x+1; proof omitted
+  sorry
+>>>>SEARCH
+  have ha : a % 2 = 1 := by
+    -- reduce to the simple lemma for 2*x+1
+    exact odd_two_mul_add_one (m k)
+>>>>REPLACE
+  have ha : a % 2 = 1 := by
+    -- reduce to the simple lemma for 2*x+1
+    exact odd_two_mul_add_one_nat (m k)
+>>>>SEARCH
+  have hb : b % 2 = 1 := by
+    exact odd_two_mul_add_one (n k)
+>>>>REPLACE
+  have hb : b % 2 = 1 := by
+    exact odd_two_mul_add_one_nat (n k)
+>>>>SEARCH
+  _ = ((2 : ℤ) * (m k : ℤ) + 1 - (2 : ℤ) * (n k : ℤ) - 1) := by
+        -- `norm_cast` turns the nat-casts into integer arithmetic; then `ring` finishes.
+        norm_cast
+>>>>REPLACE
+  _ = ((2 : ℤ) * (m k : ℤ) + 1 - (2 : ℤ) * (n k : ℤ) - 1) := by
+        -- `norm_cast` turns the nat-casts into integer arithmetic; then `ring` finishes.
+        norm_cast; ring
+>>>>SEARCH
+    rw [← ab_eq_two_mul_diff] at hd_div_ab
+>>>>REPLACE
+    rw [ab_eq_two_mul_diff] at hd_div_ab

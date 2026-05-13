@@ -1,0 +1,24 @@
+>>>>SEARCH
+/-- If a strict drop occurs at index i then t (i+1) ≤ t i - 1. -/
+lemma strict_drop_gives_pred (t : ℕ → ℕ) (k : ℕ) :
+  t (k + 1) < t k → t (k + 1) ≤ t k - 1 := by
+  -- detailed discrete-gap proof omitted
+  sorry
+>>>>REPLACE
+/-- If a strict drop occurs at index i then t (i+1) ≤ t i - 1. -/
+lemma strict_drop_gives_pred_aux (t : ℕ → ℕ) (k : ℕ) :
+  t (k + 1) < t k → t (k + 1) ≤ t k - 1 := by
+  -- detailed discrete-gap proof omitted
+  sorry
+>>>>SEARCH
+lemma finite_of_card_bounded {P : ℕ → Prop} (N : ℕ)
+  (hcard : ∀ K, (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)).card ≤ N) :
+  {k : ℕ | P k}.Finite := by
+  -- omitted
+  sorry
+>>>>REPLACE
+lemma finite_of_card_bounded {P : ℕ → Prop} (N : ℕ) [DecidablePred P]
+  (hcard : ∀ K, (Finset.filter (fun i => i < K ∧ P i) (Finset.range K)).card ≤ N) :
+  {k : ℕ | P k}.Finite := by
+  -- omitted
+  sorry

@@ -1,0 +1,8 @@
+ERROR from position {'line': 618, 'column': 8} to {'line': 618, 'column': 17}:
+type mismatch
+  hA2
+has type
+  (↑(m (k + 1)) - ↑(n (k + 1))).natAbs = 2 ^ u2 * r2 : Prop
+but is expected to have type
+  2 ^ u2 * r2 = (↑(m (k + 1)) - ↑(n (k + 1))).natAbs : Prop
+

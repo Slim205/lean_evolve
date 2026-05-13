@@ -1,0 +1,16 @@
+ERROR from position {'line': 56, 'column': 19} to {'line': 56, 'column': 51}:
+type mismatch
+  h✝
+has type
+  0 = (2 * ↑(m k) + 1) / (2 * ↑(n k) + 1) : Prop
+but is expected to have type
+  False : Prop
+
+ERROR from position {'line': 685, 'column': 8} to {'line': 685, 'column': 33}:
+type mismatch
+  h✝
+has type
+  True : Prop
+but is expected to have type
+  (↑(m (k + 1)) - ↑(n (k + 1))).natAbs = (2 * z / ↑d).natAbs : Prop
+

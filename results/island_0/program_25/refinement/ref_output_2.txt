@@ -1,0 +1,4 @@
+>>>>SEARCH
+(n_succ_nonzero m n h_recurrence k)
+>>>>REPLACE
+(n_succ_nonzero m n h_recurrence k)

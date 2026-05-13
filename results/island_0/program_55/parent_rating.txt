@@ -1,0 +1,47 @@
+---------
+lemma le_of_mul_eq_left (p q x y : ℕ)
+  (h : (2 : ℕ) ^ p * x = (2 : ℕ) ^ q * y) (hx_odd : x % 2 = 1) :
+  q ≤ p := by
+Failure mode: HARD
+Recommendation:
+1) Lemma (odd_pos): If `x % 2 = 1` then `0 < x`.
+2) Lemma (pow_succ_dvd_pow_mul): If `p < q` then `(2:ℕ)^(p+1) ∣ (2:ℕ)^q * y`.
+3) Lemma (dvd_of_eq): If `A = B` and `d ∣ B` then `d ∣ A`.
+4) Lemma (pow_succ_dvd_pow_mul_iff): `(2:ℕ)^(p+1) ∣ (2:ℕ)^p * x` implies `2 ∣ x` (equivalently, from `2^(p+1) ∣ 2^p*x` derive `2 ∣ x` by canceling `2^p`).
+5) Lemma (odd_not_two_dvd): If `x % 2 = 1` then `¬ (2 ∣ x)`.
+6) Main conclusion: prove `q ≤ p` by contradiction: assume `p < q`, use (2)(3) to get `2^(p+1) ∣ 2^p*x`, then (4) gives `2 ∣ x`, contradict (5).
+
+---------
+
+---------
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by
+Failure mode: HARD
+Recommendation:
+1) Lemma (not_coprime_iff_gcd_gt_one): `¬Nat.Coprime a b → 1 < Nat.gcd a b`.
+2) Lemma (d_def): Let `d := Nat.gcd (2*m k+1) (2*n k+1)`. From (1) with `a=2*m k+1`, `b=2*n k+1`, derive `1 < d`.
+3) Lemma (d_odd_and_dvd_diff): Reuse your existing `gcd_odd_and_dvd_diff` to get:
+   - `d % 2 = 1` (so `d` is odd, hence `1 ≤ d` and `d` coprime to powers of 2),
+   - `(d:ℤ) ∣ ((m k:ℤ) - (n k:ℤ))`, hence `d ∣ Int.natAbs((m k:ℤ)-(n k:ℤ))`.
+4) Lemma (d_dvd_r1): From `A = 2^u1 * r1` and `d ∣ A` and `Nat.Coprime d (2^u1)` (using oddness of `d`), deduce `d ∣ r1`.
+5) Lemma (r1_factor): From `d ∣ r1`, obtain `∃ r1', r1 = d * r1'` with `0 < r1'` and (optionally) `r1' % 2 = 1` (since `r1` and `d` are odd).
+6) Lemma (strict_shrink_of_factor_gt_one): If `r1 = d * r1'` with `1 < d` and `0 < r1'`, then `r1' < r1`.
+7) Lemma (identify_next_odd_part): Show that the “next odd part” `r2` equals this `r1'`:
+   - Use `next_eq_div_gcd` to express the successor normalization by `d`.
+   - Use `diff_evolution_natAbs` + `natAbs_two_mul_div_of_odd_divisor` to get an equality of naturals of the form `2 * (A / d) = 2^u2 * r2`.
+   - Rewrite `A / d = 2^u1 * r1'` using exact division from `A = d * (2^u1*r1')`.
+   - Conclude `2^(u1+1) * r1' = 2^u2 * r2`, and apply uniqueness of the odd part (`pow_mul_odd_eq_pow_mul_odd`) to deduce `r2 = r1'`.
+8) Final step: combine (6) and (7) to conclude `r2 < r1`.
+
+---------

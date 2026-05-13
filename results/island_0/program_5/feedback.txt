@@ -1,0 +1,84 @@
+---------
+<lemma finite_of_strict_decrease_on_bad
+  (t : ℕ → ℕ)
+  (htpos : ∀ k : ℕ, 0 < t k)
+  (bad : ℕ → Prop)
+  (hnoninc : ∀ k : ℕ, t (k + 1) ≤ t k)
+  (hdec : ∀ k : ℕ, bad k → t (k + 1) < t k) :
+  {k : ℕ | bad k}.Finite := by>
+Failure mode: HARD
+Recommendation: Prove finiteness by turning “strict decrease on bad indices” into a bound on how many bad indices can exist.
+1) Lemma (strict-drop implies positive gap): for any `k`, if `bad k` then `t (k+1) ≤ t k - 1`.
+2) Lemma (bounded number of strict drops): for any `N`, if `t 0 ≤ N`, then `{k | t (k+1) < t k}` has cardinal ≤ `N` (or is finite) by mapping each strict drop to a distinct value in `{0,1,...,N-1}` attained by `t`.
+3) Lemma (bad set included in strict-drop set): `{k | bad k} ⊆ {k | t (k+1) < t k}` using `hdec`.
+4) Conclude `{k | bad k}` is finite from (2) and (3) (and optionally use `htpos` to take `N := t 0` and avoid edge cases).
+
+---------
+
+<lemma decomposition_of_diff
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0) :
+  ∀ k : ℕ, ∃ (u r : ℕ),
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u * r ∧ r % 2 = 1 ∧ 0 < r := by>
+Failure mode: HARD
+Recommendation: Reduce to a standard “factor out powers of 2” lemma on natural numbers, applied to `Int.natAbs`.
+1) Lemma (natAbs positive): if `a : ℤ` and `a ≠ 0` then `0 < Int.natAbs a`.
+2) Lemma (two-adic decomposition on ℕ): for any `N : ℕ`, there exist `u r` with `N = 2^u * r` and `r` odd (this is a standard Mathlib fact about `Nat`).
+3) Lemma (odd implies mod 2 = 1): if `r` is odd then `r % 2 = 1`.
+4) Lemma (r positive when N positive): if `N = 2^u * r` and `0 < N` then `0 < r`.
+5) Apply (1) to `a = (m k : ℤ) - (n k : ℤ)` using `hΔ k`, then apply (2–4) to `N = Int.natAbs a`.
+
+---------
+
+<lemma odd_part_noninc_step
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k)) :
+  ∀ k u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 ≤ r1 := by>
+Failure mode: HARD
+Recommendation: This lemma is conceptually true only after you connect the recurrence to the “normalized successor” formula via gcd, and then relate differences across steps; it needs a multi-lemma bridge.
+1) Lemma (normalized successor): from `h_recurrence k` and coprimality of `(m (k+1), n (k+1))`, derive
+   `m (k+1) = (2*m k + 1)/d` and `n (k+1) = (2*n k + 1)/d` where `d = gcd(2*m k + 1, 2*n k + 1)` (this is exactly what your earlier `next_eq_div_gcd` is meant to supply).
+2) Lemma (gcd is odd): for odd inputs `2*m k+1` and `2*n k+1`, the gcd `d` is odd.
+3) Lemma (difference recurrence in ℤ): using (1), show
+   `(m (k+1) : ℤ) - (n (k+1) : ℤ) = (2 * ((m k : ℤ) - (n k : ℤ))) / d`
+   (with division interpreted as exact division in ℤ because `d` divides the numerator; you’ll likely want a lemma that `d ∣ (2*(m k - n k))` in ℤ).
+4) Lemma (odd-part characterization/uniqueness): if `N = 2^u * r` with `r` odd (equivalently `r % 2 = 1`), then `r` is the “odd part” of `N` and is uniquely determined. Conclude that your `r1` and `r2` are the odd parts of the corresponding `natAbs` values.
+5) Lemma (odd part under dividing by odd factor): if `d` is odd and `d ∣ X` (in ℤ / transferred to natAbs), then `oddPart(|X/d|) ≤ oddPart(|X|)`. Apply to `X = 2*(m k - n k)` and use that multiplying by 2 does not change the odd part.
+6) Translate “oddPart ≤” back into `r2 ≤ r1` via (4).
+
+(If you want to simplify the statement: replace the arbitrary `u1 r1 u2 r2` decompositions by `r1 = Nat.oddPart (...)` and `r2 = Nat.oddPart (...)`; then (4) disappears and the lemma becomes much easier to manage.)
+
+---------
+
+<lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by>
+Failure mode: HARD
+Recommendation: Same structure as the nonincreasing lemma, but you additionally need “`d > 1` and odd divides the odd part”, yielding strict inequality.
+1) Lemma (normalized successor): as above, express `(m (k+1), n (k+1))` as division of `(2*m k+1, 2*n k+1)` by `d = gcd(...)`.
+2) Lemma (`hbad` gives `d > 1`): show `¬Coprime A B` implies `gcd A B > 1`.
+3) Lemma (`d` is odd): as above, since `A` and `B` are odd.
+4) Lemma (exact difference relation): derive that
+   `Int.natAbs((m (k+1):ℤ)-(n (k+1):ℤ)) = Int.natAbs(2*((m k:ℤ)-(n k:ℤ)) / d)`.
+5) Lemma (odd part strictly decreases when dividing by odd `d>1`): for nonzero `X`, odd `d>1`, and `d ∣ X`, the odd part of `|X/d|` is strictly smaller than the odd part of `|X|`.
+6) As in the previous lemma, use uniqueness of odd-part decompositions to identify `r1`, `r2` with those odd parts, then conclude `r2 < r1`.
+
+(Again, rewriting the statement directly in terms of `Nat.oddPart (Int.natAbs ...)` tends to remove the need to carry arbitrary `u,r` witnesses and makes step (6) essentially definitional.)
+
+---------

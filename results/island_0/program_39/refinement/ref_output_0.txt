@@ -1,0 +1,4 @@
+>>>>SEARCH
+exact recurrence_cross_Q m n h_recurrence h_n_succ_nonzero_k h_two_nk_nonzero k
+>>>>REPLACE
+exact clear_denoms_Q (h_n_succ_nonzero_k) (h_two_nk_nonzero) (h_recurrence k)

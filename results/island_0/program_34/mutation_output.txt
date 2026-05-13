@@ -1,0 +1,74 @@
+>>>>SEARCH
+lemma next_scaling_exists
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ) :
+  ∃ c : ℕ, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+  -- existence of an integer scaling factor c coming from cross-multiplication of the rational
+  -- equality. Proof omitted here; we keep it as a helper.
+  sorry
+>>>>REPLACE
+lemma next_scaling_exists
+  (m n : ℕ → ℕ)
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) =
+      ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (h_n_succ_nonzero : ∀ k, (n (k + 1) : ℚ) ≠ 0)
+  (h_coprime_succ : ∀ k, Nat.Coprime (m (k + 1)) (n (k + 1)))
+  (k : ℕ) :
+  ∃ c : ℕ, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+  -- Under the coprimality of the successor pair, cross-multiplication of the rational equality
+  -- yields a common integer scaling factor `c`. Proof omitted; we keep as a helper.
+  sorry
+>>>>SEARCH
+have hscal : ∃ c, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+    exact next_scaling_exists m n h_recurrence k
+  rcases hscal with ⟨c, ⟨hc1, hc2⟩⟩
+>>>>REPLACE
+have hscal : ∃ c, (2 * m k + 1) = c * m (k + 1) ∧ (2 * n k + 1) = c * n (k + 1) := by
+    -- supply the auxiliary nonzeroness and coprimality hypotheses required by
+    -- `next_scaling_exists`.
+    exact next_scaling_exists m n h_recurrence (n_succ_nonzero m n h_recurrence)
+      (fun i => h_coprime (i + 1) (Nat.succ_pos i)) k
+  rcases hscal with ⟨c, ⟨hc1, hc2⟩⟩
+>>>>SEARCH
+/-- Helper (abstract): if A = 2^u1 * r1 with r1 odd > 0, and if for an odd d we form
+    B := 2 * (A / d), and B admits a decomposition B = 2^u2 * r2 with r2 odd > 0,
+    then r2 ≤ r1. This isolates the odd-part comparison after dividing by an odd factor. -/
+lemma odd_part_le_from_div_by_odd (A d : ℕ) (u1 r1 u2 r2 : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 ≤ r1 := by
+  -- arithmetic/combinatorial reasoning on 2-adic valuations; omitted
+  sorry
+>>>>REPLACE
+/-- Helper: if `(d : ℤ) ∣ z` then `d` divides `Int.natAbs z` as a natural number. -/
+lemma int_dvd_to_nat_dvd (z : ℤ) (d : ℕ) (hdiv : (d : ℤ) ∣ z) :
+  d ∣ Int.natAbs z := by
+  -- integer/nat bookkeeping: omitted
+  sorry
+
+/-- Helper (abstract): if A = 2^u1 * r1 with r1 odd > 0, and `d` is an odd divisor of `A`,
+    and if we form B := 2 * (A / d), and B admits a decomposition B = 2^u2 * r2 with r2 odd > 0,
+    then r2 ≤ r1. The extra hypothesis `d ∣ A` is essential. -/
+lemma odd_part_le_from_div_by_odd (A d : ℕ) (hdvd : d ∣ A) (u1 r1 u2 r2 : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 ≤ r1 := by
+  -- arithmetic/combinatorial reasoning on 2-adic valuations and exact division; omitted
+  sorry
+>>>>SEARCH
+-- now invoke the abstract odd-part comparison lemma on A := Int.natAbs z
+  have hres := odd_part_le_from_div_by_odd (Int.natAbs z) d u1 r1 u2 r2 hA hA_odd hA_pos h_combo hB_odd hB_pos hd_odd
+  exact hres
+>>>>REPLACE
+-- now invoke the abstract odd-part comparison lemma on A := Int.natAbs z
+  have hdvd_nat : d ∣ Int.natAbs z := by
+    exact int_dvd_to_nat_dvd z d h_dvd
+  have hres := odd_part_le_from_div_by_odd (Int.natAbs z) d hdvd_nat u1 r1 u2 r2
+    hA hA_odd hA_pos h_combo hB_odd hB_pos hd_odd
+  exact hres

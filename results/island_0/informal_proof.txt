@@ -1,0 +1,189 @@
+1. Let \(m_0,n_0\) be distinct positive integers. Define sequences \((m_k),(n_k)\) of positive integers such that for each \(k\ge 0\),
+   \[
+   \frac{m_{k+1}}{n_{k+1}}=\frac{2m_k+1}{2n_k+1},
+   \]
+   and (for \(k+1>0\), i.e. for all \(k\ge 0\)) the integers \(m_{k+1}\) and \(n_{k+1}\) are relatively prime.
+
+2. For each \(k\ge 0\), define
+   \[
+   A_k := 2m_k+1,\qquad B_k := 2n_k+1.
+   \]
+
+3. Note that \(A_k\) and \(B_k\) are positive odd integers for every \(k\), since \(2m_k\) and \(2n_k\) are even.
+
+4. For each \(k\ge 0\), define
+   \[
+   d_k := \gcd(A_k,B_k)=\gcd(2m_k+1,\,2n_k+1).
+   \]
+
+5. Our goal is to show that \(d_k=1\) for all but finitely many \(k\), i.e. \(\{k : d_k>1\}\) is finite.
+
+---
+
+### Step 1: “Reducing the fraction” identifies \(m_{k+1},n_{k+1}\)
+
+6. Fix \(k\ge 0\). By definition of \(d_k\), we can write
+   \[
+   A_k = d_k a_k,\qquad B_k = d_k b_k,
+   \]
+   where \(a_k,b_k\) are positive integers and \(\gcd(a_k,b_k)=1\). (This is the standard property of the gcd: dividing both numbers by their gcd yields coprime quotients.)
+
+7. Then
+   \[
+   \frac{A_k}{B_k}=\frac{d_k a_k}{d_k b_k}=\frac{a_k}{b_k}.
+   \]
+
+8. By the recurrence hypothesis,
+   \[
+   \frac{m_{k+1}}{n_{k+1}} = \frac{A_k}{B_k} = \frac{a_k}{b_k}.
+   \]
+
+9. We also know \(\gcd(m_{k+1},n_{k+1})=1\) (since \(k+1>0\)) and \(\gcd(a_k,b_k)=1\).
+
+10. A basic uniqueness fact about reduced fractions is: if \(\frac{x}{y}=\frac{u}{v}\) with \(x,y,u,v\in\mathbb{Z}_{>0}\) and \(\gcd(x,y)=\gcd(u,v)=1\), then \(x=u\) and \(y=v\). (Proof: from \(xv=yu\), use \(\gcd(x,y)=1\) to show \(x\mid u\) and similarly \(u\mid x\), hence \(x=u\), and likewise \(y=v\).)
+
+11. Applying this uniqueness to step 8, we conclude
+   \[
+   m_{k+1}=a_k=\frac{A_k}{d_k}=\frac{2m_k+1}{d_k},\qquad
+   n_{k+1}=b_k=\frac{B_k}{d_k}=\frac{2n_k+1}{d_k}.
+   \]
+
+12. In particular, \(d_k\mid (2m_k+1)\) and \(d_k\mid (2n_k+1)\), and dividing by \(d_k\) produces the next coprime pair.
+
+---
+
+### Step 2: Track the difference \(m_k-n_k\)
+
+13. Define the (nonzero) integer difference
+   \[
+   \Delta_k := m_k - n_k.
+   \]
+
+14. First we prove \(\Delta_k\neq 0\) for all \(k\ge 0\).
+
+15. Base case: \(\Delta_0=m_0-n_0\neq 0\) since \(m_0\neq n_0\) is given.
+
+16. Inductive step: assume \(\Delta_k\neq 0\). If \(\Delta_{k+1}=0\), then \(m_{k+1}=n_{k+1}\), so
+   \[
+   \frac{m_{k+1}}{n_{k+1}}=1.
+   \]
+   By the recurrence,
+   \[
+   1=\frac{m_{k+1}}{n_{k+1}}=\frac{2m_k+1}{2n_k+1}.
+   \]
+   Cross-multiplying gives \(2m_k+1=2n_k+1\), hence \(m_k=n_k\), i.e. \(\Delta_k=0\), contradicting the inductive hypothesis. Thus \(\Delta_{k+1}\neq 0\).
+
+17. By induction, \(\Delta_k\neq 0\) for all \(k\).
+
+18. Now compute \(\Delta_{k+1}\) in terms of \(\Delta_k\), using step 11:
+   \[
+   \Delta_{k+1}
+   = m_{k+1}-n_{k+1}
+   = \frac{2m_k+1}{d_k}-\frac{2n_k+1}{d_k}
+   = \frac{(2m_k+1)-(2n_k+1)}{d_k}
+   = \frac{2(m_k-n_k)}{d_k}
+   = \frac{2\Delta_k}{d_k}.
+   \]
+   So
+   \[
+   \Delta_{k+1}=\frac{2\Delta_k}{d_k}. \tag{\(*\)}
+   \]
+
+---
+
+### Step 3: Show \(d_k\) divides \(\Delta_k\) whenever \(d_k>1\) (in fact always)
+
+19. Recall \(d_k=\gcd(2m_k+1,2n_k+1)\). Therefore \(d_k\mid (2m_k+1)\) and \(d_k\mid (2n_k+1)\).
+
+20. Subtracting the two divisible quantities, we get
+   \[
+   d_k \mid \big((2m_k+1)-(2n_k+1)\big)=2(m_k-n_k)=2\Delta_k.
+   \]
+
+21. From step 3, \(2m_k+1\) and \(2n_k+1\) are odd, so their gcd \(d_k\) is also odd.
+
+22. Since \(d_k\) is odd, \(\gcd(d_k,2)=1\).
+
+23. A standard divisibility fact: if \(\gcd(d,2)=1\) and \(d\mid 2X\), then \(d\mid X\). (Proof: because \(d\) divides \(2X\) and is coprime to \(2\), the factor \(2\) is invertible mod \(d\), so \(X\equiv 0\pmod d\).)
+
+24. Apply this with \(d=d_k\) and \(X=\Delta_k\): from step 20 and step 22, conclude
+   \[
+   d_k \mid \Delta_k. \tag{\(**\)}
+   \]
+
+25. In particular, if \(d_k>1\), then \(d_k\) is an odd integer \(\ge 3\) dividing \(\Delta_k\).
+
+---
+
+### Step 4: Introduce the odd part of \(|\Delta_k|\) and show it strictly decreases when \(d_k>1\)
+
+26. For any nonzero integer \(x\), write \(|x| = 2^{e(x)}\cdot \operatorname{odd}(x)\), where \(e(x)\ge 0\) and \(\operatorname{odd}(x)\) is a positive odd integer. (This is the unique factorization of \(|x|\) into a power of \(2\) times an odd number; \(\operatorname{odd}(x)\) is often called the “odd part” of \(|x|\).)
+
+27. For each \(k\), define
+   \[
+   t_k := \operatorname{odd}(\Delta_k),
+   \]
+   i.e. \(t_k\) is the odd part of \(|\Delta_k|\). By step 17, \(\Delta_k\neq 0\), so \(t_k\) is well-defined and \(t_k\in\mathbb{Z}_{\ge 1}\) is odd.
+
+28. We will show:  
+   - If \(d_k=1\), then \(t_{k+1}=t_k\).  
+   - If \(d_k>1\), then \(t_{k+1}=t_k/d_k < t_k\).  
+   In particular, \(t_k\) strictly decreases whenever \(d_k>1\).
+
+29. Start from the exact recurrence \((*)\):
+   \[
+   \Delta_{k+1}=\frac{2\Delta_k}{d_k}.
+   \]
+
+30. Take absolute values:
+   \[
+   |\Delta_{k+1}| = \left|\frac{2\Delta_k}{d_k}\right| = \frac{2|\Delta_k|}{d_k}.
+   \]
+
+31. Write \(|\Delta_k|=2^{e_k}t_k\) with \(t_k\) odd (by definition of \(t_k\)).
+
+32. Substitute into step 30:
+   \[
+   |\Delta_{k+1}| = \frac{2\cdot 2^{e_k}t_k}{d_k} = 2^{e_k+1}\cdot \frac{t_k}{d_k}.
+   \]
+
+33. By \((**)\), \(d_k\mid \Delta_k\). Since \(d_k\) is odd (step 21), \(d_k\) must divide the odd part \(t_k\) (because an odd divisor cannot “hide” inside a power of \(2\)).
+
+34. Therefore \(\frac{t_k}{d_k}\) is an integer, and moreover it is odd because it is (odd)/(odd).
+
+35. Now step 32 expresses \(|\Delta_{k+1}|\) as a power of \(2\) (namely \(2^{e_k+1}\)) times the odd integer \(\frac{t_k}{d_k}\).
+
+36. By uniqueness of the decomposition into \(2\)-power times an odd number, the odd part of \(|\Delta_{k+1}|\) is exactly \(\frac{t_k}{d_k}\). In other words,
+   \[
+   t_{k+1}=\frac{t_k}{d_k}. \tag{\(\dagger\)}
+   \]
+
+37. If \(d_k=1\), then \((\dagger)\) gives \(t_{k+1}=t_k\).
+
+38. If \(d_k>1\), then \(d_k\ge 3\) (step 25), so \((\dagger)\) gives
+   \[
+   t_{k+1}=\frac{t_k}{d_k}\le \frac{t_k}{3} < t_k.
+   \]
+   Thus \(t_{k+1}<t_k\) whenever \(d_k>1\).
+
+---
+
+### Step 5: Conclude only finitely many \(k\) have \(d_k>1\)
+
+39. The sequence \((t_k)_{k\ge 0}\) consists of positive integers (step 27).
+
+40. Step 38 shows that every time \(d_k>1\), the integer \(t_k\) strictly decreases.
+
+41. A strictly decreasing sequence of positive integers cannot decrease infinitely many times, because it would eventually fall below \(1\), which is impossible.
+
+42. Therefore there are only finitely many indices \(k\) such that \(d_k>1\).
+
+43. By definition of \(d_k\) (step 4), the condition \(d_k>1\) is exactly the condition that \(2m_k+1\) and \(2n_k+1\) are **not** relatively prime.
+
+44. Hence the set
+   \[
+   \{k\in\mathbb{Z}_{\ge 0} : \gcd(2m_k+1,2n_k+1)>1\}
+   \]
+   is finite.
+
+45. Equivalently, \(2m_k+1\) and \(2n_k+1\) are relatively prime for all but finitely many positive integers \(k\), which is exactly what we needed to prove.

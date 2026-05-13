@@ -1,0 +1,59 @@
+---------
+lemma natAbs_two_mul_div_of_odd_divisor (z : ℤ) (d : ℕ)
+  (hd_odd : d % 2 = 1) (hdiv : (d : ℤ) ∣ z) :
+  Int.natAbs (((2 : ℤ) * z) / (d : ℤ)) = 2 * (Int.natAbs z / d) := by
+Failure mode: HARD
+Recommendation: Decompose into exact-division and `natAbs`-multiplicativity facts.
+1) Lemma: `d % 2 = 1 → (d : ℤ) ≠ 0` (equivalently `0 < d` in ℕ).
+2) Lemma: If `(d : ℤ) ∣ z`, then `∃ q : ℤ, z = (d : ℤ) * q`.
+3) Lemma: For `z = (d : ℤ) * q` with `d ≠ 0`, one has `((2:ℤ) * z) / (d:ℤ) = (2:ℤ) * q` (exact integer division under a divisibility hypothesis).
+4) Lemma: For `d : ℕ` and `q : ℤ`, `Int.natAbs ((d : ℤ) * q) = d * Int.natAbs q`.
+5) Lemma: If `d ∣ Int.natAbs z` then `Int.natAbs z / d` is the exact quotient; in particular under `z = (d:ℤ)*q` conclude `Int.natAbs z / d = Int.natAbs q`.
+6) Lemma: `Int.natAbs ((2:ℤ) * q) = 2 * Int.natAbs q`.
+7) Combine (3)(6) for the left side and (4)(5) for the right side.
+
+---------
+
+lemma odd_part_le_from_div_by_odd (A d : ℕ) (hdvd : d ∣ A) (u1 r1 u2 r2 : ℕ)
+  (hA : A = (2 : ℕ) ^ u1 * r1) (hr1_odd : r1 % 2 = 1) (hr1_pos : 0 < r1)
+  (hB_eq : 2 * (A / d) = (2 : ℕ) ^ u2 * r2) (hr2_odd : r2 % 2 = 1) (hr2_pos : 0 < r2)
+  (hd_odd : d % 2 = 1) :
+  r2 ≤ r1 := by
+Failure mode: HARD
+Recommendation: Reduce to “odd divisor doesn’t affect the 2-adic exponent” and uniqueness of the odd-part decomposition.
+1) Lemma: If `Odd d` (or `d % 2 = 1`) then `Nat.Coprime d (2^u)` for all `u`.
+2) Lemma: If `Nat.Coprime d x` and `d ∣ x*y` then `d ∣ y`. Apply with `x = 2^u1`, `y = r1` using `hdvd` and `hA` to get `d ∣ r1`.
+3) Lemma: If `d ∣ r1` then `A / d = (2^u1) * (r1 / d)` (exact division because `d ∣ A`).
+4) Lemma: From (3), rewrite `2 * (A / d) = 2^(u1+1) * (r1 / d)`.
+5) Lemma (uniqueness of odd-part decomposition): If `2^α * s = 2^β * t` with `s,t` odd, then `α = β` and `s = t`. Apply to (4) and `hB_eq` (using `hr2_odd` and that `r1/d` is odd because `r1` odd and `d` odd dividing `r1`).
+6) Conclude `r2 = r1 / d`, hence `r2 ≤ r1` because `d ≥ 1`.
+
+---------
+
+lemma odd_part_strict_decrease_of_not_coprime'
+  (m n : ℕ → ℕ)
+  (hΔ : ∀ k : ℕ, (m k : ℤ) - (n k : ℤ) ≠ 0)
+  (h_coprime : ∀ k : ℕ, 0 < k → Nat.Coprime (m k) (n k))
+  (h_recurrence : ∀ k : ℕ,
+    (m (k + 1) : ℚ) / (n (k + 1) : ℚ) = ((2 : ℚ) * (m k : ℚ) + 1) / ((2 : ℚ) * (n k : ℚ) + 1))
+  (k : ℕ)
+  (hbad : ¬Nat.Coprime (2 * m k + 1) (2 * n k + 1)) :
+  ∀ u1 r1 u2 r2,
+    Int.natAbs ((m k : ℤ) - (n k : ℤ)) = (2 : ℕ) ^ u1 * r1 →
+    r1 % 2 = 1 → 0 < r1 →
+    Int.natAbs ((m (k + 1) : ℤ) - (n (k + 1) : ℤ)) = (2 : ℕ) ^ u2 * r2 →
+    r2 % 2 = 1 → 0 < r2 → r2 < r1 := by
+Failure mode: HARD
+Recommendation: Prove strict drop by identifying the next odd part as division by a nontrivial odd gcd.
+1) Lemma: From `¬Nat.Coprime a b` conclude `Nat.gcd a b > 1`.
+2) Lemma: If `a = 2*m k + 1` and `b = 2*n k + 1`, then `Nat.gcd a b` is odd; in particular `gcd a b ≥ 3` under (1).
+3) Lemma (normalization): Let `d := gcd a b`. Derive the exact successor scaling
+   `a = d * m(k+1)` and `b = d * n(k+1)` from the recurrence + coprimality of `(m(k+1), n(k+1))`.
+4) Lemma (difference evolution): From the equalities in (3), derive in ℤ
+   `(d:ℤ) * ((m(k+1):ℤ) - (n(k+1):ℤ)) = (2:ℤ) * ((m k:ℤ) - (n k:ℤ))`.
+5) Lemma: Show `(d:ℤ) ∣ ((m k:ℤ) - (n k:ℤ))` (via `d ∣ (a-b)` and `a-b = 2*(m k - n k)` plus “odd divisor cancels 2”).
+6) Lemma: Convert (4)(5) into a nat identity `Int.natAbs(diff_{k+1}) = 2 * (Int.natAbs(diff_k) / d)`.
+7) Lemma: Apply `odd_part_le_from_div_by_odd` with `A := Int.natAbs(diff_k)` and the decomposition hypotheses to get `r2 = r1 / d`.
+8) Lemma: Use `d > 1` and `0 < r1` to conclude `r1 / d < r1`, hence `r2 < r1`.
+
+---------

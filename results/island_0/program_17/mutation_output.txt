@@ -1,0 +1,36 @@
+>>>>SEARCH
+/-- Helper (4): if `S` is `filter (λ v, 2^v ∣ A) (range (A+1))` and `u` is a maximal element
+    of `S` then `2^(u+1)` does not divide `A`. -/
+lemma maximality_implies_no_next_divides (A : ℕ) (S : Finset ℕ) (u : ℕ)
+  (hS_def : S = Finset.filter (fun v => ((2 : ℕ) ^ v ∣ A)) (Finset.range (A + 1)))
+  (u_mem : u ∈ S) (u_max : ∀ v ∈ S, v ≤ u) :
+  ¬ ((2 : ℕ) ^ (u + 1) ∣ A) := by
+  -- proof omitted: otherwise `u+1 ∈ S` contradicts maximality
+  sorry
+>>>>REPLACE
+/-- Helper (4): if `S` is `filter (λ v, 2^v ∣ A) (range (A+1))`, `A > 0`, and `u` is a maximal
+    element of `S` then `2^(u+1)` does not divide `A`. The extra `0 < A` hypothesis rules
+    out the degenerate `A = 0` case (where every power of 2 divides `A`). -/
+lemma maximality_implies_no_next_divides (A : ℕ) (S : Finset ℕ) (u : ℕ)
+  (hpos : 0 < A)
+  (hS_def : S = Finset.filter (fun v => ((2 : ℕ) ^ v ∣ A)) (Finset.range (A + 1)))
+  (u_mem : u ∈ S) (u_max : ∀ v ∈ S, v ≤ u) :
+  ¬ ((2 : ℕ) ^ (u + 1) ∣ A) := by
+  -- assume contrary and derive that `u+1 ∈ S`, contradicting maximality
+  intro hdiv_next
+  -- use the bound lemma to see that (u+1) ≤ A, so u+1 ∈ range (A+1)
+  have hbound : (u + 1) ≤ A := by
+    exact pow_two_divides_bounded_by_A A (u + 1) hpos hdiv_next
+  have in_range : u + 1 ∈ Finset.range (A + 1) := by
+    exact Finset.mem_range.mpr (Nat.lt_succ_of_le hbound)
+  -- hence u+1 ∈ S by definition of S
+  have in_S : u + 1 ∈ S := by
+    rw [hS_def]
+    apply Finset.mem_filter.2
+    constructor
+    · exact in_range
+    · exact hdiv_next
+  -- maximality gives (u+1) ≤ u, contradiction
+  have le_contra : u + 1 ≤ u := u_max (u + 1) in_S
+  have : u < u := Nat.lt_of_succ_le le_contra
+  exact Nat.lt_irrefl u this

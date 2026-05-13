@@ -1,0 +1,26 @@
+>>>>SEARCH
+/-- Helper: if an odd natural divisor `d` divides `A = 2^u * r` with r odd, then `d` divides r. -/
+lemma odd_divides_odd_part (A d u r : ℕ)
+  (hA : A = (2 : ℕ) ^ u * r) (hr_odd : r % 2 = 1) (hd_odd : d % 2 = 1) (hdvd : d ∣ A) :
+  d ∣ r := by
+  -- proof omitted
+  sorry
+>>>>REPLACE
+/-- Helper: if an odd natural divisor `d` divides `A = 2^u * r` with r odd, then `d` divides r. -/
+lemma odd_divides_odd_part (A d u r : ℕ)
+  (hA : A = (2 : ℕ) ^ u * r) (hr_odd : r % 2 = 1) (hd_odd : d % 2 = 1) (hdvd : d ∣ A) :
+  d ∣ r := by
+  -- 1) d is coprime to 2^u because d is odd
+  have hcop : Nat.Coprime d ((2 : ℕ) ^ u) := by
+    exact odd_implies_coprime_pow_two d u hd_odd
+
+  -- 2) rewrite the divisibility d ∣ A as d ∣ 2^u * r using hA
+  have hdiv_mul : d ∣ ((2 : ℕ) ^ u * r) := by
+    rw [hA] at hdvd
+    exact hdvd
+
+  -- 3) cancel the coprime factor to deduce d ∣ r
+  have hres : d ∣ r := by
+    exact coprime_dvd_of_dvd_mul_right hcop hdiv_mul
+
+  exact hres
