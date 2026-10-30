@@ -10,6 +10,47 @@ spawn a child sketch. Search is organized as an **island model**.
 A run terminates when one sketch has all of its subgoals closed and the assembled
 full proof compiles, or when the LLM call budget is exhausted.
 
+<p align="center"><img src="docs/method.svg" alt="lean_evolve method overview" width="100%"></p>
+
+
+## Results
+
+Budget is the number of LLM calls per problem (`GLOBAL_LLM_CALLS`: informal
+proof, sketch, repair, reviewer, mutator, assembly). Sub-prover samples and
+Lean checks are not counted.
+
+| Benchmark | Solved | LLM calls per solved problem |
+|---|:-:|---|
+| miniF2F-test subset (`data/minif2f_s1.jsonl`) | **10 / 15** | 4 – 322 |
+| ↳ IMO + IMO Shortlist problems | **4 / 7** | 29, 55, 103, 322 |
+| Putnam 2025 (`data/putnam_s1.jsonl`) | **2 / 3** | A1: 234, B3: 298 |
+
+<details>
+<summary>Per-problem breakdown</summary>
+
+| Problem | Solved | LLM calls |
+|---|:-:|--:|
+| amc12b_2021_p3 | ✓ | 4 |
+| mathd_algebra_459 | ✓ | 4 |
+| induction_nfactltnexpnm1ngt3 | ✓ | 9 |
+| amc12a_2020_p10 | ✓ | 13 |
+| induction_sumkexp3eqsumksq | ✓ | 22 |
+| imo_1963_p5 | ✓ | 29 |
+| imo_1992_p1 | ✓ | 55 |
+| imo_1969_p2 | ✓ | 103 |
+| mathd_algebra_320 | ✓ | 141 |
+| imo_1982_p1 | ✓ | 322 |
+| imo_1977_p6 | ✗ | |
+| imo_1997_p5 | ✗ | |
+| imosl_2007_algebra_p6 | ✗ | |
+| algebra_apbmpcneq0_aeq0anbeq0anceq0 | ✗ | |
+| numbertheory_fxeq4powxp6powxp9powx_f2powmdvdf2pown | ✗ | |
+| putnam_2025_a1 | ✓ | 234 |
+| putnam_2025_b3 | ✓ | 298 |
+| putnam_2025_a2 | ✗ | |
+
+</details>
+
 
 ## Method
 

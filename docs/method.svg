@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 624" width="1000" height="624" role="img" aria-labelledby="title desc">
+  <title id="title">lean_evolve method overview</title>
+  <desc id="desc">A theorem is turned into an informal proof and a Lean sketch of sorry-closed lemmas. Each sketch is evaluated by extracting its lemmas, sampling a sub-prover, and type-checking with Lean. Fully proved sketches are assembled into a full proof; otherwise they join an island, from which a parent is selected and mutated (refine on compile errors, reviewer plus mutator on failing lemmas) into a child sketch that is evaluated again.</desc>
+  <style>
+    .bg    { fill: #ffffff; }
+    .panel { fill: #f6f8fa; stroke: #d0d7de; stroke-width: 1; }
+    text   { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+    .m, .f, .n { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "DejaVu Sans Mono", monospace; }
+    .ph    { font-size: 12px; font-weight: 700; letter-spacing: .08em; fill: #57606a; }
+    .t     { font-size: 14px; font-weight: 600; fill: #1f2328; }
+    .s     { font-size: 12px; fill: #57606a; }
+    .m     { font-size: 11.5px; fill: #57606a; }
+    .f     { font-size: 12.5px; fill: #1f2328; }
+    .n     { font-size: 11px; fill: #1f2328; }
+    .llm   { fill: #f3efff; stroke: #8250df; stroke-width: 1.5; }
+    .lean  { fill: #ddf4ff; stroke: #0969da; stroke-width: 1.5; }
+    .data  { fill: #ffffff; stroke: #8c959f; stroke-width: 1.5; }
+    .ok    { fill: #dafbe1; stroke: #1a7f37; stroke-width: 1.5; }
+    .err   { fill: #ffebe9; stroke: #cf222e; stroke-width: 1.5; }
+    .sel   { fill: #fff1e5; stroke: #bc4c00; stroke-width: 2; }
+    .e     { fill: none; stroke: #6e7781; stroke-width: 1.6; }
+    .tl    { fill: none; stroke: #8c959f; stroke-width: 1.2; }
+    .ah    { fill: #6e7781; }
+    @media (prefers-color-scheme: dark) {
+      .bg    { fill: #0d1117; }
+      .panel { fill: #161b22; stroke: #30363d; }
+      .ph, .s, .m { fill: #8b949e; }
+      .t, .f, .n  { fill: #e6edf3; }
+      .llm   { fill: #261c3d; stroke: #a371f7; }
+      .lean  { fill: #11263f; stroke: #58a6ff; }
+      .data  { fill: #0d1117; stroke: #6e7681; }
+      .ok    { fill: #12261e; stroke: #3fb950; }
+      .err   { fill: #2d1517; stroke: #f85149; }
+      .sel   { fill: #2d1c0e; stroke: #f0883e; }
+      .e     { stroke: #8b949e; }
+      .tl    { stroke: #6e7681; }
+      .ah    { fill: #8b949e; }
+    }
+  </style>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="ah"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1000" height="624" rx="16"/>
+
+  <!-- Initialization -->
+  <rect class="data" x="44" y="24" width="130" height="76" rx="10"/>
+  <text class="t" x="109" y="58" text-anchor="middle">Theorem</text>
+  <text class="s" x="109" y="78" text-anchor="middle">miniF2F · Putnam</text>
+  <line class="e" x1="174" y1="62" x2="202" y2="62" marker-end="url(#ah)"/>
+
+  <rect class="llm" x="204" y="24" width="160" height="76" rx="10"/>
+  <text class="t" x="284" y="58" text-anchor="middle">Informal proof</text>
+  <text class="s" x="284" y="78" text-anchor="middle">natural language</text>
+  <line class="e" x1="364" y1="62" x2="392" y2="62" marker-end="url(#ah)"/>
+
+  <rect class="llm" x="394" y="24" width="226" height="76" rx="10"/>
+  <text class="t" x="507" y="48" text-anchor="middle">Proof sketch</text>
+  <text class="m" x="507" y="68" text-anchor="middle">lemma … := by sorry</text>
+  <text class="s" x="507" y="88" text-anchor="middle">auto-repaired ≤ 4× on errors</text>
+
+  <path class="e" d="M507,100 V120 H144 V138" marker-end="url(#ah)"/>
+
+  <!-- Legend -->
+  <rect class="llm" x="716" y="33" width="14" height="14" rx="3"/>
+  <text class="s" x="740" y="45">LLM call (counts toward budget)</text>
+  <rect class="lean" x="716" y="55" width="14" height="14" rx="3"/>
+  <text class="s" x="740" y="67">Sub-prover / Lean kernel</text>
+  <rect class="data" x="716" y="77" width="14" height="14" rx="3"/>
+  <text class="s" x="740" y="89">Program state / parsing</text>
+
+  <!-- Evaluate -->
+  <rect class="panel" x="44" y="140" width="576" height="170" rx="14"/>
+  <text class="ph" x="60" y="164">EVALUATE</text>
+  <text class="m" x="604" y="164" text-anchor="end">evaluation/</text>
+
+  <rect class="data" x="64" y="180" width="160" height="60" rx="10"/>
+  <text class="t" x="144" y="205" text-anchor="middle">Extract subgoals</text>
+  <text class="s" x="144" y="224" text-anchor="middle">one per lemma</text>
+  <line class="e" x1="224" y1="210" x2="248" y2="210" marker-end="url(#ah)"/>
+
+  <rect class="lean" x="250" y="180" width="160" height="60" rx="10"/>
+  <text class="t" x="330" y="205" text-anchor="middle">Sub-prover</text>
+  <text class="s" x="330" y="224" text-anchor="middle">N samples per lemma</text>
+  <line class="e" x1="410" y1="210" x2="434" y2="210" marker-end="url(#ah)"/>
+
+  <rect class="lean" x="436" y="180" width="164" height="60" rx="10"/>
+  <text class="t" x="518" y="205" text-anchor="middle">Lean kernel</text>
+  <text class="s" x="518" y="224" text-anchor="middle">batched type-check</text>
+
+  <text class="f" x="332" y="270" text-anchor="middle">fitness = solved / total − lean_errors / 10</text>
+  <text class="s" x="332" y="292" text-anchor="middle">Proved and failed lemmas are cached per problem and reused.</text>
+
+  <!-- Solved -->
+  <line class="e" x1="620" y1="205" x2="698" y2="205" marker-end="url(#ah)"/>
+  <text class="s" x="660" y="196" text-anchor="middle">all proved</text>
+
+  <rect class="panel" x="700" y="140" width="280" height="110" rx="14"/>
+  <text class="ph" x="716" y="164">SOLVED</text>
+  <rect class="ok" x="716" y="176" width="248" height="58" rx="10"/>
+  <text class="t" x="840" y="200" text-anchor="middle">Assemble &amp; compile</text>
+  <text class="m" x="840" y="220" text-anchor="middle">full_proof.txt ✓</text>
+
+  <!-- Island -->
+  <line class="e" x1="620" y1="290" x2="698" y2="290" marker-end="url(#ah)"/>
+  <text class="s" x="660" y="281" text-anchor="middle">otherwise</text>
+
+  <rect class="panel" x="700" y="270" width="280" height="310" rx="14"/>
+  <text class="ph" x="716" y="294">ISLAND</text>
+  <text class="m" x="964" y="294" text-anchor="end">stores/</text>
+
+  <path class="tl" d="M840,352 L772,401 M840,352 L840,401 M840,352 L908,401 M772,425 L740,474 M772,425 L804,474 M908,425 L908,474"/>
+  <rect class="data" x="816" y="328" width="48" height="24" rx="12"/>
+  <text class="n" x="840" y="344" text-anchor="middle">0.33</text>
+  <rect class="data" x="748" y="401" width="48" height="24" rx="12"/>
+  <text class="n" x="772" y="417" text-anchor="middle">0.50</text>
+  <rect class="err" x="816" y="401" width="48" height="24" rx="12"/>
+  <text class="n" x="840" y="417" text-anchor="middle">−0.2</text>
+  <rect class="data" x="884" y="401" width="48" height="24" rx="12"/>
+  <text class="n" x="908" y="417" text-anchor="middle">0.33</text>
+  <rect class="sel" x="716" y="474" width="48" height="24" rx="12"/>
+  <text class="n" x="740" y="490" text-anchor="middle">0.67</text>
+  <rect class="data" x="780" y="474" width="48" height="24" rx="12"/>
+  <text class="n" x="804" y="490" text-anchor="middle">0.50</text>
+  <rect class="data" x="884" y="474" width="48" height="24" rx="12"/>
+  <text class="n" x="908" y="490" text-anchor="middle">0.17</text>
+
+  <text class="s" x="716" y="528">parent = newest program with</text>
+  <text class="s" x="716" y="545">score ≥ 0, &lt; 4 children, &lt; 15 tries</text>
+  <text class="s" x="716" y="562">full: child evicts worst if better</text>
+
+  <!-- Mutate -->
+  <line class="e" x1="716" y1="486" x2="602" y2="486" marker-end="url(#ah)"/>
+  <text class="s" x="660" y="477" text-anchor="middle">select</text>
+
+  <rect class="panel" x="44" y="370" width="576" height="210" rx="14"/>
+  <text class="ph" x="60" y="394">MUTATE</text>
+  <text class="m" x="604" y="394" text-anchor="end">mutate/</text>
+
+  <rect class="data" x="470" y="458" width="130" height="56" rx="10"/>
+  <text class="t" x="535" y="482" text-anchor="middle">Parent sketch</text>
+  <text class="s" x="535" y="500" text-anchor="middle">+ its rating</text>
+
+  <path class="e" d="M470,486 H450 V443 H432" marker-end="url(#ah)"/>
+  <path class="e" d="M450,486 V530 H432" marker-end="url(#ah)"/>
+
+  <text class="s" x="290" y="413">if compile errors</text>
+  <rect class="llm" x="290" y="420" width="140" height="46" rx="10"/>
+  <text class="t" x="360" y="439" text-anchor="middle">Refine</text>
+  <text class="s" x="360" y="456" text-anchor="middle">patch from Lean log</text>
+
+  <text class="s" x="290" y="495">if lemmas fail</text>
+  <rect class="llm" x="290" y="502" width="140" height="56" rx="10"/>
+  <text class="t" x="360" y="525" text-anchor="middle">Reviewer</text>
+  <text class="m" x="360" y="544" text-anchor="middle">INCORRECT / HARD</text>
+  <line class="e" x1="290" y1="530" x2="252" y2="530" marker-end="url(#ah)"/>
+
+  <rect class="llm" x="110" y="502" width="140" height="56" rx="10"/>
+  <text class="t" x="180" y="525" text-anchor="middle">Mutator</text>
+  <text class="m" x="180" y="544" text-anchor="middle">SEARCH/REPLACE</text>
+
+  <!-- Child sketch loops back to Evaluate -->
+  <path class="e" d="M290,443 H24"/>
+  <path class="e" d="M110,530 H24 V210 H42" marker-end="url(#ah)"/>
+  <text class="s" x="32" y="344">child sketch</text>
+
+  <text class="s" x="500" y="606" text-anchor="middle">Loop until one sketch is fully proved or max_budget LLM calls are spent.</text>
+</svg>
