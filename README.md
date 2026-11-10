@@ -1,11 +1,17 @@
 # lean_evolve
 
-Evolutionary search for **Lean 4 proofs** on competition math (miniF2F, Putnam).
-Each genome is a proof **sketch**: the main theorem split into auxiliary
-`lemma`s closed by `sorry`. A sub-prover tries to close each lemma, an LLM
-reviewer critiques the failures, and a mutator patches the sketch into a child.
-A run stops when every subgoal of some sketch is proved and the assembled proof
-compiles, or when the LLM-call budget runs out.
+The goal of this project is to generate formal proofs, in Lean 4, of
+high-school and college competition problems (miniF2F, Putnam). The hard part
+is **autoformalization**: turning a natural-language proof into Lean that
+compiles is far from easy.
+
+lean_evolve starts from a natural-language proof written by an LLM and turns it
+into a state: a **lemma-style Lean sketch**, where the main theorem chains
+auxiliary `lemma`s left as `sorry`. A low-level prover then tries to close each
+lemma. In each mutation round, a state is selected from the database, mutated,
+evaluated, and stored back.
+
+With this, we solved Putnam 2025 A1 and B3 and four IMO problems from miniF2F.
 
 <p align="center"><img src="docs/method.svg" alt="lean_evolve method overview" width="100%"></p>
 
